@@ -1,115 +1,115 @@
 @extends('layouts.blank')
 
 @section('favicon')
-  <link type="image/png" href="{{ asset('img/' . $categorie->category_icon) ?? ' ' }}" rel="shortcut icon">
+<link type="image/png" href="{{ asset('img/' . $categorie->category_icon) ?? ' ' }}" rel="shortcut icon">
 @endsection
 
 @section('content')
-  <div class="page-wrapper mb-4">
-    <!-- Page header -->
-    <div class="page-header d-print-none">
-      <div class="container-fluid">
-        <div class="row align-items-center">
-          <!-- Page pre-title -->
-          <div class="col">
-            <div class="page-pretitle text-primary">
-              {{ __($category) ?? '' }}
-            </div>
-            <h2 class="page-title text-primary">
-              {{ __($categorie->category_name) ?? '' }}
-            </h2>
+<div class="page-wrapper mb-4">
+  <!-- Page header -->
+  <div class="page-header d-print-none">
+    <div class="container-fluid">
+      <div class="row align-items-center">
+        <!-- Page pre-title -->
+        <div class="col">
+          <div class="page-pretitle text-primary">
+            {{ __($category) ?? '' }}
           </div>
-          <!-- Page title actions buttons -->
-          <div class="ms-auto d-print-none col-auto">
-            <div class="btn-list">
-              <div class="d-flex justify-content-end">
-                @auth
-                  <button class="btn btn-success me-2 d-none d-sm-inline-block hover-shadow-sm" id="openCreateModal">
-                    <svg class="icon icon-tabler icon-tabler-book-upload" xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 24 24" stroke-width="1"
-                         stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
-                      <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
-                      <path d="M14 20h-8a2 2 0 0 1 -2 -2v-12a2 2 0 0 1 2 -2h12v5"></path>
-                      <path d="M11 16h-5a2 2 0 0 0 -2 2"></path>
-                      <path d="M15 16l3 -3l3 3"></path>
-                      <path d="M18 13v9"></path>
-                    </svg>
-                    {{ __('Nový standard') }}
-                  </button>
-                @endauth
-              </div>
+          <h2 class="page-title text-primary">
+            {{ __($categorie->category_name) ?? '' }}
+          </h2>
+        </div>
+        <!-- Page title actions buttons -->
+        <div class="ms-auto d-print-none col-auto">
+          <div class="btn-list">
+            <div class="d-flex justify-content-end">
+              @auth
+              <button class="btn btn-success me-2 d-none d-sm-inline-block hover-shadow-sm" id="openCreateModal">
+                <svg class="icon icon-tabler icon-tabler-book-upload" xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 24 24" stroke-width="1"
+                     stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                  <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+                  <path d="M14 20h-8a2 2 0 0 1 -2 -2v-12a2 2 0 0 1 2 -2h12v5"></path>
+                  <path d="M11 16h-5a2 2 0 0 0 -2 2"></path>
+                  <path d="M15 16l3 -3l3 3"></path>
+                  <path d="M18 13v9"></path>
+                </svg>
+                {{ __('Nový standard') }}
+              </button>
+              @endauth
             </div>
           </div>
-          <!-- Wrapper End -->
+        </div>
+        <!-- Wrapper End -->
 
-          <div class="container-fluid">
-              <div class="h-100">
-                <div class="col-12">
-                  <div class="card border-0" style="height: 34rem">
-                    <div class="card-body card-body-scrollable card-body-scrollable-shadow shadow-sm p-0">
-                      <div class="divide-y">
-                        <div>
-                  @foreach ($documents as $document)
-                    <div class="accordion-item">
-                      <div class="show" id="collapse-{{ $document->position }}" data-bs-parent="#accordion-standard" style="">
-                        <div class="accordion-body pt-0">
-                          <div class="list-group list-group-flush list-group-hoverable pt-1">
-                            <div class="list-group-item">
-                              <div class="row align-items-center">
-                                <div class="col-auto">
-                                  <a href="/standardy/{{ $document->file }}" target="_blank">
-                                <span class="avatar">
-                                  <img src="{{ asset('img/files/pdf.png') }}" alt="PDF - Standard">
-                                </span>
-                                  </a>
-                                </div>
-                                <div class="col text-truncate">
-                                  <a class="text-primary d-block text-decoration-none" href="{{ url('standardy/' . $document->file) }}" target="_blank">
-                                    <h3 style="margin-bottom: 0;">{{ $document->position }}. {{ $document->name }}</h3>
-                                  </a>
-                                  <div class="d-block text-muted text-truncate mt-n1">{{ $document->description }}</div>
-                                </div>
-                                <div class="col-auto">
-                                  <svg class="icon icon-tabler text-yellow" xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 24 24"
-                                       stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
-                                    <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
-                                    <path d="M9 4h6a2 2 0 0 1 2 2v14l-5 -3l-5 3v-14a2 2 0 0 1 2 -2"></path>
-                                  </svg>
-                                  <span class="text-muted">revize: {{ $document->revision }}</span>
-                                  @auth
-                                    @if ($document->status == 'Rozpracováno')
-                                      <span class="badge badge-sm bg-yellow-lt text-uppercase ms-auto">Rozpracováno</span>
-                                    @else
-                                      <span class="badge badge-sm bg-green-lt text-uppercase ms-auto">Schváleno</span>
-                                    @endif
-                                  @endauth
-                                  @if ( Carbon\Carbon::parse($document->created_at)->addDay() >= Carbon\Carbon::today())
-                                    <span class="badge badge-sm bg-red-lt text-uppercase ms-auto">Nový</span>
-                                  @endif
-                                  @if (Carbon\Carbon::parse($document->updated_at)->addDays(15) >= Carbon\Carbon::now())
-                                    <span class="badge badge-sm bg-lime-lt text-uppercase ms-auto">Aktualizováno</span>
-                                  @endif
-                                  <svg class="icon icon-tabler text-info" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" stroke-width="2"
-                                       stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
-                                    <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
-                                    <rect x="4" y="5" width="16" height="16" rx="2"></rect>
-                                    <line x1="16" y1="3" x2="16" y2="7"></line>
-                                    <line x1="8" y1="3" x2="8" y2="7"></line>
-                                    <line x1="4" y1="11" x2="20" y2="11"></line>
-                                    <line x1="11" y1="15" x2="12" y2="15"></line>
-                                    <line x1="12" y1="15" x2="12" y2="18"></line>
-                                  </svg>
-                                  <span class="text-muted">{{ Carbon\Carbon::parse($document->updated_at)->diffForHumans() }}</span>
-                                </div>
-                                @auth
+        <div class="container-fluid">
+          <div class="h-100">
+            <div class="col-12">
+              <div class="card p-2" style="height: 34rem">
+                <div class="card-body card-body-scrollable card-body-scrollable-shadow shadow-sm p-0">
+                  <div class="divide-y">
+                    <div>
+                      @foreach ($documents as $document)
+                      <div class="accordion-item">
+                        <div class="show" id="collapse-{{ $document->position }}" data-bs-parent="#accordion-standard" style="">
+                          <div class="accordion-body pt-0">
+                            <div class="list-group list-group-flush list-group-hoverable pt-1">
+                              <div class="list-group-item">
+                                <div class="row align-items-center">
                                   <div class="col-auto">
-                              <span title="Možnosti" class="cursor-pointer btn btn-icon hover-shadow" id="dropdownMenuButton-' . $data->id . '" data-bs-toggle="dropdown">
-                                <svg xmlns="http://www.w3.org/2000/svg" class="icon dropdown-item-icon" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
-                                  <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
-                                  <line x1="4" y1="6" x2="20" y2="6"></line>
-                                  <line x1="4" y1="12" x2="20" y2="12"></line>
-                                  <line x1="4" y1="18" x2="20" y2="18"></line>
-                                </svg>
-                              </span>
+                                    <a href="/standardy/{{ $document->file }}" target="_blank">
+                                      <span class="avatar">
+                                        <img src="{{ asset('img/files/pdf.png') }}" alt="PDF - Standard">
+                                      </span>
+                                    </a>
+                                  </div>
+                                  <div class="col text-truncate">
+                                    <a class="text-primary d-block text-decoration-none" href="{{ url('standardy/' . $document->file) }}" target="_blank">
+                                      <h3 style="margin-bottom: 0;">{{ $document->position }}. {{ $document->name }}</h3>
+                                    </a>
+                                    <div class="d-block text-muted text-truncate mt-n1">{{ $document->description }}</div>
+                                  </div>
+                                  <div class="col-auto">
+                                    <svg class="icon icon-tabler text-yellow" xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 24 24"
+                                         stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                                      <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+                                      <path d="M9 4h6a2 2 0 0 1 2 2v14l-5 -3l-5 3v-14a2 2 0 0 1 2 -2"></path>
+                                    </svg>
+                                    <span class="text-muted">revize: {{ $document->revision }}</span>
+                                    @auth
+                                    @if ($document->status == 'Rozpracováno')
+                                    <span class="badge badge-sm bg-yellow-lt text-uppercase ms-auto">Rozpracováno</span>
+                                    @else
+                                    <span class="badge badge-sm bg-green-lt text-uppercase ms-auto">Schváleno</span>
+                                    @endif
+                                    @endauth
+                                    @if ( Carbon\Carbon::parse($document->created_at)->addDay() >= Carbon\Carbon::today())
+                                    <span class="badge badge-sm bg-red-lt text-uppercase ms-auto">Nový</span>
+                                    @endif
+                                    @if (Carbon\Carbon::parse($document->updated_at)->addDays(15) >= Carbon\Carbon::now())
+                                    <span class="badge badge-sm bg-lime-lt text-uppercase ms-auto">Aktualizováno</span>
+                                    @endif
+                                    <svg class="icon icon-tabler text-info" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" stroke-width="2"
+                                         stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                                      <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+                                      <rect x="4" y="5" width="16" height="16" rx="2"></rect>
+                                      <line x1="16" y1="3" x2="16" y2="7"></line>
+                                      <line x1="8" y1="3" x2="8" y2="7"></line>
+                                      <line x1="4" y1="11" x2="20" y2="11"></line>
+                                      <line x1="11" y1="15" x2="12" y2="15"></line>
+                                      <line x1="12" y1="15" x2="12" y2="18"></line>
+                                    </svg>
+                                    <span class="text-muted">{{ Carbon\Carbon::parse($document->updated_at)->diffForHumans() }}</span>
+                                  </div>
+                                  @auth
+                                  <div class="col-auto">
+                                    <span title="Možnosti" class="cursor-pointer btn btn-icon hover-shadow" id="dropdownMenuButton-' . $data->id . '" data-bs-toggle="dropdown">
+                                      <svg xmlns="http://www.w3.org/2000/svg" class="icon dropdown-item-icon" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                                        <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+                                        <line x1="4" y1="6" x2="20" y2="6"></line>
+                                        <line x1="4" y1="12" x2="20" y2="12"></line>
+                                        <line x1="4" y1="18" x2="20" y2="18"></line>
+                                      </svg>
+                                    </span>
                                     <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton-' . $document->id . '">
                                       <li class="dropdown-item edit" id="{{ $document->id }}">
                                         <svg xmlns="http://www.w3.org/2000/svg" class="icon dropdown-item-icon-edit" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
@@ -132,15 +132,15 @@
                                       </li>
                                     </ul>
                                   </div>
-                                @endauth
-                              </div>
-                              @foreach ($document->addon as $add)
+                                  @endauth
+                                </div>
+                                @foreach ($document->addon as $add)
                                 <div class="row align-items-center mb-1">
                                   <div class="col-auto">
                                     <a href="{{ url('standardy/' . $add->file) }}">
-                                <span class="avatar">
-                                  <img src="{{ asset('img/files/pdf-add.png') }}" alt="PDF - Příloha standardu">
-                                </span>
+                                      <span class="avatar">
+                                        <img src="{{ asset('img/files/pdf-add.png') }}" alt="PDF - Příloha standardu">
+                                      </span>
                                     </a>
                                   </div>
                                   <div class="col text-truncate">
@@ -157,17 +157,17 @@
                                     </svg>
                                     <span class="text-muted">revize: {{ $add->revision }}</span>
                                     @auth
-                                      @if ($add->status == 'Rozpracováno')
-                                        <span class="badge badge-sm bg-yellow-lt text-uppercase ms-auto">Rozpracováno</span>
-                                      @else
-                                        <span class="badge badge-sm bg-green-lt text-uppercase ms-auto">Schváleno</span>
-                                      @endif
+                                    @if ($add->status == 'Rozpracováno')
+                                    <span class="badge badge-sm bg-yellow-lt text-uppercase ms-auto">Rozpracováno</span>
+                                    @else
+                                    <span class="badge badge-sm bg-green-lt text-uppercase ms-auto">Schváleno</span>
+                                    @endif
                                     @endauth
                                     @if ( Carbon\Carbon::parse($add->created_at)->addDay() >= Carbon\Carbon::today())
-                                      <span class="badge badge-sm bg-red-lt text-uppercase ms-auto">Nový</span>
+                                    <span class="badge badge-sm bg-red-lt text-uppercase ms-auto">Nový</span>
                                     @endif
                                     @if (Carbon\Carbon::parse($add->updated_at)->addDays(15) >= Carbon\Carbon::now())
-                                      <span class="badge badge-sm bg-lime-lt text-uppercase ms-auto">Aktualizováno</span>
+                                    <span class="badge badge-sm bg-lime-lt text-uppercase ms-auto">Aktualizováno</span>
                                     @endif
                                     <svg class="icon icon-tabler text-info" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" stroke-width="2"
                                          stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
@@ -182,400 +182,400 @@
                                     <span class="text-muted">{{ Carbon\Carbon::parse($document->updated_at)->diffForHumans() }}</span>
                                   </div>
                                 </div>
-                              @endforeach
+                                @endforeach
+                              </div>
                             </div>
                           </div>
                         </div>
                       </div>
+                      @endforeach
                     </div>
-                  @endforeach
+                  </div>
                 </div>
               </div>
             </div>
-                         </div>
-                </div>
-              </div>
           </div>
+        </div>
 
 
-          <div class="container-fluid mt-3">
-            <div class="h-100">
-              <div class="col-12">
-                        @foreach ($documents as $document)
-                          <div class="accordion-item">
-                            <div class="show" id="collapse-{{ $document->position }}" data-bs-parent="#accordion-standard" style="">
-                              <div class="accordion-body pt-0">
-                                <div class="list-group list-group-flush list-group-hoverable pt-1">
-                                  <div class="list-group-item">
-                                    <div class="row align-items-center">
-                                      <div class="col-auto">
-                                        <a href="/standardy/{{ $document->file }}" target="_blank">
-                                <span class="avatar">
-                                  <img src="{{ asset('img/files/pdf.png') }}" alt="PDF - Standard">
-                                </span>
-                                        </a>
-                                      </div>
-                                      <div class="col text-truncate">
-                                        <a class="text-primary d-block text-decoration-none" href="{{ url('standardy/' . $document->file) }}" target="_blank">
-                                          <h3 style="margin-bottom: 0;">{{ $document->position }}. {{ $document->name }}</h3>
-                                        </a>
-                                        <div class="d-block text-muted text-truncate mt-n1">{{ $document->description }}</div>
-                                      </div>
-                                      <div class="col-auto">
-                                        <svg class="icon icon-tabler text-yellow" xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 24 24"
-                                             stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
-                                          <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
-                                          <path d="M9 4h6a2 2 0 0 1 2 2v14l-5 -3l-5 3v-14a2 2 0 0 1 2 -2"></path>
-                                        </svg>
-                                        <span class="text-muted">revize: {{ $document->revision }}</span>
-                                        @auth
-                                          @if ($document->status == 'Rozpracováno')
-                                            <span class="badge badge-sm bg-yellow-lt text-uppercase ms-auto">Rozpracováno</span>
-                                          @else
-                                            <span class="badge badge-sm bg-green-lt text-uppercase ms-auto">Schváleno</span>
-                                          @endif
-                                        @endauth
-                                        @if ( Carbon\Carbon::parse($document->created_at)->addDay() >= Carbon\Carbon::today())
-                                          <span class="badge badge-sm bg-red-lt text-uppercase ms-auto">Nový</span>
-                                        @endif
-                                        @if (Carbon\Carbon::parse($document->updated_at)->addDays(15) >= Carbon\Carbon::now())
-                                          <span class="badge badge-sm bg-lime-lt text-uppercase ms-auto">Aktualizováno</span>
-                                        @endif
-                                        <svg class="icon icon-tabler text-info" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" stroke-width="2"
-                                             stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
-                                          <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
-                                          <rect x="4" y="5" width="16" height="16" rx="2"></rect>
-                                          <line x1="16" y1="3" x2="16" y2="7"></line>
-                                          <line x1="8" y1="3" x2="8" y2="7"></line>
-                                          <line x1="4" y1="11" x2="20" y2="11"></line>
-                                          <line x1="11" y1="15" x2="12" y2="15"></line>
-                                          <line x1="12" y1="15" x2="12" y2="18"></line>
-                                        </svg>
-                                        <span class="text-muted">{{ Carbon\Carbon::parse($document->updated_at)->diffForHumans() }}</span>
-                                      </div>
-                                      @auth
-                                        <div class="col-auto">
-                              <span title="Možnosti" class="cursor-pointer btn btn-icon hover-shadow" id="dropdownMenuButton-' . $data->id . '" data-bs-toggle="dropdown">
-                                <svg xmlns="http://www.w3.org/2000/svg" class="icon dropdown-item-icon" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
-                                  <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
-                                  <line x1="4" y1="6" x2="20" y2="6"></line>
-                                  <line x1="4" y1="12" x2="20" y2="12"></line>
-                                  <line x1="4" y1="18" x2="20" y2="18"></line>
-                                </svg>
+        <div class="container-fluid mt-3">
+          <div class="h-100">
+            <div class="col-12">
+              @foreach ($documents as $document)
+              <div class="accordion-item">
+                <div class="show" id="collapse-{{ $document->position }}" data-bs-parent="#accordion-standard" style="">
+                  <div class="accordion-body pt-0">
+                    <div class="list-group list-group-flush list-group-hoverable pt-1">
+                      <div class="list-group-item">
+                        <div class="row align-items-center">
+                          <div class="col-auto">
+                            <a href="/standardy/{{ $document->file }}" target="_blank">
+                              <span class="avatar">
+                                <img src="{{ asset('img/files/pdf.png') }}" alt="PDF - Standard">
                               </span>
-                                          <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton-' . $document->id . '">
-                                            <li class="dropdown-item edit" id="{{ $document->id }}">
-                                              <svg xmlns="http://www.w3.org/2000/svg" class="icon dropdown-item-icon-edit" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
-                                                <path stroke="none" d="M0 0h24v24H0z" fill="none" />
-                                                <path d="M7 7h-1a2 2 0 0 0 -2 2v9a2 2 0 0 0 2 2h9a2 2 0 0 0 2 -2v-1" />
-                                                <path d="M20.385 6.585a2.1 2.1 0 0 0 -2.97 -2.97l-8.415 8.385v3h3l8.385 -8.415z" />
-                                                <path d="M16 5l3 3" />
-                                              </svg>
-                                              {{ __('Upravit standard') }}
-                                            </li>
-                                            <li class="dropdown-item delete" id="{{ $document->id }}'">
-                                              <svg xmlns="http://www.w3.org/2000/svg" class="icon icon dropdown-item-icon-delete" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
-                                                <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
-                                                <path d="M4 7h16"></path>
-                                                <path d="M5 7l1 12a2 2 0 0 0 2 2h8a2 2 0 0 0 2 -2l1 -12"></path>
-                                                <path d="M9 7v-3a1 1 0 0 1 1 -1h4a1 1 0 0 1 1 1v3"></path>
-                                                <path d="M10 12l4 4m0 -4l-4 4"></path>
-                                              </svg>
-                                              {{ __('Odstranit standard') }}
-                                            </li>
-                                          </ul>
-                                        </div>
-                                      @endauth
-                                    </div>
-                                    @foreach ($document->addon as $add)
-                                      <div class="row align-items-center mb-1">
-                                        <div class="col-auto">
-                                          <a href="{{ url('standardy/' . $add->file) }}">
-                                <span class="avatar">
-                                  <img src="{{ asset('img/files/pdf-add.png') }}" alt="PDF - Příloha standardu">
-                                </span>
-                                          </a>
-                                        </div>
-                                        <div class="col text-truncate">
-                                          <a class="text-primary d-block d-block text-primary text-decoration-none" href="{{ url('standardy/' . $add->file) }}">
-                                            <h3 style="margin-bottom: 0;">{{ $document->position }}. {{ $document->name }} - příloha č. {{ $add->name }}</h3>
-                                          </a>
-                                          <div class="d-block text-muted text-truncate mt-n1">{{ $add->description }}</div>
-                                        </div>
-                                        <div class="col-auto">
-                                          <svg class="icon icon-tabler text-yellow" xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 24 24"
-                                               stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
-                                            <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
-                                            <path d="M9 4h6a2 2 0 0 1 2 2v14l-5 -3l-5 3v-14a2 2 0 0 1 2 -2"></path>
-                                          </svg>
-                                          <span class="text-muted">revize: {{ $add->revision }}</span>
-                                          @auth
-                                            @if ($add->status == 'Rozpracováno')
-                                              <span class="badge badge-sm bg-yellow-lt text-uppercase ms-auto">Rozpracováno</span>
-                                            @else
-                                              <span class="badge badge-sm bg-green-lt text-uppercase ms-auto">Schváleno</span>
-                                            @endif
-                                          @endauth
-                                          @if ( Carbon\Carbon::parse($add->created_at)->addDay() >= Carbon\Carbon::today())
-                                            <span class="badge badge-sm bg-red-lt text-uppercase ms-auto">Nový</span>
-                                          @endif
-                                          @if (Carbon\Carbon::parse($add->updated_at)->addDays(15) >= Carbon\Carbon::now())
-                                            <span class="badge badge-sm bg-lime-lt text-uppercase ms-auto">Aktualizováno</span>
-                                          @endif
-                                          <svg class="icon icon-tabler text-info" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" stroke-width="2"
-                                               stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
-                                            <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
-                                            <rect x="4" y="5" width="16" height="16" rx="2"></rect>
-                                            <line x1="16" y1="3" x2="16" y2="7"></line>
-                                            <line x1="8" y1="3" x2="8" y2="7"></line>
-                                            <line x1="4" y1="11" x2="20" y2="11"></line>
-                                            <line x1="11" y1="15" x2="12" y2="15"></line>
-                                            <line x1="12" y1="15" x2="12" y2="18"></line>
-                                          </svg>
-                                          <span class="text-muted">{{ Carbon\Carbon::parse($document->updated_at)->diffForHumans() }}</span>
-                                        </div>
-                                      </div>
-                                    @endforeach
-                                  </div>
-                                </div>
-                              </div>
-                            </div>
+                            </a>
                           </div>
-                        @endforeach
-                      </div>
-            </div>
-          </div>
-
-          <div class="container-fluid mt-3">
-            <div class="h-100">
-              <div class="col-12">
-                @foreach ($documents as $document)
-                  <div class="accordion-item hover-shadow-lg">
-                    <div class="show" id="collapse-{{ $document->position }}" data-bs-parent="#accordion-standard" style="">
-                      <div class="accordion-body pt-0">
-                        <div class="list-group list-group-flush list-group-hoverable pt-1">
-                          <div class="list-group-item">
-                            <div class="row align-items-center">
-                              <div class="col-auto">
-                                <a href="/standardy/{{ $document->file }}" target="_blank">
-                                <span class="avatar">
-                                  <img src="{{ asset('img/files/pdf.png') }}" alt="PDF - Standard">
-                                </span>
-                                </a>
-                              </div>
-                              <div class="col text-truncate">
-                                <a class="text-primary d-block text-decoration-none" href="{{ url('standardy/' . $document->file) }}" target="_blank">
-                                  <h3 style="margin-bottom: 0;">{{ $document->position }}. {{ $document->name }}</h3>
-                                </a>
-                                <div class="d-block text-muted text-truncate mt-n1">{{ $document->description }}</div>
-                              </div>
-                              <div class="col-auto">
-                                <svg class="icon icon-tabler text-yellow" xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 24 24"
-                                     stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
-                                  <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
-                                  <path d="M9 4h6a2 2 0 0 1 2 2v14l-5 -3l-5 3v-14a2 2 0 0 1 2 -2"></path>
+                          <div class="col text-truncate">
+                            <a class="text-primary d-block text-decoration-none" href="{{ url('standardy/' . $document->file) }}" target="_blank">
+                              <h3 style="margin-bottom: 0;">{{ $document->position }}. {{ $document->name }}</h3>
+                            </a>
+                            <div class="d-block text-muted text-truncate mt-n1">{{ $document->description }}</div>
+                          </div>
+                          <div class="col-auto">
+                            <svg class="icon icon-tabler text-yellow" xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 24 24"
+                                 stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                              <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+                              <path d="M9 4h6a2 2 0 0 1 2 2v14l-5 -3l-5 3v-14a2 2 0 0 1 2 -2"></path>
+                            </svg>
+                            <span class="text-muted">revize: {{ $document->revision }}</span>
+                            @auth
+                            @if ($document->status == 'Rozpracováno')
+                            <span class="badge badge-sm bg-yellow-lt text-uppercase ms-auto">Rozpracováno</span>
+                            @else
+                            <span class="badge badge-sm bg-green-lt text-uppercase ms-auto">Schváleno</span>
+                            @endif
+                            @endauth
+                            @if ( Carbon\Carbon::parse($document->created_at)->addDay() >= Carbon\Carbon::today())
+                            <span class="badge badge-sm bg-red-lt text-uppercase ms-auto">Nový</span>
+                            @endif
+                            @if (Carbon\Carbon::parse($document->updated_at)->addDays(15) >= Carbon\Carbon::now())
+                            <span class="badge badge-sm bg-lime-lt text-uppercase ms-auto">Aktualizováno</span>
+                            @endif
+                            <svg class="icon icon-tabler text-info" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" stroke-width="2"
+                                 stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                              <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+                              <rect x="4" y="5" width="16" height="16" rx="2"></rect>
+                              <line x1="16" y1="3" x2="16" y2="7"></line>
+                              <line x1="8" y1="3" x2="8" y2="7"></line>
+                              <line x1="4" y1="11" x2="20" y2="11"></line>
+                              <line x1="11" y1="15" x2="12" y2="15"></line>
+                              <line x1="12" y1="15" x2="12" y2="18"></line>
+                            </svg>
+                            <span class="text-muted">{{ Carbon\Carbon::parse($document->updated_at)->diffForHumans() }}</span>
+                          </div>
+                          @auth
+                          <div class="col-auto">
+                            <span title="Možnosti" class="cursor-pointer btn btn-icon hover-shadow" id="dropdownMenuButton-' . $data->id . '" data-bs-toggle="dropdown">
+                              <svg xmlns="http://www.w3.org/2000/svg" class="icon dropdown-item-icon" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                                <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+                                <line x1="4" y1="6" x2="20" y2="6"></line>
+                                <line x1="4" y1="12" x2="20" y2="12"></line>
+                                <line x1="4" y1="18" x2="20" y2="18"></line>
+                              </svg>
+                            </span>
+                            <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton-' . $document->id . '">
+                              <li class="dropdown-item edit" id="{{ $document->id }}">
+                                <svg xmlns="http://www.w3.org/2000/svg" class="icon dropdown-item-icon-edit" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                                  <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+                                  <path d="M7 7h-1a2 2 0 0 0 -2 2v9a2 2 0 0 0 2 2h9a2 2 0 0 0 2 -2v-1" />
+                                  <path d="M20.385 6.585a2.1 2.1 0 0 0 -2.97 -2.97l-8.415 8.385v3h3l8.385 -8.415z" />
+                                  <path d="M16 5l3 3" />
                                 </svg>
-                                <span class="text-muted">revize: {{ $document->revision }}</span>
-                                @auth
-                                  @if ($document->status == 'Rozpracováno')
-                                    <span class="badge badge-sm bg-yellow-lt text-uppercase ms-auto">Rozpracováno</span>
-                                  @else
-                                    <span class="badge badge-sm bg-green-lt text-uppercase ms-auto">Schváleno</span>
-                                  @endif
-                                @endauth
-                                @if ( Carbon\Carbon::parse($document->created_at)->addDay() >= Carbon\Carbon::today())
-                                  <span class="badge badge-sm bg-red-lt text-uppercase ms-auto">Nový</span>
-                                @endif
-                                @if (Carbon\Carbon::parse($document->updated_at)->addDays(15) >= Carbon\Carbon::now())
-                                  <span class="badge badge-sm bg-lime-lt text-uppercase ms-auto">Aktualizováno</span>
-                                @endif
-                                <svg class="icon icon-tabler text-info" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" stroke-width="2"
-                                     stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                                {{ __('Upravit standard') }}
+                              </li>
+                              <li class="dropdown-item delete" id="{{ $document->id }}'">
+                                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon dropdown-item-icon-delete" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
                                   <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
-                                  <rect x="4" y="5" width="16" height="16" rx="2"></rect>
-                                  <line x1="16" y1="3" x2="16" y2="7"></line>
-                                  <line x1="8" y1="3" x2="8" y2="7"></line>
-                                  <line x1="4" y1="11" x2="20" y2="11"></line>
-                                  <line x1="11" y1="15" x2="12" y2="15"></line>
-                                  <line x1="12" y1="15" x2="12" y2="18"></line>
+                                  <path d="M4 7h16"></path>
+                                  <path d="M5 7l1 12a2 2 0 0 0 2 2h8a2 2 0 0 0 2 -2l1 -12"></path>
+                                  <path d="M9 7v-3a1 1 0 0 1 1 -1h4a1 1 0 0 1 1 1v3"></path>
+                                  <path d="M10 12l4 4m0 -4l-4 4"></path>
                                 </svg>
-                                <span class="text-muted">{{ Carbon\Carbon::parse($document->updated_at)->diffForHumans() }}</span>
-                              </div>
-                              @auth
-                                <div class="col-auto">
-                              <span title="Možnosti" class="cursor-pointer btn btn-icon hover-shadow" id="dropdownMenuButton-' . $data->id . '" data-bs-toggle="dropdown">
-                                <svg xmlns="http://www.w3.org/2000/svg" class="icon dropdown-item-icon" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
-                                  <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
-                                  <line x1="4" y1="6" x2="20" y2="6"></line>
-                                  <line x1="4" y1="12" x2="20" y2="12"></line>
-                                  <line x1="4" y1="18" x2="20" y2="18"></line>
-                                </svg>
+                                {{ __('Odstranit standard') }}
+                              </li>
+                            </ul>
+                          </div>
+                          @endauth
+                        </div>
+                        @foreach ($document->addon as $add)
+                        <div class="row align-items-center mb-1">
+                          <div class="col-auto">
+                            <a href="{{ url('standardy/' . $add->file) }}">
+                              <span class="avatar">
+                                <img src="{{ asset('img/files/pdf-add.png') }}" alt="PDF - Příloha standardu">
                               </span>
-                                  <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton-' . $document->id . '">
-                                    <li class="dropdown-item edit" id="{{ $document->id }}">
-                                      <svg xmlns="http://www.w3.org/2000/svg" class="icon dropdown-item-icon-edit" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
-                                        <path stroke="none" d="M0 0h24v24H0z" fill="none" />
-                                        <path d="M7 7h-1a2 2 0 0 0 -2 2v9a2 2 0 0 0 2 2h9a2 2 0 0 0 2 -2v-1" />
-                                        <path d="M20.385 6.585a2.1 2.1 0 0 0 -2.97 -2.97l-8.415 8.385v3h3l8.385 -8.415z" />
-                                        <path d="M16 5l3 3" />
-                                      </svg>
-                                      {{ __('Upravit standard') }}
-                                    </li>
-                                    <li class="dropdown-item delete" id="{{ $document->id }}'">
-                                      <svg xmlns="http://www.w3.org/2000/svg" class="icon icon dropdown-item-icon-delete" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
-                                        <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
-                                        <path d="M4 7h16"></path>
-                                        <path d="M5 7l1 12a2 2 0 0 0 2 2h8a2 2 0 0 0 2 -2l1 -12"></path>
-                                        <path d="M9 7v-3a1 1 0 0 1 1 -1h4a1 1 0 0 1 1 1v3"></path>
-                                        <path d="M10 12l4 4m0 -4l-4 4"></path>
-                                      </svg>
-                                      {{ __('Odstranit standard') }}
-                                    </li>
-                                  </ul>
-                                </div>
-                              @endauth
-                            </div>
-                            @foreach ($document->addon as $add)
-                              <div class="row align-items-center mb-1">
-                                <div class="col-auto">
-                                  <a href="{{ url('standardy/' . $add->file) }}">
-                                <span class="avatar">
-                                  <img src="{{ asset('img/files/pdf-add.png') }}" alt="PDF - Příloha standardu">
-                                </span>
-                                  </a>
-                                </div>
-                                <div class="col text-truncate">
-                                  <a class="text-primary d-block d-block text-primary text-decoration-none" href="{{ url('standardy/' . $add->file) }}">
-                                    <h3 style="margin-bottom: 0;">{{ $document->position }}. {{ $document->name }} - příloha č. {{ $add->name }}</h3>
-                                  </a>
-                                  <div class="d-block text-muted text-truncate mt-n1">{{ $add->description }}</div>
-                                </div>
-                                <div class="col-auto">
-                                  <svg class="icon icon-tabler text-yellow" xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 24 24"
-                                       stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
-                                    <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
-                                    <path d="M9 4h6a2 2 0 0 1 2 2v14l-5 -3l-5 3v-14a2 2 0 0 1 2 -2"></path>
-                                  </svg>
-                                  <span class="text-muted">revize: {{ $add->revision }}</span>
-                                  @auth
-                                    @if ($add->status == 'Rozpracováno')
-                                      <span class="badge badge-sm bg-yellow-lt text-uppercase ms-auto">Rozpracováno</span>
-                                    @else
-                                      <span class="badge badge-sm bg-green-lt text-uppercase ms-auto">Schváleno</span>
-                                    @endif
-                                  @endauth
-                                  @if ( Carbon\Carbon::parse($add->created_at)->addDay() >= Carbon\Carbon::today())
-                                    <span class="badge badge-sm bg-red-lt text-uppercase ms-auto">Nový</span>
-                                  @endif
-                                  @if (Carbon\Carbon::parse($add->updated_at)->addDays(15) >= Carbon\Carbon::now())
-                                    <span class="badge badge-sm bg-lime-lt text-uppercase ms-auto">Aktualizováno</span>
-                                  @endif
-                                  <svg class="icon icon-tabler text-info" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" stroke-width="2"
-                                       stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
-                                    <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
-                                    <rect x="4" y="5" width="16" height="16" rx="2"></rect>
-                                    <line x1="16" y1="3" x2="16" y2="7"></line>
-                                    <line x1="8" y1="3" x2="8" y2="7"></line>
-                                    <line x1="4" y1="11" x2="20" y2="11"></line>
-                                    <line x1="11" y1="15" x2="12" y2="15"></line>
-                                    <line x1="12" y1="15" x2="12" y2="18"></line>
-                                  </svg>
-                                  <span class="text-muted">{{ Carbon\Carbon::parse($document->updated_at)->diffForHumans() }}</span>
-                                </div>
-                              </div>
-                            @endforeach
+                            </a>
+                          </div>
+                          <div class="col text-truncate">
+                            <a class="text-primary d-block d-block text-primary text-decoration-none" href="{{ url('standardy/' . $add->file) }}">
+                              <h3 style="margin-bottom: 0;">{{ $document->position }}. {{ $document->name }} - příloha č. {{ $add->name }}</h3>
+                            </a>
+                            <div class="d-block text-muted text-truncate mt-n1">{{ $add->description }}</div>
+                          </div>
+                          <div class="col-auto">
+                            <svg class="icon icon-tabler text-yellow" xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 24 24"
+                                 stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                              <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+                              <path d="M9 4h6a2 2 0 0 1 2 2v14l-5 -3l-5 3v-14a2 2 0 0 1 2 -2"></path>
+                            </svg>
+                            <span class="text-muted">revize: {{ $add->revision }}</span>
+                            @auth
+                            @if ($add->status == 'Rozpracováno')
+                            <span class="badge badge-sm bg-yellow-lt text-uppercase ms-auto">Rozpracováno</span>
+                            @else
+                            <span class="badge badge-sm bg-green-lt text-uppercase ms-auto">Schváleno</span>
+                            @endif
+                            @endauth
+                            @if ( Carbon\Carbon::parse($add->created_at)->addDay() >= Carbon\Carbon::today())
+                            <span class="badge badge-sm bg-red-lt text-uppercase ms-auto">Nový</span>
+                            @endif
+                            @if (Carbon\Carbon::parse($add->updated_at)->addDays(15) >= Carbon\Carbon::now())
+                            <span class="badge badge-sm bg-lime-lt text-uppercase ms-auto">Aktualizováno</span>
+                            @endif
+                            <svg class="icon icon-tabler text-info" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" stroke-width="2"
+                                 stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                              <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+                              <rect x="4" y="5" width="16" height="16" rx="2"></rect>
+                              <line x1="16" y1="3" x2="16" y2="7"></line>
+                              <line x1="8" y1="3" x2="8" y2="7"></line>
+                              <line x1="4" y1="11" x2="20" y2="11"></line>
+                              <line x1="11" y1="15" x2="12" y2="15"></line>
+                              <line x1="12" y1="15" x2="12" y2="18"></line>
+                            </svg>
+                            <span class="text-muted">{{ Carbon\Carbon::parse($document->updated_at)->diffForHumans() }}</span>
                           </div>
                         </div>
+                        @endforeach
                       </div>
                     </div>
                   </div>
-                @endforeach
+                </div>
               </div>
+              @endforeach
             </div>
           </div>
+        </div>
+
+        <div class="container-fluid mt-3">
+          <div class="h-100">
+            <div class="col-12">
+              @foreach ($documents as $document)
+              <div class="accordion-item hover-shadow-lg">
+                <div class="show" id="collapse-{{ $document->position }}" data-bs-parent="#accordion-standard" style="">
+                  <div class="accordion-body pt-0">
+                    <div class="list-group list-group-flush list-group-hoverable pt-1">
+                      <div class="list-group-item">
+                        <div class="row align-items-center">
+                          <div class="col-auto">
+                            <a href="/standardy/{{ $document->file }}" target="_blank">
+                              <span class="avatar">
+                                <img src="{{ asset('img/files/pdf.png') }}" alt="PDF - Standard">
+                              </span>
+                            </a>
+                          </div>
+                          <div class="col text-truncate">
+                            <a class="text-primary d-block text-decoration-none" href="{{ url('standardy/' . $document->file) }}" target="_blank">
+                              <h3 style="margin-bottom: 0;">{{ $document->position }}. {{ $document->name }}</h3>
+                            </a>
+                            <div class="d-block text-muted text-truncate mt-n1">{{ $document->description }}</div>
+                          </div>
+                          <div class="col-auto">
+                            <svg class="icon icon-tabler text-yellow" xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 24 24"
+                                 stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                              <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+                              <path d="M9 4h6a2 2 0 0 1 2 2v14l-5 -3l-5 3v-14a2 2 0 0 1 2 -2"></path>
+                            </svg>
+                            <span class="text-muted">revize: {{ $document->revision }}</span>
+                            @auth
+                            @if ($document->status == 'Rozpracováno')
+                            <span class="badge badge-sm bg-yellow-lt text-uppercase ms-auto">Rozpracováno</span>
+                            @else
+                            <span class="badge badge-sm bg-green-lt text-uppercase ms-auto">Schváleno</span>
+                            @endif
+                            @endauth
+                            @if ( Carbon\Carbon::parse($document->created_at)->addDay() >= Carbon\Carbon::today())
+                            <span class="badge badge-sm bg-red-lt text-uppercase ms-auto">Nový</span>
+                            @endif
+                            @if (Carbon\Carbon::parse($document->updated_at)->addDays(15) >= Carbon\Carbon::now())
+                            <span class="badge badge-sm bg-lime-lt text-uppercase ms-auto">Aktualizováno</span>
+                            @endif
+                            <svg class="icon icon-tabler text-info" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" stroke-width="2"
+                                 stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                              <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+                              <rect x="4" y="5" width="16" height="16" rx="2"></rect>
+                              <line x1="16" y1="3" x2="16" y2="7"></line>
+                              <line x1="8" y1="3" x2="8" y2="7"></line>
+                              <line x1="4" y1="11" x2="20" y2="11"></line>
+                              <line x1="11" y1="15" x2="12" y2="15"></line>
+                              <line x1="12" y1="15" x2="12" y2="18"></line>
+                            </svg>
+                            <span class="text-muted">{{ Carbon\Carbon::parse($document->updated_at)->diffForHumans() }}</span>
+                          </div>
+                          @auth
+                          <div class="col-auto">
+                            <span title="Možnosti" class="cursor-pointer btn btn-icon hover-shadow" id="dropdownMenuButton-' . $data->id . '" data-bs-toggle="dropdown">
+                              <svg xmlns="http://www.w3.org/2000/svg" class="icon dropdown-item-icon" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                                <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+                                <line x1="4" y1="6" x2="20" y2="6"></line>
+                                <line x1="4" y1="12" x2="20" y2="12"></line>
+                                <line x1="4" y1="18" x2="20" y2="18"></line>
+                              </svg>
+                            </span>
+                            <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton-' . $document->id . '">
+                              <li class="dropdown-item edit" id="{{ $document->id }}">
+                                <svg xmlns="http://www.w3.org/2000/svg" class="icon dropdown-item-icon-edit" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                                  <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+                                  <path d="M7 7h-1a2 2 0 0 0 -2 2v9a2 2 0 0 0 2 2h9a2 2 0 0 0 2 -2v-1" />
+                                  <path d="M20.385 6.585a2.1 2.1 0 0 0 -2.97 -2.97l-8.415 8.385v3h3l8.385 -8.415z" />
+                                  <path d="M16 5l3 3" />
+                                </svg>
+                                {{ __('Upravit standard') }}
+                              </li>
+                              <li class="dropdown-item delete" id="{{ $document->id }}'">
+                                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon dropdown-item-icon-delete" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                                  <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+                                  <path d="M4 7h16"></path>
+                                  <path d="M5 7l1 12a2 2 0 0 0 2 2h8a2 2 0 0 0 2 -2l1 -12"></path>
+                                  <path d="M9 7v-3a1 1 0 0 1 1 -1h4a1 1 0 0 1 1 1v3"></path>
+                                  <path d="M10 12l4 4m0 -4l-4 4"></path>
+                                </svg>
+                                {{ __('Odstranit standard') }}
+                              </li>
+                            </ul>
+                          </div>
+                          @endauth
+                        </div>
+                        @foreach ($document->addon as $add)
+                        <div class="row align-items-center mb-1">
+                          <div class="col-auto">
+                            <a href="{{ url('standardy/' . $add->file) }}">
+                              <span class="avatar">
+                                <img src="{{ asset('img/files/pdf-add.png') }}" alt="PDF - Příloha standardu">
+                              </span>
+                            </a>
+                          </div>
+                          <div class="col text-truncate">
+                            <a class="text-primary d-block d-block text-primary text-decoration-none" href="{{ url('standardy/' . $add->file) }}">
+                              <h3 style="margin-bottom: 0;">{{ $document->position }}. {{ $document->name }} - příloha č. {{ $add->name }}</h3>
+                            </a>
+                            <div class="d-block text-muted text-truncate mt-n1">{{ $add->description }}</div>
+                          </div>
+                          <div class="col-auto">
+                            <svg class="icon icon-tabler text-yellow" xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 24 24"
+                                 stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                              <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+                              <path d="M9 4h6a2 2 0 0 1 2 2v14l-5 -3l-5 3v-14a2 2 0 0 1 2 -2"></path>
+                            </svg>
+                            <span class="text-muted">revize: {{ $add->revision }}</span>
+                            @auth
+                            @if ($add->status == 'Rozpracováno')
+                            <span class="badge badge-sm bg-yellow-lt text-uppercase ms-auto">Rozpracováno</span>
+                            @else
+                            <span class="badge badge-sm bg-green-lt text-uppercase ms-auto">Schváleno</span>
+                            @endif
+                            @endauth
+                            @if ( Carbon\Carbon::parse($add->created_at)->addDay() >= Carbon\Carbon::today())
+                            <span class="badge badge-sm bg-red-lt text-uppercase ms-auto">Nový</span>
+                            @endif
+                            @if (Carbon\Carbon::parse($add->updated_at)->addDays(15) >= Carbon\Carbon::now())
+                            <span class="badge badge-sm bg-lime-lt text-uppercase ms-auto">Aktualizováno</span>
+                            @endif
+                            <svg class="icon icon-tabler text-info" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" stroke-width="2"
+                                 stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                              <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+                              <rect x="4" y="5" width="16" height="16" rx="2"></rect>
+                              <line x1="16" y1="3" x2="16" y2="7"></line>
+                              <line x1="8" y1="3" x2="8" y2="7"></line>
+                              <line x1="4" y1="11" x2="20" y2="11"></line>
+                              <line x1="11" y1="15" x2="12" y2="15"></line>
+                              <line x1="12" y1="15" x2="12" y2="18"></line>
+                            </svg>
+                            <span class="text-muted">{{ Carbon\Carbon::parse($document->updated_at)->diffForHumans() }}</span>
+                          </div>
+                        </div>
+                        @endforeach
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              @endforeach
+            </div>
+          </div>
+        </div>
         @endsection
 
         @section('modals')
-          {{-- Main Form Modal --}}
-          <div class="modal modal-blur fade" id="formModal" data-bs-backdrop="static" data-bs-keyboard="false" role="dialog" aria-hidden="true" tabindex="-1">
-            <div class="modal-dialog modal-xl modal-dialog-centered" role="document">
-              <div class="modal-content shadow-lg">
-                <div id="modal-header">
-                  <h5 class="modal-title"></h5>
-                  <i id="modal-icon"></i>
-                </div>
-                <form id="inputForm" action="{{ route('documents.create') }}">
-                  @csrf
-                  <div class="modal-body">
-                    <div class="row">
-                      <div class="col-12">
-                        <span id="form_result_modal"></span>
-                      </div>
-                    </div>
-                    <div class="row mb-2">
-                      <input class="form-control" id="category_id" name="category_id" type="hidden">
-                      {{--                      <div class="col-12 col-lg-3 mb-sm-1">--}}
-                      {{--                        <label class="form-label">{{ __('Kategorie standardu') }}</label>--}}
-                      {{--                        <input class="form-control" id="category_id" name="category_id" type="text" placeholder="{{ __('Celý název standardu') }}">--}}
-                      {{--                        <select class="form-select" id="category_id" name="category_id">--}}
-                      {{--                          @foreach ($categories as $item)--}}
-                      {{--                            <option value="{{ $item->id }}" @if (old('category_id')==$item->id) selected @endif>--}}
-                      {{--                              {{ $item->category_name }}</option>--}}
-                      {{--                          @endforeach--}}
-                      {{--                        </select>--}}
-                      {{--                      </div>--}}
-                      <div class="col-6 col-lg-1 mb-sm-1">
-                        <label class="form-label">{{ __('Position') }} č:</label>
-                        <input class="form-control" id="position" name="position" type="text"}">
-                      </div>
-                      <div class="col-12 col-lg-7 mb-sm-1">
-                        <label class="form-label">{{ __('Name') }}</label>
-                        <input class="form-control" id="name" name="name" type="text" placeholder="{{ __('Celý název standardu') }}">
-                      </div>
-                      <div class="col-6 col-lg-2 mb-sm-1">
-                        <label class="form-label">{{ __('Revision') }}</label>
-                        <input class="form-control" id="revision" name="revision" type="text" placeholder="{{ __('číslo nebo měsíc a rok') }}">
-                      </div>
-                      <div class="col-12 col-lg-2 mb-sm-1">
-                        <label class="form-label">{{ __('Unikátní kód') }}</label>
-                        <input class="form-control" id="unique_code" name="unique_code" type="text" placeholder="{{ __('Unikátní kód') }}">
-                      </div>
-                    </div>
-                    <div class="row mb-2">
-                      <div class="col-12 col-lg-12 mb-sm-1">
-                        <label class="form-label">{{ __('Jednoduchý popis standardu') }}</label>
-                        <input class="form-control" id="description" name="description" type="text" placeholder="{{ __('Jednoduchý popis standardu') }}">
-                      </div>
-                    </div>
-                    <div class="row mb-2">
-                      <div class="col-12 col-lg-10 mb-sm-1">
-                        <label class="form-label">{{ __('Soubor') }}</label>
-                        <input class="form-control" id="file" name="file" type="file" placeholder="{{ __('Soubor standardu ve formátu PDF') }}">
-                      </div>
-                      <div class="col-12 col-lg-2 mb-sm-1">
-                        <label class="form-label">{{ __('Status') }}</label>
-                        <select class="form-select" id="status" name="status">
-                          <option value="Rozpracováno">Rozpracováno</option>
-                          <option value="Schváleno">Schváleno</option>
-                        </select>
-                      </div>
-                    </div>
-                  </div>
-                  <input id="action" name="action" type="hidden" />
-                  <input id="hidden_id" name="hidden_id" type="hidden" />
-                  <input id="hidden_file" name="hidden_file" type="hidden" />
-                  <input id="folder_name" name="folder_name" type="hidden" />
-
-                  <div class="modal-footer">
-                    <button class="btn btn-muted hover-shadow" data-bs-dismiss="modal" type="button">
-                      {{ __('Close') }}
-                    </button>
-                    <button class="btn btn-primary ms-auto hover-shadow" id="action_button" name="action_button" type="submit"></button>
-                  </div>
-                </form>
+        {{-- Main Form Modal --}}
+        <div class="modal modal-blur fade" id="formModal" data-bs-backdrop="static" data-bs-keyboard="false" role="dialog" aria-hidden="true" tabindex="-1">
+          <div class="modal-dialog modal-xl modal-dialog-centered" role="document">
+            <div class="modal-content shadow-lg">
+              <div id="modal-header">
+                <h5 class="modal-title"></h5>
+                <i id="modal-icon"></i>
               </div>
+              <form id="inputForm" action="{{ route('documents.create') }}">
+                @csrf
+                <div class="modal-body">
+                  <div class="row">
+                    <div class="col-12">
+                      <span id="form_result_modal"></span>
+                    </div>
+                  </div>
+                  <div class="row mb-2">
+                    <input class="form-control" id="category_id" name="category_id" type="hidden">
+                    {{-- <div class="col-12 col-lg-3 mb-sm-1">--}}
+                      {{-- <label class="form-label">{{ __('Kategorie standardu') }}</label>--}}
+                      {{-- <input class="form-control" id="category_id" name="category_id" type="text" placeholder="{{ __('Celý název standardu') }}">--}}
+                      {{-- <select class="form-select" id="category_id" name="category_id">--}}
+                        {{-- @foreach ($categories as $item)--}}
+                        {{-- <option value="{{ $item->id }}" @if (old('category_id')==$item->id) selected @endif>--}}
+                          {{-- {{ $item->category_name }}</option>--}}
+                        {{-- @endforeach--}}
+                        {{-- </select>--}}
+                      {{-- </div>--}}
+                    <div class="col-2 col-lg-2 mb-sm-1">
+                      <label class="form-label">{{ __('Position') }} č:</label>
+                      <input class="form-control" id="position" name="position" type="text" }">
+                    </div>
+                    <div class="col-10 col-lg-8 mb-sm-1">
+                      <label class="form-label">{{ __('Name') }}</label>
+                      <input class="form-control" id="name" name="name" type="text" placeholder="{{ __('Celý název standardu') }}">
+                    </div>
+                    <div class="col-12 col-lg-2 mb-sm-1">
+                      <label class="form-label">{{ __('Revision') }}</label>
+                      <input class="form-control" id="revision" name="revision" type="text" placeholder="{{ __('číslo nebo měsíc a rok') }}">
+                    </div>
+                  </div>
+                  <div class="row mb-2">
+                    <div class="col-12 col-lg-10 mb-sm-1">
+                      <label class="form-label">{{ __('Jednoduchý popis standardu') }}</label>
+                      <input class="form-control" id="description" name="description" type="text" placeholder="{{ __('Jednoduchý popis standardu') }}">
+                    </div>
+                    <div class="col-12 col-lg-2 mb-sm-1">
+                      <label class="form-label">{{ __('Unikátní kód') }}</label>
+                      <input class="form-control" id="unique_code" name="unique_code" type="text" placeholder="{{ __('Unikátní kód') }}">
+                    </div>
+                  </div>
+                  <div class="row mb-2">
+                    <div class="col-12 col-lg-9 mb-sm-1">
+                      <label class="form-label">{{ __('Soubor') }}</label>
+                      <input class="form-control" id="file" name="file" type="file" placeholder="{{ __('Soubor standardu ve formátu PDF') }}">
+                    </div>
+                    <div class="col-12 col-lg-3 mb-sm-1">
+                      <label class="form-label">{{ __('Status') }}</label>
+                      <select class="form-select" id="status" name="status">
+                        <option value="Rozpracováno">Rozpracováno</option>
+                        <option value="Schváleno">Schváleno</option>
+                      </select>
+                    </div>
+                  </div>
+                </div>
+                <input id="action" name="action" type="hidden" />
+                <input id="hidden_id" name="hidden_id" type="hidden" />
+                <input id="hidden_file" name="hidden_file" type="hidden" />
+                <input id="folder_name" name="folder_name" type="hidden" />
+
+                <div class="modal-footer">
+                  <button class="btn btn-muted hover-shadow" data-bs-dismiss="modal" type="button">
+                    {{ __('Close') }}
+                  </button>
+                  <button class="btn btn-primary ms-auto hover-shadow" id="action_button" name="action_button" type="submit"></button>
+                </div>
+              </form>
             </div>
           </div>
+        </div>
       </div>
 
       {{-- Delete Event Modal --}}
@@ -617,8 +617,8 @@
       @endsection
 
       @section('scripts')
-        <script>
-          // Form Modal Functions
+      <script>
+        // Form Modal Functions
           $(document).on('click', '.edit', function() {
             var id = $(this).attr('id');
             $('#unique_code').prop('readonly', true);
@@ -629,14 +629,14 @@
               success: function(html) {
                 $('#inputForm')[0].reset();
                 $("#modal-icon, #modal-header").removeClass();
+                $('.modal-title').val('');
                 $('#formModal').modal('show');
                 $('#modal-icon').addClass('fas fa-book-medical fa-2x m-2');
                 $('#modal-header').addClass("modal-header bg-{{ $categorie->color }}-lt");
-                $('#action_button').text("{{ __('Edit') }}");
-                $('.modal-title').text("{{ __('Edit') }} - {{ $categorie->category_name }}");
+                $('#action_button, .modal-title').text("{{ __('Edit') }} {{ $categorie->button }} standard");
                 $('#action').val("Edit");
                 $('#category_id').val(html.data.category_id);
-                $('#folder_name').val(html.data.folder_name);
+                $('#folder_name').val(html.data.category.folder_name);
                 $('#name').val(html.data.name);
                 $('#revision').val(html.data.revision);
                 $('#unique_code').val(html.data.unique_code);
@@ -657,7 +657,7 @@
             $('#formModal').modal('show');
             $('#modal-icon').addClass('fas fa-book-medical fa-2x m-2');
             $('#modal-header').addClass("modal-header bg-{{ $categorie->color }}-lt");
-            $('#action_button, .modal-title').text("{{ __('Create new') }} - {{ $categorie->category_name }} standard");
+            $('#action_button, .modal-title').text("{{ __('Create new') }} {{ $categorie->button }} standard");
             $('#unique_code').prop('readonly', false);
             $('#action').val("Add");
             $('#folder_name').val("{{ $categorie->folder_name }}");
@@ -751,5 +751,5 @@
               }
             })
           })
-        </script>
-@endsection
+      </script>
+      @endsection

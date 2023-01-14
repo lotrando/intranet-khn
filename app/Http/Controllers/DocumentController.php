@@ -60,7 +60,7 @@ class DocumentController extends Controller
         }
 
         $file_ext  = $request->file->extension();
-        $file_name = $request->folder_name.'_standard_'. Str::lower(Str::replace(' ', '_',$request->unique_code)) . '.' . $file_ext;
+        $file_name = $request->folder_name . '_standard_' . Str::lower(Str::replace(' ', '_', $request->unique_code)) . '.' . $file_ext;
         $request->file->move(public_path('/standardy/'), $file_name);
 
         $form_data = [
@@ -126,7 +126,7 @@ class DocumentController extends Controller
                 'description'           => 'required',
                 'position'              => 'required',
                 'revision'              => 'required',
-                'unique_code'           => 'required',
+                //'unique_code'           => 'required|documents',
                 'status'                => 'required',
                 'file'                  => 'required|mimes:pdf,doc,xls|max:4096'
             ];
@@ -138,7 +138,7 @@ class DocumentController extends Controller
             }
 
             $file_ext  = $request->file->extension();
-            $file_name = $request->folder_name.'_standard_'. Str::lower(Str::replace(' ', '_',$request->unique_code)) . '.' . $file_ext;
+            $file_name = $request->folder_name . '_standard_' . Str::lower(Str::replace(' ', '_', $request->unique_code)) . '.' . $file_ext;
             $request->file->move(public_path('/standardy/'), $file_name);
 
             $form_data = [
@@ -150,10 +150,9 @@ class DocumentController extends Controller
                 'position'              => $request->position,
                 'revision'              => $request->revision,
                 'file'                  => $file_name,
-                'unique_code'           => $request->unique_code,
+                //'unique_code'           => $request->unique_code,
                 'status'                => $request->status,
             ];
-
         } else {
 
             $rules = [
@@ -164,7 +163,7 @@ class DocumentController extends Controller
                 'description'           => 'required',
                 'position'              => 'required',
                 'revision'              => 'required',
-                'unique_code'           => 'required|unique:documents',
+                //'unique_code'           => 'required|unique:documents',
                 'status'                => 'required',
             ];
 
