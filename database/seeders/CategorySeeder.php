@@ -15,92 +15,110 @@ class CategorySeeder extends Seeder
     public function run()
     {
         DB::table('categories')->insert([
+            'category_type' => 'Standard',
             'category_name' => 'Akreditační',
             'folder_name'   => 'akreditacni',
             'category_icon' => 'akreditacni.png',
+            'button'        => 'akreditační',
             'color'         => 'blue'
         ]);
 
         DB::table('categories')->insert([
+            'category_type' => 'Standard',
             'category_name' => 'Ošetřovatelské',
             'folder_name'   => 'osetrovatelske',
             'category_icon' => 'osetrovatelske.png',
+            'button'        => 'ošetřovatelský',
             'color'         => 'pink'
         ]);
 
         DB::table('categories')->insert([
+            'category_type' => 'Standard',
             'category_name' => 'Léčebné',
             'folder_name'   => 'lecebne',
             'category_icon' => 'lecebne.png',
+            'button'        => 'léčebný',
             'color'         => 'red'
         ]);
 
         DB::table('categories')->insert([
+            'category_type' => 'Standard',
             'category_name' => 'Speciální',
             'folder_name'   => 'specialni',
             'category_icon' => 'specialni.png',
+            'button'        => 'speciální',
             'color'         => 'muted'
         ]);
 
         DB::table('categories')->insert([
+            'category_type' => 'Standard',
             'category_name' => 'Operační',
             'folder_name'   => 'operacni',
-            'category_icon' => 'operacni',
+            'category_icon' => 'operacni.png',
+            'button'        => 'operační',
             'color'         => 'lime'
         ]);
 
         DB::table('categories')->insert([
+            'category_type' => 'Standard',
             'category_name' => 'Anesteziologické',
             'folder_name'   => 'anesteziologicke',
             'category_icon' => 'anesteziologicke.png',
+            'button'        => 'anesteziologický',
             'color'         => 'purple'
         ]);
 
         DB::table('categories')->insert([
+            'category_type' => 'Standard',
             'category_name' => 'RDG',
             'folder_name'   => 'rdg',
-            'category_icon' => '<svg class="icon icon-tabler icon-tabler-radioactive" xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 24 24"
-                       stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
-                    <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
-                    <path d="M13.5 14.6l3 5.19a9 9 0 0 0 4.5 -7.79h-6a3 3 0 0 1 -1.5 2.6"></path>
-                    <path d="M13.5 9.4l3 -5.19a9 9 0 0 0 -9 0l3 5.19a3 3 0 0 1 3 0"></path>
-                    <path d="M10.5 14.6l-3 5.19a9 9 0 0 1 -4.5 -7.79h6a3 3 0 0 0 1.5 2.6"></path>
-                  </svg>',
+            'category_icon' => 'rdg.png',
+            'button'        => 'radiologický',
             'color'         => 'yellow'
         ]);
 
         DB::table('categories')->insert([
+            'category_type' => 'Standard',
             'category_name' => 'Rehabilitační',
             'folder_name'   => 'rehabilitacni',
-            'category_icon' => 'rehabilitacni.png',
+            'category_icon' => 'Anesteziologické',
+            'button'        => 'rehabilitační',
             'color'         => 'green'
         ]);
 
         DB::table('categories')->insert([
+            'category_type' => 'Standard',
             'category_name' => 'OPL',
             'folder_name'   => 'opl',
             'category_icon' => 'opl.png',
+            'button'        => 'pracovní',
             'color'         => 'teal'
         ]);
 
         DB::table('categories')->insert([
+            'category_type' => 'Standard',
             'category_name' => 'OKB',
             'folder_name'   => 'okb',
             'category_icon' => 'okb.png',
+            'button'        => 'laboratorní',
             'color'         => 'puple'
         ]);
 
         DB::table('categories')->insert([
+            'category_type' => 'Standard',
             'category_name' => 'Logopedické',
             'folder_name'   => 'logopedicke',
             'category_icon' => 'logopedicke.png',
+            'button'        => 'anesteziologický',
             'color'         => 'cyan'
         ]);
 
         DB::table('categories')->insert([
+            'category_type' => 'Standard',
             'category_name' => 'Legislativní',
             'folder_name'   => 'legislativni',
-            'category_icon' => 'legislativni',
+            'category_icon' => 'legislativni.png',
+            'button'        => 'legislativní',
             'color'         => 'orange'
         ]);
     }

@@ -14,7 +14,7 @@
         <!-- Page Title -->
         <div class="col">
           <div class="page-pretitle text-primary">
-            {{ __($category) ?? '' }}
+            {{ __($categorie->category_type) ?? '' }}
           </div>
           <h2 class="page-title text-primary">
             {{ __($categorie->category_name) ?? '' }}
@@ -220,7 +220,7 @@
               <span id="form_result_modal"></span>
             </div>
           </div>
-          <div class="row mb-2">
+          <div class="row">
             <input class="form-control" id="category_id" name="category_id" type="hidden">
             {{-- <div class="col-12 col-lg-3 mb-sm-1"> --}}
               {{-- <label class="form-label">{{ __('Kategorie standardu') }}</label> --}}
@@ -245,7 +245,7 @@
               <input class="form-control" id="revision" name="revision" type="text" placeholder="{{ __('číslo nebo měsíc a rok') }}">
             </div>
           </div>
-          <div class="row mb-2">
+          <div class="row">
             <div class="col-12 col-lg-10 mb-sm-1">
               <label class="form-label">{{ __('Jednoduchý popis standardu') }}</label>
               <input class="form-control" id="description" name="description" type="text" placeholder="{{ __('Jednoduchý popis standardu') }}">
@@ -255,7 +255,7 @@
               <input class="form-control" id="unique_code" name="unique_code" type="text" placeholder="{{ __('Unikátní kód') }}">
             </div>
           </div>
-          <div class="row mb-2">
+          <div class="row">
             <div class="col-12 col-lg-9 mb-sm-1">
               <label class="form-label">{{ __('Soubor') }}</label>
               <input class="form-control" id="file" name="file" type="file" placeholder="{{ __('Soubor standardu ve formátu PDF') }}">
@@ -339,7 +339,7 @@
           $("#modal-icon, #modal-header").removeClass();
           $('.modal-title').val('');
           $('#formModal').modal('show');
-          $('#modal-icon').addClass('fas fa-book-medical fa-2x m-2');
+          $('#modal-icon').addClass('fas fa-{{ $icon }} fa-2x m-2');
           $('#modal-header').addClass("modal-header bg-{{ $categorie->color }}-lt");
           $('#action_button, .modal-title').text("{{ __('Edit') }} {{ $categorie->button }} standard");
           $('#action').val("Edit");
@@ -363,7 +363,7 @@
       $("#modal-icon, #modal-header").removeClass();
       $('#category_id').val('{{ $categorie->id }}');
       $('#formModal').modal('show');
-      $('#modal-icon').addClass('fas fa-book-medical fa-2x m-2');
+      $('#modal-icon').addClass('fas fa-{{ $icon }} fa-2x m-2');
       $('#modal-header').addClass("modal-header bg-{{ $categorie->color }}-lt");
       $('#action_button, .modal-title').text("{{ __('Create new') }} {{ $categorie->button }} standard");
       $('#unique_code').prop('readonly', false);

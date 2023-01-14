@@ -48,7 +48,7 @@ class PageController extends Controller
         return view('kultura', ['category' => 'Oznámení', 'title' => 'Kultura']);
     }
 
-
+    // Stravování
     public function obedy()
     {
         return redirect()->away('http://akordapp/SISAkord/Login.aspx?ReturnUrl=%2fSISAkord%2f');
@@ -63,9 +63,8 @@ class PageController extends Controller
     public function akreditacni($id)
     {
         $accordion_groups = Document::where('status', 'Schváleno')->where('category_id', $id)->pluck('accordion_group');
+        $categories = Category::all();
         $categorie = Category::where('id', $id)->first();
-
-        $documents = Document::where('status', 'Schváleno')->with('category', 'addon')->where('category_id', $id)->where('accordion_group', $accordion_groups)->orderBy('position')->get();
 
         $documents1 = Document::where('status', 'Schváleno')->with('category', 'addon')->where('category_id', $id)->where('accordion_group', 1)->orderBy('position')->get();
         $documents2 = Document::where('status', 'Schváleno')->with('category', 'addon')->where('category_id', $id)->where('accordion_group', 2)->orderBy('position')->get();
@@ -81,11 +80,10 @@ class PageController extends Controller
         $documents12 = Document::where('status', 'Schváleno')->with('category', 'addon')->where('category_id', $id)->where('accordion_group', 12)->orderBy('position')->get();
 
         return view('standardy.akreditacni', [
-            'category'          => 'Standardy',
-            'title'             => $categorie->category_name,
             'categorie'         => $categorie,
+            'icon'              => $categorie->fa_icon,
+            'categories'        => $categories,
             'groups'            => $accordion_groups,
-            'documents'         => $documents,
             'documents1'        => $documents1,
             'documents2'        => $documents2,
             'documents3'        => $documents3,
@@ -105,7 +103,7 @@ class PageController extends Controller
     public function standard($id)
     {
         $categories = Category::all();
-        $categorie = Category::where('id', $id)->first();
+        $categorie  = Category::where('id', $id)->first();
 
         if (Auth::user()) {
             $documents = Document::with('category', 'addon')->where('category_id', $id)->orderBy('position')->get();
@@ -114,54 +112,13 @@ class PageController extends Controller
         }
 
         return view('standardy.standard', [
-            'category'          => 'Standardy',
             'categorie'         => $categorie,
-            'documents'         => $documents,
-            'categories'        => $categories
+            'icon'              => $categorie->fa_icon,
+            'categories'        => $categories,
+            'documents'         => $documents
         ]);
     }
 
-//    public function lecebne($id)
-//    {
-//        //$accordion_groups = Document::where('status', 'Schváleno')->where('category_id', $id)->pluck('accordion_group');
-//        $categories = Category::all();
-//        $categorie = Category::where('id', $id)->first();
-//
-//        if (Auth::user()) {
-//            $documents = Document::with('category', 'addon')->where('category_id', $id)->orderBy('position')->get();
-//        } else {
-//            $documents = Document::where('status', 'Schváleno')->with('category', 'addon')->where('category_id', $id)->orderBy('position')->get();
-//        }
-//
-//        return view('standardy.lecebne', [
-//            'category'          => 'Standardy',
-//            'title'             => $categorie->category_name,
-//            'categorie'         => $categorie,
-//            'documents'         => $documents,
-//            'categories'        => $categories
-//        ]);
-//    }
-//
-//    public function osetrovatelske($id)
-//    {
-//        $categories = Category::all();
-//        $categorie = Category::where('id', $id)->first();
-//
-//        if (Auth::user()) {
-//            $documents = Document::with('category', 'addon')->where('category_id', $id)->orderBy('position')->get();
-//        } else {
-//            $documents = Document::where('status', 'Schváleno')->with('category', 'addon')->where('category_id', $id)->orderBy('position')->get();
-//        }
-//
-//        return view('standardy.osetrovatelske', [
-//            'category'          => 'Standardy',
-//            'title'             => $categorie->category_name,
-//            'folder_name'       => 'osetrovatelske',
-//            'categorie'         => $categorie,
-//            'documents'         => $documents,
-//            'categories'        => $categories
-//        ]);
-//    }
 
     // Media
     public function radio()

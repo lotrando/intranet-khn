@@ -39,24 +39,26 @@ Route::prefix('stravovani')->name('stravovani.')->group(function () {
 
 // Standardy
 Route::prefix('standardy')->name('standardy.')->group(function () {
-    Route::get('akreditacni/{id}', [PageController::class, 'standard'])->name('akreditacni');
-    Route::get('osetrovatelske/{id}', [PageController::class, 'standard'])->name('osetrovatelske');
-    Route::get('lecebne/{id}', [PageController::class, 'standard'])->name('lecebne');
-    Route::get('specialni/{id}', [PageController::class, 'standard'])->name('specialni');
-    Route::get('operacni/{id}', [PageController::class, 'standard'])->name('operacni');
-    Route::get('anesteziologicke/{id}', [PageController::class, 'standard'])->name('anesteziologicke');
-    Route::get('rdg/{id}', [PageController::class, 'standard'])->name('rdg');
-    Route::get('rehabilitacni/{id}', [PageController::class, 'standard'])->name('rehabilitacni');
-    Route::get('opl/{id}', [PageController::class, 'standard'])->name('opl');
-    Route::get('okb/{id}', [PageController::class, 'standard'])->name('okb');
-    Route::get('logopedicke/{id}', [PageController::class, 'standard'])->name('logopedicke');
-    Route::get('legislativni/{id}', [PageController::class, 'standard'])->name('legislativni');
+    Route::get('akreditacni/{id}', [PageController::class, 'akreditacni'])->name('akreditacni');            // Akreditační standardy
+
+    // Ostatni standardy
+    Route::get('osetrovatelske/{id}', [PageController::class, 'standard'])->name('osetrovatelske');         // Ošetřovatelské standardy
+    Route::get('lecebne/{id}', [PageController::class, 'standard'])->name('lecebne');                       // Léčebné standardy
+    Route::get('specialni/{id}', [PageController::class, 'standard'])->name('specialni');                   // Speciální standardy
+    Route::get('operacni/{id}', [PageController::class, 'standard'])->name('operacni');                     // Operační standardy
+    Route::get('anesteziologicke/{id}', [PageController::class, 'standard'])->name('anesteziologicke');     // Anesteziologické standardy
+    Route::get('rdg/{id}', [PageController::class, 'standard'])->name('rdg');                               // RDG standardy
+    Route::get('rehabilitacni/{id}', [PageController::class, 'standard'])->name('rehabilitacni');           // Rehabilitační standardy
+    Route::get('opl/{id}', [PageController::class, 'standard'])->name('opl');                               // Akreditační standardy
+    Route::get('okb/{id}', [PageController::class, 'standard'])->name('okb');                               // OKB standardy
+    Route::get('logopedicke/{id}', [PageController::class, 'standard'])->name('logopedicke');               // Logopedické standardy
+    Route::get('legislativni/{id}', [PageController::class, 'standard'])->name('legislativni');             // Legislativní standardy
 });
 
 // Media
 Route::prefix('media')->name('media.')->group(function () {
-    Route::get('radio', [PageController::class, 'radio'])->name('radio');
-    Route::get('videa', [PageController::class, 'video'])->name('videa');
+    Route::get('radio', [PageController::class, 'radio'])->name('radio');                                   // Radio
+    Route::get('videa', [PageController::class, 'video'])->name('videa');                                   // Videa
 });
 
 // Attendace
