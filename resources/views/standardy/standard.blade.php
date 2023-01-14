@@ -4,6 +4,23 @@
 <link type="image/png" href="{{ asset('img/' . $categorie->category_icon) ?? ' ' }}" rel="shortcut icon">
 @endsection
 
+@section('searchbar')
+<div class="col-sm-12 col-lg-12">
+  <div class="input-icon">
+    <span class="input-icon-addon">
+      <!-- Download SVG icon from http://tabler-icons.io/i/search -->
+      <svg class="icon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none"
+           stroke-linecap="round" stroke-linejoin="round">
+        <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+        <circle cx="10" cy="10" r="7"></circle>
+        <line x1="21" y1="21" x2="15" y2="15"></line>
+      </svg>
+    </span>
+    <input class="form-control" id="search" type="text" placeholder="{{ __('Hledat standard ...') }}">
+  </div>
+</div>
+@endsection
+
 @section('content')
 <!-- Page wrapper -->
 <div class="page-wrapper mb-4">
@@ -28,7 +45,7 @@
             <div class="d-flex justify-content-end">
               @auth
               <button class="btn btn-success me-2 d-none d-sm-inline-block hover-shadow-sm" id="openCreateModal" data-bs-toggle="tooltip" data-bs-placement="bottom"
-                      data-bs-original-title="{{ __('Vytvoří nový '. $categorie->button.' standard') }}">
+                      data-bs-original-title="{{ __('Vytvoří nový ' . $categorie->button . ' standard') }}">
                 <svg class="icon icon-tabler icon-tabler-book-upload" xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 24 24" stroke-width="1"
                      stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
                   <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
@@ -238,7 +255,7 @@
               {{-- </div> --}}
             <div class="col-2 col-lg-2 mb-sm-1">
               <label class="form-label">{{ __('Position') }} č:</label>
-              <input class="form-control" id="position" name="position" type="text" }">
+              <input class="form-control" id="position" name="position" type="text">
             </div>
             <div class="col-10 col-lg-8 mb-sm-1">
               <label class="form-label">{{ __('Name') }}</label>
@@ -272,6 +289,30 @@
               </select>
             </div>
           </div>
+          <div class="row" id="attachments">
+            <div class="hr-text text-muted my-3">
+              <span style="font-size: 0.6rem">{{ __('Attachment') }}</span>
+            </div>
+            <div class="col-12 col-lg-10 mb-sm-1">
+              <label class="form-label">{{ __('Jednoduchý popis přílohy') }}</label>
+              <input class="form-control" id="attachment1" name="attachment1" type="text" placeholder="{{ __('Jednoduchý popis přílohy standardu') }}">
+            </div>
+            <div class="col-12 col-lg-2 mb-sm-1">
+              <label class="form-label">{{ __('Unikátní kód') }}</label>
+              <input class="form-control" id="unique_code1" name="unique_code1" type="text" placeholder="{{ __('Unikátní kód') }}">
+            </div>
+            <div class="col-12 col-lg-9 mb-sm-1">
+              <label class="form-label">{{ __('Soubor') }}</label>
+              <input class="form-control" id="file1" name="file1" type="file" placeholder="{{ __('Soubor standardu ve formátu PDF') }}">
+            </div>
+            <div class="col-12 col-lg-3 mb-sm-1">
+              <label class="form-label">{{ __('Status') }}</label>
+              <select class="form-select" id="status" name="status">
+                <option value="Schváleno">Schváleno</option>
+                <option value="Rozpracováno">Rozpracováno</option>
+              </select>
+            </div>
+          </div>
         </div>
         <input id="action" name="action" type="hidden" />
         <input id="hidden_id" name="hidden_id" type="hidden" />
@@ -282,7 +323,10 @@
           <button class="btn btn-muted hover-shadow" data-bs-dismiss="modal" type="button">
             {{ __('Close') }}
           </button>
-          <button class="btn btn-primary ms-auto hover-shadow" id="action_button" name="action_button" type="submit"></button>
+          <button class="btn btn-primary ms-auto hover-shadow" id="addon-btn" type="button">{{ __('Attachment') }}</button>
+          <div class="align-content-end flex">
+            <button class="btn btn-primary ms-auto hover-shadow" id="action_button" name="action_button" type="submit"></button>
+          </div>
         </div>
       </form>
     </div>
@@ -398,6 +442,7 @@
       $('#action_button, .modal-title').text("{{ __('Create new') }} {{ $categorie->button }} standard");
       $('#unique_code').prop('readonly', false);
       $('#action').val("Add");
+      $('#position').val('{{ $lastpos + 1 }}');
       $('#folder_name').val("{{ $categorie->folder_name }}");
       $('#status').val('Schváleno');
     })
@@ -489,5 +534,11 @@
         }
       })
     })
+
+    $("#attachments").hide();
+    $("#addon-btn").click(function() {
+      console.log('clicked');
+      $("#attachments").toggle();
+    });
 </script>
 @endsection

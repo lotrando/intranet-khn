@@ -28,7 +28,7 @@ Route::get("home", function () {
 
 // Oznámení
 Route::prefix('oznameni')->name('oznameni.')->group(function () {
-    Route::get('zmeny', [PageController::class, 'zmeny'])->name('zmeny');
+    Route::get('zmeny', [PageController::class, 'zmeny'])->name('zmeny-standardu');
     Route::get('akord', [PageController::class, 'akord'])->name('akord');
     Route::get('servis', [PageController::class, 'servis'])->name('servis');
     Route::get('seminare', [PageController::class, 'seminare'])->name('seminare');
@@ -75,8 +75,8 @@ Route::resource('train', TrainingController::class);
 Route::resource('attendances', AttendanceController::class);
 
 // Employees
-Route::resource('employees', EmployeeController::class);
-Route::resource('adversevents', AdverseventController::class);
+Route::resource('employees', EmployeeController::class)->except(['update', 'show', 'destroy']);;
+Route::resource('adversevents', AdverseventController::class)->except(['update', 'show', 'destroy']);
 Route::resource('documents', DocumentController::class);
 
 Route::get('vcards', [EmployeeController::class, 'vcards'])->name('employees.vcards');
@@ -85,16 +85,16 @@ Route::get('search', [EmployeeController::class, 'vcardSearch'])->name('employee
 // Auth Routes
 Route::group(['middleware' => 'auth'], function () {
     // Employee
-    Route::post('employees/update', [EmployeeController::class, 'update'])->name('employees.update');
-    Route::get('employees/destroy/{id}', [EmployeeController::class, 'destroy']);
-    Route::get('employees/destroy-photo/{id}', [EmployeeController::class, 'destroyPhoto'])->name('employees.photo');
+    Route::post('employee/update', [EmployeeController::class, 'update'])->name('employee.update');
+    Route::get('employee/destroy/{id}', [EmployeeController::class, 'destroy'])->name('employee.destroy');
+    Route::get('employee/destroy-photo/{id}', [EmployeeController::class, 'destroyPhoto'])->name('employee.photo');
     Route::get('export', [EmployeeController::class, 'exportTable'])->name('employees.export');
     Route::get('phonelist', [EmployeeController::class, 'exportPhoneList'])->name('employees.phonelist');
     Route::get('list', [EmployeeController::class, 'exportList'])->name('employees.list');
 
     // Adverse Events
-    Route::post('adversevent/update', [AdverseventController::class, 'update'])->name('adverseevents.update');
-    Route::get('adversevent/destroy/{id}', [AdverseventController::class, 'destroy']);
+    Route::post('adversevent/update', [AdverseventController::class, 'update'])->name('adversevent.update');
+    Route::get('adversevent/destroy/{id}', [AdverseventController::class, 'destroy'])->name('adversevent.destroy');
 
     // Document Events
     Route::post('documents/update', [DocumentController::class, 'update'])->name('documents.update');

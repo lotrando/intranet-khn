@@ -59,7 +59,7 @@
 @section('modals')
 {{-- Main Form Modal --}}
 <div class="modal modal-blur fade" id="formModal" data-bs-backdrop="static" data-bs-keyboard="false" role="dialog" aria-hidden="true" tabindex="-1">
-  <div class="modal-dialog modal-full-width modal-dialog-top" role="document">
+  <div class="modal-dialog modal-full-width modal-dialog-centered" role="document">
     <div class="modal-content shadow-lg">
       <div id="modal-header">
         <h5 class="modal-title"></h5>
@@ -555,7 +555,7 @@
       if ($('#action').val() == "Edit") {
         event.preventDefault();
         $.ajax({
-          url: "/adversevents/update') }}",
+          url: "{{ route('adversevent.update') }}",
           method: "POST",
           data: new FormData(this),
           contentType: false,

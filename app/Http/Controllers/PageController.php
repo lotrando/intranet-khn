@@ -15,7 +15,7 @@ class PageController extends Controller
     // Oznámení
     public function zmeny()
     {
-        return view('zmeny', ['category' => 'Oznámení', 'title' => 'Změny v dokumentaci']);
+        return view('zmeny', ['category' => 'Oznámení', 'title' => 'Změny ve standardech']);
     }
 
     public function akord()
@@ -104,17 +104,26 @@ class PageController extends Controller
     {
         $categories = Category::all();
         $categorie  = Category::where('id', $id)->first();
+        $last = Document::where('category_id', $id)->latest()->first();
+
+        if ($last == null) {
+            $last = 0;
+        } else {
+            $position = $last->position;
+            $last = $position;
+        }
 
         if (Auth::user()) {
             $documents = Document::with('category', 'addon')->where('category_id', $id)->orderBy('position')->get();
         } else {
-            $documents = Document::where('status', 'Schváleno')->with('category', 'addon')->where('category_id', $id)->orderBy('position')->get();
+            $documents = Document::with('category', 'addon')->where('status', 'Schváleno')->where('category_id', $id)->orderBy('position')->get();
         }
 
         return view('standardy.standard', [
             'categorie'         => $categorie,
             'icon'              => $categorie->fa_icon,
             'categories'        => $categories,
+            'lastpos'           => $last,
             'documents'         => $documents
         ]);
     }

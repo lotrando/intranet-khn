@@ -21,7 +21,7 @@
             </a>
 
             <div class="dropdown-menu">
-              <a class="dropdown-item {{ request()->segment(2) == 'zmeny' ? 'active' : '' }}" href="{{ route('oznameni.zmeny') }}">
+              <a class="dropdown-item {{ request()->segment(2) == 'zmeny' ? 'active' : '' }}" href="{{ route('oznameni.zmeny-standardu') }}">
                 <span class="nav-link-icon d-md-none d-lg-inline-block">
                   <svg class="icon icon-tabler text-red" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor"
                        fill="none" stroke-linecap="round" stroke-linejoin="round">
@@ -31,7 +31,7 @@
                   </svg>
                 </span>
                 <span class="nav-link-title">
-                  {{ __('Změny v dokumentaci') }}
+                  {{ __('Změny ve standardech') }}
                 </span>
               </a>
               <a class="dropdown-item {{ request()->segment(2) == 'servis' ? 'active' : '' }}" href="{{ route('oznameni.servis') }}">
@@ -686,19 +686,7 @@
           </li>
         </ul>
         <div class="my-2">
-          <div class="col-sm-12 col-lg-12">
-            <div class="input-icon">
-              <span class="input-icon-addon">
-                <!-- Download SVG icon from http://tabler-icons.io/i/search -->
-                <svg xmlns="http://www.w3.org/2000/svg" class="icon" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
-                  <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
-                  <circle cx="10" cy="10" r="7"></circle>
-                  <line x1="21" y1="21" x2="15" y2="15"></line>
-                </svg>
-              </span>
-              <input type="text" id="search" class="form-control" placeholder="{{ __('Hledání standardu ...') }}">
-            </div>
-          </div>
+          @yield('searchbar')
           {{-- <form action="." method="get">
             <div class="input-icon">
               <span class="input-icon-addon">

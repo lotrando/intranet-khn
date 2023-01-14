@@ -673,7 +673,7 @@
       if ($('#action').val() == "Edit") {
         event.preventDefault();
         $.ajax({
-          url: "{{ route('employees.update') }}",
+          url: "{{ route('employee.update') }}",
           method: "POST",
           data: new FormData(this),
           contentType: false,
@@ -711,7 +711,7 @@
 
     $('#ok_button').click(function() {
       $.ajax({
-        url: "employees/destroy/" + employee_id,
+        url: "employee/destroy/" + employee_id,
         beforeSend: function() {
           $('#ok_button').text("{{ __('Deleting ...') }}");
         },
