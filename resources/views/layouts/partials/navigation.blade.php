@@ -572,15 +572,10 @@
               </a>
               <a class="dropdown-item {{ request()->segment(2) == 'legislativni' ? 'active' : '' }}" href="{{ route('standardy.legislativni', 12) }}">
                 <span class="nav-link-icon d-md-none d-lg-inline-block">
-                  <svg class="icon icon-tabler icon-tabler-certificate text-orange" xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 24 24"
-                       stroke-width="1" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                  <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-rubber-stamp text-orange" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
                     <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
-                    <circle cx="15" cy="15" r="3"></circle>
-                    <path d="M13 17.5v4.5l2 -1.5l2 1.5v-4.5"></path>
-                    <path d="M10 19h-5a2 2 0 0 1 -2 -2v-10c0 -1.1 .9 -2 2 -2h14a2 2 0 0 1 2 2v10a2 2 0 0 1 -1 1.73"></path>
-                    <line x1="6" y1="9" x2="18" y2="9"></line>
-                    <line x1="6" y1="12" x2="9" y2="12"></line>
-                    <line x1="6" y1="15" x2="8" y2="15"></line>
+                    <path d="M21 17.85h-18c0 -4.05 1.421 -4.05 3.79 -4.05c5.21 0 1.21 -4.59 1.21 -6.8a4 4 0 1 1 8 0c0 2.21 -4 6.8 1.21 6.8c2.369 0 3.79 0 3.79 4.05z"></path>
+                    <path d="M5 21h14"></path>
                   </svg>
                 </span>
                 <span class="nav-link-title">
@@ -654,17 +649,34 @@
                   </a>
                   <div class="dropend">
                     <a class="dropdown-item dropdown-toggle show" href="#sidebar-cards" data-bs-toggle="dropdown" data-bs-auto-close="outside" role="button" aria-expanded="true">
-                      Cards
+                      <span class="nav-link-icon d-md-none d-lg-inline-block">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-presentation-analytics text-indigo" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                          <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+                          <path d="M9 12v-4"></path>
+                          <path d="M15 12v-2"></path>
+                          <path d="M12 12v-1"></path>
+                          <path d="M3 4h18"></path>
+                          <path d="M4 4v10a2 2 0 0 0 2 2h12a2 2 0 0 0 2 -2v-10"></path>
+                          <path d="M12 16v4"></path>
+                          <path d="M9 20h6"></path>
+                        </svg>
+                      </span>
+                      <span class="nav-link-title">
+                        Edukační
+                      </span>
                     </a>
                     <div class="dropdown-menu show" data-bs-popper="static">
-                      <a href="./cards.html" class="dropdown-item">
-                        Sample cards
-                      </a>
-                      <a href="./card-actions.html" class="dropdown-item">
-                        Card actions
-                      </a>
-                      <a href="./cards-masonry.html" class="dropdown-item">
-                        Cards Masonry
+                      <a class="dropdown-item {{ request()->segment(2) == 'lekis' ? 'active' : '' }}" href="{{ route('media.videa') }}">
+                        <span class="nav-link-icon d-md-none d-lg-inline-block">
+                          <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-pill text-green" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                            <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+                            <path d="M4.5 12.5l8 -8a4.94 4.94 0 0 1 7 7l-8 8a4.94 4.94 0 0 1 -7 -7"></path>
+                            <line x1="8.5" y1="8.5" x2="15.5" y2="15.5"></line>
+                          </svg>
+                        </span>
+                        <span class="nav-link-title">
+                          Lekis
+                        </span>
                       </a>
                     </div>
                   </div>
@@ -673,8 +685,21 @@
             </div>
           </li>
         </ul>
-        {{-- <div class="my-md-0 flex-grow-1 flex-md-grow-0 order-md-last order-first my-2">
-          <form action="." method="get">
+        <div class="my-2">
+          <div class="col-sm-12 col-lg-12">
+            <div class="input-icon">
+              <span class="input-icon-addon">
+                <!-- Download SVG icon from http://tabler-icons.io/i/search -->
+                <svg xmlns="http://www.w3.org/2000/svg" class="icon" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                  <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+                  <circle cx="10" cy="10" r="7"></circle>
+                  <line x1="21" y1="21" x2="15" y2="15"></line>
+                </svg>
+              </span>
+              <input type="text" id="search" class="form-control" placeholder="{{ __('Hledání standardu ...') }}">
+            </div>
+          </div>
+          {{-- <form action="." method="get">
             <div class="input-icon">
               <span class="input-icon-addon">
                 <svg class="icon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor"
@@ -686,8 +711,8 @@
               </span>
               <input class="form-control" type="text" aria-label="Search in website" placeholder="Hledej ...">
             </div>
-          </form>
-        </div> --}}
+          </form> --}}
+        </div>
         @yield('buttons')
       </div>
     </div>

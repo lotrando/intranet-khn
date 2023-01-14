@@ -128,6 +128,6 @@ class PageController extends Controller
 
     public function video()
     {
-        return view('videa', ['category' => 'Media', 'title' => 'Videa']);
+        return view('videa', ['category' => 'Média', 'title' => 'Videa']);
     }
 }

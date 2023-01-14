@@ -27,7 +27,8 @@
           <div class="btn-list">
             <div class="d-flex justify-content-end">
               @auth
-              <button class="btn btn-success me-2 d-none d-sm-inline-block hover-shadow-sm" id="openCreateModal">
+              <button class="btn btn-success me-2 d-none d-sm-inline-block hover-shadow-sm" id="openCreateModal" data-bs-toggle="tooltip" data-bs-placement="bottom"
+                      data-bs-original-title="{{ __('Vytvoří nový '. $categorie->button.' standard') }}">
                 <svg class="icon icon-tabler icon-tabler-book-upload" xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 24 24" stroke-width="1"
                      stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
                   <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
@@ -43,9 +44,12 @@
           </div>
         </div>
         <!-- Page Title Buttons End -->
+        <div class="col-12">
+          <div id="display"></div>
+        </div>
 
         <!-- Page -->
-        <div class="container-fluid mt-3">
+        <div class="container-fluid mt-1">
           <div class="h-100">
             <div class="col-12">
               @foreach ($documents as $document)
@@ -326,6 +330,32 @@
 
 @section('scripts')
 <script>
+  function fill(Value) {
+      $('#search').val(Value);
+      $('#display').hide();
+    }
+    $(document).ready(function() {
+      $("#search").keyup(function() {
+        var name = $('#search').val();
+        if (name == "") {
+          $("#display").html("");
+        } else {
+          $.ajax({
+            type: "GET",
+            url: "{{ route('standardy.standard.search') }}",
+            data: {
+              search: name
+            },
+            success: function(html) {
+              $("#display").html(html).show();
+            }
+          });
+        }
+      });
+    });
+</script>
+
+<script>
   // Form Modal Functions
     $(document).on('click', '.edit', function() {
       var id = $(this).attr('id');
@@ -339,7 +369,7 @@
           $("#modal-icon, #modal-header").removeClass();
           $('.modal-title').val('');
           $('#formModal').modal('show');
-          $('#modal-icon').addClass('fas fa-{{ $icon }} fa-2x m-2');
+          $('#modal-icon').addClass('fas fa-{{ $categorie->fas_icon }} fa-2x m-2');
           $('#modal-header').addClass("modal-header bg-{{ $categorie->color }}-lt");
           $('#action_button, .modal-title').text("{{ __('Edit') }} {{ $categorie->button }} standard");
           $('#action').val("Edit");
@@ -363,7 +393,7 @@
       $("#modal-icon, #modal-header").removeClass();
       $('#category_id').val('{{ $categorie->id }}');
       $('#formModal').modal('show');
-      $('#modal-icon').addClass('fas fa-{{ $icon }} fa-2x m-2');
+      $('#modal-icon').addClass('fas fa-{{ $categorie->fas_icon }} fa-2x m-2');
       $('#modal-header').addClass("modal-header bg-{{ $categorie->color }}-lt");
       $('#action_button, .modal-title').text("{{ __('Create new') }} {{ $categorie->button }} standard");
       $('#unique_code').prop('readonly', false);

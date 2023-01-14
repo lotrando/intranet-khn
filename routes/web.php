@@ -10,6 +10,12 @@ use App\Http\Controllers\SlideController;
 use App\Http\Controllers\TrainingController;
 use Illuminate\Support\Facades\Route;
 
+// test page
+Route::get("standardsearch", function () {
+    return view('standardy.search', ['category' => 'Standardy', 'title' => 'Vyhledavání']);
+});
+
+
 // Index page
 Route::get("/", function () {
     return view('welcome', ['category' => 'Oznámení', 'title' => 'Přehled']);
@@ -17,7 +23,7 @@ Route::get("/", function () {
 
 // Home page
 Route::get("home", function () {
-    return view('home', ['category' => 'Uživatel', 'title' => 'Home']);
+    return view('home', ['category' => 'Uživatel', 'title' => 'Profil']);
 });
 
 // Oznámení
@@ -53,6 +59,8 @@ Route::prefix('standardy')->name('standardy.')->group(function () {
     Route::get('okb/{id}', [PageController::class, 'standard'])->name('okb');                               // OKB standardy
     Route::get('logopedicke/{id}', [PageController::class, 'standard'])->name('logopedicke');               // Logopedické standardy
     Route::get('legislativni/{id}', [PageController::class, 'standard'])->name('legislativni');             // Legislativní standardy
+
+    Route::get('standard-search', [DocumentController::class, 'standardSearch'])->name('standard.search');  // Vyhledávání dokumentů
 });
 
 // Media

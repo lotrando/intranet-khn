@@ -203,4 +203,72 @@ class DocumentController extends Controller
         $document->delete();
         return response()->json(['success' => __('Standard deleted successfully')]);
     }
+
+    public function standardSearch(Request $request)
+    {
+        if ($request->ajax()) {
+            $output = "";
+            $documents = Document::with('category', 'addon')->orderBy('category_id')
+                ->orWhere('description', 'LIKE', '%' . $request->search . "%")
+                ->orWhere('name', 'LIKE', '%' . $request->search . "%")
+                ->get();
+            if ($documents) {
+                foreach ($documents as $document) {
+                    $output .=
+                        '<div class="accordion-item bg-' . $document->category->color . '-lt">
+                            <div class="show" id="collapse-' . $document->position . '" data-bs-parent="#accordion-standard" style="">
+                                <div class="accordion-body pt-0">
+                                    <div class="list-group list-group-flush list-group-hoverable pt-1">
+                                    <div class="list-group-item">
+                                        <div class="row align-items-center">
+                                            <div class="col-auto">
+                                                <a href="/standardy/' . $document->file . '" target="_blank">
+                                                <span class="avatar">
+                                                    <img src="./../../img/files/pdf.png" alt="PDF - Standard">
+                                                </span>
+                                                </a>
+                                            </div>
+                                            <div class="col text-truncate">
+                                                <a class="text-primary d-block text-decoration-none" href="/standardy/' . $document->file . '" target="_blank">
+                                                <h3 style="margin-bottom: 0;">' . $document->position . '.' . $document->name . '</h3>
+                                                </a>
+                                                <div class="d-block text-muted text-truncate mt-n1">' . $document->description . '</div>
+
+                                                <div class="d-block mt-n1">
+                                                <a class="d-block text-' . $document->category->color . ' text-decoration-none" href="/standardy/' . $document->category->folder_name . '/' .  $document->category->id . '">
+                                                ' . $document->category->svg_icon . '
+                                                ' . $document->category->category_name . ' standardy</a>
+                                                </div>
+                                            </div>
+                                            <div class="col-auto">
+                                                <svg class="icon icon-tabler text-yellow" xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 24 24" stroke-width="2"
+                                                    stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                                                <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+                                                <path d="M9 4h6a2 2 0 0 1 2 2v14l-5 -3l-5 3v-14a2 2 0 0 1 2 -2"></path>
+                                                </svg>
+                                                <span class="text-muted">revize: ' . $document->revision . '</span>
+                                                <svg class="icon icon-tabler text-info" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" stroke-width="2"
+                                                    stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                                                <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+                                                <rect x="4" y="5" width="16" height="16" rx="2"></rect>
+                                                <line x1="16" y1="3" x2="16" y2="7"></line>
+                                                <line x1="8" y1="3" x2="8" y2="7"></line>
+                                                <line x1="4" y1="11" x2="20" y2="11"></line>
+                                                <line x1="11" y1="15" x2="12" y2="15"></line>
+                                                <line x1="12" y1="15" x2="12" y2="18"></line>
+                                                </svg>
+                                                <span class="text-muted">' . ($document->updated_at)->diffForHumans() . '</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    ';
+                }
+                return Response($output);
+            }
+        }
+    }
 }

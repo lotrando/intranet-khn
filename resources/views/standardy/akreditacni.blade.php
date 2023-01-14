@@ -45,7 +45,7 @@ Finální verze  28.03.2022
             <div class="d-flex justify-content-end">
               @auth
               <button class="btn btn-success me-2 d-none d-sm-inline-block" id="openCreateModal" data-bs-toggle="tooltip" data-bs-placement="bottom"
-                      data-bs-original-title="{{ __('Vytvoří novou položku standardu') }}">
+                      data-bs-original-title="{{ __('Vytvoří nový '. $categorie->button.' standard') }}">
                 <svg class="icon icon-tabler icon-tabler-book-upload" xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 24 24" stroke-width="1"
                      stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
                   <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
@@ -84,7 +84,8 @@ Finální verze  28.03.2022
             </div>
           </div>
         </div>
-        <!-- Wrapper End -->
+        <!-- Page Title Buttons End -->
+        <div class="mb-1" id="display"></div>
 
         <div class="container-fluid">
           <div class="col-lg-12">
@@ -2090,6 +2091,32 @@ Finální verze  28.03.2022
 
       @section('scripts')
       <script>
+        function fill(Value) {
+            $('#search').val(Value);
+            $('#display').hide();
+          }
+          $(document).ready(function() {
+            $("#search").keyup(function() {
+              var name = $('#search').val();
+              if (name == "") {
+                $("#display").html("");
+              } else {
+                $.ajax({
+                  type: "GET",
+                  url: "{{ route('standardy.standard.search') }}",
+                  data: {
+                    search: name
+                  },
+                  success: function(html) {
+                    $("#display").html(html).show();
+                  }
+                });
+              }
+            });
+          });
+      </script>
+
+      <script>
         $(document).ready(function() {
               $('.accordion-collapse').removeClass('show');
               $('#showbtn').click(function() {
@@ -2116,7 +2143,7 @@ Finální verze  28.03.2022
           $("#modal-icon, #modal-header").removeClass();
           $('.modal-title').val('');
           $('#formModal').modal('show');
-          $('#modal-icon').addClass('fas fa-{{ $icon }} fa-2x m-2');
+          $('#modal-icon').addClass('fas fa-{{ $categorie->fas_icon }} fa-2x m-2');
           $('#modal-header').addClass("modal-header bg-{{ $categorie->color }}-lt");
           $('#action_button, .modal-title').text("{{ __('Edit') }} {{ $categorie->button }} standard");
           $('#action').val("Edit");
@@ -2140,7 +2167,7 @@ Finální verze  28.03.2022
       $("#modal-icon, #modal-header").removeClass();
       $('#category_id').val('{{ $categorie->id }}');
       $('#formModal').modal('show');
-      $('#modal-icon').addClass('fas fa-{{ $icon }} fa-2x m-2');
+      $('#modal-icon').addClass('fas fa-{{ $categorie->fas_icon }} fa-2x m-2');
       $('#modal-header').addClass("modal-header bg-{{ $categorie->color }}-lt");
       $('#action_button, .modal-title').text("{{ __('Create new') }} {{ $categorie->button }} standard");
       $('#unique_code').prop('readonly', false);
