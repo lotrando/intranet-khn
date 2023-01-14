@@ -44,7 +44,7 @@
           <div class="btn-list">
             <div class="d-flex justify-content-end">
               @auth
-              <button class="btn btn-success me-2 d-none d-sm-inline-block hover-shadow-sm" id="openCreateModal" data-bs-toggle="tooltip" data-bs-placement="bottom"
+              <button class="btn btn-success me-2 d-none d-sm-inline-block hover-shadow-sm" id="openCreateModal" data-bs-toggle="tooltip" data-bs-placement="left"
                       data-bs-original-title="{{ __('Vytvoří nový ' . $categorie->button . ' standard') }}">
                 <svg class="icon icon-tabler icon-tabler-book-upload" xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 24 24" stroke-width="1"
                      stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
@@ -123,9 +123,10 @@
                           </div>
                           @auth
                           <div class="col-auto">
-                            <span class="btn btn-icon hover-shadow cursor-pointer" id="dropdownMenuButton-' . $data->id . '" data-bs-toggle="dropdown" title="Možnosti">
+                            <span class="btn btn-icon hover-shadow cursor-pointer" id="dropdownMenuButton-' . $data->id . '" data-bs-toggle="dropdown">
                               <svg class="icon dropdown-item-icon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" stroke-width="2"
-                                   stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                                   stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round" data-bs-toggle="tooltip" data-bs-placement="bottom"
+                                   data-bs-original-title="{{ __('Actions') }}">
                                 <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
                                 <line x1="4" y1="6" x2="20" y2="6"></line>
                                 <line x1="4" y1="12" x2="20" y2="12"></line>

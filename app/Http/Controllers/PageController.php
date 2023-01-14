@@ -15,7 +15,19 @@ class PageController extends Controller
     // Oznámení
     public function zmeny()
     {
-        return view('zmeny', ['category' => 'Oznámení', 'title' => 'Změny ve standardech']);
+        $suma = Document::count();
+        $y = Category::count();
+
+        for ($i = 1; $i < $y; $i++) {
+            $documents[$i] = Document::with('category')->where('category_id', $i)->get();
+        }
+
+        return view('zmeny', [
+            'category' => 'Oznámení',
+            'title' => 'Změny ve standardech',
+            'suma' => $suma,
+            'documents' => $documents,
+        ]);
     }
 
     public function akord()

@@ -74,7 +74,7 @@ Finální verze  28.03.2022
               </button>
               @endauth
               <button class="btn btn-yellow me-2 d-none d-sm-inline-block" id="showbtn" data-bs-toggle="tooltip" data-bs-placement="bottom"
-                      data-bs-original-title="{{ __('Zobrazit všechny standardy na stránku') }}">
+                      data-bs-original-title="{{ __('Zobrazí všechny '.$categorie->button.' standardy') }}">
                 <svg class="icon icon-tabler icon-tabler-list-details" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" stroke-width="2"
                      stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
                   <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
@@ -87,7 +87,7 @@ Finální verze  28.03.2022
                 </svg>
                 {{ __('Zobrazit vše') }}
               </button>
-              <button class="btn btn-secondary me-2 d-none d-sm-inline-block" id="closebtn" data-bs-toggle="tooltip" data-bs-placement="bottom" data-bs-original-title="{{ __('Skryje všechny standardy') }}">
+              <button class="btn btn-secondary me-2 d-none d-sm-inline-block" id="closebtn" data-bs-toggle="tooltip" data-bs-placement="left" data-bs-original-title="{{ __('Skryje všechny '. $categorie->button.' standardy') }}">
                 <svg class="icon icon-tabler icon-tabler-menu-2" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" stroke-width="2"
                      stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
                   <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
