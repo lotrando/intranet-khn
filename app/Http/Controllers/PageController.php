@@ -6,8 +6,10 @@ use App\Models\Addon;
 use App\Models\Category;
 use App\Models\Department;
 use App\Models\Document;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 use PhpParser\Node\Stmt\Return_;
 
 class PageController extends Controller
@@ -23,9 +25,9 @@ class PageController extends Controller
         }
 
         return view('zmeny', [
-            'category' => 'Oznámení',
-            'title' => 'Změny ve standardech',
-            'suma' => $suma,
+            'category'  => 'Oznámení',
+            'title'     => 'Změny ve standardech',
+            'suma'      => $suma,
             'documents' => $documents,
         ]);
     }
@@ -68,7 +70,8 @@ class PageController extends Controller
 
     public function kantyna()
     {
-        return view('kantyna', ['category' => 'Stravování', 'title' => 'Kantýna']);
+        $daylist = DB::table('calendar')->where('date', '>=', now())->paginate(7);
+        return view('kantyna', ['category' => 'Stravování', 'title' => 'Kantýna', 'daylist' => $daylist]);
     }
 
     // Akreditacní stadnardy

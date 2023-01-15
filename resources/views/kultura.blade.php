@@ -1,7 +1,7 @@
 @extends('layouts.blank')
 
 @section('favicon')
-<link type="image/png" href="{{ asset('img/akord.png') }}" rel="shortcut icon">
+<link type="image/png" href="{{ asset('img/kultura.png') }}" rel="shortcut icon">
 @endsection
 
 @section('content')
