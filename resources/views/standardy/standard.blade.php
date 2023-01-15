@@ -66,7 +66,7 @@
         </div>
 
         <!-- Page -->
-        <div class="container-fluid mt-1">
+        <div class="container-fluid mt-2">
           <div class="h-100">
             <div class="col-12">
               @foreach ($documents as $document)
