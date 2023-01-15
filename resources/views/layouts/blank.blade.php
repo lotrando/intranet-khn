@@ -6,7 +6,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="csrf-token" content="{{ csrf_token() }}">
-    <title>{{ $categorie->category_name ?? '' }} {{ $category ?? 'Intranet' }} {{ $title ?? 'KHN a.s.' }} </title>
+    <title>{{ $category ?? 'Intranet' }} | {{ $title ?? 'KHN a.s.' }} </title>
     @yield('favicon')
     <link href="{{ asset('https://use.fontawesome.com/releases/v5.11.2/css/all.css') }}" rel="stylesheet">
     <link href="{{ asset('libs/plyr/dist/plyr.css') }}" rel="stylesheet">

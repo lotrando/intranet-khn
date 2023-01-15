@@ -1,7 +1,7 @@
 @extends('layouts.blank')
 
 @section('favicon')
-<link type="image/png" href="{{ asset('img/akord.png') }}" rel="shortcut icon">
+<link type="image/png" href="{{ asset('img/prehledy.png') }}" rel="shortcut icon">
 @endsection
 
 @section('content')
@@ -32,12 +32,12 @@
     <div class="row">
 
       <div class="col-5 mb-2">
-        <div class="card p-0" style="height: 36rem">
-          <div class="card-body p-2 card-body-scrollable card-body-scrollable-shadow">
+        <div class="card bg-transparent p-6" style="height: 36rem">
+          <div class="card-body p-2 card-body-scrollable card-body-scrollable-shadow bg-transparent">
             <div class="divide-y">
               <div class="row justify-content-center">
                 <div class="col-12">
-                  <div class="card shadow-sm">
+                  <div class="card bg-azure-bg shadow-sm">
                     <div class="card-header align-items-center justify-content-between bg-muted-lt d-flex">
                       <h3 class="text-muted m-0 mb-0 p-0">
                         {{ __('Akord – klávesové zkratky') }}

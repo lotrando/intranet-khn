@@ -15,6 +15,11 @@ use PhpParser\Node\Stmt\Return_;
 class PageController extends Controller
 {
     // Oznámení
+    public function prehledy()
+    {
+        return view('home', ['category' => 'Oznámení', 'title' => 'Přehledy']);
+    }
+
     public function zmeny()
     {
         $suma = Document::count();
@@ -49,7 +54,7 @@ class PageController extends Controller
 
     public function sluzby()
     {
-        return view('sluzby', ['category' => 'Oznámení', 'title' => 'Změna služeb']);
+        return view('sluzby', ['category' => 'Oznámení', 'title' => 'Změny služeb']);
     }
 
     public function informace()
@@ -71,7 +76,7 @@ class PageController extends Controller
     public function kantyna()
     {
         $daylist = DB::table('calendar')->where('date', '>=', now())->paginate(7);
-        return view('kantyna', ['category' => 'Stravování', 'title' => 'Kantýna', 'daylist' => $daylist]);
+        return view('kantyna', ['category' => 'Stravování', 'title' => 'Nabídka kantýny', 'daylist' => $daylist]);
     }
 
     // Akreditacní stadnardy
@@ -95,6 +100,8 @@ class PageController extends Controller
         $documents12 = Document::where('status', 'Schváleno')->with('category', 'addon')->where('category_id', $id)->where('accordion_group', 12)->orderBy('position')->get();
 
         return view('standardy.akreditacni', [
+            'title'             => $categorie->category_name,
+            'category'          => 'Standardy',
             'categorie'         => $categorie,
             'icon'              => $categorie->fa_icon,
             'categories'        => $categories,
@@ -135,6 +142,8 @@ class PageController extends Controller
         }
 
         return view('standardy.standard', [
+            'title'             => $categorie->category_name,
+            'category'          => 'Standardy',
             'categorie'         => $categorie,
             'icon'              => $categorie->fa_icon,
             'categories'        => $categories,

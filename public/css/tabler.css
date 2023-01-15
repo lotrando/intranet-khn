@@ -64,7 +64,7 @@
     rgba(255, 255, 255, 0)
   );
   --tblr-body-font-family: var(--tblr-font-sans-serif);
-  --tblr-body-font-size: 0.875rem;
+  --tblr-body-font-size: 0.975rem;
   --tblr-body-font-weight: 400;
   --tblr-body-line-height: 1.4285714;
   --tblr-body-color: #1e293b;
@@ -2263,7 +2263,7 @@ textarea {
 
 .form-label {
   margin-bottom: 0.1rem;
-  font-size: 0.775rem;
+  font-size: 0.875rem;
   color: #8c9299;
   font-weight: 500;
 }
@@ -2299,9 +2299,9 @@ textarea {
   display: block;
   width: 100%;
   padding: 0.4375rem 0.75rem;
-  font-size: 0.875rem;
+  font-size: 0.975rem;
   font-weight: 400;
-  line-height: 1.4285714;
+  line-height: 1.5285714;
   color: #666666;
   background-color: #ffffff;
   background-clip: padding-box;
@@ -3303,7 +3303,7 @@ textarea.form-control.is-invalid {
   background-color: transparent;
   border: 1px solid transparent;
   padding: 0.3rem 0.8rem;
-  font-size: 0.875rem;
+  font-size: 0.975rem;
   border-radius: 4px;
   transition: color 0.15s ease-in-out, background-color 0.15s ease-in-out,
     border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
@@ -3440,7 +3440,7 @@ fieldset:disabled .btn {
   min-width: 11rem;
   padding: 0.25rem;
   margin: 0;
-  font-size: 0.875rem;
+  font-size: 0.975rem;
   color: #1e293b;
   text-align: left;
   list-style: none;
@@ -5944,7 +5944,7 @@ fieldset:disabled .btn {
   z-index: 1080;
   display: block;
   margin: 0;
-  font-family: var(--tblr-font-sans-serif);
+  font-family: system-ui, sans-serif, sans-serif;
   font-style: normal;
   font-weight: 700;
   line-height: 1.4285714;
@@ -5964,7 +5964,7 @@ fieldset:disabled .btn {
 }
 
 .tooltip.show {
-  opacity: 0.9;
+  opacity: 0.65;
 }
 
 .tooltip .tooltip-arrow {
@@ -6019,7 +6019,7 @@ fieldset:disabled .btn {
 
 .bs-tooltip-bottom,
 .bs-tooltip-auto[data-popper-placement^="bottom"] {
-  padding: 0.4rem 0;
+  padding: 0.2rem 0;
 }
 
 .bs-tooltip-bottom .tooltip-arrow,

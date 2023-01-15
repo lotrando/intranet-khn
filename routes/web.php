@@ -17,17 +17,18 @@ Route::get("standardsearch", function () {
 
 
 // Index page
-Route::get("/", function () {
+Route::get('welcome', function () {
     return view('welcome', ['category' => 'Oznámení', 'title' => 'Přehled']);
 });
 
 // Home page
-Route::get("home", function () {
-    return view('home', ['category' => 'Uživatel', 'title' => 'Profil']);
-});
+Route::get('/', function () {
+    return view('home', ['category' => 'Oznámení', 'title' => 'Homepage']);
+})->name('home');
 
 // Oznámení
 Route::prefix('oznameni')->name('oznameni.')->group(function () {
+    Route::get('prehledy', [PageController::class, 'prehledy'])->name('prehledy');
     Route::get('zmeny', [PageController::class, 'zmeny'])->name('zmeny-standardu');
     Route::get('akord', [PageController::class, 'akord'])->name('akord');
     Route::get('servis', [PageController::class, 'servis'])->name('servis');
