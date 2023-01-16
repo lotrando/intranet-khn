@@ -36,7 +36,7 @@
 
     <section>
 
-      @yield('main')
+      @yield('content')
 
     </section>
 

@@ -19,7 +19,7 @@ Route::get('test', function () {
 
 // Index
 Route::get('/', function () {
-    return view('index', ['category' => 'Intranet', 'title' => 'Index']);                                   // Index route
+    return view('test', ['category' => 'Intranet', 'title' => 'Index']);                                   // Index route
 });
 
 // Home page

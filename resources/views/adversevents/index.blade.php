@@ -337,15 +337,15 @@
         stateSave: true,
         pageSave: true,
         fixedHeader: {
-          header: true,
+          header: false,
           footer: false
         },
         order: [
           [1, "asc"]
         ],
         "lengthMenu": [
-          [5, 10, 20, 30, 60, 100, -1],
-          [5, 10, 20, 30, 60, 100, "Všechny"]
+          [10, 20, 30, 60, 100, -1],
+          [10, 20, 30, 60, 100, "Všechny"]
         ],
         language: {
           "url": "{{ asset('js/cs.json') }}",

@@ -46,20 +46,20 @@
       </section>
 
       @include('layouts.partials.footer')
+    </div>
+    @yield('modals')
 
-      @yield('modals')
+    @include('layouts.partials.logout')
 
-      @include('layouts.partials.logout')
-
-      <script src="{{ asset('js/jquery.js') }}"></script>
-      <script src="{{ asset('libs/plyr/dist/plyr.min.js') }}"></script>
-      <script src="{{ asset('js/tabler.min.js') }}"></script>
-      <script src="{{ asset('js/demo.min.js') }}"></script>
-      <script src="{{ asset('js/moment-with-locales.js') }}"></script>
-      <script src="{{ asset('js/m3u-player.js') }}" defer></script>
-      @include('layouts.partials.scripts')
-      @include('sweetalert::alert')
-      @yield('scripts')
+    <script src="{{ asset('js/jquery.js') }}"></script>
+    <script src="{{ asset('libs/plyr/dist/plyr.min.js') }}"></script>
+    <script src="{{ asset('js/tabler.min.js') }}"></script>
+    <script src="{{ asset('js/demo.min.js') }}"></script>
+    <script src="{{ asset('js/moment-with-locales.js') }}"></script>
+    <script src="{{ asset('js/m3u-player.js') }}" defer></script>
+    @include('layouts.partials.scripts')
+    @include('sweetalert::alert')
+    @yield('scripts')
 
   </body>
 

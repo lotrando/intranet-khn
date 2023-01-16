@@ -1,71 +1,105 @@
-@extends('layouts.employee')
+@extends('layouts.blank')
 
 @section('favicon')
 <link type="image/png" href="{{ asset('img/zamestnanci.png') }}" rel="shortcut icon">
 @endsection
 
-@section('main')
-<div class="container-fluid">
-  <div class="row justify-content-center">
-    <div class="col-12">
-      <div class="card mb-2 mt-2 shadow-sm">
-        <div class="card-header align-items-center justify-content-start bg-muted-lt d-flex">
-          <h3 class="text-muted m-0 mb-0 p-0">
-            {{ __('Employees of KHN') }}
-          </h3>
-        </div>
-        <div class="card-body p-2">
-          <div class="row">
-            <div class="col-12">
-              <span id="form_result_window"></span>
-            </div>
-          </div>
-          <table class="table-bordered table-hover dataTable w-100 table">
-            <thead>
-              <tr class="bg-azure-lt table bg-opacity-50 text-center text-white">
-                <th class="text-center">{{ __('Image') }}</th>
-                <th class="text-center">{{ __('Number') }}</th>
-                <th>{{ __('Titles') }}</th>
-                <th>{{ __('Last name') }}</th>
-                <th>{{ __('First name') }}</th>
-                <th>{{ __('Department') }}</th>
-                @auth
-                <th>{{ __('Job title') }}</th>
-                @endauth
-                <th>{{ __('Email') }}</th>
-                <th>{{ __('Phone') }}</th>
-                <th>{{ __('Mobile') }}</th>
-                <th>{{ __('Status') }}</th>
-                @auth
-                <th>{{ __('Start date') }}</th>
-                <th class="text-center"><i class="fas fa-bars"></i></th>
-                @endauth
-              </tr>
-            </thead>
-          </table>
+@section('buttons')
+<!-- Page title actions buttons -->
+<div class="col-auto ms-auto d-print-none">
+  <div class="btn-list">
+    <div class="d-flex justify-content-end">
+      @section('buttons')
+      <div class="ms-auto d-print-none col-auto">
+        <div class="btn-list">
+          @auth
+          <button class="btn btn-purple py-0" id="exportTable" data-bs-toggle="tooltip" data-bs-placement="bottom" data-bs-original-title="{{ __('Export') }}"><i
+               class="fas fa-file-export fa-1x m-1"></i>Export</button>
+          <a class="btn btn-green" id="exportPhoneList" data-bs-toggle="tooltip" data-bs-placement="bottom" data-bs-original-title="{{ __('Export phone list') }}"
+             href="{{ route('employees.phonelist') }}" title="Telefoní seznam"><i class="fas fa-address-book fa-1x m-1"></i>{{ __('Phonelist') }}</a>
+          <a class="btn btn-blue" id="exportList" data-bs-toggle="tooltip" data-bs-placement="bottom" data-bs-original-title="{{ __('Export list') }}"
+             href="{{ route('employees.list') }}" title="Kompletní seznam"><i class="fas fa-book fa-1x m-1"></i>{{ __('List') }}</a>
+          <button class="btn btn-lime" id="openCreateModal" data-bs-toggle="tooltip" data-bs-placement="bottom" data-bs-original-title="{{ __('Nový') }}"><i
+               class="fas fa-user-plus fa-1x m-1"></i>{{ __('New') }}</button>
+          @endauth
         </div>
       </div>
     </div>
   </div>
 </div>
+<!-- Page Title Buttons End -->
 @endsection
 
-@section('buttons')
-<div class="ms-auto d-print-none col-auto">
-  <div class="btn-list">
-    @auth
-    <button class="btn btn-purple py-0" id="exportTable" data-bs-toggle="tooltip" data-bs-placement="bottom" data-bs-original-title="{{ __('Export') }}"><i
-         class="fas fa-file-export fa-1x m-1"></i>Export</button>
-    <a class="btn btn-green" id="exportPhoneList" data-bs-toggle="tooltip" data-bs-placement="bottom" data-bs-original-title="{{ __('Export phone list') }}"
-       href="{{ route('employees.phonelist') }}" title="Telefoní seznam"><i class="fas fa-address-book fa-1x m-1"></i>{{ __('Phonelist') }}</a>
-    <a class="btn btn-blue" id="exportList" data-bs-toggle="tooltip" data-bs-placement="bottom" data-bs-original-title="{{ __('Export list') }}"
-       href="{{ route('employees.list') }}" title="Kompletní seznam"><i class="fas fa-book fa-1x m-1"></i>{{ __('List') }}</a>
-    <button class="btn btn-lime" id="openCreateModal" data-bs-toggle="tooltip" data-bs-placement="bottom" data-bs-original-title="{{ __('Nový') }}"><i
-         class="fas fa-user-plus fa-1x m-1"></i>{{ __('New') }}</button>
-    @endauth
+@section('content')
+{{-- Page Wrapper Start --}}
+<div class="page-wrapper">
+  <div class="page-header d-print-none">
+    <div class="container-fluid">
+
+      {{-- Page Category --}}
+      <div class="col">
+        <div class="page-pretitle text-primary">
+          {{ __('Intranet') }}
+        </div>
+
+        {{-- Page Title --}}
+        <h2 class="page-title text-primary">
+          {{ __('Zaměstnanci') }}
+        </h2>
+      </div>
+
+
+
+      <!-- Page -->
+      <div class="container-fluid mt-2">
+        <div class="h-100">
+          <div class="row justify-content-center">
+            <div class="col-12">
+              <div class="card shadow-sm">
+                <div class="card-body p-2">
+                  <div class="row">
+                    <div class="col-12">
+                      <span id="form_result_window"></span>
+                    </div>
+                  </div>
+                  <table class="table-bordered table-hover dataTable w-100 table">
+                    <thead>
+                      <tr class="bg-azure-lt table bg-opacity-50 text-center text-white">
+                        <th class="text-center">{{ __('Image') }}</th>
+                        <th class="text-center">{{ __('Number') }}</th>
+                        <th>{{ __('Titles') }}</th>
+                        <th>{{ __('Last name') }}</th>
+                        <th>{{ __('First name') }}</th>
+                        <th>{{ __('Department') }}</th>
+                        @auth
+                        <th>{{ __('Job title') }}</th>
+                        @endauth
+                        <th>{{ __('Email') }}</th>
+                        <th>{{ __('Phone') }}</th>
+                        <th>{{ __('Mobile') }}</th>
+                        <th>{{ __('Status') }}</th>
+                        @auth
+                        <th>{{ __('Start date') }}</th>
+                        <th class="text-center"><i class="fas fa-bars"></i></th>
+                        @endauth
+                      </tr>
+                    </thead>
+                  </table>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- Page End -->
+    </div>
   </div>
 </div>
+<!-- Page Wrapper End -->
 @endsection
+</div>
+</div>
+
 
 @section('modals')
 {{-- Main Form Modal --}}
@@ -175,7 +209,7 @@
             </div>
           </div>
           <div class="row mb-2">
-            <div class="col-3">
+            <div class="col-2">
               <label class="form-label">{{ __('Email') }}</label>
               <input class="form-control" id="email" name="email" type="text" placeholder="{{ __('Email') }}">
             </div>
@@ -201,7 +235,7 @@
               <label class="form-label">{{ __('Center') }}</label>
               <input class="form-control" id="department_code" name="department_code" type="text" placeholder="{{ __('N/A') }}" readonly>
             </div>
-            <div class="col-3">
+            <div class="col-4">
               <div class="mb-3">
                 <label class="form-label">{{ __('Job') }}</label>
                 <select class="form-select" id="job_id" name="job_id">
