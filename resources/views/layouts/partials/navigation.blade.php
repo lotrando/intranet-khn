@@ -1,4 +1,4 @@
-<div class="navbar-expand-md shadow-sm">
+<div class="navbar-expand-md sticky-top shadow-sm">
   <div class="collapse navbar-collapse" id="navbar-menu">
     <div class="navbar navbar-light">
       <div class="container-fluid">

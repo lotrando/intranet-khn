@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Počítač: localhost
--- Vytvořeno: Sob 14. led 2023, 20:41
+-- Vytvořeno: Pon 16. led 2023, 21:30
 -- Verze serveru: 8.0.31
 -- Verze PHP: 7.4.33
 
@@ -44,7 +44,7 @@ CREATE TABLE `addons` (
 --
 
 INSERT INTO `addons` (`id`, `document_id`, `name`, `description`, `revision`, `file`, `status`, `created_at`, `updated_at`) VALUES
-(1, 23, '1', 'Příloha standardu', 'únor 2022', 'akreditacni_standard_akr-31.pdf', 'Schváleno', '2023-01-13 22:08:35', '2023-01-13 22:08:35');
+(1, 23, '1', 'zvýšení bezpečí u rizikových léků příloha 1', 'únor 2022', 'standardy_akreditacni-zvyseni_bezpeci_u_rizikovych_leku-revize-3.pdf', 'Schváleno', '2023-01-13 22:08:35', '2023-01-13 22:08:35');
 
 -- --------------------------------------------------------
 
@@ -91,6 +91,26 @@ CREATE TABLE `adversevents` (
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
+--
+-- Vypisuji data pro tabulku `adversevents`
+--
+
+INSERT INTO `adversevents` (`id`, `department_id`, `misto`, `datum_cas`, `cas`, `spec_druh`, `jinydoplnek`, `pracovnik`, `svedek`, `pacient`, `datumnaroz`, `chorobopis`, `udalost`, `reseni`, `opatreni`, `informovan`, `pricina`, `jina_pricina`, `stav_pacienta`, `lokalizace`, `druh_zraneni`, `preventivni_opatreni`, `zhodnoceni_stavu`, `datum`, `jmeno_lekare`, `vyvoj`, `upresneni`, `status`, `resitel`, `vyjadreni`, `resitel1`, `vyjadreni1`, `resitel2`, `vyjadreni2`, `created_at`, `updated_at`) VALUES
+(1, '29', 'Rerum in molestiae i', '2023-01-15', '20:03:00', 'Pád', NULL, 'Sit deserunt obcaeca', 'Nesciunt exercitati', 'Dolores recusandae', '1994-07-26', 'Ducimus a dolor sit', 'Consectetur dolore p', 'Impedit aut incidun', 'Aut consequat Exerc', 'Fuga Velit autem in', 'pád z lůžka bez postranic', NULL, 'zmatený/á', 'horní končetiny', 'Tržná rána', 'dsfdsf', 'sdfdsfdsf', '2023-01-15', 'sdfdsfdsf', 'jiný', 'sdfdsfsdf', 'Dokončeno', NULL, NULL, NULL, NULL, NULL, NULL, '2023-01-15 19:03:20', '2023-01-15 19:03:20'),
+(2, '12', 'Aliqua Magnam id si', '1993-10-13', '15:45:00', 'Klinický výkon', NULL, 'Occaecat velit eiusm', 'In ducimus veniam', 'Dolorem maxime atque', '1970-08-07', 'Aut pariatur Conseq', 'Minima eius dolorem', 'Amet fuga Ut conse', 'Doloribus odio quos', 'Non aliquid delectus', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'žádný', NULL, 'Rozpracováno', NULL, NULL, NULL, NULL, NULL, NULL, '2023-01-16 07:22:05', '2023-01-16 19:42:42'),
+(3, '31', 'Et eum ea ex possimu', '1982-03-24', '04:26:00', 'Transfuze, krevní deriváty', NULL, 'Tempor facilis nesci', 'In modi et rem cupid', 'Enim perferendis cor', '2009-07-24', 'Fuga Laudantium qu', 'In quibusdam volupta', 'Qui veniam id adipi', 'Dolorem dolor est c', 'Consequat Sed magna', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'žádný', NULL, 'Rozpracováno', NULL, NULL, NULL, NULL, NULL, NULL, '2023-01-16 07:22:12', '2023-01-16 07:22:12'),
+(4, '28', 'Unde consectetur as', '2015-09-09', '16:15:00', 'Svévolný odchod pacienta', NULL, 'Vel irure iste quide', 'Quo sint quas ad ne', 'Labore asperiores di', '2007-07-07', 'Ut autem illum expe', 'Ut dolor exercitatio', 'Dolor qui voluptates', 'Soluta ut illum nul', 'Et cupidatat labore', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'žádný', NULL, 'Odesláno', NULL, NULL, NULL, NULL, NULL, NULL, '2023-01-16 07:22:19', '2023-01-16 07:22:19'),
+(5, '22', 'Dignissimos quae vel', '2017-08-14', '00:47:00', 'Nežádoucí účinek léčiva', NULL, 'Quaerat assumenda nu', 'Praesentium fugiat o', 'Sint animi eos qua', '1998-10-07', 'Ullamco quia modi do', 'Saepe deserunt excep', 'Illo adipisicing asp', 'Consequatur anim aut', 'Pariatur In vitae i', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'žádný', NULL, 'Dokončeno', NULL, NULL, NULL, NULL, NULL, NULL, '2023-01-16 07:22:23', '2023-01-16 07:22:23'),
+(6, '23', 'Sunt cupiditate lab', '2019-03-04', '12:22:00', 'Problém s technikou nebo vybavením', NULL, 'Ducimus itaque dolo', 'Enim vero in ab tene', 'Nihil dolore ut occa', '2017-09-18', 'Officia id incididun', 'Nam ad enim sit tota', 'Sed eos ea veritatis', 'Tempore temporibus', 'Elit voluptatem mod', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'žádný', NULL, 'Rozpracováno', NULL, NULL, NULL, NULL, NULL, NULL, '2023-01-16 07:22:26', '2023-01-16 07:22:26'),
+(7, '26', 'Enim nisi dolorem mo', '1977-04-10', '13:32:00', 'Pád', NULL, 'Architecto sed exped', 'Est aliquam molestia', 'Hic amet omnis et p', '2004-11-28', 'Aspernatur libero vo', 'Repudiandae voluptat', 'Odio tempore et lab', 'Incidunt eos ab exp', 'Perferendis sit volu', 'jiný důvod pádu', NULL, 'orientovaný/á', 'pánev', 'Hematom (lehké zranění)', NULL, NULL, NULL, NULL, 'jiný', 'sdfdsfsdf', 'Dokončeno', NULL, NULL, NULL, NULL, NULL, NULL, '2023-01-16 07:22:44', '2023-01-16 07:22:44'),
+(8, '10', 'Voluptatem providen', '1988-11-15', '03:21:00', 'Pád', NULL, 'Ea autem sunt magna', 'Adipisicing esse fac', 'Elit quis esse aliq', '1987-11-28', 'Ad placeat consequa', 'Repellendus Nobis l', 'Error quis soluta re', 'Repudiandae dolores', 'Quaerat explicabo H', 'pád z lůžka s postranicemi', NULL, 'bezvědomí', 'ruka', 'Jiné SZ (střední zranění)', NULL, NULL, NULL, NULL, 'překlad', NULL, 'Dokončeno', NULL, NULL, NULL, NULL, NULL, NULL, '2023-01-16 07:23:14', '2023-01-16 07:23:14'),
+(9, '24', 'Cillum sapiente elig', '1986-12-14', '19:20:00', 'Pád', NULL, 'Fugit facilis sunt', 'Ducimus sunt fugiat', 'Quidem laboris conse', '1985-08-09', 'Anim voluptatum numq', 'Quasi culpa quos la', 'Modi ipsum quo duis', 'Soluta irure dolore', 'Nisi sed cumque volu', 'vstávání z lůžka', NULL, 'orientovaný/á', 'dolní končetiny', 'Komoce mozku (těžké zranění)', NULL, NULL, NULL, NULL, 'překlad', NULL, 'Odesláno', NULL, NULL, NULL, NULL, NULL, NULL, '2023-01-16 07:23:22', '2023-01-16 07:23:22'),
+(10, '3', 'Illum labore magna', '1989-09-16', '16:41:00', 'Nehody a neočekávaná zranění', NULL, 'Quis quo quasi nisi', 'Voluptates ipsum dol', 'Qui animi dolores l', '2013-01-22', 'Est sequi quia nece', 'Consequatur quam co', 'Doloribus corrupti', 'Nihil in assumenda a', 'Doloremque aspernatu', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'žádný', NULL, 'Dokončeno', NULL, NULL, NULL, NULL, NULL, NULL, '2023-01-16 07:23:27', '2023-01-16 07:23:27'),
+(11, '31', 'Odit est deserunt la', '1978-12-05', '00:00:00', 'Nežádoucí účinek léčiva', NULL, 'Minus enim atque in', 'Nisi vitae voluptate', 'Nihil praesentium nu', '1978-11-14', 'Officia aut tempore', 'Harum saepe fuga Ma', 'Cumque elit nobis d', 'Qui ex neque quasi q', 'Quia elit hic excep', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'žádný', NULL, 'Rozpracováno', NULL, NULL, NULL, NULL, NULL, NULL, '2023-01-16 07:23:33', '2023-01-16 07:23:33'),
+(12, '10', 'Ullam sint voluptate', '2000-08-26', '12:30:00', 'Medikace', NULL, 'Voluptates ut amet', 'Qui ut iusto vero bl', 'Totam quasi libero o', '1996-11-22', 'Adipisci consectetur', 'Velit dolor ex dolo', 'Necessitatibus error', 'Aut odit duis aut mo', 'Non fugiat tempor eu', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'žádný', NULL, 'Odesláno', NULL, NULL, NULL, NULL, NULL, NULL, '2023-01-16 07:23:41', '2023-01-16 07:23:41'),
+(13, '11', 'Molestiae qui verita', '1993-12-22', '09:49:00', 'Problém s technikou nebo vybavením', NULL, 'Ipsa in laborum Ve', 'Lorem vel ex facilis', 'Mollitia exercitatio', '1991-06-26', 'Ea sunt omnis velit', 'Commodi corporis dol', 'Dolorem eum dolor to', 'Commodo fuga Quam r', 'Et impedit ea rerum', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'žádný', NULL, 'Rozpracováno', NULL, NULL, NULL, NULL, NULL, NULL, '2023-01-16 07:23:46', '2023-01-16 07:23:46'),
+(14, '6', 'Esse quas aliquip se', '1995-08-24', '15:05:00', 'Nehody a neočekávaná zranění', NULL, 'Itaque aliquam fugia', 'Ullam obcaecati in c', 'Nostrum veniam exer', '2015-05-13', 'Occaecat sit cumque', 'Amet corporis moles', 'Aliquid sequi dignis', 'Sit eveniet hic mo', 'Incididunt aut assum', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'žádný', NULL, 'Odesláno', NULL, NULL, NULL, NULL, NULL, NULL, '2023-01-16 07:23:54', '2023-01-16 07:23:54');
+
 -- --------------------------------------------------------
 
 --
@@ -108,6 +128,389 @@ CREATE TABLE `attendances` (
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Struktura tabulky `calendar`
+--
+
+CREATE TABLE `calendar` (
+  `id` bigint NOT NULL,
+  `date` date DEFAULT NULL,
+  `interni` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+
+--
+-- Vypisuji data pro tabulku `calendar`
+--
+
+INSERT INTO `calendar` (`id`, `date`, `interni`) VALUES
+(1, '2023-01-01', NULL),
+(2, '2023-01-02', NULL),
+(3, '2023-01-03', NULL),
+(4, '2023-01-04', NULL),
+(5, '2023-01-05', NULL),
+(6, '2023-01-06', NULL),
+(7, '2023-01-07', NULL),
+(8, '2023-01-08', NULL),
+(9, '2023-01-09', NULL),
+(10, '2023-01-10', NULL),
+(11, '2023-01-11', NULL),
+(12, '2023-01-12', NULL),
+(13, '2023-01-13', NULL),
+(14, '2023-01-14', NULL),
+(15, '2023-01-15', NULL),
+(16, '2023-01-16', NULL),
+(17, '2023-01-17', NULL),
+(18, '2023-01-18', NULL),
+(19, '2023-01-19', NULL),
+(20, '2023-01-20', NULL),
+(21, '2023-01-21', NULL),
+(22, '2023-01-22', NULL),
+(23, '2023-01-23', NULL),
+(24, '2023-01-24', NULL),
+(25, '2023-01-25', NULL),
+(26, '2023-01-26', NULL),
+(27, '2023-01-27', NULL),
+(28, '2023-01-28', NULL),
+(29, '2023-01-29', NULL),
+(30, '2023-01-30', NULL),
+(31, '2023-01-31', NULL),
+(32, '2023-02-01', NULL),
+(33, '2023-02-02', NULL),
+(34, '2023-02-03', NULL),
+(35, '2023-02-04', NULL),
+(36, '2023-02-05', NULL),
+(37, '2023-02-06', NULL),
+(38, '2023-02-07', NULL),
+(39, '2023-02-08', NULL),
+(40, '2023-02-09', NULL),
+(41, '2023-02-10', NULL),
+(42, '2023-02-11', NULL),
+(43, '2023-02-12', NULL),
+(44, '2023-02-13', NULL),
+(45, '2023-02-14', NULL),
+(46, '2023-02-15', NULL),
+(47, '2023-02-16', NULL),
+(48, '2023-02-17', NULL),
+(49, '2023-02-18', NULL),
+(50, '2023-02-19', NULL),
+(51, '2023-02-20', NULL),
+(52, '2023-02-21', NULL),
+(53, '2023-02-22', NULL),
+(54, '2023-02-23', NULL),
+(55, '2023-02-24', NULL),
+(56, '2023-02-25', NULL),
+(57, '2023-02-26', NULL),
+(58, '2023-02-27', NULL),
+(59, '2023-02-28', NULL),
+(60, '2023-03-01', NULL),
+(61, '2023-03-02', NULL),
+(62, '2023-03-03', NULL),
+(63, '2023-03-04', NULL),
+(64, '2023-03-05', NULL),
+(65, '2023-03-06', NULL),
+(66, '2023-03-07', NULL),
+(67, '2023-03-08', NULL),
+(68, '2023-03-09', NULL),
+(69, '2023-03-10', NULL),
+(70, '2023-03-11', NULL),
+(71, '2023-03-12', NULL),
+(72, '2023-03-13', NULL),
+(73, '2023-03-14', NULL),
+(74, '2023-03-15', NULL),
+(75, '2023-03-16', NULL),
+(76, '2023-03-17', NULL),
+(77, '2023-03-18', NULL),
+(78, '2023-03-19', NULL),
+(79, '2023-03-20', NULL),
+(80, '2023-03-21', NULL),
+(81, '2023-03-22', NULL),
+(82, '2023-03-23', NULL),
+(83, '2023-03-24', NULL),
+(84, '2023-03-25', NULL),
+(85, '2023-03-26', NULL),
+(86, '2023-03-27', NULL),
+(87, '2023-03-28', NULL),
+(88, '2023-03-29', NULL),
+(89, '2023-03-30', NULL),
+(90, '2023-03-31', NULL),
+(91, '2023-04-01', NULL),
+(92, '2023-04-02', NULL),
+(93, '2023-04-03', NULL),
+(94, '2023-04-04', NULL),
+(95, '2023-04-05', NULL),
+(96, '2023-04-06', NULL),
+(97, '2023-04-07', NULL),
+(98, '2023-04-08', NULL),
+(99, '2023-04-09', NULL),
+(100, '2023-04-10', NULL),
+(101, '2023-04-11', NULL),
+(102, '2023-04-12', NULL),
+(103, '2023-04-13', NULL),
+(104, '2023-04-14', NULL),
+(105, '2023-04-15', NULL),
+(106, '2023-04-16', NULL),
+(107, '2023-04-17', NULL),
+(108, '2023-04-18', NULL),
+(109, '2023-04-19', NULL),
+(110, '2023-04-20', NULL),
+(111, '2023-04-21', NULL),
+(112, '2023-04-22', NULL),
+(113, '2023-04-23', NULL),
+(114, '2023-04-24', NULL),
+(115, '2023-04-25', NULL),
+(116, '2023-04-26', NULL),
+(117, '2023-04-27', NULL),
+(118, '2023-04-28', NULL),
+(119, '2023-04-29', NULL),
+(120, '2023-04-30', NULL),
+(121, '2023-05-01', NULL),
+(122, '2023-05-02', NULL),
+(123, '2023-05-03', NULL),
+(124, '2023-05-04', NULL),
+(125, '2023-05-05', NULL),
+(126, '2023-05-06', NULL),
+(127, '2023-05-07', NULL),
+(128, '2023-05-08', NULL),
+(129, '2023-05-09', NULL),
+(130, '2023-05-10', NULL),
+(131, '2023-05-11', NULL),
+(132, '2023-05-12', NULL),
+(133, '2023-05-13', NULL),
+(134, '2023-05-14', NULL),
+(135, '2023-05-15', NULL),
+(136, '2023-05-16', NULL),
+(137, '2023-05-17', NULL),
+(138, '2023-05-18', NULL),
+(139, '2023-05-19', NULL),
+(140, '2023-05-20', NULL),
+(141, '2023-05-21', NULL),
+(142, '2023-05-22', NULL),
+(143, '2023-05-23', NULL),
+(144, '2023-05-24', NULL),
+(145, '2023-05-25', NULL),
+(146, '2023-05-26', NULL),
+(147, '2023-05-27', NULL),
+(148, '2023-05-28', NULL),
+(149, '2023-05-29', NULL),
+(150, '2023-05-30', NULL),
+(151, '2023-05-31', NULL),
+(152, '2023-06-01', NULL),
+(153, '2023-06-02', NULL),
+(154, '2023-06-03', NULL),
+(155, '2023-06-04', NULL),
+(156, '2023-06-05', NULL),
+(157, '2023-06-06', NULL),
+(158, '2023-06-07', NULL),
+(159, '2023-06-08', NULL),
+(160, '2023-06-09', NULL),
+(161, '2023-06-10', NULL),
+(162, '2023-06-11', NULL),
+(163, '2023-06-12', NULL),
+(164, '2023-06-13', NULL),
+(165, '2023-06-14', NULL),
+(166, '2023-06-15', NULL),
+(167, '2023-06-16', NULL),
+(168, '2023-06-17', NULL),
+(169, '2023-06-18', NULL),
+(170, '2023-06-19', NULL),
+(171, '2023-06-20', NULL),
+(172, '2023-06-21', NULL),
+(173, '2023-06-22', NULL),
+(174, '2023-06-23', NULL),
+(175, '2023-06-24', NULL),
+(176, '2023-06-25', NULL),
+(177, '2023-06-26', NULL),
+(178, '2023-06-27', NULL),
+(179, '2023-06-28', NULL),
+(180, '2023-06-29', NULL),
+(181, '2023-06-30', NULL),
+(182, '2023-07-01', NULL),
+(183, '2023-07-02', NULL),
+(184, '2023-07-03', NULL),
+(185, '2023-07-04', NULL),
+(186, '2023-07-05', NULL),
+(187, '2023-07-06', NULL),
+(188, '2023-07-07', NULL),
+(189, '2023-07-08', NULL),
+(190, '2023-07-09', NULL),
+(191, '2023-07-10', NULL),
+(192, '2023-07-11', NULL),
+(193, '2023-07-12', NULL),
+(194, '2023-07-13', NULL),
+(195, '2023-07-14', NULL),
+(196, '2023-07-15', NULL),
+(197, '2023-07-16', NULL),
+(198, '2023-07-17', NULL),
+(199, '2023-07-18', NULL),
+(200, '2023-07-19', NULL),
+(201, '2023-07-20', NULL),
+(202, '2023-07-21', NULL),
+(203, '2023-07-22', NULL),
+(204, '2023-07-23', NULL),
+(205, '2023-07-24', NULL),
+(206, '2023-07-25', NULL),
+(207, '2023-07-26', NULL),
+(208, '2023-07-27', NULL),
+(209, '2023-07-28', NULL),
+(210, '2023-07-29', NULL),
+(211, '2023-07-30', NULL),
+(212, '2023-07-31', NULL),
+(213, '2023-08-01', NULL),
+(214, '2023-08-02', NULL),
+(215, '2023-08-03', NULL),
+(216, '2023-08-04', NULL),
+(217, '2023-08-05', NULL),
+(218, '2023-08-06', NULL),
+(219, '2023-08-07', NULL),
+(220, '2023-08-08', NULL),
+(221, '2023-08-09', NULL),
+(222, '2023-08-10', NULL),
+(223, '2023-08-11', NULL),
+(224, '2023-08-12', NULL),
+(225, '2023-08-13', NULL),
+(226, '2023-08-14', NULL),
+(227, '2023-08-15', NULL),
+(228, '2023-08-16', NULL),
+(229, '2023-08-17', NULL),
+(230, '2023-08-18', NULL),
+(231, '2023-08-19', NULL),
+(232, '2023-08-20', NULL),
+(233, '2023-08-21', NULL),
+(234, '2023-08-22', NULL),
+(235, '2023-08-23', NULL),
+(236, '2023-08-24', NULL),
+(237, '2023-08-25', NULL),
+(238, '2023-08-26', NULL),
+(239, '2023-08-27', NULL),
+(240, '2023-08-28', NULL),
+(241, '2023-08-29', NULL),
+(242, '2023-08-30', NULL),
+(243, '2023-08-31', NULL),
+(244, '2023-09-01', NULL),
+(245, '2023-09-02', NULL),
+(246, '2023-09-03', NULL),
+(247, '2023-09-04', NULL),
+(248, '2023-09-05', NULL),
+(249, '2023-09-06', NULL),
+(250, '2023-09-07', NULL),
+(251, '2023-09-08', NULL),
+(252, '2023-09-09', NULL),
+(253, '2023-09-10', NULL),
+(254, '2023-09-11', NULL),
+(255, '2023-09-12', NULL),
+(256, '2023-09-13', NULL),
+(257, '2023-09-14', NULL),
+(258, '2023-09-15', NULL),
+(259, '2023-09-16', NULL),
+(260, '2023-09-17', NULL),
+(261, '2023-09-18', NULL),
+(262, '2023-09-19', NULL),
+(263, '2023-09-20', NULL),
+(264, '2023-09-21', NULL),
+(265, '2023-09-22', NULL),
+(266, '2023-09-23', NULL),
+(267, '2023-09-24', NULL),
+(268, '2023-09-25', NULL),
+(269, '2023-09-26', NULL),
+(270, '2023-09-27', NULL),
+(271, '2023-09-28', NULL),
+(272, '2023-09-29', NULL),
+(273, '2023-09-30', NULL),
+(274, '2023-10-01', NULL),
+(275, '2023-10-02', NULL),
+(276, '2023-10-03', NULL),
+(277, '2023-10-04', NULL),
+(278, '2023-10-05', NULL),
+(279, '2023-10-06', NULL),
+(280, '2023-10-07', NULL),
+(281, '2023-10-08', NULL),
+(282, '2023-10-09', NULL),
+(283, '2023-10-10', NULL),
+(284, '2023-10-11', NULL),
+(285, '2023-10-12', NULL),
+(286, '2023-10-13', NULL),
+(287, '2023-10-14', NULL),
+(288, '2023-10-15', NULL),
+(289, '2023-10-16', NULL),
+(290, '2023-10-17', NULL),
+(291, '2023-10-18', NULL),
+(292, '2023-10-19', NULL),
+(293, '2023-10-20', NULL),
+(294, '2023-10-21', NULL),
+(295, '2023-10-22', NULL),
+(296, '2023-10-23', NULL),
+(297, '2023-10-24', NULL),
+(298, '2023-10-25', NULL),
+(299, '2023-10-26', NULL),
+(300, '2023-10-27', NULL),
+(301, '2023-10-28', NULL),
+(302, '2023-10-29', NULL),
+(303, '2023-10-30', NULL),
+(304, '2023-10-31', NULL),
+(305, '2023-11-01', NULL),
+(306, '2023-11-02', NULL),
+(307, '2023-11-03', NULL),
+(308, '2023-11-04', NULL),
+(309, '2023-11-05', NULL),
+(310, '2023-11-06', NULL),
+(311, '2023-11-07', NULL),
+(312, '2023-11-08', NULL),
+(313, '2023-11-09', NULL),
+(314, '2023-11-10', NULL),
+(315, '2023-11-11', NULL),
+(316, '2023-11-12', NULL),
+(317, '2023-11-13', NULL),
+(318, '2023-11-14', NULL),
+(319, '2023-11-15', NULL),
+(320, '2023-11-16', NULL),
+(321, '2023-11-17', NULL),
+(322, '2023-11-18', NULL),
+(323, '2023-11-19', NULL),
+(324, '2023-11-20', NULL),
+(325, '2023-11-21', NULL),
+(326, '2023-11-22', NULL),
+(327, '2023-11-23', NULL),
+(328, '2023-11-24', NULL),
+(329, '2023-11-25', NULL),
+(330, '2023-11-26', NULL),
+(331, '2023-11-27', NULL),
+(332, '2023-11-28', NULL),
+(333, '2023-11-29', NULL),
+(334, '2023-11-30', NULL),
+(335, '2023-12-01', NULL),
+(336, '2023-12-02', NULL),
+(337, '2023-12-03', NULL),
+(338, '2023-12-04', NULL),
+(339, '2023-12-05', NULL),
+(340, '2023-12-06', NULL),
+(341, '2023-12-07', NULL),
+(342, '2023-12-08', NULL),
+(343, '2023-12-09', NULL),
+(344, '2023-12-10', NULL),
+(345, '2023-12-11', NULL),
+(346, '2023-12-12', NULL),
+(347, '2023-12-13', NULL),
+(348, '2023-12-14', NULL),
+(349, '2023-12-15', NULL),
+(350, '2023-12-16', NULL),
+(351, '2023-12-17', NULL),
+(352, '2023-12-18', NULL),
+(353, '2023-12-19', NULL),
+(354, '2023-12-20', NULL),
+(355, '2023-12-21', NULL),
+(356, '2023-12-22', NULL),
+(357, '2023-12-23', NULL),
+(358, '2023-12-24', NULL),
+(359, '2023-12-25', NULL),
+(360, '2023-12-26', NULL),
+(361, '2023-12-27', NULL),
+(362, '2023-12-28', NULL),
+(363, '2023-12-29', NULL),
+(364, '2023-12-30', NULL),
+(365, '2023-12-31', NULL);
 
 -- --------------------------------------------------------
 
@@ -138,9 +541,9 @@ INSERT INTO `categories` (`id`, `category_type`, `category_name`, `folder_name`,
 (4, 'Standard', 'Speciální', 'specialni', 'specialni.png', '<svg class=\"icon icon-tabler icon-tabler-report-medical\" xmlns=\"http://www.w3.org/2000/svg\" width=\"40\" height=\"40\" viewBox=\"0 0 24 24\" stroke-width=\"2\" stroke=\"currentColor\" fill=\"none\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><path stroke=\"none\" d=\"M0 0h24v24H0z\" fill=\"none\"></path><path d=\"M9 5h-2a2 2 0 0 0 -2 2v12a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2v-12a2 2 0 0 0 -2 -2h-2\"></path><rect x=\"9\" y=\"3\" width=\"6\" height=\"4\" rx=\"2\"></rect><line x1=\"10\" y1=\"14\" x2=\"14\" y2=\"14\"></line><line x1=\"12\" y1=\"12\" x2=\"12\" y2=\"16\"></line></svg>', 'notes-medical', 'speciální', 'muted'),
 (5, 'Standard', 'Operační', 'operacni', 'operacni.png', '<svg class=\"icon icon-tabler icon-tabler-slice text-lime\" xmlns=\"http://www.w3.org/2000/svg\" width=\"40\" height=\"40\" viewBox=\"0 0 24 24\" stroke-width=\"1\" stroke=\"currentColor\" fill=\"none\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><path stroke=\"none\" d=\"M0 0h24v24H0z\" fill=\"none\"></path><path d=\"M3 19l15 -15l3 3l-6 6l2 2a14 14 0 0 1 -14 4\"></path></svg>', 'notes-medical', 'operační', 'lime'),
 (6, 'Standard', 'Anesteziologické', 'anesteziologicke', 'anesteziologicke.png', '<svg class=\"icon icon-tabler icon-tabler-heart-rate-monitor text-purple\" xmlns=\"http://www.w3.org/2000/svg\" width=\"40\" height=\"40\" viewBox=\"0 0 24 24\" stroke-width=\"2\" stroke=\"currentColor\" fill=\"none\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><path stroke=\"none\" d=\"M0 0h24v24H0z\" fill=\"none\"></path><rect x=\"3\" y=\"4\" width=\"18\" height=\"12\" rx=\"1\"></rect><path d=\"M7 20h10\"></path><path d=\"M9 16v4\"></path><path d=\"M15 16v4\"></path><path d=\"M7 10h2l2 3l2 -6l1 3h3\"></path></svg>', 'heartbeat', 'anesteziologický', 'purple'),
-(7, 'Standard', 'RDG', 'rdg', 'rdg.png', '<svg class=\"icon icon-tabler icon-tabler-radioactive text-yellow\" xmlns=\"http://www.w3.org/2000/svg\" width=\"40\" height=\"40\" viewBox=\"0 0 24 24\" stroke-width=\"2\" stroke=\"currentColor\" fill=\"none\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><path stroke=\"none\" d=\"M0 0h24v24H0z\" fill=\"none\"></path><path d=\"M13.5 14.6l3 5.19a9 9 0 0 0 4.5 -7.79h-6a3 3 0 0 1 -1.5 2.6\"></path><path d=\"M13.5 9.4l3 -5.19a9 9 0 0 0 -9 0l3 5.19a3 3 0 0 1 3 0\"></path><path d=\"M10.5 14.6l-3 5.19a9 9 0 0 1 -4.5 -7.79h6a3 3 0 0 0 1.5 2.6\"></path></svg>', 'radiation', 'radiologický', 'yellow'),
+(7, 'Standard', 'RDG', 'rdg', 'rdg.png', '<svg class=\"icon icon-tabler icon-tabler-radioactive text-yellow\" xmlns=\"http://www.w3.org/2000/svg\" width=\"40\" height=\"40\" viewBox=\"0 0 24 24\" stroke-width=\"2\" stroke=\"currentColor\" fill=\"none\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><path stroke=\"none\" d=\"M0 0h24v24H0z\" fill=\"none\"></path><path d=\"M13.5 14.6l3 5.19a9 9 0 0 0 4.5 -7.79h-6a3 3 0 0 1 -1.5 2.6\"></path><path d=\"M13.5 9.4l3 -5.19a9 9 0 0 0 -9 0l3 5.19a3 3 0 0 1 3 0\"></path><path d=\"M10.5 14.6l-3 5.19a9 9 0 0 1 -4.5 -7.79h6a3 3 0 0 0 1.5 2.6\"></path></svg>', 'radiation-alt', 'radiologický', 'yellow'),
 (8, 'Standard', 'Rehabilitační', 'rehabilitacni', 'rehabilitacni.png', '<svg class=\"icon icon-tabler icon-tabler-physotherapist text-green\" xmlns=\"http://www.w3.org/2000/svg\" width=\"40\" height=\"40\" viewBox=\"0 0 24 24\" stroke-width=\"2\" stroke=\"currentColor\" fill=\"none\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><path stroke=\"none\" d=\"M0 0h24v24H0z\" fill=\"none\"></path><path d=\"M9 15l-1 -3l4 -2l4 1h3.5\"></path><circle cx=\"4\" cy=\"19\" r=\"1\"></circle><circle cx=\"12\" cy=\"6\" r=\"1\"></circle><path d=\"M12 17v-7\"></path><path d=\"M8 20h7l1 -4l4 -2\"></path><path d=\"M18 20h3\"></path></svg>', 'crutch', 'rehabilitační', 'green'),
-(9, 'Standard', 'OPL', 'opl', 'opl.png', '<svg class=\"icon icon-tabler icon-tabler-bandage text-cyan\" xmlns=\"http://www.w3.org/2000/svg\" width=\"40\" height=\"40\" viewBox=\"0 0 24 24\" stroke-width=\"2\" stroke=\"currentColor\" fill=\"none\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><path stroke=\"none\" d=\"M0 0h24v24H0z\" fill=\"none\"></path><line x1=\"14\" y1=\"12\" x2=\"14\" y2=\"12.01\"></line><line x1=\"10\" y1=\"12\" x2=\"10\" y2=\"12.01\"></line><line x1=\"12\" y1=\"10\" x2=\"12\" y2=\"10.01\"></line><line x1=\"12\" y1=\"14\" x2=\"12\" y2=\"14.01\"></line><path d=\"M4.5 12.5l8 -8a4.94 4.94 0 0 1 7 7l-8 8a4.94 4.94 0 0 1 -7 -7\"></path></svg>', 'hard-hat', 'pracovní', 'teal'),
+(9, 'Standard', 'OPL', 'opl', 'opl.png', '<svg class=\"icon icon-tabler icon-tabler-bandage text-cyan\" xmlns=\"http://www.w3.org/2000/svg\" width=\"40\" height=\"40\" viewBox=\"0 0 24 24\" stroke-width=\"2\" stroke=\"currentColor\" fill=\"none\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><path stroke=\"none\" d=\"M0 0h24v24H0z\" fill=\"none\"></path><line x1=\"14\" y1=\"12\" x2=\"14\" y2=\"12.01\"></line><line x1=\"10\" y1=\"12\" x2=\"10\" y2=\"12.01\"></line><line x1=\"12\" y1=\"10\" x2=\"12\" y2=\"10.01\"></line><line x1=\"12\" y1=\"14\" x2=\"12\" y2=\"14.01\"></line><path d=\"M4.5 12.5l8 -8a4.94 4.94 0 0 1 7 7l-8 8a4.94 4.94 0 0 1 -7 -7\"></path></svg>', 'briefcase-medical', 'pracovní', 'teal'),
 (10, 'Standard', 'OKB', 'okb', 'okb.png', '<svg class=\"icon icon-tabler icon-tabler-flask text-purple\" xmlns=\"http://www.w3.org/2000/svg\" width=\"40\" height=\"40\" viewBox=\"0 0 24 24\" stroke-width=\"2\" stroke=\"currentColor\" fill=\"none\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><path stroke=\"none\" d=\"M0 0h24v24H0z\" fill=\"none\"></path><line x1=\"9\" y1=\"3\" x2=\"15\" y2=\"3\"></line><line x1=\"10\" y1=\"9\" x2=\"14\" y2=\"9\"></line><path d=\"M10 3v6l-4 11a0.7 .7 0 0 0 .5 1h11a0.7 .7 0 0 0 .5 -1l-4 -11v-6\"></path></svg>', 'flask', 'laboratorní', 'purple'),
 (11, 'Standard', 'Logopedické', 'logopedicke', 'logopedicke.png', '<svg class=\"icon icon-tabler icon-tabler-messages text-teal\" xmlns=\"http://www.w3.org/2000/svg\" width=\"40\" height=\"40\" viewBox=\"0 0 24 24\" stroke-width=\"2\" stroke=\"currentColor\" fill=\"none\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><path stroke=\"none\" d=\"M0 0h24v24H0z\" fill=\"none\"></path><path d=\"M21 14l-3 -3h-7a1 1 0 0 1 -1 -1v-6a1 1 0 0 1 1 -1h9a1 1 0 0 1 1 1v10\"></path><path d=\"M14 15v2a1 1 0 0 1 -1 1h-7l-3 3v-10a1 1 0 0 1 1 -1h2\"></path></svg>', 'comments', 'logopedický', 'cyan'),
 (12, 'Standard', 'Legislativní', 'legislativni', 'legislativni.png', '<svg xmlns=\"http://www.w3.org/2000/svg\" class=\"icon icon-tabler icon-tabler-rubber-stamp text-orange\" width=\"24\" height=\"24\" viewBox=\"0 0 24 24\" stroke-width=\"2\" stroke=\"currentColor\" fill=\"none\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><path stroke=\"none\" d=\"M0 0h24v24H0z\" fill=\"none\"></path><path d=\"M21 17.85h-18c0 -4.05 1.421 -4.05 3.79 -4.05c5.21 0 1.21 -4.59 1.21 -6.8a4 4 0 1 1 8 0c0 2.21 -4 6.8 1.21 6.8c2.369 0 3.79 0 3.79 4.05z\"></path><path d=\"M5 21h14\"></path></svg>', 'stamp', 'legislativní', 'orange');
@@ -210,7 +613,14 @@ CREATE TABLE `documents` (
   `position` int NOT NULL,
   `name` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
   `description` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `processed` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `authorize` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `examine` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `efficiency` date DEFAULT NULL,
   `revision` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `next_revision_date` date DEFAULT NULL,
+  `tags` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `revision_date` date DEFAULT NULL,
   `file` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
   `unique_code` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
   `status` enum('Rozpracováno','Schváleno') CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
@@ -222,33 +632,31 @@ CREATE TABLE `documents` (
 -- Vypisuji data pro tabulku `documents`
 --
 
-INSERT INTO `documents` (`id`, `category_id`, `accordion_name`, `accordion_group`, `position`, `name`, `description`, `revision`, `file`, `unique_code`, `status`, `created_at`, `updated_at`) VALUES
-(1, 3, 'Standard léčebného postupu', NULL, 1, 'Standard léčebného postupu', 'Akutní koronární syndromy', '5', 'lecebne_standard_lec-01.pdf', 'lec-01', 'Schváleno', '2023-01-13 21:02:48', '2023-01-13 21:02:48'),
-(2, 3, 'Standard léčebného postupu', NULL, 2, 'Standard léčebného postupu', 'ATB profylaxe u operovaných pacientů', '3', 'lecebne_standard_lec-02.pdf', 'lec-02', 'Schváleno', '2023-01-13 21:16:31', '2023-01-13 21:16:31'),
-(3, 3, 'Standard léčebného postupu', NULL, 3, 'Standard léčebného postupu', 'Crohnova choroba', '5', 'lecebne_standard_lec-03.pdf', 'lec-03', 'Schváleno', '2023-01-13 21:17:50', '2023-01-13 21:17:50'),
-(4, 3, 'Standard léčebného postupu', NULL, 4, 'Standard léčebného postupu', 'Demence', '6', 'lecebne_standard_lec-04.pdf', 'lec-04', 'Schváleno', '2023-01-13 21:28:06', '2023-01-13 21:28:06'),
-(5, 3, 'Standard léčebného postupu', NULL, 5, 'Standard léčebného postupu', 'Diabetes mellitus', '4', 'lecebne_standard_lec-05.pdf', 'lec-05', 'Schváleno', '2023-01-13 21:33:31', '2023-01-13 21:33:31'),
-(6, 3, 'Standard léčebného postupu', NULL, 6, 'Standard léčebného postupu', 'u pacientů s diagnózou Epilepsie', '6', 'lecebne_standard_lec-06.pdf', 'lec-06', 'Schváleno', '2023-01-13 21:34:48', '2023-01-13 21:34:48'),
-(7, 3, 'Standard léčebného postupu', NULL, 7, 'Standard léčebného postupu', 'Febrilie nejasné etiologie', '4', 'lecebne_standard_lec-07.pdf', 'lec-07', 'Schváleno', '2023-01-13 21:36:13', '2023-01-13 21:36:13'),
-(8, 3, 'Standard léčebného postupu', NULL, 8, 'Standard léčebného postupu', 'Chronická bolest u degenerativních onemocnění páteře', '5', 'lecebne_standard_lec-08.pdf', 'lec-08', 'Schváleno', '2023-01-13 21:38:25', '2023-01-13 21:38:25'),
-(9, 3, 'Standard léčebného postupu', NULL, 9, 'Standard léčebného postupu', 'Soubor indikačních kritérií a postupů oddělení chirurgie páteře', '6', 'lecebne_standard_lec-09.pdf', 'lec-09', 'Schváleno', '2023-01-13 21:39:52', '2023-01-13 21:39:52'),
-(10, 3, 'Standard léčebného postupu', NULL, 10, 'Standard léčebného postupu', 'Indikace zátěžových vyšetření', '5', 'lecebne_standard_lec-10.pdf', 'lec-10', 'Schváleno', '2023-01-13 21:40:42', '2023-01-13 21:40:42'),
-(11, 3, 'Standard léčebného postupu', NULL, 11, 'Standard léčebného postupu', 'Ischemická cévní mozková příhoda', '6', 'lecebne_standard_lec-11.pdf', 'lec-11', 'Schváleno', '2023-01-13 21:41:31', '2023-01-13 21:41:31'),
-(12, 3, 'Standard léčebného postupu', NULL, 12, 'Standard léčebného postupu', 'Myokarditida', '5', 'lecebne_standard_lec-12.pdf', 'lec-12', 'Schváleno', '2023-01-13 21:42:52', '2023-01-13 21:42:52'),
-(13, 3, 'Standard léčebného postupu', NULL, 13, 'Standard léčebného postupu', 'Myopatie', '5', 'lecebne_standard_lec-13.pdf', 'lec-13', 'Schváleno', '2023-01-13 21:49:16', '2023-01-13 21:49:16'),
-(14, 3, 'Standard léčebného postupu', NULL, 14, 'Standard léčebného postupu', 'Parkinsonova choroba', '6', 'lecebne_standard_lec-14.pdf', 'lec-14', 'Schváleno', '2023-01-13 21:49:58', '2023-01-13 21:49:58'),
-(15, 3, 'Standard léčebného postupu', NULL, 15, 'Standard léčebného postupu', 'Polyneuropathie', '6', 'lecebne_standard_lec-15.pdf', 'lec-15', 'Schváleno', '2023-01-13 21:51:20', '2023-01-13 21:51:20'),
-(16, 3, 'Standard léčebného postupu', NULL, 16, 'Standard léčebného postupu', 'Předoperační vyšetření kardiaka před nekardiochirurgickými výkony', '5', 'lecebne_standard_lec-16.pdf', 'lec-16', 'Schváleno', '2023-01-13 21:52:04', '2023-01-13 21:52:04'),
-(17, 3, 'Standard léčebného postupu', NULL, 17, 'Standard léčebného postupu', 'Roztroušená skleróza', '6', 'lecebne_standard_lec-17.pdf', 'lec-17', 'Schváleno', '2023-01-13 21:53:04', '2023-01-13 21:53:04'),
-(18, 3, 'Standard léčebného postupu', NULL, 18, 'Standard léčebného postupu', 'Soubor indikačních kritérií a postupů oddělení ortopedie', '2', 'lecebne_standard_lec-18.pdf', 'lec-18', 'Schváleno', '2023-01-13 21:54:14', '2023-01-13 21:54:14'),
-(19, 3, 'Standard léčebného postupu', NULL, 19, 'Standard léčebného postupu', 'Standard léčebného postupu Soubor postupů při ošetření infikované nebo potenciálně infikované TEP', '2', 'lecebne_standard_lec-19.pdf', 'lec-19', 'Schváleno', '2023-01-13 21:55:05', '2023-01-13 21:55:05'),
-(20, 3, 'Standard léčebného postupu', NULL, 20, 'Standard léčebného postupu', 'Vředová choroba gastroduodena', '5', 'lecebne_standard_lec-20.pdf', 'lec-20', 'Schváleno', '2023-01-13 21:56:19', '2023-01-13 21:56:19'),
-(21, 1, '1. Správná identifikace pacientů', 1, 1, '1. Správná identifikace pacientů', 'Bezpečnostní cíle - Správná identifikace pacientů', '3', 'akreditacni_standard_akr-01.pdf', 'akr-01', 'Schváleno', '2023-01-13 22:00:10', '2023-01-13 22:00:10'),
-(22, 1, '2. Efektivní komunikace', 1, 1, '2. Efektivní komunikace', 'Bezpečnostní cíle - Efektivní komunikace', '7', 'akreditacni_standard_akr-02.pdf', 'akr-02', 'Schváleno', '2023-01-13 22:02:08', '2023-01-13 22:02:08'),
-(23, 1, '2. Zvýšení bezpečí u rizikových léků', 1, 1, '3. Zvýšení bezpečí u rizikových léků', 'Bezpečnostní cíle - Zvýšení bezpečí u rizikových léků', '3', 'akreditacni_standard_akr-03.pdf', 'akr-03', 'Schváleno', '2023-01-13 22:03:22', '2023-01-13 22:03:22'),
-(24, 4, 'Kessie Knowles', NULL, 1, 'Kessie Knowles', 'Voluptatem dolor exp', '1', 'specialni_standard_1111.pdf', '1111', 'Schváleno', '2023-01-14 19:40:30', '2023-01-14 19:40:30'),
-(25, 2, 'Colby Manning', NULL, 1, 'Colby Manning', 'Debitis quisquam sed', '5', 'osetrovatelske_standard_212.pdf', '212', 'Schváleno', '2023-01-14 20:37:00', '2023-01-14 20:37:00'),
-(26, 12, 'Heather Carney', NULL, 1, 'Heather Carney', 'Dignissimos harum qu', 'Est maiores nisi no', 'legislativni_standard_velit_qui_perspiciat.pdf', 'Velit qui perspiciat', 'Schváleno', '2023-01-14 20:38:50', '2023-01-14 20:38:50');
+INSERT INTO `documents` (`id`, `category_id`, `accordion_name`, `accordion_group`, `position`, `name`, `description`, `processed`, `authorize`, `examine`, `efficiency`, `revision`, `next_revision_date`, `tags`, `revision_date`, `file`, `unique_code`, `status`, `created_at`, `updated_at`) VALUES
+(1, 3, 'Standard léčebného postupu', NULL, 1, 'Standard léčebného postupu', 'Akutní koronární syndromy', 'MUDr. Pavlína Janková', 'MUDr. Tomáš Canibal', 'MUDr. Peter Kultan', '2007-01-01', '5', '2024-01-10', 'MEZ-JIP, NEU-JIP, INT-ODD, NEU-ODD', '2022-12-01', 'standardy_lecebne-akutni_koronarni_syndromy-revize-5.pdf', 'lec-01', 'Schváleno', '2023-01-13 21:02:48', '2023-01-16 18:08:12'),
+(2, 3, 'Standard léčebného postupu', NULL, 2, 'Standard léčebného postupu', 'Antibiotiková profylaxe u operovaných pacientů', 'MUDr. Šárka Hurtová', 'MUDr. Tomáš Canibal', 'MUDr. Andrea Adamová', '2014-01-01', '3', '2023-12-01', 'ONP, ORT', '2022-12-01', 'standardy_lecebne-antibiotikova_profylaxe_u_operovanych_pacientu-revize-3.pdf', 'lec-02', 'Schváleno', '2023-01-13 21:16:31', '2023-01-16 18:16:27'),
+(3, 3, 'Standard léčebného postupu', NULL, 3, 'Standard léčebného postupu', 'Crohnova choroba', 'MUDr. Josef Střída', 'MUDr. Tomáš Canibal', 'MUDr. Peter Kultan', '2007-01-01', '5', '2023-12-01', 'MEZ-JIP, INT-ODD', '2022-12-01', 'standardy_lecebne-crohnova_choroba-revize-5.pdf', 'lec-03', 'Schváleno', '2023-01-13 21:17:50', '2023-01-16 20:57:27'),
+(4, 3, 'Standard léčebného postupu', NULL, 4, 'Standard léčebného postupu', 'Demence', 'MUDr. Marek Böhm', 'MUDr. Tomáš Canibal', 'MUDr. Barbara Vlachopulu', '2005-07-01', '6', '2023-12-01', 'NEU-ODD', '2022-12-01', 'standardy_lecebne-demence-revize-6.pdf', 'lec-04', 'Schváleno', '2023-01-13 21:28:06', '2023-01-16 20:58:46'),
+(5, 3, 'Standard léčebného postupu', NULL, 5, 'Standard léčebného postupu', 'Diabetes mellitus', 'MUDr. Martin Blažík', 'MUDr. Tomáš Canibal', 'MUDr. Peter Kultan', '2010-11-01', '4', '2023-12-01', 'KHN', '2022-12-01', 'standardy_lecebne-diabetes_mellitus-revize-4.pdf', 'lec-05', 'Schváleno', '2023-01-13 21:33:31', '2023-01-16 21:00:57'),
+(6, 3, 'Standard léčebného postupu', NULL, 6, 'Standard léčebného postupu', 'Epilepsie', 'MUDr. Henryk Brzeżański', 'MUDr. Tomáš Canibal', 'MUDr. Michaela Holubová', '2005-07-01', '6', '2023-12-01', 'NEU-ODD', '2022-12-01', 'standardy_lecebne-epilepsie-revize-6.pdf', 'lec-06', 'Schváleno', '2023-01-13 21:34:48', '2023-01-16 21:02:01'),
+(7, 3, 'Standard léčebného postupu', NULL, 7, 'Standard léčebného postupu', 'Febrilie nejasné etiologie', 'MUDr. Petr Materna', 'MUDr. Tomáš Canibal', NULL, '2007-01-01', '4', '2023-12-01', 'MEZ-JIP, NEU-JIP, INT-ODD', '2022-12-01', 'standardy_lecebne-febrilie_nejasne_etiologie-revize-4.pdf', 'lec-07', 'Schváleno', '2023-01-13 21:36:13', '2023-01-16 21:03:11'),
+(8, 3, 'Standard léčebného postupu', NULL, 8, 'Standard léčebného postupu', 'Chronická bolest u degenerativních onemocnění páteře', 'MUDr. Henryk Brzeżański', 'MUDr. Tomáš Canibal', 'MUDr. Kamila Zarzycká', '2005-07-01', '5', '2023-12-01', 'NEU-ODD', '2019-02-01', 'standardy_lecebne-chronicka_bolest_u_degenerativnich_onemocneni_patere-revize-5.pdf', 'lec-08', 'Schváleno', '2023-01-13 21:38:25', '2023-01-16 21:05:05'),
+(9, 3, 'Standard léčebného postupu', NULL, 9, 'Standard léčebného postupu', 'Soubor indikačních kritérií a postupů oddělení chirurgie páteře', 'MUDr. David Buzek, MUDr. Dušan Sýkora', 'MUDr. Tomáš Canibal', 'MUDr. David Buzek', '2005-07-01', '6', '2023-12-01', 'ONP', '2022-12-01', 'standardy_lecebne-soubor_indikacnich_kriterii_a_postupu_oddeleni_chirurgie_patere-revize-6.pdf', 'lec-09', 'Schváleno', '2023-01-13 21:39:52', '2023-01-16 21:07:29'),
+(10, 3, 'Standard léčebného postupu', NULL, 10, 'Standard léčebného postupu', 'Indikace zátěžových vyšetření', 'MUDr. Pavlína Janková', 'MUDr. Tomáš Canibal', 'MUDr. Peter Kultan', '2007-01-01', '5', '2023-12-01', 'MEZ-JIP, NEU-JIP, INT-ODD, NEU-ODD', '2022-12-01', 'standardy_lecebne-indikace_zatezovych_vysetreni-revize-5.pdf', 'lec-10', 'Schváleno', '2023-01-13 21:40:42', '2023-01-16 21:09:36'),
+(11, 3, 'Standard léčebného postupu', NULL, 11, 'Standard léčebného postupu', 'Ischemická cévní mozková příhoda', 'MUDr. Henryk Brzeżański', 'MUDr. Tomáš Canibal', 'MUDr. Hana Paloušková', '2005-07-01', '6', '2023-12-01', 'MEZ-JIP, NEU-JIP, INT-ODD, NEU-ODD', '2022-12-01', 'standardy_lecebne-ischemicka_cevni_mozkova_prihoda-revize-6.pdf', 'lec-11', 'Schváleno', '2023-01-13 21:41:31', '2023-01-16 21:10:54'),
+(12, 3, 'Standard léčebného postupu', NULL, 12, 'Standard léčebného postupu', 'Myokarditida', 'MUDr. Pavlína Janková', 'MUDr. Tomáš Canibal', 'MUDr. Peter Kultan', '2006-12-01', '5', '2023-12-01', 'MEZ-JIP, INT-ODD', '2022-12-01', 'standardy_lecebne-myokarditida-revize-5.pdf', 'lec-12', 'Schváleno', '2023-01-13 21:42:52', '2023-01-16 21:16:41'),
+(13, 3, 'Standard léčebného postupu', NULL, 13, 'Standard léčebného postupu', 'Myopatie', 'MUDr. Marek Böhm', 'MUDr. Tomáš Canibal', 'MUDr. Roman Sukop', '2007-12-01', '5', '2023-12-01', 'NEU-ODD', '2022-12-01', 'standardy_lecebne-myopatie-revize-5.pdf', 'lec-13', 'Schváleno', '2023-01-13 21:49:16', '2023-01-16 21:16:51'),
+(14, 3, 'Standard léčebného postupu', NULL, 14, 'Standard léčebného postupu', 'Parkinsonova choroba', NULL, NULL, NULL, NULL, '6', NULL, NULL, NULL, 'standardy_lecebne-parkinsonova_choroba-revize-6.pdf', 'lec-14', 'Schváleno', '2023-01-13 21:49:58', '2023-01-15 23:09:09'),
+(15, 3, 'Standard léčebného postupu', NULL, 15, 'Standard léčebného postupu', 'Polyneuropathie', 'MUDr. Henryk Brzeżański', 'MUDr. Tomáš Canibal', 'MUDr. Roman Sukop', '2005-07-01', '6', '2023-12-01', 'NEU-ODD', '2022-12-01', 'standardy_lecebne-polyneuropathie-revize-6.pdf', 'lec-15', 'Schváleno', '2023-01-13 21:51:20', '2023-01-16 21:18:04'),
+(16, 3, 'Standard léčebného postupu', NULL, 16, 'Standard léčebného postupu', 'Předoperační vyšetření kardiaka před nekardiochirurgickými výkony', 'MUDr. Aleš Barnet', 'MUDr. Andrea Janíková', 'MUDr. Andrea Adamová', '2006-10-01', '5', '2023-12-01', 'MEZ-JIP, INT-JIP, INT-AMB', '2022-12-01', 'standardy_lecebne-predoperacni_vysetreni_kardiaka_pred_nekardiochirurgickymi_vykony-revize-5.pdf', 'lec-16', 'Schváleno', '2023-01-13 21:52:04', '2023-01-16 21:20:33'),
+(17, 3, 'Standard léčebného postupu', NULL, 17, 'Standard léčebného postupu', 'Roztroušená skleróza', 'MUDr. Henryk Brzeżański', 'MUDr. Tomáš Canibal', 'MUDr. Michaela Holubová', '2005-07-01', '6', '2023-12-01', 'NEU-ODD', '2022-12-01', 'standardy_lecebne-roztrousena_skleroza-revize-6.pdf', 'lec-17', 'Schváleno', '2023-01-13 21:53:04', '2023-01-16 21:22:03'),
+(18, 3, 'Standard léčebného postupu', NULL, 18, 'Standard léčebného postupu', 'Soubor indikačních kritérií a postupů oddělení ortopedie', 'MUDr. Jiří Pešek', 'MUDr. Tomáš Canibal', 'MUDr. Radek Pavličný', '2011-01-01', '2', NULL, 'ORT-ODD', '2019-02-01', 'standardy_lecebne-soubor_indikacnich_kriterii_a_postupu_oddeleni_ortopedie-revize-2.pdf', 'lec-18', 'Schváleno', '2023-01-13 21:54:14', '2023-01-16 21:23:32'),
+(19, 3, 'Standard léčebného postupu', NULL, 19, 'Standard léčebného postupu', 'Soubor postupů při ošetření infikované nebo potenciálně infikované TEP', 'MUDr. Dalibor Mráček', 'MUDr. Tomáš Canibal', 'MUDr. Radek Pavličný', '2012-07-01', '2', '2023-12-01', 'ORT-ODD', '2016-12-29', 'standardy_lecebne-soubor_postupu_pri_osetreni_infikovane_nebo_potencialne_infikovane_tep-revize-2.pdf', 'lec-19', 'Schváleno', '2023-01-13 21:55:05', '2023-01-16 21:26:48'),
+(20, 3, 'Standard léčebného postupu', NULL, 20, 'Standard léčebného postupu', 'Vředová choroba gastroduodena', 'MUDr. Josef Střída', 'MUDr. Tomáš Canibal', 'MUDr. Peter Kultan', '2007-01-01', '5', '2023-12-01', 'MEZ-JIP, INT-ODD', '2022-12-01', 'standardy_lecebne-vredova_choroba_gastroduodena-revize-5.pdf', 'lec-20', 'Schváleno', '2023-01-13 21:56:19', '2023-01-16 21:28:10'),
+(21, 1, '1. Správná identifikace pacientů', 1, 1, '1 Správná identifikace pacientů', 'Správná identifikace pacientů', NULL, NULL, NULL, NULL, '3', NULL, NULL, NULL, 'standardy_operacni-spravna_identifikace_pacientu-revize-3.pdf', 'akr-01', 'Schváleno', '2023-01-13 22:00:10', '2023-01-15 23:16:08'),
+(22, 1, '2. Efektivní komunikace', 1, 2, '2 Efektivní komunikace', 'Efektivní komunikace', NULL, NULL, NULL, NULL, '7', NULL, NULL, NULL, 'standardy_operacni-efektivni_komunikace-revize-7.pdf', 'akr-02', 'Schváleno', '2023-01-13 22:02:08', '2023-01-15 23:16:30'),
+(23, 1, '3. Zvýšení bezpečí u rizikových léků', 1, 3, '3 Zvýšení bezpečí u rizikových léků', 'Zvýšení bezpečí u rizikových léků', NULL, NULL, NULL, NULL, '3', NULL, NULL, NULL, 'standardy_operacni-zvyseni_bezpeci_u_rizikovych_leku-revize-3.pdf', 'akr-03', 'Schváleno', '2023-01-13 22:03:22', '2023-01-15 23:16:42'),
+(24, 4, 'Spec', NULL, 1, 'Spec', 'Čřščřčř řščřčš řščřščřščř', 'MUDr. Pavlína Janková', 'MUDr. Tomáš Canibal', 'MUDr. Peter Kultan', '2018-01-10', '1', '2023-01-29', 'MEZ-JIP, NEU-JIP', '2023-01-16', 'standardy_specialni-crscrcr_rscrcs_rscrscrscr-revize-1.pdf', '1245', 'Rozpracováno', '2023-01-16 10:06:46', '2023-01-16 19:17:37');
 
 -- --------------------------------------------------------
 
@@ -328,7 +736,7 @@ INSERT INTO `employees` (`id`, `personal_number`, `image`, `title_preffix`, `las
 (48, '64517', '64517.jpg', NULL, 'Woznica', NULL, NULL, 'Pavel', NULL, '18', '42', NULL, '1996-02-01', NULL, 'ffa200', '', '', 'Vydáno', 'N', 'HPP', 999, 'Aktivní', '2020-02-09 21:00:00', NULL),
 (49, '61926', '61926.jpg', NULL, 'Lehocká', NULL, NULL, 'Bohumila', NULL, '13', '55', NULL, '1996-02-03', NULL, NULL, '509', NULL, 'Vydáno', 'N', 'HPP', 999, 'Aktivní', '2020-02-09 21:00:00', '2022-10-04 08:49:24'),
 (50, '63727', '63727.jpg', NULL, 'Vítová', NULL, NULL, 'Dana', NULL, '18', '44', 'vitova@khn.cz', '1996-02-12', NULL, 'ffa200', NULL, NULL, 'Vydáno', 'N', 'HPP', 999, 'Aktivní', '2020-02-09 21:00:00', '2022-06-13 02:14:28'),
-(51, '60303', '60303.jpg', 'Bc.', 'Bělica', NULL, NULL, 'René', NULL, '17', '32', 'belica@khn.cz', '1996-03-01', NULL, 'ffee00', '106', '606763529', 'Vydáno', 'N', 'HPP', 999, 'Aktivní', '2020-02-09 21:00:00', '2022-06-13 02:06:37'),
+(51, '60303', '60303.jpg', 'Bc.', 'Bělica', NULL, NULL, 'René', NULL, '17', '33', 'belica@khn.cz', '1996-03-01', NULL, 'ffee00', '106', '606763529', 'Vydáno', 'N', 'HPP', 999, 'Aktivní', '2020-02-09 21:00:00', '2023-01-14 20:50:53'),
 (53, '61405', '61405.jpg', NULL, 'Jedrzejek', NULL, NULL, 'Urszula', NULL, '23', '55', 'jedrzejek@khn.cz', '1996-10-15', NULL, 'a31561', NULL, NULL, 'Vydáno', 'N', 'HPP', 999, 'Aktivní', '2020-02-09 21:00:00', '2022-06-13 05:17:22'),
 (54, '64806', '64806.jpg', NULL, 'Zeman', NULL, NULL, 'Petr', NULL, '12', '9', NULL, '1997-02-01', NULL, '66c908', '', '', 'Vydáno', 'N', 'HPP', 999, 'Aktivní', '2020-02-09 21:00:00', NULL),
 (55, '60804', '60804.jpg', 'Bc.', 'Trombalová', NULL, NULL, 'Hana', 'DiS.', '15', '35', 'trombalova@khn.cz', '1997-03-01', NULL, 'c90818', '174', '604375747', 'Vydáno', 'N', 'HPP', 999, 'Aktivní', '2020-02-09 21:00:00', '2022-06-13 02:17:50'),
@@ -498,7 +906,7 @@ INSERT INTO `employees` (`id`, `personal_number`, `image`, `title_preffix`, `las
 (241, '63013', '63013.jpg', NULL, 'Protopsalti Robenková', 'Robenková', NULL, 'Zuzana', NULL, '5', '55', NULL, '2010-09-01', NULL, '4287f5', '', '', 'Vydáno', 'N', 'HPP', 999, 'Aktivní', '2020-02-09 21:00:00', '2020-03-04 06:01:38'),
 (242, '62821', '62821.jpg', 'Bc.', 'Krestová', NULL, NULL, 'Darina', NULL, '6', '55', NULL, '2010-10-15', NULL, '7833e8', NULL, NULL, 'Vydáno', 'N', 'HPP', 999, 'Aktivní', '2020-02-09 21:00:00', '2021-09-16 02:49:06'),
 (243, '64416', '64416.jpg', NULL, 'Volanská', NULL, NULL, 'Lydie', NULL, '19', '63', 'vedouci.uklidu@khn.cz', '2010-10-27', NULL, '999999', '292', '724370890', 'Vydáno', 'N', 'HPP', 999, 'Aktivní', '2020-02-09 21:00:00', '2022-06-13 02:12:50'),
-(244, '60410', '60410.jpg', 'Bc.', 'Bělicová', NULL, NULL, 'Taťána', NULL, '17', '19', NULL, '2010-11-01', NULL, 'ffee00', '443', '605830848', 'Vydáno', 'N', 'HPP', 3, 'Aktivní', '2020-02-09 21:00:00', '2022-11-17 16:49:14'),
+(244, '60410', '60410.jpg', 'Bc.', 'Bělicová', NULL, NULL, 'Taťána', NULL, '17', '17', NULL, '2010-11-01', NULL, 'ffee00', '443', '605830848', 'Vydáno', 'N', 'HPP', 3, 'Aktivní', '2020-02-09 21:00:00', '2023-01-16 20:02:52'),
 (245, '64529', '64529.jpg', 'Mgr.', 'Csíková', NULL, NULL, 'Jana', NULL, '23', '55', NULL, '2020-11-13', NULL, 'a31561', '', '', 'Vydáno', 'N', 'HPP', 999, 'Aktivní', '2020-02-09 21:00:00', '2021-01-21 06:51:20'),
 (246, '61402', '61402.jpg', NULL, 'Chylová', NULL, NULL, 'Halina', NULL, '9', '20', NULL, '2010-11-01', NULL, 'd9fa05', '', '', 'Vydáno', 'N', 'HPP', 999, 'Aktivní', '2020-02-09 21:00:00', NULL),
 (247, '64109', '64109.jpg', 'MUDr.', 'Twardzik', NULL, NULL, 'Januš', NULL, '28', '12', NULL, '2011-01-01', NULL, 'ffa600', '416', '732633696', 'Vydáno', 'N', 'HPP', 999, 'Aktivní', '2020-02-09 21:00:00', NULL),
@@ -584,7 +992,7 @@ INSERT INTO `employees` (`id`, `personal_number`, `image`, `title_preffix`, `las
 (349, '61902', '61902.jpg', NULL, 'Kramná', NULL, NULL, 'Romana', NULL, '19', '22', NULL, '2016-03-01', '2017-02-28', '999999', '', '', 'Vydáno', 'N', 'HPP', 999, 'Aktivní', '2020-02-09 21:00:00', NULL),
 (350, '62527', '62527.jpg', 'Bc.', 'Hrivňáková', NULL, 'Mucinová', 'Veronika', NULL, '17', '46', 'mucinova@khn.cz', '2016-03-01', NULL, 'ffee00', NULL, '730188195', 'Vydáno', 'N', 'HPP', 999, 'Aktivní', '2020-02-09 21:00:00', '2022-09-20 09:45:02'),
 (351, '64210', '64210.jpg', 'Ing.', 'Uvírová', NULL, NULL, 'Martina', NULL, '17', '59', 'uvirova@khn.cz', '2016-03-14', '2017-02-28', 'ffee00', '444', '604447645', 'Vydáno', 'N', 'HPP', 999, 'Aktivní', '2020-02-09 21:00:00', '2022-06-13 02:17:30'),
-(352, '61625', '61625.jpg', NULL, 'Klika', NULL, NULL, 'Miroslav', NULL, '17', '57', 'klika@khn.cz', '2016-04-01', NULL, 'ffee00', NULL, '739545626', 'Vydáno', 'N', 'HPP', 999, 'Aktivní', '2020-02-09 21:00:00', '2022-09-07 05:14:18'),
+(352, '61625', '61625.jpg', NULL, 'Klika', NULL, NULL, 'Miroslav', NULL, '17', '66', 'klika@khn.cz', '2016-04-01', NULL, 'ffee00', NULL, '739545626', 'Vydáno', 'N', 'HPP', 999, 'Aktivní', '2020-02-09 21:00:00', '2023-01-16 19:45:54'),
 (353, '61708', '61708.jpg', NULL, 'Kmeťová', NULL, NULL, 'Ema', NULL, '28', '20', NULL, '2016-04-01', NULL, 'ffa600', '', '', 'Vydáno', 'N', 'HPP', 999, 'Aktivní', '2020-02-09 21:00:00', NULL),
 (354, '64006', '64006.jpg', NULL, 'Tabarová', NULL, NULL, 'Renáta', NULL, '19', '22', NULL, '2016-04-01', '2019-03-31', '999999', '', '', 'Vydáno', 'N', 'HPP', 999, 'Aktivní', '2020-02-09 21:00:00', NULL),
 (355, '64823', '64823.jpg', NULL, 'Zbožínková', NULL, NULL, 'Kateřina', NULL, '12', '55', NULL, '2016-05-01', NULL, '66c908', '', '', 'Vydáno', 'N', 'HPP', 999, 'Aktivní', '2020-02-09 21:00:00', '2020-10-27 08:07:33'),
@@ -675,7 +1083,7 @@ INSERT INTO `employees` (`id`, `personal_number`, `image`, `title_preffix`, `las
 (460, '61908', '61908.jpg', 'MUDr.', 'Kusová', NULL, NULL, 'Jana', NULL, '13', '30', 'kusovaj@khn.cz', '2018-10-01', NULL, NULL, '501, 531', '724049924', 'Vydáno', 'N', 'HPP', 999, 'Aktivní', '2020-02-09 21:00:00', '2022-06-13 02:40:57'),
 (462, '62220', '62220.jpg', NULL, 'Gruszkowská', NULL, NULL, 'Marcela', NULL, '23', '55', NULL, '2018-10-01', NULL, 'a31561', '', '', 'Vydáno', 'N', 'DPP', 999, 'Aktivní', '2020-02-09 21:00:00', NULL),
 (464, '62408', '62408.jpg', NULL, 'Orságová', NULL, NULL, 'Marcela', NULL, '5', '63', NULL, '2018-11-01', NULL, '7833e8', '228, 229', NULL, 'Vydáno', 'N', 'HPP', 999, 'Aktivní', '2020-02-09 21:00:00', '2022-05-31 04:48:57'),
-(465, '63409', '63409.jpg', 'Bc.', 'Smrčková', NULL, NULL, 'Sandra', NULL, '14', '65', NULL, '2018-11-01', NULL, 'a908c9', NULL, NULL, 'Vydáno', 'N', 'HPP', 999, 'Aktivní', '2020-02-09 21:00:00', '2021-04-15 04:00:08'),
+(465, '63409', '63409.jpg', 'Bc.', 'Smrčková', NULL, NULL, 'Sandra', NULL, '14', '65', NULL, '2018-11-01', NULL, 'a908c9', NULL, NULL, 'Vydáno', 'N', 'HPP', 999, 'Mateřská', '2020-02-09 21:00:00', '2023-01-14 20:45:55'),
 (466, '62218', '62218.jpg', NULL, 'Linkovová', NULL, NULL, 'Šárka', NULL, '19', '22', NULL, '2018-11-23', NULL, '999999', '', '', 'Vydáno', 'N', 'HPP', 999, 'Aktivní', '2020-02-09 21:00:00', NULL),
 (467, '60123', '60123.jpg', NULL, 'Badurová', NULL, NULL, 'Lenka', NULL, '19', '22', NULL, '2018-11-28', NULL, '999999', NULL, NULL, 'Vydáno', 'N', 'HPP', 999, 'Aktivní', '2020-02-09 21:00:00', '2022-06-10 08:29:29'),
 (468, '61906', '61906.jpg', NULL, 'Klimánková', NULL, NULL, 'Jana', NULL, '28', '55', NULL, '2018-12-01', NULL, 'ffa600', '', '', 'Vydáno', 'N', 'HPP', 999, 'Aktivní', '2020-02-09 21:00:00', NULL),
@@ -712,7 +1120,7 @@ INSERT INTO `employees` (`id`, `personal_number`, `image`, `title_preffix`, `las
 (512, '61215', '61215.jpg', NULL, 'Horká', NULL, NULL, 'Marie', NULL, '15', '35', NULL, '2000-01-01', NULL, 'c90818', '', '', 'Vydáno', 'N', 'DPP', 999, 'Aktivní', '2020-02-09 21:00:00', '2020-02-20 03:28:01'),
 (516, '60219', '60219.jpg', 'Bc.', 'Bernatíková', NULL, NULL, 'Hana', NULL, '23', '55', NULL, '2020-02-01', NULL, 'a31561', '', '', 'Vydáno', 'N', 'HPP', 999, 'Aktivní', '2020-02-09 21:00:00', '2021-01-14 04:34:45'),
 (518, '61419', '61419.jpg', NULL, 'Halčáková', NULL, NULL, 'Jaroslava', NULL, '23', '55', NULL, '2018-06-13', NULL, 'a31561', '', '', 'Vydáno', 'N', 'HPP', 999, 'Aktivní', '2020-02-17 08:55:23', '2020-02-18 07:07:23'),
-(519, '60102', '60102_20221117-174537.jpg', 'MUDr.', 'Adamová', NULL, NULL, 'Andrea', NULL, '9', '12', NULL, '2019-11-01', NULL, 'd9fa05', '423', '604153029', 'Vydáno', 'N', 'HPP', 999, 'Aktivní', '2020-02-18 03:20:27', '2022-11-17 16:45:37'),
+(519, '60102', '60102.jpg', 'MUDr.', 'Adamová', NULL, NULL, 'Andrea', NULL, '9', '12', NULL, '2019-11-01', NULL, 'd9fa05', '423', '604153029', 'Vydáno', 'N', 'HPP', 999, 'Aktivní', '2020-02-18 03:20:27', '2022-11-17 16:45:37'),
 (521, '63613', '63613.jpg', 'MUDr.', 'Solák', NULL, NULL, 'Marek', NULL, '28', '12', 'solak@khn.cz', '2020-02-01', NULL, 'ffa600', '145', '607156597', 'Vydáno', 'N', 'HPP', 999, 'Aktivní', '2020-02-18 03:42:31', '2022-08-22 09:52:02'),
 (522, '62016', '62016.jpg', 'MUDr.', 'Kantor', NULL, NULL, 'Ivo', NULL, '28', '12', 'kantor@khn.cz', '2020-02-01', NULL, 'ffa600', '145', '603370305', 'Vydáno', 'N', 'HPP', 999, 'Aktivní', '2020-02-18 03:43:29', '2022-06-13 05:15:00'),
 (523, '60130', '60130.jpg', 'MUDr.', 'Blahut', NULL, NULL, 'Jan', NULL, '28', '12', 'blahut@khn.cz', '2020-02-01', NULL, 'ffa600', '145', '774088790', 'Vydáno', 'N', 'HPP', 999, 'Aktivní', '2020-02-18 03:44:14', '2022-06-13 02:48:42'),
@@ -741,9 +1149,9 @@ INSERT INTO `employees` (`id`, `personal_number`, `image`, `title_preffix`, `las
 (579, '60716', '60716.jpg', 'Bc.', 'Dlugošová', NULL, NULL, 'Denisa', NULL, '12', '9', NULL, '2020-07-01', NULL, '66c908', '', '', 'Vydáno', 'N', 'HPP', 999, 'Aktivní', '2020-07-01 04:36:33', '2020-07-01 04:36:33'),
 (584, '63925', '63925.jpg', NULL, 'Škorvanová', NULL, NULL, 'Jaroslava', NULL, '19', '22', NULL, '2020-08-03', NULL, '999999', NULL, NULL, 'Vydáno', 'N', 'HPP', 999, 'Aktivní', '2020-08-05 05:41:47', '2021-07-30 02:44:08'),
 (585, '63108', '63108.jpg', NULL, 'Putniorzová', NULL, NULL, 'Dana', NULL, '19', '22', NULL, '2020-08-10', NULL, '999999', '', '', 'Vydáno', 'N', 'HPP', 999, 'Aktivní', '2020-08-13 02:23:56', '2020-08-13 02:23:56'),
-(586, '63612', '63612.jpg', NULL, 'Smolková', NULL, NULL, 'Veronika', NULL, '6', '20', NULL, '2020-09-01', NULL, '7833e8', '212', '725669172', 'Vydáno', 'N', 'HPP', 999, 'Aktivní', '2020-08-13 02:25:41', '2020-09-01 02:15:15');
+(586, '63612', '63612.jpg', NULL, 'Smolková', NULL, NULL, 'Veronika', NULL, '6', '20', NULL, '2020-09-01', NULL, '7833e8', '212', '725669172', 'Vydáno', 'N', 'HPP', 999, 'Aktivní', '2020-08-13 02:25:41', '2020-09-01 02:15:15'),
+(588, '64504', '64504.jpg', NULL, 'Wardasová', NULL, NULL, 'Beata', NULL, '28', '55', NULL, '2020-09-01', NULL, 'ffa600', NULL, NULL, 'Vydáno', 'N', 'HPP', 999, 'Aktivní', '2020-08-31 04:40:46', '2021-01-27 09:57:22');
 INSERT INTO `employees` (`id`, `personal_number`, `image`, `title_preffix`, `last_name`, `middle_name`, `married_name`, `first_name`, `title_suffix`, `department_id`, `job_id`, `email`, `start_date`, `end_date`, `comment`, `phone`, `mobile`, `id_card`, `coffee`, `employment`, `position`, `status`, `created_at`, `updated_at`) VALUES
-(588, '64504', '64504.jpg', NULL, 'Wardasová', NULL, NULL, 'Beata', NULL, '28', '55', NULL, '2020-09-01', NULL, 'ffa600', NULL, NULL, 'Vydáno', 'N', 'HPP', 999, 'Aktivní', '2020-08-31 04:40:46', '2021-01-27 09:57:22'),
 (589, '64715', '64715.jpg', NULL, 'Zientková', NULL, NULL, 'Barbora', NULL, '6', '20', NULL, '2020-09-01', NULL, '7833e8', '', '', 'Vydáno', 'N', 'HPP', 999, 'Aktivní', '2020-09-01 02:48:16', '2020-10-08 07:35:18'),
 (591, '61424', '61424.jpg', 'MUDr.', 'Hrabovská', NULL, NULL, 'Barbora', NULL, '1', '12', 'hrabovska@khn.cz', '2020-09-01', NULL, '4287f5', NULL, NULL, 'Vydáno', 'N', 'HPP', 999, 'Aktivní', '2020-09-01 05:34:47', '2022-06-13 03:22:35'),
 (593, '62808', '62808.jpg', 'Bc.', 'Pechová', NULL, NULL, 'Kristýna', NULL, '16', '55', NULL, '2020-09-08', '2021-08-06', 'a31561', NULL, NULL, 'Vydáno', 'N', 'HPP', 999, 'Aktivní', '2020-09-08 09:35:51', '2022-02-17 06:52:29'),
@@ -863,7 +1271,7 @@ INSERT INTO `employees` (`id`, `personal_number`, `image`, `title_preffix`, `las
 (785, '60315', '60315.jpg', NULL, 'Ristovská', NULL, NULL, 'Barbara', NULL, '6', '29', NULL, '2022-06-01', NULL, '222222', NULL, NULL, 'Vydáno', 'N', 'DPP', 999, 'Aktivní', '2022-06-01 04:05:15', '2022-10-25 06:48:20'),
 (786, '61031', '61031.jpg', NULL, 'Greco', NULL, NULL, 'Alexandr', NULL, '28', '29', NULL, '2022-06-01', NULL, '222222', NULL, NULL, 'Vydáno', 'N', 'HPP', 999, 'Aktivní', '2022-06-01 04:28:46', '2022-06-01 04:29:16'),
 (787, '60932', '60932.jpg', NULL, 'Friedlová', NULL, NULL, 'Karolína', NULL, '1', '29', NULL, '2022-06-01', NULL, '4287f5', NULL, NULL, 'Vydáno', 'N', 'HPP', 999, 'Aktivní', '2022-06-01 06:32:55', '2022-10-18 02:42:12'),
-(788, '60432', '60432.jpg', NULL, 'Byrtus', NULL, NULL, 'Ivo', NULL, '17', '56', 'byrtus@khn.cz', '2022-06-01', NULL, '222222', '372', '725189424', 'Vydáno', 'N', 'HPP', 999, 'Aktivní', '2022-06-02 05:19:33', '2022-06-10 10:05:09'),
+(788, '60432', '60432.jpg', NULL, 'Byrtus', NULL, NULL, 'Ivo', NULL, '17', '56', 'byrtus@khn.cz', '2022-06-01', NULL, NULL, '372', '725189424', 'Vydáno', 'N', 'HPP', 999, 'Aktivní', '2022-06-02 05:19:33', '2023-01-14 20:50:05'),
 (789, '62229', '62229.jpg', 'Bc.', 'Lamaczová', NULL, NULL, 'Dagmar', NULL, '3', '55', NULL, '2022-06-01', NULL, '222222', NULL, NULL, 'Vydáno', 'N', 'HPP', 999, 'Aktivní', '2022-06-02 08:57:53', '2022-06-02 08:57:53'),
 (791, '63732', '63732.jpg', NULL, 'Suchá', NULL, NULL, 'Marta', NULL, '19', '22', NULL, '2022-06-10', NULL, '222222', NULL, NULL, 'Vydáno', 'N', 'HPP', 999, 'Aktivní', '2022-06-13 04:45:32', '2022-06-13 04:45:32'),
 (792, '61532', '61532.jpg', NULL, 'Jeřábková', NULL, NULL, 'Markéta', NULL, '1', '29', NULL, '2022-06-13', NULL, '222222', NULL, NULL, 'Vydáno', 'N', 'HPP', 999, 'Aktivní', '2022-06-13 08:58:21', '2022-10-18 02:42:35'),
@@ -1073,7 +1481,8 @@ INSERT INTO `migrations` (`id`, `migration`, `batch`) VALUES
 (121, '2022_12_15_052046_create_adversevents_table', 1),
 (130, '2023_01_07_200629_create_documents_table', 3),
 (131, '2023_01_07_203151_create_addons_table', 3),
-(133, '2022_12_14_084811_create_categories_table', 4);
+(133, '2022_12_14_084811_create_categories_table', 4),
+(134, '2023_01_15_003551_create_calendar_table', 5);
 
 -- --------------------------------------------------------
 
@@ -1199,7 +1608,7 @@ INSERT INTO `users` (`id`, `personal_number`, `name`, `email`, `email_verified_a
 (8, '61199', 'PhDr. Ilona Kopečný', 'jakoubek.ivana@example.com', '2023-01-11 16:48:16', '$2y$10$LHGzVLpy/G9kAezVWgAyH.w4kZJM4sDCnTWicSCsVJwhueLR/EXkC', NULL, NULL, 'QBVSNpIZATAjovUq9Ud63FpDOisVK4B0qQINS2C3ZGzYoGDbnElIAIuFtxNL', '2023-01-11 16:48:17', '2023-01-11 16:48:17'),
 (9, '64220', 'Vítězslav Studený', 'aprokop@example.net', '2023-01-11 16:48:16', '$2y$10$TXAjVT9k./.H4KjXoNAcn.ljLPiSjKS0B.vlGoGjEiJXFvNWX3CJG', NULL, NULL, 'Q84bE3b76njnJpTH1hee9690itatngELvYKuDNtYqpfuwZ72Y4EhZd2C0J3e', '2023-01-11 16:48:17', '2023-01-11 16:48:17'),
 (10, '62457', 'PhDr. Jan Kuča', 'milena93@example.net', '2023-01-11 16:48:16', '$2y$10$y.1Fr4LcccsAuc2CCAp9seh5PonzrjwBcBDlKqaIaO4r0eYvvow3W', NULL, NULL, 'uKtD3jRcmQagjEDZs2oF9PpRq14SsqwMna9HjdAGFR5U2lai6N50iFFPsfDC', '2023-01-11 16:48:17', '2023-01-11 16:48:17'),
-(11, '61625', 'Karleigh Becker', 'klika@khn.cz', NULL, '$2y$10$HZ53JhT7D0sw7B7igovwbe9/KCAZQK4I7KrHKz6pZcgGFLWzHg2MO', NULL, NULL, '3xVq6ENEC2dFbORL0QDjjrNTgGFDh9CB1OaN64hWVcfe2S0mOEG6ByNpL16R', '2023-01-11 18:53:36', '2023-01-11 18:53:36'),
+(11, '61625', 'Klika Miroslav', 'klika@khn.cz', NULL, '$2y$10$HZ53JhT7D0sw7B7igovwbe9/KCAZQK4I7KrHKz6pZcgGFLWzHg2MO', NULL, NULL, 'yN9yXBP2sVjZ00iv5Eiv9PeieJ9EsHhbhFTATTkgslpKaDwnGFbLiXI8ciIp', '2023-01-11 18:53:36', '2023-01-11 18:53:36'),
 (12, '63882', 'Anna Seidlová', 'mbalogova@example.org', '2023-01-13 16:56:57', '$2y$10$ihu2uS/uhaS01vFcu8M.6eN5ElPL//0lTNnPybHJWDbVuNOGbWvfe', NULL, NULL, 'jSCn8DxL6F6HZFbc37QMtjBOtiWFUr5RuuHEw0DVZUbCS6s2vqM58fO2ZjXy', '2023-01-13 16:56:57', '2023-01-13 16:56:57'),
 (13, '64832', 'Marta Jílková', 'cibulkova.tomas@example.net', '2023-01-13 16:56:57', '$2y$10$43kzxF1NKZ/bu2BgUlG5D.I0JYRdvKu6v2ZyF83TkJBKh5nqeUCLW', NULL, NULL, 'rhlXHVt9qY9OsQA9Q8q4CRdFYxXxmbc5kliamjZKwMG5crFPZwTB1b2AE3XH', '2023-01-13 16:56:57', '2023-01-13 16:56:57'),
 (14, '62297', 'Vladimíra Bradová', 'ncahova@example.org', '2023-01-13 16:56:57', '$2y$10$lU2Pubr/W60AJ.rFRlM0l.8DHV1vBszqcNyoGqHjbIdGEvPIEWUZS', NULL, NULL, 'CuPFejVxGLKnbWf4cNf5kauzdYDdEMtGwTQ4eXfcRokoZG38HmYA45ePlZLa', '2023-01-13 16:56:57', '2023-01-13 16:56:57'),
@@ -1231,6 +1640,12 @@ ALTER TABLE `adversevents`
 -- Indexy pro tabulku `attendances`
 --
 ALTER TABLE `attendances`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexy pro tabulku `calendar`
+--
+ALTER TABLE `calendar`
   ADD PRIMARY KEY (`id`);
 
 --
@@ -1348,13 +1763,19 @@ ALTER TABLE `addons`
 -- AUTO_INCREMENT pro tabulku `adversevents`
 --
 ALTER TABLE `adversevents`
-  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT;
+  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
 
 --
 -- AUTO_INCREMENT pro tabulku `attendances`
 --
 ALTER TABLE `attendances`
   MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT pro tabulku `calendar`
+--
+ALTER TABLE `calendar`
+  MODIFY `id` bigint NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=366;
 
 --
 -- AUTO_INCREMENT pro tabulku `categories`
@@ -1372,7 +1793,7 @@ ALTER TABLE `departments`
 -- AUTO_INCREMENT pro tabulku `documents`
 --
 ALTER TABLE `documents`
-  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=27;
+  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=35;
 
 --
 -- AUTO_INCREMENT pro tabulku `employees`
@@ -1408,7 +1829,7 @@ ALTER TABLE `jobs`
 -- AUTO_INCREMENT pro tabulku `migrations`
 --
 ALTER TABLE `migrations`
-  MODIFY `id` int UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=134;
+  MODIFY `id` int UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=135;
 
 --
 -- AUTO_INCREMENT pro tabulku `personal_access_tokens`

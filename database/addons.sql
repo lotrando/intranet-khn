@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Počítač: localhost
--- Vytvořeno: Ned 15. led 2023, 23:52
+-- Vytvořeno: Pon 16. led 2023, 21:30
 -- Verze serveru: 8.0.31
 -- Verze PHP: 7.4.33
 

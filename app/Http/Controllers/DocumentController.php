@@ -275,7 +275,7 @@ class DocumentController extends Controller
             $output = "";
 
             if (Auth::user()) {
-                $documents = Document::with('category', 'addon')
+                $documents = Document::with('category', 'addon')->orderBy('description')
                     ->orWhere('name', 'LIKE', '%' . $request->search . "%")
                     ->orWhere('description', 'LIKE', '%' . $request->search . "%")
                     ->orWhere('tags', 'LIKE', '%' . $request->search . "%")

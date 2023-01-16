@@ -1,4 +1,4 @@
-<header class="navbar navbar-expand-md navbar-light sticky-top d-print-none">
+<header class="navbar navbar-expand-md navbar-light d-print-none">
 
   <div class="container-fluid">
 

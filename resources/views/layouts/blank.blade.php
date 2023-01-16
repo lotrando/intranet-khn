@@ -27,28 +27,24 @@
   </head>
 
   <body>
-    <div class="page">
-      <!-- Navbar -->
-      <div class="sticky-top">
-        <!-- Header Start -->
-        @include('layouts.partials.header')
-        <!-- Header End -->
+    <!-- Header Start -->
+    @include('layouts.partials.header')
+    <!-- Header End -->
 
-        <!-- Navigation Start -->
-        @include('layouts.partials.navigation')
-        <!-- Navigation End -->
-      </div>
+    <!-- Navigation Start -->
+    @include('layouts.partials.navigation')
+    <!-- Navigation End -->
 
-      <section>
+    <section>
 
-        @yield('content')
+      @yield('content')
 
-      </section>
+    </section>
 
-      @include('layouts.partials.footer')
-    </div>
+
     @yield('modals')
 
+    @include('layouts.partials.footer')
     @include('layouts.partials.logout')
 
     <script src="{{ asset('js/jquery.js') }}"></script>
@@ -58,9 +54,7 @@
     <script src="{{ asset('js/moment-with-locales.js') }}"></script>
     <script src="{{ asset('js/m3u-player.js') }}" defer></script>
     @include('layouts.partials.scripts')
-    @include('sweetalert::alert')
     @yield('scripts')
-
   </body>
 
 </html>
