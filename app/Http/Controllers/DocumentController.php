@@ -3,7 +3,6 @@
 namespace App\Http\Controllers;
 
 use App\Models\Document;
-use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Str;
@@ -39,6 +38,14 @@ class DocumentController extends Controller
      */
     public function store(Request $request)
     {
+        $unwantedChars = [
+            'Š' => 'S', 'š' => 's', 'Ž' => 'Z', 'ž' => 'z', 'À' => 'A', 'Á' => 'A', 'Â' => 'A', 'Ã' => 'A', 'Ä' => 'A', 'Å' => 'A', 'Æ' => 'A', 'Ç' => 'C', 'È' => 'E', 'É' => 'E',
+            'Ê' => 'E', 'Ë' => 'E', 'Ì' => 'I', 'Í' => 'I', 'Î' => 'I', 'Ï' => 'I', 'Ñ' => 'N', 'Ò' => 'O', 'Ó' => 'O', 'Ô' => 'O', 'Õ' => 'O', 'Ö' => 'O', 'Ø' => 'O', 'Ù' => 'U',
+            'Ú' => 'U', 'Û' => 'U', 'Ü' => 'U', 'Ý' => 'Y', 'Þ' => 'B', 'ß' => 'Ss', 'à' => 'a', 'á' => 'a', 'â' => 'a', 'ã' => 'a', 'ä' => 'a', 'å' => 'a', 'æ' => 'a', 'ç' => 'c',
+            'è' => 'e', 'é' => 'e', 'ê' => 'e', 'ë' => 'e', 'ì' => 'i', 'í' => 'i', 'î' => 'i', 'ï' => 'i', 'ð' => 'o', 'ñ' => 'n', 'ò' => 'o', 'ó' => 'o', 'ô' => 'o', 'õ' => 'o',
+            'ö' => 'o', 'ø' => 'o', 'ù' => 'u', 'ú' => 'u', 'û' => 'u', 'ý' => 'y', 'þ' => 'b', 'ÿ' => 'y', 'ř' => 'r', 'č' => 'c', 'ě' => 'e', 'ů' => 'u', 'ň' => 'n', 'Ř' => 'R',
+            'Č' => 'C', 'Ě' => 'E', 'Ů' => 'U', 'Ú' => 'U', 'Ň' => 'N', '/' => '-', ':' => '-', ';' => '-', ' ' => '_', '+' => '_'
+        ];
 
         $rules = [
             'category_id'           => 'required',
@@ -47,8 +54,8 @@ class DocumentController extends Controller
             'name'                  => 'required',
             'revision'              => 'required',
             'description'           => 'required',
-            'position'              => 'required',
-            'unique_code'           => 'required|unique:documents',
+            'position'              => 'required|numeric',
+            'unique_code'           => 'required|unique:documents,id',
             'status'                => 'required',
             'file'                  => 'required|mimes:pdf,doc,xls|max:4096'
         ];
@@ -60,7 +67,8 @@ class DocumentController extends Controller
         }
 
         $file_ext  = $request->file->extension();
-        $file_name = $request->folder_name . '_standard_' . Str::lower(Str::replace(' ', '_', $request->unique_code)) . '.' . $file_ext;
+        $description = Str::lower(strtr($request->description, $unwantedChars));
+        $file_name = 'standardy_' . $request->folder_name . '-' . $description . '-revize-' . Str::lower($request->revision) . '.' . $file_ext;
         $request->file->move(public_path('/standardy/'), $file_name);
 
         $form_data = [
@@ -124,9 +132,9 @@ class DocumentController extends Controller
                 'accordion_group'       => 'nullable',
                 'name'                  => 'required',
                 'description'           => 'required',
-                'position'              => 'required',
+                'position'              => 'required|numeric',
                 'revision'              => 'required',
-                //'unique_code'           => 'required|documents',
+                'unique_code'           => 'required|unique:documents,id',
                 'status'                => 'required',
                 'file'                  => 'required|mimes:pdf,doc,xls|max:4096'
             ];
@@ -137,8 +145,18 @@ class DocumentController extends Controller
                 return response()->json(['errors' => $error->errors()->all()]);
             }
 
+            $unwantedChars = [
+                'Š' => 'S', 'š' => 's', 'Ž' => 'Z', 'ž' => 'z', 'À' => 'A', 'Á' => 'A', 'Â' => 'A', 'Ã' => 'A', 'Ä' => 'A', 'Å' => 'A', 'Æ' => 'A', 'Ç' => 'C', 'È' => 'E', 'É' => 'E',
+                'Ê' => 'E', 'Ë' => 'E', 'Ì' => 'I', 'Í' => 'I', 'Î' => 'I', 'Ï' => 'I', 'Ñ' => 'N', 'Ò' => 'O', 'Ó' => 'O', 'Ô' => 'O', 'Õ' => 'O', 'Ö' => 'O', 'Ø' => 'O', 'Ù' => 'U',
+                'Ú' => 'U', 'Û' => 'U', 'Ü' => 'U', 'Ý' => 'Y', 'Þ' => 'B', 'ß' => 'Ss', 'à' => 'a', 'á' => 'a', 'â' => 'a', 'ã' => 'a', 'ä' => 'a', 'å' => 'a', 'æ' => 'a', 'ç' => 'c',
+                'è' => 'e', 'é' => 'e', 'ê' => 'e', 'ë' => 'e', 'ì' => 'i', 'í' => 'i', 'î' => 'i', 'ï' => 'i', 'ð' => 'o', 'ñ' => 'n', 'ò' => 'o', 'ó' => 'o', 'ô' => 'o', 'õ' => 'o',
+                'ö' => 'o', 'ø' => 'o', 'ù' => 'u', 'ú' => 'u', 'û' => 'u', 'ý' => 'y', 'þ' => 'b', 'ÿ' => 'y', 'ř' => 'r', 'č' => 'c', 'ě' => 'e', 'ů' => 'u', 'ň' => 'n', 'Ř' => 'R',
+                'Č' => 'C', 'Ě' => 'E', 'Ů' => 'U', 'Ú' => 'U', 'Ň' => 'N', '/' => '-', ':' => '-', ';' => '-', ' ' => '_', '+' => '_'
+            ];
+
             $file_ext  = $request->file->extension();
-            $file_name = $request->folder_name . '_standard_' . Str::lower(Str::replace(' ', '_', $request->unique_code)) . '.' . $file_ext;
+            $description = Str::lower(strtr($request->description, $unwantedChars));
+            $file_name = 'standardy_' . $request->folder_name . '-' . $description . '-revize-' . Str::lower($request->revision) . '.' . $file_ext;
             $request->file->move(public_path('/standardy/'), $file_name);
 
             $form_data = [
@@ -150,7 +168,7 @@ class DocumentController extends Controller
                 'position'              => $request->position,
                 'revision'              => $request->revision,
                 'file'                  => $file_name,
-                //'unique_code'           => $request->unique_code,
+                'unique_code'           => $request->unique_code,
                 'status'                => $request->status,
             ];
         } else {
@@ -161,9 +179,8 @@ class DocumentController extends Controller
                 'accordion_group'       => 'nullable',
                 'name'                  => 'required',
                 'description'           => 'required',
-                'position'              => 'required',
+                'position'              => 'required|numeric',
                 'revision'              => 'required',
-                //'unique_code'           => 'required|unique:documents',
                 'status'                => 'required',
             ];
 

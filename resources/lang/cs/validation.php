@@ -149,7 +149,7 @@ return [
         'position'          => 'Pole pozice',
         'file'              => 'Pole soubor',
         'category_id'       => 'Pole kategorie standardu',
-        'unique_code'       => 'Pole unikátní kód',
+        'unique_code'       => 'Standard s tímto unikátním kódem již existuje. Zvolte jiný, prostě',
         'description'       => 'Pole jednoduchý popis standardu'
     ],
     'values'                => [

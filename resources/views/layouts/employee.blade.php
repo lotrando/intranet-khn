@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
-    <title>{{ $category ?? 'Intranet' }} - {{ $title ?? 'KHN' }}</title>
+    <title>{{ $category ?? 'Intranet' }} | {{ $title ?? 'KHN' }}</title>
     @yield('favicon')
 
     <link href="{{ asset('https://use.fontawesome.com/releases/v5.11.2/css/all.css') }}" rel="stylesheet">

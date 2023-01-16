@@ -1,11 +1,12 @@
 @extends('layouts.blank')
 
 @section('favicon')
-<link type="image/png" href="{{ asset('img/home.png') }}" rel="shortcut icon">
+<link type="image/png" href="{{ asset('img/test.png') }}" rel="shortcut icon">
 @endsection
 
 @section('content')
 <div class="page-wrapper">
+
   <!-- Page header -->
   <div class="page-header d-print-none">
     <div class="container-fluid">
@@ -26,9 +27,10 @@
   <!-- Page body -->
   <div class="page-body">
     <div class="container-fluid">
-      <div class="row m-2 align-items-center">
-        <div class="card col-12">
-          Homepage
+      <div class="row">
+        <div class="col-12 mb-5">
+
+
         </div>
       </div>
     </div>
@@ -36,4 +38,8 @@
 
 </div>
 <!-- Wrapper End -->
+@endsection
+
+@section('scripts')
+<script src="{{ asset('') }}"></script>
 @endsection

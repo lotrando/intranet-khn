@@ -54,6 +54,7 @@
     <script src="{{ asset('js/moment-with-locales.js') }}"></script>
     <script src="{{ asset('js/m3u-player.js') }}" defer></script>
     @include('layouts.partials.scripts')
+    @include('sweetalert::alert')
     @yield('scripts')
   </body>
 

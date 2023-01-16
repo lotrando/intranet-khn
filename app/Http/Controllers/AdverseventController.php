@@ -63,7 +63,8 @@ class AdverseventController extends Controller
         }
 
         return view('adversevents.index')->with([
-            'departments'   => $departments,
+            'title'         => 'Nežádoucí události',
+            'departments'   => $departments
         ]);
     }
 

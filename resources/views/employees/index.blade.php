@@ -70,7 +70,7 @@
 @section('modals')
 {{-- Main Form Modal --}}
 <div class="modal modal-blur fade" id="formModal" data-bs-backdrop="static" data-bs-keyboard="false" role="dialog" aria-hidden="true" tabindex="-1">
-  <div class="modal-dialog modal-xl modal-dialog-top" role="document">
+  <div class="modal-dialog modal-xl modal-dialog-center" role="document">
     <div class="modal-content shadow-lg">
       <div id="modal-header">
         <h5 class="modal-title"></h5>
@@ -223,7 +223,7 @@
             </div>
             <div class="col-2">
               <label class="form-label">{{ __('Preview new photo') }}</label>
-              <div class="d-flex justify-content-start align-items-start">
+              <div class="d-flex justify-content-start align-items-center">
                 <img class="z-depth-1 img-thumbnail-big" id="preview_image" height='193px'></img>
               </div>
             </div>

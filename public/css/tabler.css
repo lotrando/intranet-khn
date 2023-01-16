@@ -2569,9 +2569,9 @@ textarea.form-control-lg {
   width: 100%;
   padding: 0.4375rem 2.25rem 0.4375rem 0.75rem;
   -moz-padding-start: calc(0.75rem - 3px);
-  font-size: 0.875rem;
+  font-size: 0.975rem;
   font-weight: 400;
-  line-height: 1.4285714;
+  line-height: 1.5285714;
   color: inherit;
   background-color: #ffffff;
   background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3e%3cpath fill='none' stroke='%23d9dbde' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='M2 5l6 6 6-6'/%3e%3c/svg%3e");
@@ -3020,8 +3020,8 @@ button:disabled {
 .input-group-lg > .form-select,
 .input-group-lg > .input-group-text,
 .input-group-lg > .btn {
-  padding: 0.5rem 1.5rem;
-  font-size: 1.25rem;
+  padding: 1.5rem 1.5rem;
+  font-size: 0.875rem;
   border-radius: 8px;
 }
 
@@ -5946,7 +5946,7 @@ fieldset:disabled .btn {
   margin: 0;
   font-family: system-ui, sans-serif, sans-serif;
   font-style: normal;
-  font-weight: 400;
+  font-weight: 700;
   line-height: 1.4285714;
   text-align: left;
   text-align: start;
@@ -14824,7 +14824,7 @@ a.avatar {
   border: 1px solid transparent;
   min-width: 1.25rem;
   font-weight: 600;
-  font-size: 0.625rem;
+  font-size: 0.725rem;
   letter-spacing: 0.04em;
 }
 

@@ -1,10 +1,23 @@
 @extends('layouts.adverse')
 
 @section('favicon')
-<link type="image/png" href="/img/adversevents.png" rel="shortcut icon" />
+<link type="image/png" href="/img/udalost.png" rel="shortcut icon" />
 @endsection
 
 @section('title', 'Nežádoucí události')
+
+@section('buttons')
+<div class="btn-list">
+  <button class="btn btn-success d-none d-sm-inline-block" id="openCreateModal" data-bs-toggle="tooltip" data-bs-placement="bottom" data-bs-original-title="{{ __('Creates new adverse event') }}">
+    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-alert-triangle" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+      <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+      <path d="M12 9v2m0 4v.01"></path>
+      <path d="M5 19h14a2 2 0 0 0 1.84 -2.75l-7.1 -12.25a2 2 0 0 0 -3.5 0l-7.1 12.25a2 2 0 0 0 1.75 2.75"></path>
+    </svg>
+    {{ __('Nová nežádoucí událost') }}
+  </button>
+</div>
+@endsection
 
 @section('content')
 <div class="container-fluid">
@@ -16,17 +29,6 @@
             {{ __('Adverse events of KHN') }}
           </h3>
           <div class="ms-auto d-print-none col-auto">
-            <div class="btn-list">
-              <button class="btn btn-success d-none d-sm-inline-block" id="openCreateModal" data-bs-toggle="tooltip" data-bs-placement="bottom" data-bs-original-title="{{ __('Creates new adverse event') }}">
-                <svg class="icon icon-tabler icon-tabler-urgent" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
-                  <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
-                  <path d="M8 16v-4a4 4 0 0 1 8 0v4"></path>
-                  <path d="M3 12h1m8 -9v1m8 8h1m-15.4 -6.4l.7 .7m12.1 -.7l-.7 .7"></path>
-                  <rect x="6" y="16" width="12" height="4" rx="1"></rect>
-                </svg>
-                {{ __('Nová událost') }}
-              </button>
-            </div>
           </div>
         </div>
         <div class="card-body p-2">
@@ -79,7 +81,7 @@
               <select class="form-select" id="department_id" name="department_id">
                 @foreach ($departments as $department)
                 <option value="{{ $department->id }}" @if (old('department_id')==$department->id) selected @endif>
-                  {{ $department->center_code }} -
+                  {{ $department->department_code }} -
                   {{ $department->department_name }}</option>
                 @endforeach
               </select>
@@ -457,7 +459,7 @@
           $('#inputForm')[0].reset();
           $("#modal-header, #modal-icon").removeClass();
           $('#formModal').modal('show');
-          $('#modal-icon').addClass('fas fa-first-aid fa-2x m-2');
+          $('#modal-icon').addClass('fas fa-exclamation-triangle fa-2x m-2');
           $('#modal-header').addClass("modal-header bg-red-lt");
           $('#action_button, .modal-title').text("{{ __('Edit adverse event') }}");
           $('#action').val("Edit");
@@ -511,7 +513,7 @@
       $("#modal-icon, #modal-header").removeClass();
       $('#department_id, #department_code, #spec_druh').val('');
       $('#formModal').modal('show');
-      $('#modal-icon').addClass('fas fa-first-aid fa-2x m-2');
+      $('#modal-icon').addClass('fas fa-exclamation-triangle fa-2x m-2');
       $('#modal-header').addClass("modal-header bg-muted-lt");
       $('#action_button, .modal-title').text("{{ __('Create new adverse event') }}");
       $('#action').val("Add");

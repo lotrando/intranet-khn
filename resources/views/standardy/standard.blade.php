@@ -28,10 +28,14 @@
     <div class="container-fluid">
       <div class="row align-items-center">
 
+        <div class="col-12 mb-2">
+          <div id="display"></div>
+        </div>
+
         <!-- Page Title -->
         <div class="col">
           <div class="page-pretitle text-primary">
-            {{ __($categorie->category_type) ?? '' }}
+            {{ __($category) ?? '' }}
           </div>
           <h2 class="page-title text-primary">
             {{ __($categorie->category_name) ?? '' }}
@@ -61,9 +65,6 @@
           </div>
         </div>
         <!-- Page Title Buttons End -->
-        <div class="col-12">
-          <div id="display"></div>
-        </div>
 
         <!-- Page -->
         <div class="container-fluid mt-2">
@@ -84,16 +85,20 @@
                             </a>
                           </div>
                           <div class="col text-truncate">
-                            <a class="text-primary d-block text-decoration-none" href="{{ url('standardy/' . $document->file) }}" target="_blank">
+                            <a class="text-primary d-block text-decoration-none" href="{{ route('download', $document->id) }}" target="_blank">
                               <h3 style="margin-bottom: 0;">{{ $document->position }}. {{ $document->name }}</h3>
                             </a>
                             <div class="d-block text-muted text-truncate mt-n1">{{ $document->description }}</div>
                           </div>
                           <div class="col-auto">
-                            <svg class="icon icon-tabler text-yellow" xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 24 24" stroke-width="2"
-                                 stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-certificate text-yellow" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
                               <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
-                              <path d="M9 4h6a2 2 0 0 1 2 2v14l-5 -3l-5 3v-14a2 2 0 0 1 2 -2"></path>
+                              <circle cx="15" cy="15" r="3"></circle>
+                              <path d="M13 17.5v4.5l2 -1.5l2 1.5v-4.5"></path>
+                              <path d="M10 19h-5a2 2 0 0 1 -2 -2v-10c0 -1.1 .9 -2 2 -2h14a2 2 0 0 1 2 2v10a2 2 0 0 1 -1 1.73"></path>
+                              <line x1="6" y1="9" x2="18" y2="9"></line>
+                              <line x1="6" y1="12" x2="9" y2="12"></line>
+                              <line x1="6" y1="15" x2="8" y2="15"></line>
                             </svg>
                             <span class="text-muted">revize: {{ $document->revision }}</span>
                             @auth
@@ -169,7 +174,7 @@
                             </a>
                           </div>
                           <div class="col text-truncate">
-                            <a class="text-primary d-block d-block text-primary text-decoration-none" href="{{ url('standardy/' . $add->file) }}">
+                            <a class="text-primary d-block d-block text-primary text-decoration-none" href="{{ route('download', $document->id) }}">
                               <h3 style="margin-bottom: 0;">{{ $document->position }}. {{ $document->name }} - příloha č. {{ $add->name }}</h3>
                             </a>
                             <div class="d-block text-muted text-truncate mt-n1">{{ $add->description }}</div>
@@ -228,7 +233,7 @@
 @section('modals')
 {{-- Main Form Modal --}}
 <div class="modal modal-blur fade" id="formModal" data-bs-backdrop="static" data-bs-keyboard="false" role="dialog" aria-hidden="true" tabindex="-1">
-  <div class="modal-dialog modal-xl modal-dialog-centered" role="document">
+  <div class="modal-dialog modal-full-width mx-5 modal-dialog-centered" role="document">
     <div class="modal-content shadow-lg">
       <div id="modal-header">
         <h5 class="modal-title"></h5>
@@ -264,7 +269,7 @@
             </div>
             <div class="col-12 col-lg-2 mb-sm-1">
               <label class="form-label">{{ __('Revision') }}</label>
-              <input class="form-control" id="revision" name="revision" type="text" placeholder="{{ __('číslo nebo měsíc a rok') }}">
+              <input class="form-control" id="revision" name="revision" type="text" placeholder="{{ __('číslo nebo M/YYYY') }}">
             </div>
           </div>
           <div class="row">

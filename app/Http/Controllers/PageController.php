@@ -11,13 +11,20 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use PhpParser\Node\Stmt\Return_;
+use RealRashid\SweetAlert\Facades\Alert;
 
 class PageController extends Controller
 {
+    // Homepage
+    public function home()
+    {
+        return view('home', ['category' => 'Intranet', 'title' => 'Homepage']);
+    }
+
     // Oznámení
     public function prehledy()
     {
-        return view('home', ['category' => 'Oznámení', 'title' => 'Přehledy']);
+        return view('prehledy', ['category' => 'Oznámení', 'title' => 'Přehledy']);
     }
 
     public function zmeny()
@@ -31,7 +38,7 @@ class PageController extends Controller
 
         return view('zmeny', [
             'category'  => 'Oznámení',
-            'title'     => 'Změny ve standardech',
+            'title'     => 'Změny standardů',
             'suma'      => $suma,
             'documents' => $documents,
         ]);
@@ -75,7 +82,7 @@ class PageController extends Controller
 
     public function kantyna()
     {
-        $daylist = DB::table('calendar')->where('date', '>=', now())->paginate(7);
+        $daylist = DB::table('calendar')->where('date', '>=', Carbon::now()->subdays(7))->where('date', '<=', Carbon::now()->addDays(7))->paginate(7);
         return view('kantyna', ['category' => 'Stravování', 'title' => 'Nabídka kantýny', 'daylist' => $daylist]);
     }
 

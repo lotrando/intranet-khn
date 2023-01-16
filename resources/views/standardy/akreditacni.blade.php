@@ -1,25 +1,5 @@
 @extends('layouts.blank')
 
-{{--
-
-03. Práva pacientů a jejich blízkých Finální verze 30.03.2022
-04. Diagnostická péče Finální verze 09.03.2022
-05. Terapeutická péče Finální verze 23.02.2022
-06. Anesteziologická a chirurgická péče Finální verze 01.04.2022
-07. Skladování, předepisování a podávání léčiv Finální verze 07.03.2022
-08. Edukace pacientů a jejich blízkých Finální verze 02.03.2022
-09. Kvalita péče a bezpečí pacientů Finální verze 01.04.2022
-10. Prevence a kontrola infekcí spojených se zdravotní péčí Finální verze 01.04.2022
-11. Řízení a vedení Finální verze 15.06.2022
-12. Zajištění bezpečnosti nemocničního prostředí
-Finální verze  28.03.2022
-13. Kvalifikace a vzdělávání personálu Finální verze 06.06.2022
-14. Řízení informací Finální verze 15.06.2022
-15. Přehled povinných školení pro zaměstnance KHN a.s. Finální verze  01.05.2022
-
---}}
-
-
 @section('favicon')
 <link type="image/png" href="{{ asset('img/'.$categorie->category_icon) ?? '' }}" rel="shortcut icon">
 @endsection
@@ -46,10 +26,15 @@ Finální verze  28.03.2022
   <div class="page-header d-print-none">
     <div class="container-fluid">
       <div class="row align-items-center">
+
+        <div class="col-12 mb-2">
+          <div id="display"></div>
+        </div>
+
         <!-- Page pre-title -->
         <div class="col">
           <div class="page-pretitle text-primary">
-            {{ __($categorie->category_type) ?? '' }}
+            {{ __($category) ?? '' }}
           </div>
           <h2 class="page-title text-primary">
             {{ __($categorie->category_name) ?? '' }}
@@ -59,9 +44,32 @@ Finální verze  28.03.2022
         <div class="ms-auto d-print-none col-auto">
           <div class="btn-list">
             <div class="d-flex justify-content-end">
+              <button class="btn btn-yellow me-2 d-none d-sm-inline-block" id="showbtn">
+                <svg class="icon icon-tabler icon-tabler-list-details" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" stroke-width="2"
+                     stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                  <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+                  <path d="M13 5h8"></path>
+                  <path d="M13 9h5"></path>
+                  <path d="M13 15h8"></path>
+                  <path d="M13 19h5"></path>
+                  <rect x="3" y="4" width="6" height="6" rx="1"></rect>
+                  <rect x="3" y="14" width="6" height="6" rx="1"></rect>
+                </svg>
+                {{ __('Zobrazit standardy') }}
+              </button>
+              <button class="btn btn-secondary me-2 d-none d-sm-inline-block" id="closebtn">
+                <svg class="icon icon-tabler icon-tabler-menu-2" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" stroke-width="2"
+                     stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                  <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+                  <line x1="4" y1="6" x2="20" y2="6"></line>
+                  <line x1="4" y1="12" x2="20" y2="12"></line>
+                  <line x1="4" y1="18" x2="20" y2="18"></line>
+                </svg>
+                {{ __('Skrýt standardy') }}
+              </button>
               @auth
               <button class="btn btn-success me-2 d-none d-sm-inline-block" id="openCreateModal" data-bs-toggle="tooltip" data-bs-placement="bottom"
-                      data-bs-original-title="{{ __('Vytvoří nový '. $categorie->button.' standard') }}">
+                      data-bs-original-title="{{ __('Vytvoří '. $categorie->button.' standard') }}">
                 <svg class="icon icon-tabler icon-tabler-book-upload" xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 24 24" stroke-width="1"
                      stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
                   <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
@@ -73,30 +81,6 @@ Finální verze  28.03.2022
                 {{ __('Nový standard') }}
               </button>
               @endauth
-              <button class="btn btn-yellow me-2 d-none d-sm-inline-block" id="showbtn" data-bs-toggle="tooltip" data-bs-placement="bottom"
-                      data-bs-original-title="{{ __('Zobrazí všechny '.$categorie->button.' standardy') }}">
-                <svg class="icon icon-tabler icon-tabler-list-details" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" stroke-width="2"
-                     stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
-                  <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
-                  <path d="M13 5h8"></path>
-                  <path d="M13 9h5"></path>
-                  <path d="M13 15h8"></path>
-                  <path d="M13 19h5"></path>
-                  <rect x="3" y="4" width="6" height="6" rx="1"></rect>
-                  <rect x="3" y="14" width="6" height="6" rx="1"></rect>
-                </svg>
-                {{ __('Zobrazit všechny standardy') }}
-              </button>
-              <button class="btn btn-secondary me-2 d-none d-sm-inline-block" id="closebtn" data-bs-toggle="tooltip" data-bs-placement="bottom" data-bs-original-title="{{ __('Skryje všechny '. $categorie->button.' standardy') }}">
-                <svg class="icon icon-tabler icon-tabler-menu-2" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" stroke-width="2"
-                     stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
-                  <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
-                  <line x1="4" y1="6" x2="20" y2="6"></line>
-                  <line x1="4" y1="12" x2="20" y2="12"></line>
-                  <line x1="4" y1="18" x2="20" y2="18"></line>
-                </svg>
-                {{ __('Skrýt všechny standardy') }}
-              </button>
             </div>
           </div>
         </div>
@@ -110,7 +94,7 @@ Finální verze  28.03.2022
               <div class="accordion-item">
                 <h2 class="accordion-header" id="main-heading-1">
                   <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#standard-1" aria-expanded="true">
-                    1. Bezpečnostní cíle
+                    01. Bezpečnostní cíle
                   </button>
                 </h2>
                 <div id="standard-1" class="accordion-collapse collapse m-1" data-bs-parent="#accordion-standard">
@@ -130,16 +114,20 @@ Finální verze  28.03.2022
                                   </a>
                                 </div>
                                 <div class="col text-truncate">
-                                  <a class="text-primary d-block text-decoration-none" href="{{ url('standardy/' . $document->file) }}" target="_blank">
-                                    <h3 style="margin-bottom: 0;">{{ $document->position }}. {{ $document->name }}</h3>
+                                  <a class="text-primary d-block text-decoration-none" href="{{ route('download', $document->id) }}" target="_blank">
+                                    <h3 style="margin-bottom: 0;">{{ $document->position }}.{{ $document->name }}</h3>
                                   </a>
                                   <div class="d-block text-muted text-truncate mt-n1">{{ $document->description }}</div>
                                 </div>
                                 <div class="col-auto">
-                                  <svg class="icon icon-tabler text-yellow" xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 24 24" stroke-width="2"
-                                       stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                                  <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-certificate text-yellow" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
                                     <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
-                                    <path d="M9 4h6a2 2 0 0 1 2 2v14l-5 -3l-5 3v-14a2 2 0 0 1 2 -2"></path>
+                                    <circle cx="15" cy="15" r="3"></circle>
+                                    <path d="M13 17.5v4.5l2 -1.5l2 1.5v-4.5"></path>
+                                    <path d="M10 19h-5a2 2 0 0 1 -2 -2v-10c0 -1.1 .9 -2 2 -2h14a2 2 0 0 1 2 2v10a2 2 0 0 1 -1 1.73"></path>
+                                    <line x1="6" y1="9" x2="18" y2="9"></line>
+                                    <line x1="6" y1="12" x2="9" y2="12"></line>
+                                    <line x1="6" y1="15" x2="8" y2="15"></line>
                                   </svg>
                                   <span class="text-muted">revize: {{ $document->revision }}</span>
                                   @auth
@@ -215,15 +203,19 @@ Finální verze  28.03.2022
                                 </div>
                                 <div class="col text-truncate">
                                   <a class="text-primary d-block d-block text-primary text-decoration-none" href="{{ url('standardy/' . $add->file) }}">
-                                    <h3 style="margin-bottom: 0;">{{ $document->position }}. {{ $document->name }} - příloha č. {{ $add->name }}</h3>
+                                    <h3 style="margin-bottom: 0;">Příloha č. {{ $add->name }}</h3>
                                   </a>
                                   <div class="d-block text-muted text-truncate mt-n1">{{ $add->description }}</div>
                                 </div>
                                 <div class="col-auto">
-                                  <svg class="icon icon-tabler text-yellow" xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 24 24"
-                                       stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                                  <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-certificate text-yellow" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
                                     <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
-                                    <path d="M9 4h6a2 2 0 0 1 2 2v14l-5 -3l-5 3v-14a2 2 0 0 1 2 -2"></path>
+                                    <circle cx="15" cy="15" r="3"></circle>
+                                    <path d="M13 17.5v4.5l2 -1.5l2 1.5v-4.5"></path>
+                                    <path d="M10 19h-5a2 2 0 0 1 -2 -2v-10c0 -1.1 .9 -2 2 -2h14a2 2 0 0 1 2 2v10a2 2 0 0 1 -1 1.73"></path>
+                                    <line x1="6" y1="9" x2="18" y2="9"></line>
+                                    <line x1="6" y1="12" x2="9" y2="12"></line>
+                                    <line x1="6" y1="15" x2="8" y2="15"></line>
                                   </svg>
                                   <span class="text-muted">revize: {{ $add->revision }}</span>
                                   @auth
@@ -267,7 +259,7 @@ Finální verze  28.03.2022
               <div class="accordion-item">
                 <h2 class="accordion-header" id="main-heading-2">
                   <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#standard-2" aria-expanded="true">
-                    2. Dostupnost a kontinuita péče
+                    02. Dostupnost a kontinuita péče
                   </button>
                 </h2>
                 <div id="standard-2" class="accordion-collapse collapse m-1" data-bs-parent="#accordion-standard">
@@ -287,16 +279,20 @@ Finální verze  28.03.2022
                                   </a>
                                 </div>
                                 <div class="col text-truncate">
-                                  <a class="text-primary d-block text-decoration-none" href="{{ url('standardy/' . $document->file) }}" target="_blank">
+                                  <a class="text-primary d-block text-decoration-none" href="{{ route('download', $document->id) }}" target="_blank">
                                     <h3 style="margin-bottom: 0;">{{ $document->position }}. {{ $document->name }}</h3>
                                   </a>
                                   <div class="d-block text-muted text-truncate mt-n1">{{ $document->description }}</div>
                                 </div>
                                 <div class="col-auto">
-                                  <svg class="icon icon-tabler text-yellow" xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 24 24" stroke-width="2"
-                                       stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                                  <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-certificate text-yellow" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
                                     <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
-                                    <path d="M9 4h6a2 2 0 0 1 2 2v14l-5 -3l-5 3v-14a2 2 0 0 1 2 -2"></path>
+                                    <circle cx="15" cy="15" r="3"></circle>
+                                    <path d="M13 17.5v4.5l2 -1.5l2 1.5v-4.5"></path>
+                                    <path d="M10 19h-5a2 2 0 0 1 -2 -2v-10c0 -1.1 .9 -2 2 -2h14a2 2 0 0 1 2 2v10a2 2 0 0 1 -1 1.73"></path>
+                                    <line x1="6" y1="9" x2="18" y2="9"></line>
+                                    <line x1="6" y1="12" x2="9" y2="12"></line>
+                                    <line x1="6" y1="15" x2="8" y2="15"></line>
                                   </svg>
                                   <span class="text-muted">revize: {{ $document->revision }}</span>
                                   @auth
@@ -377,10 +373,14 @@ Finální verze  28.03.2022
                                   <div class="d-block text-muted text-truncate mt-n1">{{ $add->description }}</div>
                                 </div>
                                 <div class="col-auto">
-                                  <svg class="icon icon-tabler text-yellow" xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 24 24"
-                                       stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                                  <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-certificate text-yellow" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
                                     <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
-                                    <path d="M9 4h6a2 2 0 0 1 2 2v14l-5 -3l-5 3v-14a2 2 0 0 1 2 -2"></path>
+                                    <circle cx="15" cy="15" r="3"></circle>
+                                    <path d="M13 17.5v4.5l2 -1.5l2 1.5v-4.5"></path>
+                                    <path d="M10 19h-5a2 2 0 0 1 -2 -2v-10c0 -1.1 .9 -2 2 -2h14a2 2 0 0 1 2 2v10a2 2 0 0 1 -1 1.73"></path>
+                                    <line x1="6" y1="9" x2="18" y2="9"></line>
+                                    <line x1="6" y1="12" x2="9" y2="12"></line>
+                                    <line x1="6" y1="15" x2="8" y2="15"></line>
                                   </svg>
                                   <span class="text-muted">revize: {{ $add->revision }}</span>
                                   @auth
@@ -423,7 +423,7 @@ Finální verze  28.03.2022
               <div class="accordion-item">
                 <h2 class="accordion-header" id="main-heading-3">
                   <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#standard-3" aria-expanded="true">
-                    3. Práva pacientů a jejich blízkých
+                    03. Práva pacientů a jejich blízkých
                   </button>
                 </h2>
                 <div id="standard-3" class="accordion-collapse collapse m-1" data-bs-parent="#accordion-standard">
@@ -443,16 +443,20 @@ Finální verze  28.03.2022
                                   </a>
                                 </div>
                                 <div class="col text-truncate">
-                                  <a class="text-primary d-block text-decoration-none" href="{{ url('standardy/' . $document->file) }}" target="_blank">
+                                  <a class="text-primary d-block text-decoration-none" href="{{ route('download', $document->id) }}" target="_blank">
                                     <h3 style="margin-bottom: 0;">{{ $document->position }}. {{ $document->name }}</h3>
                                   </a>
                                   <div class="d-block text-muted text-truncate mt-n1">{{ $document->description }}</div>
                                 </div>
                                 <div class="col-auto">
-                                  <svg class="icon icon-tabler text-yellow" xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 24 24" stroke-width="2"
-                                       stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                                  <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-certificate text-yellow" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
                                     <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
-                                    <path d="M9 4h6a2 2 0 0 1 2 2v14l-5 -3l-5 3v-14a2 2 0 0 1 2 -2"></path>
+                                    <circle cx="15" cy="15" r="3"></circle>
+                                    <path d="M13 17.5v4.5l2 -1.5l2 1.5v-4.5"></path>
+                                    <path d="M10 19h-5a2 2 0 0 1 -2 -2v-10c0 -1.1 .9 -2 2 -2h14a2 2 0 0 1 2 2v10a2 2 0 0 1 -1 1.73"></path>
+                                    <line x1="6" y1="9" x2="18" y2="9"></line>
+                                    <line x1="6" y1="12" x2="9" y2="12"></line>
+                                    <line x1="6" y1="15" x2="8" y2="15"></line>
                                   </svg>
                                   <span class="text-muted">revize: {{ $document->revision }}</span>
                                   @auth
@@ -533,10 +537,14 @@ Finální verze  28.03.2022
                                   <div class="d-block text-muted text-truncate mt-n1">{{ $add->description }}</div>
                                 </div>
                                 <div class="col-auto">
-                                  <svg class="icon icon-tabler text-yellow" xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 24 24"
-                                       stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                                  <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-certificate text-yellow" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
                                     <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
-                                    <path d="M9 4h6a2 2 0 0 1 2 2v14l-5 -3l-5 3v-14a2 2 0 0 1 2 -2"></path>
+                                    <circle cx="15" cy="15" r="3"></circle>
+                                    <path d="M13 17.5v4.5l2 -1.5l2 1.5v-4.5"></path>
+                                    <path d="M10 19h-5a2 2 0 0 1 -2 -2v-10c0 -1.1 .9 -2 2 -2h14a2 2 0 0 1 2 2v10a2 2 0 0 1 -1 1.73"></path>
+                                    <line x1="6" y1="9" x2="18" y2="9"></line>
+                                    <line x1="6" y1="12" x2="9" y2="12"></line>
+                                    <line x1="6" y1="15" x2="8" y2="15"></line>
                                   </svg>
                                   <span class="text-muted">revize: {{ $add->revision }}</span>
                                   @auth
@@ -579,7 +587,7 @@ Finální verze  28.03.2022
               <div class="accordion-item">
                 <h2 class="accordion-header" id="main-heading-4">
                   <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#standard-4" aria-expanded="true">
-                    4.
+                    04. Diagnostická péče
                   </button>
                 </h2>
                 <div id="standard-4" class="accordion-collapse collapse m-1" data-bs-parent="#accordion-standard">
@@ -599,16 +607,20 @@ Finální verze  28.03.2022
                                   </a>
                                 </div>
                                 <div class="col text-truncate">
-                                  <a class="text-primary d-block text-decoration-none" href="{{ url('standardy/' . $document->file) }}" target="_blank">
+                                  <a class="text-primary d-block text-decoration-none" href="{{ route('download', $document->id) }}" target="_blank">
                                     <h3 style="margin-bottom: 0;">{{ $document->position }}. {{ $document->name }}</h3>
                                   </a>
                                   <div class="d-block text-muted text-truncate mt-n1">{{ $document->description }}</div>
                                 </div>
                                 <div class="col-auto">
-                                  <svg class="icon icon-tabler text-yellow" xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 24 24" stroke-width="2"
-                                       stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                                  <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-certificate text-yellow" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
                                     <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
-                                    <path d="M9 4h6a2 2 0 0 1 2 2v14l-5 -3l-5 3v-14a2 2 0 0 1 2 -2"></path>
+                                    <circle cx="15" cy="15" r="3"></circle>
+                                    <path d="M13 17.5v4.5l2 -1.5l2 1.5v-4.5"></path>
+                                    <path d="M10 19h-5a2 2 0 0 1 -2 -2v-10c0 -1.1 .9 -2 2 -2h14a2 2 0 0 1 2 2v10a2 2 0 0 1 -1 1.73"></path>
+                                    <line x1="6" y1="9" x2="18" y2="9"></line>
+                                    <line x1="6" y1="12" x2="9" y2="12"></line>
+                                    <line x1="6" y1="15" x2="8" y2="15"></line>
                                   </svg>
                                   <span class="text-muted">revize: {{ $document->revision }}</span>
                                   @auth
@@ -683,16 +695,20 @@ Finální verze  28.03.2022
                                   </a>
                                 </div>
                                 <div class="col text-truncate">
-                                  <a class="text-primary d-block d-block text-primary text-decoration-none" href="{{ url('standardy/' . $add->file) }}">
+                                  <a class="text-primary d-block d-block text-primary text-decoration-none" href="{{ route('download', $document->id) }}">
                                     <h3 style="margin-bottom: 0;">{{ $document->position }}. {{ $document->name }} - příloha č. {{ $add->name }}</h3>
                                   </a>
                                   <div class="d-block text-muted text-truncate mt-n1">{{ $add->description }}</div>
                                 </div>
                                 <div class="col-auto">
-                                  <svg class="icon icon-tabler text-yellow" xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 24 24"
-                                       stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                                  <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-certificate text-yellow" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
                                     <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
-                                    <path d="M9 4h6a2 2 0 0 1 2 2v14l-5 -3l-5 3v-14a2 2 0 0 1 2 -2"></path>
+                                    <circle cx="15" cy="15" r="3"></circle>
+                                    <path d="M13 17.5v4.5l2 -1.5l2 1.5v-4.5"></path>
+                                    <path d="M10 19h-5a2 2 0 0 1 -2 -2v-10c0 -1.1 .9 -2 2 -2h14a2 2 0 0 1 2 2v10a2 2 0 0 1 -1 1.73"></path>
+                                    <line x1="6" y1="9" x2="18" y2="9"></line>
+                                    <line x1="6" y1="12" x2="9" y2="12"></line>
+                                    <line x1="6" y1="15" x2="8" y2="15"></line>
                                   </svg>
                                   <span class="text-muted">revize: {{ $add->revision }}</span>
                                   @auth
@@ -735,7 +751,7 @@ Finální verze  28.03.2022
               <div class="accordion-item">
                 <h2 class="accordion-header" id="main-heading-5">
                   <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#standard-5" aria-expanded="true">
-                    5.
+                    05. Terapeutická péče
                   </button>
                 </h2>
                 <div id="standard-5" class="accordion-collapse collapse m-1" data-bs-parent="#accordion-standard">
@@ -755,16 +771,20 @@ Finální verze  28.03.2022
                                   </a>
                                 </div>
                                 <div class="col text-truncate">
-                                  <a class="text-primary d-block text-decoration-none" href="{{ url('standardy/' . $document->file) }}" target="_blank">
+                                  <a class="text-primary d-block text-decoration-none" href="{{ route('download', $document->id) }}" target="_blank">
                                     <h3 style="margin-bottom: 0;">{{ $document->position }}. {{ $document->name }}</h3>
                                   </a>
                                   <div class="d-block text-muted text-truncate mt-n1">{{ $document->description }}</div>
                                 </div>
                                 <div class="col-auto">
-                                  <svg class="icon icon-tabler text-yellow" xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 24 24" stroke-width="2"
-                                       stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                                  <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-certificate text-yellow" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
                                     <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
-                                    <path d="M9 4h6a2 2 0 0 1 2 2v14l-5 -3l-5 3v-14a2 2 0 0 1 2 -2"></path>
+                                    <circle cx="15" cy="15" r="3"></circle>
+                                    <path d="M13 17.5v4.5l2 -1.5l2 1.5v-4.5"></path>
+                                    <path d="M10 19h-5a2 2 0 0 1 -2 -2v-10c0 -1.1 .9 -2 2 -2h14a2 2 0 0 1 2 2v10a2 2 0 0 1 -1 1.73"></path>
+                                    <line x1="6" y1="9" x2="18" y2="9"></line>
+                                    <line x1="6" y1="12" x2="9" y2="12"></line>
+                                    <line x1="6" y1="15" x2="8" y2="15"></line>
                                   </svg>
                                   <span class="text-muted">revize: {{ $document->revision }}</span>
                                   @auth
@@ -845,10 +865,14 @@ Finální verze  28.03.2022
                                   <div class="d-block text-muted text-truncate mt-n1">{{ $add->description }}</div>
                                 </div>
                                 <div class="col-auto">
-                                  <svg class="icon icon-tabler text-yellow" xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 24 24"
-                                       stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                                  <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-certificate text-yellow" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
                                     <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
-                                    <path d="M9 4h6a2 2 0 0 1 2 2v14l-5 -3l-5 3v-14a2 2 0 0 1 2 -2"></path>
+                                    <circle cx="15" cy="15" r="3"></circle>
+                                    <path d="M13 17.5v4.5l2 -1.5l2 1.5v-4.5"></path>
+                                    <path d="M10 19h-5a2 2 0 0 1 -2 -2v-10c0 -1.1 .9 -2 2 -2h14a2 2 0 0 1 2 2v10a2 2 0 0 1 -1 1.73"></path>
+                                    <line x1="6" y1="9" x2="18" y2="9"></line>
+                                    <line x1="6" y1="12" x2="9" y2="12"></line>
+                                    <line x1="6" y1="15" x2="8" y2="15"></line>
                                   </svg>
                                   <span class="text-muted">revize: {{ $add->revision }}</span>
                                   @auth
@@ -891,7 +915,7 @@ Finální verze  28.03.2022
               <div class="accordion-item">
                 <h2 class="accordion-header" id="main-heading-6">
                   <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#standard-6" aria-expanded="true">
-                    6.
+                    06. Anesteziologická a chirurgická péče
                   </button>
                 </h2>
                 <div id="standard-6" class="accordion-collapse collapse m-1" data-bs-parent="#accordion-standard">
@@ -911,16 +935,20 @@ Finální verze  28.03.2022
                                   </a>
                                 </div>
                                 <div class="col text-truncate">
-                                  <a class="text-primary d-block text-decoration-none" href="{{ url('standardy/' . $document->file) }}" target="_blank">
+                                  <a class="text-primary d-block text-decoration-none" href="{{ route('download', $document->id) }}" target="_blank">
                                     <h3 style="margin-bottom: 0;">{{ $document->position }}. {{ $document->name }}</h3>
                                   </a>
                                   <div class="d-block text-muted text-truncate mt-n1">{{ $document->description }}</div>
                                 </div>
                                 <div class="col-auto">
-                                  <svg class="icon icon-tabler text-yellow" xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 24 24" stroke-width="2"
-                                       stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                                  <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-certificate text-yellow" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
                                     <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
-                                    <path d="M9 4h6a2 2 0 0 1 2 2v14l-5 -3l-5 3v-14a2 2 0 0 1 2 -2"></path>
+                                    <circle cx="15" cy="15" r="3"></circle>
+                                    <path d="M13 17.5v4.5l2 -1.5l2 1.5v-4.5"></path>
+                                    <path d="M10 19h-5a2 2 0 0 1 -2 -2v-10c0 -1.1 .9 -2 2 -2h14a2 2 0 0 1 2 2v10a2 2 0 0 1 -1 1.73"></path>
+                                    <line x1="6" y1="9" x2="18" y2="9"></line>
+                                    <line x1="6" y1="12" x2="9" y2="12"></line>
+                                    <line x1="6" y1="15" x2="8" y2="15"></line>
                                   </svg>
                                   <span class="text-muted">revize: {{ $document->revision }}</span>
                                   @auth
@@ -1001,10 +1029,14 @@ Finální verze  28.03.2022
                                   <div class="d-block text-muted text-truncate mt-n1">{{ $add->description }}</div>
                                 </div>
                                 <div class="col-auto">
-                                  <svg class="icon icon-tabler text-yellow" xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 24 24"
-                                       stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                                  <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-certificate text-yellow" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
                                     <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
-                                    <path d="M9 4h6a2 2 0 0 1 2 2v14l-5 -3l-5 3v-14a2 2 0 0 1 2 -2"></path>
+                                    <circle cx="15" cy="15" r="3"></circle>
+                                    <path d="M13 17.5v4.5l2 -1.5l2 1.5v-4.5"></path>
+                                    <path d="M10 19h-5a2 2 0 0 1 -2 -2v-10c0 -1.1 .9 -2 2 -2h14a2 2 0 0 1 2 2v10a2 2 0 0 1 -1 1.73"></path>
+                                    <line x1="6" y1="9" x2="18" y2="9"></line>
+                                    <line x1="6" y1="12" x2="9" y2="12"></line>
+                                    <line x1="6" y1="15" x2="8" y2="15"></line>
                                   </svg>
                                   <span class="text-muted">revize: {{ $add->revision }}</span>
                                   @auth
@@ -1047,7 +1079,7 @@ Finální verze  28.03.2022
               <div class="accordion-item">
                 <h2 class="accordion-header" id="main-heading-7">
                   <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#standard-7" aria-expanded="true">
-                    7.
+                    07. Skladování, předepisování a podávání léčiv
                   </button>
                 </h2>
                 <div id="standard-7" class="accordion-collapse collapse m-1" data-bs-parent="#accordion-standard">
@@ -1067,16 +1099,20 @@ Finální verze  28.03.2022
                                   </a>
                                 </div>
                                 <div class="col text-truncate">
-                                  <a class="text-primary d-block text-decoration-none" href="{{ url('standardy/' . $document->file) }}" target="_blank">
+                                  <a class="text-primary d-block text-decoration-none" href="{{ route('download', $document->id) }}" target="_blank">
                                     <h3 style="margin-bottom: 0;">{{ $document->position }}. {{ $document->name }}</h3>
                                   </a>
                                   <div class="d-block text-muted text-truncate mt-n1">{{ $document->description }}</div>
                                 </div>
                                 <div class="col-auto">
-                                  <svg class="icon icon-tabler text-yellow" xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 24 24" stroke-width="2"
-                                       stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                                  <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-certificate text-yellow" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
                                     <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
-                                    <path d="M9 4h6a2 2 0 0 1 2 2v14l-5 -3l-5 3v-14a2 2 0 0 1 2 -2"></path>
+                                    <circle cx="15" cy="15" r="3"></circle>
+                                    <path d="M13 17.5v4.5l2 -1.5l2 1.5v-4.5"></path>
+                                    <path d="M10 19h-5a2 2 0 0 1 -2 -2v-10c0 -1.1 .9 -2 2 -2h14a2 2 0 0 1 2 2v10a2 2 0 0 1 -1 1.73"></path>
+                                    <line x1="6" y1="9" x2="18" y2="9"></line>
+                                    <line x1="6" y1="12" x2="9" y2="12"></line>
+                                    <line x1="6" y1="15" x2="8" y2="15"></line>
                                   </svg>
                                   <span class="text-muted">revize: {{ $document->revision }}</span>
                                   @auth
@@ -1157,10 +1193,14 @@ Finální verze  28.03.2022
                                   <div class="d-block text-muted text-truncate mt-n1">{{ $add->description }}</div>
                                 </div>
                                 <div class="col-auto">
-                                  <svg class="icon icon-tabler text-yellow" xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 24 24"
-                                       stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                                  <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-certificate text-yellow" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
                                     <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
-                                    <path d="M9 4h6a2 2 0 0 1 2 2v14l-5 -3l-5 3v-14a2 2 0 0 1 2 -2"></path>
+                                    <circle cx="15" cy="15" r="3"></circle>
+                                    <path d="M13 17.5v4.5l2 -1.5l2 1.5v-4.5"></path>
+                                    <path d="M10 19h-5a2 2 0 0 1 -2 -2v-10c0 -1.1 .9 -2 2 -2h14a2 2 0 0 1 2 2v10a2 2 0 0 1 -1 1.73"></path>
+                                    <line x1="6" y1="9" x2="18" y2="9"></line>
+                                    <line x1="6" y1="12" x2="9" y2="12"></line>
+                                    <line x1="6" y1="15" x2="8" y2="15"></line>
                                   </svg>
                                   <span class="text-muted">revize: {{ $add->revision }}</span>
                                   @auth
@@ -1202,7 +1242,7 @@ Finální verze  28.03.2022
               <div class="accordion-item">
                 <h2 class="accordion-header" id="main-heading-8">
                   <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#standard-8" aria-expanded="true">
-                    8.
+                    08. Edukace pacientů a jejich blízkých
                   </button>
                 </h2>
                 <div id="standard-8" class="accordion-collapse collapse m-1" data-bs-parent="#accordion-standard">
@@ -1222,16 +1262,20 @@ Finální verze  28.03.2022
                                   </a>
                                 </div>
                                 <div class="col text-truncate">
-                                  <a class="text-primary d-block text-decoration-none" href="{{ url('standardy/' . $document->file) }}" target="_blank">
+                                  <a class="text-primary d-block text-decoration-none" href="{{ route('download', $document->id) }}" target="_blank">
                                     <h3 style="margin-bottom: 0;">{{ $document->position }}. {{ $document->name }}</h3>
                                   </a>
                                   <div class="d-block text-muted text-truncate mt-n1">{{ $document->description }}</div>
                                 </div>
                                 <div class="col-auto">
-                                  <svg class="icon icon-tabler text-yellow" xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 24 24" stroke-width="2"
-                                       stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                                  <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-certificate text-yellow" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
                                     <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
-                                    <path d="M9 4h6a2 2 0 0 1 2 2v14l-5 -3l-5 3v-14a2 2 0 0 1 2 -2"></path>
+                                    <circle cx="15" cy="15" r="3"></circle>
+                                    <path d="M13 17.5v4.5l2 -1.5l2 1.5v-4.5"></path>
+                                    <path d="M10 19h-5a2 2 0 0 1 -2 -2v-10c0 -1.1 .9 -2 2 -2h14a2 2 0 0 1 2 2v10a2 2 0 0 1 -1 1.73"></path>
+                                    <line x1="6" y1="9" x2="18" y2="9"></line>
+                                    <line x1="6" y1="12" x2="9" y2="12"></line>
+                                    <line x1="6" y1="15" x2="8" y2="15"></line>
                                   </svg>
                                   <span class="text-muted">revize: {{ $document->revision }}</span>
                                   @auth
@@ -1312,10 +1356,14 @@ Finální verze  28.03.2022
                                   <div class="d-block text-muted text-truncate mt-n1">{{ $add->description }}</div>
                                 </div>
                                 <div class="col-auto">
-                                  <svg class="icon icon-tabler text-yellow" xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 24 24"
-                                       stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                                  <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-certificate text-yellow" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
                                     <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
-                                    <path d="M9 4h6a2 2 0 0 1 2 2v14l-5 -3l-5 3v-14a2 2 0 0 1 2 -2"></path>
+                                    <circle cx="15" cy="15" r="3"></circle>
+                                    <path d="M13 17.5v4.5l2 -1.5l2 1.5v-4.5"></path>
+                                    <path d="M10 19h-5a2 2 0 0 1 -2 -2v-10c0 -1.1 .9 -2 2 -2h14a2 2 0 0 1 2 2v10a2 2 0 0 1 -1 1.73"></path>
+                                    <line x1="6" y1="9" x2="18" y2="9"></line>
+                                    <line x1="6" y1="12" x2="9" y2="12"></line>
+                                    <line x1="6" y1="15" x2="8" y2="15"></line>
                                   </svg>
                                   <span class="text-muted">revize: {{ $add->revision }}</span>
                                   @auth
@@ -1358,7 +1406,7 @@ Finální verze  28.03.2022
               <div class="accordion-item">
                 <h2 class="accordion-header" id="main-heading-9">
                   <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#standard-9" aria-expanded="true">
-                    9.
+                    09. Kvalita péče a bezpečí pacientů
                   </button>
                 </h2>
                 <div id="standard-9" class="accordion-collapse collapse m-1" data-bs-parent="#accordion-standard">
@@ -1378,16 +1426,20 @@ Finální verze  28.03.2022
                                   </a>
                                 </div>
                                 <div class="col text-truncate">
-                                  <a class="text-primary d-block text-decoration-none" href="{{ url('standardy/' . $document->file) }}" target="_blank">
+                                  <a class="text-primary d-block text-decoration-none" href="{{ route('download', $document->id) }}" target="_blank">
                                     <h3 style="margin-bottom: 0;">{{ $document->position }}. {{ $document->name }}</h3>
                                   </a>
                                   <div class="d-block text-muted text-truncate mt-n1">{{ $document->description }}</div>
                                 </div>
                                 <div class="col-auto">
-                                  <svg class="icon icon-tabler text-yellow" xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 24 24" stroke-width="2"
-                                       stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                                  <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-certificate text-yellow" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
                                     <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
-                                    <path d="M9 4h6a2 2 0 0 1 2 2v14l-5 -3l-5 3v-14a2 2 0 0 1 2 -2"></path>
+                                    <circle cx="15" cy="15" r="3"></circle>
+                                    <path d="M13 17.5v4.5l2 -1.5l2 1.5v-4.5"></path>
+                                    <path d="M10 19h-5a2 2 0 0 1 -2 -2v-10c0 -1.1 .9 -2 2 -2h14a2 2 0 0 1 2 2v10a2 2 0 0 1 -1 1.73"></path>
+                                    <line x1="6" y1="9" x2="18" y2="9"></line>
+                                    <line x1="6" y1="12" x2="9" y2="12"></line>
+                                    <line x1="6" y1="15" x2="8" y2="15"></line>
                                   </svg>
                                   <span class="text-muted">revize: {{ $document->revision }}</span>
                                   @auth
@@ -1468,10 +1520,14 @@ Finální verze  28.03.2022
                                   <div class="d-block text-muted text-truncate mt-n1">{{ $add->description }}</div>
                                 </div>
                                 <div class="col-auto">
-                                  <svg class="icon icon-tabler text-yellow" xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 24 24"
-                                       stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                                  <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-certificate text-yellow" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
                                     <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
-                                    <path d="M9 4h6a2 2 0 0 1 2 2v14l-5 -3l-5 3v-14a2 2 0 0 1 2 -2"></path>
+                                    <circle cx="15" cy="15" r="3"></circle>
+                                    <path d="M13 17.5v4.5l2 -1.5l2 1.5v-4.5"></path>
+                                    <path d="M10 19h-5a2 2 0 0 1 -2 -2v-10c0 -1.1 .9 -2 2 -2h14a2 2 0 0 1 2 2v10a2 2 0 0 1 -1 1.73"></path>
+                                    <line x1="6" y1="9" x2="18" y2="9"></line>
+                                    <line x1="6" y1="12" x2="9" y2="12"></line>
+                                    <line x1="6" y1="15" x2="8" y2="15"></line>
                                   </svg>
                                   <span class="text-muted">revize: {{ $add->revision }}</span>
                                   @auth
@@ -1514,7 +1570,7 @@ Finální verze  28.03.2022
               <div class="accordion-item">
                 <h2 class="accordion-header" id="main-heading-10">
                   <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#standard-10" aria-expanded="true">
-                    10.
+                    10. Prevence a kontrola infekcí spojených se zdravotní péčí
                   </button>
                 </h2>
                 <div id="standard-10" class="accordion-collapse collapse m-1" data-bs-parent="#accordion-standard">
@@ -1534,16 +1590,20 @@ Finální verze  28.03.2022
                                   </a>
                                 </div>
                                 <div class="col text-truncate">
-                                  <a class="text-primary d-block text-decoration-none" href="{{ url('standardy/' . $document->file) }}" target="_blank">
+                                  <a class="text-primary d-block text-decoration-none" href="{{ route('download', $document->id) }}" target="_blank">
                                     <h3 style="margin-bottom: 0;">{{ $document->position }}. {{ $document->name }}</h3>
                                   </a>
                                   <div class="d-block text-muted text-truncate mt-n1">{{ $document->description }}</div>
                                 </div>
                                 <div class="col-auto">
-                                  <svg class="icon icon-tabler text-yellow" xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 24 24" stroke-width="2"
-                                       stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                                  <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-certificate text-yellow" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
                                     <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
-                                    <path d="M9 4h6a2 2 0 0 1 2 2v14l-5 -3l-5 3v-14a2 2 0 0 1 2 -2"></path>
+                                    <circle cx="15" cy="15" r="3"></circle>
+                                    <path d="M13 17.5v4.5l2 -1.5l2 1.5v-4.5"></path>
+                                    <path d="M10 19h-5a2 2 0 0 1 -2 -2v-10c0 -1.1 .9 -2 2 -2h14a2 2 0 0 1 2 2v10a2 2 0 0 1 -1 1.73"></path>
+                                    <line x1="6" y1="9" x2="18" y2="9"></line>
+                                    <line x1="6" y1="12" x2="9" y2="12"></line>
+                                    <line x1="6" y1="15" x2="8" y2="15"></line>
                                   </svg>
                                   <span class="text-muted">revize: {{ $document->revision }}</span>
                                   @auth
@@ -1624,10 +1684,14 @@ Finální verze  28.03.2022
                                   <div class="d-block text-muted text-truncate mt-n1">{{ $add->description }}</div>
                                 </div>
                                 <div class="col-auto">
-                                  <svg class="icon icon-tabler text-yellow" xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 24 24"
-                                       stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                                  <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-certificate text-yellow" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
                                     <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
-                                    <path d="M9 4h6a2 2 0 0 1 2 2v14l-5 -3l-5 3v-14a2 2 0 0 1 2 -2"></path>
+                                    <circle cx="15" cy="15" r="3"></circle>
+                                    <path d="M13 17.5v4.5l2 -1.5l2 1.5v-4.5"></path>
+                                    <path d="M10 19h-5a2 2 0 0 1 -2 -2v-10c0 -1.1 .9 -2 2 -2h14a2 2 0 0 1 2 2v10a2 2 0 0 1 -1 1.73"></path>
+                                    <line x1="6" y1="9" x2="18" y2="9"></line>
+                                    <line x1="6" y1="12" x2="9" y2="12"></line>
+                                    <line x1="6" y1="15" x2="8" y2="15"></line>
                                   </svg>
                                   <span class="text-muted">revize: {{ $add->revision }}</span>
                                   @auth
@@ -1670,7 +1734,7 @@ Finální verze  28.03.2022
               <div class="accordion-item">
                 <h2 class="accordion-header" id="main-heading-11">
                   <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#standard-11" aria-expanded="true">
-                    11.
+                    11. Řízení a vedení
                   </button>
                 </h2>
                 <div id="standard-11" class="accordion-collapse collapse m-1" data-bs-parent="#accordion-standard">
@@ -1690,16 +1754,20 @@ Finální verze  28.03.2022
                                   </a>
                                 </div>
                                 <div class="col text-truncate">
-                                  <a class="text-primary d-block text-decoration-none" href="{{ url('standardy/' . $document->file) }}" target="_blank">
+                                  <a class="text-primary d-block text-decoration-none" href="{{ route('download', $document->id) }}" target="_blank">
                                     <h3 style="margin-bottom: 0;">{{ $document->position }}. {{ $document->name }}</h3>
                                   </a>
                                   <div class="d-block text-muted text-truncate mt-n1">{{ $document->description }}</div>
                                 </div>
                                 <div class="col-auto">
-                                  <svg class="icon icon-tabler text-yellow" xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 24 24" stroke-width="2"
-                                       stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                                  <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-certificate text-yellow" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
                                     <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
-                                    <path d="M9 4h6a2 2 0 0 1 2 2v14l-5 -3l-5 3v-14a2 2 0 0 1 2 -2"></path>
+                                    <circle cx="15" cy="15" r="3"></circle>
+                                    <path d="M13 17.5v4.5l2 -1.5l2 1.5v-4.5"></path>
+                                    <path d="M10 19h-5a2 2 0 0 1 -2 -2v-10c0 -1.1 .9 -2 2 -2h14a2 2 0 0 1 2 2v10a2 2 0 0 1 -1 1.73"></path>
+                                    <line x1="6" y1="9" x2="18" y2="9"></line>
+                                    <line x1="6" y1="12" x2="9" y2="12"></line>
+                                    <line x1="6" y1="15" x2="8" y2="15"></line>
                                   </svg>
                                   <span class="text-muted">revize: {{ $document->revision }}</span>
                                   @auth
@@ -1780,10 +1848,14 @@ Finální verze  28.03.2022
                                   <div class="d-block text-muted text-truncate mt-n1">{{ $add->description }}</div>
                                 </div>
                                 <div class="col-auto">
-                                  <svg class="icon icon-tabler text-yellow" xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 24 24"
-                                       stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                                  <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-certificate text-yellow" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
                                     <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
-                                    <path d="M9 4h6a2 2 0 0 1 2 2v14l-5 -3l-5 3v-14a2 2 0 0 1 2 -2"></path>
+                                    <circle cx="15" cy="15" r="3"></circle>
+                                    <path d="M13 17.5v4.5l2 -1.5l2 1.5v-4.5"></path>
+                                    <path d="M10 19h-5a2 2 0 0 1 -2 -2v-10c0 -1.1 .9 -2 2 -2h14a2 2 0 0 1 2 2v10a2 2 0 0 1 -1 1.73"></path>
+                                    <line x1="6" y1="9" x2="18" y2="9"></line>
+                                    <line x1="6" y1="12" x2="9" y2="12"></line>
+                                    <line x1="6" y1="15" x2="8" y2="15"></line>
                                   </svg>
                                   <span class="text-muted">revize: {{ $add->revision }}</span>
                                   @auth
@@ -1826,7 +1898,7 @@ Finální verze  28.03.2022
               <div class="accordion-item">
                 <h2 class="accordion-header" id="main-heading-12">
                   <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#standard-12" aria-expanded="true">
-                    12.
+                    12. Zajištění bezpečnosti nemocničního prostředí
                   </button>
                 </h2>
                 <div id="standard-12" class="accordion-collapse collapse m-1" data-bs-parent="#accordion-standard">
@@ -1846,16 +1918,20 @@ Finální verze  28.03.2022
                                   </a>
                                 </div>
                                 <div class="col text-truncate">
-                                  <a class="text-primary d-block text-decoration-none" href="{{ url('standardy/' . $document->file) }}" target="_blank">
+                                  <a class="text-primary d-block text-decoration-none" href="{{ route('download', $document->id) }}" target="_blank">
                                     <h3 style="margin-bottom: 0;">{{ $document->position }}. {{ $document->name }}</h3>
                                   </a>
                                   <div class="d-block text-muted text-truncate mt-n1">{{ $document->description }}</div>
                                 </div>
                                 <div class="col-auto">
-                                  <svg class="icon icon-tabler text-yellow" xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 24 24" stroke-width="2"
-                                       stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                                  <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-certificate text-yellow" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
                                     <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
-                                    <path d="M9 4h6a2 2 0 0 1 2 2v14l-5 -3l-5 3v-14a2 2 0 0 1 2 -2"></path>
+                                    <circle cx="15" cy="15" r="3"></circle>
+                                    <path d="M13 17.5v4.5l2 -1.5l2 1.5v-4.5"></path>
+                                    <path d="M10 19h-5a2 2 0 0 1 -2 -2v-10c0 -1.1 .9 -2 2 -2h14a2 2 0 0 1 2 2v10a2 2 0 0 1 -1 1.73"></path>
+                                    <line x1="6" y1="9" x2="18" y2="9"></line>
+                                    <line x1="6" y1="12" x2="9" y2="12"></line>
+                                    <line x1="6" y1="15" x2="8" y2="15"></line>
                                   </svg>
                                   <span class="text-muted">revize: {{ $document->revision }}</span>
                                   @auth
@@ -1936,10 +2012,14 @@ Finální verze  28.03.2022
                                   <div class="d-block text-muted text-truncate mt-n1">{{ $add->description }}</div>
                                 </div>
                                 <div class="col-auto">
-                                  <svg class="icon icon-tabler text-yellow" xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 24 24"
-                                       stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                                  <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-certificate text-yellow" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
                                     <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
-                                    <path d="M9 4h6a2 2 0 0 1 2 2v14l-5 -3l-5 3v-14a2 2 0 0 1 2 -2"></path>
+                                    <circle cx="15" cy="15" r="3"></circle>
+                                    <path d="M13 17.5v4.5l2 -1.5l2 1.5v-4.5"></path>
+                                    <path d="M10 19h-5a2 2 0 0 1 -2 -2v-10c0 -1.1 .9 -2 2 -2h14a2 2 0 0 1 2 2v10a2 2 0 0 1 -1 1.73"></path>
+                                    <line x1="6" y1="9" x2="18" y2="9"></line>
+                                    <line x1="6" y1="12" x2="9" y2="12"></line>
+                                    <line x1="6" y1="15" x2="8" y2="15"></line>
                                   </svg>
                                   <span class="text-muted">revize: {{ $add->revision }}</span>
                                   @auth
@@ -1978,6 +2058,499 @@ Finální verze  28.03.2022
                   </div>
                 </div>
               </div>
+
+              <div class="accordion-item">
+                <h2 class="accordion-header" id="main-heading-13">
+                  <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#standard-13" aria-expanded="true">
+                    13. Kvalifikace a vzdělávání personálu
+                  </button>
+                </h2>
+                <div id="standard-13" class="accordion-collapse collapse m-1" data-bs-parent="#accordion-standard">
+                  <div class="accordion" id="accordion-example">
+                    @foreach ($documents12 as $document)
+                    <div class="accordion-item">
+                      <div class="show" id="collapse-{{ $document->position }}" data-bs-parent="#accordion-standard" style="">
+                        <div class="accordion-body pt-0">
+                          <div class="list-group list-group-flush list-group-hoverable pt-1">
+                            <div class="list-group-item">
+                              <div class="row align-items-center">
+                                <div class="col-auto">
+                                  <a href="/standardy/{{ $document->file }}" target="_blank">
+                                    <span class="avatar">
+                                      <img src="{{ asset('img/files/pdf.png') }}" alt="PDF - Standard">
+                                    </span>
+                                  </a>
+                                </div>
+                                <div class="col text-truncate">
+                                  <a class="text-primary d-block text-decoration-none" href="{{ route('download', $document->id) }}" target="_blank">
+                                    <h3 style="margin-bottom: 0;">{{ $document->position }}. {{ $document->name }}</h3>
+                                  </a>
+                                  <div class="d-block text-muted text-truncate mt-n1">{{ $document->description }}</div>
+                                </div>
+                                <div class="col-auto">
+                                  <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-certificate text-yellow" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                                    <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+                                    <circle cx="15" cy="15" r="3"></circle>
+                                    <path d="M13 17.5v4.5l2 -1.5l2 1.5v-4.5"></path>
+                                    <path d="M10 19h-5a2 2 0 0 1 -2 -2v-10c0 -1.1 .9 -2 2 -2h14a2 2 0 0 1 2 2v10a2 2 0 0 1 -1 1.73"></path>
+                                    <line x1="6" y1="9" x2="18" y2="9"></line>
+                                    <line x1="6" y1="12" x2="9" y2="12"></line>
+                                    <line x1="6" y1="15" x2="8" y2="15"></line>
+                                  </svg>
+                                  <span class="text-muted">revize: {{ $document->revision }}</span>
+                                  @auth
+                                  @if ($document->status == 'Rozpracováno')
+                                  <span class="badge badge-sm bg-yellow-lt text-uppercase ms-auto">Rozpracováno</span>
+                                  @else
+                                  <span class="badge badge-sm bg-green-lt text-uppercase ms-auto">Schváleno</span>
+                                  @endif
+                                  @endauth
+                                  @if (Carbon\Carbon::parse($document->created_at)->addDay() >= Carbon\Carbon::today())
+                                  <span class="badge badge-sm bg-red-lt text-uppercase ms-auto">Nový</span>
+                                  @endif
+                                  @if (Carbon\Carbon::parse($document->updated_at)->addDays(15) >= Carbon\Carbon::now())
+                                  <span class="badge badge-sm bg-lime-lt text-uppercase ms-auto">Aktualizováno</span>
+                                  @endif
+                                  <svg class="icon icon-tabler text-info" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" stroke-width="2"
+                                       stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                                    <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+                                    <rect x="4" y="5" width="16" height="16" rx="2"></rect>
+                                    <line x1="16" y1="3" x2="16" y2="7"></line>
+                                    <line x1="8" y1="3" x2="8" y2="7"></line>
+                                    <line x1="4" y1="11" x2="20" y2="11"></line>
+                                    <line x1="11" y1="15" x2="12" y2="15"></line>
+                                    <line x1="12" y1="15" x2="12" y2="18"></line>
+                                  </svg>
+                                  <span class="text-muted">{{ Carbon\Carbon::parse($document->updated_at)->diffForHumans() }}</span>
+                                </div>
+                                @auth
+                                <div class="col-auto">
+                                  <span class="btn btn-icon hover-shadow cursor-pointer" id="dropdownMenuButton-' . $data->id . '" data-bs-toggle="dropdown" title="Možnosti">
+                                    <svg class="icon dropdown-item-icon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" stroke-width="2"
+                                         stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                                      <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+                                      <line x1="4" y1="6" x2="20" y2="6"></line>
+                                      <line x1="4" y1="12" x2="20" y2="12"></line>
+                                      <line x1="4" y1="18" x2="20" y2="18"></line>
+                                    </svg>
+                                  </span>
+                                  <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton-' . $document->id . '">
+                                    <li class="dropdown-item edit" id="{{ $document->id }}">
+                                      <svg class="icon dropdown-item-icon-edit" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                                           stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                                        <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+                                        <path d="M7 7h-1a2 2 0 0 0 -2 2v9a2 2 0 0 0 2 2h9a2 2 0 0 0 2 -2v-1" />
+                                        <path d="M20.385 6.585a2.1 2.1 0 0 0 -2.97 -2.97l-8.415 8.385v3h3l8.385 -8.415z" />
+                                        <path d="M16 5l3 3" />
+                                      </svg>
+                                      {{ __('Upravit standard') }}
+                                    </li>
+                                    <li class="dropdown-item delete" id="{{ $document->id }}'">
+                                      <svg class="icon icon dropdown-item-icon-delete" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                                           stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                                        <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+                                        <path d="M4 7h16"></path>
+                                        <path d="M5 7l1 12a2 2 0 0 0 2 2h8a2 2 0 0 0 2 -2l1 -12"></path>
+                                        <path d="M9 7v-3a1 1 0 0 1 1 -1h4a1 1 0 0 1 1 1v3"></path>
+                                        <path d="M10 12l4 4m0 -4l-4 4"></path>
+                                      </svg>
+                                      {{ __('Odstranit standard') }}
+                                    </li>
+                                  </ul>
+                                </div>
+                                @endauth
+                              </div>
+                              @foreach ($document->addon as $add)
+                              <div class="row align-items-center mb-1">
+                                <div class="col-auto">
+                                  <a href="{{ url('standardy/' . $add->file) }}">
+                                    <span class="avatar">
+                                      <img src="{{ asset('img/files/pdf-add.png') }}" alt="PDF - Příloha standardu">
+                                    </span>
+                                  </a>
+                                </div>
+                                <div class="col text-truncate">
+                                  <a class="text-primary d-block d-block text-primary text-decoration-none" href="{{ url('standardy/' . $add->file) }}">
+                                    <h3 style="margin-bottom: 0;">{{ $document->position }}. {{ $document->name }} - příloha č. {{ $add->name }}</h3>
+                                  </a>
+                                  <div class="d-block text-muted text-truncate mt-n1">{{ $add->description }}</div>
+                                </div>
+                                <div class="col-auto">
+                                  <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-certificate text-yellow" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                                    <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+                                    <circle cx="15" cy="15" r="3"></circle>
+                                    <path d="M13 17.5v4.5l2 -1.5l2 1.5v-4.5"></path>
+                                    <path d="M10 19h-5a2 2 0 0 1 -2 -2v-10c0 -1.1 .9 -2 2 -2h14a2 2 0 0 1 2 2v10a2 2 0 0 1 -1 1.73"></path>
+                                    <line x1="6" y1="9" x2="18" y2="9"></line>
+                                    <line x1="6" y1="12" x2="9" y2="12"></line>
+                                    <line x1="6" y1="15" x2="8" y2="15"></line>
+                                  </svg>
+                                  <span class="text-muted">revize: {{ $add->revision }}</span>
+                                  @auth
+                                  @if ($add->status == 'Rozpracováno')
+                                  <span class="badge badge-sm bg-yellow-lt text-uppercase ms-auto">Rozpracováno</span>
+                                  @else
+                                  <span class="badge badge-sm bg-green-lt text-uppercase ms-auto">Schváleno</span>
+                                  @endif
+                                  @endauth
+                                  @if (Carbon\Carbon::parse($add->created_at)->addDay() >= Carbon\Carbon::today())
+                                  <span class="badge badge-sm bg-red-lt text-uppercase ms-auto">Nový</span>
+                                  @endif
+                                  @if (Carbon\Carbon::parse($add->updated_at)->addDays(15) >= Carbon\Carbon::now())
+                                  <span class="badge badge-sm bg-lime-lt text-uppercase ms-auto">Aktualizováno</span>
+                                  @endif
+                                  <svg class="icon icon-tabler text-info" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" stroke-width="2"
+                                       stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                                    <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+                                    <rect x="4" y="5" width="16" height="16" rx="2"></rect>
+                                    <line x1="16" y1="3" x2="16" y2="7"></line>
+                                    <line x1="8" y1="3" x2="8" y2="7"></line>
+                                    <line x1="4" y1="11" x2="20" y2="11"></line>
+                                    <line x1="11" y1="15" x2="12" y2="15"></line>
+                                    <line x1="12" y1="15" x2="12" y2="18"></line>
+                                  </svg>
+                                  <span class="text-muted">{{ Carbon\Carbon::parse($document->updated_at)->diffForHumans() }}</span>
+                                </div>
+                              </div>
+                              @endforeach
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    @endforeach
+                  </div>
+                </div>
+              </div>
+
+              <div class="accordion-item">
+                <h2 class="accordion-header" id="main-heading-14">
+                  <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#standard-14" aria-expanded="true">
+                    14. Řízení informací
+                  </button>
+                </h2>
+                <div id="standard-14" class="accordion-collapse collapse m-1" data-bs-parent="#accordion-standard">
+                  <div class="accordion" id="accordion-example">
+                    @foreach ($documents12 as $document)
+                    <div class="accordion-item">
+                      <div class="show" id="collapse-{{ $document->position }}" data-bs-parent="#accordion-standard" style="">
+                        <div class="accordion-body pt-0">
+                          <div class="list-group list-group-flush list-group-hoverable pt-1">
+                            <div class="list-group-item">
+                              <div class="row align-items-center">
+                                <div class="col-auto">
+                                  <a href="/standardy/{{ $document->file }}" target="_blank">
+                                    <span class="avatar">
+                                      <img src="{{ asset('img/files/pdf.png') }}" alt="PDF - Standard">
+                                    </span>
+                                  </a>
+                                </div>
+                                <div class="col text-truncate">
+                                  <a class="text-primary d-block text-decoration-none" href="{{ route('download', $document->id) }}" target="_blank">
+                                    <h3 style="margin-bottom: 0;">{{ $document->position }}. {{ $document->name }}</h3>
+                                  </a>
+                                  <div class="d-block text-muted text-truncate mt-n1">{{ $document->description }}</div>
+                                </div>
+                                <div class="col-auto">
+                                  <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-certificate text-yellow" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                                    <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+                                    <circle cx="15" cy="15" r="3"></circle>
+                                    <path d="M13 17.5v4.5l2 -1.5l2 1.5v-4.5"></path>
+                                    <path d="M10 19h-5a2 2 0 0 1 -2 -2v-10c0 -1.1 .9 -2 2 -2h14a2 2 0 0 1 2 2v10a2 2 0 0 1 -1 1.73"></path>
+                                    <line x1="6" y1="9" x2="18" y2="9"></line>
+                                    <line x1="6" y1="12" x2="9" y2="12"></line>
+                                    <line x1="6" y1="15" x2="8" y2="15"></line>
+                                  </svg>
+                                  <span class="text-muted">revize: {{ $document->revision }}</span>
+                                  @auth
+                                  @if ($document->status == 'Rozpracováno')
+                                  <span class="badge badge-sm bg-yellow-lt text-uppercase ms-auto">Rozpracováno</span>
+                                  @else
+                                  <span class="badge badge-sm bg-green-lt text-uppercase ms-auto">Schváleno</span>
+                                  @endif
+                                  @endauth
+                                  @if (Carbon\Carbon::parse($document->created_at)->addDay() >= Carbon\Carbon::today())
+                                  <span class="badge badge-sm bg-red-lt text-uppercase ms-auto">Nový</span>
+                                  @endif
+                                  @if (Carbon\Carbon::parse($document->updated_at)->addDays(15) >= Carbon\Carbon::now())
+                                  <span class="badge badge-sm bg-lime-lt text-uppercase ms-auto">Aktualizováno</span>
+                                  @endif
+                                  <svg class="icon icon-tabler text-info" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" stroke-width="2"
+                                       stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                                    <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+                                    <rect x="4" y="5" width="16" height="16" rx="2"></rect>
+                                    <line x1="16" y1="3" x2="16" y2="7"></line>
+                                    <line x1="8" y1="3" x2="8" y2="7"></line>
+                                    <line x1="4" y1="11" x2="20" y2="11"></line>
+                                    <line x1="11" y1="15" x2="12" y2="15"></line>
+                                    <line x1="12" y1="15" x2="12" y2="18"></line>
+                                  </svg>
+                                  <span class="text-muted">{{ Carbon\Carbon::parse($document->updated_at)->diffForHumans() }}</span>
+                                </div>
+                                @auth
+                                <div class="col-auto">
+                                  <span class="btn btn-icon hover-shadow cursor-pointer" id="dropdownMenuButton-' . $data->id . '" data-bs-toggle="dropdown" title="Možnosti">
+                                    <svg class="icon dropdown-item-icon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" stroke-width="2"
+                                         stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                                      <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+                                      <line x1="4" y1="6" x2="20" y2="6"></line>
+                                      <line x1="4" y1="12" x2="20" y2="12"></line>
+                                      <line x1="4" y1="18" x2="20" y2="18"></line>
+                                    </svg>
+                                  </span>
+                                  <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton-' . $document->id . '">
+                                    <li class="dropdown-item edit" id="{{ $document->id }}">
+                                      <svg class="icon dropdown-item-icon-edit" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                                           stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                                        <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+                                        <path d="M7 7h-1a2 2 0 0 0 -2 2v9a2 2 0 0 0 2 2h9a2 2 0 0 0 2 -2v-1" />
+                                        <path d="M20.385 6.585a2.1 2.1 0 0 0 -2.97 -2.97l-8.415 8.385v3h3l8.385 -8.415z" />
+                                        <path d="M16 5l3 3" />
+                                      </svg>
+                                      {{ __('Upravit standard') }}
+                                    </li>
+                                    <li class="dropdown-item delete" id="{{ $document->id }}'">
+                                      <svg class="icon icon dropdown-item-icon-delete" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                                           stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                                        <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+                                        <path d="M4 7h16"></path>
+                                        <path d="M5 7l1 12a2 2 0 0 0 2 2h8a2 2 0 0 0 2 -2l1 -12"></path>
+                                        <path d="M9 7v-3a1 1 0 0 1 1 -1h4a1 1 0 0 1 1 1v3"></path>
+                                        <path d="M10 12l4 4m0 -4l-4 4"></path>
+                                      </svg>
+                                      {{ __('Odstranit standard') }}
+                                    </li>
+                                  </ul>
+                                </div>
+                                @endauth
+                              </div>
+                              @foreach ($document->addon as $add)
+                              <div class="row align-items-center mb-1">
+                                <div class="col-auto">
+                                  <a href="{{ url('standardy/' . $add->file) }}">
+                                    <span class="avatar">
+                                      <img src="{{ asset('img/files/pdf-add.png') }}" alt="PDF - Příloha standardu">
+                                    </span>
+                                  </a>
+                                </div>
+                                <div class="col text-truncate">
+                                  <a class="text-primary d-block d-block text-primary text-decoration-none" href="{{ url('standardy/' . $add->file) }}">
+                                    <h3 style="margin-bottom: 0;">{{ $document->position }}. {{ $document->name }} - příloha č. {{ $add->name }}</h3>
+                                  </a>
+                                  <div class="d-block text-muted text-truncate mt-n1">{{ $add->description }}</div>
+                                </div>
+                                <div class="col-auto">
+                                  <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-certificate text-yellow" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                                    <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+                                    <circle cx="15" cy="15" r="3"></circle>
+                                    <path d="M13 17.5v4.5l2 -1.5l2 1.5v-4.5"></path>
+                                    <path d="M10 19h-5a2 2 0 0 1 -2 -2v-10c0 -1.1 .9 -2 2 -2h14a2 2 0 0 1 2 2v10a2 2 0 0 1 -1 1.73"></path>
+                                    <line x1="6" y1="9" x2="18" y2="9"></line>
+                                    <line x1="6" y1="12" x2="9" y2="12"></line>
+                                    <line x1="6" y1="15" x2="8" y2="15"></line>
+                                  </svg>
+                                  <span class="text-muted">revize: {{ $add->revision }}</span>
+                                  @auth
+                                  @if ($add->status == 'Rozpracováno')
+                                  <span class="badge badge-sm bg-yellow-lt text-uppercase ms-auto">Rozpracováno</span>
+                                  @else
+                                  <span class="badge badge-sm bg-green-lt text-uppercase ms-auto">Schváleno</span>
+                                  @endif
+                                  @endauth
+                                  @if (Carbon\Carbon::parse($add->created_at)->addDay() >= Carbon\Carbon::today())
+                                  <span class="badge badge-sm bg-red-lt text-uppercase ms-auto">Nový</span>
+                                  @endif
+                                  @if (Carbon\Carbon::parse($add->updated_at)->addDays(15) >= Carbon\Carbon::now())
+                                  <span class="badge badge-sm bg-lime-lt text-uppercase ms-auto">Aktualizováno</span>
+                                  @endif
+                                  <svg class="icon icon-tabler text-info" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" stroke-width="2"
+                                       stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                                    <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+                                    <rect x="4" y="5" width="16" height="16" rx="2"></rect>
+                                    <line x1="16" y1="3" x2="16" y2="7"></line>
+                                    <line x1="8" y1="3" x2="8" y2="7"></line>
+                                    <line x1="4" y1="11" x2="20" y2="11"></line>
+                                    <line x1="11" y1="15" x2="12" y2="15"></line>
+                                    <line x1="12" y1="15" x2="12" y2="18"></line>
+                                  </svg>
+                                  <span class="text-muted">{{ Carbon\Carbon::parse($document->updated_at)->diffForHumans() }}</span>
+                                </div>
+                              </div>
+                              @endforeach
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    @endforeach
+                  </div>
+                </div>
+              </div>
+
+              <div class="accordion-item">
+                <h2 class="accordion-header" id="main-heading-15">
+                  <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#standard-15" aria-expanded="true">
+                    15. Přehled povinných školení pro zaměstnance KHN a.s.
+                  </button>
+                </h2>
+                <div id="standard-15" class="accordion-collapse collapse m-1" data-bs-parent="#accordion-standard">
+                  <div class="accordion" id="accordion-example">
+                    @foreach ($documents12 as $document)
+                    <div class="accordion-item">
+                      <div class="show" id="collapse-{{ $document->position }}" data-bs-parent="#accordion-standard" style="">
+                        <div class="accordion-body pt-0">
+                          <div class="list-group list-group-flush list-group-hoverable pt-1">
+                            <div class="list-group-item">
+                              <div class="row align-items-center">
+                                <div class="col-auto">
+                                  <a href="/standardy/{{ $document->file }}" target="_blank">
+                                    <span class="avatar">
+                                      <img src="{{ asset('img/files/pdf.png') }}" alt="PDF - Standard">
+                                    </span>
+                                  </a>
+                                </div>
+                                <div class="col text-truncate">
+                                  <a class="text-primary d-block text-decoration-none" href="{{ route('download', $document->id) }}" target="_blank">
+                                    <h3 style="margin-bottom: 0;">{{ $document->position }}. {{ $document->name }}</h3>
+                                  </a>
+                                  <div class="d-block text-muted text-truncate mt-n1">{{ $document->description }}</div>
+                                </div>
+                                <div class="col-auto">
+                                  <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-certificate text-yellow" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                                    <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+                                    <circle cx="15" cy="15" r="3"></circle>
+                                    <path d="M13 17.5v4.5l2 -1.5l2 1.5v-4.5"></path>
+                                    <path d="M10 19h-5a2 2 0 0 1 -2 -2v-10c0 -1.1 .9 -2 2 -2h14a2 2 0 0 1 2 2v10a2 2 0 0 1 -1 1.73"></path>
+                                    <line x1="6" y1="9" x2="18" y2="9"></line>
+                                    <line x1="6" y1="12" x2="9" y2="12"></line>
+                                    <line x1="6" y1="15" x2="8" y2="15"></line>
+                                  </svg>
+                                  <span class="text-muted">revize: {{ $document->revision }}</span>
+                                  @auth
+                                  @if ($document->status == 'Rozpracováno')
+                                  <span class="badge badge-sm bg-yellow-lt text-uppercase ms-auto">Rozpracováno</span>
+                                  @else
+                                  <span class="badge badge-sm bg-green-lt text-uppercase ms-auto">Schváleno</span>
+                                  @endif
+                                  @endauth
+                                  @if (Carbon\Carbon::parse($document->created_at)->addDay() >= Carbon\Carbon::today())
+                                  <span class="badge badge-sm bg-red-lt text-uppercase ms-auto">Nový</span>
+                                  @endif
+                                  @if (Carbon\Carbon::parse($document->updated_at)->addDays(15) >= Carbon\Carbon::now())
+                                  <span class="badge badge-sm bg-lime-lt text-uppercase ms-auto">Aktualizováno</span>
+                                  @endif
+                                  <svg class="icon icon-tabler text-info" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" stroke-width="2"
+                                       stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                                    <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+                                    <rect x="4" y="5" width="16" height="16" rx="2"></rect>
+                                    <line x1="16" y1="3" x2="16" y2="7"></line>
+                                    <line x1="8" y1="3" x2="8" y2="7"></line>
+                                    <line x1="4" y1="11" x2="20" y2="11"></line>
+                                    <line x1="11" y1="15" x2="12" y2="15"></line>
+                                    <line x1="12" y1="15" x2="12" y2="18"></line>
+                                  </svg>
+                                  <span class="text-muted">{{ Carbon\Carbon::parse($document->updated_at)->diffForHumans() }}</span>
+                                </div>
+                                @auth
+                                <div class="col-auto">
+                                  <span class="btn btn-icon hover-shadow cursor-pointer" id="dropdownMenuButton-' . $data->id . '" data-bs-toggle="dropdown" title="Možnosti">
+                                    <svg class="icon dropdown-item-icon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" stroke-width="2"
+                                         stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                                      <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+                                      <line x1="4" y1="6" x2="20" y2="6"></line>
+                                      <line x1="4" y1="12" x2="20" y2="12"></line>
+                                      <line x1="4" y1="18" x2="20" y2="18"></line>
+                                    </svg>
+                                  </span>
+                                  <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton-' . $document->id . '">
+                                    <li class="dropdown-item edit" id="{{ $document->id }}">
+                                      <svg class="icon dropdown-item-icon-edit" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                                           stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                                        <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+                                        <path d="M7 7h-1a2 2 0 0 0 -2 2v9a2 2 0 0 0 2 2h9a2 2 0 0 0 2 -2v-1" />
+                                        <path d="M20.385 6.585a2.1 2.1 0 0 0 -2.97 -2.97l-8.415 8.385v3h3l8.385 -8.415z" />
+                                        <path d="M16 5l3 3" />
+                                      </svg>
+                                      {{ __('Upravit standard') }}
+                                    </li>
+                                    <li class="dropdown-item delete" id="{{ $document->id }}'">
+                                      <svg class="icon icon dropdown-item-icon-delete" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                                           stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                                        <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+                                        <path d="M4 7h16"></path>
+                                        <path d="M5 7l1 12a2 2 0 0 0 2 2h8a2 2 0 0 0 2 -2l1 -12"></path>
+                                        <path d="M9 7v-3a1 1 0 0 1 1 -1h4a1 1 0 0 1 1 1v3"></path>
+                                        <path d="M10 12l4 4m0 -4l-4 4"></path>
+                                      </svg>
+                                      {{ __('Odstranit standard') }}
+                                    </li>
+                                  </ul>
+                                </div>
+                                @endauth
+                              </div>
+                              @foreach ($document->addon as $add)
+                              <div class="row align-items-center mb-1">
+                                <div class="col-auto">
+                                  <a href="{{ url('standardy/' . $add->file) }}">
+                                    <span class="avatar">
+                                      <img src="{{ asset('img/files/pdf-add.png') }}" alt="PDF - Příloha standardu">
+                                    </span>
+                                  </a>
+                                </div>
+                                <div class="col text-truncate">
+                                  <a class="text-primary d-block d-block text-primary text-decoration-none" href="{{ url('standardy/' . $add->file) }}">
+                                    <h3 style="margin-bottom: 0;">{{ $document->position }}. {{ $document->name }} - příloha č. {{ $add->name }}</h3>
+                                  </a>
+                                  <div class="d-block text-muted text-truncate mt-n1">{{ $add->description }}</div>
+                                </div>
+                                <div class="col-auto">
+                                  <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-certificate text-yellow" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                                    <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+                                    <circle cx="15" cy="15" r="3"></circle>
+                                    <path d="M13 17.5v4.5l2 -1.5l2 1.5v-4.5"></path>
+                                    <path d="M10 19h-5a2 2 0 0 1 -2 -2v-10c0 -1.1 .9 -2 2 -2h14a2 2 0 0 1 2 2v10a2 2 0 0 1 -1 1.73"></path>
+                                    <line x1="6" y1="9" x2="18" y2="9"></line>
+                                    <line x1="6" y1="12" x2="9" y2="12"></line>
+                                    <line x1="6" y1="15" x2="8" y2="15"></line>
+                                  </svg>
+                                  <span class="text-muted">revize: {{ $add->revision }}</span>
+                                  @auth
+                                  @if ($add->status == 'Rozpracováno')
+                                  <span class="badge badge-sm bg-yellow-lt text-uppercase ms-auto">Rozpracováno</span>
+                                  @else
+                                  <span class="badge badge-sm bg-green-lt text-uppercase ms-auto">Schváleno</span>
+                                  @endif
+                                  @endauth
+                                  @if (Carbon\Carbon::parse($add->created_at)->addDay() >= Carbon\Carbon::today())
+                                  <span class="badge badge-sm bg-red-lt text-uppercase ms-auto">Nový</span>
+                                  @endif
+                                  @if (Carbon\Carbon::parse($add->updated_at)->addDays(15) >= Carbon\Carbon::now())
+                                  <span class="badge badge-sm bg-lime-lt text-uppercase ms-auto">Aktualizováno</span>
+                                  @endif
+                                  <svg class="icon icon-tabler text-info" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" stroke-width="2"
+                                       stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                                    <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+                                    <rect x="4" y="5" width="16" height="16" rx="2"></rect>
+                                    <line x1="16" y1="3" x2="16" y2="7"></line>
+                                    <line x1="8" y1="3" x2="8" y2="7"></line>
+                                    <line x1="4" y1="11" x2="20" y2="11"></line>
+                                    <line x1="11" y1="15" x2="12" y2="15"></line>
+                                    <line x1="12" y1="15" x2="12" y2="18"></line>
+                                  </svg>
+                                  <span class="text-muted">{{ Carbon\Carbon::parse($document->updated_at)->diffForHumans() }}</span>
+                                </div>
+                              </div>
+                              @endforeach
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    @endforeach
+                  </div>
+                </div>
+              </div>
+
             </div>
           </div>
         </div>

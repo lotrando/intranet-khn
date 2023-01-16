@@ -5,26 +5,22 @@ use App\Http\Controllers\AttendanceController;
 use App\Http\Controllers\EmployeeController;
 use App\Http\Controllers\EvidenceController;
 use App\Http\Controllers\DocumentController;
+use App\Http\Controllers\FileController;
 use App\Http\Controllers\PageController;
 use App\Http\Controllers\SlideController;
 use App\Http\Controllers\TrainingController;
 use Illuminate\Support\Facades\Route;
 
-// test page
-Route::get("standardsearch", function () {
-    return view('standardy.search', ['category' => 'Standardy', 'title' => 'Vyhledavání']);
-});
+// Download
+Route::get('download/{id}', [FileController::class, 'download'])->name('download');
 
-
-// Index page
-Route::get('welcome', function () {
-    return view('welcome', ['category' => 'Oznámení', 'title' => 'Přehled']);
+// Test page
+Route::get('test', function () {
+    return view('test', ['category' => 'Test', 'title' => 'Pokus']);
 });
 
 // Home page
-Route::get('/', function () {
-    return view('home', ['category' => 'Oznámení', 'title' => 'Homepage']);
-})->name('home');
+Route::get('/', [PageController::class, 'home'])->name('home');
 
 // Oznámení
 Route::prefix('oznameni')->name('oznameni.')->group(function () {
@@ -47,8 +43,6 @@ Route::prefix('stravovani')->name('stravovani.')->group(function () {
 // Standardy
 Route::prefix('standardy')->name('standardy.')->group(function () {
     Route::get('akreditacni/{id}', [PageController::class, 'akreditacni'])->name('akreditacni');            // Akreditační standardy
-
-    // Ostatni standardy
     Route::get('osetrovatelske/{id}', [PageController::class, 'standard'])->name('osetrovatelske');         // Ošetřovatelské standardy
     Route::get('lecebne/{id}', [PageController::class, 'standard'])->name('lecebne');                       // Léčebné standardy
     Route::get('specialni/{id}', [PageController::class, 'standard'])->name('specialni');                   // Speciální standardy
@@ -60,7 +54,6 @@ Route::prefix('standardy')->name('standardy.')->group(function () {
     Route::get('okb/{id}', [PageController::class, 'standard'])->name('okb');                               // OKB standardy
     Route::get('logopedicke/{id}', [PageController::class, 'standard'])->name('logopedicke');               // Logopedické standardy
     Route::get('legislativni/{id}', [PageController::class, 'standard'])->name('legislativni');             // Legislativní standardy
-
     Route::get('standard-search', [DocumentController::class, 'standardSearch'])->name('standard.search');  // Vyhledávání dokumentů
 });
 
@@ -76,8 +69,12 @@ Route::resource('train', TrainingController::class);
 Route::resource('attendances', AttendanceController::class);
 
 // Employees
-Route::resource('employees', EmployeeController::class)->except(['update', 'show', 'destroy']);;
+Route::resource('employees', EmployeeController::class)->except(['update', 'show', 'destroy']);
+
+// Adverse Events
 Route::resource('adversevents', AdverseventController::class)->except(['update', 'show', 'destroy']);
+
+// Documents
 Route::resource('documents', DocumentController::class);
 
 Route::get('vcards', [EmployeeController::class, 'vcards'])->name('employees.vcards');

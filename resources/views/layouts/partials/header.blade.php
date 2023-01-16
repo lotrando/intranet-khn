@@ -20,7 +20,7 @@
       <div class="nav-item d-none d-md-flex nav-item d-none d-md-flex">
         <div class="btn-list">
           <a class="btn {{ request()->segment(1) == 'employees' ? 'bg-primary-lt' : '' }}" data-bs-toggle="tooltip" data-bs-placement="bottom" data-bs-original-title="Seznam zaměstnanců KHN" href="{{ route('employees.index') }}" rel="noreferrer">
-            <svg class="icon icon-tabler icon-tabler-user-circle" xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 24 24" stroke-width="1" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+            <svg class="icon icon-tabler icon-tabler-user-circle text-lime" xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 24 24" stroke-width="1" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
               <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
               <circle cx="12" cy="12" r="9"></circle>
               <circle cx="12" cy="10" r="3"></circle>
@@ -29,12 +29,10 @@
             {{ __('Employees') }}
           </a>
           <a class="btn {{ request()->segment(1) == 'adversevents' ? 'bg-primary-lt' : '' }}" data-bs-toggle="tooltip" data-bs-placement="bottom" data-bs-original-title="Odeslat nežádoucí událost" href="{{ route('adversevents.index') }}" rel="noreferrer">
-            <svg class="icon text-red" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-alert-triangle text-red" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
               <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
-              <path d="M8 16v-4a4 4 0 0 1 8 0v4"></path>
-              <path d="M3 12h1m8 -9v1m8 8h1m-15.4 -6.4l.7 .7m12.1 -.7l-.7 .7"></path>
-              <rect x="6" y="16" width="12" height="4" rx="1">
-              </rect>
+              <path d="M12 9v2m0 4v.01"></path>
+              <path d="M5 19h14a2 2 0 0 0 1.84 -2.75l-7.1 -12.25a2 2 0 0 0 -3.5 0l-7.1 12.25a2 2 0 0 0 1.75 2.75"></path>
             </svg>
             {{ __('Nežádoucí události') }}
           </a>

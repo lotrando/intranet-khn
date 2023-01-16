@@ -1,7 +1,7 @@
 @extends('layouts.blank')
 
 @section('favicon')
-<link type="image/png" href="{{ asset('img/zmeny.png') }}" rel="shortcut icon">
+<link type="image/png" href="{{ asset('img/videa.png') }}" rel="shortcut icon">
 @endsection
 
 @section('content')
@@ -32,7 +32,7 @@
           <div class="card shadow-sm">
             <div class="card-body">
               <h3 class="card-title">Youtube Player</h3>
-              <div id="player-youtube" data-plyr-provider="youtube" data-plyr-embed-id="bTqVqk7FSmY"></div>
+              <div id="player-youtube" data-plyr-provider="youtube" data-plyr-embed-id="eWkvojhw0eo"></div>
             </div>
           </div>
         </div>
@@ -40,7 +40,7 @@
           <div class="card shadow-sm">
             <div class="card-body">
               <h3 class="card-title">Vimeo Player</h3>
-              <div id="player-charlotte" data-plyr-provider="vimeo" data-plyr-embed-id="707012696"></div>
+              <div id="player-vimeo" data-plyr-provider="vimeo" data-plyr-embed-id="707012696"></div>
             </div>
           </div>
         </div>
@@ -63,7 +63,7 @@
 <script>
   // @formatter:off
       document.addEventListener("DOMContentLoaded", function () {
-        window.Plyr && (new Plyr('#player-charlotte'));
+        window.Plyr && (new Plyr('#player-vimeo'));
       });
       // @formatter:on
 </script>
