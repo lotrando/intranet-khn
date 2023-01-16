@@ -2560,7 +2560,7 @@
       @section('modals')
       {{-- Main Form Modal --}}
       <div class="modal modal-blur fade" id="formModal" data-bs-backdrop="static" data-bs-keyboard="false" role="dialog" aria-hidden="true" tabindex="-1">
-        <div class="modal-dialog modal-xl modal-dialog-centered" role="document">
+        <div class="modal-dialog modal-full-width mx-5 modal-dialog-centered" role="document">
           <div class="modal-content shadow-lg">
             <div id="modal-header">
               <h5 class="modal-title"></h5>

@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Models\Document;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Str;
 
@@ -52,10 +54,16 @@ class DocumentController extends Controller
             'accordion_name'        => 'nullable',
             'accordion_group'       => 'nullable',
             'name'                  => 'required',
-            'revision'              => 'required',
             'description'           => 'required',
+            'processed'             => 'required',
+            'authorize'             => 'nullable',
+            'examine'               => 'nullable',
+            'efficiency'            => 'nullable',
             'position'              => 'required|numeric',
-            'unique_code'           => 'required|unique:documents,id',
+            'revision'              => 'required',
+            'revision_date'         => 'nullable',
+            'next_revision_date'    => 'nullable',
+            'tags'                  => 'nullable',
             'status'                => 'required',
             'file'                  => 'required|mimes:pdf,doc,xls|max:4096'
         ];
@@ -68,7 +76,8 @@ class DocumentController extends Controller
 
         $file_ext  = $request->file->extension();
         $description = Str::lower(strtr($request->description, $unwantedChars));
-        $file_name = 'standardy_' . $request->folder_name . '-' . $description . '-revize-' . Str::lower($request->revision) . '.' . $file_ext;
+        $revision = Str::lower(strtr($request->revision, $unwantedChars));
+        $file_name = 'standardy_' . $request->folder_name . '-' . $description . '-revize-' . $revision . '.' . $file_ext;
         $request->file->move(public_path('/standardy/'), $file_name);
 
         $form_data = [
@@ -77,8 +86,15 @@ class DocumentController extends Controller
             'accordion_group'       => $request->accordion_group,
             'name'                  => $request->name,
             'description'           => $request->description,
-            'position'              => $request->position,
+            'processed'             => $request->processed,
+            'authorize'             => $request->authorize,
+            'examine'               => $request->examine,
+            'efficiency'            => $request->efficiency,
             'revision'              => $request->revision,
+            'revision_date'         => $request->revision_date,
+            'next_revision_date'    => $request->next_revision_date,
+            'tags'                  => $request->tags,
+            'position'              => $request->position,
             'file'                  => $file_name,
             'unique_code'           => $request->unique_code,
             'status'                => $request->status,
@@ -132,9 +148,15 @@ class DocumentController extends Controller
                 'accordion_group'       => 'nullable',
                 'name'                  => 'required',
                 'description'           => 'required',
+                'processed'             => 'required',
+                'authorize'             => 'nullable',
+                'examine'               => 'nullable',
+                'efficiency'            => 'nullable',
                 'position'              => 'required|numeric',
                 'revision'              => 'required',
-                'unique_code'           => 'required|unique:documents,id',
+                'revision_date'         => 'nullable',
+                'next_revision_date'    => 'nullable',
+                'tags'                  => 'nullable',
                 'status'                => 'required',
                 'file'                  => 'required|mimes:pdf,doc,xls|max:4096'
             ];
@@ -156,7 +178,8 @@ class DocumentController extends Controller
 
             $file_ext  = $request->file->extension();
             $description = Str::lower(strtr($request->description, $unwantedChars));
-            $file_name = 'standardy_' . $request->folder_name . '-' . $description . '-revize-' . Str::lower($request->revision) . '.' . $file_ext;
+            $revision = Str::lower(strtr($request->revision, $unwantedChars));
+            $file_name = 'standardy_' . $request->folder_name . '-' . $description . '-revize-' . $revision . '.' . $file_ext;
             $request->file->move(public_path('/standardy/'), $file_name);
 
             $form_data = [
@@ -165,8 +188,15 @@ class DocumentController extends Controller
                 'accordion_group'       => $request->accordion_group,
                 'name'                  => $request->name,
                 'description'           => $request->description,
-                'position'              => $request->position,
+                'processed'             => $request->processed,
+                'authorize'             => $request->authorize,
+                'examine'               => $request->examine,
+                'efficiency'            => $request->efficiency,
                 'revision'              => $request->revision,
+                'revision_date'         => $request->revision_date,
+                'next_revision_date'    => $request->next_revision_date,
+                'tags'                  => $request->tags,
+                'position'              => $request->position,
                 'file'                  => $file_name,
                 'unique_code'           => $request->unique_code,
                 'status'                => $request->status,
@@ -179,8 +209,15 @@ class DocumentController extends Controller
                 'accordion_group'       => 'nullable',
                 'name'                  => 'required',
                 'description'           => 'required',
+                'processed'             => 'nullable',
+                'authorize'             => 'nullable',
+                'examine'               => 'nullable',
+                'efficiency'            => 'nullable',
                 'position'              => 'required|numeric',
                 'revision'              => 'required',
+                'revision_date'         => 'nullable',
+                'next_revision_date'    => 'nullable',
+                'tags'                  => 'nullable',
                 'status'                => 'required',
             ];
 
@@ -196,8 +233,15 @@ class DocumentController extends Controller
                 'accordion_group'       => $request->accordion_group,
                 'name'                  => $request->name,
                 'description'           => $request->description,
-                'position'              => $request->position,
+                'processed'             => $request->processed,
+                'authorize'             => $request->authorize,
+                'examine'               => $request->examine,
+                'efficiency'            => $request->efficiency,
                 'revision'              => $request->revision,
+                'revision_date'         => $request->revision_date,
+                'next_revision_date'    => $request->next_revision_date,
+                'tags'                  => $request->tags,
+                'position'              => $request->position,
                 'unique_code'           => $request->unique_code,
                 'status'                => $request->status,
             ];
@@ -217,7 +261,11 @@ class DocumentController extends Controller
     public function destroy($id)
     {
         $document = Document::find($id);
+        $filename = Document::where('id', $id)->pluck('file');
+
+        File::delete('standardy/' . $filename[0]);
         $document->delete();
+
         return response()->json(['success' => __('Standard deleted successfully')]);
     }
 
@@ -225,10 +273,21 @@ class DocumentController extends Controller
     {
         if ($request->ajax()) {
             $output = "";
-            $documents = Document::with('category', 'addon')->orderBy('category_id')
-                ->orWhere('description', 'LIKE', '%' . $request->search . "%")
-                ->orWhere('name', 'LIKE', '%' . $request->search . "%")
-                ->get();
+
+            if (Auth::user()) {
+                $documents = Document::with('category', 'addon')
+                    ->orWhere('name', 'LIKE', '%' . $request->search . "%")
+                    ->orWhere('description', 'LIKE', '%' . $request->search . "%")
+                    ->orWhere('tags', 'LIKE', '%' . $request->search . "%")
+                    ->get();
+            } else {
+                $documents = Document::with('category', 'addon')
+                    ->orWhere('name', 'LIKE', '%' . $request->search . "%")->where('status', '==', 'Schváleno')
+                    ->orWhere('description', 'LIKE', '%' . $request->search . "%")
+                    ->orWhere('tags', 'LIKE', '%' . $request->search . "%")
+                    ->get();
+            }
+
             if ($documents) {
                 foreach ($documents as $document) {
                     $output .=
@@ -239,14 +298,14 @@ class DocumentController extends Controller
                                     <div class="list-group-item">
                                         <div class="row align-items-center">
                                             <div class="col-auto">
-                                                <a href="/standardy/' . $document->file . '" target="_blank">
+                                                <a href=' . route("download", $document->id) . ' target="_blank">
                                                 <span class="avatar">
                                                     <img src="./../../img/files/pdf.png" alt="PDF - Standard">
                                                 </span>
                                                 </a>
                                             </div>
                                             <div class="col text-truncate">
-                                                <a class="text-primary d-block text-decoration-none" href="/standardy/' . $document->file . '" target="_blank">
+                                                <a class="text-primary d-block text-decoration-none" href=' . route("download", $document->id) . ' target="_blank">
                                                 <h3 style="margin-bottom: 0;">' . $document->position . '.' . $document->name . '</h3>
                                                 </a>
                                                 <div class="d-block text-muted text-truncate mt-n1">' . $document->description . '</div>
@@ -258,13 +317,7 @@ class DocumentController extends Controller
                                                 </div>
                                             </div>
                                             <div class="col-auto">
-                                                <svg class="icon icon-tabler text-yellow" xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 24 24" stroke-width="2"
-                                                    stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
-                                                <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
-                                                <path d="M9 4h6a2 2 0 0 1 2 2v14l-5 -3l-5 3v-14a2 2 0 0 1 2 -2"></path>
-                                                </svg>
-                                                <span class="text-muted">revize: ' . $document->revision . '</span>
-                                                <svg class="icon icon-tabler text-info" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" stroke-width="2"
+                                            <svg class="icon icon-tabler text-info" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" stroke-width="2"
                                                     stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
                                                 <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
                                                 <rect x="4" y="5" width="16" height="16" rx="2"></rect>
@@ -275,6 +328,12 @@ class DocumentController extends Controller
                                                 <line x1="12" y1="15" x2="12" y2="18"></line>
                                                 </svg>
                                                 <span class="text-muted">' . ($document->updated_at)->diffForHumans() . '</span>
+                                                <svg class="icon icon-tabler text-yellow" xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 24 24" stroke-width="2"
+                                                    stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                                                <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+                                                <path d="M9 4h6a2 2 0 0 1 2 2v14l-5 -3l-5 3v-14a2 2 0 0 1 2 -2"></path>
+                                                </svg>
+                                                <span class="text-muted">revize: ' . $document->revision . '</span>
                                             </div>
                                         </div>
                                     </div>

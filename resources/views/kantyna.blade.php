@@ -4,6 +4,10 @@
 <link type="image/png" href="{{ asset('img/kantyna.png') }}" rel="shortcut icon">
 @endsection
 
+@section('buttons')
+{{ $daylist->onEachSide(7)->links() }}
+@endsection
+
 @section('content')
 <div class="page-wrapper">
   <!-- Page header -->
@@ -60,7 +64,7 @@
                     </div>
                   </div>
                   @if (Carbon\Carbon::parse($day->date) == Carbon\Carbon::today())
-                  <div class="col-auto align-self-center">
+                  <div class="col-1 align-self-center">
                     <div class="badge bg-red-lt">Litujeme, ale dnes je kantýna bohužel uzavřena !</div>
                   </div>
                   @endif
@@ -87,7 +91,7 @@
                     </div>
                   </div>
                   @if (Carbon\Carbon::parse($day->date) == Carbon\Carbon::today())
-                  <div class="col-auto align-self-center">
+                  <div class="col-4 d-flex align-self-center justify-content-end">
                     <div class="badge bg-lime-lt">Aktuální dnešní nabídka. Co si dnes dáte ?</div>
                   </div>
                   @endif
@@ -97,9 +101,6 @@
               @endforeach
             </div>
           </div>
-        </div>
-        <div class="d-flex align-items-center justify-content-center mt-3">
-          {{ $daylist->links() }}
         </div>
       </div>
     </div>

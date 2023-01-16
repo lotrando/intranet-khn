@@ -1,10 +1,10 @@
-<div class="navbar-expand-md">
+<div class="navbar-expand-md shadow-sm">
   <div class="collapse navbar-collapse" id="navbar-menu">
     <div class="navbar navbar-light">
       <div class="container-fluid">
         <ul class="navbar-nav">
           {{-- Home --}}
-          <li class="nav-item {{ request()->segment(1) == '' ? 'active' : '' }}" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-original-title="Domovská stránka">
+          <li class="nav-item {{ request()->segment(1) == 'home' ? 'active' : '' }}" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-original-title="Domovská stránka">
             <a class="nav-link" href="{{ route('home') }}">
               <span class="nav-link-icon d-md-none d-lg-inline-block">
                 <svg class="icon icon-tabler icon-tabler-home text-primary" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" stroke-width="2"
