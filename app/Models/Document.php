@@ -13,7 +13,7 @@ class Document extends Model
 
     protected $guarded = ['id'];
 
-    public function addon()
+    public function addons()
     {
         return $this->hasMany(Addon::class)->where('status', 'Schváleno');
     }

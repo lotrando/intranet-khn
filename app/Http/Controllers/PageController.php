@@ -92,20 +92,21 @@ class PageController extends Controller
         $accordion_groups = Document::where('status', 'Schváleno')->where('category_id', $id)->pluck('accordion_group');
         $categories = Category::with('documents')->get();
         $allDocuments = Document::pluck('category_id');
+        $allAddons = Addon::pluck('document_id');
         $categorie = Category::where('id', $id)->first();
 
-        $documents1 = Document::where('status', 'Schváleno')->with('category', 'addon')->where('category_id', $id)->where('accordion_group', 1)->orderBy('position')->get();
-        $documents2 = Document::where('status', 'Schváleno')->with('category', 'addon')->where('category_id', $id)->where('accordion_group', 2)->orderBy('position')->get();
-        $documents3 = Document::where('status', 'Schváleno')->with('category', 'addon')->where('category_id', $id)->where('accordion_group', 3)->orderBy('position')->get();
-        $documents4 = Document::where('status', 'Schváleno')->with('category', 'addon')->where('category_id', $id)->where('accordion_group', 4)->orderBy('position')->get();
-        $documents5 = Document::where('status', 'Schváleno')->with('category', 'addon')->where('category_id', $id)->where('accordion_group', 5)->orderBy('position')->get();
-        $documents6 = Document::where('status', 'Schváleno')->with('category', 'addon')->where('category_id', $id)->where('accordion_group', 6)->orderBy('position')->get();
-        $documents7 = Document::where('status', 'Schváleno')->with('category', 'addon')->where('category_id', $id)->where('accordion_group', 7)->orderBy('position')->get();
-        $documents8 = Document::where('status', 'Schváleno')->with('category', 'addon')->where('category_id', $id)->where('accordion_group', 8)->orderBy('position')->get();
-        $documents9 = Document::where('status', 'Schváleno')->with('category', 'addon')->where('category_id', $id)->where('accordion_group', 9)->orderBy('position')->get();
-        $documents10 = Document::where('status', 'Schváleno')->with('category', 'addon')->where('category_id', $id)->where('accordion_group', 10)->orderBy('position')->get();
-        $documents11 = Document::where('status', 'Schváleno')->with('category', 'addon')->where('category_id', $id)->where('accordion_group', 11)->orderBy('position')->get();
-        $documents12 = Document::where('status', 'Schváleno')->with('category', 'addon')->where('category_id', $id)->where('accordion_group', 12)->orderBy('position')->get();
+        $documents1 = Document::where('status', 'Schváleno')->with('category', 'addons')->where('category_id', $id)->where('accordion_group', 1)->orderBy('position')->get();
+        $documents2 = Document::where('status', 'Schváleno')->with('category', 'addons')->where('category_id', $id)->where('accordion_group', 2)->orderBy('position')->get();
+        $documents3 = Document::where('status', 'Schváleno')->with('category', 'addons')->where('category_id', $id)->where('accordion_group', 3)->orderBy('position')->get();
+        $documents4 = Document::where('status', 'Schváleno')->with('category', 'addons')->where('category_id', $id)->where('accordion_group', 4)->orderBy('position')->get();
+        $documents5 = Document::where('status', 'Schváleno')->with('category', 'addons')->where('category_id', $id)->where('accordion_group', 5)->orderBy('position')->get();
+        $documents6 = Document::where('status', 'Schváleno')->with('category', 'addons')->where('category_id', $id)->where('accordion_group', 6)->orderBy('position')->get();
+        $documents7 = Document::where('status', 'Schváleno')->with('category', 'addons')->where('category_id', $id)->where('accordion_group', 7)->orderBy('position')->get();
+        $documents8 = Document::where('status', 'Schváleno')->with('category', 'addons')->where('category_id', $id)->where('accordion_group', 8)->orderBy('position')->get();
+        $documents9 = Document::where('status', 'Schváleno')->with('category', 'addons')->where('category_id', $id)->where('accordion_group', 9)->orderBy('position')->get();
+        $documents10 = Document::where('status', 'Schváleno')->with('category', 'addons')->where('category_id', $id)->where('accordion_group', 10)->orderBy('position')->get();
+        $documents11 = Document::where('status', 'Schváleno')->with('category', 'addons')->where('category_id', $id)->where('accordion_group', 11)->orderBy('position')->get();
+        $documents12 = Document::where('status', 'Schváleno')->with('category', 'addons')->where('category_id', $id)->where('accordion_group', 12)->orderBy('position')->get();
 
         return view('standardy.akreditacni', [
             'title'             => $categorie->category_name,
@@ -115,6 +116,7 @@ class PageController extends Controller
             'categories'        => $categories,
             'groups'            => $accordion_groups,
             'allDocuments'      => $allDocuments,
+            'allAddons'        => $allAddons,
             'documents1'        => $documents1,
             'documents2'        => $documents2,
             'documents3'        => $documents3,
@@ -135,7 +137,7 @@ class PageController extends Controller
     {
         $categories = Category::with('documents')->get();
         $allDocuments = Document::pluck('category_id');
-
+        $allAddons = Addon::pluck('document_id');
         $categorie  = Category::where('id', $id)->first();
         $last = Document::where('category_id', $id)->latest()->first();
 
@@ -147,9 +149,9 @@ class PageController extends Controller
         }
 
         if (Auth::user()) {
-            $documents = Document::with('category', 'addon')->where('category_id', $id)->orderBy('position')->get();
+            $documents = Document::with('category', 'addons')->where('category_id', $id)->orderBy('position')->get();
         } else {
-            $documents = Document::with('category', 'addon')->where('status', 'Schváleno')->where('category_id', $id)->orderBy('position')->get();
+            $documents = Document::with('category', 'addons')->where('status', 'Schváleno')->where('category_id', $id)->orderBy('position')->get();
         }
 
         return view('standardy.standard', [
@@ -160,7 +162,8 @@ class PageController extends Controller
             'categories'        => $categories,
             'lastpos'           => $last,
             'documents'         => $documents,
-            'allDocuments'      => $allDocuments
+            'allDocuments'      => $allDocuments,
+            'allAddons'         => $allAddons
         ]);
     }
 

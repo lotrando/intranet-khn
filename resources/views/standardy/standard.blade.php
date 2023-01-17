@@ -27,22 +27,31 @@
   <div class="page-header d-print-none">
     <div class="container-fluid">
       <div class="row align-items-center">
-        <div class="col-12">
+        <div class="col-12 mt-2">
           <div class="bg-transparent mb-2">
             <div class="row d-flex align-items-center">
               <div class="col-auto d-flex align-items-center pe-1 mb-2">
-                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-calculator" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-books text-red" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round" data-bs-toggle="tooltip" data-bs-placement="right"
+                     data-bs-original-title="Standardů celkem">
                   <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
-                  <rect x="4" y="3" width="16" height="18" rx="2"></rect>
-                  <rect x="8" y="7" width="8" height="3" rx="1"></rect>
-                  <line x1="8" y1="14" x2="8" y2="14.01"></line>
-                  <line x1="12" y1="14" x2="12" y2="14.01"></line>
-                  <line x1="16" y1="14" x2="16" y2="14.01"></line>
-                  <line x1="8" y1="17" x2="8" y2="17.01"></line>
-                  <line x1="12" y1="17" x2="12" y2="17.01"></line>
-                  <line x1="16" y1="17" x2="16" y2="17.01"></line>
+                  <rect x="5" y="4" width="4" height="16" rx="1"></rect>
+                  <rect x="9" y="4" width="4" height="16" rx="1"></rect>
+                  <path d="M5 8h4"></path>
+                  <path d="M9 16h4"></path>
+                  <path d="M13.803 4.56l2.184 -.53c.562 -.135 1.133 .19 1.282 .732l3.695 13.418a1.02 1.02 0 0 1 -.634 1.219l-.133 .041l-2.184 .53c-.562 .135 -1.133 -.19 -1.282 -.732l-3.695 -13.418a1.02 1.02 0 0 1 .634 -1.219l.133 -.041z"></path>
+                  <path d="M14 9l4 -1"></path>
+                  <path d="M16 16l3.923 -.98"></path>
                 </svg>
-                <h3 class="mb-0 d-md-inline d-xxl-inline">{{ $allDocuments->count() }} standardů celkem</h3>
+                <h3 class="mb-0 d-md-inline d-xxl-inline">{{ $allDocuments->count() }}</h3>
+                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-file-arrow-left text-red ms-2" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round" data-bs-toggle="tooltip" data-bs-placement="right"
+                     data-bs-original-title="Příloh celkem">
+                  <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+                  <path d="M14 3v4a1 1 0 0 0 1 1h4"></path>
+                  <path d="M17 21h-10a2 2 0 0 1 -2 -2v-14a2 2 0 0 1 2 -2h7l5 5v11a2 2 0 0 1 -2 2z"></path>
+                  <path d="M15 15h-6"></path>
+                  <path d="M11.5 17.5l-2.5 -2.5l2.5 -2.5"></path>
+                </svg>
+                <h3 class="mb-0 d-md-inline d-xxl-inline">{{ $allAddons->count() }}</h3>
               </div>
               @foreach ($categories as $category)
               <div class="col-auto d-flex align-items-center justify-content-center pe-1 mb-2">
@@ -225,7 +234,7 @@
                           </div>
                           @endauth
                       </div>
-                      @foreach ($document->addon as $add)
+                      @foreach ($document->addons as $add)
                       <div class="row align-items-center mb-1">
                         <div class="col-auto">
                           <h3 class="mb-0 text-{{ $document->unique_code }}">{{ $document->position }}</h3>
