@@ -82,7 +82,7 @@ class PageController extends Controller
 
     public function kantyna()
     {
-        $daylist = DB::table('calendar')->where('date', '>=', Carbon::now()->subdays(1))->where('date', '<=', Carbon::now()->addDays(13))->simplePaginate(7);
+        $daylist = DB::table('calendar')->where('date', '>=', Carbon::now()->previous('Monday'))->where('date', '<=', Carbon::now()->addDays(14))->simplePaginate(7);
         return view('kantyna', ['pretitle' => 'Stravování', 'title' => 'Nabídka kantýny', 'daylist' => $daylist]);
     }
 

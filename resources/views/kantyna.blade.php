@@ -4,9 +4,7 @@
 <link type="image/png" href="{{ asset('img/kantyna.png') }}" rel="shortcut icon">
 @endsection
 
-@section('buttons')
-{{ $daylist->onEachSide(7)->links() }}
-@endsection
+
 
 @section('content')
 <div class="page-wrapper">
@@ -23,11 +21,21 @@
             {{ __($title) ?? '' }}
           </h2>
         </div>
+
+        <div class="ms-auto d-print-none col-auto">
+          <div class="btn-list">
+            <div class="d-flex justify-content-end">
+              {{ $daylist->onEachSide(7)->links() }}
+            </div>
+          </div>
+        </div>
+
       </div>
     </div>
   </div>
 </div>
 <!-- Wrapper End -->
+
 
 <!-- Page body -->
 <div class="page-body">
@@ -92,7 +100,15 @@
                   </div>
                   @if (Carbon\Carbon::parse($day->date) == Carbon\Carbon::today())
                   <div class="col-4 d-flex align-self-center justify-content-end">
-                    <div class="badge bg-lime-lt">Aktuální dnešní nabídka. Co si dnes dáte ?</div>
+                    <div class="bg-lime-lt badge">
+                      <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-basket mb-0" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                        <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+                        <polyline points="7 10 12 4 17 10"></polyline>
+                        <path d="M21 10l-2 8a2 2.5 0 0 1 -2 2h-10a2 2.5 0 0 1 -2 -2l-2 -8z"></path>
+                        <circle cx="12" cy="15" r="2"></circle>
+                      </svg>
+                      Dnešní nabídka
+                    </div>
                   </div>
                   @endif
                 </div>

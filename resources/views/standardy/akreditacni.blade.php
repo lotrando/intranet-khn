@@ -30,8 +30,19 @@
         <div class="col-12">
           <div class="bg-transparent mb-2">
             <div class="row d-flex align-items-center">
-              <div class="col-2 d-flex align-items-center pe-1 mb-2">
-                <h3 class="mb-0 d-md-inline d-xxl-inline">Celkem {{ $allDocuments->count() }} standardů</h3>
+              <div class="col-auto d-flex align-items-center pe-1 mb-2">
+                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-calculator" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                  <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+                  <rect x="4" y="3" width="16" height="18" rx="2"></rect>
+                  <rect x="8" y="7" width="8" height="3" rx="1"></rect>
+                  <line x1="8" y1="14" x2="8" y2="14.01"></line>
+                  <line x1="12" y1="14" x2="12" y2="14.01"></line>
+                  <line x1="16" y1="14" x2="16" y2="14.01"></line>
+                  <line x1="8" y1="17" x2="8" y2="17.01"></line>
+                  <line x1="12" y1="17" x2="12" y2="17.01"></line>
+                  <line x1="16" y1="17" x2="16" y2="17.01"></line>
+                </svg>
+                <h3 class="mb-0 d-md-inline d-xxl-inline">{{ $allDocuments->count() }} standardů celkem</h3>
               </div>
               @foreach ($categories as $category)
               <div class="col-auto d-flex align-items-center justify-content-center pe-1 mb-2">
@@ -40,10 +51,10 @@
                     {!! $category->svg_icon !!}
                   </div>
                 </span>
-                <h3 class="mb-0 d-md-inline d-xxl-inline ms-1 text-muted">{{ $category->documents->count() }}</h3>
-                <a class="text-decoration-none text-{{ $category->color }}" href="/standardy/{{ $category->folder_name . '/' .  $category->id }}" rel="noopener noreferrer">
+                <a class="text-{{ $category->color }}" href="/standardy/{{ $category->folder_name . '/' .  $category->id }}" rel="noopener noreferrer">
                   <span class="d-md-inline d-xxl-inline ms-1">{{ $category->category_name }}</span>
                 </a>
+                <h3 class="mb-0 d-md-inline d-xxl-inline ms-2 text-{{ $category->color }}">{{ $category->documents->count() }}</h3>
               </div>
               @endforeach
             </div>

@@ -8,7 +8,7 @@
             <a class="link-secondary text-primary text-decoration-none"
                data-bs-toggle="tooltip"
                data-bs-placement="top"
-               data-bs-original-title="Web KHN a.s. v aktualní záložce"
+               data-bs-original-title="Spustí stránky Karvinské hornické nemocnice a.s. v aktuální záložce"
                href="https://www.khn.cz"
                rel="noopener">KHN a.s.
             </a>
@@ -24,7 +24,7 @@
             <a class="link-secondary text-primary text-decoration-none"
                data-bs-toggle="tooltip"
                data-bs-placement="top"
-               data-bs-original-title="Poslat Mirkovi email"
+               data-bs-original-title="Poslat Mirkovi Mail"
                href="mailto:klika@khn.cz"
                target="_blank"
                rel="noopener">
