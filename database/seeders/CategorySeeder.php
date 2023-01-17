@@ -52,10 +52,10 @@ class CategorySeeder extends Seeder
             'category_name' => 'Speciální',
             'folder_name'   => 'specialni',
             'category_icon' => 'specialni.png',
-            'svg_icon'      => '<svg class="icon icon-tabler icon-tabler-report-medical" xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"></path><path d="M9 5h-2a2 2 0 0 0 -2 2v12a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2v-12a2 2 0 0 0 -2 -2h-2"></path><rect x="9" y="3" width="6" height="4" rx="2"></rect><line x1="10" y1="14" x2="14" y2="14"></line><line x1="12" y1="12" x2="12" y2="16"></line></svg>',
+            'svg_icon'      => '<svg class="icon icon-tabler icon-tabler-report-medical text-teal" xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"></path><path d="M9 5h-2a2 2 0 0 0 -2 2v12a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2v-12a2 2 0 0 0 -2 -2h-2"></path><rect x="9" y="3" width="6" height="4" rx="2"></rect><line x1="10" y1="14" x2="14" y2="14"></line><line x1="12" y1="12" x2="12" y2="16"></line></svg>',
             'fas_icon'      => 'notes-medical',
             'button'        => 'speciální',
-            'color'         => 'muted'
+            'color'         => 'teal'
         ]);
 
         DB::table('categories')->insert([

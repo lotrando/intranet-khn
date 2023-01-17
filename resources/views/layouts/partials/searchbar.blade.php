@@ -8,7 +8,7 @@
         <line x1="21" y1="21" x2="15" y2="15"></line>
       </svg>
     </span>
-    <input type="text" id="search" class="form-control" placeholder="{{ __('Hledat standard ...') }}">
+    <input type="text" id="search" class="form-control" placeholder="{{ __('Hledat standard ...') }}" autofocus>
   </div>
 </div>
 @endsection

@@ -490,7 +490,7 @@
               </a>
               <a class="dropdown-item {{ request()->segment(2) == 'specialni' ? 'active' : '' }}" href="{{ route('standardy.specialni', 4) }}">
                 <span class="nav-link-icon d-md-none d-lg-inline-block">
-                  <svg class="icon icon-tabler icon-tabler-report-medical" xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 24 24"
+                  <svg class="icon icon-tabler icon-tabler-report-medical text-teal" xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 24 24"
                        stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
                     <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
                     <path d="M9 5h-2a2 2 0 0 0 -2 2v12a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2v-12a2 2 0 0 0 -2 -2h-2"></path>
