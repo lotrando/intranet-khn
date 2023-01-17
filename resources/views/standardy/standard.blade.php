@@ -335,7 +335,7 @@
                   <input class="form-control" id="position" name="position" type="text">
                 </div>
                 <div class="col-10 col-lg-5 mb-sm-1">
-                  <label class="form-label">{{ __('Name') }} <small class="text-azure">( usnadní vyhledávání )</small></label>
+                  <label class="form-label">{{ __('Name') }} <small class="text-azure">usnadní vyhledávání</small></label>
                   <input class="form-control" id="name" name="name" type="text" placeholder="{{ __('Kategorický název standardu') }}">
                 </div>
                 <div class="col-4 col-lg-2 mb-sm-1">
@@ -353,11 +353,11 @@
               </div>
               <div class="row">
                 <div class="col-10 col-lg-11 mb-sm-1">
-                  <label class="form-label">{{ __('Jednoduchý popis standardu') }} <small class="text-azure">( snadní vyhledávání )</small></label>
+                  <label class="form-label">{{ __('Popis standardu') }} <small class="text-azure">usnadní vyhledávání</small></label>
                   <input class="form-control" id="description" name="description" type="text" placeholder="{{ __('Konkrétní popis standardu') }}">
                 </div>
                 <div class="col-2 col-lg-1 mb-sm-1">
-                  <label class="form-label">{{ __('Unikátní kód') }}</label>
+                  <label class="form-label">{{ __('Unikátní značka') }}</label>
                   <input class="form-control" id="unique_code" name="unique_code" type="text" placeholder="{{ __('Značka #') }}">
                 </div>
               </div>
@@ -375,11 +375,11 @@
                   <input class="form-control" id="examine" name="examine" type="text" placeholder="{{ __('Standard přezkoumal') }}">
                 </div>
                 <div class="col-12 col-lg-2 mb-sm-1">
-                  <label class="form-label">{{ __('Platnost stnadardu od ') }}</label>
+                  <label class="form-label">{{ __('Platnost standardu od') }}</label>
                   <input class="form-control" id="efficiency" name="efficiency" type="date" placeholder="{{ __('Datum platnosti') }}">
                 </div>
                 <div class="col-12 col-lg-4 mb-sm-1">
-                  <label class="form-label">{{ __('Oblast působnosti standardu') }} <small class="text-azure">( usnadní vyhledávání )</small></label>
+                  <label class="form-label">{{ __('Oblast působnosti standardu') }} <small class="text-azure">usnadní vyhledávání</small></label>
                   {{-- <label class="form-check form-check-inline">
                     <input class="form-check-input" type="checkbox">
                     <span class="form-check-label">INT</span>
@@ -404,7 +404,7 @@
                     <input class="form-check-input" type="checkbox" checked="">
                     <span class="form-check-label">JIP</span>
                   </label> --}}
-                  <input class="form-control" id="tags" name="tags" type="text" placeholder="{{ __('Jednotlivé oddělení oddělte čárkou') }}">
+                  <input class="form-control" id="tags" name="tags" type="text" placeholder="{{ __('Zkratky oddělení nebo ambulancí, oddělené čárkou (INT-ODD,...)') }}">
                 </div>
               </div>
               <div class="row">
