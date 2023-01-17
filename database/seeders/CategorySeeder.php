@@ -118,7 +118,7 @@ class CategorySeeder extends Seeder
             'category_name' => 'OKB',
             'folder_name'   => 'okb',
             'category_icon' => 'okb.png',
-            'svg_icon'      => '<svg class="icon icon-tabler icon-tabler-flask text-purple" xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"></path><line x1="9" y1="3" x2="15" y2="3"></line><line x1="10" y1="9" x2="14" y2="9"></line><path d="M10 3v6l-4 11a0.7 .7 0 0 0 .5 1h11a0.7 .7 0 0 0 .5 -1l-4 -11v-6"></path></svg>',
+            'svg_icon'      => '<svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-test-pipe text-purple" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"></path><path d="M20 8.04l-12.122 12.124a2.857 2.857 0 1 1 -4.041 -4.04l12.122 -12.124"></path><path d="M7 13h8"></path><path d="M19 15l1.5 1.6a2 2 0 1 1 -3 0l1.5 -1.6z"></path><path d="M15 3l6 6"></path></svg>',
             'fas_icon'      => 'flask',
             'button'        => 'laboratorní',
             'color'         => 'purple'

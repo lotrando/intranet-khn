@@ -90,7 +90,8 @@ class PageController extends Controller
     public function akreditacni($id)
     {
         $accordion_groups = Document::where('status', 'Schváleno')->where('category_id', $id)->pluck('accordion_group');
-        $categories = Category::all();
+        $categories = Category::with('documents')->get();
+        $allDocuments = Document::pluck('category_id');
         $categorie = Category::where('id', $id)->first();
 
         $documents1 = Document::where('status', 'Schváleno')->with('category', 'addon')->where('category_id', $id)->where('accordion_group', 1)->orderBy('position')->get();
@@ -113,6 +114,7 @@ class PageController extends Controller
             'icon'              => $categorie->fa_icon,
             'categories'        => $categories,
             'groups'            => $accordion_groups,
+            'allDocuments'      => $allDocuments,
             'documents1'        => $documents1,
             'documents2'        => $documents2,
             'documents3'        => $documents3,

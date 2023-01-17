@@ -27,22 +27,23 @@
   <div class="page-header d-print-none">
     <div class="container-fluid">
       <div class="row align-items-center">
-
         <div class="col-12">
           <div class="bg-transparent mb-2">
             <div class="row d-flex align-items-center">
-              <div class="col-auto d-flex align-items-center pe-1 mb-2">
-                <span>Celkem</span>
-                <span class="d-md-inline d-xxl-inline ms-2 text-red text-bold">{{ $allDocuments->count() }}</span>
-              </div>
-              <div class="col-auto d-flex align-items-center ps-1 mb-2">
-                <span>standardů</span>
+              <div class="col-2 d-flex align-items-center pe-1 mb-2">
+                <h3 class="mb-0 d-md-inline d-xxl-inline">Celkem {{ $allDocuments->count() }} standardů</h3>
               </div>
               @foreach ($categories as $category)
-              <div class="col-auto d-flex align-items-center pe-1 mb-2">
-                <span class="legend me-1 bg-{{ $category->color }}"></span>
-                <span class="d-md-inline d-xxl-inline ms-1 text-muted">{{ $category->documents->count() }}</span>
-                <span class="d-md-inline d-xxl-inline ms-1">{{ $category->category_name }}</span>
+              <div class="col-auto d-flex align-items-center justify-content-center pe-1 mb-2">
+                <span class="text-uppercase mb-1">
+                  <div class="text-uppercase">
+                    {!! $category->svg_icon !!}
+                  </div>
+                </span>
+                <h3 class="mb-0 d-md-inline d-xxl-inline ms-1 text-muted">{{ $category->documents->count() }}</h3>
+                <a class="text-{{ $category->color }}" href="/standardy/{{ $category->folder_name . '/' .  $category->id }}" rel="noopener noreferrer">
+                  <span class="d-md-inline d-xxl-inline ms-1">{{ $category->category_name }}</span>
+                </a>
               </div>
               @endforeach
             </div>

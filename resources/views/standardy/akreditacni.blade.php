@@ -27,8 +27,37 @@
     <div class="container-fluid">
       <div class="row align-items-center">
 
-        <div class="col-12 mb-2">
-          <div id="display"></div>
+        <div class="col-12">
+          <div class="bg-transparent mb-2">
+            <div class="row d-flex align-items-center">
+              <div class="col-2 d-flex align-items-center pe-1 mb-2">
+                <h3 class="mb-0 d-md-inline d-xxl-inline">Celkem {{ $allDocuments->count() }} standardů</h3>
+              </div>
+              @foreach ($categories as $category)
+              <div class="col-auto d-flex align-items-center justify-content-center pe-1 mb-2">
+                <span class="text-uppercase mb-1">
+                  <div class="text-uppercase">
+                    {!! $category->svg_icon !!}
+                  </div>
+                </span>
+                <h3 class="mb-0 d-md-inline d-xxl-inline ms-1 text-muted">{{ $category->documents->count() }}</h3>
+                <a class="text-decoration-none text-{{ $category->color }}" href="/standardy/{{ $category->folder_name . '/' .  $category->id }}" rel="noopener noreferrer">
+                  <span class="d-md-inline d-xxl-inline ms-1">{{ $category->category_name }}</span>
+                </a>
+              </div>
+              @endforeach
+            </div>
+            <div class="progress progress-separated">
+              @foreach ($categories as $category)
+              <div class="progress-bar bg-{{ $category->color }}" role="progressbar" style="width: {{ (($category->documents->count() * 100) / ($allDocuments->count() + 1))  }}%" aria-label="{{ $category->category_name }}" data-bs-toggle="tooltip" data-bs-placement="bottom"
+                   data-bs-original-title="{{ $category->category_name .' '. $category->documents->count() }}"></div>
+              @endforeach
+            </div>
+          </div>
+        </div>
+        {{-- Searched events --}}
+        <div>
+          <div id="display" class="display mt-2 mb-2"></div>
         </div>
 
         <!-- Page pre-title -->
