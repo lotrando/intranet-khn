@@ -34,7 +34,7 @@
         <!-- Page pre-title -->
         <div class="col">
           <div class="page-pretitle text-primary">
-            {{ __($category) ?? '' }}
+            {{ __($pretitle) ?? '' }}
           </div>
           <h2 class="page-title text-primary">
             {{ __($categorie->category_name) ?? '' }}

@@ -18,13 +18,13 @@ class PageController extends Controller
     // Homepage
     public function home()
     {
-        return view('home', ['category' => 'Intranet', 'title' => 'Homepage']);
+        return view('home', ['pretitle' => 'Intranet', 'title' => 'Homepage']);
     }
 
     // Oznámení
     public function prehledy()
     {
-        return view('prehledy', ['category' => 'Oznámení', 'title' => 'Přehledy']);
+        return view('prehledy', ['pretitle' => 'Oznámení', 'title' => 'Přehledy']);
     }
 
     public function zmeny()
@@ -37,7 +37,7 @@ class PageController extends Controller
         }
 
         return view('zmeny', [
-            'category'  => 'Oznámení',
+            'pretitle'  => 'Oznámení',
             'title'     => 'Změny standardů',
             'suma'      => $suma,
             'documents' => $documents,
@@ -46,32 +46,32 @@ class PageController extends Controller
 
     public function akord()
     {
-        return view('akord', ['category' => 'Oznámení', 'title' => 'Akord']);
+        return view('akord', ['pretitle' => 'Oznámení', 'title' => 'Akord']);
     }
 
     public function servis()
     {
-        return view('servis', ['category' => 'Oznámení', 'title' => 'Odstávky a servis']);
+        return view('servis', ['pretitle' => 'Oznámení', 'title' => 'Odstávky a servis']);
     }
 
     public function seminare()
     {
-        return view('seminare', ['category' => 'Oznámení', 'title' => 'Seminaře']);
+        return view('seminare', ['pretitle' => 'Oznámení', 'title' => 'Seminaře']);
     }
 
     public function sluzby()
     {
-        return view('sluzby', ['category' => 'Oznámení', 'title' => 'Změny služeb']);
+        return view('sluzby', ['pretitle' => 'Oznámení', 'title' => 'Změny služeb']);
     }
 
     public function informace()
     {
-        return view('informace', ['category' => 'Oznámení', 'title' => 'Informace']);
+        return view('informace', ['pretitle' => 'Oznámení', 'title' => 'Informace']);
     }
 
     public function kultura()
     {
-        return view('kultura', ['category' => 'Oznámení', 'title' => 'Kultura']);
+        return view('kultura', ['pretitle' => 'Oznámení', 'title' => 'Kultura']);
     }
 
     // Stravování
@@ -83,7 +83,7 @@ class PageController extends Controller
     public function kantyna()
     {
         $daylist = DB::table('calendar')->where('date', '>=', Carbon::now()->subdays(1))->where('date', '<=', Carbon::now()->addDays(13))->simplePaginate(7);
-        return view('kantyna', ['category' => 'Stravování', 'title' => 'Nabídka kantýny', 'daylist' => $daylist]);
+        return view('kantyna', ['pretitle' => 'Stravování', 'title' => 'Nabídka kantýny', 'daylist' => $daylist]);
     }
 
     // Akreditacní stadnardy
@@ -108,7 +108,7 @@ class PageController extends Controller
 
         return view('standardy.akreditacni', [
             'title'             => $categorie->category_name,
-            'category'          => 'Standardy',
+            'pretitle'          => 'Standardy',
             'categorie'         => $categorie,
             'icon'              => $categorie->fa_icon,
             'categories'        => $categories,
@@ -131,7 +131,9 @@ class PageController extends Controller
     // Standardy
     public function standard($id)
     {
-        $categories = Category::all();
+        $categories = Category::with('documents')->get();
+        $allDocuments = Document::pluck('category_id');
+
         $categorie  = Category::where('id', $id)->first();
         $last = Document::where('category_id', $id)->latest()->first();
 
@@ -150,12 +152,13 @@ class PageController extends Controller
 
         return view('standardy.standard', [
             'title'             => $categorie->category_name,
-            'category'          => 'Standardy',
+            'pretitle'          => 'Standardy',
             'categorie'         => $categorie,
             'icon'              => $categorie->fa_icon,
             'categories'        => $categories,
             'lastpos'           => $last,
-            'documents'         => $documents
+            'documents'         => $documents,
+            'allDocuments'      => $allDocuments
         ]);
     }
 
@@ -168,6 +171,6 @@ class PageController extends Controller
 
     public function video()
     {
-        return view('videa', ['category' => 'Média', 'title' => 'Videa']);
+        return view('videa', ['pretitle' => 'Média', 'title' => 'Videa']);
     }
 }

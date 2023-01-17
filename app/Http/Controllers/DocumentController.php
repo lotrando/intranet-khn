@@ -272,21 +272,15 @@ class DocumentController extends Controller
     public function standardSearch(Request $request)
     {
         if ($request->ajax()) {
+
             $output = "";
 
-            if (Auth::user()) {
-                $documents = Document::with('category', 'addon')->orderBy('description')
-                    ->orWhere('name', 'LIKE', '%' . $request->search . "%")
-                    ->orWhere('description', 'LIKE', '%' . $request->search . "%")
-                    ->orWhere('tags', 'LIKE', '%' . $request->search . "%")
-                    ->get();
-            } else {
-                $documents = Document::with('category', 'addon')
-                    ->orWhere('name', 'LIKE', '%' . $request->search . "%")->where('status', '==', 'Schváleno')
-                    ->orWhere('description', 'LIKE', '%' . $request->search . "%")
-                    ->orWhere('tags', 'LIKE', '%' . $request->search . "%")
-                    ->get();
-            }
+            $documents = Document::with('category', 'addon')->orderBy('category_id')
+                ->orWhere('unique_code', 'LIKE', '%' . $request->search . "%")
+                ->orWhere('name', 'LIKE', '%' . $request->search . "%")
+                ->orWhere('description', 'LIKE', '%' . $request->search . "%")
+                ->orWhere('tags', 'LIKE', '%' . $request->search . "%")
+                ->get();
 
             if ($documents) {
                 foreach ($documents as $document) {
@@ -306,7 +300,7 @@ class DocumentController extends Controller
                                             </div>
                                             <div class="col text-truncate">
                                                 <a class="text-primary d-block text-decoration-none" href=' . route("download", $document->id) . ' target="_blank">
-                                                <h3 style="margin-bottom: 0;">' . $document->position . '.' . $document->name . '</h3>
+                                                <h3 style="margin-bottom: 0;">' . $document->name . '</h3>
                                                 </a>
                                                 <div class="d-block text-muted text-truncate mt-n1">' . $document->description . '</div>
 

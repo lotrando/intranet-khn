@@ -14,11 +14,13 @@ class FileController extends Controller
         $id = $request->id;
         $status = $request->status;
 
-        if (Auth::user()) {
+        if (Auth::check()) {
             $file = Document::where('id', $id)->pluck('file');
         } else {
-            $file = Document::where('id', $id)->where('status', '=', $status)->pluck('file');
+            $file = Document::where('id', $id)->where('status', '==', $status)->pluck('file');
         }
+
+        // $file = Document::where('id', $id)->where('status', '=', $status)->pluck('file');
 
         if (empty($file[0])) {
             return view('errors.404');

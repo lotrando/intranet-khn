@@ -14,12 +14,12 @@ use Illuminate\Support\Facades\Route;
 
 // Test page
 Route::get('test', function () {
-    return view('test', ['category' => 'Test', 'title' => 'Pokus']);                                        // Testing route
+    return view('test', ['pretitle' => 'Test', 'title' => 'Pokus']);                                        // Testing route
 });
 
 // Index
 Route::get('/', function () {
-    return view('test', ['category' => 'Intranet', 'title' => 'Index']);                                   // Index route
+    return view('test', ['pretitle' => 'Intranet', 'title' => 'Index']);                                   // Index route
 });
 
 // Home page
