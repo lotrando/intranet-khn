@@ -2635,27 +2635,81 @@
                       {{-- @endforeach --}}
                       {{-- </select> --}}
                     {{-- </div> --}}
-                  <div class="col-2 col-lg-2 mb-sm-1">
+                  <div class="col-2 col-lg-1 mb-sm-1">
                     <label class="form-label">{{ __('Position') }} č:</label>
-                    <input class="form-control" id="position" name="position" type="text" }">
+                    <input class="form-control" id="position" name="position" type="text">
                   </div>
-                  <div class="col-10 col-lg-8 mb-sm-1">
-                    <label class="form-label">{{ __('Name') }}</label>
-                    <input class="form-control" id="name" name="name" type="text" placeholder="{{ __('Celý název standardu') }}">
+                  <div class="col-10 col-lg-5 mb-sm-1">
+                    <label class="form-label">{{ __('Name') }} <small class="text-azure">usnadní vyhledávání</small></label>
+                    <input class="form-control" id="name" name="name" type="text" placeholder="{{ __('Kategorický název standardu') }}">
                   </div>
-                  <div class="col-12 col-lg-2 mb-sm-1">
+                  <div class="col-4 col-lg-2 mb-sm-1">
                     <label class="form-label">{{ __('Revision') }}</label>
-                    <input class="form-control" id="revision" name="revision" type="text" placeholder="{{ __('číslo nebo měsíc a rok') }}">
+                    <input class="form-control" id="revision" name="revision" type="text" placeholder="{{ __('Číslo nebo datum') }}">
+                  </div>
+                  <div class="col-4 col-lg-2 mb-sm-1">
+                    <label class="form-label">{{ __('Datum revize') }}</label>
+                    <input class="form-control" id="revision_date" name="revision_date" type="date" placeholder="{{ __('Revision Date') }}">
+                  </div>
+                  <div class="col-4 col-lg-2 mb-sm-1">
+                    <label class="form-label">{{ __('Datum další revize') }}</label>
+                    <input class="form-control" id="next_revision_date" name="next_revision_date" type="date" placeholder="{{ __('Next revision Date') }}">
                   </div>
                 </div>
                 <div class="row">
-                  <div class="col-12 col-lg-10 mb-sm-1">
-                    <label class="form-label">{{ __('Jednoduchý popis standardu') }}</label>
-                    <input class="form-control" id="description" name="description" type="text" placeholder="{{ __('Jednoduchý popis standardu') }}">
+                  <div class="col-10 col-lg-11 mb-sm-1">
+                    <label class="form-label">{{ __('Popis standardu') }} <small class="text-azure">usnadní vyhledávání</small></label>
+                    <input class="form-control" id="description" name="description" type="text" placeholder="{{ __('Konkrétní popis standardu') }}">
+                  </div>
+                  <div class="col-2 col-lg-1 mb-sm-1">
+                    <label class="form-label">{{ __('Unikátní značka') }}</label>
+                    <input class="form-control" id="unique_code" name="unique_code" type="text" placeholder="{{ __('Značka #') }}">
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col-12 col-lg-2 mb-sm-1">
+                    <label class="form-label">{{ __('Zpracoval/a') }}</label>
+                    <input class="form-control" id="processed" name="processed" type="text" placeholder="{{ __('Autor standardu') }}">
                   </div>
                   <div class="col-12 col-lg-2 mb-sm-1">
-                    <label class="form-label">{{ __('Unikátní kód') }}</label>
-                    <input class="form-control" id="unique_code" name="unique_code" type="text" placeholder="{{ __('Unikátní kód') }}">
+                    <label class="form-label">{{ __('Schválil/a') }}</label>
+                    <input class="form-control" id="authorize" name="authorize" type="text" placeholder="{{ __('Standard schválil') }}">
+                  </div>
+                  <div class="col-12 col-lg-2 mb-sm-1">
+                    <label class="form-label">{{ __('Kontrolu provedl/a') }}</label>
+                    <input class="form-control" id="examine" name="examine" type="text" placeholder="{{ __('Standard přezkoumal') }}">
+                  </div>
+                  <div class="col-12 col-lg-2 mb-sm-1">
+                    <label class="form-label">{{ __('Platnost standardu od') }}</label>
+                    <input class="form-control" id="efficiency" name="efficiency" type="date" placeholder="{{ __('Datum platnosti') }}">
+                  </div>
+                  <div class="col-12 col-lg-4 mb-sm-1">
+                    <label class="form-label">{{ __('Oblast působnosti standardu') }} <small class="text-azure">usnadní vyhledávání</small></label>
+                    {{-- <label class="form-check form-check-inline">
+                      <input class="form-check-input" type="checkbox">
+                      <span class="form-check-label">INT</span>
+                    </label>
+                    <label class="form-check form-check-inline">
+                      <input class="form-check-input" type="checkbox">
+                      <span class="form-check-label">NEU</span>
+                    </label>
+                    <label class="form-check form-check-inline">
+                      <input class="form-check-input" type="checkbox" checked="">
+                      <span class="form-check-label">ORT</span>
+                    </label>
+                    <label class="form-check form-check-inline">
+                      <input class="form-check-input" type="checkbox" checked="">
+                      <span class="form-check-label">ONP</span>
+                    </label>
+                    <label class="form-check form-check-inline">
+                      <input class="form-check-input" type="checkbox" checked="">
+                      <span class="form-check-label">OPL</span>
+                    </label>
+                    <label class="form-check form-check-inline">
+                      <input class="form-check-input" type="checkbox" checked="">
+                      <span class="form-check-label">JIP</span>
+                    </label> --}}
+                    <input class="form-control" id="tags" name="tags" type="text" placeholder="{{ __('Zkratky oddělení nebo ambulancí, oddělené čárkou (INT-ODD,...)') }}">
                   </div>
                 </div>
                 <div class="row">
@@ -2671,6 +2725,30 @@
                     </select>
                   </div>
                 </div>
+                <div class="row" id="attachments">
+                  <div class="hr-text text-muted my-3">
+                    <span style="font-size: 0.6rem">{{ __('Attachment') }}</span>
+                  </div>
+                  <div class="col-12 col-lg-10 mb-sm-1">
+                    <label class="form-label">{{ __('Jednoduchý popis přílohy') }}</label>
+                    <input class="form-control" id="attachment1" name="attachment1" type="text" placeholder="{{ __('Jednoduchý popis přílohy standardu') }}">
+                  </div>
+                  <div class="col-12 col-lg-2 mb-sm-1">
+                    <label class="form-label">{{ __('Unikátní kód') }}</label>
+                    <input class="form-control" id="unique_code1" name="unique_code1" type="text" placeholder="{{ __('Unikátní kód') }}">
+                  </div>
+                  <div class="col-12 col-lg-9 mb-sm-1">
+                    <label class="form-label">{{ __('Soubor') }}</label>
+                    <input class="form-control" id="file1" name="file1" type="file" placeholder="{{ __('Soubor standardu ve formátu PDF') }}">
+                  </div>
+                  <div class="col-12 col-lg-3 mb-sm-1">
+                    <label class="form-label">{{ __('Status') }}</label>
+                    <select class="form-select" id="status1" name="status1">
+                      <option value="Schváleno">Schváleno</option>
+                      <option value="Rozpracováno">Rozpracováno</option>
+                    </select>
+                  </div>
+                </div>
               </div>
               <input id="action" name="action" type="hidden" />
               <input id="hidden_id" name="hidden_id" type="hidden" />
@@ -2681,7 +2759,10 @@
                 <button class="btn btn-muted hover-shadow" data-bs-dismiss="modal" type="button">
                   {{ __('Close') }}
                 </button>
-                <button class="btn btn-primary ms-auto hover-shadow" id="action_button" name="action_button" type="submit"></button>
+                <button class="btn btn-primary ms-auto hover-shadow" id="addon-btn" type="button">{{ __('Attachment') }}</button>
+                <div class="align-content-end flex">
+                  <button class="btn btn-primary ms-auto hover-shadow" id="action_button" name="action_button" type="submit"></button>
+                </div>
               </div>
             </form>
           </div>
@@ -2901,5 +2982,11 @@
         }
       })
     })
+
+    $("#attachments").hide();
+        $("#addon-btn").click(function() {
+        console.log('clicked');
+        $("#attachments").toggle();
+        });
       </script>
       @endsection

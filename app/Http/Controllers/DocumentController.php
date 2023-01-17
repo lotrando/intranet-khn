@@ -61,6 +61,7 @@ class DocumentController extends Controller
             'efficiency'            => 'nullable',
             'position'              => 'required|numeric',
             'revision'              => 'required',
+            'unique_code'           => 'nullable',
             'revision_date'         => 'nullable',
             'next_revision_date'    => 'nullable',
             'tags'                  => 'nullable',
@@ -275,7 +276,7 @@ class DocumentController extends Controller
 
             $output = "";
 
-            $documents = Document::with('category', 'addon')->orderBy('category_id')
+            $documents = Document::with('category', 'addons')->orderBy('category_id')
                 ->orWhere('unique_code', 'LIKE', '%' . $request->search . "%")
                 ->orWhere('name', 'LIKE', '%' . $request->search . "%")
                 ->orWhere('description', 'LIKE', '%' . $request->search . "%")

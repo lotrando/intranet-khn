@@ -508,7 +508,6 @@
       function fill(Value) {
       $('#search').val(Value);
       $('#display').hide();
-      $('#dheader').hide();
     }
     $(document).ready(function() {
       $("#search").keyup(function() {

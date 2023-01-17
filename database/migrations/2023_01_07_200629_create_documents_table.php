@@ -30,7 +30,7 @@ class CreateDocumentsTable extends Migration
             $table->date('next_revision_date')->nullable();
             $table->string('tags')->nullable();
             $table->string('file');
-            $table->string('unique_code');
+            $table->string('unique_code')->nullable();
             $table->enum('status', ['Rozpracováno', 'Schváleno']);
             $table->timestamps();
         });
