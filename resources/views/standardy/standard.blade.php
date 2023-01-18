@@ -123,7 +123,7 @@
                 <div class="list-group list-group-flush list-group-hoverable pt-1">
                   <div class="list-group-item">
                     <div class="row align-items-center">
-                      <div class="avatar bg-{{ $document->category->color }}-lt col-auto" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-original-title="Standard ID#{{ $document->id }}">
+                      <div class="avatar bg-{{ $document->category->color }}-lt col-auto" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-original-title="#{{ $document->id }}">
                         <div class="text-uppercase">
                           {!! $document->category->svg_icon !!}
                         </div>
@@ -217,7 +217,7 @@
                     <div class="row align-items-center">
                       <div class="avatar bg-{{ $document->category->color }}-lt col-auto">
                         <div class="text-uppercase" data-bs-toggle="tooltip" data-bs-placement="bottom"
-                             data-bs-original-title="{{ __('Attachment') }} ID#{{ $add->id }}">
+                             data-bs-original-title="#{{ $add->id }}">
                           <svg xmlns=" http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-plus text-{{ $document->category->color }}" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
                             <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
                             <line x1="12" y1="5" x2="12" y2="19"></line>
