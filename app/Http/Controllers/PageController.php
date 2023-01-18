@@ -6,6 +6,7 @@ use App\Models\Addon;
 use App\Models\Category;
 use App\Models\Department;
 use App\Models\Document;
+use App\Models\Employee;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -92,8 +93,10 @@ class PageController extends Controller
         $accordion_groups = Document::where('status', 'Schváleno')->where('category_id', $id)->pluck('accordion_group');
         $categories = Category::with('documents')->get();
         $allDocuments = Document::pluck('category_id');
+        $doctors = Employee::where('title_preffix', 'LIKE', '%' . 'Dr.' . '%')->orderBy('last_name')->get();
         $allAddons = Addon::pluck('document_id');
         $categorie = Category::where('id', $id)->first();
+        $last = Document::where('category_id', $id)->latest()->first();
 
         $documents1 = Document::where('status', 'Schváleno')->with('category', 'addons')->where('category_id', $id)->where('accordion_group', 1)->orderBy('position')->get();
         $documents2 = Document::where('status', 'Schváleno')->with('category', 'addons')->where('category_id', $id)->where('accordion_group', 2)->orderBy('position')->get();
@@ -114,9 +117,11 @@ class PageController extends Controller
             'categorie'         => $categorie,
             'icon'              => $categorie->fa_icon,
             'categories'        => $categories,
+            'doctors'           => $doctors,
             'groups'            => $accordion_groups,
             'allDocuments'      => $allDocuments,
-            'allAddons'        => $allAddons,
+            'allAddons'         => $allAddons,
+            'lastpos'           => $last,
             'documents1'        => $documents1,
             'documents2'        => $documents2,
             'documents3'        => $documents3,
@@ -139,6 +144,7 @@ class PageController extends Controller
         $allDocuments = Document::pluck('category_id');
         $allAddons = Addon::pluck('document_id');
         $categorie  = Category::where('id', $id)->first();
+        $doctors = Employee::where('title_preffix', 'LIKE', '%' . 'Dr.' . '%')->orderBy('last_name')->get();
         $last = Document::where('category_id', $id)->latest()->first();
 
         if ($last == null) {
@@ -163,7 +169,8 @@ class PageController extends Controller
             'lastpos'           => $last,
             'documents'         => $documents,
             'allDocuments'      => $allDocuments,
-            'allAddons'         => $allAddons
+            'allAddons'         => $allAddons,
+            'doctors'           => $doctors
         ]);
     }
 

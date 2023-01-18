@@ -256,7 +256,12 @@
               </div>
               <div class="col-4 col-lg-3 mb-sm-1">
                 <label class="form-label">Jméno lékaře</label>
-                <input class="form-control" id="jmeno_lekare" name="jmeno_lekare" type="text" placeholder="Jméno lékaře">
+                <select class="form-select" id="jmeno_lekare" name="jmeno_lekare">
+                  @foreach ($doctors as $doctor)
+                  <option value="{{ $doctor->title_preffix }} {{ $doctor->last_name }} {{ $doctor->first_name }}">
+                    {{ $doctor->last_name }} {{ $doctor->first_name }}, {{ $doctor->title_preffix }}</option>
+                  @endforeach
+                </select>
               </div>
               <div class="col-4 col-lg-2 mb-sm-1">
                 <label class="form-label">{{ __('Další vývoj') }}</label>
@@ -460,7 +465,7 @@
           $("#modal-header, #modal-icon").removeClass();
           $('#formModal').modal('show');
           $('#modal-icon').addClass('fas fa-exclamation-triangle fa-2x m-2');
-          $('#modal-header').addClass("modal-header bg-red-lt");
+          $('#modal-header').addClass("modal-header bg-yellow-lt");
           $('#action_button, .modal-title').text("{{ __('Edit adverse event') }}");
           $('#action').val("Edit");
           $('#department_code').val(html.data.department.department_code);
@@ -514,7 +519,7 @@
       $('#department_id, #department_code, #spec_druh').val('');
       $('#formModal').modal('show');
       $('#modal-icon').addClass('fas fa-exclamation-triangle fa-2x m-2');
-      $('#modal-header').addClass("modal-header bg-muted-lt");
+      $('#modal-header').addClass("modal-header bg-red-lt");
       $('#action_button, .modal-title').text("{{ __('Create new adverse event') }}");
       $('#action').val("Add");
       $('#pad_panel').removeClass('d-blok').addClass('d-none');

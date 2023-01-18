@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Adversevent;
 use App\Models\Department;
+use App\Models\Employee;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Validator;
@@ -19,6 +20,7 @@ class AdverseventController extends Controller
     public function index(Request $request)
     {
         $departments = Department::orderBy('department_name')->get();
+        $doctors = Employee::where('title_preffix', 'LIKE', '%' . 'Dr.' . '%')->orderBy('last_name')->get();
 
         $model = Adversevent::join('departments', 'adversevents.department_id', '=', 'departments.id')
             ->select('*', 'adversevents.id');
@@ -64,7 +66,8 @@ class AdverseventController extends Controller
 
         return view('adversevents.index')->with([
             'title'         => 'Nežádoucí události',
-            'departments'   => $departments
+            'departments'   => $departments,
+            'doctors'       => $doctors
         ]);
     }
 

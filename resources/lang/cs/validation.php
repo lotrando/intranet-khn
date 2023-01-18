@@ -148,9 +148,10 @@ return [
         'revision'          => 'Pole Revize',
         'position'          => 'Pole pozice',
         'file'              => 'Pole soubor',
+        'processed'         => 'Schválil/a',
         'category_id'       => 'Pole kategorie standardu',
         'unique_code'       => 'Standard s tímto unikátním kódem již existuje. Zvolte jiný, prostě',
-        'description'       => 'Pole jednoduchý popis standardu'
+        'description'       => 'Pole popis standardu'
     ],
     'values'                => [
         'after_or_equal'    => [

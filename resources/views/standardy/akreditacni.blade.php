@@ -44,7 +44,7 @@
                   <path d="M15 15h-6"></path>
                   <path d="M11.5 17.5l-2.5 -2.5l2.5 -2.5"></path>
                 </svg>
-                <span class="mb-0 d-none d-md-none d-xl-inline d-xxl-inline ps-1">Příloh</span>
+                <span class="mb-0 d-none d-md-none d-xl-inline d-xxl-inline">Příloh</span>
                 <h3 class="mb-0 d-md-inline d-xxl-inline text-muted ms-1">{{ $allAddons->count() }}</h3>
               </div>
               @foreach ($categories as $category)
@@ -63,7 +63,7 @@
             </div>
             <div class="progress">
               @foreach ($categories as $category)
-              <div class="progress-bar bg-{{ $category->color }}-lt" role="progressbar" style="width: {{ (($category->documents->count() * 100) / $allDocuments->count())  }}%" aria-label="{{ $category->category_name }}" data-bs-toggle="tooltip" data-bs-placement="bottom"
+              <div class="progress-bar bg-{{ $category->color }}" role="progressbar" style="width: {{ (($category->documents->count() * 100) / $allDocuments->count())  }}%" aria-label="{{ $category->category_name }}" data-bs-toggle="tooltip" data-bs-placement="bottom"
                    data-bs-original-title="{{ $category->category_name .' '. $category->documents->count() }}"></div>
               @endforeach
             </div>
@@ -87,6 +87,20 @@
         <div class="ms-auto d-print-none col-auto">
           <div class="btn-list">
             <div class="d-flex justify-content-end">
+              @auth
+              <button class="btn btn-success d-none d-sm-inline-block me-1" id="openCreateModal" data-bs-toggle="tooltip" data-bs-placement="left"
+                      data-bs-original-title="{{ __('Vytvoří nový '. $categorie->button.' standard') }}">
+                <svg class="icon m-0 icon-tabler icon-tabler-book-upload" xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 24 24" stroke-width="1"
+                     stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                  <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+                  <path d="M14 20h-8a2 2 0 0 1 -2 -2v-12a2 2 0 0 1 2 -2h12v5"></path>
+                  <path d="M11 16h-5a2 2 0 0 0 -2 2"></path>
+                  <path d="M15 16l3 -3l3 3"></path>
+                  <path d="M18 13v9"></path>
+                </svg>
+                <span class="d-sm-none d-md-none d-lg-inline ms-1">{{ __('Nový') }}</span>
+              </button>
+              @endauth
               <button class="btn btn-yellow me-1 d-none d-sm-inline-block" id="showbtn">
                 <svg class="icon m-0 icon-tabler icon-tabler-list-details" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" stroke-width="2"
                      stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round" data-bs-toggle="tooltip" data-bs-placement="top"
@@ -101,7 +115,7 @@
                 </svg>
                 <span class="d-sm-none d-md-none d-lg-inline ms-1">{{ __('Zobrazit') }}</span>
               </button>
-              <button class="btn btn-secondary d-none d-sm-inline-block me-1" id="closebtn">
+              <button class="btn btn-secondary d-none d-sm-inline-block" id="closebtn">
                 <svg class="icon m-0 icon-tabler icon-tabler-menu-2" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" stroke-width="2"
                      stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round" data-bs-toggle="tooltip" data-bs-placement="top"
                      data-bs-original-title="{{ __('Skryje všechny '. $categorie->button.' standardy') }}">
@@ -112,20 +126,6 @@
                 </svg>
                 <span class="d-sm-none d-md-none d-lg-inline ms-1">{{ __('Skrýt') }}</span>
               </button>
-              @auth
-              <button class="btn btn-success d-none d-sm-inline-block" id="openCreateModal" data-bs-toggle="tooltip" data-bs-placement="left"
-                      data-bs-original-title="{{ __('Vytvoří nový'. $categorie->button.' standard') }}">
-                <svg class="icon m-0 icon-tabler icon-tabler-book-upload" xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 24 24" stroke-width="1"
-                     stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
-                  <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
-                  <path d="M14 20h-8a2 2 0 0 1 -2 -2v-12a2 2 0 0 1 2 -2h12v5"></path>
-                  <path d="M11 16h-5a2 2 0 0 0 -2 2"></path>
-                  <path d="M15 16l3 -3l3 3"></path>
-                  <path d="M18 13v9"></path>
-                </svg>
-                <span class="d-sm-none d-md-none d-lg-inline ms-1">{{ __('Nový') }}</span>
-              </button>
-              @endauth
             </div>
           </div>
         </div>
@@ -2605,7 +2605,7 @@
       @section('modals')
       {{-- Main Form Modal --}}
       <div class="modal modal-blur fade" id="formModal" data-bs-backdrop="static" data-bs-keyboard="false" role="dialog" aria-hidden="true" tabindex="-1">
-        <div class="modal-dialog modal-full-width mx-5 modal-dialog-centered" role="document">
+        <div class="modal-dialog modal-full-width mx-5 modal-dialog-top mt-5" role="document">
           <div class="modal-content shadow-lg">
             <div id="modal-header">
               <h5 class="modal-title"></h5>
@@ -2621,21 +2621,19 @@
                 </div>
                 <div class="row">
                   <input class="form-control" id="category_id" name="category_id" type="hidden">
-                  {{-- <div class="col-12 col-lg-3 mb-sm-1"> --}}
-                    {{-- <label class="form-label">{{ __('Kategorie standardu') }}</label> --}}
-                    {{-- <input class="form-control" id="category_id" name="category_id" type="text" placeholder="{{ __('Celý název standardu') }}"> --}}
-                    {{-- <select class="form-select" id="category_id" name="category_id"> --}}
-                      {{-- @foreach ($categories as $item) --}}
-                      {{-- <option value="{{ $item->id }}" @if (old('category_id')==$item->id) selected @endif> --}}
-                        {{-- {{ $item->category_name }}</option> --}}
-                      {{-- @endforeach --}}
-                      {{-- </select> --}}
-                    {{-- </div> --}}
                   <div class="col-2 col-lg-1 mb-sm-1">
                     <label class="form-label">{{ __('Position') }} č:</label>
                     <input class="form-control" id="position" name="position" type="text">
                   </div>
-                  <div class="col-10 col-lg-5 mb-sm-1">
+                  <div class="col-2 col-lg-1 mb-sm-1">
+                    <label class="form-label">{{ __('Číslo seznamu') }}</label>
+                    <select class="form-select col-2 col-lg-1 mb-sm-1" id="accordion_group" name="accordion_group">
+                      @for ($i = 1; $i < 16; $i++)
+                        <option value="$i">{{ $i }}</option>
+                        @endfor
+                    </select>
+                  </div>
+                  <div class="col-8 col-lg-5 mb-sm-1">
                     <label class="form-label">{{ __('Name') }} <small class="text-azure">usnadní vyhledávání</small></label>
                     <input class="form-control" id="name" name="name" type="text" placeholder="{{ __('Kategorický název standardu') }}">
                   </div>
@@ -2653,27 +2651,42 @@
                   </div>
                 </div>
                 <div class="row">
-                  <div class="col-10 col-lg-11 mb-sm-1">
+                  <div class="col-9 col-lg-10 mb-sm-1">
                     <label class="form-label">{{ __('Popis standardu') }} <small class="text-azure">usnadní vyhledávání</small></label>
                     <input class="form-control" id="description" name="description" type="text" placeholder="{{ __('Konkrétní popis standardu') }}">
                   </div>
-                  <div class="col-2 col-lg-1 mb-sm-1">
-                    <label class="form-label">{{ __('Unikátní značka') }}</label>
+                  <div class="col-3 col-lg-2 mb-sm-1">
+                    <label class="form-label">{{ __('Unikátní kód') }}</label>
                     <input class="form-control" id="unique_code" name="unique_code" type="text" placeholder="{{ __('Značka #') }}">
                   </div>
                 </div>
                 <div class="row">
                   <div class="col-12 col-lg-2 mb-sm-1">
                     <label class="form-label">{{ __('Zpracoval/a') }}</label>
-                    <input class="form-control" id="processed" name="processed" type="text" placeholder="{{ __('Autor standardu') }}">
+                    <select class="form-select" id="processed" name="processed">
+                      @foreach ($doctors as $doctor)
+                      <option value="{{ $doctor->title_preffix }} {{ $doctor->last_name }} {{ $doctor->first_name }}">
+                        {{ $doctor->last_name }} {{ $doctor->first_name }}, {{ $doctor->title_preffix }}</option>
+                      @endforeach
+                    </select>
                   </div>
                   <div class="col-12 col-lg-2 mb-sm-1">
                     <label class="form-label">{{ __('Schválil/a') }}</label>
-                    <input class="form-control" id="authorize" name="authorize" type="text" placeholder="{{ __('Standard schválil') }}">
+                    <select class="form-select" id="authorize" name="authorize">
+                      @foreach ($doctors as $doctor)
+                      <option value="{{ $doctor->title_preffix }} {{ $doctor->last_name }} {{ $doctor->first_name }}">
+                        {{ $doctor->last_name }} {{ $doctor->first_name }}, {{ $doctor->title_preffix }}</option>
+                      @endforeach
+                    </select>
                   </div>
                   <div class="col-12 col-lg-2 mb-sm-1">
                     <label class="form-label">{{ __('Kontrolu provedl/a') }}</label>
-                    <input class="form-control" id="examine" name="examine" type="text" placeholder="{{ __('Standard přezkoumal') }}">
+                    <select class="form-select" id="examine" name="examine">
+                      @foreach ($doctors as $doctor)
+                      <option value="{{ $doctor->title_preffix }} {{ $doctor->last_name }} {{ $doctor->first_name }}">
+                        {{ $doctor->last_name }} {{ $doctor->first_name }}, {{ $doctor->title_preffix }}</option>
+                      @endforeach
+                    </select>
                   </div>
                   <div class="col-12 col-lg-2 mb-sm-1">
                     <label class="form-label">{{ __('Platnost standardu od') }}</label>
@@ -2681,30 +2694,6 @@
                   </div>
                   <div class="col-12 col-lg-4 mb-sm-1">
                     <label class="form-label">{{ __('Oblast působnosti standardu') }} <small class="text-azure">usnadní vyhledávání</small></label>
-                    {{-- <label class="form-check form-check-inline">
-                      <input class="form-check-input" type="checkbox">
-                      <span class="form-check-label">INT</span>
-                    </label>
-                    <label class="form-check form-check-inline">
-                      <input class="form-check-input" type="checkbox">
-                      <span class="form-check-label">NEU</span>
-                    </label>
-                    <label class="form-check form-check-inline">
-                      <input class="form-check-input" type="checkbox" checked="">
-                      <span class="form-check-label">ORT</span>
-                    </label>
-                    <label class="form-check form-check-inline">
-                      <input class="form-check-input" type="checkbox" checked="">
-                      <span class="form-check-label">ONP</span>
-                    </label>
-                    <label class="form-check form-check-inline">
-                      <input class="form-check-input" type="checkbox" checked="">
-                      <span class="form-check-label">OPL</span>
-                    </label>
-                    <label class="form-check form-check-inline">
-                      <input class="form-check-input" type="checkbox" checked="">
-                      <span class="form-check-label">JIP</span>
-                    </label> --}}
                     <input class="form-control" id="tags" name="tags" type="text" placeholder="{{ __('Zkratky oddělení nebo ambulancí, oddělené čárkou (INT-ODD,...)') }}">
                   </div>
                 </div>
@@ -2742,6 +2731,7 @@
                       </select>
                     </div>
                   </div>
+
                   <div class="row">
                     <div class="hr-text text-muted my-3">
                       <span style="font-size: 0.6rem">{{ __('Attachment') }} 2</span>
@@ -2756,13 +2746,56 @@
                     </div>
                     <div class="col-12 col-lg-2 mb-sm-1">
                       <label class="form-label">{{ __('Status') }}</label>
-                      <select class="form-select" id="status1" name="status1">
+                      <select class="form-select" id="status2" name="status2">
+                        <option value="Schváleno">Schváleno</option>
+                        <option value="Rozpracováno">Rozpracováno</option>
+                      </select>
+                    </div>
+                  </div>
+
+                  <div class="row">
+                    <div class="hr-text text-muted my-3">
+                      <span style="font-size: 0.6rem">{{ __('Attachment') }} 3</span>
+                    </div>
+                    <div class="col-12 col-lg-8 mb-sm-1">
+                      <label class="form-label">{{ __('Příloha') }} 3</label>
+                      <input class="form-control" id="file-add" name="file-add[]" type="file" placeholder="{{ __('Soubor standardu ve formátu PDF') }}">
+                    </div>
+                    <div class="col-12 col-lg-2 mb-sm-1">
+                      <label class="form-label">{{ __('Revision') }}</label>
+                      <input class="form-control" id="revision-add" name="revision-add[]" type="text" placeholder="{{ __('Číslo nebo datum') }}">
+                    </div>
+                    <div class="col-12 col-lg-2 mb-sm-1">
+                      <label class="form-label">{{ __('Status') }}</label>
+                      <select class="form-select" id="status3" name="status3">
+                        <option value="Schváleno">Schváleno</option>
+                        <option value="Rozpracováno">Rozpracováno</option>
+                      </select>
+                    </div>
+                  </div>
+
+                  <div class="row">
+                    <div class="hr-text text-muted my-3">
+                      <span style="font-size: 0.6rem">{{ __('Attachment') }} 4</span>
+                    </div>
+                    <div class="col-12 col-lg-8 mb-sm-1">
+                      <label class="form-label">{{ __('Příloha') }} 4</label>
+                      <input class="form-control" id="file-add" name="file-add[]" type="file" placeholder="{{ __('Soubor standardu ve formátu PDF') }}">
+                    </div>
+                    <div class="col-12 col-lg-2 mb-sm-1">
+                      <label class="form-label">{{ __('Revision') }}</label>
+                      <input class="form-control" id="revision-add" name="revision-add[]" type="text" placeholder="{{ __('Číslo nebo datum') }}">
+                    </div>
+                    <div class="col-12 col-lg-2 mb-sm-1">
+                      <label class="form-label">{{ __('Status') }}</label>
+                      <select class="form-select" id="status4" name="status4">
                         <option value="Schváleno">Schváleno</option>
                         <option value="Rozpracováno">Rozpracováno</option>
                       </select>
                     </div>
                   </div>
                 </div>
+
               </div>
               <input id="action" name="action" type="hidden" />
               <input id="hidden_id" name="hidden_id" type="hidden" />
@@ -2907,6 +2940,17 @@
       $('#action').val("Add");
       $('#folder_name').val("{{ $categorie->folder_name }}");
       $('#status').val('Schváleno');
+      $('#position').val('{{ $lastpos + 1 }}');
+      $('#unique_code').val('STD00{{ $lastpos + 1 }}');
+      $('#revision').val('{{ $lastpos -$lastpos + 1 }}')
+      $('#processed, #authorize, #examine').val('')
+      $('#revision_date').change(function() {
+      var revisionDate = moment($(this).val()).format('YYYY-MM-DD')
+      var nextRevisionDate = moment(revisionDate).add(1, 'Y').format('YYYY-MM-DD')
+      var efficiencyDate = moment(revisionDate).year(2014).format('YYYY-MM-DD')
+      $('#efficiency').val(efficiencyDate)
+      $('#next_revision_date').val(nextRevisionDate)
+      })
     })
 
     $('#inputForm').on('submit', function(event) {

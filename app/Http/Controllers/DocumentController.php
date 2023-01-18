@@ -149,7 +149,7 @@ class DocumentController extends Controller
                 'accordion_group'       => 'nullable',
                 'name'                  => 'required',
                 'description'           => 'required',
-                'processed'             => 'required',
+                'processed'             => 'nullable',
                 'authorize'             => 'nullable',
                 'examine'               => 'nullable',
                 'efficiency'            => 'nullable',
@@ -300,14 +300,14 @@ class DocumentController extends Controller
                       </a>
                     </div>
                          <div class=" col-auto">
-                          <a href="' . route('download', $document->id) . '" target="_blank">
+                          <a href="' . route('standardy.download', $document->id) . '" target="_blank">
                             <span class="avatar">
                               <img src="../../img/files/pdf.png" alt="PDF soubor">
                             </span>
                           </a>
                         </div>
                         <div class="col text-truncate">
-                          <a class="text-primary d-block text-decoration-none" href="' . route('download', $document->id) . '" target="_blank">
+                          <a class="text-primary d-block text-decoration-none" href="' . route('standardy.download', $document->id) . '" target="_blank">
                             <h3 style="margin-bottom: 0;">' . $document->name . '</h3>
                           </a>
                           <div class="d-block text-muted text-truncate mt-n1">' . $document->description . '</div>
