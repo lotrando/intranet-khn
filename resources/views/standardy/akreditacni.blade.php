@@ -2626,7 +2626,7 @@
                     <input class="form-control" id="position" name="position" type="text">
                   </div>
                   <div class="col-2 col-lg-1 mb-sm-1">
-                    <label class="form-label">{{ __('Číslo seznamu') }}</label>
+                    <label class="form-label">{{ __('Seznam č.') }}</label>
                     <select class="form-select col-2 col-lg-1 mb-sm-1" id="accordion_group" name="accordion_group">
                       @for ($i = 1; $i < 16; $i++)
                         <option value="$i">{{ $i }}</option>
@@ -2637,7 +2637,7 @@
                     <label class="form-label">{{ __('Name') }} <small class="text-azure">usnadní vyhledávání</small></label>
                     <input class="form-control" id="name" name="name" type="text" placeholder="{{ __('Kategorický název standardu') }}">
                   </div>
-                  <div class="col-4 col-lg-2 mb-sm-1">
+                  <div class="col-4 col-lg-1 mb-sm-1">
                     <label class="form-label">{{ __('Revision') }}</label>
                     <input class="form-control" id="revision" name="revision" type="text" placeholder="{{ __('Číslo nebo datum') }}">
                   </div>

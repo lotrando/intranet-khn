@@ -14,7 +14,7 @@ use Illuminate\Support\Facades\Route;
 
 // Test page
 Route::get('test', function () {
-    return view('test', ['pretitle' => 'Test', 'title' => 'Pokus']);                                        // Testing route
+    return view('emails.standard.update', ['pretitle' => 'Test', 'title' => 'Pokus']);                                        // Testing route
 });
 
 // Index
@@ -58,7 +58,7 @@ Route::prefix('standardy')->name('standardy.')->group(function () {
     Route::get('logopedicke/{id}', [PageController::class, 'standard'])->name('logopedicke');               // Logopedické standardy route
     Route::get('legislativni/{id}', [PageController::class, 'standard'])->name('legislativni');             // Legislativní standardy route
     Route::get('standard-search', [DocumentController::class, 'standardSearch'])->name('standard.search');  // Vyhledávání dokumentů
-    Route::get('download/{id}', [FileController::class, 'download'])->name('download');                     // Download standard
+    Route::get('standard/{id}', [FileController::class, 'standardDownload'])->name('download');                     // Download standard
 });
 
 // Media

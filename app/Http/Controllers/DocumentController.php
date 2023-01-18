@@ -2,10 +2,12 @@
 
 namespace App\Http\Controllers;
 
+use App\Mail\StandardUpdatedMail;
 use App\Models\Document;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\File;
+use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Str;
 
@@ -249,6 +251,11 @@ class DocumentController extends Controller
         }
 
         Document::whereId($request->hidden_id)->update($form_data);
+
+        $emailData = Document::with('category')->where('id', $request->hidden_id)->get();
+        // $emailData = Document::with('category')->where('updated_at', '>=', '2023-01-18 13:35:09')->get();
+
+        Mail::to('klika@khn.cz')->send(new StandardUpdatedMail($emailData));
 
         return response()->json(['success' => 'Standard aktualizován']);
     }

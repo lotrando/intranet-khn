@@ -9,7 +9,7 @@ use Illuminate\Support\Facades\Response;
 
 class FileController extends Controller
 {
-    public function download(Request $request)
+    public function standardDownload(Request $request)
     {
         $id = $request->id;
         $status = $request->status;
