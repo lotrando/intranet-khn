@@ -57,16 +57,14 @@ Route::prefix('standardy')->name('standardy.')->group(function () {
     Route::get('okb/{id}', [PageController::class, 'standard'])->name('okb');                               // OKB standardy route
     Route::get('logopedicke/{id}', [PageController::class, 'standard'])->name('logopedicke');               // Logopedické standardy route
     Route::get('legislativni/{id}', [PageController::class, 'standard'])->name('legislativni');             // Legislativní standardy route
-    Route::get('standard-search', [DocumentController::class, 'standardSearch'])->name('standard.search');  // Vyhledávání dokumentů route
-    // Download
-    Route::get('download/{id}', [FileController::class, 'download'])->name('download');
+    Route::get('standard-search', [DocumentController::class, 'standardSearch'])->name('standard.search');  // Vyhledávání dokumentů
+    Route::get('download/{id}', [FileController::class, 'download'])->name('download');                     // Download standard
 });
-
 
 // Media
 Route::prefix('media')->name('media.')->group(function () {
-    Route::get('radio', [PageController::class, 'radio'])->name('radio');                                   // Radio route
-    Route::get('videa', [PageController::class, 'video'])->name('videa');                                   // Videa route
+    Route::get('radio', [PageController::class, 'radio'])->name('radio');                                   // Radio route (media.radio)
+    Route::get('videa', [PageController::class, 'video'])->name('videa');                                   // Videa route (media.video)
 });
 
 // Attendace
