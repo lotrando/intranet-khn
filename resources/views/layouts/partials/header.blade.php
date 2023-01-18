@@ -20,25 +20,25 @@
       <div class="nav-item d-none d-md-flex nav-item d-none d-md-flex">
         <div class="btn-list">
           <a class="btn {{ request()->segment(1) == 'employees' ? 'bg-primary-lt' : '' }}" data-bs-toggle="tooltip" data-bs-placement="bottom" data-bs-original-title="Seznam zaměstnanců KHN" href="{{ route('employees.index') }}" rel="noreferrer">
-            <svg class="icon icon-tabler icon-tabler-user-circle text-lime" xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 24 24" stroke-width="1" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+            <svg class="icon m-0 icon-tabler icon-tabler-user-circle text-lime" xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 24 24" stroke-width="1" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
               <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
               <circle cx="12" cy="12" r="9"></circle>
               <circle cx="12" cy="10" r="3"></circle>
               <path d="M6.168 18.849a4 4 0 0 1 3.832 -2.849h4a4 4 0 0 1 3.834 2.855"></path>
             </svg>
-            {{ __('Employees') }}
+            <span class="d-sm-none d-md-none d-lg-inline ms-1">{{ __('Employees') }}</span>
           </a>
           <a class="btn {{ request()->segment(1) == 'adversevents' ? 'bg-primary-lt' : '' }}" data-bs-toggle="tooltip" data-bs-placement="bottom" data-bs-original-title="Odeslat nežádoucí událost" href="{{ route('adversevents.index') }}" rel="noreferrer">
-            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-alert-triangle text-red" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+            <svg xmlns="http://www.w3.org/2000/svg" class="icon m-0 icon-tabler icon-tabler-alert-triangle text-red" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
               <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
               <path d="M12 9v2m0 4v.01"></path>
               <path d="M5 19h14a2 2 0 0 0 1.84 -2.75l-7.1 -12.25a2 2 0 0 0 -3.5 0l-7.1 12.25a2 2 0 0 0 1.75 2.75"></path>
             </svg>
-            {{ __('Nežádoucí události') }}
+            <span class="d-sm-none d-md-none d-lg-inline ms-1">{{ __('Nežádoucí události') }}</span>
           </a>
           {{-- Radio Button --}}
           <a class="btn" data-bs-toggle="tooltip" data-bs-placement="bottom" data-bs-original-title="Radio KHN - Evropa2" href="{{ route('media.radio') }}" rel="noreferrer">
-            <svg class="icon icon-tabler icon-tabler-radio text-yellow" xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 24 24" stroke-width="1" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+            <svg class="icon m-0 text-yellow" xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 24 24" stroke-width="1" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
               <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
               <path d="M14 3l-9.371 3.749a1 1 0 0 0 -.629 .928v11.323a1 1 0 0 0 1 1h14a1 1 0 0 0 1 -1v-11a1 1 0 0 0 -1 -1h-14.5"></path>
               <path d="M4 12h16"></path>
@@ -46,11 +46,11 @@
               <path d="M17 16v.01"></path>
               <path d="M13 16v.01"></path>
             </svg>
-            {{ __('Rádio') }}
+            <span class="d-sm-none d-md-none d-lg-inline ms-1">{{ __('Rádio') }}</span>
           </a>
           {{-- Helpdesk --}}
-          <div class="nav-item dropdown d-none d-md-flex me-3">
-            <button class="btn dropdown-toggle align-text-top" data-bs-boundary="viewport" data-bs-toggle="dropdown">
+          <div class="nav-item dropdown d-none d-md-flex">
+            <button class="btn m-0 dropdown-toggle align-text-top" data-bs-boundary="viewport" data-bs-toggle="dropdown">
               <svg class="icon text-red" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
                 <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
                 <circle cx="12" cy="12" r="4"></circle>
@@ -59,7 +59,8 @@
                 <line x1="9" y1="15" x2="5.65" y2="18.35"></line>
                 <line x1="5.65" y1="5.65" x2="9" y2="9"></line>
                 <line x1="18.35" y1="5.65" x2="15" y2="9"></line>
-              </svg>{{ __('Helpdesk') }}
+              </svg>
+              <span class="d-sm-none d-md-none d-lg-inline">{{ __('Helpdesk') }}</span>
             </button>
             <div class="dropdown-menu dropdown-menu-end dropdown-menu-arrow dropdown-menu-card">
               <div class="card">

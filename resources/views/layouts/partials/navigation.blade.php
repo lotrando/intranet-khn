@@ -234,7 +234,7 @@
               </span>
             </a>
           </li>
-          <li class="nav-item dropdown" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-original-title="Přehled dokumentace nemocnice">
+          <li class="nav-item dropdown" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-original-title="Přehled dokumentace">
             <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" data-bs-auto-close="outside" href="#" role="button" aria-expanded="false">
               <span class="nav-link-icon d-md-none d-lg-inline-block">
                 <svg class="icon icon-tabler icon-tabler-book" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" stroke-width="2"
@@ -426,7 +426,7 @@
               </a>
             </div>
           </li>
-          <li class="nav-item dropdown {{ request()->segment(1) == 'standardy' ? 'active' : '' }}" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-original-title="Přehled všech standadů nemocnice">
+          <li class="nav-item dropdown {{ request()->segment(1) == 'standardy' ? 'active' : '' }}" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-original-title="Standady nemocnice">
             <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" data-bs-auto-close="outside" href="#" role="button" aria-expanded="false">
               <span class="nav-link-icon d-md-none d-lg-inline-block">
                 <svg class="icon icon-tabler icon-tabler-book-2 text-purple" xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 24 24"
@@ -620,7 +620,7 @@
               </a>
             </div>
           </li>
-          <li class="nav-item dropdown {{ request()->segment(1) == 'media' ? 'active' : '' }}">
+          <li class="nav-item dropdown {{ request()->segment(1) == 'media' ? 'active' : '' }}" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-original-title="Instruktážní videa">
             <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" data-bs-auto-close="outside" href="#" role="button" aria-expanded="false">
               <span class="nav-link-icon d-md-none d-lg-inline-block">
                 <svg class="icon icon-tabler icon-tabler-device-tv-old text-lime" xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 24 24"

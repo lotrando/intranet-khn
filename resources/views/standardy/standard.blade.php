@@ -5,8 +5,8 @@
 @endsection
 
 @section('searchbar')
-<div class="col-auto me-2">
-  <input class="form-control d-md-none" id="search" type="text" placeholder="{{ __('Hledat standard ...') }}">
+<div class="col-12 me-2">
+  <input class="form-control d-lg-block d-xl-inline" id="search" type="text" placeholder="{{ __('Hledat standard ...') }}">
 </div>
 </div>
 @endsection
@@ -14,7 +14,9 @@
 @section('content')
 {{-- Page Wrapper Start --}}
 <div class="page-wrapper">
+
   <div class="page-header d-print-none">
+
     <div class="container-fluid">
       <div class="row align-items-center">
         <div class="col-12 mt-2">
@@ -50,7 +52,7 @@
               @foreach ($categories as $category)
               <div class="col-auto d-flex align-items-center justify-content-center pe-1 mb-2">
                 <span class="text-uppercase mb-1 me-1">
-                  <div class="text-uppercase d-xl-none">
+                  <div class="text-uppercase d-xxl-inline d-xl-none">
                     {!! $category->svg_icon !!}
                   </div>
                 </span>
@@ -69,12 +71,13 @@
             </div>
           </div>
         </div>
+
         {{-- Searched events --}}
         <div>
           <div id="display" class="display mt-2 mb-2"></div>
         </div>
 
-
+        {{-- Page title --}}
         <div class="col">
           {{-- Page Pretitle --}}
           <div class="page-pretitle text-primary">
@@ -91,9 +94,9 @@
           <div class="btn-list">
             <div class="d-flex justify-content-end">
               @auth
-              <button class="btn btn-success me-2 d-none d-sm-inline-block hover-shadow-sm" id="openCreateModal" data-bs-toggle="tooltip" data-bs-placement="left"
+              <button class="btn btn-success d-none d-sm-inline-block hover-shadow-sm" id="openCreateModal" data-bs-toggle="tooltip" data-bs-placement="left"
                       data-bs-original-title="{{ __('Vytvoří nový ' . $categorie->button . ' standard') }}">
-                <svg class="icon icon-tabler icon-tabler-book-upload" xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 24 24" stroke-width="1"
+                <svg class="icon m-0" xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 24 24" stroke-width="1"
                      stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
                   <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
                   <path d="M14 20h-8a2 2 0 0 1 -2 -2v-12a2 2 0 0 1 2 -2h12v5"></path>
@@ -101,14 +104,14 @@
                   <path d="M15 16l3 -3l3 3"></path>
                   <path d="M18 13v9"></path>
                 </svg>
-                {{ __('Nový standard') }}
+                <span class="d-sm-none d-md-none d-lg-inline">{{ __('Nový') }}</span>
               </button>
               @endauth
             </div>
           </div>
         </div>
+        <!-- Page Title Buttons End -->
       </div>
-      <!-- Page Title Buttons End -->
 
       <!-- Page -->
       <div class="row mt-2">
@@ -281,9 +284,8 @@
       </div>
       <!-- Page End -->
     </div>
+    <!-- Page Wrapper End -->
   </div>
-
-  <!-- Page Wrapper End -->
   @endsection
 
   @section('modals')

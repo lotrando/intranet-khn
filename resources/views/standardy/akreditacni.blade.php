@@ -87,9 +87,10 @@
         <div class="ms-auto d-print-none col-auto">
           <div class="btn-list">
             <div class="d-flex justify-content-end">
-              <button class="btn btn-yellow me-2 d-none d-sm-inline-block" id="showbtn">
-                <svg class="icon icon-tabler icon-tabler-list-details" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" stroke-width="2"
-                     stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+              <button class="btn btn-yellow me-1 d-none d-sm-inline-block" id="showbtn">
+                <svg class="icon m-0 icon-tabler icon-tabler-list-details" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" stroke-width="2"
+                     stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round" data-bs-toggle="tooltip" data-bs-placement="top"
+                     data-bs-original-title="{{ __('Zobrazí všechny '. $categorie->button.' standardy') }}">
                   <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
                   <path d="M13 5h8"></path>
                   <path d="M13 9h5"></path>
@@ -98,22 +99,23 @@
                   <rect x="3" y="4" width="6" height="6" rx="1"></rect>
                   <rect x="3" y="14" width="6" height="6" rx="1"></rect>
                 </svg>
-                {{ __('Zobrazit standardy') }}
+                <span class="d-sm-none d-md-none d-lg-inline ms-1">{{ __('Zobrazit') }}</span>
               </button>
-              <button class="btn btn-secondary me-2 d-none d-sm-inline-block" id="closebtn">
-                <svg class="icon icon-tabler icon-tabler-menu-2" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" stroke-width="2"
-                     stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+              <button class="btn btn-secondary d-none d-sm-inline-block me-1" id="closebtn">
+                <svg class="icon m-0 icon-tabler icon-tabler-menu-2" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" stroke-width="2"
+                     stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round" data-bs-toggle="tooltip" data-bs-placement="top"
+                     data-bs-original-title="{{ __('Skryje všechny '. $categorie->button.' standardy') }}">
                   <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
                   <line x1="4" y1="6" x2="20" y2="6"></line>
                   <line x1="4" y1="12" x2="20" y2="12"></line>
                   <line x1="4" y1="18" x2="20" y2="18"></line>
                 </svg>
-                {{ __('Skrýt standardy') }}
+                <span class="d-sm-none d-md-none d-lg-inline ms-1">{{ __('Skrýt') }}</span>
               </button>
               @auth
-              <button class="btn btn-success me-2 d-none d-sm-inline-block" id="openCreateModal" data-bs-toggle="tooltip" data-bs-placement="bottom"
-                      data-bs-original-title="{{ __('Vytvoří '. $categorie->button.' standard') }}">
-                <svg class="icon icon-tabler icon-tabler-book-upload" xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 24 24" stroke-width="1"
+              <button class="btn btn-success d-none d-sm-inline-block" id="openCreateModal" data-bs-toggle="tooltip" data-bs-placement="left"
+                      data-bs-original-title="{{ __('Vytvoří nový'. $categorie->button.' standard') }}">
+                <svg class="icon m-0 icon-tabler icon-tabler-book-upload" xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 24 24" stroke-width="1"
                      stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
                   <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
                   <path d="M14 20h-8a2 2 0 0 1 -2 -2v-12a2 2 0 0 1 2 -2h12v5"></path>
@@ -121,7 +123,7 @@
                   <path d="M15 16l3 -3l3 3"></path>
                   <path d="M18 13v9"></path>
                 </svg>
-                {{ __('Nový standard') }}
+                <span class="d-sm-none d-md-none d-lg-inline ms-1">{{ __('Nový') }}</span>
               </button>
               @endauth
             </div>
