@@ -58,10 +58,10 @@ Route::prefix('standardy')->name('standardy.')->group(function () {
     Route::get('logopedicke/{id}', [PageController::class, 'standard'])->name('logopedicke');               // Logopedické standardy route
     Route::get('legislativni/{id}', [PageController::class, 'standard'])->name('legislativni');             // Legislativní standardy route
     Route::get('standard-search', [DocumentController::class, 'standardSearch'])->name('standard.search');  // Vyhledávání dokumentů route
+    // Download
+    Route::get('download/{id}', [FileController::class, 'download'])->name('download');
 });
 
-// Download
-Route::get('download/{id}', [FileController::class, 'download'])->name('download');
 
 // Media
 Route::prefix('media')->name('media.')->group(function () {

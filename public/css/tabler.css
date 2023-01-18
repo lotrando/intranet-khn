@@ -5048,7 +5048,7 @@ fieldset:disabled .btn {
 
 .progress {
   display: flex;
-  height: 0.5rem;
+  height: 1.0rem;
   overflow: hidden;
   font-size: 0.65625rem;
   background-color: #e6e7e9;
