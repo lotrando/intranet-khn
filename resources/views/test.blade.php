@@ -30,6 +30,21 @@
       <div class="row">
         <div class="col-12 mb-5">
 
+          {{ Form::open(['url' => 'foo/bar']) }}
+          {!! Form::token() !!}
+          {!! Form::text('email', 'example@gmail.com', ['class' => 'form-control mb-2']) !!}
+          {!! Form::text('user', 'User', ['class' => 'form-control mb-2']) !!}
+          {{ Form::label('prmal', null, ['class' => 'control-label']) }}
+          {!! Form::select('animal',[
+          'Cats' => ['leopard' => 'Leopard'],
+          'Dogs' => ['spaniel' => 'Spaniel'],
+          ], '', ['class' => 'form-select mb-2']) !!}
+          <div class="form-group">
+            {{ Form::label('test', null, ['class' => 'control-label']) }}
+            {{ Form::text('test', 'pokus', ['class' => 'form-control']) }}
+          </div>
+          {!! Form::submit('Click Me!', ['class' => 'btn btn-primary mt-1']) !!}
+          {!! Form::close() !!}
 
         </div>
       </div>

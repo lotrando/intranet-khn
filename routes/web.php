@@ -20,7 +20,7 @@ Route::get('test', function () {
 // Index
 Route::get('/', function () {
     return view('test', ['pretitle' => 'Intranet', 'title' => 'Index']);                                   // Index route
-});
+})->name('test');
 
 // Home page
 Route::get('home', [PageController::class, 'home'])->name('home');                                          // Home route
