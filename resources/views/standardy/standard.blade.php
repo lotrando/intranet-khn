@@ -5,8 +5,8 @@
 @endsection
 
 @section('searchbar')
-<div class="col-auto me-2 d-sm-none d-md-inline-block">
-  <input size="13" class="form-control" id="search" type="text" placeholder="{{ __('Hledat standard ...') }}">
+<div class="col-12 me-2">
+  <input class="form-control d-lg-block d-xl-inline" id="search" type="text" placeholder="{{ __('Hledat standard ...') }}">
 </div>
 @endsection
 

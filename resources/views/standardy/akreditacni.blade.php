@@ -75,10 +75,10 @@
         </div>
 
         @foreach ($categories as $category)
-        <div class="col-2 col-sm-3 col-xl-3 col-xxl-2 ps-0 m-0">
+        <div class="col-2 col-sm-2 col-md-2 col-xl-2 col-xxl-2 ps-0 m-0">
           <a href="/standardy/{{ $category->folder_name . '/' . $category->id }}" class="btn bg-{{ $category->color }}-lt hover-shadow-sm w-100 m-1" data-bs-toggle="tooltip" data-bs-placement="top"
              data-bs-original-title="{{ __('' . $category->category_name . ' standardy') }}">
-            <span class="d-inline d-sm-inline d-lg-inline d-xl-inline">{!! $category->svg_icon !!}</span>
+            <span class="d-inline d-sm-inline d-md-none d-lg-inline d-xl-inline">{!! $category->svg_icon !!}</span>
             <span class="d-none d-md-inline d-lg-inline d-xl-inline pe-1">{{ $category->category_name }}</span>
             <span class="text-small">
               {{ $category->documents->count() }}
