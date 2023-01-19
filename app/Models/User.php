@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use App\Models\Department;
+use App\Models\Document;
 use App\Models\Employee;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;

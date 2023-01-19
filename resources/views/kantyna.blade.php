@@ -42,7 +42,7 @@
   <div class="container-fluid">
     <div class="row justify-content-center">
       <div class="col-12">
-        <div class="card" style="height: 35rem">
+        <div class="card" style="height: 38rem">
           <div class="card-body card-body-scrollable card-body-scrollable-shadow">
             <div class="divide-y">
               @foreach ($daylist as $day)
@@ -100,14 +100,13 @@
                   </div>
                   @if (Carbon\Carbon::parse($day->date) == Carbon\Carbon::today())
                   <div class="col-4 d-flex align-self-center justify-content-end">
-                    <div class="bg-lime-lt badge">
-                      <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-basket mb-0" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                    <div class="avatar avatar-md avatar-rounded bg-lime-lt">
+                      <svg xmlns="http://www.w3.org/2000/svg" class="text-lime" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
                         <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
-                        <polyline points="7 10 12 4 17 10"></polyline>
-                        <path d="M21 10l-2 8a2 2.5 0 0 1 -2 2h-10a2 2.5 0 0 1 -2 -2l-2 -8z"></path>
-                        <circle cx="12" cy="15" r="2"></circle>
+                        <path d="M12 15v3.586a1 1 0 0 1 -1.707 .707l-6.586 -6.586a1 1 0 0 1 0 -1.414l6.586 -6.586a1 1 0 0 1 1.707 .707v3.586h3v6h-3z"></path>
+                        <path d="M21 15v-6"></path>
+                        <path d="M18 15v-6"></path>
                       </svg>
-                      Dnešní nabídka
                     </div>
                   </div>
                   @endif

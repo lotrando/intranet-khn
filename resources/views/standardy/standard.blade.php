@@ -419,16 +419,20 @@
               </div>
             </div>
             <div class="row">
-              <div class="col-12 col-lg-9 mb-sm-1">
+              <div class="col-12 col-lg-7 mb-sm-1">
                 <label class="form-label">{{ __('Soubor') }}</label>
                 <input class="form-control" id="file" name="file" type="file" placeholder="{{ __('Soubor standardu ve formátu PDF') }}">
               </div>
-              <div class="col-12 col-lg-3 mb-sm-1">
+              <div class="col-6 col-lg-2 mb-sm-1">
                 <label class="form-label">{{ __('Status') }}</label>
                 <select class="form-select" id="status" name="status">
                   <option value="Rozpracováno">Rozpracováno</option>
                   <option value="Schváleno">Schváleno</option>
                 </select>
+              </div>
+              <div class="col-6 col-lg-3 mb-sm-1">
+                <label class="form-label">{{ __('Založil / upravil') }}</label>
+                <input class="form-control" id="user_name" name="user_name" type="text" readonly>
               </div>
             </div>
             <div class="row" id="attachments">
@@ -522,6 +526,7 @@
           <input id="hidden_id" name="hidden_id" type="hidden" />
           <input id="hidden_file" name="hidden_file" type="hidden" />
           <input id="folder_name" name="folder_name" type="hidden" />
+          <input id="user_id" name="user_id" type="hidden" />
 
           <div class="modal-footer">
             <button class="btn btn-muted hover-shadow" data-bs-dismiss="modal" type="button">
@@ -642,6 +647,8 @@
             $('#position').val(html.data.position);
             $('#attachment').val(html.data.attachment);
             $('#status').val(html.data.status);
+            $('#user_id').val('{{ auth()->user()->id }}');
+            $('#user_name').val(html.data.user.name);
             $('#hidden_id').val(html.data.id);
             $('#hidden_file').val(html.data.file);
             $('#revision_date').change(function() {
@@ -668,15 +675,15 @@
         $('#position').val('{{ $lastpos + 1 }}');
         $('#folder_name').val("{{ $categorie->folder_name }}");
         $('#status').val('Schváleno');
+        $('#user_id').val('{{ auth()->user()->id }}');
+        $('#user_name').val('{{ auth()->user()->name }}');
         $('#unique_code').val('STD{{ $categorie->id }}#{{ $lastpos + 1 }}');
         $('#revision').val('{{ $lastpos - $lastpos + 1 }}')
         $('#processed, #authorize, #examine').val('')
         $('#revision_date').change(function() {
-          var revisionDate = moment($(this).val()).format('YYYY-MM-DD')
-          var nextRevisionDate = moment(revisionDate).add(1, 'Y').format('YYYY-MM-DD')
-          var efficiencyDate = moment(revisionDate).year(2014).format('YYYY-MM-DD')
-          $('#efficiency').val(efficiencyDate)
-          $('#next_revision_date').val(nextRevisionDate)
+        var revisionDate = moment($(this).val()).format('YYYY-MM-DD')
+        var nextRevisionDate = moment(revisionDate).add(1, 'Y').format('YYYY-MM-DD')
+        $('#efficiency').val($('#revision_date').val())
         })
       })
 

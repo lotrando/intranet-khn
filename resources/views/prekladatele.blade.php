@@ -107,9 +107,9 @@
             </div>
             <div class="card-body text-center">
               <div class="avatar avatar-lg">
-                <img class="rounded-2 shadow mb-2" src="{{ asset('foto/60321.jpg') }}" alt="MUDr. Brzeżański Henryk">
+                <img class="rounded-2 shadow mb-2" src="{{ asset('foto/61316.jpg') }}" alt="MUDr. Holomek Karel">
               </div>
-              <h3 class="fw-bold my-3">MUDr. Brzeżański Henryk</h3>
+              <h3 class="fw-bold my-3">MUDr. Holomek Karel</h3>
 
               <ul class="list-unstyled lh-lg">
                 <li>

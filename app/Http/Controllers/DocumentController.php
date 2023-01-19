@@ -102,6 +102,7 @@ class DocumentController extends Controller
             'file'                  => $file_name,
             'unique_code'           => $request->unique_code,
             'status'                => $request->status,
+            'user_id'               => Auth::user()->id
         ];
 
         Document::create($form_data);
@@ -128,7 +129,7 @@ class DocumentController extends Controller
      */
     public function edit($id)
     {
-        $data = Document::with('category')->findOrFail($id);
+        $data = Document::with('category', 'user')->findOrFail($id);
         if (request()->ajax()) {
             return response()->json(['data' => $data]);
         }
@@ -204,6 +205,7 @@ class DocumentController extends Controller
                 'file'                  => $file_name,
                 'unique_code'           => $request->unique_code,
                 'status'                => $request->status,
+                'user_id'               => Auth::user()->id
             ];
         } else {
 
@@ -222,7 +224,7 @@ class DocumentController extends Controller
                 'revision_date'         => 'nullable',
                 'next_revision_date'    => 'nullable',
                 'tags'                  => 'nullable',
-                'status'                => 'required',
+                'status'                => 'required'
             ];
 
             $error = Validator::make($request->all(), $rules);
@@ -248,6 +250,7 @@ class DocumentController extends Controller
                 'position'              => $request->position,
                 'unique_code'           => $request->unique_code,
                 'status'                => $request->status,
+                'user_id'               => Auth::user()->id
             ];
         }
 
