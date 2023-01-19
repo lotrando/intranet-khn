@@ -635,7 +635,7 @@
             $('#efficiency').val(html.data.efficiency);
             $('#revision').val(html.data.revision);
             $('#revision_date').val(html.data.revision_date);
-            $('#next_revision_date').val(html.data.next_revision_date);
+            $('#next_revision_date').val(moment($('#revision_date').val()).add(1, 'Y').format('YYYY-MM-DD'));
             $('#tags').val(html.data.tags);
             $('#unique_code').val(html.data.unique_code);
             $('#description').val(html.data.description);
@@ -644,6 +644,13 @@
             $('#status').val(html.data.status);
             $('#hidden_id').val(html.data.id);
             $('#hidden_file').val(html.data.file);
+            $('#revision_date').change(function() {
+            var revisionDate = moment($(this).val()).format('YYYY-MM-DD')
+            var nextRevisionDate = moment(revisionDate).add(1, 'Y').format('YYYY-MM-DD')
+            var efficiencyDate = moment(revisionDate).year(2014).format('YYYY-MM-DD')
+            $('#efficiency').val(efficiencyDate)
+            $('#next_revision_date').val(nextRevisionDate)
+            })
           }
         })
       })
