@@ -30,7 +30,8 @@ Route::get('home', [PageController::class, 'home'])->name('home');              
 // Oznámení
 Route::prefix('oznameni')->name('oznameni.')->group(function () {
     Route::get('prehledy', [PageController::class, 'prehledy'])->name('prehledy');                          // Přehledy route
-    Route::get('zmeny', [PageController::class, 'zmeny'])->name('zmeny-standardu');                         // Změny route
+    Route::get('zmeny-standardu', [PageController::class, 'zmenyStandardu'])->name('zmeny-standardu');     // Změny standardů route
+    Route::get('zmeny-dokumentu', [PageController::class, 'zmenyDokumentu'])->name('zmeny-dokumentu');     // Změny dokumentů route
     Route::get('akord', [PageController::class, 'akord'])->name('akord');                                   // Akord route
     Route::get('servis', [PageController::class, 'servis'])->name('servis');                                // Servis route
     Route::get('seminare', [PageController::class, 'seminare'])->name('seminare');                          // Semináře route

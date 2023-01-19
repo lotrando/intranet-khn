@@ -40,84 +40,196 @@
 <!-- Page body -->
 <div class="page-body">
   <div class="container-fluid">
-    <div class="row justify-content-center">
-      <div class="col-12">
-        <div class="card" style="height: 38rem">
+    <div class="row justify-content-start g-2">
+
+      <div class="col-12 col-md-7 col-lg-8 col-xl-4">
+        <div class="card" style="height: 37rem">
           <div class="card-body card-body-scrollable card-body-scrollable-shadow">
             <div class="divide-y">
               @foreach ($daylist as $day)
-              @if (date('N', strtotime($day->date)) >= 6)
               <div>
                 <div class="row">
-                  <div class="col-1 d-flex align-items-center justify-content-center">
+                  <div class="col-2 d-flex align-items-center justify-content-start">
+                    @if (date('N', strtotime($day->date)) >= 6)
                     <span class="avatar bg-pink-lt"><strong>{{ Carbon\Carbon::parse($day->date)->format('d|m') }}</strong></span>
+                    @elseif (Carbon\Carbon::parse($day->date) == Carbon\Carbon::today())
+                    <span class="avatar bg-lime-lt"><strong>{{ Carbon\Carbon::parse($day->date)->format('d|m') }}</strong></span>
+                    @else
+                    <span class="avatar bg-azure-lt"><strong>{{ Carbon\Carbon::parse($day->date)->format('d|m') }}</strong></span>
+                    @endif
                   </div>
-                  <div class="col-1 d-flex align-items-center justify-content-center">
+                  @if (date('N', strtotime($day->date)) >= 6)
+                  <div class="col-2 d-flex align-items-center justify-content-start">
                     <span>
                       <div class="text-pink">{{ Carbon\Carbon::parse($day->date)->locale('cs')->dayName }}</div>
                     </span>
                   </div>
-                  <div class="col-1 d-flex align-items-center">
-                    <div class="text-truncate">
-                      <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-meat-off" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
-                        <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
-                        <path d="M13.62 8.382l1.966 -1.967a2 2 0 1 1 3.414 -1.415a2 2 0 1 1 -1.413 3.414l-1.82 1.821"></path>
-                        <path d="M5.904 18.596c2.733 2.734 5.9 4 7.07 2.829c1.172 -1.172 -.094 -4.338 -2.828 -7.071c-2.733 -2.734 -5.9 -4 -7.07 -2.829c-1.172 1.172 .094 4.338 2.828 7.071z"></path>
-                        <path d="M7.5 16l1 1"></path>
-                        <path d="M12.975 21.425c1.582 -1.582 2.679 -3.407 3.242 -5.2"></path>
-                        <path d="M16.6 12.6c-.16 -1.238 -.653 -2.345 -1.504 -3.195c-.85 -.85 -1.955 -1.344 -3.192 -1.503"></path>
-                        <path d="M8.274 8.284c-1.792 .563 -3.616 1.66 -5.198 3.242"></path>
-                        <path d="M3 3l18 18"></path>
-                      </svg>
-                    </div>
-                  </div>
-                  @if (Carbon\Carbon::parse($day->date) == Carbon\Carbon::today())
-                  <div class="col-1 align-self-center">
-                    <div class="badge bg-red-lt">Litujeme, ale dnes je kantýna bohužel uzavřena !</div>
-                  </div>
-                  @endif
-                </div>
-              </div>
-              @else
-              <div>
-                <div class="row">
-                  <div class="col-1 d-flex align-items-center justify-content-center">
-                    <span class="avatar bg-azure-lt"><strong>{{ Carbon\Carbon::parse($day->date)->format('d|m') }}</strong>
+                  @elseif (Carbon\Carbon::parse($day->date) == Carbon\Carbon::today())
+                  <div class="col-2 d-flex align-items-center justify-content-start">
+                    <span>
+                      <div class="text-lime">{{ Carbon\Carbon::parse($day->date)->locale('cs')->dayName }}</div>
                     </span>
                   </div>
-                  <div class="col-1 d-flex align-items-center justify-content-center">
+                  @else
+                  <div class="col-2 d-flex align-items-center justify-content-start">
                     <span>
                       <div class="text-azure">{{ Carbon\Carbon::parse($day->date)->locale('cs')->dayName }}</div>
                     </span>
                   </div>
-                  <div class="col-6 flex align-items-center justify-content-start">
-                    <div class="text-truncate mt-1">
-                      Kuře
-                    </div>
-                    <div class="text-truncate">
-                      Hrachová
+                  @endif
+                  <div class="col-1 d-flex align-items-end">
+                    <div class="d-flex-col">
+                      @if (date('N', strtotime($day->date)) >= 6)
+                      <div class="text-truncate">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-meat-off" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                          <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+                          <path d="M13.62 8.382l1.966 -1.967a2 2 0 1 1 3.414 -1.415a2 2 0 1 1 -1.413 3.414l-1.82 1.821"></path>
+                          <path d="M5.904 18.596c2.733 2.734 5.9 4 7.07 2.829c1.172 -1.172 -.094 -4.338 -2.828 -7.071c-2.733 -2.734 -5.9 -4 -7.07 -2.829c-1.172 1.172 .094 4.338 2.828 7.071z"></path>
+                          <path d="M7.5 16l1 1"></path>
+                          <path d="M12.975 21.425c1.582 -1.582 2.679 -3.407 3.242 -5.2"></path>
+                          <path d="M16.6 12.6c-.16 -1.238 -.653 -2.345 -1.504 -3.195c-.85 -.85 -1.955 -1.344 -3.192 -1.503"></path>
+                          <path d="M8.274 8.284c-1.792 .563 -3.616 1.66 -5.198 3.242"></path>
+                          <path d="M3 3l18 18"></path>
+                        </svg>
+                      </div>
+                      <div class="text-truncate">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-soup-off" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                          <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+                          <path d="M3 19h16"></path>
+                          <path d="M15 11h6c0 1.691 -.525 3.26 -1.42 4.552m-2.034 2.032a7.963 7.963 0 0 1 -4.546 1.416h-2a8 8 0 0 1 -8 -8h8"></path>
+                          <path d="M12 5v3"></path>
+                          <path d="M15 5v3"></path>
+                          <path d="M3 3l18 18"></path>
+                        </svg>
+                      </div>
+                      @elseif (Carbon\Carbon::parse($day->date) == Carbon\Carbon::today())
+                      <div class="text-truncate mb-1">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="icon text-lime" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                          <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+                          <path d="M13.62 8.382l1.966 -1.967a2 2 0 1 1 3.414 -1.415a2 2 0 1 1 -1.413 3.414l-1.82 1.821"></path>
+                          <path d="M5.904 18.596c2.733 2.734 5.9 4 7.07 2.829c1.172 -1.172 -.094 -4.338 -2.828 -7.071c-2.733 -2.734 -5.9 -4 -7.07 -2.829c-1.172 1.172 .094 4.338 2.828 7.071z"></path>
+                          <path d="M7.5 16l1 1"></path>
+                          <path d="M12.975 21.425c3.905 -3.906 4.855 -9.288 2.121 -12.021c-2.733 -2.734 -8.115 -1.784 -12.02 2.121"></path>
+                        </svg>
+                      </div>
+                      <div class="text-truncate mb-1">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="icon text-lime" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                          <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+                          <path d="M4 11h16a1 1 0 0 1 1 1v.5c0 1.5 -2.517 5.573 -4 6.5v1a1 1 0 0 1 -1 1h-8a1 1 0 0 1 -1 -1v-1c-1.687 -1.054 -4 -5 -4 -6.5v-.5a1 1 0 0 1 1 -1z"></path>
+                          <path d="M12 4a2.4 2.4 0 0 0 -1 2a2.4 2.4 0 0 0 1 2"></path>
+                          <path d="M16 4a2.4 2.4 0 0 0 -1 2a2.4 2.4 0 0 0 1 2"></path>
+                          <path d="M8 4a2.4 2.4 0 0 0 -1 2a2.4 2.4 0 0 0 1 2"></path>
+                        </svg>
+                      </div>
+                      @else
+                      <div class="text-truncate mb-1">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="icon" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                          <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+                          <path d="M13.62 8.382l1.966 -1.967a2 2 0 1 1 3.414 -1.415a2 2 0 1 1 -1.413 3.414l-1.82 1.821"></path>
+                          <path d="M5.904 18.596c2.733 2.734 5.9 4 7.07 2.829c1.172 -1.172 -.094 -4.338 -2.828 -7.071c-2.733 -2.734 -5.9 -4 -7.07 -2.829c-1.172 1.172 .094 4.338 2.828 7.071z"></path>
+                          <path d="M7.5 16l1 1"></path>
+                          <path d="M12.975 21.425c3.905 -3.906 4.855 -9.288 2.121 -12.021c-2.733 -2.734 -8.115 -1.784 -12.02 2.121"></path>
+                        </svg>
+                      </div>
+                      <div class="text-truncate mb-1">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="icon" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                          <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+                          <path d="M4 11h16a1 1 0 0 1 1 1v.5c0 1.5 -2.517 5.573 -4 6.5v1a1 1 0 0 1 -1 1h-8a1 1 0 0 1 -1 -1v-1c-1.687 -1.054 -4 -5 -4 -6.5v-.5a1 1 0 0 1 1 -1z"></path>
+                          <path d="M12 4a2.4 2.4 0 0 0 -1 2a2.4 2.4 0 0 0 1 2"></path>
+                          <path d="M16 4a2.4 2.4 0 0 0 -1 2a2.4 2.4 0 0 0 1 2"></path>
+                          <path d="M8 4a2.4 2.4 0 0 0 -1 2a2.4 2.4 0 0 0 1 2"></path>
+                        </svg>
+                      </div>
+                      @endif
                     </div>
                   </div>
-                  @if (Carbon\Carbon::parse($day->date) == Carbon\Carbon::today())
-                  <div class="col-4 d-flex align-self-center justify-content-end">
-                    <div class="avatar avatar-md avatar-rounded bg-lime-lt">
-                      <svg xmlns="http://www.w3.org/2000/svg" class="text-lime" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
-                        <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
-                        <path d="M12 15v3.586a1 1 0 0 1 -1.707 .707l-6.586 -6.586a1 1 0 0 1 0 -1.414l6.586 -6.586a1 1 0 0 1 1.707 .707v3.586h3v6h-3z"></path>
-                        <path d="M21 15v-6"></path>
-                        <path d="M18 15v-6"></path>
-                      </svg>
+                  @if (date('N', strtotime($day->date)) >= 6)
+                  <div class="col-6 d-flex align-items-center justify-content-center">
+                    <div class="d-flex-col">
+                      <div class="text-truncate text-pink">
+                        ZAVŘENO
+                      </div>
+                    </div>
+                  </div>
+                  @else
+                  <div class="col-6 d-flex align-items-center justify-content-center">
+                    <div class="d-flex-col">
+                      <div class="text-truncate mt-1">
+                        Kuře
+                      </div>
+                      <div class="text-truncate mt-1">
+                        Hrachová s uzeninou
+                      </div>
                     </div>
                   </div>
                   @endif
                 </div>
               </div>
-              @endif
               @endforeach
             </div>
           </div>
         </div>
       </div>
+
+      <div class="col-12 col-md-5 col-lg-4 col-xl-3">
+        <div class="card" style="height: 36rem">
+          <div class="text-center card-header bg-teal-lt">
+            <h1 class="col-12 m-1">Provozní doba nemocniční kantýny</h1>
+          </div>
+          <div class="card-body card-body-scrollable card-body-scrollable-shadow">
+            <div class="divide-y">
+              @foreach ($daylist as $day)
+              <div>
+                <div class="row">
+                  <div class="col-3 d-flex align-items-center justify-content-start">
+                    @if (date('N', strtotime($day->date)) >= 6)
+                    <span class="avatar bg-pink-lt"><strong>{{ Carbon\Carbon::parse($day->date)->format('d|m') }}</strong></span>
+                    @elseif (Carbon\Carbon::parse($day->date) == Carbon\Carbon::today())
+                    <span class="avatar bg-lime-lt"><strong>{{ Carbon\Carbon::parse($day->date)->format('d|m') }}</strong></span>
+                    @else
+                    <span class="avatar bg-azure-lt"><strong>{{ Carbon\Carbon::parse($day->date)->format('d|m') }}</strong></span>
+                    @endif
+                  </div>
+                  @if (date('N', strtotime($day->date)) >= 6)
+                  <div class="col-4 d-flex align-items-center justify-content-center">
+                    <span>
+                      <div class="text-pink">{{ Carbon\Carbon::parse($day->date)->locale('cs')->dayName }}</div>
+                    </span>
+                  </div>
+                  @elseif (Carbon\Carbon::parse($day->date) == Carbon\Carbon::today())
+                  <div class="col-4 d-flex align-items-center justify-content-center">
+                    <span>
+                      <div class="text-lime">{{ Carbon\Carbon::parse($day->date)->locale('cs')->dayName }}</div>
+                    </span>
+                  </div>
+                  @else
+                  <div class="col-4 d-flex align-items-center justify-content-center">
+                    <span>
+                      <div class="text-azure">{{ Carbon\Carbon::parse($day->date)->locale('cs')->dayName }}</div>
+                    </span>
+                  </div>
+                  @endif
+                  @if (date('N', strtotime($day->date)) >= 6)
+                  <div class="col-4 d-flex align-items-center justify-content-end">
+                    <div class="text-truncate text-pink">
+                      ZAVŘENO
+                    </div>
+                  </div>
+                  @else
+                  <div class="col-4 d-flex align-items-center justify-content-end">
+                    <div class="text-truncate fw-bold">
+                      6:30 - 17:00
+                    </div>
+                  </div>
+                  @endif
+                </div>
+              </div>
+              @endforeach
+            </div>
+          </div>
+        </div>
+      </div>
+
     </div>
   </div>
   @endsection

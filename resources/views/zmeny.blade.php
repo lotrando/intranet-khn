@@ -23,6 +23,16 @@
     </div>
   </div>
 
+  @section('buttons')
+  <div class="ms-auto d-print-none col-auto">
+    <div class="btn-list">
+      <div class="d-flex justify-content-end">
+        {{ $documents->links() }}
+      </div>
+    </div>
+  </div>
+  @endsection
+
 
 
   <!-- Page body -->
@@ -30,8 +40,7 @@
     <div class="container-fluid">
       <div class="h-100">
         <div class="col-12">
-          @foreach ($documents as $items)
-          @foreach ($items as $document)
+          @foreach ($documents as $document)
           <div class="accordion-item">
             <div class="show" id="collapse-{{ $document->position }}" data-bs-parent="#accordion-standard" style="">
               <div class="accordion-body pt-0">
@@ -95,10 +104,13 @@
             </div>
           </div>
           @endforeach
-          @endforeach
+        </div>
+        <div class="pagination mt-2">
+          {{ $documents->links() }}
         </div>
       </div>
     </div>
   </div>
-  <!-- Wrapper End -->
-  @endsection
+</div>
+<!-- Wrapper End -->
+@endsection

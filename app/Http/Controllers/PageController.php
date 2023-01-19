@@ -32,24 +32,49 @@ class PageController extends Controller
         return view('prehledy', ['pretitle' => 'Oznámení', 'title' => 'Přehledy', 'categories' => $categories]);
     }
 
-    public function zmeny()
+    public function zmenyStandardu()
     {
         $categories = Category::with('documents')->get();
         $suma = Document::count();
-        $y = Category::count();
 
-        for ($i = 1; $i < $y; $i++) {
-            $documents[$i] = Document::with('category', 'addons', 'user')
-                ->where('updated_at', '>=', Carbon::now()->subHours(6), 'and')
-                ->where('updated_at', '<=', Carbon::now()->addHours(12))
-                ->where('category_id', $i)
-                ->get();
-        }
+        $documents = Document::with('category', 'addons', 'user')
+            ->where('updated_at', '>=', Carbon::now()->subHours(6))
+            ->orderByDesc('updated_at')
+            ->paginate(6);
+
+        // for ($i = 1; $i < $y; $i++) {
+        //     $documents[$i] = Document::with('category', 'addons', 'user')
+        //         // ->where('updated_at', '>=', Carbon::now()->subHours(6), 'and')
+        //         // ->where('updated_at', '<=', Carbon::now()->addHours(12))
+        //         ->where('category_id', $i)
+        //         ->orderBy('category_id')
+        //         ->orderBy('created_at')
+        //         ->latest();
+        // }
 
         return view('zmeny', [
             'categories' => $categories,
             'pretitle'  => 'Oznámení',
             'title'     => 'Změny standardů',
+            'suma'      => $suma,
+            'documents' => $documents,
+        ]);
+    }
+
+    public function zmenyDokumentu()
+    {
+        $categories = Category::with('documents')->get();
+        $suma = Document::count();
+
+        $documents = Document::with('category', 'addons', 'user')
+            ->where('updated_at', '>=', Carbon::now()->subHours(12))
+            ->orderBy('updated_at')
+            ->paginate(6);
+
+        return view('zmeny', [
+            'categories' => $categories,
+            'pretitle'  => 'Oznámení',
+            'title'     => 'Změny dokumentů',
             'suma'      => $suma,
             'documents' => $documents,
         ]);
@@ -100,7 +125,7 @@ class PageController extends Controller
     public function kantyna()
     {
         $categories = Category::with('documents')->get();
-        $daylist = DB::table('calendar')->where('date', '>=', Carbon::now()->previous('Monday'))->where('date', '<=', Carbon::now()->addDays(14))->simplePaginate(7);
+        $daylist = DB::table('calendar')->where('date', '>=', Carbon::now()->previous('Monday'))->where('date', '<=', Carbon::now()->addDays(16))->simplePaginate(7);
         return view('kantyna', ['pretitle' => 'Stravování', 'title' => 'Nabídka kantýny', 'daylist' => $daylist, 'categories' => $categories]);
     }
 

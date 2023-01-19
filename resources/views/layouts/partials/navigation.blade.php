@@ -52,22 +52,37 @@
                   {{ __('Přehledy') }}
                 </span>
               </a>
-              <a class="dropdown-item {{ request()->segment(2) == 'zmeny' ? 'active' : '' }}" href="{{ route('oznameni.zmeny-standardu') }}">
+              <a class="dropdown-item {{ request()->segment(2) == 'zmeny-standardu' ? 'active' : '' }}" href="{{ route('oznameni.zmeny-standardu') }}">
                 <span class="nav-link-icon d-md-none d-lg-inline-block">
-                  <svg class="icon icon-tabler text-indigo" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" stroke-width="2"
-                       stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                  <svg xmlns="http://www.w3.org/2000/svg" class="icon text-purple" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
                     <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
-                    <rect x="4" y="4" width="16" height="16" rx="2"></rect>
-                    <path d="M12 4v7l2 -2l2 2v-7"></path>
+                    <path d="M14 20h-8a2 2 0 0 1 -2 -2v-12a2 2 0 0 1 2 -2h12v5"></path>
+                    <path d="M11 16h-5a2 2 0 0 0 -2 2"></path>
+                    <path d="M15 16l3 -3l3 3"></path>
+                    <path d="M18 13v9"></path>
                   </svg>
                 </span>
                 <span class="nav-link-title">
                   {{ __('Změny standardů') }}
                 </span>
               </a>
+              <a class="dropdown-item {{ request()->segment(2) == 'zmeny-dokumentu' ? 'active' : '' }}" href="{{ route('oznameni.zmeny-dokumentu') }}">
+                <span class="nav-link-icon d-md-none d-lg-inline-block">
+                  <svg xmlns="http://www.w3.org/2000/svg" class="icon text-orange" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                    <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+                    <path d="M9 5h-2a2 2 0 0 0 -2 2v12a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2v-12a2 2 0 0 0 -2 -2h-2"></path>
+                    <rect x="9" y="3" width="6" height="4" rx="2"></rect>
+                    <path d="M9 12h6"></path>
+                    <path d="M9 16h6"></path>
+                  </svg>
+                </span>
+                <span class="nav-link-title">
+                  {{ __('Změny dokumentů') }}
+                </span>
+              </a>
               <a class="dropdown-item {{ request()->segment(2) == 'servis' ? 'active' : '' }}" href="{{ route('oznameni.servis') }}">
                 <span class="nav-link-icon d-md-none d-lg-inline-block">
-                  <svg class="icon icon-tabler icon-tabler-tool text-cyan" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                  <svg class="icon text-cyan" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
                        stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
                     <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
                     <path d="M7 10h3v-3l-3.5 -3.5a6 6 0 0 1 8 8l6 6a2 2 0 0 1 -3 3l-6 -6a6 6 0 0 1 -8 -8l3.5 3.5">
@@ -234,14 +249,15 @@
           <li class="nav-item dropdown" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-original-title="Přehled dokumentace">
             <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" data-bs-auto-close="outside" href="#" role="button" aria-expanded="false">
               <span class="nav-link-icon d-md-none d-lg-inline-block">
-                <svg class="icon icon-tabler icon-tabler-book" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" stroke-width="2"
-                     stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                <svg xmlns="http://www.w3.org/2000/svg" class="icon text-pink" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
                   <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
-                  <path d="M3 19a9 9 0 0 1 9 0a9 9 0 0 1 9 0"></path>
-                  <path d="M3 6a9 9 0 0 1 9 0a9 9 0 0 1 9 0"></path>
-                  <line x1="3" y1="6" x2="3" y2="19"></line>
-                  <line x1="12" y1="6" x2="12" y2="19"></line>
-                  <line x1="21" y1="6" x2="21" y2="19"></line>
+                  <rect x="5" y="4" width="4" height="16" rx="1"></rect>
+                  <rect x="9" y="4" width="4" height="16" rx="1"></rect>
+                  <path d="M5 8h4"></path>
+                  <path d="M9 16h4"></path>
+                  <path d="M13.803 4.56l2.184 -.53c.562 -.135 1.133 .19 1.282 .732l3.695 13.418a1.02 1.02 0 0 1 -.634 1.219l-.133 .041l-2.184 .53c-.562 .135 -1.133 -.19 -1.282 -.732l-3.695 -13.418a1.02 1.02 0 0 1 .634 -1.219l.133 -.041z"></path>
+                  <path d="M14 9l4 -1"></path>
+                  <path d="M16 16l3.923 -.98"></path>
                 </svg>
               </span>
               <span class="nav-link-title">
