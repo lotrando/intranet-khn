@@ -14,7 +14,7 @@
       <path d="M12 9v2m0 4v.01"></path>
       <path d="M5 19h14a2 2 0 0 0 1.84 -2.75l-7.1 -12.25a2 2 0 0 0 -3.5 0l-7.1 12.25a2 2 0 0 0 1.75 2.75"></path>
     </svg>
-    {{ __('Nová nežádoucí událost') }}
+    {{ __('Nová') }}
   </button>
 </div>
 @endsection
@@ -443,12 +443,12 @@
     });
 
     $(function() {
-      $('#pad_panel').addClass('d-none');
+      $('#pad_panel').hide();
       $('#spec_druh').change(function() {
         if ($(this).val() == "Pád") {
-          $('#pad_panel').removeClass('d-none').addClass('d-block');
+          $('#pad_panel').slideToggle("slow");
         } else {
-          $('#pad_panel').removeClass('d-blok').addClass('d-none');
+          $('#pad_panel').slideToggle("slow");
         }
       });
     });
@@ -475,11 +475,6 @@
           $('#cas').val(html.data.cas);
           $('#spec_druh').val(html.data.spec_druh);
           $('#chorobopis').val(html.data.chorobopis);
-          if ($('#spec_druh').val() === "Pád") {
-            $('#pad_panel').removeClass('d-none').addClass('d-block')
-          } else {
-            $('#pad_panel').removeClass('d-blok').addClass('d-none')
-          }
           if ($('#spec_druh').val() === "Jiný") {
             $('#jinydoplnek').prop('disabled', false);
             $('#jinydoplnek').val(html.data.jinydoplnek);
@@ -509,6 +504,11 @@
           $('#created_at').val(html.data.created_at);
           $('#updated_at').val(html.data.updated_at);
           $('#hidden_id').val(html.data.id);
+          if ($('#spec_druh').val() === "Pád") {
+            $('#pad_panel').show();
+          } else {
+            $('#pad_panel').hide();
+          }
         }
       })
     });
@@ -522,7 +522,6 @@
       $('#modal-header').addClass("modal-header bg-red-lt");
       $('#action_button, .modal-title').text("{{ __('Create new adverse event') }}");
       $('#action').val("Add");
-      $('#pad_panel').removeClass('d-blok').addClass('d-none');
       $('#status').val('Rozpracováno');
     })
 
