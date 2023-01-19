@@ -16,20 +16,25 @@ use RealRashid\SweetAlert\Facades\Alert;
 
 class PageController extends Controller
 {
+
+
     // Homepage
     public function home()
     {
-        return view('home', ['pretitle' => 'Intranet', 'title' => 'Homepage']);
+        $categories = Category::with('documents')->get();
+        return view('home', ['pretitle' => 'Intranet', 'title' => 'Homepage', 'categories' => $categories]);
     }
 
     // Oznámení
     public function prehledy()
     {
-        return view('prehledy', ['pretitle' => 'Oznámení', 'title' => 'Přehledy']);
+        $categories = Category::with('documents')->get();
+        return view('prehledy', ['pretitle' => 'Oznámení', 'title' => 'Přehledy', 'categories' => $categories]);
     }
 
     public function zmeny()
     {
+        $categories = Category::with('documents')->get();
         $suma = Document::count();
         $y = Category::count();
 
@@ -38,6 +43,7 @@ class PageController extends Controller
         }
 
         return view('zmeny', [
+            'categories' => $categories,
             'pretitle'  => 'Oznámení',
             'title'     => 'Změny standardů',
             'suma'      => $suma,
@@ -47,32 +53,38 @@ class PageController extends Controller
 
     public function akord()
     {
-        return view('akord', ['pretitle' => 'Oznámení', 'title' => 'Akord']);
+        $categories = Category::with('documents')->get();
+        return view('akord', ['pretitle' => 'Oznámení', 'title' => 'Akord', 'categories' => $categories]);
     }
 
     public function servis()
     {
-        return view('servis', ['pretitle' => 'Oznámení', 'title' => 'Odstávky a servis']);
+        $categories = Category::with('documents')->get();
+        return view('servis', ['pretitle' => 'Oznámení', 'title' => 'Odstávky a servis', 'categories' => $categories]);
     }
 
     public function seminare()
     {
-        return view('seminare', ['pretitle' => 'Oznámení', 'title' => 'Seminaře']);
+        $categories = Category::with('documents')->get();
+        return view('seminare', ['pretitle' => 'Oznámení', 'title' => 'Seminaře', 'categories' => $categories]);
     }
 
     public function sluzby()
     {
-        return view('sluzby', ['pretitle' => 'Oznámení', 'title' => 'Změny služeb']);
+        $categories = Category::with('documents')->get();
+        return view('sluzby', ['pretitle' => 'Oznámení', 'title' => 'Změny služeb', 'categories' => $categories]);
     }
 
     public function informace()
     {
-        return view('informace', ['pretitle' => 'Oznámení', 'title' => 'Informace']);
+        $categories = Category::with('documents')->get();
+        return view('informace', ['pretitle' => 'Oznámení', 'title' => 'Informace', 'categories' => $categories]);
     }
 
     public function kultura()
     {
-        return view('kultura', ['pretitle' => 'Oznámení', 'title' => 'Kultura']);
+        $categories = Category::with('documents')->get();
+        return view('kultura', ['pretitle' => 'Oznámení', 'title' => 'Kultura', 'categories' => $categories]);
     }
 
     // Stravování
@@ -83,8 +95,9 @@ class PageController extends Controller
 
     public function kantyna()
     {
+        $categories = Category::with('documents')->get();
         $daylist = DB::table('calendar')->where('date', '>=', Carbon::now()->previous('Monday'))->where('date', '<=', Carbon::now()->addDays(14))->simplePaginate(7);
-        return view('kantyna', ['pretitle' => 'Stravování', 'title' => 'Nabídka kantýny', 'daylist' => $daylist]);
+        return view('kantyna', ['pretitle' => 'Stravování', 'title' => 'Nabídka kantýny', 'daylist' => $daylist, 'categories' => $categories]);
     }
 
     // Akreditacní stadnardy
@@ -183,6 +196,7 @@ class PageController extends Controller
 
     public function video()
     {
-        return view('videa', ['pretitle' => 'Média', 'title' => 'Videa']);
+        $categories = Category::with('documents')->get();
+        return view('videa', ['pretitle' => 'Média', 'title' => 'Videa', 'categories' => $categories]);
     }
 }

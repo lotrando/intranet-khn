@@ -33,6 +33,6 @@ class StandardUpdatedMail extends Mailable
     {
         return $this->from('standardy.intranet@khn.cz')
             ->view('emails.standard.update')
-            ->subject('Standard aktualizován');
+            ->subject('Aktualizace nemocničního standardu');
     }
 }

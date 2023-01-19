@@ -18,54 +18,59 @@
 
     <div class="container-fluid">
       <div class="row align-items-center">
-        <div class="col-12 mt-2">
-          <div class="bg-transparent mb-2">
+        <div class="col-12 mt-2" id="stats">
+          <div class="mb-2 bg-transparent">
             <div class="row d-flex align-items-center">
-              <div class="col-auto d-flex align-items-center mb-2">
-                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-books d-xl-none" width="24" height="24" viewBox="0 0 24 24" stroke-width="1" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round" data-bs-toggle="tooltip" data-bs-placement="right"
-                     data-bs-original-title="Standardů celkem">
+              <div class="d-flex align-items-center col-auto mb-2">
+                <svg class="icon icon-tabler icon-tabler-books d-xl-none" data-bs-toggle="tooltip" data-bs-placement="right" data-bs-original-title="Standardů celkem"
+                     xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" stroke-width="1" stroke="currentColor" fill="none"
+                     stroke-linecap="round" stroke-linejoin="round">
                   <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
                   <rect x="5" y="4" width="4" height="16" rx="1"></rect>
                   <rect x="9" y="4" width="4" height="16" rx="1"></rect>
                   <path d="M5 8h4"></path>
                   <path d="M9 16h4"></path>
-                  <path d="M13.803 4.56l2.184 -.53c.562 -.135 1.133 .19 1.282 .732l3.695 13.418a1.02 1.02 0 0 1 -.634 1.219l-.133 .041l-2.184 .53c-.562 .135 -1.133 -.19 -1.282 -.732l-3.695 -13.418a1.02 1.02 0 0 1 .634 -1.219l.133 -.041z"></path>
+                  <path
+                        d="M13.803 4.56l2.184 -.53c.562 -.135 1.133 .19 1.282 .732l3.695 13.418a1.02 1.02 0 0 1 -.634 1.219l-.133 .041l-2.184 .53c-.562 .135 -1.133 -.19 -1.282 -.732l-3.695 -13.418a1.02 1.02 0 0 1 .634 -1.219l.133 -.041z">
+                  </path>
                   <path d="M14 9l4 -1"></path>
                   <path d="M16 16l3.923 -.98"></path>
                 </svg>
-                <span class="mb-0 d-none d-md-none d-xl-inline d-xxl-inline">Standardů</span>
-                <h3 class="mb-0 d-md-inline d-xxl-inline text-muted ms-1">{{ $allDocuments->count() }}</h3>
+                <span class="d-none d-md-none d-xl-inline d-xxl-inline mb-0">Standardů</span>
+                <h3 class="d-md-inline d-xxl-inline text-muted ms-1 mb-0">{{ $allDocuments->count() }}</h3>
               </div>
-              <div class="col-auto d-flex align-items-center mb-2">
-                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-file-arrow-left d-xl-none" width="24" height="24" viewBox="0 0 24 24" stroke-width="1" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round" data-bs-toggle="tooltip" data-bs-placement="right"
-                     data-bs-original-title="Příloh celkem">
+              <div class="d-flex align-items-center col-auto mb-2">
+                <svg class="icon icon-tabler icon-tabler-file-arrow-left d-xl-none" data-bs-toggle="tooltip" data-bs-placement="right" data-bs-original-title="Příloh celkem"
+                     xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" stroke-width="1" stroke="currentColor" fill="none"
+                     stroke-linecap="round" stroke-linejoin="round">
                   <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
                   <path d="M14 3v4a1 1 0 0 0 1 1h4"></path>
                   <path d="M17 21h-10a2 2 0 0 1 -2 -2v-14a2 2 0 0 1 2 -2h7l5 5v11a2 2 0 0 1 -2 2z"></path>
                   <path d="M15 15h-6"></path>
                   <path d="M11.5 17.5l-2.5 -2.5l2.5 -2.5"></path>
                 </svg>
-                <span class="mb-0 d-none d-md-none d-xl-inline d-xxl-inline">Příloh</span>
-                <h3 class="mb-0 d-md-inline d-xxl-inline text-muted ms-1">{{ $allAddons->count() }}</h3>
+                <span class="d-none d-md-none d-xl-inline d-xxl-inline mb-0">Příloh</span>
+                <h3 class="d-md-inline d-xxl-inline text-muted ms-1 mb-0">{{ $allAddons->count() }}</h3>
               </div>
               @foreach ($categories as $category)
-              <div class="col-auto d-flex align-items-center justify-content-center pe-1 mb-2">
-                <span class="text-uppercase mb-1 me-1">
+              <div class="d-flex align-items-center justify-content-center pe-1 col-auto mb-2">
+                <span class="text-uppercase me-1 mb-1">
                   <div class="text-uppercase d-xxl-inline d-xl-none">
                     {!! $category->svg_icon !!}
                   </div>
                 </span>
-                <a class="text-{{ $category->color }}" href="/standardy/{{ $category->folder_name . '/' .  $category->id }}" rel="noopener noreferrer">
+                <a class="text-{{ $category->color }}" href="/standardy/{{ $category->folder_name . '/' . $category->id }}" rel="noopener noreferrer">
                   <span class="d-none d-md-none d-xl-inline d-xxl-inline">{{ $category->category_name }}</span>
                 </a>
-                <h3 class="mb-0 d-md-inline d-xxl-inline ps-1 text-{{ $category->color }}">{{ $category->documents->count() }}</h3>
+                <h3 class="d-md-inline d-xxl-inline ps-1 text-{{ $category->color }} mb-0">{{ $category->documents->count() }}</h3>
               </div>
               @endforeach
             </div>
-            <div class="progress">
+            <div class="progress progress-separated">
               @foreach ($categories as $category)
-              <div class="progress-bar bg-{{ $category->color }}" role="progressbar" style="width: {{ (($category->documents->count() * 100) / $allDocuments->count())  }}%" aria-label="{{ $category->category_name }}" data-bs-toggle="tooltip" data-bs-placement="bottom"
-                   data-bs-original-title="{{ $category->category_name .' '. $category->documents->count() }}"></div>
+              <div class="progress-bar bg-{{ $category->color }}" data-bs-toggle="tooltip" data-bs-placement="bottom"
+                   data-bs-original-title="{{ $category->category_name . ' ' . $category->documents->count() }}" role="progressbar" aria-label="{{ $category->category_name }}"
+                   style="width: {{ ($category->documents->count() * 100) / $allDocuments->count() }}%"></div>
               @endforeach
             </div>
           </div>
@@ -73,7 +78,7 @@
 
         {{-- Searched events --}}
         <div>
-          <div id="display" class="display mt-2 mb-2"></div>
+          <div class="display mt-2 mb-2" id="display"></div>
         </div>
 
         {{-- Page title --}}
@@ -89,14 +94,14 @@
         </div>
 
         <!-- Page title actions buttons -->
-        <div class="col-auto ms-auto d-print-none">
+        <div class="ms-auto d-print-none col-auto">
           <div class="btn-list">
             <div class="d-flex justify-content-end">
               @auth
-              <button class="btn btn-success d-none d-sm-inline-block hover-shadow-sm" id="openCreateModal" data-bs-toggle="tooltip" data-bs-placement="left"
+              <button class="btn btn-success d-none d-sm-inline-block me-2" id="openCreateModal" data-bs-toggle="tooltip" data-bs-placement="left"
                       data-bs-original-title="{{ __('Vytvoří nový ' . $categorie->button . ' standard') }}">
-                <svg class="icon m-0" xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 24 24" stroke-width="1"
-                     stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                <svg class="icon m-0" xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 24 24" stroke-width="1" stroke="currentColor"
+                     fill="none" stroke-linecap="round" stroke-linejoin="round">
                   <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
                   <path d="M14 20h-8a2 2 0 0 1 -2 -2v-12a2 2 0 0 1 2 -2h12v5"></path>
                   <path d="M11 16h-5a2 2 0 0 0 -2 2"></path>
@@ -106,6 +111,17 @@
                 <span class="d-sm-none d-md-none d-lg-inline">{{ __('Nový') }}</span>
               </button>
               @endauth
+              <button class="btn btn-azure d-none d-sm-inline-block" id="stats-btn">
+                <svg class="icon m-0" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor"
+                     fill="none" stroke-linecap="round" stroke-linejoin="round">
+                  <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+                  <rect x="3" y="12" width="6" height="8" rx="1"></rect>
+                  <rect x="9" y="8" width="6" height="12" rx="1"></rect>
+                  <rect x="15" y="4" width="6" height="16" rx="1"></rect>
+                  <line x1="4" y1="20" x2="18" y2="20"></line>
+                </svg>
+                <span class="d-sm-none d-md-none d-lg-inline">{{ __('Statistics') }}</span>
+              </button>
             </div>
           </div>
         </div>
@@ -122,12 +138,13 @@
                 <div class="list-group list-group-flush list-group-hoverable pt-1">
                   <div class="list-group-item">
                     <div class="row align-items-center">
-                      <div class="avatar bg-{{ $document->category->color }}-lt col-auto" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-original-title="#{{ $document->id }}">
+                      <div class="avatar bg-{{ $document->category->color }}-lt col-auto" data-bs-toggle="tooltip" data-bs-placement="top"
+                           data-bs-original-title="#{{ $document->id }}">
                         <div class="text-uppercase">
                           {!! $document->category->svg_icon !!}
                         </div>
                       </div>
-                      <div class=" col-auto">
+                      <div class="col-auto">
                         <a href="{{ route('standardy.download', $document->id) }}" target="_blank">
                           <span class="avatar" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-original-title="Stáhnout standard">
                             <img src="{{ asset('img/files/pdf.png') }}" alt="PDF soubor">
@@ -141,7 +158,9 @@
                         <div class="d-block text-muted text-truncate">{{ $document->description }}</div>
                       </div>
                       <div class="col-auto">
-                        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-calendar-event text-azure" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                        @auth
+                        <svg class="icon icon-tabler icon-tabler-calendar-event text-azure" xmlns="http://www.w3.org/2000/svg" width="24" height="24"
+                             viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
                           <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
                           <rect x="4" y="5" width="16" height="16" rx="2"></rect>
                           <line x1="16" y1="3" x2="16" y2="7"></line>
@@ -150,7 +169,15 @@
                           <rect x="8" y="15" width="2" height="2"></rect>
                         </svg>
                         <span class="text-muted">upraveno {{ Carbon\Carbon::parse($document->updated_at)->diffForHumans() }}</span>
-                        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-certificate text-yellow" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                        @endauth
+                        @if (Carbon\Carbon::parse($document->created_at)->addDays(1) >= Carbon\Carbon::today())
+                        <span class="badge badge-sm bg-red-lt text-uppercase ms-auto">Nový</span>
+                        @endif
+                        @if (Carbon\Carbon::parse($document->updated_at)->addDays(7) >= Carbon\Carbon::now())
+                        <span class="badge badge-sm bg-lime-lt text-uppercase ms-auto">Aktualizováno !</span>
+                        @endif
+                        <svg class="icon icon-tabler icon-tabler-certificate text-yellow" xmlns="http://www.w3.org/2000/svg" width="24" height="24"
+                             viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
                           <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
                           <circle cx="15" cy="15" r="3"></circle>
                           <path d="M13 17.5v4.5l2 -1.5l2 1.5v-4.5"></path>
@@ -167,19 +194,13 @@
                         <span class="badge badge-sm bg-green-lt text-uppercase ms-auto">Schváleno</span>
                         @endif
                         @endauth
-                        @if (Carbon\Carbon::parse($document->created_at)->addDay() >= Carbon\Carbon::today())
-                        <span class="badge badge-sm bg-red-lt text-uppercase ms-auto">Nový</span>
-                        @endif
-                        @if (Carbon\Carbon::parse($document->updated_at)->addDays(15) >= Carbon\Carbon::now())
-                        <span class="badge badge-sm bg-lime-lt text-uppercase ms-auto">Aktualizováno</span>
-                        @endif
                       </div>
                       @auth
                       <div class="col-auto">
                         <span class="btn btn-icon hover-shadow cursor-pointer" id="dropdownMenuButton-' . $data->id . '" data-bs-toggle="dropdown">
-                          <svg class="icon dropdown-item-icon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" stroke-width="2"
-                               stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round" data-bs-toggle="tooltip" data-bs-placement="bottom"
-                               data-bs-original-title="{{ __('Actions') }}">
+                          <svg class="icon dropdown-item-icon" data-bs-toggle="tooltip" data-bs-placement="bottom" data-bs-original-title="{{ __('Actions') }}"
+                               xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none"
+                               stroke-linecap="round" stroke-linejoin="round">
                             <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
                             <line x1="4" y1="6" x2="20" y2="6"></line>
                             <line x1="4" y1="12" x2="20" y2="12"></line>
@@ -188,8 +209,8 @@
                         </span>
                         <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton-' . $document->id . '">
                           <li class="dropdown-item edit" id="{{ $document->id }}">
-                            <svg class="icon dropdown-item-icon-edit" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
-                                 stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                            <svg class="icon dropdown-item-icon-edit" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" stroke-width="2"
+                                 stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
                               <path stroke="none" d="M0 0h24v24H0z" fill="none" />
                               <path d="M7 7h-1a2 2 0 0 0 -2 2v9a2 2 0 0 0 2 2h9a2 2 0 0 0 2 -2v-1" />
                               <path d="M20.385 6.585a2.1 2.1 0 0 0 -2.97 -2.97l-8.415 8.385v3h3l8.385 -8.415z" />
@@ -215,9 +236,9 @@
                     @foreach ($document->addons as $add)
                     <div class="row align-items-center">
                       <div class="avatar bg-{{ $document->category->color }}-lt col-auto">
-                        <div class="text-uppercase" data-bs-toggle="tooltip" data-bs-placement="bottom"
-                             data-bs-original-title="#{{ $add->id }}">
-                          <svg class="icon icon-tabler icon-tabler-plus text-{{ $document->category->color }}" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                        <div class="text-uppercase" data-bs-toggle="tooltip" data-bs-placement="bottom" data-bs-original-title="#{{ $add->id }}">
+                          <svg class="icon icon-tabler icon-tabler-plus text-{{ $document->category->color }}" width="24" height="24" viewBox="0 0 24 24"
+                               stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
                             <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
                             <line x1="12" y1="5" x2="12" y2="19"></line>
                             <line x1="5" y1="12" x2="19" y2="12"></line>
@@ -249,7 +270,8 @@
                           <line x1="12" y1="15" x2="12" y2="18"></line>
                         </svg>
                         <span class="text-muted">{{ Carbon\Carbon::parse($document->updated_at)->diffForHumans() }}</span>
-                        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-certificate-2 text-yellow" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                        <svg class="icon icon-tabler icon-tabler-certificate-2 text-yellow" xmlns="http://www.w3.org/2000/svg" width="24" height="24"
+                             viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
                           <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
                           <circle cx="12" cy="15" r="3"></circle>
                           <path d="M10 7h4"></path>
@@ -290,7 +312,7 @@
   @section('modals')
   {{-- Main Form Modal --}}
   <div class="modal modal-blur fade" id="formModal" data-bs-backdrop="static" data-bs-keyboard="false" role="dialog" aria-hidden="true" tabindex="-1">
-    <div class="modal-dialog modal-full-width mx-5 modal-dialog-top mt-5" role="document">
+    <div class="modal-dialog modal-full-width modal-dialog-top mx-5 mt-5" role="document">
       <div class="modal-content shadow-lg">
         <div id="modal-header">
           <h5 class="modal-title"></h5>
@@ -371,7 +393,8 @@
               </div>
               <div class="col-12 col-lg-4 mb-sm-1">
                 <label class="form-label">{{ __('Oblast působnosti standardu') }} <small class="text-azure">usnadní vyhledávání</small></label>
-                <input class="form-control" id="tags" name="tags" type="text" placeholder="{{ __('Zkratky oddělení nebo ambulancí, oddělené čárkou (INT-ODD,...)') }}">
+                <input class="form-control" id="tags" name="tags" type="text"
+                       placeholder="{{ __('Zkratky oddělení nebo ambulancí, oddělené čárkou (INT-ODD,...)') }}">
               </div>
             </div>
             <div class="row">
@@ -536,191 +559,201 @@
   <script>
     $(document).ready(function() {
 
-    })
+      })
 
-    function fill(Value) {
-      $('#search').val(Value);
-      $('#display').hide();
-    }
+      function fill(Value) {
+        $('#search').val(Value);
+        $('#display').hide();
+      }
 
-    $(document).ready(function() {
-      $("#search").keyup(function() {
-        var name = $('#search').val();
-        if (name === "") {
-          $("#display").html("");
-        } else {
-          $.ajax({
-            type: "GET",
-            url: "{{ route('standardy.standard.search') }}",
-            data: {
-              search: name
-            },
-            success: function(html) {
-              $("#display").html(html).show();
-            }
-          });
-        }
+      $(document).ready(function() {
+        $("#search").keyup(function() {
+          var name = $('#search').val();
+          if (name === "") {
+            $("#display").html("");
+          } else {
+            $.ajax({
+              type: "GET",
+              url: "{{ route('standardy.standard.search') }}",
+              data: {
+                search: name
+              },
+              success: function(html) {
+                $("#display").html(html).show();
+              }
+            });
+          }
+        });
       });
-    });
   </script>
 
   <script>
     // Form Modal Functions
-    $(document).on('click', '.edit', function() {
-      id = $(this).attr('id');
-      $('#unique_code').prop('readonly', true);
-      $('#form_result_modal, #form_result_window').html('');
-      $.ajax({
-        url: "/documents/" + id + "/edit",
-        dataType: "json",
-        success: function(html) {
-          $('#inputForm')[0].reset();
-          $("#modal-icon, #modal-header").removeClass();
-          $('.modal-title').val('');
-          $('#formModal').modal('show');
-          $('#modal-icon').addClass('fas fa-{{ $categorie->fas_icon }} fa-2x m-2');
-          $('#modal-header').addClass("modal-header bg-{{ $categorie->color }}-lt");
-          $('#action_button, .modal-title').text("{{ __('Edit') }} {{ $categorie->button }} standard");
-          $('#action').val("Edit");
-          $('#category_id').val(html.data.category_id);
-          $('#folder_name').val(html.data.category.folder_name);
-          $('#name').val(html.data.name);
-          $('#processed').val(html.data.processed);
-          $('#authorize').val(html.data.authorize);
-          $('#examine').val(html.data.examine);
-          $('#efficiency').val(html.data.efficiency);
-          $('#revision').val(html.data.revision);
-          $('#revision_date').val(html.data.revision_date);
-          $('#next_revision_date').val(html.data.next_revision_date);
-          $('#tags').val(html.data.tags);
-          $('#unique_code').val(html.data.unique_code);
-          $('#description').val(html.data.description);
-          $('#position').val(html.data.position);
-          $('#attachment').val(html.data.attachment);
-          $('#status').val(html.data.status);
-          $('#hidden_id').val(html.data.id);
-          $('#hidden_file').val(html.data.file);
-        }
-      })
-    })
-
-    $('#openCreateModal').click(function() {
-      $('#inputForm')[0].reset();
-      $("#modal-icon, #modal-header").removeClass();
-      $('#category_id').val('{{ $categorie->id }}');
-      $('#formModal').modal('show');
-      $('#modal-icon').addClass('fas fa-{{ $categorie->fas_icon }} fa-2x m-2');
-      $('#modal-header').addClass("modal-header bg-{{ $categorie->color }}-lt");
-      $('#action_button, .modal-title').text("{{ __('Create new') }} {{ $categorie->button }} standard");
-      $('#unique_code').prop('readonly', false);
-      $('#action').val("Add");
-      $('#position').val('{{ $lastpos + 1 }}');
-      $('#folder_name').val("{{ $categorie->folder_name }}");
-      $('#status').val('Schváleno');
-      $('#unique_code').val('STD00{{ $lastpos + 1 }}');
-      $('#revision').val('{{ $lastpos -$lastpos + 1 }}')
-      $('#processed, #authorize, #examine').val('')
-      $('#revision_date').change(function() {
-        var revisionDate = moment($(this).val()).format('YYYY-MM-DD')
-        var nextRevisionDate = moment(revisionDate).add(1, 'Y').format('YYYY-MM-DD')
-        var efficiencyDate = moment(revisionDate).year(2014).format('YYYY-MM-DD')
-        $('#efficiency').val(efficiencyDate)
-        $('#next_revision_date').val(nextRevisionDate)
-      })
-    })
-
-    $('#inputForm').on('submit', function(event) {
-      event.preventDefault();
-      if ($('#action').val() === 'Add') {
+      $(document).on('click', '.edit', function() {
+        id = $(this).attr('id');
+        $('#unique_code').prop('readonly', true);
+        $('#form_result_modal, #form_result_window').html('');
         $.ajax({
-          url: "{{ route('documents.store') }}",
-          method: "POST",
-          data: new FormData(this),
-          contentType: false,
-          cache: false,
-          processData: false,
+          url: "/documents/" + id + "/edit",
           dataType: "json",
-          success: function(data) {
-            var html = '';
-            if (data.errors) {
-              html = '<div class="alert alert-danger text-danger shadow-sm"><ul> ';
-              for (var count = 0; count < data.errors.length; count++) {
-                html += '<li>' + data.errors[count] + '</li>';
-              }
-              html += '</ul><a class="btn-close" data-bs-dismiss="alert" aria-label="close"></a></div>';
-              $('#form_result_modal').html(html);
-            }
-            if (data.success) {
-              html = '<div class="alert alert-success text-success shadow-sm"><ul><li>' + data.success + '</li></ul></div>';
-              $('#formModal').modal('hide')
-              $('#inputForm')[0].reset();
-              location.reload()
-              $('#form_result_window').html(html);
-            }
+          success: function(html) {
+            $('#inputForm')[0].reset();
+            $("#modal-icon, #modal-header").removeClass();
+            $('.modal-title').val('');
+            $('#formModal').modal('show');
+            $('#modal-icon').addClass('fas fa-{{ $categorie->fas_icon }} fa-2x m-2');
+            $('#modal-header').addClass("modal-header bg-{{ $categorie->color }}-lt");
+            $('#action_button, .modal-title').text("{{ __('Edit') }} {{ $categorie->button }} standard");
+            $('#action').val("Edit");
+            $('#category_id').val(html.data.category_id);
+            $('#folder_name').val(html.data.category.folder_name);
+            $('#name').val(html.data.name);
+            $('#processed').val(html.data.processed);
+            $('#authorize').val(html.data.authorize);
+            $('#examine').val(html.data.examine);
+            $('#efficiency').val(html.data.efficiency);
+            $('#revision').val(html.data.revision);
+            $('#revision_date').val(html.data.revision_date);
+            $('#next_revision_date').val(html.data.next_revision_date);
+            $('#tags').val(html.data.tags);
+            $('#unique_code').val(html.data.unique_code);
+            $('#description').val(html.data.description);
+            $('#position').val(html.data.position);
+            $('#attachment').val(html.data.attachment);
+            $('#status').val(html.data.status);
+            $('#hidden_id').val(html.data.id);
+            $('#hidden_file').val(html.data.file);
           }
         })
-      }
+      })
 
-      if ($('#action').val() === "Edit") {
+      $('#openCreateModal').click(function() {
+        $('#inputForm')[0].reset();
+        $("#modal-icon, #modal-header").removeClass();
+        $('#unique_code').prop('readonly', true);
+        $('#category_id').val('{{ $categorie->id }}');
+        $('#formModal').modal('show');
+        $('#modal-icon').addClass('fas fa-{{ $categorie->fas_icon }} fa-2x m-2');
+        $('#modal-header').addClass("modal-header bg-{{ $categorie->color }}-lt");
+        $('#action_button, .modal-title').text("{{ __('Create new') }} {{ $categorie->button }} standard");
+        $('#action').val("Add");
+        $('#position').val('{{ $lastpos + 1 }}');
+        $('#folder_name').val("{{ $categorie->folder_name }}");
+        $('#status').val('Schváleno');
+        $('#unique_code').val('STD{{ $categorie->id }}#{{ $lastpos + 1 }}');
+        $('#revision').val('{{ $lastpos - $lastpos + 1 }}')
+        $('#processed, #authorize, #examine').val('')
+        $('#revision_date').change(function() {
+          var revisionDate = moment($(this).val()).format('YYYY-MM-DD')
+          var nextRevisionDate = moment(revisionDate).add(1, 'Y').format('YYYY-MM-DD')
+          var efficiencyDate = moment(revisionDate).year(2014).format('YYYY-MM-DD')
+          $('#efficiency').val(efficiencyDate)
+          $('#next_revision_date').val(nextRevisionDate)
+        })
+      })
+
+      $('#inputForm').on('submit', function(event) {
         event.preventDefault();
-        $.ajax({
-          url: "{{ route('documents.update') }}",
-          method: "POST",
-          data: new FormData(this),
-          contentType: false,
-          cache: false,
-          processData: false,
-          dataType: "json",
-          success: function(data) {
-            var html = '';
-            if (data.errors) {
-              html = '<div class="alert alert-danger text-danger shadow-sm"><ul>';
-              for (var count = 0; count < data.errors.length; count++) {
-                html += '<li>' + data.errors[count] + '</li>';
+        if ($('#action').val() === 'Add') {
+          $.ajax({
+            url: "{{ route('documents.store') }}",
+            method: "POST",
+            data: new FormData(this),
+            contentType: false,
+            cache: false,
+            processData: false,
+            dataType: "json",
+            success: function(data) {
+              var html = '';
+              if (data.errors) {
+                html = '<div class="alert alert-danger text-danger shadow-sm"><ul> ';
+                for (var count = 0; count < data.errors.length; count++) {
+                  html += '<li>' + data.errors[count] + '</li>';
+                }
+                html += '</ul><a class="btn-close" data-bs-dismiss="alert" aria-label="close"></a></div>';
+                $('#form_result_modal').html(html);
               }
-              html += '</ul></div>';
-              $('#form_result_modal').html(html);
+              if (data.success) {
+                html = '<div class="alert alert-success text-success shadow-sm"><ul><li>' + data.success + '</li></ul></div>';
+                $('#formModal').modal('hide')
+                $('#inputForm')[0].reset();
+                location.reload()
+                $('#form_result_window').html(html);
+              }
             }
-            if (data.success) {
-              html = '<div class="alert alert-success text-success shadow-sm"><ul><li>' +
-                data.success + '</li></ul></div>';
-              $('#form_result_window').html(html);
-              location.reload();
-              $('#formModal').modal('hide');
+          })
+        }
+
+        if ($('#action').val() === "Edit") {
+          event.preventDefault();
+          $.ajax({
+            url: "{{ route('documents.update') }}",
+            method: "POST",
+            data: new FormData(this),
+            contentType: false,
+            cache: false,
+            processData: false,
+            dataType: "json",
+            success: function(data) {
+              var html = '';
+              if (data.errors) {
+                html = '<div class="alert alert-danger text-danger shadow-sm"><ul>';
+                for (var count = 0; count < data.errors.length; count++) {
+                  html += '<li>' + data.errors[count] + '</li>';
+                }
+                html += '</ul></div>';
+                $('#form_result_modal').html(html);
+              }
+              if (data.success) {
+                html = '<div class="alert alert-success text-success shadow-sm"><ul><li>' +
+                  data.success + '</li></ul></div>';
+                $('#form_result_window').html(html);
+                location.reload();
+                $('#formModal').modal('hide');
+              }
             }
-          }
-        });
-      }
-    })
-
-    // Delete Employee
-    $(document).on('click', '.delete', function() {
-      id = $(this).attr('id');
-      $('#ok_button').text("{{ __('Delete') }}");
-      $('#confirmModal').modal('show');
-    })
-
-    // Delete Confirm
-    $('#ok_button').click(function() {
-      $.ajax({
-        url: "/documents/destroy/" + id,
-        beforeSend: function() {
-          $('#ok_button').text("{{ __('Deleting ...') }}");
-        },
-        success: function(data) {
-          setTimeout(function() {
-            $('#confirmModal').modal('hide');
-            $('#ok_button').text("{{ __('Delete') }}");
-            location.reload();
-          }, 1000);
+          });
         }
       })
-    })
 
-    $("#attachments").hide();
-    $("#addon-btn").click(function() {
-      console.log('clicked');
-      $("#attachments").toggle();
-    });
+      // Delete Employee
+      $(document).on('click', '.delete', function() {
+        id = $(this).attr('id');
+        $('#ok_button').text("{{ __('Delete') }}");
+        $('#confirmModal').modal('show');
+      })
+
+      // Delete Confirm
+      $('#ok_button').click(function() {
+        $.ajax({
+          url: "/documents/destroy/" + id,
+          beforeSend: function() {
+            $('#ok_button').text("{{ __('Deleting ...') }}");
+          },
+          success: function(data) {
+            setTimeout(function() {
+              $('#confirmModal').modal('hide');
+              $('#ok_button').text("{{ __('Delete') }}");
+              location.reload();
+            }, 1000);
+          }
+        })
+      })
+
+      // $("#stats").hide();
+      // $("#stats-btn").click(function() {
+      // console.log('clicked');
+      // $("#stats").toggle();
+      // });
+
+      $("#stats").hide();
+      $('#stats-btn').click(function() {
+        $('#stats').slideToggle("slow");
+      });
+
+      $("#attachments").hide();
+      $("#addon-btn").click(function() {
+        $('#attachments').slideToggle("slow");
+      });
   </script>
   @endsection

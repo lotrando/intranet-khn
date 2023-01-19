@@ -2,24 +2,26 @@
 
 use App\Http\Controllers\AdverseventController;
 use App\Http\Controllers\AttendanceController;
+use App\Http\Controllers\DocumentController;
 use App\Http\Controllers\EmployeeController;
 use App\Http\Controllers\EvidenceController;
-use App\Http\Controllers\DocumentController;
 use App\Http\Controllers\FileController;
 use App\Http\Controllers\PageController;
 use App\Http\Controllers\SlideController;
 use App\Http\Controllers\TrainingController;
+use App\Models\Category;
 use Illuminate\Support\Facades\Route;
 
 
 // Test page
 Route::get('test', function () {
-    return view('emails.standard.update', ['pretitle' => 'Test', 'title' => 'Pokus']);                                        // Testing route
+    return view('emails.standardy.update', ['pretitle' => 'Test', 'title' => 'Pokus']);                                        // Testing route
 });
 
 // Index
 Route::get('/', function () {
-    return view('test', ['pretitle' => 'Intranet', 'title' => 'Index']);                                   // Index route
+    $categories = Category::with('documents')->get();
+    return view('test', ['pretitle' => 'Intranet', 'title' => 'Index', 'categories' => $categories]);                                   // Index route
 })->name('test');
 
 // Home page

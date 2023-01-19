@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Adversevent;
+use App\Models\Category;
 use App\Models\Department;
 use App\Models\Employee;
 use Illuminate\Http\Request;
@@ -19,6 +20,7 @@ class AdverseventController extends Controller
      */
     public function index(Request $request)
     {
+        $categories = Category::with('documents')->get();
         $departments = Department::orderBy('department_name')->get();
         $doctors = Employee::where('title_preffix', 'LIKE', '%' . 'Dr.' . '%')->orderBy('last_name')->get();
 
@@ -65,6 +67,7 @@ class AdverseventController extends Controller
         }
 
         return view('adversevents.index')->with([
+            'categories'    => $categories,
             'title'         => 'Nežádoucí události',
             'departments'   => $departments,
             'doctors'       => $doctors

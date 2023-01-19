@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Category;
 use App\Models\Department;
 use App\Models\Employee;
 use App\Models\Job;
@@ -24,7 +25,7 @@ class EmployeeController extends Controller
      */
     public function index(Request $request)
     {
-
+        $categories = Category::with('documents')->get();
         $departments = Department::orderBy('department_name')->get();
         $jobs = Job::all();
         $columns = Schema::getColumnListing('employees');
@@ -84,6 +85,7 @@ class EmployeeController extends Controller
         }
 
         return view('employees.index')->with([
+            'categories'    =>  $categories,
             'title'         => 'Zaměstnanci',
             'departments'   => $departments,
             'jobs'          => $jobs,
