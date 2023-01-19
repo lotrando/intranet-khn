@@ -5,8 +5,8 @@
 @endsection
 
 @section('searchbar')
-<div class="col-12 me-2">
-  <input class="form-control d-lg-block d-xl-inline" id="search" type="text" placeholder="{{ __('Hledat standard ...') }}">
+<div class="col-auto me-2 d-sm-none d-md-inline-block">
+  <input size="13" class="form-control" id="search" type="text" placeholder="{{ __('Hledat standard ...') }}">
 </div>
 @endsection
 
@@ -77,7 +77,7 @@
         </div>
 
         @foreach ($categories as $category)
-        <div class="col-2 col-sm-3 col-xl-3 col-xxl-1 ps-0 m-0">
+        <div class="col-2 col-sm-3 col-xl-3 col-xxl-2 ps-0 m-0">
           <a href="/standardy/{{ $category->folder_name . '/' . $category->id }}" class="btn bg-{{ $category->color }}-lt hover-shadow-sm w-100 m-1" data-bs-toggle="tooltip" data-bs-placement="top"
              data-bs-original-title="{{ __('' . $category->category_name . ' standardy') }}">
             <span class="d-inline d-sm-inline d-lg-inline d-xl-inline">{!! $category->svg_icon !!}</span>
@@ -89,9 +89,9 @@
         </div>
         @endforeach
 
-        <div class="progress progress-separated mt-2">
+        <div class="progress mt-2">
           @foreach ($categories as $category)
-          <div class="progress-bar bg-{{ $category->color }}-lt" data-bs-toggle="tooltip" data-bs-placement="bottom"
+          <div class="progress-bar bg-{{ $category->color }}" data-bs-toggle="tooltip" data-bs-placement="bottom"
                data-bs-original-title="{{ $category->category_name . ' ' . $category->documents->count() }}" role="progressbar" aria-label="{{ $category->category_name }}"
                style="width: {{ ($category->documents->count() * 100) / $allDocuments->count() }}%"></div>
           @endforeach

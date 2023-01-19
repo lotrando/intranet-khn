@@ -457,8 +457,8 @@
             data: 'image',
             "width": "1%",
             render: function(data, type, row, full, meta) {
-              return "<div class='img-hover-zoom'><center><img src={{ URL::to('/foto') }}/" +
-                data + " class='zoom img-thumbnail' /></center></div>";
+              return "<div class='avatar avatar-sm'><center><img src={{ URL::to('/foto') }}/" +
+                data + " class='zoom avatar' /></center></div>";
             },
             orderable: false,
           },

@@ -199,4 +199,10 @@ class PageController extends Controller
         $categories = Category::with('documents')->get();
         return view('videa', ['pretitle' => 'Média', 'title' => 'Videa', 'categories' => $categories]);
     }
+
+    public function prekladatele()
+    {
+        $categories = Category::with('documents')->get();
+        return view('prekladatele', ['pretitle' => 'Média', 'title' => 'Překladatelé', 'categories' => $categories]);
+    }
 }

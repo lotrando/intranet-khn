@@ -66,7 +66,8 @@ Route::prefix('standardy')->name('standardy.')->group(function () {
 // Media
 Route::prefix('media')->name('media.')->group(function () {
     Route::get('radio', [PageController::class, 'radio'])->name('radio');                                   // Radio route (media.radio)
-    Route::get('videa', [PageController::class, 'video'])->name('videa');                                   // Videa route (media.video)
+    Route::get('videa', [PageController::class, 'video'])->name('videa');
+    Route::get('prekladatele', [PageController::class, 'prekladatele'])->name('prekladatele');              // Videa route (media.prekladatele)
 });
 
 // Attendace

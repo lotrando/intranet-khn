@@ -4,19 +4,16 @@
       <div class="container-fluid">
         <ul class="navbar-nav">
           {{-- Home --}}
-          <li class="nav-item {{ request()->segment(1) == 'home' ? 'active' : '' }}" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-original-title="Domovská stránka">
+          <li class="nav-item {{ request()->segment(1) == 'home' ? 'active' : '' }}" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-original-title="{{ __('Home') }}">
             <a class="nav-link" href="{{ route('home') }}">
-              <span class="nav-link-icon d-md-none d-lg-inline-block">
-                <svg class="icon icon-tabler icon-tabler-home text-primary" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" stroke-width="2"
+              <span class="nav-link-icon icon d-inline-block">
+                <svg class="icon text-primary ms-1" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" stroke-width="2"
                      stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
                   <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
                   <polyline points="5 12 3 12 12 3 21 12 19 12"></polyline>
                   <path d="M5 12v7a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2v-7"></path>
                   <path d="M9 21v-6a2 2 0 0 1 2 -2h2a2 2 0 0 1 2 2v6"></path>
                 </svg>
-              </span>
-              <span class="nav-link-title">
-                {{ __('Homepage') }}
               </span>
             </a>
           </li>
@@ -518,6 +515,21 @@
                       Videa
                     </span>
                   </a>
+                  <a class="dropdown-item {{ request()->segment(2) == 'prekladatele' ? 'active' : '' }}" href="{{ route('media.prekladatele') }}">
+                    <span class="nav-link-icon d-md-none d-lg-inline-block">
+                      <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-language nav-link-icon text-yellow" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                        <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+                        <path d="M4 5h7"></path>
+                        <path d="M9 3v2c0 4.418 -2.239 8 -5 8"></path>
+                        <path d="M5 9c-.003 2.144 2.952 3.908 6.7 4"></path>
+                        <path d="M12 20l4 -9l4 9"></path>
+                        <path d="M19.1 18h-6.2"></path>
+                      </svg>
+                    </span>
+                    <span class="nav-link-title">
+                      Překladatelé
+                    </span>
+                  </a>
                   <div class="dropend">
                     <a class="dropdown-item dropdown-toggle show" data-bs-toggle="dropdown" data-bs-auto-close="outside" href="#" role="button"
                        aria-expanded="true">
@@ -562,7 +574,7 @@
                       </a>
                     </div>
                   </div>
-                  <div class="dropend">
+                  {{-- <div class="dropend">
                     <a class="dropdown-item dropdown-toggle show" data-bs-toggle="dropdown" data-bs-auto-close="outside" href="#" role="button"
                        aria-expanded="true">
                       <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-language nav-link-icon text-yellow" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
@@ -574,7 +586,7 @@
                         <path d="M19.1 18h-6.2"></path>
                       </svg>
                       <span class="nav-link-title">
-                        Překladatelé
+                        {{ __('Překladatelé') }}
                       </span>
                     </a>
                     <div class="dropdown-menu show" data-bs-popper="static">
@@ -609,7 +621,7 @@
                         </span>
                       </a>
                     </div>
-                  </div>
+                  </div> --}}
                 </div>
               </div>
             </div>
