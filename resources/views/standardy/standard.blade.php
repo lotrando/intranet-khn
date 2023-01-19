@@ -18,8 +18,8 @@
 
     <div class="container-fluid">
       <div class="row align-items-center">
-        <div class="col-12 mt-2" id="stats">
-          <div class="mb-2 bg-transparent">
+        <div class="col-12">
+          {{-- <div class="mb-2 bg-transparent id=" stats"">
             <div class="row d-flex align-items-center">
               <div class="d-flex align-items-center col-auto mb-2">
                 <svg class="icon icon-tabler icon-tabler-books d-xl-none" data-bs-toggle="tooltip" data-bs-placement="right" data-bs-original-title="Standardů celkem"
@@ -73,7 +73,28 @@
                    style="width: {{ ($category->documents->count() * 100) / $allDocuments->count() }}%"></div>
               @endforeach
             </div>
-          </div>
+          </div> --}}
+        </div>
+
+        @foreach ($categories as $category)
+        <div class="col-2 col-sm-3 col-xl-3 col-xxl-2 ps-0 m-0">
+          <a href="/standardy/{{ $category->folder_name . '/' . $category->id }}" class="btn bg-{{ $category->color }}-lt hover-shadow w-100 m-1" data-bs-toggle="tooltip" data-bs-placement="top"
+             data-bs-original-title="Na {{ __('' . $category->button . ' standardy') }}">
+            <span class="d-inline d-sm-inline d-lg-none d-xl-inline">{!! $category->svg_icon !!}</span>
+            <span class="d-none d-md-inline d-lg-inline d-xl-inline pe-1">{{ $category->category_name }}</span>
+            <span class="text-small">
+              {{ $category->documents->count() }}
+            </span>
+          </a>
+        </div>
+        @endforeach
+
+        <div class="progress progress-separated mt-2">
+          @foreach ($categories as $category)
+          <div class="progress-bar bg-{{ $category->color }}-lt" data-bs-toggle="tooltip" data-bs-placement="bottom"
+               data-bs-original-title="{{ $category->category_name . ' ' . $category->documents->count() }}" role="progressbar" aria-label="{{ $category->category_name }}"
+               style="width: {{ ($category->documents->count() * 100) / $allDocuments->count() }}%"></div>
+          @endforeach
         </div>
 
         {{-- Searched events --}}
@@ -111,7 +132,7 @@
                 <span class="d-sm-none d-md-none d-lg-inline">{{ __('Nový') }}</span>
               </button>
               @endauth
-              <button class="btn btn-azure d-none d-sm-inline-block" id="stats-btn">
+              {{-- <button class="btn btn-azure d-none d-sm-inline-block" id="stats-btn">
                 <svg class="icon m-0" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor"
                      fill="none" stroke-linecap="round" stroke-linejoin="round">
                   <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
@@ -121,7 +142,7 @@
                   <line x1="4" y1="20" x2="18" y2="20"></line>
                 </svg>
                 <span class="d-sm-none d-md-none d-lg-inline">{{ __('Statistics') }}</span>
-              </button>
+              </button> --}}
             </div>
           </div>
         </div>
@@ -746,10 +767,10 @@
       // $("#stats").toggle();
       // });
 
-      $("#stats").hide();
-      $('#stats-btn').click(function() {
-        $('#stats').slideToggle("slow");
-      });
+      // $("#stats").hide();
+      // $('#stats-btn').click(function() {
+      //   $('#stats').slideToggle("slow");
+      // });
 
       $("#attachments").hide();
       $("#addon-btn").click(function() {

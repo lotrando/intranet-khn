@@ -14,60 +14,20 @@
 {{-- Page Wrapper Start --}}
 <div class="page-wrapper">
   <div class="page-header d-print-none">
-
     <div class="container-fluid">
       <div class="row align-items-center">
         <div class="col-12 mt-2">
-          <div class="bg-transparent mb-2">
-            <div class="row d-flex align-items-center">
-              <div class="col-auto d-flex align-items-center mb-2">
-                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-books d-xl-none" width="24" height="24" viewBox="0 0 24 24" stroke-width="1" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round" data-bs-toggle="tooltip" data-bs-placement="right"
-                     data-bs-original-title="Standardů celkem">
-                  <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
-                  <rect x="5" y="4" width="4" height="16" rx="1"></rect>
-                  <rect x="9" y="4" width="4" height="16" rx="1"></rect>
-                  <path d="M5 8h4"></path>
-                  <path d="M9 16h4"></path>
-                  <path d="M13.803 4.56l2.184 -.53c.562 -.135 1.133 .19 1.282 .732l3.695 13.418a1.02 1.02 0 0 1 -.634 1.219l-.133 .041l-2.184 .53c-.562 .135 -1.133 -.19 -1.282 -.732l-3.695 -13.418a1.02 1.02 0 0 1 .634 -1.219l.133 -.041z"></path>
-                  <path d="M14 9l4 -1"></path>
-                  <path d="M16 16l3.923 -.98"></path>
-                </svg>
-                <span class="mb-0 d-none d-md-none d-xl-inline d-xxl-inline">Standardů</span>
-                <h3 class="mb-0 d-md-inline d-xxl-inline text-muted ms-1">{{ $allDocuments->count() }}</h3>
+          @foreach ($categories as $category)
+          <div class="col-2 col-sm-3 col-xl-2 col-xxl-2 ps-0 m-0">
+            <a href="/standardy/{{ $category->folder_name . '/' . $category->id }}" class="btn bg-{{ $category->color }}-lt hover-shadow w-100 m-1" data-bs-toggle="tooltip" data-bs-placement="bottom"
+               data-bs-original-title="Na {{ __('' . $category->button . ' standardy') }}">
+              <span class="d-inline d-xl-inline">{!! $category->svg_icon !!}</span>
+              <div class="d-flex">
+                {{ $category->documents->count() }}
               </div>
-              <div class="col-auto d-flex align-items-center mb-2">
-                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-file-arrow-left d-xl-none" width="24" height="24" viewBox="0 0 24 24" stroke-width="1" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round" data-bs-toggle="tooltip" data-bs-placement="right"
-                     data-bs-original-title="Příloh celkem">
-                  <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
-                  <path d="M14 3v4a1 1 0 0 0 1 1h4"></path>
-                  <path d="M17 21h-10a2 2 0 0 1 -2 -2v-14a2 2 0 0 1 2 -2h7l5 5v11a2 2 0 0 1 -2 2z"></path>
-                  <path d="M15 15h-6"></path>
-                  <path d="M11.5 17.5l-2.5 -2.5l2.5 -2.5"></path>
-                </svg>
-                <span class="mb-0 d-none d-md-none d-xl-inline d-xxl-inline">Příloh</span>
-                <h3 class="mb-0 d-md-inline d-xxl-inline text-muted ms-1">{{ $allAddons->count() }}</h3>
-              </div>
-              @foreach ($categories as $category)
-              <div class="col-auto d-flex align-items-center justify-content-center pe-1 mb-2">
-                <span class="text-uppercase mb-1 me-1">
-                  <div class="text-uppercase d-xxl-inline d-xl-none">
-                    {!! $category->svg_icon !!}
-                  </div>
-                </span>
-                <a class="text-{{ $category->color }}" href="/standardy/{{ $category->folder_name . '/' .  $category->id }}" rel="noopener noreferrer">
-                  <span class="d-none d-md-none d-xl-inline d-xxl-inline">{{ $category->category_name }}</span>
-                </a>
-                <h3 class="mb-0 d-md-inline d-xxl-inline ps-1 text-{{ $category->color }}">{{ $category->documents->count() }}</h3>
-              </div>
-              @endforeach
-            </div>
-            <div class="progress">
-              @foreach ($categories as $category)
-              <div class="progress-bar bg-{{ $category->color }}" role="progressbar" style="width: {{ (($category->documents->count() * 100) / $allDocuments->count())  }}%" aria-label="{{ $category->category_name }}" data-bs-toggle="tooltip" data-bs-placement="bottom"
-                   data-bs-original-title="{{ $category->category_name .' '. $category->documents->count() }}"></div>
-              @endforeach
-            </div>
+            </a>
           </div>
+          @endforeach
         </div>
 
         {{-- Searched events --}}
