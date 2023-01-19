@@ -15,7 +15,7 @@ use Illuminate\Support\Facades\Route;
 
 // Test page
 Route::get('test', function () {
-    return view('emails.standardy.update', ['pretitle' => 'Test', 'title' => 'Pokus']);                                        // Testing route
+    return view('test', ['pretitle' => 'Test', 'title' => 'Pokus']);                                        // Testing route
 });
 
 // Index

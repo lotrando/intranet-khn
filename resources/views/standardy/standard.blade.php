@@ -192,7 +192,7 @@
                         <span class="text-muted">upraveno {{ Carbon\Carbon::parse($document->updated_at)->diffForHumans() }}</span>
                         @endauth
                         @if (Carbon\Carbon::parse($document->created_at)->addDays(1) >= Carbon\Carbon::today())
-                        <span class="badge badge-sm bg-red-lt text-uppercase ms-auto">Nový</span>
+                        <span class="badge badge-sm bg-red-lt text-uppercase ms-auto">Nový !</span>
                         @endif
                         @if (Carbon\Carbon::parse($document->updated_at)->addDays(7) >= Carbon\Carbon::now())
                         <span class="badge badge-sm bg-lime-lt text-uppercase ms-auto">Aktualizováno !</span>
@@ -308,10 +308,10 @@
                         @endif
                         @endauth
                         @if (Carbon\Carbon::parse($add->created_at)->addDay() >= Carbon\Carbon::today())
-                        <span class="badge badge-sm bg-red-lt text-uppercase ms-auto">Nový</span>
+                        <span class="badge badge-sm bg-red-lt text-uppercase ms-auto">Nový !</span>
                         @endif
                         @if (Carbon\Carbon::parse($add->updated_at)->addDays(15) >= Carbon\Carbon::now())
-                        <span class="badge badge-sm bg-lime-lt text-uppercase ms-auto">Aktualizováno</span>
+                        <span class="badge badge-sm bg-lime-lt text-uppercase ms-auto">Aktualizováno !</span>
                         @endif
                       </div>
                     </div>
@@ -684,6 +684,7 @@
         var revisionDate = moment($(this).val()).format('YYYY-MM-DD')
         var nextRevisionDate = moment(revisionDate).add(1, 'Y').format('YYYY-MM-DD')
         $('#efficiency').val($('#revision_date').val())
+        $('#next_revision_date').val(nextRevisionDate)
         })
       })
 

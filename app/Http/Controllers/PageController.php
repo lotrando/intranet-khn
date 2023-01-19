@@ -39,7 +39,11 @@ class PageController extends Controller
         $y = Category::count();
 
         for ($i = 1; $i < $y; $i++) {
-            $documents[$i] = Document::with('category')->where('category_id', $i)->get();
+            $documents[$i] = Document::with('category', 'addons', 'user')
+                ->where('updated_at', '>=', Carbon::now()->subHours(6), 'and')
+                ->where('updated_at', '<=', Carbon::now()->addHours(12))
+                ->where('category_id', $i)
+                ->get();
         }
 
         return view('zmeny', [
