@@ -2298,7 +2298,7 @@ textarea {
 .form-control {
   display: block;
   width: 100%;
-  padding: 0.4375rem 0.75rem;
+  padding: 0.3375rem 0.65rem;
   font-size: 0.975rem;
   font-weight: 400;
   line-height: 1.5285714;
@@ -3437,7 +3437,7 @@ fieldset:disabled .btn {
   position: absolute;
   z-index: 1000;
   display: none;
-  min-width: 11rem;
+  min-width: 14rem;
   padding: 0.25rem;
   margin: 0;
   font-size: 0.8975rem;
