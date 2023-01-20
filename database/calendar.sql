@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 5.2.0
+-- version 5.1.3
 -- https://www.phpmyadmin.net/
 --
--- Počítač: localhost
--- Vytvořeno: Ned 15. led 2023, 00:08
--- Verze serveru: 8.0.31
--- Verze PHP: 7.4.33
+-- Počítač: 127.0.0.1
+-- Vytvořeno: Pát 20. led 2023, 21:49
+-- Verze serveru: 10.4.24-MariaDB
+-- Verze PHP: 7.4.28
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -28,10 +28,10 @@ SET time_zone = "+00:00";
 --
 
 CREATE TABLE `calendar` (
-  `id` bigint NOT NULL,
+  `id` bigint(20) NOT NULL,
   `date` date DEFAULT NULL,
-  `interni` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+  `interni` varchar(50) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Vypisuji data pro tabulku `calendar`
@@ -403,26 +403,6 @@ INSERT INTO `calendar` (`id`, `date`, `interni`) VALUES
 (363, '2023-12-29', NULL),
 (364, '2023-12-30', NULL),
 (365, '2023-12-31', NULL);
-
---
--- Indexy pro exportované tabulky
---
-
---
--- Indexy pro tabulku `calendar`
---
-ALTER TABLE `calendar`
-  ADD PRIMARY KEY (`id`);
-
---
--- AUTO_INCREMENT pro tabulky
---
-
---
--- AUTO_INCREMENT pro tabulku `calendar`
---
-ALTER TABLE `calendar`
-  MODIFY `id` bigint NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=366;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

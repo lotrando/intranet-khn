@@ -19,7 +19,7 @@ class CreateNavitemsTable extends Migration
             $table->integer('category_id');
             $table->string('name');
             $table->string('subname');
-            $table->string('name_cz');
+            $table->string('alt_name');
             $table->string('tooltip');
             $table->string('color');
             $table->string('page_title');
