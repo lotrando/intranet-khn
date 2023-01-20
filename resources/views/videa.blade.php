@@ -1,16 +1,19 @@
 @extends('layouts.blank')
 
 @section('favicon')
-<link type="image/png" href="{{ asset('img/videa.png') }}" rel="shortcut icon">
+<link type="image/png" href="{{ asset('img/home.png') }}" rel="shortcut icon">
 @endsection
 
 @section('content')
+{{-- Page wrapper --}}
 <div class="page-wrapper">
-  <!-- Page header -->
+
+  {{-- Page header --}}
   <div class="page-header d-print-none">
     <div class="container-fluid">
       <div class="row align-items-center">
-        <!-- Page pre-title -->
+
+        {{-- Page pre-title --}}
         <div class="col">
           <div class="page-pretitle text-primary">
             {{ __($pretitle) ?? '' }}
@@ -19,19 +22,30 @@
             {{ __($title) ?? '' }}
           </h2>
         </div>
+        {{-- End Page pre-title --}}
+
+        {{-- Page buttons --}}
+        <div class="ms-auto d-print-none col-auto">
+          <div class="btn-list">
+            <div class="d-flex justify-content-end">
+              {{-- Buttons --}}
+            </div>
+          </div>
+        </div>
+        {{-- End Page buttons --}}
+
       </div>
     </div>
   </div>
-  <!-- Page header End -->
 
-  <!-- Page body -->
+  {{-- Page body --}}
   <div class="page-body">
     <div class="container-fluid">
       <div class="row row-cards">
         <div class="col-lg-6">
           <div class="card shadow-sm">
             <div class="card-body">
-              <h3 class="card-title">Youtube Player</h3>
+              <h3 class="card-title">Evanescence - Zombie | Sax Cover | Alexandra Ilieva</h3>
               <div id="player-youtube" data-plyr-provider="youtube" data-plyr-embed-id="eWkvojhw0eo"></div>
             </div>
           </div>
@@ -47,6 +61,7 @@
       </div>
     </div>
   </div>
+  {{-- End Page body --}}
 
 </div>
 <!-- Wrapper End -->
@@ -60,6 +75,7 @@
       });
       // @formatter:on
 </script>
+
 <script>
   // @formatter:off
       document.addEventListener("DOMContentLoaded", function () {

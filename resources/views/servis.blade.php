@@ -1,16 +1,19 @@
 @extends('layouts.blank')
 
 @section('favicon')
-<link type="image/png" href="/img/servis.png" rel="shortcut icon" />
+<link type="image/png" href="{{ asset('img/home.png') }}" rel="shortcut icon">
 @endsection
 
 @section('content')
+{{-- Page wrapper --}}
 <div class="page-wrapper">
-  <!-- Page header -->
+
+  {{-- Page header --}}
   <div class="page-header d-print-none">
     <div class="container-fluid">
       <div class="row align-items-center">
-        <!-- Page pre-title -->
+
+        {{-- Page pre-title --}}
         <div class="col">
           <div class="page-pretitle text-primary">
             {{ __($pretitle) ?? '' }}
@@ -19,21 +22,51 @@
             {{ __($title) ?? '' }}
           </h2>
         </div>
+        {{-- End Page pre-title --}}
+
+        {{-- Page buttons --}}
+        <div class="ms-auto d-print-none col-auto">
+          <div class="btn-list">
+            <div class="d-flex justify-content-end">
+              {{-- Buttons --}}
+            </div>
+          </div>
+        </div>
+        {{-- End Page buttons --}}
+
       </div>
     </div>
   </div>
-  <!-- Wrapper End -->
 
-  <!-- Page body -->
+  {{-- Page body --}}
   <div class="page-body">
     <div class="container-fluid">
-      <div class="h-100 d-flex align-items-center justify-content-center">
+      <div class="row justify-content-start g-2">
+
+
+        <div class="col-12 col-md-7 col-lg-7 col-xl-5 col-xxl-4">
+          <div class="card" style="height: 36rem">
+            <div class="text-left card-header bg-azure-lt">
+              <h2 class="col-12 m-1">{{ __($pretitle) ?? 'Empty' }} - {{ __($title) ?? 'Empty' }}</h2>
+            </div>
+            <div class="card-body card-body-scrollable card-body-scrollable-shadow">
+              <div class="divide-y">
+                <div>
+                  <div class="row">
+                    {{-- content --}}
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+
       </div>
     </div>
   </div>
-</div>
-@endsection
+  {{-- End Page body --}}
 
-@section('scripts')
-<script src="{{ asset('') }}"></script>
+</div>
+<!-- Wrapper End -->
 @endsection

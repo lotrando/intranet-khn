@@ -130,5 +130,6 @@
   "Statistics": "Statistiky",
   "Creates new adverse event": "Vytvoří novou nežádoucí událost",
   "Oops… You just found an error page": "Právě jste našli chybovou stránku.",
-  "We are sorry but the page not found": "Omlouváme se, ale stránka nebyla nalezena"
+  "We are sorry,": "Omlouváme se,",
+  "but the file or page not exists": "ale soubor nebo stránka neexistuje"
 }

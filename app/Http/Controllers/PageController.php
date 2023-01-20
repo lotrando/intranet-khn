@@ -21,26 +21,24 @@ class PageController extends Controller
     // Homepage
     public function home()
     {
-        $categories = Category::with('documents')->get();
-        return view('home', ['pretitle' => 'Intranet', 'title' => 'Homepage', 'categories' => $categories]);
+        return view('home', ['pretitle' => 'Intranet', 'title' => 'Homepage']);
     }
 
     // Oznámení
     public function prehledy()
     {
-        $categories = Category::with('documents')->get();
-        return view('prehledy', ['pretitle' => 'Oznámení', 'title' => 'Přehledy', 'categories' => $categories]);
+        return view('prehledy', ['pretitle' => 'Oznámení', 'title' => 'Přehledy']);
     }
 
     public function zmenyStandardu()
     {
-        $categories = Category::with('documents')->get();
+
         $suma = Document::count();
 
         $documents = Document::with('category', 'addons', 'user')
-            ->where('updated_at', '>=', Carbon::now()->subHours(6))
+            ->where('updated_at', '>=', Carbon::now()->subHours(24))
             ->orderByDesc('updated_at')
-            ->paginate(6);
+            ->paginate(7);
 
         // for ($i = 1; $i < $y; $i++) {
         //     $documents[$i] = Document::with('category', 'addons', 'user')
@@ -53,9 +51,8 @@ class PageController extends Controller
         // }
 
         return view('zmeny', [
-            'categories' => $categories,
             'pretitle'  => 'Oznámení',
-            'title'     => 'Změny standardů',
+            'title'     => 'Změny ve standardech',
             'suma'      => $suma,
             'documents' => $documents,
         ]);
@@ -63,18 +60,17 @@ class PageController extends Controller
 
     public function zmenyDokumentu()
     {
-        $categories = Category::with('documents')->get();
+
         $suma = Document::count();
 
         $documents = Document::with('category', 'addons', 'user')
-            ->where('updated_at', '>=', Carbon::now()->subHours(12))
+            ->where('updated_at', '>=', Carbon::now()->subHours(48))
             ->orderBy('updated_at')
-            ->paginate(6);
+            ->paginate(7);
 
         return view('zmeny', [
-            'categories' => $categories,
             'pretitle'  => 'Oznámení',
-            'title'     => 'Změny dokumentů',
+            'title'     => 'Změny v dokumentaci',
             'suma'      => $suma,
             'documents' => $documents,
         ]);
@@ -82,38 +78,38 @@ class PageController extends Controller
 
     public function akord()
     {
-        $categories = Category::with('documents')->get();
-        return view('akord', ['pretitle' => 'Oznámení', 'title' => 'Akord', 'categories' => $categories]);
+
+        return view('akord', ['pretitle' => 'Oznámení', 'title' => 'Akord']);
     }
 
     public function servis()
     {
-        $categories = Category::with('documents')->get();
-        return view('servis', ['pretitle' => 'Oznámení', 'title' => 'Odstávky a servis', 'categories' => $categories]);
+
+        return view('servis', ['pretitle' => 'Oznámení', 'title' => 'Odstávky a servis']);
     }
 
     public function seminare()
     {
-        $categories = Category::with('documents')->get();
-        return view('seminare', ['pretitle' => 'Oznámení', 'title' => 'Seminaře', 'categories' => $categories]);
+
+        return view('seminare', ['pretitle' => 'Oznámení', 'title' => 'Seminaře']);
     }
 
     public function sluzby()
     {
-        $categories = Category::with('documents')->get();
-        return view('sluzby', ['pretitle' => 'Oznámení', 'title' => 'Změny služeb', 'categories' => $categories]);
+
+        return view('sluzby', ['pretitle' => 'Oznámení', 'title' => 'Změny služeb']);
     }
 
     public function informace()
     {
-        $categories = Category::with('documents')->get();
-        return view('informace', ['pretitle' => 'Oznámení', 'title' => 'Informace', 'categories' => $categories]);
+
+        return view('informace', ['pretitle' => 'Oznámení', 'title' => 'Informace']);
     }
 
     public function kultura()
     {
-        $categories = Category::with('documents')->get();
-        return view('kultura', ['pretitle' => 'Oznámení', 'title' => 'Kultura', 'categories' => $categories]);
+
+        return view('kultura', ['pretitle' => 'Oznámení', 'title' => 'Kultura']);
     }
 
     // Stravování
@@ -124,16 +120,16 @@ class PageController extends Controller
 
     public function kantyna()
     {
-        $categories = Category::with('documents')->get();
+
         $daylist = DB::table('calendar')->where('date', '>=', Carbon::now()->previous('Monday'))->where('date', '<=', Carbon::now()->addDays(16))->simplePaginate(7);
-        return view('kantyna', ['pretitle' => 'Stravování', 'title' => 'Nabídka kantýny', 'daylist' => $daylist, 'categories' => $categories]);
+        return view('kantyna', ['pretitle' => 'Stravování', 'title' => 'Nabídka kantýny', 'daylist' => $daylist]);
     }
 
     // Akreditacní stadnardy
     public function akreditacni($id)
     {
         $accordion_groups = Document::where('status', 'Schváleno')->where('category_id', $id)->pluck('accordion_group');
-        $categories = Category::with('documents')->get();
+
         $allDocuments = Document::pluck('category_id');
         $doctors = Employee::where('title_preffix', 'LIKE', '%' . 'Dr.' . '%')->orderBy('last_name')->get();
         $allAddons = Addon::pluck('document_id');
@@ -158,7 +154,6 @@ class PageController extends Controller
             'pretitle'          => 'Standardy',
             'categorie'         => $categorie,
             'icon'              => $categorie->fa_icon,
-            'categories'        => $categories,
             'doctors'           => $doctors,
             'groups'            => $accordion_groups,
             'allDocuments'      => $allDocuments,
@@ -182,7 +177,7 @@ class PageController extends Controller
     // Standardy
     public function standard($id)
     {
-        $categories = Category::with('documents')->get();
+
         $allDocuments = Document::pluck('category_id');
         $allAddons = Addon::pluck('document_id');
         $categorie  = Category::where('id', $id)->first();
@@ -207,7 +202,6 @@ class PageController extends Controller
             'pretitle'          => 'Standardy',
             'categorie'         => $categorie,
             'icon'              => $categorie->fa_icon,
-            'categories'        => $categories,
             'lastpos'           => $last,
             'documents'         => $documents,
             'allDocuments'      => $allDocuments,
@@ -225,13 +219,13 @@ class PageController extends Controller
 
     public function video()
     {
-        $categories = Category::with('documents')->get();
-        return view('videa', ['pretitle' => 'Média', 'title' => 'Videa', 'categories' => $categories]);
+
+        return view('videa', ['pretitle' => 'Média', 'title' => 'Videa']);
     }
 
     public function prekladatele()
     {
-        $categories = Category::with('documents')->get();
-        return view('prekladatele', ['pretitle' => 'Média', 'title' => 'Překladatelé', 'categories' => $categories]);
+
+        return view('prekladatele', ['pretitle' => 'Média', 'title' => 'Překladatelé']);
     }
 }

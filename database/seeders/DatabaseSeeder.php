@@ -18,6 +18,7 @@ class DatabaseSeeder extends Seeder
     public function run()
     {
         $this->call([
+            NavitemSeeder::class,
             DepartmentSeeder::class,
             JobSeeder::class,
             CategorySeeder::class,

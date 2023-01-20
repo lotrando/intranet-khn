@@ -16,7 +16,7 @@
             {{ __($pretitle) ?? '' }}
           </div>
           <h2 class="page-title text-primary">
-            {{ __($title) ?? '' }}
+            {{ __($title) ?? '' }} - {{$documents->currentPage()}} / {{ $documents->lastPage() }}
           </h2>
         </div>
       </div>
@@ -104,9 +104,6 @@
             </div>
           </div>
           @endforeach
-        </div>
-        <div class="pagination mt-2">
-          {{ $documents->links() }}
         </div>
       </div>
     </div>

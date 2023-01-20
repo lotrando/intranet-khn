@@ -3,22 +3,18 @@
     <div class="navbar navbar-light">
       <div class="container-fluid">
         <ul class="navbar-nav">
-          {{-- Home --}}
-          <li class="nav-item {{ request()->segment(1) == 'home' ? 'active' : '' }}" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-original-title="{{ __('Home') }}">
-            <a class="nav-link" href="{{ route('home') }}">
-              <span class="nav-link-icon icon d-inline-block">
-                <svg class="icon text-primary ms-1" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" stroke-width="2"
-                     stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
-                  <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
-                  <polyline points="5 12 3 12 12 3 21 12 19 12"></polyline>
-                  <path d="M5 12v7a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2v-7"></path>
-                  <path d="M9 21v-6a2 2 0 0 1 2 -2h2a2 2 0 0 1 2 2v6"></path>
-                </svg>
+          @foreach ($navitems as $navitem)
+          <li class="nav-item {{ request()->segment(1) == $navitem->route ? 'active' : '' }}" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-original-title="{{ __($navitem->tooltip) }}">
+            <a class="nav-link" href="{{ route($navitem->route) }}">
+              <span class="nav-link-icon icon d-inline {{ $navitem->icon_class }}">
+                {!! $navitem->svg_icon !!}
               </span>
+              {{ $navitem->name }}
             </a>
           </li>
+          @endforeach
           {{-- Oznámení Dropdown --}}
-          <li class="nav-item dropdown {{ request()->segment(1) == 'oznameni' ? 'active' : '' }}" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-original-title="Oznámení na intranetu KHN">
+          <li class="nav-item dropdown {{ request()->segment(1) == 'oznameni' ? 'active' : '' }}" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-original-title="Se se děje na intranetu KHN">
             <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" data-bs-auto-close="outside" href="#" role="button" aria-expanded="false">
               <span class="nav-link-icon d-md-none d-lg-inline-block">
                 <svg class="icon icon-tabler text-red" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor"
@@ -63,7 +59,7 @@
                   </svg>
                 </span>
                 <span class="nav-link-title">
-                  {{ __('Změny standardů') }}
+                  {{ __('Změny ve standardech') }}
                 </span>
               </a>
               <a class="dropdown-item {{ request()->segment(2) == 'zmeny-dokumentu' ? 'active' : '' }}" href="{{ route('oznameni.zmeny-dokumentu') }}">
@@ -77,7 +73,7 @@
                   </svg>
                 </span>
                 <span class="nav-link-title">
-                  {{ __('Změny dokumentů') }}
+                  {{ __('Změny v dokumentaci') }}
                 </span>
               </a>
               <a class="dropdown-item {{ request()->segment(2) == 'servis' ? 'active' : '' }}" href="{{ route('oznameni.servis') }}">
@@ -246,7 +242,7 @@
               </span>
             </a>
           </li>
-          <li class="nav-item dropdown" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-original-title="Přehled dokumentace">
+          <li class="nav-item dropdown" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-original-title="Přehled dokumentace nemocnice">
             <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" data-bs-auto-close="outside" href="#" role="button" aria-expanded="false">
               <span class="nav-link-icon d-md-none d-lg-inline-block">
                 <svg xmlns="http://www.w3.org/2000/svg" class="icon text-pink" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
@@ -439,7 +435,7 @@
               </a>
             </div>
           </li>
-          <li class="nav-item dropdown {{ request()->segment(1) == 'standardy' ? 'active' : '' }}" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-original-title="Standady nemocnice">
+          <li class="nav-item dropdown {{ request()->segment(1) == 'standardy' ? 'active' : '' }}" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-original-title="Přehled standadů nemocnice">
             <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" data-bs-auto-close="outside" href="#" role="button" aria-expanded="false">
               <span class="nav-link-icon d-md-none d-lg-inline-block">
                 <svg class="icon icon-tabler icon-tabler-book-2 text-purple" xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 24 24"
@@ -455,7 +451,7 @@
               </span>
             </a>
             <div class="dropdown-menu">
-              @foreach (Session::get('categories') as $category)
+              @foreach ($categories as $category)
               <a class="dropdown-item {{ request()->segment(2) == $category->folder_name }}' ? 'active' : '' }}" href="{{ route('standardy.'. $category->folder_name.'', $category->id) }}">
                 <span class="nav-link-icon d-md-none d-lg-inline-block">
                   {!! $category->svg_icon !!}
@@ -468,7 +464,7 @@
               @endforeach
             </div>
           </li>
-          <li class="nav-item dropdown {{ request()->segment(1) == 'media' ? 'active' : '' }}" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-original-title="Instruktážní videa">
+          <li class="nav-item dropdown {{ request()->segment(1) == 'media' ? 'active' : '' }}" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-original-title="Radio, Video, Překladatelé...">
             <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" data-bs-auto-close="outside" href="#" role="button" aria-expanded="false">
               <span class="nav-link-icon d-md-none d-lg-inline-block">
                 <svg class="icon icon-tabler icon-tabler-device-tv-old text-lime" xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 24 24"
@@ -486,159 +482,157 @@
               </span>
             </a>
             <div class="dropdown-menu">
-              <div class="dropdown-menu-columns">
-                <div class="dropdown-menu-column">
-                  <a class="dropdown-item{{ request()->segment(2) == 'radio' ? 'active' : '' }}" href="{{ route('media.radio') }}">
+              <div class="dropdown">
+                <a class="dropdown-item{{ request()->segment(2) == 'radio' ? 'active' : '' }}" href="{{ route('media.radio') }}">
+                  <span class="nav-link-icon d-md-none d-lg-inline-block">
+                    <svg class="icon icon-tabler icon-tabler-radio text-orange" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                         stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                      <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+                      <path d="M14 3l-9.371 3.749a1 1 0 0 0 -.629 .928v11.323a1 1 0 0 0 1 1h14a1 1 0 0 0 1 -1v-11a1 1 0 0 0 -1 -1h-14.5">
+                      </path>
+                      <path d="M4 12h16"></path>
+                      <path d="M7 12v-2"></path>
+                      <path d="M17 16v.01"></path>
+                      <path d="M13 16v.01"></path>
+                    </svg>
+                  </span>
+                  <span class="nav-link-title">
+                    Rádio
+                  </span>
+                </a>
+                <a class="dropdown-item {{ request()->segment(2) == 'videa' ? 'active' : '' }}" href="{{ route('media.videa') }}">
+                  <span class="nav-link-icon d-md-none d-lg-inline-block">
+                    <svg class="icon icon-tabler icon-tabler-movie text-blue" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                         stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                      <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+                      <rect x="4" y="4" width="16" height="16" rx="2"></rect>
+                      <line x1="8" y1="4" x2="8" y2="20">
+                      </line>
+                      <line x1="16" y1="4" x2="16" y2="20">
+                      </line>
+                      <line x1="4" y1="8" x2="8" y2="8">
+                      </line>
+                      <line x1="4" y1="16" x2="8" y2="16">
+                      </line>
+                      <line x1="4" y1="12" x2="20" y2="12">
+                      </line>
+                      <line x1="16" y1="8" x2="20" y2="8">
+                      </line>
+                      <line x1="16" y1="16" x2="20" y2="16">
+                      </line>
+                    </svg>
+                  </span>
+                  <span class="nav-link-title">
+                    Videa
+                  </span>
+                </a>
+                <a class="dropdown-item {{ request()->segment(2) == 'prekladatele' ? 'active' : '' }}" href="{{ route('media.prekladatele') }}">
+                  <span class="nav-link-icon d-md-none d-lg-inline-block">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-language nav-link-icon text-yellow" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                      <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+                      <path d="M4 5h7"></path>
+                      <path d="M9 3v2c0 4.418 -2.239 8 -5 8"></path>
+                      <path d="M5 9c-.003 2.144 2.952 3.908 6.7 4"></path>
+                      <path d="M12 20l4 -9l4 9"></path>
+                      <path d="M19.1 18h-6.2"></path>
+                    </svg>
+                  </span>
+                  <span class="nav-link-title">
+                    Překladatelé
+                  </span>
+                </a>
+                <div class="dropend">
+                  <a class="dropdown-item dropdown-toggle show" data-bs-toggle="dropdown" data-bs-auto-close="outside" href="#" role="button"
+                     aria-expanded="true">
                     <span class="nav-link-icon d-md-none d-lg-inline-block">
-                      <svg class="icon icon-tabler icon-tabler-radio text-orange" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
-                           stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                      <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-headset text-green" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
                         <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
-                        <path d="M14 3l-9.371 3.749a1 1 0 0 0 -.629 .928v11.323a1 1 0 0 0 1 1h14a1 1 0 0 0 1 -1v-11a1 1 0 0 0 -1 -1h-14.5">
-                        </path>
-                        <path d="M4 12h16"></path>
-                        <path d="M7 12v-2"></path>
-                        <path d="M17 16v.01"></path>
-                        <path d="M13 16v.01"></path>
+                        <rect x="4" y="13" rx="2" width="4" height="6"></rect>
+                        <rect x="16" y="13" rx="2" width="4" height="6"></rect>
+                        <path d="M4 15v-3a8 8 0 0 1 16 0v3"></path>
+                        <path d="M18 19a6 3 0 0 1 -6 3"></path>
                       </svg>
                     </span>
                     <span class="nav-link-title">
-                      Rádio
+                      Edukační videa
                     </span>
                   </a>
-                  <a class="dropdown-item {{ request()->segment(2) == 'videa' ? 'active' : '' }}" href="{{ route('media.videa') }}">
-                    <span class="nav-link-icon d-md-none d-lg-inline-block">
-                      <svg class="icon icon-tabler icon-tabler-movie text-blue" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
-                           stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
-                        <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
-                        <rect x="4" y="4" width="16" height="16" rx="2"></rect>
-                        <line x1="8" y1="4" x2="8" y2="20">
-                        </line>
-                        <line x1="16" y1="4" x2="16" y2="20">
-                        </line>
-                        <line x1="4" y1="8" x2="8" y2="8">
-                        </line>
-                        <line x1="4" y1="16" x2="8" y2="16">
-                        </line>
-                        <line x1="4" y1="12" x2="20" y2="12">
-                        </line>
-                        <line x1="16" y1="8" x2="20" y2="8">
-                        </line>
-                        <line x1="16" y1="16" x2="20" y2="16">
-                        </line>
-                      </svg>
-                    </span>
-                    <span class="nav-link-title">
-                      Videa
-                    </span>
-                  </a>
-                  <a class="dropdown-item {{ request()->segment(2) == 'prekladatele' ? 'active' : '' }}" href="{{ route('media.prekladatele') }}">
-                    <span class="nav-link-icon d-md-none d-lg-inline-block">
-                      <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-language nav-link-icon text-yellow" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
-                        <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
-                        <path d="M4 5h7"></path>
-                        <path d="M9 3v2c0 4.418 -2.239 8 -5 8"></path>
-                        <path d="M5 9c-.003 2.144 2.952 3.908 6.7 4"></path>
-                        <path d="M12 20l4 -9l4 9"></path>
-                        <path d="M19.1 18h-6.2"></path>
-                      </svg>
-                    </span>
-                    <span class="nav-link-title">
-                      Překladatelé
-                    </span>
-                  </a>
-                  <div class="dropend">
-                    <a class="dropdown-item dropdown-toggle show" data-bs-toggle="dropdown" data-bs-auto-close="outside" href="#" role="button"
-                       aria-expanded="true">
+                  <div class="dropdown-menu show" data-bs-popper="static">
+                    <a class="dropdown-item {{ request()->segment(2) == 'lekis' ? 'active' : '' }}" href="{{ route('media.videa') }}">
                       <span class="nav-link-icon d-md-none d-lg-inline-block">
-                        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-headset text-green" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                        <svg class="icon icon-tabler icon-tabler-pill text-lime" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                             stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
                           <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
-                          <rect x="4" y="13" rx="2" width="4" height="6"></rect>
-                          <rect x="16" y="13" rx="2" width="4" height="6"></rect>
-                          <path d="M4 15v-3a8 8 0 0 1 16 0v3"></path>
-                          <path d="M18 19a6 3 0 0 1 -6 3"></path>
+                          <path d="M4.5 12.5l8 -8a4.94 4.94 0 0 1 7 7l-8 8a4.94 4.94 0 0 1 -7 -7"></path>
+                          <line x1="8.5" y1="8.5" x2="15.5" y2="15.5"></line>
                         </svg>
                       </span>
                       <span class="nav-link-title">
-                        Edukační videa
+                        Lekis
                       </span>
                     </a>
-                    <div class="dropdown-menu show" data-bs-popper="static">
-                      <a class="dropdown-item {{ request()->segment(2) == 'lekis' ? 'active' : '' }}" href="{{ route('media.videa') }}">
-                        <span class="nav-link-icon d-md-none d-lg-inline-block">
-                          <svg class="icon icon-tabler icon-tabler-pill text-lime" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
-                               stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
-                            <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
-                            <path d="M4.5 12.5l8 -8a4.94 4.94 0 0 1 7 7l-8 8a4.94 4.94 0 0 1 -7 -7"></path>
-                            <line x1="8.5" y1="8.5" x2="15.5" y2="15.5"></line>
-                          </svg>
-                        </span>
-                        <span class="nav-link-title">
-                          Lekis
-                        </span>
-                      </a>
-                      <a class="dropdown-item {{ request()->segment(2) == 'lekis' ? 'active' : '' }}" href="{{ route('media.videa') }}">
-                        <span class="nav-link-icon d-md-none d-lg-inline-block">
-                          <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-flame-off text-red" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
-                            <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
-                            <path d="M8.973 8.974c-.335 .378 -.67 .716 -.973 1.026c-1.226 1.26 -2 3.24 -2 5a6 6 0 0 0 11.472 2.466m.383 -3.597c-.32 -1.409 -1.122 -3.045 -1.855 -3.869c-.281 .472 -.543 .87 -.79 1.202m-2.358 -2.35c-.068 -2.157 -1.182 -4.184 -1.852 -4.852c0 .968 -.18 1.801 -.465 2.527"></path>
-                            <path d="M3 3l18 18"></path>
-                          </svg>
-                        </span>
-                        <span class="nav-link-title">
-                          BOZP
-                        </span>
-                      </a>
-                    </div>
-                  </div>
-                  {{-- <div class="dropend">
-                    <a class="dropdown-item dropdown-toggle show" data-bs-toggle="dropdown" data-bs-auto-close="outside" href="#" role="button"
-                       aria-expanded="true">
-                      <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-language nav-link-icon text-yellow" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
-                        <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
-                        <path d="M4 5h7"></path>
-                        <path d="M9 3v2c0 4.418 -2.239 8 -5 8"></path>
-                        <path d="M5 9c-.003 2.144 2.952 3.908 6.7 4"></path>
-                        <path d="M12 20l4 -9l4 9"></path>
-                        <path d="M19.1 18h-6.2"></path>
-                      </svg>
+                    <a class="dropdown-item {{ request()->segment(2) == 'lekis' ? 'active' : '' }}" href="{{ route('media.videa') }}">
+                      <span class="nav-link-icon d-md-none d-lg-inline-block">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-flame-off text-red" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                          <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+                          <path d="M8.973 8.974c-.335 .378 -.67 .716 -.973 1.026c-1.226 1.26 -2 3.24 -2 5a6 6 0 0 0 11.472 2.466m.383 -3.597c-.32 -1.409 -1.122 -3.045 -1.855 -3.869c-.281 .472 -.543 .87 -.79 1.202m-2.358 -2.35c-.068 -2.157 -1.182 -4.184 -1.852 -4.852c0 .968 -.18 1.801 -.465 2.527"></path>
+                          <path d="M3 3l18 18"></path>
+                        </svg>
+                      </span>
                       <span class="nav-link-title">
-                        {{ __('Překladatelé') }}
+                        BOZP
                       </span>
                     </a>
-                    <div class="dropdown-menu show" data-bs-popper="static">
-                      <a class="dropdown-item {{ request()->segment(2) == 'lekis' ? 'active' : '' }}" href="{{ route('media.videa') }}">
-                        <span class="flag flag-country-pl me-2"></span>
-                        <span class="nav-link-title">
-                          Polština
-                        </span>
-                      </a>
-                      <a class="dropdown-item {{ request()->segment(2) == 'lekis' ? 'active' : '' }}" href="{{ route('media.videa') }}">
-                        <span class="flag flag-country-gb me-2"></span>
-                        <span class="nav-link-title">
-                          Angličtina
-                        </span>
-                      </a>
-                      <a class="dropdown-item {{ request()->segment(2) == 'lekis' ? 'active' : '' }}" href="{{ route('media.videa') }}">
-                        <span class="flag flag-country-de me-2"></span>
-                        <span class="nav-link-title">
-                          Němčina
-                        </span>
-                      </a>
-                      <a class="dropdown-item {{ request()->segment(2) == 'lekis' ? 'active' : '' }}" href="{{ route('media.videa') }}">
-                        <span class="flag flag-country-fr me-2"></span>
-                        <span class="nav-link-title">
-                          Francouština
-                        </span>
-                      </a>
-                      <a class="dropdown-item {{ request()->segment(2) == 'lekis' ? 'active' : '' }}" href="{{ route('media.videa') }}">
-                        <span class="flag flag-country-ua me-2"></span>
-                        <span class="nav-link-title">
-                          Ukrajinština
-                        </span>
-                      </a>
-                    </div>
-                  </div> --}}
+                  </div>
                 </div>
+                {{-- <div class="dropend">
+                  <a class="dropdown-item dropdown-toggle show" data-bs-toggle="dropdown" data-bs-auto-close="outside" href="#" role="button"
+                     aria-expanded="true">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-language nav-link-icon text-yellow" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                      <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+                      <path d="M4 5h7"></path>
+                      <path d="M9 3v2c0 4.418 -2.239 8 -5 8"></path>
+                      <path d="M5 9c-.003 2.144 2.952 3.908 6.7 4"></path>
+                      <path d="M12 20l4 -9l4 9"></path>
+                      <path d="M19.1 18h-6.2"></path>
+                    </svg>
+                    <span class="nav-link-title">
+                      {{ __('Překladatelé') }}
+                    </span>
+                  </a>
+                  <div class="dropdown-menu show" data-bs-popper="static">
+                    <a class="dropdown-item {{ request()->segment(2) == 'lekis' ? 'active' : '' }}" href="{{ route('media.videa') }}">
+                      <span class="flag flag-country-pl me-2"></span>
+                      <span class="nav-link-title">
+                        Polština
+                      </span>
+                    </a>
+                    <a class="dropdown-item {{ request()->segment(2) == 'lekis' ? 'active' : '' }}" href="{{ route('media.videa') }}">
+                      <span class="flag flag-country-gb me-2"></span>
+                      <span class="nav-link-title">
+                        Angličtina
+                      </span>
+                    </a>
+                    <a class="dropdown-item {{ request()->segment(2) == 'lekis' ? 'active' : '' }}" href="{{ route('media.videa') }}">
+                      <span class="flag flag-country-de me-2"></span>
+                      <span class="nav-link-title">
+                        Němčina
+                      </span>
+                    </a>
+                    <a class="dropdown-item {{ request()->segment(2) == 'lekis' ? 'active' : '' }}" href="{{ route('media.videa') }}">
+                      <span class="flag flag-country-fr me-2"></span>
+                      <span class="nav-link-title">
+                        Francouština
+                      </span>
+                    </a>
+                    <a class="dropdown-item {{ request()->segment(2) == 'lekis' ? 'active' : '' }}" href="{{ route('media.videa') }}">
+                      <span class="flag flag-country-ua me-2"></span>
+                      <span class="nav-link-title">
+                        Ukrajinština
+                      </span>
+                    </a>
+                  </div>
+                </div> --}}
               </div>
             </div>
           </li>

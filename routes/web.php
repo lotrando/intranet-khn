@@ -20,12 +20,14 @@ Route::get('test', function () {
 
 // Index
 Route::get('/', function () {
-    $categories = Category::with('documents')->get();
-    return view('test', ['pretitle' => 'Intranet', 'title' => 'Index', 'categories' => $categories]);                                   // Index route
-})->name('test');
+    return view('home', ['pretitle' => 'Intranet', 'title' => 'Index', 'position' => 0]);                                   // Index route
+})->name('index');
 
 // Home page
-Route::get('home', [PageController::class, 'home'])->name('home');                                          // Home route
+Route::get('home', function () {
+    return view('home', ['pretitle' => 'Intranet', 'title' => 'Home', 'position' => 0]);
+})->name('home');
+// Route::get('home', [PageController::class, 'home'])->name('home');                                          // Home route
 
 // Oznámení
 Route::prefix('oznameni')->name('oznameni.')->group(function () {

@@ -31,7 +31,7 @@ class FileController extends Controller
 
             return Response::download('standardy/' . $file[0]);
             // return Response::file('standardy/' . $file[0]);
-            return back()->with(['categories' => $categories]);
+            redirect()->back();
         } else {
             return view('errors.404');
         }

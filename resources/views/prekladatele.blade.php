@@ -28,143 +28,62 @@
 
   <!-- Page body -->
   <div class="page-body">
-    <div class="container-fluid">
-      <div class="row row-cards justify-content-center">
+    <div class="container">
+      <div class="row mt-1 justify-content-center g-4">
 
-        <div class="col-sm-6 col-lg-4 col-xl-2">
+        <div class="col-sm-6 col-lg-4 col-xl-3">
           <div class="card card-sm hover-shadow-sm">
-            <div class="ribbon ribbon-top bg-azure-lt">
-              <span class="flag flag-country-pl"></span>
-            </div>
-            <div class="card-body text-center">
-              <div class="avatar avatar-lg">
-                <img class="rounded-2 shadow mb-2" src="{{ asset('foto/60321.jpg') }}" alt="MUDr. Brzeżański Henryk">
-              </div>
-              <h3 class="fw-bold my-3">MUDr. Brzeżański Henryk</h3>
-
+            <div class="card-body p-4 text-center">
               <ul class="list-unstyled lh-lg">
+                <li>
+                  <span class="flag flag-md flag-country-pl"></span>
+                </li>
                 <li>
                   Polština
                 </li>
-              </ul>
-              <div class="text-center mt-4">
-                <a href="#" class="btn bg-azure-lt w-100">Kontaktovat překladatele</a>
-              </div>
+                <h2 class="fw-bold my-1">MUDr. Brzeżański Henryk</h2>
+                <div class=" text-center mt-4">
+                  <a href="#" class="btn bg-azure-lt w-100">Kontaktovat překladatele</a>
+                </div>
             </div>
           </div>
         </div>
 
-        <div class="col-sm-6 col-lg-4 col-xl-2">
+        <div class="col-sm-6 col-lg-4 col-xl-3">
           <div class="card card-sm hover-shadow-sm">
-            <div class="ribbon ribbon-top bg-azure-lt">
-              <span class="flag flag-country-gb"></span>
+            <div class="card-body p-4 text-center">
+              <h2 class="fw-bold my-4">MUDr. Najder Roman</h2>
+              <ul class="list-unstyled lh-lg">
+                <li>
+                  <span class="flag flag-md flag-country-pl"></span>
+                </li>
+                <li>
+                  Polština
+                </li>
+                <div class="text-center mt-4">
+                  <a href="#" class="btn bg-azure-lt w-100">Kontaktovat překladatele</a>
+                </div>
             </div>
+          </div>
+        </div>
+
+        <div class="col-sm-6 col-lg-4 col-xl-3">
+          <div class="card card-sm hover-shadow-sm">
             <div class="card-body text-center">
               <div class="avatar avatar-lg">
-                <img class="rounded-2 shadow mb-2" src="{{ asset('foto/60321.jpg') }}" alt="MUDr. Brzeżański Henryk">
+                <img class="rounded-3 shadow-lg mb-3" src="{{ asset('foto/60321.jpg') }}" alt="MUDr. Brzeżański Henryk">
               </div>
               <h3 class="fw-bold my-3">MUDr. Brzeżański Henryk</h3>
-
               <ul class="list-unstyled lh-lg">
                 <li>
-                  Angličtina
+                  <span class="flag flag-md flag-country-gb"></span>
                 </li>
-              </ul>
-              <div class="text-center mt-4">
-                <a href="#" class="btn bg-azure-lt w-100">Kontaktovat překladatele</a>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <div class="col-sm-6 col-lg-4 col-xl-2">
-          <div class="card card-sm hover-shadow-sm">
-            <div class="ribbon ribbon-top bg-azure-lt">
-              <span class="flag flag-country-gb"></span>
-            </div>
-            <div class="card-body text-center">
-              <div class="avatar avatar-lg">
-                <img class="rounded-2 shadow mb-2" src="{{ asset('foto/60321.jpg') }}" alt="MUDr. Brzeżański Henryk">
-              </div>
-              <h3 class="fw-bold my-3">MUDr. Brzeżański Henryk</h3>
-
-              <ul class="list-unstyled lh-lg">
                 <li>
-                  Angličtina
+                  Polština
                 </li>
-              </ul>
-              <div class="text-center mt-4">
-                <a href="#" class="btn bg-azure-lt w-100">Kontaktovat překladatele</a>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <div class="col-sm-6 col-lg-4 col-xl-2">
-          <div class="card card-sm hover-shadow-sm">
-            <div class="ribbon ribbon-top bg-azure-lt">
-              <span class="flag flag-country-fr m-0"></span>
-            </div>
-            <div class="card-body text-center">
-              <div class="avatar avatar-lg">
-                <img class="rounded-2 shadow mb-2" src="{{ asset('foto/61316.jpg') }}" alt="MUDr. Holomek Karel">
-              </div>
-              <h3 class="fw-bold my-3">MUDr. Holomek Karel</h3>
-
-              <ul class="list-unstyled lh-lg">
-                <li>
-                  Fancouština
-                </li>
-              </ul>
-              <div class="text-center mt-4">
-                <a href="#" class="btn bg-azure-lt w-100">Kontaktovat překladatele</a>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <div class="col-sm-6 col-lg-4 col-xl-2">
-          <div class="card card-sm hover-shadow-sm">
-            <div class="ribbon ribbon-top bg-azure-lt">
-              <span class="flag flag-country-de m-0"></span>
-            </div>
-            <div class="card-body text-center">
-              <div class="avatar avatar-lg">
-                <img class="rounded-2 shadow mb-2" src="{{ asset('foto/60321.jpg') }}" alt="MUDr. Brzeżański Henryk">
-              </div>
-              <h3 class="fw-bold my-3">MUDr. Brzeżański Henryk</h3>
-
-              <ul class="list-unstyled lh-lg">
-                <li>
-                  Němčina
-                </li>
-              </ul>
-              <div class="text-center mt-4">
-                <a href="#" class="btn bg-azure-lt w-100">Kontaktovat překladatele</a>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <div class="col-sm-6 col-lg-4 col-xl-2">
-          <div class="card card-sm hover-shadow-sm">
-            <div class="ribbon ribbon-top bg-azure-lt">
-              <span class="flag flag-country-ua m-0"></span>
-            </div>
-            <div class="card-body text-center">
-              <div class="avatar avatar-lg">
-                <img class="rounded-2 shadow mb-2" src="{{ asset('foto/60321.jpg') }}" alt="MUDr. Brzeżański Henryk">
-              </div>
-              <h3 class="fw-bold my-3">MUDr. Brzeżański Henryk</h3>
-
-              <ul class="list-unstyled lh-lg">
-                <li>
-                  Ukrajinština
-                </li>
-              </ul>
-              <div class="text-center mt-4">
-                <a href="#" class="btn bg-azure-lt w-100">Kontaktovat překladatele</a>
-              </div>
+                <div class="text-center mt-4">
+                  <a href="#" class="btn bg-azure-lt w-100">Kontaktovat překladatele</a>
+                </div>
             </div>
           </div>
         </div>
@@ -174,12 +93,12 @@
             <div class="card-body">
               <div class="row align-items-center">
                 <div class="col">
-                  <h2 class="h3">Enterprise-ready. Reach out for a custom quote.</h2>
-                  <p class="m-0 text-muted">Tabler is designed to work great for large enterprises. Take a look at our feature comparison.</p>
+                  <h2 class="h3">Překladatelé</h2>
+                  <p class="m-0 text-muted">Lorem, ipsum dolor sit amet consectetur adipisicing elit. Laboriosam saepe quibusdam numquam quasi dolorum possimus maxime earum dignissimos commodi, suscipit laborum eveniet veritatis blanditiis inventore. Doloremque quam accusantium molestiae a aliquam voluptate, at ea ipsa voluptatum vero eius, fugit ipsam. Sit ipsam cum molestias quo quia consectetur placeat neque voluptatem?</p>
                 </div>
                 <div class="col-auto">
-                  <a href="#" class="btn">
-                    Book a demo
+                  <a href="#" class="btn btn-lime">
+                    Více informací
                   </a>
                 </div>
               </div>
