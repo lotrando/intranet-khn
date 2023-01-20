@@ -4,18 +4,18 @@
     <div class="card-body">
       <div class="mb-6">
         @if ($errors->any())
-          <div class="alert alert-danger text-danger">
-            <ul>
-              @foreach ($errors->all() as $error)
-                <li>{{ $error }}</li>
-              @endforeach
-            </ul>
-          </div>
+        <div class="alert alert-danger text-danger">
+          <ul>
+            @foreach ($errors->all() as $error)
+            <li>{{ $error }}</li>
+            @endforeach
+          </ul>
+        </div>
         @endif
         @if (session('status') == 'profile-information-updated')
-          <div class="alert alert-success" role="alert">
-            {{ __('Profile updated') }}
-          </div>
+        <div class="alert alert-success" role="alert">
+          {{ __('Profile updated') }}
+        </div>
         @endif
       </div>
 

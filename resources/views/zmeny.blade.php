@@ -47,11 +47,12 @@
                 <div class="list-group list-group-flush list-group-hoverable pt-1">
                   <div class="list-group-item">
                     <div class="row align-items-center">
-                      <div class="avatar bg-{{ $document->category->color }}-lt col-auto" data-bs-toggle="tooltip" data-bs-placement="top"
-                           data-bs-original-title="#{{ $document->id }}">
-                        <div class="text-uppercase">
-                          {!! $document->category->svg_icon !!}
-                        </div>
+                      <div class="avatar bg-{{ $document->category->color }}-lt col-auto" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-original-title="{{ $document->category->category_name }}">
+                        <a class="text-decoration-none" href="/standardy/{{ $document->category->folder_name }}/{{ $document->category->id }}">
+                          <div class="text-uppercase">
+                            {!! $document->category->svg_icon !!}
+                          </div>
+                        </a>
                       </div>
                       <div class="col-auto">
                         <a href="{{ route('standardy.download', $document->id) }}" target="_blank">

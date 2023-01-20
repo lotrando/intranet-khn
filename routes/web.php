@@ -25,7 +25,7 @@ Route::get('/', function () {
 
 // Home page
 Route::get('home', function () {
-    return view('home', ['pretitle' => 'Intranet', 'title' => 'Home', 'position' => 0]);
+    return view('home', ['pretitle' => 'Intranet', 'title' => 'Homepage', 'position' => 0]);
 })->name('home');
 // Route::get('home', [PageController::class, 'home'])->name('home');                                          // Home route
 
@@ -112,4 +112,6 @@ Route::group(['middleware' => 'auth'], function () {
     Route::resource('evidences', EvidenceController::class);
     Route::post('evidences/update', [EvidenceController::class, 'update'])->name('evidences.update');
     Route::get('evidences/destroy/{id}', [EvidenceController::class, 'destroy']);
+
+    Route::get('user/profile', [PageController::class, 'profile'])->name('user.profile');
 });

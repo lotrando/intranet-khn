@@ -41,19 +41,19 @@
   {{-- Page body --}}
   <div class="page-body">
     <div class="container-fluid">
-      <div class="row justify-content-start g-2">
+      <div class="row row-cards center g-3">
 
-
-        <div class="col-12 col-md-7 col-lg-7 col-xl-5 col-xxl-4">
-          <div class="card" style="height: 36rem">
-            <div class="text-left card-header bg-lime-lt">
-              <h2 class="col-12 m-1">{{ $navitems[$position]['subname'] ?? 'Empty' }} - {{ $navitems[$position]['name'] ?? 'Empty' }}</h2>
-            </div>
-            <div class="card-body card-body-scrollable card-body-scrollable-shadow">
-              <div class="divide-y">
-                <div>
-                  <div class="row">
-                    {{-- content --}}
+        <div class="col-12 col-md-7 col-lg-7 col-xl-5 col-xxl-6">
+          <div class="card shadow-sm">
+            <div class="text-left bg-red-lt">
+              <div class="card-body p-2">
+                <div class="d-flex align-items-top justify-content-start">
+                  <div class="avatar bg-transparent">
+                    <span class="avatar bg-red-lt pt-1"><strong>{{ Carbon\Carbon::now()->format('d|m') }}<br>{{ Carbon\Carbon::now()->format('Y') }}</strong></span>
+                  </div>
+                  <div class="px-3">
+                    <h2>Důležité oznámení !</h2>
+                    <p class="text-start mb-1">Officia dolore debitis esse rem eligendi illum accusamus alias molestiae laboriosam!</p>
                   </div>
                 </div>
               </div>
@@ -61,12 +61,99 @@
           </div>
         </div>
 
+        <div class="col-12 col-md-7 col-lg-7 col-xl-5 col-xxl-6">
+          <div class="card shadow-sm">
+            <div class="text-left bg-red-lt">
+              <div class="card-body p-2">
+                <div class="d-flex align-items-top justify-content-start">
+                  <div class="avatar bg-transparent">
+                    <span class="avatar bg-red-lt pt-1"><strong>{{ Carbon\Carbon::now()->format('d|m') }}<br>{{ Carbon\Carbon::now()->format('Y') }}</strong></span>
+                  </div>
+                  <div class="px-3">
+                    <h2>Důležité oznámení !</h2>
+                    <p class="text-start mb-1">Officia dolore debitis esse rem eligendi illum accusamus alias molestiae laboriosam!</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
 
+        <div class="col-12 col-md-7 col-lg-7 col-xl-5 col-xxl-6">
+          <div class="card shadow-sm">
+            <div class="text-left bg-lime-lt">
+              <div class="card-body p-2">
+                <div class="d-flex align-items-top justify-content-start">
+                  <div class="avatar bg-transparent">
+                    <span class="avatar bg-lime-lt pt-1"><strong>{{ Carbon\Carbon::now()->format('d|m') }}<br>{{ Carbon\Carbon::now()->format('Y') }}</strong></span>
+                  </div>
+                  <div class="px-3">
+                    <h2>Normální oznámení !</h2>
+                    <p class="text-start mb-1">Officia dolore debitis esse rem eligendi illum accusamus alias molestiae laboriosam!</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-12 col-md-7 col-lg-7 col-xl-5 col-xxl-6">
+          <div class="card shadow-sm">
+            <div class="text-left bg-info-lt">
+              <div class="card-body p-2">
+                <div class="d-flex align-items-top justify-content-start">
+                  <div class="avatar bg-transparent">
+                    <span class="avatar bg-info-lt pt-1"><strong>{{ Carbon\Carbon::now()->format('d|m') }}<br>{{ Carbon\Carbon::now()->format('Y') }}</strong></span>
+                  </div>
+                  <div class="px-3">
+                    <h2>Informativní oznámení !</h2>
+                    <p class="text-start mb-1">Officia dolore debitis esse rem eligendi illum accusamus alias molestiae laboriosam!</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-12 col-md-7 col-lg-7 col-xl-5 col-xxl-6">
+          <div class="card shadow-sm">
+            <div class="text-left bg-yellow-lt">
+              <div class="card-body p-2">
+                <div class="d-flex align-items-top justify-content-start">
+                  <div class="avatar bg-transparent">
+                    <span class="avatar bg-yellow-lt pt-1"><strong>{{ Carbon\Carbon::now()->format('d|m') }}<br>{{ Carbon\Carbon::now()->format('Y') }}</strong></span>
+                  </div>
+                  <div class="px-3">
+                    <h2>Varovné oznámení !</h2>
+                    <p class="text-start mb-1">Officia dolore debitis esse rem eligendi illum accusamus alias molestiae laboriosam!</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-12 col-md-7 col-lg-7 col-xl-5 col-xxl-6">
+          <div class="card shadow-sm">
+            <div class="text-left bg-purple-lt">
+              <div class="card-body p-2">
+                <div class="d-flex align-items-top justify-content-start">
+                  <div class="avatar bg-transparent">
+                    <span class="avatar bg-purple-lt pt-1"><strong>{{ Carbon\Carbon::now()->format('d|m') }}<br>{{ Carbon\Carbon::now()->format('Y') }}</strong></span>
+                  </div>
+                  <div class="px-3">
+                    <h2>Kulturní oznámení !</h2>
+                    <p class="text-start mb-1">Officia dolore debitis esse rem eligendi illum accusamus alias molestiae laboriosam!</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
-  </div>
-  {{-- End Page body --}}
+    {{-- End Page body --}}
 
-</div>
-<!-- Wrapper End -->
-@endsection
+  </div>
+  <!-- Wrapper End -->
+  @endsection

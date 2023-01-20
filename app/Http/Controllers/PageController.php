@@ -228,4 +228,9 @@ class PageController extends Controller
 
         return view('prekladatele', ['pretitle' => 'Média', 'title' => 'Překladatelé']);
     }
+
+    public function profile()
+    {
+        return view('profile.profile', ['pretitle' => 'Profil', 'title' => 'Uživatele']);
+    }
 }
