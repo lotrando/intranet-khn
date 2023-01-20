@@ -455,7 +455,7 @@
               </span>
             </a>
             <div class="dropdown-menu">
-              @foreach ($categories as $category)
+              @foreach (Session::get('categories') as $category)
               <a class="dropdown-item {{ request()->segment(2) == $category->folder_name }}' ? 'active' : '' }}" href="{{ route('standardy.'. $category->folder_name.'', $category->id) }}">
                 <span class="nav-link-icon d-md-none d-lg-inline-block">
                   {!! $category->svg_icon !!}

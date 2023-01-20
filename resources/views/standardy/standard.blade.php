@@ -647,7 +647,7 @@
             $('#position').val(html.data.position);
             $('#attachment').val(html.data.attachment);
             $('#status').val(html.data.status);
-            $('#user_id').val('{{ auth()->user()->id }}');
+            $('#user_id').val('{{ auth()->user()->id ?? null }}');
             $('#user_name').val(html.data.user.name);
             $('#hidden_id').val(html.data.id);
             $('#hidden_file').val(html.data.file);
@@ -675,8 +675,8 @@
         $('#position').val('{{ $lastpos + 1 }}');
         $('#folder_name').val("{{ $categorie->folder_name }}");
         $('#status').val('Schváleno');
-        $('#user_id').val('{{ auth()->user()->id }}');
-        $('#user_name').val('{{ auth()->user()->name }}');
+        $('#user_id').val('{{ auth()->user()->id ?? null }}');
+        $('#user_name').val('{{ auth()->user()->name ?? 'Guest' }}');
         $('#unique_code').val('STD{{ $categorie->id }}#{{ $lastpos + 1 }}');
         $('#revision').val('{{ $lastpos - $lastpos + 1 }}')
         $('#processed, #authorize, #examine').val('')

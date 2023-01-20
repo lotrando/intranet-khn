@@ -6,7 +6,9 @@ use App\Models\Category;
 use App\Models\Document;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Redirect;
 use Illuminate\Support\Facades\Response;
+use Illuminate\Support\Facades\Session;
 
 class FileController extends Controller
 {
@@ -16,12 +18,9 @@ class FileController extends Controller
         $id = $request->id;
         $status = $request->status;
 
-        if (Auth::check()) {
-            $file = Document::where('id', $id)->pluck('file');
-        } else {
-            $file = Document::where('id', $id)->where('status', $status)->pluck('file');
-        }
+        // Session::put('categories', $categories);
 
+        $file = Document::where('id', $id)->pluck('file');
         // $file = Document::where('id', $id)->where('status', '=', $status)->pluck('file');
 
         if (empty($file[0])) {
@@ -32,7 +31,7 @@ class FileController extends Controller
 
             return Response::download('standardy/' . $file[0]);
             // return Response::file('standardy/' . $file[0]);
-            redirect()->back(['categories' => $categories]);
+            return back()->with(['categories' => $categories]);
         } else {
             return view('errors.404');
         }

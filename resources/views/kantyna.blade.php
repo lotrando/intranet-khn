@@ -42,8 +42,11 @@
   <div class="container-fluid">
     <div class="row justify-content-start g-2">
 
-      <div class="col-12 col-md-7 col-lg-8 col-xl-4">
-        <div class="card" style="height: 37rem">
+      <div class="col-12 col-md-7 col-lg-7 col-xl-5 col-xxl-4">
+        <div class="card" style="height: 39rem">
+          <div class="text-left card-header bg-lime-lt">
+            <h2 class="col-12 m-1">Teplá jídla a polévky</h2>
+          </div>
           <div class="card-body card-body-scrollable card-body-scrollable-shadow">
             <div class="divide-y">
               @foreach ($daylist as $day)
@@ -103,7 +106,7 @@
                         </svg>
                       </div>
                       @elseif (Carbon\Carbon::parse($day->date) == Carbon\Carbon::today())
-                      <div class="text-truncate mb-1">
+                      <div class="text-truncate">
                         <svg xmlns="http://www.w3.org/2000/svg" class="icon text-lime" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
                           <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
                           <path d="M13.62 8.382l1.966 -1.967a2 2 0 1 1 3.414 -1.415a2 2 0 1 1 -1.413 3.414l-1.82 1.821"></path>
@@ -112,7 +115,7 @@
                           <path d="M12.975 21.425c3.905 -3.906 4.855 -9.288 2.121 -12.021c-2.733 -2.734 -8.115 -1.784 -12.02 2.121"></path>
                         </svg>
                       </div>
-                      <div class="text-truncate mb-1">
+                      <div class="text-truncate">
                         <svg xmlns="http://www.w3.org/2000/svg" class="icon text-lime" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
                           <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
                           <path d="M4 11h16a1 1 0 0 1 1 1v.5c0 1.5 -2.517 5.573 -4 6.5v1a1 1 0 0 1 -1 1h-8a1 1 0 0 1 -1 -1v-1c-1.687 -1.054 -4 -5 -4 -6.5v-.5a1 1 0 0 1 1 -1z"></path>
@@ -122,7 +125,7 @@
                         </svg>
                       </div>
                       @else
-                      <div class="text-truncate mb-1">
+                      <div class="text-truncate">
                         <svg xmlns="http://www.w3.org/2000/svg" class="icon" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
                           <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
                           <path d="M13.62 8.382l1.966 -1.967a2 2 0 1 1 3.414 -1.415a2 2 0 1 1 -1.413 3.414l-1.82 1.821"></path>
@@ -131,7 +134,7 @@
                           <path d="M12.975 21.425c3.905 -3.906 4.855 -9.288 2.121 -12.021c-2.733 -2.734 -8.115 -1.784 -12.02 2.121"></path>
                         </svg>
                       </div>
-                      <div class="text-truncate mb-1">
+                      <div class="text-truncate">
                         <svg xmlns="http://www.w3.org/2000/svg" class="icon" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
                           <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
                           <path d="M4 11h16a1 1 0 0 1 1 1v.5c0 1.5 -2.517 5.573 -4 6.5v1a1 1 0 0 1 -1 1h-8a1 1 0 0 1 -1 -1v-1c-1.687 -1.054 -4 -5 -4 -6.5v-.5a1 1 0 0 1 1 -1z"></path>
@@ -157,7 +160,7 @@
                       <div class="text-truncate mt-1">
                         Kuře
                       </div>
-                      <div class="text-truncate mt-1">
+                      <div class="text-truncate">
                         Hrachová s uzeninou
                       </div>
                     </div>
@@ -171,10 +174,10 @@
         </div>
       </div>
 
-      <div class="col-12 col-md-5 col-lg-4 col-xl-3">
+      <div class="col-12 col-md-5 col-lg-5 col-xl-4 col-xxl-3">
         <div class="card" style="height: 36rem">
           <div class="text-center card-header bg-teal-lt">
-            <h1 class="col-12 m-1">Provozní doba nemocniční kantýny</h1>
+            <h2 class="col-12 m-1">Provozní doba nemocniční kantýny</h2>
           </div>
           <div class="card-body card-body-scrollable card-body-scrollable-shadow">
             <div class="divide-y">
