@@ -182,7 +182,7 @@ class PageController extends Controller
         $allAddons = Addon::pluck('document_id');
         $categorie  = Category::where('id', $id)->first();
         $doctors = Employee::where('title_preffix', 'LIKE', '%' . 'Dr.' . '%')->orderBy('last_name')->get();
-        $last = Document::where('category_id', $id)->latest()->first();
+        $last = Document::where('category_id', $id)->orderBy('id', 'desc')->take(1)->first();
 
         if ($last == null) {
             $last = 0;

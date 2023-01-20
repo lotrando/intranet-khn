@@ -43,9 +43,19 @@
     <div class="row justify-content-start g-2">
 
       <div class="col-12 col-md-7 col-lg-7 col-xl-5 col-xxl-4">
-        <div class="card" style="height: 39rem">
-          <div class="text-left card-header bg-lime-lt">
-            <h2 class="col-12 m-1">Teplá jídla a polévky</h2>
+        <div class="card" style="height: 40rem">
+          <div class="text-left card-header bg-azure-lt">
+            <div class="d-flex justify-item-center align-items-center">
+              <div class="col-auto avatar bg-azure-lt">
+                <svg xmlns="http://www.w3.org/2000/svg" class="icon text-azure" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                  <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+                  <path d="M19 3v12h-5c-.023 -3.681 .184 -7.406 5 -12zm0 12v6h-1v-3m-10 -14v17m-3 -17v3a3 3 0 1 0 6 0v-3"></path>
+                </svg>
+              </div>
+              <div>
+                <h2 class="col-auto mb-0 ms-2">Nabídka teplých jídel</h2>
+              </div>
+            </div>
           </div>
           <div class="card-body card-body-scrollable card-body-scrollable-shadow">
             <div class="divide-y">
@@ -176,8 +186,24 @@
 
       <div class="col-12 col-md-5 col-lg-5 col-xl-4 col-xxl-3">
         <div class="card" style="height: 36rem">
-          <div class="text-center card-header bg-teal-lt">
-            <h2 class="col-12 m-1">Provozní doba nemocniční kantýny</h2>
+
+          <div class="text-left card-header bg-teal-lt">
+            <div class="d-flex justify-item-center align-items-center">
+              <div class="col-auto avatar bg-teal-lt">
+                <svg xmlns="http://www.w3.org/2000/svg" class="icon text-teal " width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                  <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+                  <path d="M11.795 21h-6.795a2 2 0 0 1 -2 -2v-12a2 2 0 0 1 2 -2h12a2 2 0 0 1 2 2v4"></path>
+                  <circle cx="18" cy="18" r="4"></circle>
+                  <path d="M15 3v4"></path>
+                  <path d="M7 3v4"></path>
+                  <path d="M3 11h16"></path>
+                  <path d="M18 16.496v1.504l1 1"></path>
+                </svg>
+              </div>
+              <div>
+                <h2 class="col-auto mb-0 ms-2">Provozní doba nemocniční kantýny</h2>
+              </div>
+            </div>
           </div>
           <div class="card-body card-body-scrollable card-body-scrollable-shadow">
             <div class="divide-y">

@@ -14,7 +14,7 @@
           </li>
           @endforeach
           {{-- Oznámení Dropdown --}}
-          <li class="nav-item dropdown {{ request()->segment(1) == 'oznameni' ? 'active' : '' }}" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-original-title="Se se děje na intranetu KHN">
+          <li class="nav-item dropdown {{ request()->segment(1) == 'oznameni' ? 'active' : '' }}" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-original-title="Co se děje na intranetu KHN">
             <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" data-bs-auto-close="outside" href="#" role="button" aria-expanded="false">
               <span class="nav-link-icon d-md-none d-lg-inline-block">
                 <svg class="icon icon-tabler text-red" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor"

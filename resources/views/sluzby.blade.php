@@ -46,8 +46,18 @@
 
         <div class="col-12 col-md-7 col-lg-7 col-xl-5 col-xxl-4">
           <div class="card" style="height: 35rem">
-            <div class="text-left card-header bg-yellow-lt">
-              <h2 class="col-12 m-1">{{ __($pretitle) ?? 'Empty' }} - {{ __($title) ?? 'Empty' }}</h2>
+            <div class="text-left card-header bg-orange-lt">
+              <div class="d-flex justify-item-center align-items-center">
+                <div class="col-auto avatar bg-orange-lt">
+                  <svg xmlns="http://www.w3.org/2000/svg" class="icon text-orange" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                    <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+                    <path d="M15 3a3 3 0 0 1 3 3a3 3 0 1 1 -2.12 5.122l-4.758 4.758a3 3 0 1 1 -5.117 2.297l-.005 -.177l-.176 -.005a3 3 0 1 1 2.298 -5.115l4.758 -4.758a3 3 0 0 1 2.12 -5.122z"></path>
+                  </svg>
+                </div>
+                <div>
+                  <h2 class="col-12 m-1">{{ __($pretitle) ?? 'Empty' }} - {{ __($title) ?? 'Empty' }}</h2>
+                </div>
+              </div>
             </div>
             <div class="card-body card-body-scrollable card-body-scrollable-shadow">
               <div class="divide-y">
@@ -63,8 +73,23 @@
 
         <div class="col-12 col-md-7 col-lg-7 col-xl-4 col-xxl-4">
           <div class="card" style="height: 35rem">
-            <div class="text-left card-header bg-yellow-lt">
-              <h2 class="col-12 m-1">{{ __($pretitle) ?? 'Empty' }} - {{ __($title) ?? 'Empty' }}</h2>
+            <div class="text-left card-header bg-purple-lt">
+              <div class="d-flex justify-item-center align-items-center">
+                <div class="col-auto avatar bg-purple-lt">
+                  <svg xmlns="http://www.w3.org/2000/svg" class="icon text-purple" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                    <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+                    <path d="M15.5 13a3.5 3.5 0 0 0 -3.5 3.5v1a3.5 3.5 0 0 0 7 0v-1.8"></path>
+                    <path d="M8.5 13a3.5 3.5 0 0 1 3.5 3.5v1a3.5 3.5 0 0 1 -7 0v-1.8"></path>
+                    <path d="M17.5 16a3.5 3.5 0 0 0 0 -7h-.5"></path>
+                    <path d="M19 9.3v-2.8a3.5 3.5 0 0 0 -7 0"></path>
+                    <path d="M6.5 16a3.5 3.5 0 0 1 0 -7h.5"></path>
+                    <path d="M5 9.3v-2.8a3.5 3.5 0 0 1 7 0v10"></path>
+                  </svg>
+                </div>
+                <div>
+                  <h2 class="col-auto mb-0 ms-2">Změna služeb NEU-ODD</h2>
+                </div>
+              </div>
             </div>
             <div class="card-body card-body-scrollable card-body-scrollable-shadow">
               <div class="divide-y">
@@ -80,8 +105,18 @@
 
         <div class="col-12 col-md-7 col-lg-7 col-xl-3 col-xxl-5">
           <div class="card" style="height: 35rem">
-            <div class="text-left card-header bg-yellow-lt">
-              <h2 class="col-12 m-1">{{ __($pretitle) ?? 'Empty' }} - {{ __($title) ?? 'Empty' }}</h2>
+            <div class="text-left card-header bg-lime-lt">
+              <div class="d-flex justify-item-center align-items-center">
+                <div class="col-auto avatar bg-lime-lt">
+                  <svg xmlns="http://www.w3.org/2000/svg" class="icon text-lime" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                    <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+                    <path d="M3 19l15 -15l3 3l-6 6l2 2a14 14 0 0 1 -14 4"></path>
+                  </svg>
+                </div>
+                <div>
+                  <h2 class="col-auto mb-0 ms-2">Změna služeb CNP</h2>
+                </div>
+              </div>
             </div>
             <div class="card-body card-body-scrollable card-body-scrollable-shadow">
               <div class="divide-y">

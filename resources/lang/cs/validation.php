@@ -151,7 +151,10 @@ return [
         'processed'         => 'Schválil/a',
         'category_id'       => 'Pole kategorie standardu',
         'unique_code'       => 'Standard s tímto unikátním kódem již existuje. Zvolte jiný, prostě',
-        'description'       => 'Pole popis standardu'
+        'description'       => 'Pole popis standardu',
+        'personal_number'   => 'Osobní číslo',
+        'password'          => 'Heslo',
+        'email'             => 'Pole emailová adresa'
     ],
     'values'                => [
         'after_or_equal'    => [
