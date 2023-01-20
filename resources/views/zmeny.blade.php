@@ -1,7 +1,7 @@
 @extends('layouts.blank')
 
 @section('favicon')
-<link type="image/png" href="{{ asset('img/zmeny.png') }}" rel="shortcut icon">
+<link type="image/png" href="{{ asset('img/zmeny-standardu.png') }}" rel="shortcut icon">
 @endsection
 
 @section('content')
@@ -16,7 +16,7 @@
             {{ __($pretitle) ?? '' }}
           </div>
           <h2 class="page-title text-primary">
-            {{ __($title) ?? '' }} - {{$documents->currentPage()}} / {{ $documents->lastPage() }}
+            {{ __($title) ?? '' }} - strana {{$documents->currentPage()}} z {{ $documents->lastPage() }}
           </h2>
         </div>
       </div>

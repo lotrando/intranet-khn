@@ -430,7 +430,7 @@
         stateSave: true,
         pageSave: true,
         fixedHeader: {
-          header: true,
+          header: false,
           footer: false
         },
         order: [
