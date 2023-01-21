@@ -176,7 +176,7 @@
                         <a class="text-primary d-block text-decoration-none" href="{{ route('standardy.download', $document->id) }}" target="_blank">
                           <h3 style="margin-bottom: 0;">{{ $document->name }}</h3>
                         </a>
-                        <div class="d-block text-muted text-truncate">{{ $document->description }}</div>
+                        <div class="d-block description text-muted text-truncate">{{ $document->description }}</div>
                       </div>
                       <div class="col-auto">
                         @auth

@@ -39,17 +39,19 @@
             <thead>
               <tr class="bg-azure-lt table bg-opacity-50 text-center text-white">
                 <th class="text-center">{{ __('Image') }}</th>
+                @auth
                 <th class="text-center">{{ __('Number') }}</th>
+                @endauth
                 <th>{{ __('Titles') }}</th>
                 <th>{{ __('Last name') }}</th>
                 <th>{{ __('First name') }}</th>
                 <th>{{ __('Department') }}</th>
                 @auth
                 <th>{{ __('Job title') }}</th>
-                @endauth
                 <th>{{ __('Email') }}</th>
-                <th>{{ __('Phone') }}</th>
                 <th>{{ __('Mobile') }}</th>
+                @endauth
+                <th>{{ __('Phone') }}</th>
                 <th>{{ __('Status') }}</th>
                 @auth
                 <th>{{ __('Start date') }}</th>
@@ -69,7 +71,7 @@
 @section('modals')
 {{-- Main Form Modal --}}
 <div class="modal modal-blur fade" id="formModal" data-bs-backdrop="static" data-bs-keyboard="false" role="dialog" aria-hidden="true" tabindex="-1">
-  <div class="modal-dialog modal-xl modal-dialog-center" role="document">
+  <div class="modal-dialog modal-full-width modal-dialog-center" role="document">
     <div class="modal-content shadow-lg">
       <div id="modal-header">
         <h5 class="modal-title"></h5>
@@ -462,6 +464,7 @@
             },
             orderable: false,
           },
+          @auth
           {
             data: 'personal_number',
             "width": "1%",
@@ -470,6 +473,7 @@
                 "'><center><strong>" + data + "</strong></center></span>";
             },
           },
+          @endauth
           {
             data: 'title_preffix',
             "width": "1%"
@@ -493,7 +497,6 @@
             "width": "7%",
             orderable: false,
           },
-          @endauth
           {
             data: 'email',
             "width": "3%",
@@ -503,17 +506,18 @@
               } else {
                 return "<a class='text-center' href='mailto:" + data + "'>" + data +
                   "</a>";
-              }
+                }
+              },
             },
-          },
-          {
+            {
+              data: 'mobile',
+              "width": "2%"
+            },
+          @endauth
+            {
             data: 'phone',
             className: "text-center",
             "width": "0.5%"
-          },
-          {
-            data: 'mobile',
-            "width": "2%"
           },
           {
             data: 'status',
