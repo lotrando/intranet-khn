@@ -5971,7 +5971,7 @@ fieldset:disabled .btn {
 .tooltip .tooltip-arrow {
   position: absolute;
   display: block;
-  width: 0.7rem;
+  width: 0.4rem;
   height: 0.3rem;
 }
 
@@ -6001,14 +6001,14 @@ fieldset:disabled .btn {
 
 .bs-tooltip-end,
 .bs-tooltip-auto[data-popper-placement^="right"] {
-  padding: 0 0.4rem;
+  padding: 0.6rem 0.4rem;
 }
 
 .bs-tooltip-end .tooltip-arrow,
 .bs-tooltip-auto[data-popper-placement^="right"] .tooltip-arrow {
   left: 0;
   width: 0.4rem;
-  height: 0.8rem;
+  height: 0.4rem;
 }
 
 .bs-tooltip-end .tooltip-arrow::before,
@@ -6037,14 +6037,14 @@ fieldset:disabled .btn {
 
 .bs-tooltip-start,
 .bs-tooltip-auto[data-popper-placement^="left"] {
-  padding: 0 0.4rem;
+  padding: 0.4rem 0.4rem;
 }
 
 .bs-tooltip-start .tooltip-arrow,
 .bs-tooltip-auto[data-popper-placement^="left"] .tooltip-arrow {
   right: 0;
   width: 0.4rem;
-  height: 0.8rem;
+  height: 0.4rem;
 }
 
 .bs-tooltip-start .tooltip-arrow::before,
@@ -18279,7 +18279,7 @@ Dimmer
 }
 
 .ribbon.bg-reha {
-  border-color: #00ff00;
+  border-color: #12dd35;
 }
 
 .ribbon.bg-reha-lt {
@@ -19953,7 +19953,7 @@ Chart sparkline
 }
 
 .bg-reha {
-  background: #00ff00;
+  background: #00aa00;
 }
 
 .text-reha {

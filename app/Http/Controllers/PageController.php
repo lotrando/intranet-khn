@@ -50,9 +50,9 @@ class PageController extends Controller
         //         ->latest();
         // }
 
-        return view('zmeny', [
+        return view('zmeny-standardu', [
             'pretitle'  => 'Oznámení',
-            'title'     => 'Změny ve standardech',
+            'title'     => 'Změny standardů',
             'suma'      => $suma,
             'documents' => $documents,
         ]);
@@ -68,7 +68,7 @@ class PageController extends Controller
             ->orderBy('updated_at')
             ->paginate(7);
 
-        return view('zmeny', [
+        return view('zmeny-standardu', [
             'pretitle'  => 'Oznámení',
             'title'     => 'Změny v dokumentaci',
             'suma'      => $suma,

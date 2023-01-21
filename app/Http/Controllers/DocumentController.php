@@ -118,7 +118,12 @@ class DocumentController extends Controller
      */
     public function show(Document $document)
     {
-        //
+        $id = $document->id;
+
+        $data = Document::with('category', 'user')->findOrFail($id);
+        if (request()->ajax()) {
+            return response()->json(['data' => $data]);
+        }
     }
 
     /**

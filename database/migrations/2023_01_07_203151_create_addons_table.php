@@ -16,7 +16,7 @@ class CreateAddonsTable extends Migration
         Schema::create('addons', function (Blueprint $table) {
             $table->id();
             $table->bigInteger('document_id');
-            $table->string('name');
+            $table->string('addon_number');
             $table->string('description');
             $table->string('revision');
             $table->string('file');
