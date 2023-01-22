@@ -373,11 +373,11 @@
           //   },
           {
             data: 'spec_druh',
-            "width": "11%"
+            "width": "7%"
           },
           {
             data: 'misto',
-            "width": "4%"
+            "width": "6%"
           },
           {
             data: 'datum_cas',
@@ -412,7 +412,7 @@
           },
           {
             data: 'action',
-            "width": "1%",
+            "width": "0.5%",
             orderable: false,
             searchable: false
           },

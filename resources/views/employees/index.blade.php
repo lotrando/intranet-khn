@@ -537,7 +537,7 @@
           @auth
           {
             data: 'start_date',
-            "width": "0.5%",
+            "width": "1%",
             render: function(data, type, full, meta) {
               var date = moment(data).locale('cs');
               return date.format('DD. MM. YYYY');
