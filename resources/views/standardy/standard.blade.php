@@ -107,10 +107,10 @@
                           </span>
                         </a>
                       </div>
-                      <div class="col text-truncate" data-bs-toggle="tooltip" data-bs-placement="left" data-bs-original-title="Informace o standardu">
-                        <a class="text-primary d-block text-decoration-none" href="#">
-                          <h3 id="{{ $document->id }}" class="show" style="margin-bottom: 0;">{{ $document->name }}</h3>
-                        </a>
+                      <div id="{{ $document->id }}" class="col text-truncate">
+                        <span class="cursor-pointer text-primary d-block text-decoration-none">
+                          <span id="{{ $document->id }}" class="show strong" style="margin-bottom: 0;" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-original-title="Více informací o standardu">{{ $document->name }}</span>
+                        </span>
                         <div class="d-block description text-muted text-truncate">{{ $document->description }}</div>
                       </div>
                       @auth
@@ -613,11 +613,11 @@
             })
           }
         })
-      })
+      });
 
-            $(document).on('click', '.show', function() {
+      $(document).on('click', '.show', function() {
         id = $(this).attr('id');
-        $('#unique_code, #position, #name, #revision, #revision_date, #next_revision_date, #description, #processed, #authorize, #examine, #efficiency, #status, #tags').prop('readonly', true);
+        $('#unique_code').prop('readonly', true);
         $('#form_result_modal, #form_result_window').html('');
         $.ajax({
           url: "/documents/" + id,
@@ -652,7 +652,7 @@
             $('#revision_date').val(html.data.next_revision_date);
           }
         })
-      })
+      });
 
       $('#openCreateModal').click(function() {
         $('#inputForm')[0].reset();
