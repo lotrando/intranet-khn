@@ -797,7 +797,7 @@
         $('#user_id').val('{{ auth()->user()->id ?? null }}');
         $('#user_name').val('{{ auth()->user()->name ?? 'Guest' }}');
         $('#unique_code').val('STD{{ $categorie->id }}#{{ $lastpos + 1 }}');
-        $('#revision').val('{{ $lastpos - $lastpos + 1 }}')
+        $('#revision').val('{{ ($lastpos - $lastpos) + 1 }}')
         $('#processed, #authorize, #examine').val('')
         $('#revision_date').change(function() {
           var revisionDate = moment($(this).val()).format('YYYY-MM-DD')
