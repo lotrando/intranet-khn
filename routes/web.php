@@ -9,25 +9,18 @@ use App\Http\Controllers\FileController;
 use App\Http\Controllers\PageController;
 use App\Http\Controllers\SlideController;
 use App\Http\Controllers\TrainingController;
-use App\Models\Category;
 use Illuminate\Support\Facades\Route;
 
 
-// Test page
-Route::get('test', function () {
-    return view('test', ['pretitle' => 'Test', 'title' => 'Pokus']);                                        // Testing route
-});
-
 // Index
 Route::get('/', function () {
-    return view('home', ['pretitle' => 'Intranet', 'title' => 'Index', 'position' => 0]);                                   // Index route
-})->name('index');
+    return view('home', ['pretitle' => 'Intranet', 'title' => 'Index', 'position' => 0]);
+})->name('index');                                                                                          // Index route
 
 // Home page
 Route::get('home', function () {
     return view('home', ['pretitle' => 'Intranet', 'title' => 'Homepage', 'position' => 0]);
-})->name('home');
-// Route::get('home', [PageController::class, 'home'])->name('home');                                          // Home route
+})->name('home');                                                                                           // Home route
 
 // Oznámení
 Route::prefix('oznameni')->name('oznameni.')->group(function () {
