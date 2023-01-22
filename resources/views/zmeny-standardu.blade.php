@@ -42,11 +42,13 @@
                 <div class="list-group list-group-flush list-group-hoverable pt-1">
                   <div class="list-group-item">
                     <div class="row align-items-center mb-1">
-                      <div class="avatar bg-{{ $document->category->color }}-lt col-auto" data-bs-toggle="tooltip" data-bs-placement="top"
-                           data-bs-original-title="#{{ $document->id }}">
-                        <div class="text-uppercase">
-                          {!! $document->category->svg_icon !!}
-                        </div>
+                      <div class="avatar bg-{{ $document->category->color }}-lt col-auto" data-bs-toggle="tooltip" data-bs-placement="right"
+                           data-bs-original-title="{{ $document->category->category_name }} standardy">
+                        <a href="/standardy/{{ $document->category->folder_name }}/{{ $document->category->id }}">
+                          <div class="text-uppercase">
+                            {!! $document->category->svg_icon !!}
+                          </div>
+                        </a>
                       </div>
                       <div class="col-auto">
                         <a href="{{ route('standardy.download', $document->id) }}" target="_blank">
@@ -57,7 +59,7 @@
                       </div>
                       <div class="col text-truncate">
                         <a class="text-primary d-block text-decoration-none" href="{{ route('standardy.download', $document->id) }}" target="_blank">
-                          <h3 style="margin-bottom: 0;">{{ $document->name }}</h3>
+                          <h3 style="margin-bottom: 0;" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-original-title="Stáhnout standard">{{ $document->name }}</h3>
                         </a>
                         <div class="d-block description text-muted text-truncate">{{ $document->description }}</div>
                       </div>

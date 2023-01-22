@@ -2634,12 +2634,13 @@
 
 @section('modals')
 {{-- Main Form Modal --}}
-<div class="modal modal-blur fade" id="formModal" data-bs-backdrop="static" data-bs-keyboard="false" role="dialog" aria-hidden="true" tabindex="-1">
-  <div class="modal-dialog modal-full-width mx-5 modal-dialog-top mt-5" role="document">
+{{-- Main Form Modal --}}
+<div class="modal fade" id="formModal" data-bs-backdrop="static" data-bs-keyboard="false" role="dialog" aria-hidden="true" tabindex="-1">
+  <div class="modal-dialog modal-dialog-centered modal-full-width mx-3" role="document">
     <div class="modal-content shadow-lg">
       <div id="modal-header">
         <h5 class="modal-title"></h5>
-        <i id="modal-icon"></i>
+        <div class="avatar avatar-transparent" id="modal-icon"></div>
       </div>
       <form id="inputForm" action="{{ route('documents.create') }}">
         @csrf
@@ -2655,19 +2656,11 @@
               <label class="form-label">{{ __('Position') }} č:</label>
               <input class="form-control" id="position" name="position" type="text">
             </div>
-            <div class="col-2 col-lg-1 mb-sm-1">
-              <label class="form-label">{{ __('Seznam č.') }}</label>
-              <select class="form-select col-2 col-lg-1 mb-sm-1" id="accordion_group" name="accordion_group">
-                @for ($i = 1; $i < 16; $i++)
-                  <option value="$i">{{ $i }}</option>
-                  @endfor
-              </select>
-            </div>
-            <div class="col-8 col-lg-5 mb-sm-1">
+            <div class="col-10 col-lg-5 mb-sm-1">
               <label class="form-label">{{ __('Name') }} <small class="text-azure">usnadní vyhledávání</small></label>
               <input class="form-control" id="name" name="name" type="text" placeholder="{{ __('Kategorický název standardu') }}">
             </div>
-            <div class="col-4 col-lg-1 mb-sm-1">
+            <div class="col-4 col-lg-2 mb-sm-1">
               <label class="form-label">{{ __('Revision') }}</label>
               <input class="form-control" id="revision" name="revision" type="text" placeholder="{{ __('Číslo nebo datum') }}">
             </div>
@@ -2691,7 +2684,7 @@
             </div>
           </div>
           <div class="row">
-            <div class="col-12 col-lg-2 mb-sm-1">
+            <div class="col-12 col-lg-4 mb-sm-1">
               <label class="form-label">{{ __('Zpracoval/a') }}</label>
               <select class="form-select" id="processed" name="processed">
                 @foreach ($doctors as $doctor)
@@ -2700,7 +2693,7 @@
                 @endforeach
               </select>
             </div>
-            <div class="col-12 col-lg-2 mb-sm-1">
+            <div class="col-12 col-lg-4 mb-sm-1">
               <label class="form-label">{{ __('Schválil/a') }}</label>
               <select class="form-select" id="authorize" name="authorize">
                 @foreach ($doctors as $doctor)
@@ -2709,7 +2702,7 @@
                 @endforeach
               </select>
             </div>
-            <div class="col-12 col-lg-2 mb-sm-1">
+            <div class="col-12 col-lg-4 mb-sm-1">
               <label class="form-label">{{ __('Kontrolu provedl/a') }}</label>
               <select class="form-select" id="examine" name="examine">
                 @foreach ($doctors as $doctor)
@@ -2718,33 +2711,42 @@
                 @endforeach
               </select>
             </div>
+          </div>
+          <div class="row">
+            <div class="col-12 col-lg-10 mb-sm-1">
+              <label class="form-label">{{ __('Oblast působnosti standardu') }} <small class="text-azure">usnadní vyhledávání</small></label>
+              <input class="form-control" id="tags" name="tags" type="text"
+                     placeholder="{{ __('Zkratky oddělení nebo ambulancí, oddělené čárkou (INT-ODD,...)') }}">
+            </div>
             <div class="col-12 col-lg-2 mb-sm-1">
               <label class="form-label">{{ __('Platnost standardu od') }}</label>
               <input class="form-control" id="efficiency" name="efficiency" type="date" placeholder="{{ __('Datum platnosti') }}">
             </div>
-            <div class="col-12 col-lg-4 mb-sm-1">
-              <label class="form-label">{{ __('Oblast působnosti standardu') }} <small class="text-azure">usnadní vyhledávání</small></label>
-              <input class="form-control" id="tags" name="tags" type="text" placeholder="{{ __('Zkratky oddělení nebo ambulancí, oddělené čárkou (INT-ODD,...)') }}">
-            </div>
           </div>
           <div class="row">
-            <div class="col-12 col-lg-9 mb-sm-1">
+            <div class="col-12 col-lg-7 mb-sm-1">
               <label class="form-label">{{ __('Soubor') }}</label>
               <input class="form-control" id="file" name="file" type="file" placeholder="{{ __('Soubor standardu ve formátu PDF') }}">
             </div>
-            <div class="col-12 col-lg-3 mb-sm-1">
+            <div class="col-6 col-lg-2 mb-sm-1">
               <label class="form-label">{{ __('Status') }}</label>
               <select class="form-select" id="status" name="status">
                 <option value="Rozpracováno">Rozpracováno</option>
                 <option value="Schváleno">Schváleno</option>
               </select>
             </div>
+            <div class="col-6 col-lg-3 mb-sm-1">
+              <label class="form-label">{{ __('Založil / upravil') }}</label>
+              <input class="form-control" id="user_name" name="user_name" type="text" readonly>
+            </div>
           </div>
           <div class="row" id="attachments">
+
             <div class="row">
               <div class="hr-text text-muted my-3">
                 <span style="font-size: 0.6rem">{{ __('Attachment') }} 1</span>
               </div>
+
               <div class="col-12 col-lg-8 mb-sm-1">
                 <label class="form-label">{{ __('Příloha') }} 1</label>
                 <input class="form-control" id="file-add" name="file-add[]" type="file" placeholder="{{ __('Soubor standardu ve formátu PDF') }}">
@@ -2824,6 +2826,7 @@
                 </select>
               </div>
             </div>
+
           </div>
 
         </div>
@@ -2831,17 +2834,143 @@
         <input id="hidden_id" name="hidden_id" type="hidden" />
         <input id="hidden_file" name="hidden_file" type="hidden" />
         <input id="folder_name" name="folder_name" type="hidden" />
+        <input id="user_id" name="user_id" type="hidden" />
 
         <div class="modal-footer">
           <button class="btn btn-muted hover-shadow" data-bs-dismiss="modal" type="button">
+            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-inline" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+              <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+              <rect x="4" y="4" width="16" height="16" rx="2"></rect>
+              <path d="M10 10l4 4m0 -4l-4 4"></path>
+            </svg>
             {{ __('Close') }}
           </button>
-          <button class="btn btn-primary ms-auto hover-shadow" id="addon-btn" type="button">{{ __('Attachments') }}</button>
+          <button class="btn btn-primary ms-auto hover-shadow" id="addon-btn" type="button">
+            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-inline" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+              <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+              <path d="M15 7l-6.5 6.5a1.5 1.5 0 0 0 3 3l6.5 -6.5a3 3 0 0 0 -6 -6l-6.5 6.5a4.5 4.5 0 0 0 9 9l6.5 -6.5"></path>
+            </svg>
+            {{ __('Attachments') }}</button>
           <div class="align-content-end flex">
-            <button class="btn btn-primary ms-auto hover-shadow" id="action_button" name="action_button" type="submit"></button>
+            <button class="btn btn-primary ms-auto hover-shadow" id="action_button" name="action_button" type="submit">
+              <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-book-upload" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+                <path d="M14 20h-8a2 2 0 0 1 -2 -2v-12a2 2 0 0 1 2 -2h12v5"></path>
+                <path d="M11 16h-5a2 2 0 0 0 -2 2"></path>
+                <path d="M15 16l3 -3l3 3"></path>
+                <path d="M18 13v9"></path>
+              </svg>
+              Upravit standard
+            </button>
           </div>
         </div>
       </form>
+    </div>
+  </div>
+</div>
+
+{{-- Show Modal --}}
+<div class="modal fade" id="showModal" role="dialog" aria-hidden="true" tabindex="-1">
+  <div class="modal-dialog modal-dialog-centered modal-full-width mx-3" role="document">
+    <div class="modal-content shadow-lg">
+      <div id="show-modal-header">
+        <h5 class="modal-title"></h5>
+        <div class="avatar avatar-transparent" id="show-modal-icon"></div>
+      </div>
+      <div class="modal-body">
+        <div class="row">
+          <div class="col-2 col-lg-1 mb-sm-1">
+            <label class="form-label">{{ __('Position') }} č:</label>
+            <input class="form-control" id="show-position" type="text" readonly>
+          </div>
+          <div class="col-10 col-lg-5 mb-sm-1">
+            <label class="form-label">{{ __('Name') }} standardu</label>
+            <input class="form-control" id="show-name" type="text" readonly>
+          </div>
+          <div class="col-4 col-lg-2 mb-sm-1">
+            <label class="form-label">{{ __('Revision') }}</label>
+            <input class="form-control" id="show-revision" type="text" readonly>
+          </div>
+          <div class="col-4 col-lg-2 mb-sm-1">
+            <label class="form-label">{{ __('Datum revize') }}</label>
+            <input class="form-control" id="show-revision_date" type="date" readonly>
+          </div>
+          <div class="col-4 col-lg-2 mb-sm-1">
+            <label class="form-label">{{ __('Datum další revize') }}</label>
+            <input class="form-control" id="show-next_revision_date" type="date" readonly>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-12 col-lg-12 mb-sm-1">
+            <label class="form-label">{{ __('Popis standardu') }} </label>
+            <input class="form-control" id="show-description" type="text" readonly>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-12 col-lg-4 mb-sm-1">
+            <label class="form-label">{{ __('Zpracoval/a') }}</label>
+            <input class="form-control" id="show-processed" type="text" readonly>
+          </div>
+          <div class="col-12 col-lg-4 mb-sm-1">
+            <label class="form-label">{{ __('Schválil/a') }}</label>
+            <input class="form-control" id="show-authorize" type="text" readonly>
+          </div>
+          <div class="col-12 col-lg-4 mb-sm-1">
+            <label class="form-label">{{ __('Kontrolu provedl/a') }}</label>
+            <input class="form-control" id="show-examine" type="text" readonly>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-12 col-lg-10 mb-sm-1">
+            <label class="form-label">{{ __('Oblast působnosti standardu') }}</label>
+            <input class="form-control" id="show-tags" type="text" readonly>
+          </div>
+          <div class="col-12 col-lg-2 mb-sm-1">
+            <label class="form-label">{{ __('Platnost standardu od') }}</label>
+            <input class="form-control" id="show-efficiency" type="date" readonly>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-12 col-lg-7 mb-sm-1">
+            <label class="form-label">{{ __('Soubor') }}</label>
+            <input class="form-control" id="show-file" type="text" readonly>
+          </div>
+          <div class="col-6 col-lg-2 mb-sm-1">
+            <label class="form-label">{{ __('Status') }}</label>
+            <input class="form-control" id="show-status" readonly>
+          </div>
+          <div class="col-6 col-lg-3 mb-sm-1">
+            <label class="form-label">{{ __('Založil / upravil') }}</label>
+            <input class="form-control" id="show-user_name" name="user_name" type="text" readonly>
+          </div>
+        </div>
+        <input id="category_id" name="category_id" type="hidden">
+        <input id="action" name="action" type="hidden" />
+        <input id="hidden_id" name="hidden_id" type="hidden" />
+        <input id="user_id" name="user_id" type="hidden" />
+      </div>
+
+      <div class="modal-footer">
+        <div class="align-content-end flex">
+          <a href="" class="btn btn-red ms-auto hover-shadow" id="download-btn" type="button">
+            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-inline" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+              <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+              <path d="M12 20h-6a2 2 0 0 1 -2 -2v-12a2 2 0 0 1 2 -2h12v5"></path>
+              <path d="M13 16h-7a2 2 0 0 0 -2 2"></path>
+              <path d="M15 19l3 3l3 -3"></path>
+              <path d="M18 22v-9"></path>
+            </svg>
+            {{ __('Download standard') }}</a>
+        </div>
+        <button class="btn btn-muted hover-shadow" data-bs-dismiss="modal" type="button">
+          <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-inline" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+            <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+            <rect x="4" y="4" width="16" height="16" rx="2"></rect>
+            <path d="M10 10l4 4m0 -4l-4 4"></path>
+          </svg>
+          {{ __('Close') }}
+        </button>
+      </div>
     </div>
   </div>
 </div>

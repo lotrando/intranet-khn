@@ -65,17 +65,15 @@
           <div class="btn-list">
             <div class="d-flex justify-content-end">
               @auth
-              <button class="btn btn-success d-none d-sm-inline-block me-2" id="openCreateModal" data-bs-toggle="tooltip" data-bs-placement="left"
+              <button class="btn btn-success d-inline-block me-2" id="openCreateModal" data-bs-toggle="tooltip" data-bs-placement="left"
                       data-bs-original-title="{{ __('Vytvoří nový ' . $categorie->button . ' standard') }}">
-                <svg class="icon m-0" xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 24 24" stroke-width="1" stroke="currentColor" fill="none"
-                     stroke-linecap="round" stroke-linejoin="round">
+                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-inline2" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
                   <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
-                  <path d="M14 20h-8a2 2 0 0 1 -2 -2v-12a2 2 0 0 1 2 -2h12v5"></path>
-                  <path d="M11 16h-5a2 2 0 0 0 -2 2"></path>
-                  <path d="M15 16l3 -3l3 3"></path>
-                  <path d="M18 13v9"></path>
+                  <path d="M19 4v16h-12a2 2 0 0 1 -2 -2v-12a2 2 0 0 1 2 -2h12z"></path>
+                  <path d="M19 16h-12a2 2 0 0 0 -2 2"></path>
+                  <path d="M9 8h6"></path>
                 </svg>
-                <span class="d-sm-none d-md-none d-lg-inline">{{ __('Nový') }}</span>
+                <span class="d-xs-none d-sm-inline d-md-inline d-lg-inline">{{ __('Nový') }}</span>
               </button>
               @endauth
             </div>
@@ -89,13 +87,13 @@
         <div class="col-12">
           @foreach ($documents as $document)
           <div class="accordion-item">
-            <div class="show" id="collapse-{{ $document->position }}" data-bs-parent="#accordion-standard" style="">
+            <div id="test-{{ $document->position }}">
               <div class="accordion-body p-1">
                 <div class="list-group list-group-flush list-group-hoverable pt-1">
                   <div class="list-group-item border-0 p-0">
                     <div class="row align-items-center mx-2 g-3">
                       <div class="avatar bg-{{ $document->category->color }}-lt col-auto" data-bs-toggle="tooltip" data-bs-placement="top"
-                           data-bs-original-title="#{{ $document->id }}">
+                           data-bs-original-title="ID #{{ $document->id }}">
                         <div class="text-uppercase">
                           {!! $document->category->svg_icon !!}
                         </div>
@@ -108,16 +106,15 @@
                         </a>
                       </div>
                       <div id="{{ $document->id }}" class="col text-truncate">
-                        <span class="cursor-pointer text-primary d-block text-decoration-none">
-                          <span id="{{ $document->id }}" class="show strong" style="margin-bottom: 0;" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-original-title="Více informací o standardu">{{ $document->name }}</span>
+                        <span>
+                          <p id="{{ $document->id }}" class="show strong d-inline cursor-pointer text-primary text-decoration-none" style="margin-bottom: 0;" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-original-title="Více informací o standardu">{{ $document->name }}</p>
                         </span>
                         <div class="d-block description text-muted text-truncate">{{ $document->description }}</div>
                       </div>
                       @auth
                       <div class="col-auto">
-                        <span class="btn btn-icon hover-shadow cursor-pointer" id="dropdownMenuButton-' . $data->id . '" data-bs-toggle="dropdown">
-                          <svg class="icon dropdown-item-icon" data-bs-toggle="tooltip" data-bs-placement="bottom" data-bs-original-title="{{ __('Actions') }}"
-                               xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none"
+                        <span class="btn btn-icon hover-shadow cursor-pointer" data-bs-toggle="dropdown">
+                          <svg class="icon dropdown-item-icon" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none"
                                stroke-linecap="round" stroke-linejoin="round">
                             <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
                             <line x1="4" y1="6" x2="20" y2="6"></line>
@@ -125,9 +122,9 @@
                             <line x1="4" y1="18" x2="20" y2="18"></line>
                           </svg>
                         </span>
-                        <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton-' . $document->id . '">
+                        <ul class="dropdown-menu">
                           <li class="dropdown-item edit" id="{{ $document->id }}">
-                            <svg class="icon dropdown-item-icon-edit" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" stroke-width="2"
+                            <svg class="icon dropdown-item-icon-edit" width="24" height="24" viewBox="0 0 24 24" stroke-width="2"
                                  stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
                               <path stroke="none" d="M0 0h24v24H0z" fill="none" />
                               <path d="M7 7h-1a2 2 0 0 0 -2 2v9a2 2 0 0 0 2 2h9a2 2 0 0 0 2 -2v-1" />
@@ -154,7 +151,7 @@
                     @foreach ($document->addons as $add)
                     <div class="row align-items-center mx-2 g-3">
                       <div class="avatar bg-{{ $document->category->color }}-lt col-auto">
-                        <div class="text-uppercase" data-bs-toggle="tooltip" data-bs-placement="bottom" data-bs-original-title="#{{ $document->id }}#{{ $add->id }}">
+                        <div class="text-uppercase" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-original-title="ID #{{ $document->id }}#{{ $add->id }}">
                           <svg class="icon icon-tabler icon-tabler-plus text-{{ $document->category->color }}" width="24" height="24" viewBox="0 0 24 24"
                                stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
                             <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
@@ -234,7 +231,7 @@
                         @endauth
                       </div>
                       @auth
-                      <div class="col-auto">
+                      <div class="col-auto d-xs-none d-sm-none d-lg-inline">
                         <span class="text-muted description">
                           <svg xmlns="http://www.w3.org/2000/svg" class="icon text-lime" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
                             <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
@@ -285,12 +282,12 @@
 
   @section('modals')
   {{-- Main Form Modal --}}
-  <div class="modal modal-blur fade" id="formModal" data-bs-backdrop="static" data-bs-keyboard="false" role="dialog" aria-hidden="true" tabindex="-1">
-    <div class="modal-dialog modal-full-width modal-dialog-top mx-5 mt-5" role="document">
+  <div class="modal fade" id="formModal" data-bs-backdrop="static" data-bs-keyboard="false" role="dialog" aria-hidden="true" tabindex="-1">
+    <div class="modal-dialog modal-dialog-centered modal-full-width mx-3" role="document">
       <div class="modal-content shadow-lg">
         <div id="modal-header">
           <h5 class="modal-title"></h5>
-          <i id="modal-icon"></i>
+          <div class="avatar avatar-transparent" id="modal-icon"></div>
         </div>
         <form id="inputForm" action="{{ route('documents.create') }}">
           @csrf
@@ -334,7 +331,7 @@
               </div>
             </div>
             <div class="row">
-              <div class="col-12 col-lg-2 mb-sm-1">
+              <div class="col-12 col-lg-4 mb-sm-1">
                 <label class="form-label">{{ __('Zpracoval/a') }}</label>
                 <select class="form-select" id="processed" name="processed">
                   @foreach ($doctors as $doctor)
@@ -343,7 +340,7 @@
                   @endforeach
                 </select>
               </div>
-              <div class="col-12 col-lg-2 mb-sm-1">
+              <div class="col-12 col-lg-4 mb-sm-1">
                 <label class="form-label">{{ __('Schválil/a') }}</label>
                 <select class="form-select" id="authorize" name="authorize">
                   @foreach ($doctors as $doctor)
@@ -352,7 +349,7 @@
                   @endforeach
                 </select>
               </div>
-              <div class="col-12 col-lg-2 mb-sm-1">
+              <div class="col-12 col-lg-4 mb-sm-1">
                 <label class="form-label">{{ __('Kontrolu provedl/a') }}</label>
                 <select class="form-select" id="examine" name="examine">
                   @foreach ($doctors as $doctor)
@@ -361,14 +358,16 @@
                   @endforeach
                 </select>
               </div>
-              <div class="col-12 col-lg-2 mb-sm-1">
-                <label class="form-label">{{ __('Platnost standardu od') }}</label>
-                <input class="form-control" id="efficiency" name="efficiency" type="date" placeholder="{{ __('Datum platnosti') }}">
-              </div>
-              <div class="col-12 col-lg-4 mb-sm-1">
+            </div>
+            <div class="row">
+              <div class="col-12 col-lg-10 mb-sm-1">
                 <label class="form-label">{{ __('Oblast působnosti standardu') }} <small class="text-azure">usnadní vyhledávání</small></label>
                 <input class="form-control" id="tags" name="tags" type="text"
                        placeholder="{{ __('Zkratky oddělení nebo ambulancí, oddělené čárkou (INT-ODD,...)') }}">
+              </div>
+              <div class="col-12 col-lg-2 mb-sm-1">
+                <label class="form-label">{{ __('Platnost standardu od') }}</label>
+                <input class="form-control" id="efficiency" name="efficiency" type="date" placeholder="{{ __('Datum platnosti') }}">
               </div>
             </div>
             <div class="row">
@@ -389,10 +388,12 @@
               </div>
             </div>
             <div class="row" id="attachments">
+
               <div class="row">
                 <div class="hr-text text-muted my-3">
                   <span style="font-size: 0.6rem">{{ __('Attachment') }} 1</span>
                 </div>
+
                 <div class="col-12 col-lg-8 mb-sm-1">
                   <label class="form-label">{{ __('Příloha') }} 1</label>
                   <input class="form-control" id="file-add" name="file-add[]" type="file" placeholder="{{ __('Soubor standardu ve formátu PDF') }}">
@@ -472,6 +473,7 @@
                   </select>
                 </div>
               </div>
+
             </div>
 
           </div>
@@ -483,11 +485,30 @@
 
           <div class="modal-footer">
             <button class="btn btn-muted hover-shadow" data-bs-dismiss="modal" type="button">
+              <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-inline" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+                <rect x="4" y="4" width="16" height="16" rx="2"></rect>
+                <path d="M10 10l4 4m0 -4l-4 4"></path>
+              </svg>
               {{ __('Close') }}
             </button>
-            <button class="btn btn-primary ms-auto hover-shadow" id="addon-btn" type="button">{{ __('Attachments') }}</button>
+            <button class="btn btn-primary ms-auto hover-shadow" id="addon-btn" type="button">
+              <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-inline" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+                <path d="M15 7l-6.5 6.5a1.5 1.5 0 0 0 3 3l6.5 -6.5a3 3 0 0 0 -6 -6l-6.5 6.5a4.5 4.5 0 0 0 9 9l6.5 -6.5"></path>
+              </svg>
+              {{ __('Attachments') }}</button>
             <div class="align-content-end flex">
-              <button class="btn btn-primary ms-auto hover-shadow" id="action_button" name="action_button" type="submit"></button>
+              <button class="btn btn-primary ms-auto hover-shadow" id="action_button" name="action_button" type="submit">
+                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-book-upload" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                  <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+                  <path d="M14 20h-8a2 2 0 0 1 -2 -2v-12a2 2 0 0 1 2 -2h12v5"></path>
+                  <path d="M11 16h-5a2 2 0 0 0 -2 2"></path>
+                  <path d="M15 16l3 -3l3 3"></path>
+                  <path d="M18 13v9"></path>
+                </svg>
+                Upravit standard
+              </button>
             </div>
           </div>
         </form>
@@ -495,8 +516,114 @@
     </div>
   </div>
 
+  {{-- Show Modal --}}
+  <div class="modal fade" id="showModal" role="dialog" aria-hidden="true" tabindex="-1">
+    <div class="modal-dialog modal-dialog-centered modal-full-width mx-3" role="document">
+      <div class="modal-content shadow-lg">
+        <div id="show-modal-header">
+          <h5 class="modal-title"></h5>
+          <div class="avatar avatar-transparent" id="show-modal-icon"></div>
+        </div>
+        <div class="modal-body">
+          <div class="row">
+            <div class="col-2 col-lg-1 mb-sm-1">
+              <label class="form-label">{{ __('Position') }} č:</label>
+              <input class="form-control" id="show-position" type="text" readonly>
+            </div>
+            <div class="col-10 col-lg-5 mb-sm-1">
+              <label class="form-label">{{ __('Name') }} standardu</label>
+              <input class="form-control" id="show-name" type="text" readonly>
+            </div>
+            <div class="col-4 col-lg-2 mb-sm-1">
+              <label class="form-label">{{ __('Revision') }}</label>
+              <input class="form-control" id="show-revision" type="text" readonly>
+            </div>
+            <div class="col-4 col-lg-2 mb-sm-1">
+              <label class="form-label">{{ __('Datum revize') }}</label>
+              <input class="form-control" id="show-revision_date" type="date" readonly>
+            </div>
+            <div class="col-4 col-lg-2 mb-sm-1">
+              <label class="form-label">{{ __('Datum další revize') }}</label>
+              <input class="form-control" id="show-next_revision_date" type="date" readonly>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-12 col-lg-12 mb-sm-1">
+              <label class="form-label">{{ __('Popis standardu') }} </label>
+              <input class="form-control" id="show-description" type="text" readonly>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-12 col-lg-4 mb-sm-1">
+              <label class="form-label">{{ __('Zpracoval/a') }}</label>
+              <input class="form-control" id="show-processed" type="text" readonly>
+            </div>
+            <div class="col-12 col-lg-4 mb-sm-1">
+              <label class="form-label">{{ __('Schválil/a') }}</label>
+              <input class="form-control" id="show-authorize" type="text" readonly>
+            </div>
+            <div class="col-12 col-lg-4 mb-sm-1">
+              <label class="form-label">{{ __('Kontrolu provedl/a') }}</label>
+              <input class="form-control" id="show-examine" type="text" readonly>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-12 col-lg-10 mb-sm-1">
+              <label class="form-label">{{ __('Oblast působnosti standardu') }}</label>
+              <input class="form-control" id="show-tags" type="text" readonly>
+            </div>
+            <div class="col-12 col-lg-2 mb-sm-1">
+              <label class="form-label">{{ __('Platnost standardu od') }}</label>
+              <input class="form-control" id="show-efficiency" type="date" readonly>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-12 col-lg-7 mb-sm-1">
+              <label class="form-label">{{ __('Soubor') }}</label>
+              <input class="form-control" id="show-file" type="text" readonly>
+            </div>
+            <div class="col-6 col-lg-2 mb-sm-1">
+              <label class="form-label">{{ __('Status') }}</label>
+              <input class="form-control" id="show-status" readonly>
+            </div>
+            <div class="col-6 col-lg-3 mb-sm-1">
+              <label class="form-label">{{ __('Založil / upravil') }}</label>
+              <input class="form-control" id="show-user_name" name="user_name" type="text" readonly>
+            </div>
+          </div>
+          <input id="category_id" name="category_id" type="hidden">
+          <input id="action" name="action" type="hidden" />
+          <input id="hidden_id" name="hidden_id" type="hidden" />
+          <input id="user_id" name="user_id" type="hidden" />
+        </div>
+
+        <div class="modal-footer">
+          <div class="align-content-end flex">
+            <a href="" class="btn btn-red ms-auto hover-shadow" id="download-btn" type="button">
+              <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-inline" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+                <path d="M12 20h-6a2 2 0 0 1 -2 -2v-12a2 2 0 0 1 2 -2h12v5"></path>
+                <path d="M13 16h-7a2 2 0 0 0 -2 2"></path>
+                <path d="M15 19l3 3l3 -3"></path>
+                <path d="M18 22v-9"></path>
+              </svg>
+              {{ __('Download standard') }}</a>
+          </div>
+          <button class="btn btn-muted hover-shadow" data-bs-dismiss="modal" type="button">
+            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-inline" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+              <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+              <rect x="4" y="4" width="16" height="16" rx="2"></rect>
+              <path d="M10 10l4 4m0 -4l-4 4"></path>
+            </svg>
+            {{ __('Close') }}
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+
   {{-- Delete Modal --}}
-  <div class="modal modal-blur fade" id="confirmModal" data-bs-backdrop="static" data-bs-keyboard="false" role="dialog" aria-hidden="true" tabindex="-1">
+  <div class="modal fade" id="confirmModal" data-bs-backdrop="static" data-bs-keyboard="false" role="dialog" aria-hidden="true" tabindex="-1">
     <div class="modal-dialog modal-sm modal-dialog-centered" role="document">
       <div class="modal-content shadow-lg">
         {{-- <button class="btn-close" data-bs-dismiss="modal" type="button" aria-label="{{ __('Close') }}"></button> --}}
@@ -577,12 +704,12 @@
           dataType: "json",
           success: function(html) {
             $('#inputForm')[0].reset();
-            $("#modal-icon, #modal-header").removeClass();
             $('.modal-title').val('');
+            $('#attachment, #action_button').removeClass('d-none');
             $('#formModal').modal('show');
-            $('#modal-icon').addClass('fas fa-{{ $categorie->fas_icon }} fa-2x m-2');
+            $('#modal-icon').html('{!! $categorie->svg_icon !!}').addClass('bg-{{ $categorie->color }}-lt');
             $('#modal-header').addClass("modal-header bg-{{ $categorie->color }}-lt");
-            $('#action_button, .modal-title').text("{{ __('Edit') }} {{ $categorie->button }} standard");
+            $('.modal-title').text("{{ __('Edit') }} {{ $categorie->button }} standard");
             $('#action').val("Edit");
             $('#category_id').val(html.data.category_id);
             $('#folder_name').val(html.data.category.folder_name);
@@ -624,43 +751,43 @@
           dataType: "json",
           success: function(html) {
             $('#inputForm')[0].reset();
-            $("#modal-icon, #modal-header").removeClass();
             $('.modal-title').val('');
-            $('#formModal').modal('show');
-            $('#modal-icon').addClass('fas fa-{{ $categorie->fas_icon }} fa-2x m-2');
-            $('#modal-header').addClass("modal-header bg-{{ $categorie->color }}-lt");
+            $('#showModal').modal('show');
+            $('#show-modal-icon').html('{!! $categorie->svg_icon !!}').addClass('bg-{{ $categorie->color }}-lt');
+            $('#show-modal-header').addClass("modal-header bg-{{ $categorie->color }}-lt");
             $('.modal-title').text(html.data.name);
             $('#action').val("Show");
             $('#category_id').val(html.data.category_id);
-            $('#folder_name').val(html.data.category.folder_name);
-            $('#name').val(html.data.name);
-            $('#processed').val(html.data.processed);
-            $('#authorize').val(html.data.authorize);
-            $('#examine').val(html.data.examine);
-            $('#efficiency').val(html.data.efficiency);
-            $('#revision').val(html.data.revision);
-            $('#revision_date').val(html.data.revision_date);
-            $('#next_revision_date').val(html.next_revision_date);
-            $('#tags').val(html.data.tags);
-            $('#description').val(html.data.description);
-            $('#position').val(html.data.position);
-            $('#status').val(html.data.status);
-            $('#user_id').val('{{ auth()->user()->id ?? null }}');
-            $('#user_name').val(html.data.user.name);
+            $('#show-folder_name').val(html.data.category.folder_name);
+            $('#show-name').val(html.data.name);
+            $('#show-processed').val(html.data.processed);
+            $('#show-authorize').val(html.data.authorize);
+            $('#show-examine').val(html.data.examine);
+            $('#show-efficiency').val(html.data.efficiency);
+            $('#show-revision').val(html.data.revision);
+            $('#show-revision_date').val(html.data.revision_date);
+            $('#show-next_revision_date').val(html.data.next_revision_date)
+            $('#show-tags').val(html.data.tags);
+            $('#show-description').val(html.data.description);
+            $('#show-position').val(html.data.position);
+            $('#show-file').val(html.data.file);
+            $('#show-status').val(html.data.status);
+            $('#show-user_id').val('{{ auth()->user()->id ?? null }}');
+            $('#show-user_name').val(html.data.user.name);
             $('#attachment, #action_button').addClass('d-none');
-            $('#hidden_id').val(html.data.id);
-            $('#revision_date').val(html.data.next_revision_date);
+            $('#show-hidden_id').val(html.data.id);
+            $('#download-btn').attr("href", "/standardy/standard/" + html.data.id + "");
           }
         })
       });
 
       $('#openCreateModal').click(function() {
         $('#inputForm')[0].reset();
-        $("#modal-icon, #modal-header").removeClass();
+        $("#attachment, #action_button").removeClass('d-none');
         $('#unique_code').prop('readonly', true);
         $('#category_id').val('{{ $categorie->id }}');
         $('#formModal').modal('show');
-        $('#modal-icon').addClass('fas fa-{{ $categorie->fas_icon }} fa-2x m-2');
+        $('#modal-icon').html('{!! $categorie->svg_icon !!}').addClass('bg-{{ $categorie->color }}-lt');
         $('#modal-header').addClass("modal-header bg-{{ $categorie->color }}-lt");
         $('#action_button, .modal-title').text("{{ __('Create new') }} {{ $categorie->button }} standard");
         $('#action').val("Add");

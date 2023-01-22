@@ -50,26 +50,27 @@ Route::prefix('stravovani')->name('stravovani.')->group(function () {
 
 // Standardy
 Route::prefix('standardy')->name('standardy.')->group(function () {
-    Route::get('akreditacni/{id}', [PageController::class, 'akreditacni'])->name('akreditacni');            // Akreditační standardy route
-    Route::get('osetrovatelske/{id}', [PageController::class, 'standard'])->name('osetrovatelske');         // Ošetřovatelské standardy route
-    Route::get('lecebne/{id}', [PageController::class, 'standard'])->name('lecebne');                       // Léčebné standardy route
-    Route::get('specialni/{id}', [PageController::class, 'standard'])->name('specialni');                   // Speciální standardy route
-    Route::get('operacni/{id}', [PageController::class, 'standard'])->name('operacni');                     // Operační standardy route
-    Route::get('anesteziologicke/{id}', [PageController::class, 'standard'])->name('anesteziologicke');     // Anesteziologické standardy route
-    Route::get('rdg/{id}', [PageController::class, 'standard'])->name('rdg');                               // RDG standardy route
-    Route::get('rehabilitacni/{id}', [PageController::class, 'standard'])->name('rehabilitacni');           // Rehabilitační standardy route
-    Route::get('opl/{id}', [PageController::class, 'standard'])->name('opl');                               // Akreditační standardy route
-    Route::get('okb/{id}', [PageController::class, 'standard'])->name('okb');                               // OKB standardy route
-    Route::get('logopedicke/{id}', [PageController::class, 'standard'])->name('logopedicke');               // Logopedické standardy route
-    Route::get('legislativni/{id}', [PageController::class, 'standard'])->name('legislativni');             // Legislativní standardy route
+    Route::get('akreditacni/{id}', [PageController::class, 'akreditacni'])->name('akreditacni');            // Akreditační standardy route (standardy.akreditacni)
+    Route::get('osetrovatelske/{id}', [PageController::class, 'standard'])->name('osetrovatelske');         // Ošetřovatelské standardy route (standardy.osetrovatelske)
+    Route::get('lecebne/{id}', [PageController::class, 'standard'])->name('lecebne');                       // Léčebné standardy route (standardy.lecebne)
+    Route::get('specialni/{id}', [PageController::class, 'standard'])->name('specialni');                   // Speciální standardy route (standardy.specialni)
+    Route::get('operacni/{id}', [PageController::class, 'standard'])->name('operacni');                     // Operační standardy route (standardy.operacni)
+    Route::get('anesteziologicke/{id}', [PageController::class, 'standard'])->name('anesteziologicke');     // Anesteziologické standardy route (standardy.anesteziologicke)
+    Route::get('rdg/{id}', [PageController::class, 'standard'])->name('rdg');                               // RDG standardy route (standardy.rdg)
+    Route::get('rehabilitacni/{id}', [PageController::class, 'standard'])->name('rehabilitacni');           // Rehabilitační standardy route (standardy.rehabilitacni)
+    Route::get('opl/{id}', [PageController::class, 'standard'])->name('opl');                               // OPL standardy route (standardy.opl)
+    Route::get('okb/{id}', [PageController::class, 'standard'])->name('okb');                               // OKB standardy route (standardy.okb)
+    Route::get('logopedicke/{id}', [PageController::class, 'standard'])->name('logopedicke');               // Logopedické standardy route (standardy.logopedicke)
+    Route::get('legislativni/{id}', [PageController::class, 'standard'])->name('legislativni');             // Legislativní standardy route (standardy.legislativni)
+
     Route::get('standard-search', [DocumentController::class, 'standardSearch'])->name('standard.search');  // Vyhledávání dokumentů
-    Route::get('standard/{id}', [FileController::class, 'standardDownload'])->name('download');                     // Download standard
+    Route::get('standard/{id}', [FileController::class, 'standardDownload'])->name('download');             // Download standard
 });
 
 // Media
 Route::prefix('media')->name('media.')->group(function () {
     Route::get('radio', [PageController::class, 'radio'])->name('radio');                                   // Radio route (media.radio)
-    Route::get('videa', [PageController::class, 'video'])->name('videa');
+    Route::get('videa', [PageController::class, 'video'])->name('videa');                                   // Videa route (media.videa)
     Route::get('prekladatele', [PageController::class, 'prekladatele'])->name('prekladatele');              // Videa route (media.prekladatele)
 });
 
