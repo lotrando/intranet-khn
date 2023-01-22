@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Počítač: localhost
--- Vytvořeno: Ned 22. led 2023, 14:56
+-- Vytvořeno: Ned 22. led 2023, 22:09
 -- Verze serveru: 8.0.31
 -- Verze PHP: 7.4.33
 
@@ -44,8 +44,8 @@ CREATE TABLE `addons` (
 --
 
 INSERT INTO `addons` (`id`, `document_id`, `addon_number`, `description`, `revision`, `file`, `status`, `created_at`, `updated_at`) VALUES
-(1, 21, 1, 'a', '1', 'standardy_okb-minim_sit_sit_magnazcrzrzcrz-revize-1.pdf', 'Schváleno', '2023-01-20 16:35:57', '2023-01-13 16:35:57'),
-(2, 21, 2, 'b', '1', 'standardy_okb-minim_sit_sit_magnazcrzrzcrz-revize-1.pdf', 'Schváleno', '2023-01-20 16:35:57', '2023-01-19 16:35:57');
+(1, 21, 1, 'Název první přílohy', '1', 'standardy_okb-minim_sit_sit_magnazcrzrzcrz-revize-1.pdf', 'Schváleno', '2023-01-20 16:35:57', '2023-01-13 16:35:57'),
+(2, 21, 2, 'Název druhé přílohy', '1', 'standardy_okb-minim_sit_sit_magnazcrzrzcrz-revize-1.pdf', 'Schváleno', '2023-01-20 16:35:57', '2023-01-19 16:35:57');
 
 -- --------------------------------------------------------
 
@@ -655,9 +655,7 @@ INSERT INTO `documents` (`id`, `category_id`, `accordion_name`, `accordion_group
 (18, 3, 'Standard léčebného postupu', NULL, 18, 'Standard léčebného postupu', 'Soubor indikačních kritérií a postupů oddělení ortopedie', 'MUDr. Pešek Jiří', 'MUDr. Canibal Tomáš', 'MUDr. Pavličný Radek', '2011-01-01', '2', '2020-02-01', 'ORT-ODD', '2019-02-01', 'standardy_lecebne-soubor_indikacnich_kriterii_a_postupu_oddeleni_ortopedie-revize-2.pdf', 'STD3#18', 'Schváleno', 11, '2023-01-13 21:54:14', '2023-01-19 13:09:42'),
 (19, 3, 'Standard léčebného postupu', NULL, 19, 'Standard léčebného postupu', 'Soubor postupů při ošetření infikované nebo potenciálně infikované TEP', 'MUDr. Mráček Dalibor', 'MUDr. Canibal Tomáš', 'MUDr. Pavličný Radek', '2012-07-01', '2', '2017-12-29', 'ORT-ODD', '2016-12-29', 'standardy_lecebne-soubor_postupu_pri_osetreni_infikovane_nebo_potencialne_infikovane_tep-revize-2.pdf', 'STD3#19', 'Schváleno', 11, '2023-01-13 21:55:05', '2023-01-19 13:10:25'),
 (20, 3, 'Vředová choroba gastroduodena', NULL, 20, 'Vředová choroba gastroduodena', 'Soubor minimálních diagnostických a terapeutických standardů u pacientů s vředovou chorobou gastroduodena', 'MUDr. Střída Josef', 'MUDr. Canibal Tomáš', 'MUDr. Kultan Peter', '2007-01-01', '5', '2023-12-01', 'MEZ-JIP, INT-ODD', '2022-12-01', 'standardy_lecebne-vredova_choroba_gastroduodena-revize-5.pdf', 'STD3#20', 'Schváleno', 11, '2023-01-13 21:56:19', '2023-01-21 18:47:08'),
-(21, 8, 'Diabetes mellitus', NULL, 1, 'Diabetes mellitus', 'Soubor minimálních diagnostických a terapeutických standardů u pacientů s diabetes mellitus', 'MUDr. Beran Daniel', 'MUDr. Brzeżański Henryk', 'MUDr. Canibal Tomáš', '2023-01-10', '1', '2024-01-10', 'rewrrerqewr er2344čřščřščřščřščř', '2023-01-10', 'standardy_rehabilitacni-rrrsrsrsrs-revize-1.pdf', 'STD8#1', 'Schváleno', 11, '2023-01-21 18:49:50', '2023-01-22 09:52:38'),
-(22, 10, 'Standard léčebného postupu 5456465', NULL, 1, 'Standard léčebného postupu 5456465', 'Soubor minimálních diagnostických a terapeutických standardů u pacientů s akutními koronárními syndromy', 'MUDr. Barabas Peter', 'MUDr. Blahut Jan', 'MUDr. Böhm Marek', '2023-01-22', '1', '2024-01-22', NULL, '2023-01-22', 'standardy_okb-soubor_minimalnich_diagnostickych_a_terapeutickych_standardu_u_pacientu_s_akutnimi_koronarnimi_syndromy-revize-1.pdf', 'STD10#1', 'Schváleno', 11, '2023-01-22 14:09:15', '2023-01-22 14:53:40'),
-(23, 12, 'Epilepsie', NULL, 1, 'Epilepsie', 'Soubor minimálních diagnostických a terapeutických standardů u pacientů s touto diagnózou', 'MUDr. Blažík Martin', 'MUDr. Cibulková Zdeňka', 'MUDr. Cibulková Zdeňka', '2004-01-22', '1', '2024-01-22', NULL, '2023-01-22', 'standardy_legislativni-soubor_minimalnich_diagnostickych_a_terapeutickych_standardu_u_pacientu_s_touto_diagnozou-revize-1.pdf', 'STD12#1', 'Schváleno', 11, '2023-01-22 14:31:38', '2023-01-22 14:31:38'),
+(21, 8, 'Pokus', NULL, 1, 'Pokus', 'Pokusný vzorek', 'MUDr. Beran Daniel', 'MUDr. Brzeżański Henryk', 'MUDr. Canibal Tomáš', '2023-01-10', '1', '2024-01-10', 'Pokus', '2023-01-10', 'standardy_rehabilitacni-pokusny_vzorek-revize-1.pdf', 'STD8#1', 'Schváleno', 11, '2023-01-21 18:49:50', '2023-01-22 21:53:07'),
 (24, 7, 'Crohnova choroba', NULL, 1, 'Crohnova choroba', 'Soubor minimálních diagnostických a terapeutických standardů u pacientů s diabetes mellitus', 'MUDr. Beran Daniel', 'MUDr. Bernacká Janka', 'MUDr. Brzeżański Henryk', '2014-01-09', '1', '2014-01-09', NULL, '2013-01-09', 'standardy_rdg-soubor_minimalnich_diagnostickych_a_terapeutickych_standardu_u_pacientu_s_diabetes_mellitus-revize-1.pdf', 'STD7#1', 'Schváleno', 11, '2014-01-22 14:48:20', '2023-01-22 14:49:08');
 
 -- --------------------------------------------------------
@@ -1641,7 +1639,7 @@ INSERT INTO `users` (`id`, `personal_number`, `name`, `email`, `email_verified_a
 (8, '61199', 'PhDr. Ilona Kopečný', 'jakoubek.ivana@example.com', '2023-01-11 16:48:16', '$2y$10$LHGzVLpy/G9kAezVWgAyH.w4kZJM4sDCnTWicSCsVJwhueLR/EXkC', NULL, NULL, 'SreSqc3lYKXx7cC3k9lzdP2FARjraqw5bl3EwVMUDRG2Stbz2SRg3TXSWV1n', '2023-01-11 16:48:17', '2023-01-11 16:48:17'),
 (9, '64220', 'Vítězslav Studený', 'aprokop@example.net', '2023-01-11 16:48:16', '$2y$10$TXAjVT9k./.H4KjXoNAcn.ljLPiSjKS0B.vlGoGjEiJXFvNWX3CJG', NULL, NULL, 'Q84bE3b76njnJpTH1hee9690itatngELvYKuDNtYqpfuwZ72Y4EhZd2C0J3e', '2023-01-11 16:48:17', '2023-01-11 16:48:17'),
 (10, '62457', 'PhDr. Jan Kuča', 'milena93@example.net', '2023-01-11 16:48:16', '$2y$10$y.1Fr4LcccsAuc2CCAp9seh5PonzrjwBcBDlKqaIaO4r0eYvvow3W', NULL, NULL, 'uKtD3jRcmQagjEDZs2oF9PpRq14SsqwMna9HjdAGFR5U2lai6N50iFFPsfDC', '2023-01-11 16:48:17', '2023-01-11 16:48:17'),
-(11, '61625', 'Klika Miroslav', 'klika@khn.cz', NULL, '$2y$10$npGXBMS5iC//NvCmsaRr4ebinzrh1hT3L6z2hKFMxUdP8LLWfTie.', NULL, NULL, '2VTsV2SuzDxK22G3sC7Z1T8U10lwh4EhNdJAb3sTkeDOQkPVgjC3cFcQ7LeJ', '2023-01-11 18:53:36', '2023-01-20 18:57:13'),
+(11, '61625', 'Klika Miroslav', 'klika@khn.cz', NULL, '$2y$10$PSw5emAhbIR3u3sVNNg3iOe8t9z0Ct7dgJEKUud0jfeXFVkJzWZqK', NULL, NULL, 'qKHsrXrrYF3W1XBSkyAUf9ptg8DjpHVfgUSBxk2ZiP8m4CEmqj7OdRWAaw9T', '2023-01-11 18:53:36', '2023-01-22 21:46:33'),
 (12, '63882', 'Anna Seidlová', 'mbalogova@example.org', '2023-01-13 16:56:57', '$2y$10$ihu2uS/uhaS01vFcu8M.6eN5ElPL//0lTNnPybHJWDbVuNOGbWvfe', NULL, NULL, 'jSCn8DxL6F6HZFbc37QMtjBOtiWFUr5RuuHEw0DVZUbCS6s2vqM58fO2ZjXy', '2023-01-13 16:56:57', '2023-01-13 16:56:57'),
 (13, '64832', 'Marta Jílková', 'cibulkova.tomas@example.net', '2023-01-13 16:56:57', '$2y$10$43kzxF1NKZ/bu2BgUlG5D.I0JYRdvKu6v2ZyF83TkJBKh5nqeUCLW', NULL, NULL, 'rhlXHVt9qY9OsQA9Q8q4CRdFYxXxmbc5kliamjZKwMG5crFPZwTB1b2AE3XH', '2023-01-13 16:56:57', '2023-01-13 16:56:57'),
 (14, '62297', 'Vladimíra Bradová', 'ncahova@example.org', '2023-01-13 16:56:57', '$2y$10$lU2Pubr/W60AJ.rFRlM0l.8DHV1vBszqcNyoGqHjbIdGEvPIEWUZS', NULL, NULL, 'CuPFejVxGLKnbWf4cNf5kauzdYDdEMtGwTQ4eXfcRokoZG38HmYA45ePlZLa', '2023-01-13 16:56:57', '2023-01-13 16:56:57'),
