@@ -121,8 +121,15 @@ class PageController extends Controller
     public function kantyna()
     {
 
-        $daylist = DB::table('calendar')->where('date', '>=', Carbon::now()->previous('Monday'))->where('date', '<=', Carbon::now()->addDays(16))->simplePaginate(7);
-        return view('kantyna', ['pretitle' => 'Stravování', 'title' => 'Nabídka kantýny', 'daylist' => $daylist]);
+        $now = Carbon::now();
+        $weekStartDate = $now->startOfWeek()->format('Y-m-d');
+        $weekEndDate = $now->endOfWeek()->format('Y-m-d');
+
+        $od = $now->startOfWeek()->format('d. m.');
+        $do = $now->endOfWeek()->format('d. m.');
+
+        $daylist = DB::table('calendar')->where('date', '>=', $weekStartDate)->where('date', '<=', $weekEndDate)->simplePaginate(7);
+        return view('kantyna', ['pretitle' => 'Stravování', 'title' => 'Nabídka kantýny', 'daylist' => $daylist, 'od' => $od, 'do' => $do]);
     }
 
     // Akreditacní stadnardy
@@ -181,7 +188,12 @@ class PageController extends Controller
         $allDocuments = Document::pluck('category_id');
         $allAddons = Addon::pluck('document_id');
         $categorie  = Category::where('id', $id)->first();
-        $doctors = Employee::where('title_preffix', 'LIKE', '%' . 'Dr.' . '%')->orderBy('last_name')->get();
+        $doctors = Employee::where('title_preffix', 'LIKE', '%' . 'Dr.' . '%')
+            ->orWhere('job_id', 'LIKE', '%' . 47 . '%')
+            ->orWhere('job_id', 'LIKE', '%' . 47 . '%')
+            ->orWhere('job_id', 'LIKE', '%' . 17 . '%')
+            ->orderBy('last_name')
+            ->get();
         $last = Document::where('category_id', $id)->orderBy('id', 'desc')->take(1)->first();
 
         if ($last == null) {
@@ -214,7 +226,7 @@ class PageController extends Controller
     // Media
     public function radio()
     {
-        return redirect()->away('http://192.168.0.10/data/hudba/R%c3%a1dia/Evropa%202.m3u');
+        return redirect()->away('http://192.168.81.121:8000/radio.m3u');
     }
 
     public function video()

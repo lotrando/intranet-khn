@@ -34,7 +34,7 @@
 
           <div class="progress mt-2">
             @foreach ($categories as $category)
-            <div class="progress-bar progress-sm bg-{{ $category->color }}" data-bs-toggle="tooltip" data-bs-placement="bottom"
+            <div class="progress-bar progress-sm bg-{{ $category->color }}-lt" data-bs-toggle="tooltip" data-bs-placement="bottom"
                  data-bs-original-title="{{ $category->category_name . ' standardy ' . round(($category->documents->count() * 100) / $allDocuments->count()). '%' }}" role="progressbar" aria-label="{{ $category->category_name }}"
                  style="width: {{ ($category->documents->count() * 100) / $allDocuments->count() }}%"></div>
             @endforeach
@@ -338,6 +338,10 @@
                   <option value="{{ $doctor->title_preffix }} {{ $doctor->last_name }} {{ $doctor->first_name }}">
                     {{ $doctor->last_name }} {{ $doctor->first_name }}, {{ $doctor->title_preffix }}</option>
                   @endforeach
+                  <option value="Rada kvality">Rada kvality</option>
+                  <option value="Sekaninova Anna">Sekaninova Anna</option>
+                  <option value="Mlýnková Ruth">Mlýnková Ruth, Mgr.</option>
+                  <option value="Bogocz Danuta">Bogocz Danut, Mgr.</option>
                 </select>
               </div>
               <div class="col-12 col-lg-4 mb-sm-1">
@@ -347,6 +351,10 @@
                   <option value="{{ $doctor->title_preffix }} {{ $doctor->last_name }} {{ $doctor->first_name }}">
                     {{ $doctor->last_name }} {{ $doctor->first_name }}, {{ $doctor->title_preffix }}</option>
                   @endforeach
+                  <option value="Rada kvality">Rada kvality</option>
+                  <option value="Sekaninova Anna">Sekaninova Anna</option>
+                  <option value="Mlýnková Ruth">Mlýnková Ruth, Mgr.</option>
+                  <option value="Bogocz Danuta">Bogocz Danut, Mgr.</option>
                 </select>
               </div>
               <div class="col-12 col-lg-4 mb-sm-1">
@@ -356,6 +364,10 @@
                   <option value="{{ $doctor->title_preffix }} {{ $doctor->last_name }} {{ $doctor->first_name }}">
                     {{ $doctor->last_name }} {{ $doctor->first_name }}, {{ $doctor->title_preffix }}</option>
                   @endforeach
+                  <option value="Rada kvality">Rada kvality</option>
+                  <option value="Sekaninova Anna">Sekaninova Anna</option>
+                  <option value="Mlýnková Ruth">Mlýnková Ruth, Mgr.</option>
+                  <option value="Bogocz Danuta">Bogocz Danut, Mgr.</option>
                 </select>
               </div>
             </div>

@@ -53,7 +53,7 @@
                 </svg>
               </div>
               <div>
-                <h2 class="col-auto mb-0 ms-2">Nabídka teplých jídel</h2>
+                <h2 class="col-auto mb-0 ms-2">Nabídka teplých jídel - od {{ $od }} do {{ $do }}</small></h2>
               </div>
             </div>
           </div>
@@ -201,7 +201,7 @@
                 </svg>
               </div>
               <div>
-                <h2 class="col-auto mb-0 ms-2">Provozní doba nemocniční kantýny</h2>
+                <h2 class="col-auto mb-0 ms-2">Provozní doba</h2>
               </div>
             </div>
           </div>

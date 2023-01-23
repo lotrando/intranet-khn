@@ -17,61 +17,6 @@
     <div class="container-fluid">
       <div class="row align-items-center">
         <div class="col-12">
-          {{-- <div class="mb-2 bg-transparent id=" stats"">
-            <div class="row d-flex align-items-center">
-              <div class="d-flex align-items-center col-auto mb-2">
-                <svg class="icon icon-tabler icon-tabler-books d-xl-none" data-bs-toggle="tooltip" data-bs-placement="right" data-bs-original-title="Standardů celkem"
-                     xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" stroke-width="1" stroke="currentColor" fill="none"
-                     stroke-linecap="round" stroke-linejoin="round">
-                  <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
-                  <rect x="5" y="4" width="4" height="16" rx="1"></rect>
-                  <rect x="9" y="4" width="4" height="16" rx="1"></rect>
-                  <path d="M5 8h4"></path>
-                  <path d="M9 16h4"></path>
-                  <path
-                        d="M13.803 4.56l2.184 -.53c.562 -.135 1.133 .19 1.282 .732l3.695 13.418a1.02 1.02 0 0 1 -.634 1.219l-.133 .041l-2.184 .53c-.562 .135 -1.133 -.19 -1.282 -.732l-3.695 -13.418a1.02 1.02 0 0 1 .634 -1.219l.133 -.041z">
-                  </path>
-                  <path d="M14 9l4 -1"></path>
-                  <path d="M16 16l3.923 -.98"></path>
-                </svg>
-                <span class="d-none d-md-none d-xl-inline d-xxl-inline mb-0">Standardů</span>
-                <h3 class="d-md-inline d-xxl-inline text-muted ms-1 mb-0">{{ $allDocuments->count() }}</h3>
-              </div>
-              <div class="d-flex align-items-center col-auto mb-2">
-                <svg class="icon icon-tabler icon-tabler-file-arrow-left d-xl-none" data-bs-toggle="tooltip" data-bs-placement="right" data-bs-original-title="Příloh celkem"
-                     xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" stroke-width="1" stroke="currentColor" fill="none"
-                     stroke-linecap="round" stroke-linejoin="round">
-                  <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
-                  <path d="M14 3v4a1 1 0 0 0 1 1h4"></path>
-                  <path d="M17 21h-10a2 2 0 0 1 -2 -2v-14a2 2 0 0 1 2 -2h7l5 5v11a2 2 0 0 1 -2 2z"></path>
-                  <path d="M15 15h-6"></path>
-                  <path d="M11.5 17.5l-2.5 -2.5l2.5 -2.5"></path>
-                </svg>
-                <span class="d-none d-md-none d-xl-inline d-xxl-inline mb-0">Příloh</span>
-                <h3 class="d-md-inline d-xxl-inline text-muted ms-1 mb-0">{{ $allAddons->count() }}</h3>
-              </div>
-              @foreach ($categories as $category)
-              <div class="d-flex align-items-center justify-content-center pe-1 col-auto mb-2">
-                <span class="text-uppercase me-1 mb-1">
-                  <div class="text-uppercase d-xxl-inline d-xl-none">
-                    {!! $category->svg_icon !!}
-                  </div>
-                </span>
-                <a class="text-{{ $category->color }}" href="/standardy/{{ $category->folder_name . '/' . $category->id }}" rel="noopener noreferrer">
-                  <span class="d-none d-md-none d-xl-inline d-xxl-inline">{{ $category->category_name }}</span>
-                </a>
-                <h3 class="d-md-inline d-xxl-inline ps-1 text-{{ $category->color }} mb-0">{{ $category->documents->count() }}</h3>
-              </div>
-              @endforeach
-            </div>
-            <div class="progress progress-separated">
-              @foreach ($categories as $category)
-              <div class="progress-bar bg-{{ $category->color }}" data-bs-toggle="tooltip" data-bs-placement="bottom"
-                   data-bs-original-title="{{ $category->category_name . ' ' . $category->documents->count() }}" role="progressbar" aria-label="{{ $category->category_name }}"
-                   style="width: {{ ($category->documents->count() * 100) / $allDocuments->count() }}%"></div>
-              @endforeach
-            </div>
-          </div> --}}
         </div>
 
         @foreach ($categories as $category)
@@ -89,7 +34,7 @@
 
         <div class="progress mt-2">
           @foreach ($categories as $category)
-          <div class="progress-bar bg-{{ $category->color }}" data-bs-toggle="tooltip" data-bs-placement="bottom"
+          <div class="progress-bar bg-{{ $category->color }}-lt" data-bs-toggle="tooltip" data-bs-placement="bottom"
                data-bs-original-title="{{ $category->category_name . ' ' . $category->documents->count() }}" role="progressbar" aria-label="{{ $category->category_name }}"
                style="width: {{ ($category->documents->count() * 100) / $allDocuments->count() }}%"></div>
           @endforeach

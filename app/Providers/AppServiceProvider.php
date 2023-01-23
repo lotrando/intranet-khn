@@ -5,6 +5,7 @@ namespace App\Providers;
 use App\Models\Category;
 use App\Models\Navitem;
 
+use Carbon\Carbon;
 use function GuzzleHttp\Promise\all;
 use Illuminate\Pagination\Paginator;
 use Illuminate\Support\Facades\View;
@@ -29,9 +30,14 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot()
     {
+
+        Carbon::setLocale('cz');
+
         Paginator::useBootstrap();
 
+
         $categories = Category::with('documents')->get();           // Categories items
+
         View::share('categories', $categories);
 
         $navitems = Navitem::with('category')->get();               // Navigation items
