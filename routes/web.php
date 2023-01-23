@@ -57,7 +57,8 @@ Route::prefix('standardy')->name('standardy.')->group(function () {
     Route::get('legislativni/{id}', [PageController::class, 'standard'])->name('legislativni');             // Legislativní standardy route (standardy.legislativni)
 
     Route::get('standard-search', [DocumentController::class, 'standardSearch'])->name('standard.search');  // Vyhledávání dokumentů
-    Route::get('standard/{id}', [FileController::class, 'standardDownload'])->name('download');             // Download standard
+    Route::get('standard/{id}', [FileController::class, 'standardDownload'])->name('download');
+    Route::get('standard/addon/{id}', [FileController::class, 'standardAddonDownload'])->name('download.addon');             // Download standard
 });
 
 // Media

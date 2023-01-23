@@ -1,7 +1,7 @@
 @extends('layouts.blank')
 
 @section('favicon')
-<link type="image/png" href="{{ asset('img/'.$categorie->category_icon) ?? '' }}" rel="shortcut icon">
+<link type="image/png" href="{{ asset('img/' . $categorie->category_icon) ?? '' }}" rel="shortcut icon">
 @endsection
 
 @section('searchbar')
@@ -21,8 +21,8 @@
 
         @foreach ($categories as $category)
         <div class="col-2 col-sm-2 col-md-2 col-xl-2 col-xxl-2 ps-0 m-0">
-          <a href="/standardy/{{ $category->folder_name . '/' . $category->id }}" class="btn bg-{{ $category->color }}-lt hover-shadow-sm w-100 m-1" data-bs-toggle="tooltip" data-bs-placement="top"
-             data-bs-original-title="{{ __('' . $category->category_name . ' standardy') }}">
+          <a class="btn bg-{{ $category->color }}-lt hover-shadow-sm w-100 m-1" data-bs-toggle="tooltip" data-bs-placement="top"
+             data-bs-original-title="{{ __('' . $category->category_name . ' standardy') }}" href="/standardy/{{ $category->folder_name . '/' . $category->id }}">
             <span class="d-inline d-sm-inline d-md-none d-lg-inline d-xl-inline">{!! $category->svg_icon !!}</span>
             <span class="d-none d-md-inline d-lg-inline d-xl-inline pe-1">{{ $category->category_name }}</span>
             <span class="text-small">
@@ -58,13 +58,13 @@
         </div>
 
         <!-- Page title actions buttons -->
-        <div class="col-auto ms-auto d-print-none">
+        <div class="ms-auto d-print-none col-auto">
           <div class="btn-list">
             <div class="d-flex justify-content-end">
               @auth
               <button class="btn btn-success d-none d-sm-inline-block me-1" id="openCreateModal" data-bs-toggle="tooltip" data-bs-placement="left"
-                      data-bs-original-title="{{ __('Vytvoří nový '. $categorie->button.' standard') }}">
-                <svg class="icon m-0 icon-tabler icon-tabler-book-upload" xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 24 24" stroke-width="1"
+                      data-bs-original-title="{{ __('Vytvoří nový ' . $categorie->button . ' standard') }}">
+                <svg class="icon icon-tabler icon-tabler-book-upload m-0" xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 24 24" stroke-width="1"
                      stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
                   <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
                   <path d="M14 20h-8a2 2 0 0 1 -2 -2v-12a2 2 0 0 1 2 -2h12v5"></path>
@@ -76,9 +76,9 @@
               </button>
               @endauth
               <button class="btn btn-yellow me-1 d-none d-sm-inline-block" id="showbtn">
-                <svg class="icon m-0 icon-tabler icon-tabler-list-details" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" stroke-width="2"
-                     stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round" data-bs-toggle="tooltip" data-bs-placement="top"
-                     data-bs-original-title="{{ __('Zobrazí všechny '. $categorie->button.' standardy') }}">
+                <svg class="icon icon-tabler icon-tabler-list-details m-0" data-bs-toggle="tooltip" data-bs-placement="top"
+                     data-bs-original-title="{{ __('Zobrazí všechny ' . $categorie->button . ' standardy') }}" xmlns="http://www.w3.org/2000/svg" width="24" height="24"
+                     viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
                   <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
                   <path d="M13 5h8"></path>
                   <path d="M13 9h5"></path>
@@ -90,9 +90,9 @@
                 <span class="d-sm-none d-md-none d-lg-inline ms-1">{{ __('Zobrazit') }}</span>
               </button>
               <button class="btn btn-secondary d-none d-sm-inline-block" id="closebtn">
-                <svg class="icon m-0 icon-tabler icon-tabler-menu-2" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" stroke-width="2"
-                     stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round" data-bs-toggle="tooltip" data-bs-placement="top"
-                     data-bs-original-title="{{ __('Skryje všechny '. $categorie->button.' standardy') }}">
+                <svg class="icon icon-tabler icon-tabler-menu-2 m-0" data-bs-toggle="tooltip" data-bs-placement="top"
+                     data-bs-original-title="{{ __('Skryje všechny ' . $categorie->button . ' standardy') }}" xmlns="http://www.w3.org/2000/svg" width="24" height="24"
+                     viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
                   <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
                   <line x1="4" y1="6" x2="20" y2="6"></line>
                   <line x1="4" y1="12" x2="20" y2="12"></line>
@@ -110,11 +110,11 @@
 
             <div class="accordion-item">
               <h2 class="accordion-header" id="main-heading-1">
-                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#standard-1" aria-expanded="true">
-                  01. Bezpečnostní cíle
+                <button class="accordion-button collapsed" data-bs-toggle="collapse" data-bs-target="#standard-1" type="button" aria-expanded="true">
+                  1. Bezpečnostní cíle
                 </button>
               </h2>
-              <div id="standard-1" class="accordion-collapse collapse m-1" data-bs-parent="#accordion-standard">
+              <div class="accordion-collapse collapse m-1" id="standard-1" data-bs-parent="#accordion-standard">
                 <div class="accordion" id="accordion-example">
                   @foreach ($documents1 as $document)
                   <div class="accordion-item">
@@ -132,12 +132,13 @@
                               </div>
                               <div class="col text-truncate">
                                 <a class="text-primary d-block text-decoration-none" href="{{ route('standardy.download', $document->id) }}" target="_blank">
-                                  <h3 style="margin-bottom: 0;">{{ $document->position }}.{{ $document->name }}</h3>
+                                  <h3 style="margin-bottom: 0;">{{ $document->accordion_group }}.{{ $document->position }}. {{ $document->name }}</h3>
                                 </a>
                                 <div class="d-block text-muted text-truncate mt-n1">{{ $document->description }}</div>
                               </div>
                               <div class="col-auto">
-                                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-certificate text-yellow" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                                <svg class="icon icon-tabler icon-tabler-certificate text-yellow" xmlns="http://www.w3.org/2000/svg" width="24" height="24"
+                                     viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
                                   <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
                                   <circle cx="15" cy="15" r="3"></circle>
                                   <path d="M13 17.5v4.5l2 -1.5l2 1.5v-4.5"></path>
@@ -160,8 +161,8 @@
                                 @if (Carbon\Carbon::parse($document->updated_at)->addDays(15) >= Carbon\Carbon::now())
                                 <span class="badge badge-sm bg-lime-lt text-uppercase ms-auto">Aktualizováno</span>
                                 @endif
-                                <svg class="icon icon-tabler text-info" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" stroke-width="2"
-                                     stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                                <svg class="icon icon-tabler text-info" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                                     stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
                                   <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
                                   <rect x="4" y="5" width="16" height="16" rx="2"></rect>
                                   <line x1="16" y1="3" x2="16" y2="7"></line>
@@ -212,20 +213,22 @@
                             @foreach ($document->addons as $add)
                             <div class="row align-items-center mb-1">
                               <div class="col-auto">
-                                <a href="{{ route('standardy.download', $add->id) }}">
+                                <a href="{{ route('standardy.download.addon', $add->id) }}">
                                   <span class="avatar">
                                     <img src="{{ asset('img/files/pdf-add.png') }}" alt="PDF - Příloha standardu">
                                   </span>
                                 </a>
                               </div>
                               <div class="col text-truncate">
-                                <a class="text-primary d-block d-block text-primary text-decoration-none" href="{{ route('standardy.download', $add->id) }}">
-                                  <h3 style="margin-bottom: 0;">Příloha č. {{ $add->name }}</h3>
+                                <a class="text-primary d-block d-block text-primary text-decoration-none" href="{{ route('standardy.download.addon', $add->id) }}">
+                                  <h3 style="margin-bottom: 0;">{{ $document->accordion_group }}.{{ $document->position }}. {{ $document->name }} - příloha
+                                    č.{{ $add->addon_number }}</h3>
                                 </a>
                                 <div class="d-block text-muted text-truncate mt-n1">{{ $add->description }}</div>
                               </div>
                               <div class="col-auto">
-                                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-certificate text-yellow" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                                <svg class="icon icon-tabler icon-tabler-certificate text-yellow" xmlns="http://www.w3.org/2000/svg" width="24" height="24"
+                                     viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
                                   <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
                                   <circle cx="15" cy="15" r="3"></circle>
                                   <path d="M13 17.5v4.5l2 -1.5l2 1.5v-4.5"></path>
@@ -248,8 +251,8 @@
                                 @if (Carbon\Carbon::parse($add->updated_at)->addDays(15) >= Carbon\Carbon::now())
                                 <span class="badge badge-sm bg-lime-lt text-uppercase ms-auto">Aktualizováno</span>
                                 @endif
-                                <svg class="icon icon-tabler text-info" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" stroke-width="2"
-                                     stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                                <svg class="icon icon-tabler text-info" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                                     stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
                                   <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
                                   <rect x="4" y="5" width="16" height="16" rx="2"></rect>
                                   <line x1="16" y1="3" x2="16" y2="7"></line>
@@ -275,11 +278,11 @@
 
             <div class="accordion-item">
               <h2 class="accordion-header" id="main-heading-2">
-                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#standard-2" aria-expanded="true">
+                <button class="accordion-button collapsed" data-bs-toggle="collapse" data-bs-target="#standard-2" type="button" aria-expanded="true">
                   02. Dostupnost a kontinuita péče
                 </button>
               </h2>
-              <div id="standard-2" class="accordion-collapse collapse m-1" data-bs-parent="#accordion-standard">
+              <div class="accordion-collapse collapse m-1" id="standard-2" data-bs-parent="#accordion-standard">
                 <div class="accordion" id="accordion-example">
                   @foreach ($documents2 as $document)
                   <div class="accordion-item">
@@ -302,7 +305,8 @@
                                 <div class="d-block text-muted text-truncate mt-n1">{{ $document->description }}</div>
                               </div>
                               <div class="col-auto">
-                                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-certificate text-yellow" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                                <svg class="icon icon-tabler icon-tabler-certificate text-yellow" xmlns="http://www.w3.org/2000/svg" width="24" height="24"
+                                     viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
                                   <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
                                   <circle cx="15" cy="15" r="3"></circle>
                                   <path d="M13 17.5v4.5l2 -1.5l2 1.5v-4.5"></path>
@@ -325,8 +329,8 @@
                                 @if (Carbon\Carbon::parse($document->updated_at)->addDays(15) >= Carbon\Carbon::now())
                                 <span class="badge badge-sm bg-lime-lt text-uppercase ms-auto">Aktualizováno</span>
                                 @endif
-                                <svg class="icon icon-tabler text-info" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" stroke-width="2"
-                                     stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                                <svg class="icon icon-tabler text-info" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                                     stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
                                   <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
                                   <rect x="4" y="5" width="16" height="16" rx="2"></rect>
                                   <line x1="16" y1="3" x2="16" y2="7"></line>
@@ -390,7 +394,8 @@
                                 <div class="d-block text-muted text-truncate mt-n1">{{ $add->description }}</div>
                               </div>
                               <div class="col-auto">
-                                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-certificate text-yellow" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                                <svg class="icon icon-tabler icon-tabler-certificate text-yellow" xmlns="http://www.w3.org/2000/svg" width="24" height="24"
+                                     viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
                                   <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
                                   <circle cx="15" cy="15" r="3"></circle>
                                   <path d="M13 17.5v4.5l2 -1.5l2 1.5v-4.5"></path>
@@ -413,8 +418,8 @@
                                 @if (Carbon\Carbon::parse($add->updated_at)->addDays(15) >= Carbon\Carbon::now())
                                 <span class="badge badge-sm bg-lime-lt text-uppercase ms-auto">Aktualizováno</span>
                                 @endif
-                                <svg class="icon icon-tabler text-info" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" stroke-width="2"
-                                     stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                                <svg class="icon icon-tabler text-info" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                                     stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
                                   <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
                                   <rect x="4" y="5" width="16" height="16" rx="2"></rect>
                                   <line x1="16" y1="3" x2="16" y2="7"></line>
@@ -439,11 +444,11 @@
 
             <div class="accordion-item">
               <h2 class="accordion-header" id="main-heading-3">
-                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#standard-3" aria-expanded="true">
+                <button class="accordion-button collapsed" data-bs-toggle="collapse" data-bs-target="#standard-3" type="button" aria-expanded="true">
                   03. Práva pacientů a jejich blízkých
                 </button>
               </h2>
-              <div id="standard-3" class="accordion-collapse collapse m-1" data-bs-parent="#accordion-standard">
+              <div class="accordion-collapse collapse m-1" id="standard-3" data-bs-parent="#accordion-standard">
                 <div class="accordion" id="accordion-example">
                   @foreach ($documents3 as $document)
                   <div class="accordion-item">
@@ -466,7 +471,8 @@
                                 <div class="d-block text-muted text-truncate mt-n1">{{ $document->description }}</div>
                               </div>
                               <div class="col-auto">
-                                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-certificate text-yellow" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                                <svg class="icon icon-tabler icon-tabler-certificate text-yellow" xmlns="http://www.w3.org/2000/svg" width="24" height="24"
+                                     viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
                                   <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
                                   <circle cx="15" cy="15" r="3"></circle>
                                   <path d="M13 17.5v4.5l2 -1.5l2 1.5v-4.5"></path>
@@ -489,8 +495,8 @@
                                 @if (Carbon\Carbon::parse($document->updated_at)->addDays(15) >= Carbon\Carbon::now())
                                 <span class="badge badge-sm bg-lime-lt text-uppercase ms-auto">Aktualizováno</span>
                                 @endif
-                                <svg class="icon icon-tabler text-info" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" stroke-width="2"
-                                     stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                                <svg class="icon icon-tabler text-info" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                                     stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
                                   <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
                                   <rect x="4" y="5" width="16" height="16" rx="2"></rect>
                                   <line x1="16" y1="3" x2="16" y2="7"></line>
@@ -554,7 +560,8 @@
                                 <div class="d-block text-muted text-truncate mt-n1">{{ $add->description }}</div>
                               </div>
                               <div class="col-auto">
-                                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-certificate text-yellow" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                                <svg class="icon icon-tabler icon-tabler-certificate text-yellow" xmlns="http://www.w3.org/2000/svg" width="24" height="24"
+                                     viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
                                   <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
                                   <circle cx="15" cy="15" r="3"></circle>
                                   <path d="M13 17.5v4.5l2 -1.5l2 1.5v-4.5"></path>
@@ -577,8 +584,8 @@
                                 @if (Carbon\Carbon::parse($add->updated_at)->addDays(15) >= Carbon\Carbon::now())
                                 <span class="badge badge-sm bg-lime-lt text-uppercase ms-auto">Aktualizováno</span>
                                 @endif
-                                <svg class="icon icon-tabler text-info" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" stroke-width="2"
-                                     stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                                <svg class="icon icon-tabler text-info" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                                     stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
                                   <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
                                   <rect x="4" y="5" width="16" height="16" rx="2"></rect>
                                   <line x1="16" y1="3" x2="16" y2="7"></line>
@@ -603,11 +610,11 @@
 
             <div class="accordion-item">
               <h2 class="accordion-header" id="main-heading-4">
-                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#standard-4" aria-expanded="true">
+                <button class="accordion-button collapsed" data-bs-toggle="collapse" data-bs-target="#standard-4" type="button" aria-expanded="true">
                   04. Diagnostická péče
                 </button>
               </h2>
-              <div id="standard-4" class="accordion-collapse collapse m-1" data-bs-parent="#accordion-standard">
+              <div class="accordion-collapse collapse m-1" id="standard-4" data-bs-parent="#accordion-standard">
                 <div class="accordion" id="accordion-example">
                   @foreach ($documents4 as $document)
                   <div class="accordion-item">
@@ -630,7 +637,8 @@
                                 <div class="d-block text-muted text-truncate mt-n1">{{ $document->description }}</div>
                               </div>
                               <div class="col-auto">
-                                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-certificate text-yellow" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                                <svg class="icon icon-tabler icon-tabler-certificate text-yellow" xmlns="http://www.w3.org/2000/svg" width="24" height="24"
+                                     viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
                                   <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
                                   <circle cx="15" cy="15" r="3"></circle>
                                   <path d="M13 17.5v4.5l2 -1.5l2 1.5v-4.5"></path>
@@ -653,8 +661,8 @@
                                 @if (Carbon\Carbon::parse($document->updated_at)->addDays(15) >= Carbon\Carbon::now())
                                 <span class="badge badge-sm bg-lime-lt text-uppercase ms-auto">Aktualizováno</span>
                                 @endif
-                                <svg class="icon icon-tabler text-info" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" stroke-width="2"
-                                     stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                                <svg class="icon icon-tabler text-info" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                                     stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
                                   <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
                                   <rect x="4" y="5" width="16" height="16" rx="2"></rect>
                                   <line x1="16" y1="3" x2="16" y2="7"></line>
@@ -667,9 +675,10 @@
                               </div>
                               @auth
                               <div class="col-auto">
-                                <span class="btn btn-icon hover-shadow cursor-pointer" id="dropdownMenuButton-' . $data->id . '" data-bs-toggle="dropdown" title="Možnosti">
-                                  <svg class="icon dropdown-item-icon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" stroke-width="2"
-                                       stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                                <span class="btn btn-icon hover-shadow cursor-pointer" id="dropdownMenuButton-' . $data->id . '" data-bs-toggle="dropdown"
+                                      title="Možnosti">
+                                  <svg class="icon dropdown-item-icon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                                       stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
                                     <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
                                     <line x1="4" y1="6" x2="20" y2="6"></line>
                                     <line x1="4" y1="12" x2="20" y2="12"></line>
@@ -688,8 +697,8 @@
                                     {{ __('Upravit standard') }}
                                   </li>
                                   <li class="dropdown-item delete" id="{{ $document->id }}'">
-                                    <svg class="icon icon dropdown-item-icon-delete" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
-                                         stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                                    <svg class="icon icon dropdown-item-icon-delete" xmlns="http://www.w3.org/2000/svg" width="24" height="24"
+                                         viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
                                       <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
                                       <path d="M4 7h16"></path>
                                       <path d="M5 7l1 12a2 2 0 0 0 2 2h8a2 2 0 0 0 2 -2l1 -12"></path>
@@ -718,7 +727,8 @@
                                 <div class="d-block text-muted text-truncate mt-n1">{{ $add->description }}</div>
                               </div>
                               <div class="col-auto">
-                                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-certificate text-yellow" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                                <svg class="icon icon-tabler icon-tabler-certificate text-yellow" xmlns="http://www.w3.org/2000/svg" width="24" height="24"
+                                     viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
                                   <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
                                   <circle cx="15" cy="15" r="3"></circle>
                                   <path d="M13 17.5v4.5l2 -1.5l2 1.5v-4.5"></path>
@@ -741,8 +751,8 @@
                                 @if (Carbon\Carbon::parse($add->updated_at)->addDays(15) >= Carbon\Carbon::now())
                                 <span class="badge badge-sm bg-lime-lt text-uppercase ms-auto">Aktualizováno</span>
                                 @endif
-                                <svg class="icon icon-tabler text-info" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" stroke-width="2"
-                                     stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                                <svg class="icon icon-tabler text-info" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                                     stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
                                   <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
                                   <rect x="4" y="5" width="16" height="16" rx="2"></rect>
                                   <line x1="16" y1="3" x2="16" y2="7"></line>
@@ -767,11 +777,11 @@
 
             <div class="accordion-item">
               <h2 class="accordion-header" id="main-heading-5">
-                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#standard-5" aria-expanded="true">
+                <button class="accordion-button collapsed" data-bs-toggle="collapse" data-bs-target="#standard-5" type="button" aria-expanded="true">
                   05. Terapeutická péče
                 </button>
               </h2>
-              <div id="standard-5" class="accordion-collapse collapse m-1" data-bs-parent="#accordion-standard">
+              <div class="accordion-collapse collapse m-1" id="standard-5" data-bs-parent="#accordion-standard">
                 <div class="accordion" id="accordion-example">
                   @foreach ($documents5 as $document)
                   <div class="accordion-item">
@@ -794,7 +804,8 @@
                                 <div class="d-block text-muted text-truncate mt-n1">{{ $document->description }}</div>
                               </div>
                               <div class="col-auto">
-                                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-certificate text-yellow" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                                <svg class="icon icon-tabler icon-tabler-certificate text-yellow" xmlns="http://www.w3.org/2000/svg" width="24" height="24"
+                                     viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
                                   <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
                                   <circle cx="15" cy="15" r="3"></circle>
                                   <path d="M13 17.5v4.5l2 -1.5l2 1.5v-4.5"></path>
@@ -817,8 +828,8 @@
                                 @if (Carbon\Carbon::parse($document->updated_at)->addDays(15) >= Carbon\Carbon::now())
                                 <span class="badge badge-sm bg-lime-lt text-uppercase ms-auto">Aktualizováno</span>
                                 @endif
-                                <svg class="icon icon-tabler text-info" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" stroke-width="2"
-                                     stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                                <svg class="icon icon-tabler text-info" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                                     stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
                                   <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
                                   <rect x="4" y="5" width="16" height="16" rx="2"></rect>
                                   <line x1="16" y1="3" x2="16" y2="7"></line>
@@ -831,9 +842,10 @@
                               </div>
                               @auth
                               <div class="col-auto">
-                                <span class="btn btn-icon hover-shadow cursor-pointer" id="dropdownMenuButton-' . $data->id . '" data-bs-toggle="dropdown" title="Možnosti">
-                                  <svg class="icon dropdown-item-icon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" stroke-width="2"
-                                       stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                                <span class="btn btn-icon hover-shadow cursor-pointer" id="dropdownMenuButton-' . $data->id . '" data-bs-toggle="dropdown"
+                                      title="Možnosti">
+                                  <svg class="icon dropdown-item-icon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                                       stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
                                     <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
                                     <line x1="4" y1="6" x2="20" y2="6"></line>
                                     <line x1="4" y1="12" x2="20" y2="12"></line>
@@ -852,8 +864,8 @@
                                     {{ __('Upravit standard') }}
                                   </li>
                                   <li class="dropdown-item delete" id="{{ $document->id }}'">
-                                    <svg class="icon icon dropdown-item-icon-delete" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
-                                         stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                                    <svg class="icon icon dropdown-item-icon-delete" xmlns="http://www.w3.org/2000/svg" width="24" height="24"
+                                         viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
                                       <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
                                       <path d="M4 7h16"></path>
                                       <path d="M5 7l1 12a2 2 0 0 0 2 2h8a2 2 0 0 0 2 -2l1 -12"></path>
@@ -882,7 +894,8 @@
                                 <div class="d-block text-muted text-truncate mt-n1">{{ $add->description }}</div>
                               </div>
                               <div class="col-auto">
-                                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-certificate text-yellow" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                                <svg class="icon icon-tabler icon-tabler-certificate text-yellow" xmlns="http://www.w3.org/2000/svg" width="24" height="24"
+                                     viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
                                   <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
                                   <circle cx="15" cy="15" r="3"></circle>
                                   <path d="M13 17.5v4.5l2 -1.5l2 1.5v-4.5"></path>
@@ -905,8 +918,8 @@
                                 @if (Carbon\Carbon::parse($add->updated_at)->addDays(15) >= Carbon\Carbon::now())
                                 <span class="badge badge-sm bg-lime-lt text-uppercase ms-auto">Aktualizováno</span>
                                 @endif
-                                <svg class="icon icon-tabler text-info" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" stroke-width="2"
-                                     stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                                <svg class="icon icon-tabler text-info" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                                     stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
                                   <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
                                   <rect x="4" y="5" width="16" height="16" rx="2"></rect>
                                   <line x1="16" y1="3" x2="16" y2="7"></line>
@@ -931,11 +944,11 @@
 
             <div class="accordion-item">
               <h2 class="accordion-header" id="main-heading-6">
-                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#standard-6" aria-expanded="true">
+                <button class="accordion-button collapsed" data-bs-toggle="collapse" data-bs-target="#standard-6" type="button" aria-expanded="true">
                   06. Anesteziologická a chirurgická péče
                 </button>
               </h2>
-              <div id="standard-6" class="accordion-collapse collapse m-1" data-bs-parent="#accordion-standard">
+              <div class="accordion-collapse collapse m-1" id="standard-6" data-bs-parent="#accordion-standard">
                 <div class="accordion" id="accordion-example">
                   @foreach ($documents6 as $document)
                   <div class="accordion-item">
@@ -958,7 +971,8 @@
                                 <div class="d-block text-muted text-truncate mt-n1">{{ $document->description }}</div>
                               </div>
                               <div class="col-auto">
-                                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-certificate text-yellow" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                                <svg class="icon icon-tabler icon-tabler-certificate text-yellow" xmlns="http://www.w3.org/2000/svg" width="24" height="24"
+                                     viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
                                   <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
                                   <circle cx="15" cy="15" r="3"></circle>
                                   <path d="M13 17.5v4.5l2 -1.5l2 1.5v-4.5"></path>
@@ -981,8 +995,8 @@
                                 @if (Carbon\Carbon::parse($document->updated_at)->addDays(15) >= Carbon\Carbon::now())
                                 <span class="badge badge-sm bg-lime-lt text-uppercase ms-auto">Aktualizováno</span>
                                 @endif
-                                <svg class="icon icon-tabler text-info" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" stroke-width="2"
-                                     stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                                <svg class="icon icon-tabler text-info" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                                     stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
                                   <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
                                   <rect x="4" y="5" width="16" height="16" rx="2"></rect>
                                   <line x1="16" y1="3" x2="16" y2="7"></line>
@@ -995,9 +1009,10 @@
                               </div>
                               @auth
                               <div class="col-auto">
-                                <span class="btn btn-icon hover-shadow cursor-pointer" id="dropdownMenuButton-' . $data->id . '" data-bs-toggle="dropdown" title="Možnosti">
-                                  <svg class="icon dropdown-item-icon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" stroke-width="2"
-                                       stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                                <span class="btn btn-icon hover-shadow cursor-pointer" id="dropdownMenuButton-' . $data->id . '" data-bs-toggle="dropdown"
+                                      title="Možnosti">
+                                  <svg class="icon dropdown-item-icon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                                       stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
                                     <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
                                     <line x1="4" y1="6" x2="20" y2="6"></line>
                                     <line x1="4" y1="12" x2="20" y2="12"></line>
@@ -1016,8 +1031,8 @@
                                     {{ __('Upravit standard') }}
                                   </li>
                                   <li class="dropdown-item delete" id="{{ $document->id }}'">
-                                    <svg class="icon icon dropdown-item-icon-delete" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
-                                         stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                                    <svg class="icon icon dropdown-item-icon-delete" xmlns="http://www.w3.org/2000/svg" width="24" height="24"
+                                         viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
                                       <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
                                       <path d="M4 7h16"></path>
                                       <path d="M5 7l1 12a2 2 0 0 0 2 2h8a2 2 0 0 0 2 -2l1 -12"></path>
@@ -1046,7 +1061,8 @@
                                 <div class="d-block text-muted text-truncate mt-n1">{{ $add->description }}</div>
                               </div>
                               <div class="col-auto">
-                                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-certificate text-yellow" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                                <svg class="icon icon-tabler icon-tabler-certificate text-yellow" xmlns="http://www.w3.org/2000/svg" width="24" height="24"
+                                     viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
                                   <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
                                   <circle cx="15" cy="15" r="3"></circle>
                                   <path d="M13 17.5v4.5l2 -1.5l2 1.5v-4.5"></path>
@@ -1069,8 +1085,8 @@
                                 @if (Carbon\Carbon::parse($add->updated_at)->addDays(15) >= Carbon\Carbon::now())
                                 <span class="badge badge-sm bg-lime-lt text-uppercase ms-auto">Aktualizováno</span>
                                 @endif
-                                <svg class="icon icon-tabler text-info" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" stroke-width="2"
-                                     stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                                <svg class="icon icon-tabler text-info" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                                     stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
                                   <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
                                   <rect x="4" y="5" width="16" height="16" rx="2"></rect>
                                   <line x1="16" y1="3" x2="16" y2="7"></line>
@@ -1095,11 +1111,11 @@
 
             <div class="accordion-item">
               <h2 class="accordion-header" id="main-heading-7">
-                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#standard-7" aria-expanded="true">
+                <button class="accordion-button collapsed" data-bs-toggle="collapse" data-bs-target="#standard-7" type="button" aria-expanded="true">
                   07. Skladování, předepisování a podávání léčiv
                 </button>
               </h2>
-              <div id="standard-7" class="accordion-collapse collapse m-1" data-bs-parent="#accordion-standard">
+              <div class="accordion-collapse collapse m-1" id="standard-7" data-bs-parent="#accordion-standard">
                 <div class="accordion" id="accordion-example">
                   @foreach ($documents7 as $document)
                   <div class="accordion-item">
@@ -1122,7 +1138,8 @@
                                 <div class="d-block text-muted text-truncate mt-n1">{{ $document->description }}</div>
                               </div>
                               <div class="col-auto">
-                                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-certificate text-yellow" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                                <svg class="icon icon-tabler icon-tabler-certificate text-yellow" xmlns="http://www.w3.org/2000/svg" width="24" height="24"
+                                     viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
                                   <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
                                   <circle cx="15" cy="15" r="3"></circle>
                                   <path d="M13 17.5v4.5l2 -1.5l2 1.5v-4.5"></path>
@@ -1145,8 +1162,8 @@
                                 @if (Carbon\Carbon::parse($document->updated_at)->addDays(15) >= Carbon\Carbon::now())
                                 <span class="badge badge-sm bg-lime-lt text-uppercase ms-auto">Aktualizováno</span>
                                 @endif
-                                <svg class="icon icon-tabler text-info" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" stroke-width="2"
-                                     stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                                <svg class="icon icon-tabler text-info" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                                     stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
                                   <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
                                   <rect x="4" y="5" width="16" height="16" rx="2"></rect>
                                   <line x1="16" y1="3" x2="16" y2="7"></line>
@@ -1159,9 +1176,10 @@
                               </div>
                               @auth
                               <div class="col-auto">
-                                <span class="btn btn-icon hover-shadow cursor-pointer" id="dropdownMenuButton-' . $data->id . '" data-bs-toggle="dropdown" title="Možnosti">
-                                  <svg class="icon dropdown-item-icon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" stroke-width="2"
-                                       stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                                <span class="btn btn-icon hover-shadow cursor-pointer" id="dropdownMenuButton-' . $data->id . '" data-bs-toggle="dropdown"
+                                      title="Možnosti">
+                                  <svg class="icon dropdown-item-icon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                                       stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
                                     <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
                                     <line x1="4" y1="6" x2="20" y2="6"></line>
                                     <line x1="4" y1="12" x2="20" y2="12"></line>
@@ -1180,8 +1198,8 @@
                                     {{ __('Upravit standard') }}
                                   </li>
                                   <li class="dropdown-item delete" id="{{ $document->id }}'">
-                                    <svg class="icon icon dropdown-item-icon-delete" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
-                                         stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                                    <svg class="icon icon dropdown-item-icon-delete" xmlns="http://www.w3.org/2000/svg" width="24" height="24"
+                                         viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
                                       <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
                                       <path d="M4 7h16"></path>
                                       <path d="M5 7l1 12a2 2 0 0 0 2 2h8a2 2 0 0 0 2 -2l1 -12"></path>
@@ -1210,7 +1228,8 @@
                                 <div class="d-block text-muted text-truncate mt-n1">{{ $add->description }}</div>
                               </div>
                               <div class="col-auto">
-                                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-certificate text-yellow" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                                <svg class="icon icon-tabler icon-tabler-certificate text-yellow" xmlns="http://www.w3.org/2000/svg" width="24" height="24"
+                                     viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
                                   <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
                                   <circle cx="15" cy="15" r="3"></circle>
                                   <path d="M13 17.5v4.5l2 -1.5l2 1.5v-4.5"></path>
@@ -1233,8 +1252,8 @@
                                 @if (Carbon\Carbon::parse($add->updated_at)->addDays(15) >= Carbon\Carbon::now())
                                 <span class="badge badge-sm bg-lime-lt text-uppercase ms-auto">Aktualizováno</span>
                                 @endif
-                                <svg class="icon icon-tabler text-info" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" stroke-width="2"
-                                     stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                                <svg class="icon icon-tabler text-info" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                                     stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
                                   <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
                                   <rect x="4" y="5" width="16" height="16" rx="2"></rect>
                                   <line x1="16" y1="3" x2="16" y2="7"></line>
@@ -1258,11 +1277,11 @@
             </div>
             <div class="accordion-item">
               <h2 class="accordion-header" id="main-heading-8">
-                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#standard-8" aria-expanded="true">
+                <button class="accordion-button collapsed" data-bs-toggle="collapse" data-bs-target="#standard-8" type="button" aria-expanded="true">
                   08. Edukace pacientů a jejich blízkých
                 </button>
               </h2>
-              <div id="standard-8" class="accordion-collapse collapse m-1" data-bs-parent="#accordion-standard">
+              <div class="accordion-collapse collapse m-1" id="standard-8" data-bs-parent="#accordion-standard">
                 <div class="accordion" id="accordion-example">
                   @foreach ($documents8 as $document)
                   <div class="accordion-item">
@@ -1285,7 +1304,8 @@
                                 <div class="d-block text-muted text-truncate mt-n1">{{ $document->description }}</div>
                               </div>
                               <div class="col-auto">
-                                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-certificate text-yellow" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                                <svg class="icon icon-tabler icon-tabler-certificate text-yellow" xmlns="http://www.w3.org/2000/svg" width="24" height="24"
+                                     viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
                                   <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
                                   <circle cx="15" cy="15" r="3"></circle>
                                   <path d="M13 17.5v4.5l2 -1.5l2 1.5v-4.5"></path>
@@ -1308,8 +1328,8 @@
                                 @if (Carbon\Carbon::parse($document->updated_at)->addDays(15) >= Carbon\Carbon::now())
                                 <span class="badge badge-sm bg-lime-lt text-uppercase ms-auto">Aktualizováno</span>
                                 @endif
-                                <svg class="icon icon-tabler text-info" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" stroke-width="2"
-                                     stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                                <svg class="icon icon-tabler text-info" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                                     stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
                                   <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
                                   <rect x="4" y="5" width="16" height="16" rx="2"></rect>
                                   <line x1="16" y1="3" x2="16" y2="7"></line>
@@ -1322,9 +1342,10 @@
                               </div>
                               @auth
                               <div class="col-auto">
-                                <span class="btn btn-icon hover-shadow cursor-pointer" id="dropdownMenuButton-' . $data->id . '" data-bs-toggle="dropdown" title="Možnosti">
-                                  <svg class="icon dropdown-item-icon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" stroke-width="2"
-                                       stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                                <span class="btn btn-icon hover-shadow cursor-pointer" id="dropdownMenuButton-' . $data->id . '" data-bs-toggle="dropdown"
+                                      title="Možnosti">
+                                  <svg class="icon dropdown-item-icon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                                       stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
                                     <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
                                     <line x1="4" y1="6" x2="20" y2="6"></line>
                                     <line x1="4" y1="12" x2="20" y2="12"></line>
@@ -1343,8 +1364,8 @@
                                     {{ __('Upravit standard') }}
                                   </li>
                                   <li class="dropdown-item delete" id="{{ $document->id }}'">
-                                    <svg class="icon icon dropdown-item-icon-delete" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
-                                         stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                                    <svg class="icon icon dropdown-item-icon-delete" xmlns="http://www.w3.org/2000/svg" width="24" height="24"
+                                         viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
                                       <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
                                       <path d="M4 7h16"></path>
                                       <path d="M5 7l1 12a2 2 0 0 0 2 2h8a2 2 0 0 0 2 -2l1 -12"></path>
@@ -1373,7 +1394,8 @@
                                 <div class="d-block text-muted text-truncate mt-n1">{{ $add->description }}</div>
                               </div>
                               <div class="col-auto">
-                                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-certificate text-yellow" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                                <svg class="icon icon-tabler icon-tabler-certificate text-yellow" xmlns="http://www.w3.org/2000/svg" width="24" height="24"
+                                     viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
                                   <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
                                   <circle cx="15" cy="15" r="3"></circle>
                                   <path d="M13 17.5v4.5l2 -1.5l2 1.5v-4.5"></path>
@@ -1396,8 +1418,8 @@
                                 @if (Carbon\Carbon::parse($add->updated_at)->addDays(15) >= Carbon\Carbon::now())
                                 <span class="badge badge-sm bg-lime-lt text-uppercase ms-auto">Aktualizováno</span>
                                 @endif
-                                <svg class="icon icon-tabler text-info" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" stroke-width="2"
-                                     stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                                <svg class="icon icon-tabler text-info" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                                     stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
                                   <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
                                   <rect x="4" y="5" width="16" height="16" rx="2"></rect>
                                   <line x1="16" y1="3" x2="16" y2="7"></line>
@@ -1422,11 +1444,11 @@
 
             <div class="accordion-item">
               <h2 class="accordion-header" id="main-heading-9">
-                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#standard-9" aria-expanded="true">
+                <button class="accordion-button collapsed" data-bs-toggle="collapse" data-bs-target="#standard-9" type="button" aria-expanded="true">
                   09. Kvalita péče a bezpečí pacientů
                 </button>
               </h2>
-              <div id="standard-9" class="accordion-collapse collapse m-1" data-bs-parent="#accordion-standard">
+              <div class="accordion-collapse collapse m-1" id="standard-9" data-bs-parent="#accordion-standard">
                 <div class="accordion" id="accordion-example">
                   @foreach ($documents9 as $document)
                   <div class="accordion-item">
@@ -1449,7 +1471,8 @@
                                 <div class="d-block text-muted text-truncate mt-n1">{{ $document->description }}</div>
                               </div>
                               <div class="col-auto">
-                                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-certificate text-yellow" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                                <svg class="icon icon-tabler icon-tabler-certificate text-yellow" xmlns="http://www.w3.org/2000/svg" width="24" height="24"
+                                     viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
                                   <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
                                   <circle cx="15" cy="15" r="3"></circle>
                                   <path d="M13 17.5v4.5l2 -1.5l2 1.5v-4.5"></path>
@@ -1472,8 +1495,8 @@
                                 @if (Carbon\Carbon::parse($document->updated_at)->addDays(15) >= Carbon\Carbon::now())
                                 <span class="badge badge-sm bg-lime-lt text-uppercase ms-auto">Aktualizováno</span>
                                 @endif
-                                <svg class="icon icon-tabler text-info" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" stroke-width="2"
-                                     stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                                <svg class="icon icon-tabler text-info" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                                     stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
                                   <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
                                   <rect x="4" y="5" width="16" height="16" rx="2"></rect>
                                   <line x1="16" y1="3" x2="16" y2="7"></line>
@@ -1486,9 +1509,10 @@
                               </div>
                               @auth
                               <div class="col-auto">
-                                <span class="btn btn-icon hover-shadow cursor-pointer" id="dropdownMenuButton-' . $data->id . '" data-bs-toggle="dropdown" title="Možnosti">
-                                  <svg class="icon dropdown-item-icon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" stroke-width="2"
-                                       stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                                <span class="btn btn-icon hover-shadow cursor-pointer" id="dropdownMenuButton-' . $data->id . '" data-bs-toggle="dropdown"
+                                      title="Možnosti">
+                                  <svg class="icon dropdown-item-icon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                                       stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
                                     <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
                                     <line x1="4" y1="6" x2="20" y2="6"></line>
                                     <line x1="4" y1="12" x2="20" y2="12"></line>
@@ -1507,8 +1531,8 @@
                                     {{ __('Upravit standard') }}
                                   </li>
                                   <li class="dropdown-item delete" id="{{ $document->id }}'">
-                                    <svg class="icon icon dropdown-item-icon-delete" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
-                                         stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                                    <svg class="icon icon dropdown-item-icon-delete" xmlns="http://www.w3.org/2000/svg" width="24" height="24"
+                                         viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
                                       <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
                                       <path d="M4 7h16"></path>
                                       <path d="M5 7l1 12a2 2 0 0 0 2 2h8a2 2 0 0 0 2 -2l1 -12"></path>
@@ -1537,7 +1561,8 @@
                                 <div class="d-block text-muted text-truncate mt-n1">{{ $add->description }}</div>
                               </div>
                               <div class="col-auto">
-                                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-certificate text-yellow" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                                <svg class="icon icon-tabler icon-tabler-certificate text-yellow" xmlns="http://www.w3.org/2000/svg" width="24" height="24"
+                                     viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
                                   <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
                                   <circle cx="15" cy="15" r="3"></circle>
                                   <path d="M13 17.5v4.5l2 -1.5l2 1.5v-4.5"></path>
@@ -1560,8 +1585,8 @@
                                 @if (Carbon\Carbon::parse($add->updated_at)->addDays(15) >= Carbon\Carbon::now())
                                 <span class="badge badge-sm bg-lime-lt text-uppercase ms-auto">Aktualizováno</span>
                                 @endif
-                                <svg class="icon icon-tabler text-info" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" stroke-width="2"
-                                     stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                                <svg class="icon icon-tabler text-info" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                                     stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
                                   <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
                                   <rect x="4" y="5" width="16" height="16" rx="2"></rect>
                                   <line x1="16" y1="3" x2="16" y2="7"></line>
@@ -1586,11 +1611,11 @@
 
             <div class="accordion-item">
               <h2 class="accordion-header" id="main-heading-10">
-                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#standard-10" aria-expanded="true">
+                <button class="accordion-button collapsed" data-bs-toggle="collapse" data-bs-target="#standard-10" type="button" aria-expanded="true">
                   10. Prevence a kontrola infekcí spojených se zdravotní péčí
                 </button>
               </h2>
-              <div id="standard-10" class="accordion-collapse collapse m-1" data-bs-parent="#accordion-standard">
+              <div class="accordion-collapse collapse m-1" id="standard-10" data-bs-parent="#accordion-standard">
                 <div class="accordion" id="accordion-example">
                   @foreach ($documents10 as $document)
                   <div class="accordion-item">
@@ -1613,7 +1638,8 @@
                                 <div class="d-block text-muted text-truncate mt-n1">{{ $document->description }}</div>
                               </div>
                               <div class="col-auto">
-                                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-certificate text-yellow" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                                <svg class="icon icon-tabler icon-tabler-certificate text-yellow" xmlns="http://www.w3.org/2000/svg" width="24" height="24"
+                                     viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
                                   <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
                                   <circle cx="15" cy="15" r="3"></circle>
                                   <path d="M13 17.5v4.5l2 -1.5l2 1.5v-4.5"></path>
@@ -1636,8 +1662,8 @@
                                 @if (Carbon\Carbon::parse($document->updated_at)->addDays(15) >= Carbon\Carbon::now())
                                 <span class="badge badge-sm bg-lime-lt text-uppercase ms-auto">Aktualizováno</span>
                                 @endif
-                                <svg class="icon icon-tabler text-info" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" stroke-width="2"
-                                     stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                                <svg class="icon icon-tabler text-info" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                                     stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
                                   <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
                                   <rect x="4" y="5" width="16" height="16" rx="2"></rect>
                                   <line x1="16" y1="3" x2="16" y2="7"></line>
@@ -1650,9 +1676,10 @@
                               </div>
                               @auth
                               <div class="col-auto">
-                                <span class="btn btn-icon hover-shadow cursor-pointer" id="dropdownMenuButton-' . $data->id . '" data-bs-toggle="dropdown" title="Možnosti">
-                                  <svg class="icon dropdown-item-icon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" stroke-width="2"
-                                       stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                                <span class="btn btn-icon hover-shadow cursor-pointer" id="dropdownMenuButton-' . $data->id . '" data-bs-toggle="dropdown"
+                                      title="Možnosti">
+                                  <svg class="icon dropdown-item-icon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                                       stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
                                     <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
                                     <line x1="4" y1="6" x2="20" y2="6"></line>
                                     <line x1="4" y1="12" x2="20" y2="12"></line>
@@ -1671,8 +1698,8 @@
                                     {{ __('Upravit standard') }}
                                   </li>
                                   <li class="dropdown-item delete" id="{{ $document->id }}'">
-                                    <svg class="icon icon dropdown-item-icon-delete" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
-                                         stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                                    <svg class="icon icon dropdown-item-icon-delete" xmlns="http://www.w3.org/2000/svg" width="24" height="24"
+                                         viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
                                       <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
                                       <path d="M4 7h16"></path>
                                       <path d="M5 7l1 12a2 2 0 0 0 2 2h8a2 2 0 0 0 2 -2l1 -12"></path>
@@ -1701,7 +1728,8 @@
                                 <div class="d-block text-muted text-truncate mt-n1">{{ $add->description }}</div>
                               </div>
                               <div class="col-auto">
-                                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-certificate text-yellow" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                                <svg class="icon icon-tabler icon-tabler-certificate text-yellow" xmlns="http://www.w3.org/2000/svg" width="24" height="24"
+                                     viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
                                   <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
                                   <circle cx="15" cy="15" r="3"></circle>
                                   <path d="M13 17.5v4.5l2 -1.5l2 1.5v-4.5"></path>
@@ -1724,8 +1752,8 @@
                                 @if (Carbon\Carbon::parse($add->updated_at)->addDays(15) >= Carbon\Carbon::now())
                                 <span class="badge badge-sm bg-lime-lt text-uppercase ms-auto">Aktualizováno</span>
                                 @endif
-                                <svg class="icon icon-tabler text-info" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" stroke-width="2"
-                                     stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                                <svg class="icon icon-tabler text-info" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                                     stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
                                   <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
                                   <rect x="4" y="5" width="16" height="16" rx="2"></rect>
                                   <line x1="16" y1="3" x2="16" y2="7"></line>
@@ -1750,11 +1778,11 @@
 
             <div class="accordion-item">
               <h2 class="accordion-header" id="main-heading-11">
-                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#standard-11" aria-expanded="true">
+                <button class="accordion-button collapsed" data-bs-toggle="collapse" data-bs-target="#standard-11" type="button" aria-expanded="true">
                   11. Řízení a vedení
                 </button>
               </h2>
-              <div id="standard-11" class="accordion-collapse collapse m-1" data-bs-parent="#accordion-standard">
+              <div class="accordion-collapse collapse m-1" id="standard-11" data-bs-parent="#accordion-standard">
                 <div class="accordion" id="accordion-example">
                   @foreach ($documents11 as $document)
                   <div class="accordion-item">
@@ -1777,7 +1805,8 @@
                                 <div class="d-block text-muted text-truncate mt-n1">{{ $document->description }}</div>
                               </div>
                               <div class="col-auto">
-                                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-certificate text-yellow" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                                <svg class="icon icon-tabler icon-tabler-certificate text-yellow" xmlns="http://www.w3.org/2000/svg" width="24" height="24"
+                                     viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
                                   <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
                                   <circle cx="15" cy="15" r="3"></circle>
                                   <path d="M13 17.5v4.5l2 -1.5l2 1.5v-4.5"></path>
@@ -1800,8 +1829,8 @@
                                 @if (Carbon\Carbon::parse($document->updated_at)->addDays(15) >= Carbon\Carbon::now())
                                 <span class="badge badge-sm bg-lime-lt text-uppercase ms-auto">Aktualizováno</span>
                                 @endif
-                                <svg class="icon icon-tabler text-info" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" stroke-width="2"
-                                     stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                                <svg class="icon icon-tabler text-info" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                                     stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
                                   <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
                                   <rect x="4" y="5" width="16" height="16" rx="2"></rect>
                                   <line x1="16" y1="3" x2="16" y2="7"></line>
@@ -1814,9 +1843,10 @@
                               </div>
                               @auth
                               <div class="col-auto">
-                                <span class="btn btn-icon hover-shadow cursor-pointer" id="dropdownMenuButton-' . $data->id . '" data-bs-toggle="dropdown" title="Možnosti">
-                                  <svg class="icon dropdown-item-icon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" stroke-width="2"
-                                       stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                                <span class="btn btn-icon hover-shadow cursor-pointer" id="dropdownMenuButton-' . $data->id . '" data-bs-toggle="dropdown"
+                                      title="Možnosti">
+                                  <svg class="icon dropdown-item-icon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                                       stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
                                     <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
                                     <line x1="4" y1="6" x2="20" y2="6"></line>
                                     <line x1="4" y1="12" x2="20" y2="12"></line>
@@ -1835,8 +1865,8 @@
                                     {{ __('Upravit standard') }}
                                   </li>
                                   <li class="dropdown-item delete" id="{{ $document->id }}'">
-                                    <svg class="icon icon dropdown-item-icon-delete" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
-                                         stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                                    <svg class="icon icon dropdown-item-icon-delete" xmlns="http://www.w3.org/2000/svg" width="24" height="24"
+                                         viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
                                       <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
                                       <path d="M4 7h16"></path>
                                       <path d="M5 7l1 12a2 2 0 0 0 2 2h8a2 2 0 0 0 2 -2l1 -12"></path>
@@ -1865,7 +1895,8 @@
                                 <div class="d-block text-muted text-truncate mt-n1">{{ $add->description }}</div>
                               </div>
                               <div class="col-auto">
-                                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-certificate text-yellow" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                                <svg class="icon icon-tabler icon-tabler-certificate text-yellow" xmlns="http://www.w3.org/2000/svg" width="24" height="24"
+                                     viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
                                   <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
                                   <circle cx="15" cy="15" r="3"></circle>
                                   <path d="M13 17.5v4.5l2 -1.5l2 1.5v-4.5"></path>
@@ -1888,8 +1919,8 @@
                                 @if (Carbon\Carbon::parse($add->updated_at)->addDays(15) >= Carbon\Carbon::now())
                                 <span class="badge badge-sm bg-lime-lt text-uppercase ms-auto">Aktualizováno</span>
                                 @endif
-                                <svg class="icon icon-tabler text-info" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" stroke-width="2"
-                                     stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                                <svg class="icon icon-tabler text-info" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                                     stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
                                   <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
                                   <rect x="4" y="5" width="16" height="16" rx="2"></rect>
                                   <line x1="16" y1="3" x2="16" y2="7"></line>
@@ -1914,11 +1945,11 @@
 
             <div class="accordion-item">
               <h2 class="accordion-header" id="main-heading-12">
-                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#standard-12" aria-expanded="true">
+                <button class="accordion-button collapsed" data-bs-toggle="collapse" data-bs-target="#standard-12" type="button" aria-expanded="true">
                   12. Zajištění bezpečnosti nemocničního prostředí
                 </button>
               </h2>
-              <div id="standard-12" class="accordion-collapse collapse m-1" data-bs-parent="#accordion-standard">
+              <div class="accordion-collapse collapse m-1" id="standard-12" data-bs-parent="#accordion-standard">
                 <div class="accordion" id="accordion-example">
                   @foreach ($documents12 as $document)
                   <div class="accordion-item">
@@ -1941,7 +1972,8 @@
                                 <div class="d-block text-muted text-truncate mt-n1">{{ $document->description }}</div>
                               </div>
                               <div class="col-auto">
-                                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-certificate text-yellow" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                                <svg class="icon icon-tabler icon-tabler-certificate text-yellow" xmlns="http://www.w3.org/2000/svg" width="24" height="24"
+                                     viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
                                   <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
                                   <circle cx="15" cy="15" r="3"></circle>
                                   <path d="M13 17.5v4.5l2 -1.5l2 1.5v-4.5"></path>
@@ -1964,8 +1996,8 @@
                                 @if (Carbon\Carbon::parse($document->updated_at)->addDays(15) >= Carbon\Carbon::now())
                                 <span class="badge badge-sm bg-lime-lt text-uppercase ms-auto">Aktualizováno</span>
                                 @endif
-                                <svg class="icon icon-tabler text-info" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" stroke-width="2"
-                                     stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                                <svg class="icon icon-tabler text-info" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                                     stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
                                   <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
                                   <rect x="4" y="5" width="16" height="16" rx="2"></rect>
                                   <line x1="16" y1="3" x2="16" y2="7"></line>
@@ -1978,9 +2010,10 @@
                               </div>
                               @auth
                               <div class="col-auto">
-                                <span class="btn btn-icon hover-shadow cursor-pointer" id="dropdownMenuButton-' . $data->id . '" data-bs-toggle="dropdown" title="Možnosti">
-                                  <svg class="icon dropdown-item-icon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" stroke-width="2"
-                                       stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                                <span class="btn btn-icon hover-shadow cursor-pointer" id="dropdownMenuButton-' . $data->id . '" data-bs-toggle="dropdown"
+                                      title="Možnosti">
+                                  <svg class="icon dropdown-item-icon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                                       stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
                                     <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
                                     <line x1="4" y1="6" x2="20" y2="6"></line>
                                     <line x1="4" y1="12" x2="20" y2="12"></line>
@@ -1999,8 +2032,8 @@
                                     {{ __('Upravit standard') }}
                                   </li>
                                   <li class="dropdown-item delete" id="{{ $document->id }}'">
-                                    <svg class="icon icon dropdown-item-icon-delete" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
-                                         stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                                    <svg class="icon icon dropdown-item-icon-delete" xmlns="http://www.w3.org/2000/svg" width="24" height="24"
+                                         viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
                                       <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
                                       <path d="M4 7h16"></path>
                                       <path d="M5 7l1 12a2 2 0 0 0 2 2h8a2 2 0 0 0 2 -2l1 -12"></path>
@@ -2029,7 +2062,8 @@
                                 <div class="d-block text-muted text-truncate mt-n1">{{ $add->description }}</div>
                               </div>
                               <div class="col-auto">
-                                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-certificate text-yellow" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                                <svg class="icon icon-tabler icon-tabler-certificate text-yellow" xmlns="http://www.w3.org/2000/svg" width="24" height="24"
+                                     viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
                                   <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
                                   <circle cx="15" cy="15" r="3"></circle>
                                   <path d="M13 17.5v4.5l2 -1.5l2 1.5v-4.5"></path>
@@ -2052,8 +2086,8 @@
                                 @if (Carbon\Carbon::parse($add->updated_at)->addDays(15) >= Carbon\Carbon::now())
                                 <span class="badge badge-sm bg-lime-lt text-uppercase ms-auto">Aktualizováno</span>
                                 @endif
-                                <svg class="icon icon-tabler text-info" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" stroke-width="2"
-                                     stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                                <svg class="icon icon-tabler text-info" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                                     stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
                                   <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
                                   <rect x="4" y="5" width="16" height="16" rx="2"></rect>
                                   <line x1="16" y1="3" x2="16" y2="7"></line>
@@ -2078,11 +2112,11 @@
 
             <div class="accordion-item">
               <h2 class="accordion-header" id="main-heading-13">
-                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#standard-13" aria-expanded="true">
+                <button class="accordion-button collapsed" data-bs-toggle="collapse" data-bs-target="#standard-13" type="button" aria-expanded="true">
                   13. Kvalifikace a vzdělávání personálu
                 </button>
               </h2>
-              <div id="standard-13" class="accordion-collapse collapse m-1" data-bs-parent="#accordion-standard">
+              <div class="accordion-collapse collapse m-1" id="standard-13" data-bs-parent="#accordion-standard">
                 <div class="accordion" id="accordion-example">
                   @foreach ($documents12 as $document)
                   <div class="accordion-item">
@@ -2105,7 +2139,8 @@
                                 <div class="d-block text-muted text-truncate mt-n1">{{ $document->description }}</div>
                               </div>
                               <div class="col-auto">
-                                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-certificate text-yellow" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                                <svg class="icon icon-tabler icon-tabler-certificate text-yellow" xmlns="http://www.w3.org/2000/svg" width="24" height="24"
+                                     viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
                                   <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
                                   <circle cx="15" cy="15" r="3"></circle>
                                   <path d="M13 17.5v4.5l2 -1.5l2 1.5v-4.5"></path>
@@ -2128,8 +2163,8 @@
                                 @if (Carbon\Carbon::parse($document->updated_at)->addDays(15) >= Carbon\Carbon::now())
                                 <span class="badge badge-sm bg-lime-lt text-uppercase ms-auto">Aktualizováno</span>
                                 @endif
-                                <svg class="icon icon-tabler text-info" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" stroke-width="2"
-                                     stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                                <svg class="icon icon-tabler text-info" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                                     stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
                                   <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
                                   <rect x="4" y="5" width="16" height="16" rx="2"></rect>
                                   <line x1="16" y1="3" x2="16" y2="7"></line>
@@ -2142,9 +2177,10 @@
                               </div>
                               @auth
                               <div class="col-auto">
-                                <span class="btn btn-icon hover-shadow cursor-pointer" id="dropdownMenuButton-' . $data->id . '" data-bs-toggle="dropdown" title="Možnosti">
-                                  <svg class="icon dropdown-item-icon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" stroke-width="2"
-                                       stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                                <span class="btn btn-icon hover-shadow cursor-pointer" id="dropdownMenuButton-' . $data->id . '" data-bs-toggle="dropdown"
+                                      title="Možnosti">
+                                  <svg class="icon dropdown-item-icon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                                       stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
                                     <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
                                     <line x1="4" y1="6" x2="20" y2="6"></line>
                                     <line x1="4" y1="12" x2="20" y2="12"></line>
@@ -2163,8 +2199,8 @@
                                     {{ __('Upravit standard') }}
                                   </li>
                                   <li class="dropdown-item delete" id="{{ $document->id }}'">
-                                    <svg class="icon icon dropdown-item-icon-delete" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
-                                         stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                                    <svg class="icon icon dropdown-item-icon-delete" xmlns="http://www.w3.org/2000/svg" width="24" height="24"
+                                         viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
                                       <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
                                       <path d="M4 7h16"></path>
                                       <path d="M5 7l1 12a2 2 0 0 0 2 2h8a2 2 0 0 0 2 -2l1 -12"></path>
@@ -2193,7 +2229,8 @@
                                 <div class="d-block text-muted text-truncate mt-n1">{{ $add->description }}</div>
                               </div>
                               <div class="col-auto">
-                                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-certificate text-yellow" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                                <svg class="icon icon-tabler icon-tabler-certificate text-yellow" xmlns="http://www.w3.org/2000/svg" width="24" height="24"
+                                     viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
                                   <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
                                   <circle cx="15" cy="15" r="3"></circle>
                                   <path d="M13 17.5v4.5l2 -1.5l2 1.5v-4.5"></path>
@@ -2216,8 +2253,8 @@
                                 @if (Carbon\Carbon::parse($add->updated_at)->addDays(15) >= Carbon\Carbon::now())
                                 <span class="badge badge-sm bg-lime-lt text-uppercase ms-auto">Aktualizováno</span>
                                 @endif
-                                <svg class="icon icon-tabler text-info" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" stroke-width="2"
-                                     stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                                <svg class="icon icon-tabler text-info" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                                     stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
                                   <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
                                   <rect x="4" y="5" width="16" height="16" rx="2"></rect>
                                   <line x1="16" y1="3" x2="16" y2="7"></line>
@@ -2242,11 +2279,11 @@
 
             <div class="accordion-item">
               <h2 class="accordion-header" id="main-heading-14">
-                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#standard-14" aria-expanded="true">
+                <button class="accordion-button collapsed" data-bs-toggle="collapse" data-bs-target="#standard-14" type="button" aria-expanded="true">
                   14. Řízení informací
                 </button>
               </h2>
-              <div id="standard-14" class="accordion-collapse collapse m-1" data-bs-parent="#accordion-standard">
+              <div class="accordion-collapse collapse m-1" id="standard-14" data-bs-parent="#accordion-standard">
                 <div class="accordion" id="accordion-example">
                   @foreach ($documents12 as $document)
                   <div class="accordion-item">
@@ -2269,7 +2306,8 @@
                                 <div class="d-block text-muted text-truncate mt-n1">{{ $document->description }}</div>
                               </div>
                               <div class="col-auto">
-                                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-certificate text-yellow" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                                <svg class="icon icon-tabler icon-tabler-certificate text-yellow" xmlns="http://www.w3.org/2000/svg" width="24" height="24"
+                                     viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
                                   <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
                                   <circle cx="15" cy="15" r="3"></circle>
                                   <path d="M13 17.5v4.5l2 -1.5l2 1.5v-4.5"></path>
@@ -2292,8 +2330,8 @@
                                 @if (Carbon\Carbon::parse($document->updated_at)->addDays(15) >= Carbon\Carbon::now())
                                 <span class="badge badge-sm bg-lime-lt text-uppercase ms-auto">Aktualizováno</span>
                                 @endif
-                                <svg class="icon icon-tabler text-info" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" stroke-width="2"
-                                     stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                                <svg class="icon icon-tabler text-info" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                                     stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
                                   <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
                                   <rect x="4" y="5" width="16" height="16" rx="2"></rect>
                                   <line x1="16" y1="3" x2="16" y2="7"></line>
@@ -2306,9 +2344,10 @@
                               </div>
                               @auth
                               <div class="col-auto">
-                                <span class="btn btn-icon hover-shadow cursor-pointer" id="dropdownMenuButton-' . $data->id . '" data-bs-toggle="dropdown" title="Možnosti">
-                                  <svg class="icon dropdown-item-icon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" stroke-width="2"
-                                       stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                                <span class="btn btn-icon hover-shadow cursor-pointer" id="dropdownMenuButton-' . $data->id . '" data-bs-toggle="dropdown"
+                                      title="Možnosti">
+                                  <svg class="icon dropdown-item-icon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                                       stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
                                     <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
                                     <line x1="4" y1="6" x2="20" y2="6"></line>
                                     <line x1="4" y1="12" x2="20" y2="12"></line>
@@ -2327,8 +2366,8 @@
                                     {{ __('Upravit standard') }}
                                   </li>
                                   <li class="dropdown-item delete" id="{{ $document->id }}'">
-                                    <svg class="icon icon dropdown-item-icon-delete" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
-                                         stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                                    <svg class="icon icon dropdown-item-icon-delete" xmlns="http://www.w3.org/2000/svg" width="24" height="24"
+                                         viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
                                       <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
                                       <path d="M4 7h16"></path>
                                       <path d="M5 7l1 12a2 2 0 0 0 2 2h8a2 2 0 0 0 2 -2l1 -12"></path>
@@ -2357,7 +2396,8 @@
                                 <div class="d-block text-muted text-truncate mt-n1">{{ $add->description }}</div>
                               </div>
                               <div class="col-auto">
-                                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-certificate text-yellow" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                                <svg class="icon icon-tabler icon-tabler-certificate text-yellow" xmlns="http://www.w3.org/2000/svg" width="24" height="24"
+                                     viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
                                   <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
                                   <circle cx="15" cy="15" r="3"></circle>
                                   <path d="M13 17.5v4.5l2 -1.5l2 1.5v-4.5"></path>
@@ -2380,8 +2420,8 @@
                                 @if (Carbon\Carbon::parse($add->updated_at)->addDays(15) >= Carbon\Carbon::now())
                                 <span class="badge badge-sm bg-lime-lt text-uppercase ms-auto">Aktualizováno</span>
                                 @endif
-                                <svg class="icon icon-tabler text-info" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" stroke-width="2"
-                                     stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                                <svg class="icon icon-tabler text-info" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                                     stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
                                   <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
                                   <rect x="4" y="5" width="16" height="16" rx="2"></rect>
                                   <line x1="16" y1="3" x2="16" y2="7"></line>
@@ -2406,11 +2446,11 @@
 
             <div class="accordion-item">
               <h2 class="accordion-header" id="main-heading-15">
-                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#standard-15" aria-expanded="true">
+                <button class="accordion-button collapsed" data-bs-toggle="collapse" data-bs-target="#standard-15" type="button" aria-expanded="true">
                   15. Přehled povinných školení pro zaměstnance KHN a.s.
                 </button>
               </h2>
-              <div id="standard-15" class="accordion-collapse collapse m-1" data-bs-parent="#accordion-standard">
+              <div class="accordion-collapse collapse m-1" id="standard-15" data-bs-parent="#accordion-standard">
                 <div class="accordion" id="accordion-example">
                   @foreach ($documents12 as $document)
                   <div class="accordion-item">
@@ -2433,7 +2473,8 @@
                                 <div class="d-block text-muted text-truncate mt-n1">{{ $document->description }}</div>
                               </div>
                               <div class="col-auto">
-                                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-certificate text-yellow" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                                <svg class="icon icon-tabler icon-tabler-certificate text-yellow" xmlns="http://www.w3.org/2000/svg" width="24" height="24"
+                                     viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
                                   <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
                                   <circle cx="15" cy="15" r="3"></circle>
                                   <path d="M13 17.5v4.5l2 -1.5l2 1.5v-4.5"></path>
@@ -2456,8 +2497,8 @@
                                 @if (Carbon\Carbon::parse($document->updated_at)->addDays(15) >= Carbon\Carbon::now())
                                 <span class="badge badge-sm bg-lime-lt text-uppercase ms-auto">Aktualizováno</span>
                                 @endif
-                                <svg class="icon icon-tabler text-info" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" stroke-width="2"
-                                     stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                                <svg class="icon icon-tabler text-info" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                                     stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
                                   <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
                                   <rect x="4" y="5" width="16" height="16" rx="2"></rect>
                                   <line x1="16" y1="3" x2="16" y2="7"></line>
@@ -2470,9 +2511,10 @@
                               </div>
                               @auth
                               <div class="col-auto">
-                                <span class="btn btn-icon hover-shadow cursor-pointer" id="dropdownMenuButton-' . $data->id . '" data-bs-toggle="dropdown" title="Možnosti">
-                                  <svg class="icon dropdown-item-icon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" stroke-width="2"
-                                       stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                                <span class="btn btn-icon hover-shadow cursor-pointer" id="dropdownMenuButton-' . $data->id . '" data-bs-toggle="dropdown"
+                                      title="Možnosti">
+                                  <svg class="icon dropdown-item-icon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                                       stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
                                     <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
                                     <line x1="4" y1="6" x2="20" y2="6"></line>
                                     <line x1="4" y1="12" x2="20" y2="12"></line>
@@ -2491,8 +2533,8 @@
                                     {{ __('Upravit standard') }}
                                   </li>
                                   <li class="dropdown-item delete" id="{{ $document->id }}'">
-                                    <svg class="icon icon dropdown-item-icon-delete" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
-                                         stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                                    <svg class="icon icon dropdown-item-icon-delete" xmlns="http://www.w3.org/2000/svg" width="24" height="24"
+                                         viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
                                       <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
                                       <path d="M4 7h16"></path>
                                       <path d="M5 7l1 12a2 2 0 0 0 2 2h8a2 2 0 0 0 2 -2l1 -12"></path>
@@ -2521,7 +2563,8 @@
                                 <div class="d-block text-muted text-truncate mt-n1">{{ $add->description }}</div>
                               </div>
                               <div class="col-auto">
-                                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-certificate text-yellow" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                                <svg class="icon icon-tabler icon-tabler-certificate text-yellow" xmlns="http://www.w3.org/2000/svg" width="24" height="24"
+                                     viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
                                   <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
                                   <circle cx="15" cy="15" r="3"></circle>
                                   <path d="M13 17.5v4.5l2 -1.5l2 1.5v-4.5"></path>
@@ -2544,8 +2587,8 @@
                                 @if (Carbon\Carbon::parse($add->updated_at)->addDays(15) >= Carbon\Carbon::now())
                                 <span class="badge badge-sm bg-lime-lt text-uppercase ms-auto">Aktualizováno</span>
                                 @endif
-                                <svg class="icon icon-tabler text-info" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" stroke-width="2"
-                                     stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                                <svg class="icon icon-tabler text-info" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                                     stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
                                   <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
                                   <rect x="4" y="5" width="16" height="16" rx="2"></rect>
                                   <line x1="16" y1="3" x2="16" y2="7"></line>
@@ -2579,7 +2622,6 @@
 
 @section('modals')
 {{-- Main Form Modal --}}
-{{-- Main Form Modal --}}
 <div class="modal fade" id="formModal" data-bs-backdrop="static" data-bs-keyboard="false" role="dialog" aria-hidden="true" tabindex="-1">
   <div class="modal-dialog modal-dialog-centered modal-full-width mx-3" role="document">
     <div class="modal-content shadow-lg">
@@ -2601,7 +2643,11 @@
               <label class="form-label">{{ __('Position') }} č:</label>
               <input class="form-control" id="position" name="position" type="text">
             </div>
-            <div class="col-10 col-lg-5 mb-sm-1">
+            <div class="col-2 col-lg-1 mb-sm-1">
+              <label class="form-label">{{ __('Skupina') }} č:</label>
+              <input class="form-control" id="accordion_group" name="accordion_group" type="text">
+            </div>
+            <div class="col-8 col-lg-4 mb-sm-1">
               <label class="form-label">{{ __('Name') }} <small class="text-azure">usnadní vyhledávání</small></label>
               <input class="form-control" id="name" name="name" type="text" placeholder="{{ __('Kategorický název standardu') }}">
             </div>
@@ -2636,6 +2682,11 @@
                 <option value="{{ $doctor->title_preffix }} {{ $doctor->last_name }} {{ $doctor->first_name }}">
                   {{ $doctor->last_name }} {{ $doctor->first_name }}, {{ $doctor->title_preffix }}</option>
                 @endforeach
+                <option value="Rada kvality">Rada kvality</option>
+                <option value="Sekaninova Anna">Sekaninova Anna</option>
+                <option value="Mlýnková Ruth">Mlýnková Ruth, Mgr.</option>
+                <option value="Bogocz Danuta">Bogocz Danut, Mgr.</option>
+                <option value="Vajglová Pavlína, Mgr.">Vajglová Pavlína, Mgr.</option>
               </select>
             </div>
             <div class="col-12 col-lg-4 mb-sm-1">
@@ -2645,6 +2696,11 @@
                 <option value="{{ $doctor->title_preffix }} {{ $doctor->last_name }} {{ $doctor->first_name }}">
                   {{ $doctor->last_name }} {{ $doctor->first_name }}, {{ $doctor->title_preffix }}</option>
                 @endforeach
+                <option value="Rada kvality">Rada kvality</option>
+                <option value="Sekaninova Anna">Sekaninova Anna</option>
+                <option value="Mlýnková Ruth">Mlýnková Ruth, Mgr.</option>
+                <option value="Bogocz Danuta">Bogocz Danut, Mgr.</option>
+                <option value="Vajglová Pavlína, Mgr.">Vajglová Pavlína, Mgr.</option>
               </select>
             </div>
             <div class="col-12 col-lg-4 mb-sm-1">
@@ -2654,6 +2710,11 @@
                 <option value="{{ $doctor->title_preffix }} {{ $doctor->last_name }} {{ $doctor->first_name }}">
                   {{ $doctor->last_name }} {{ $doctor->first_name }}, {{ $doctor->title_preffix }}</option>
                 @endforeach
+                <option value="Rada kvality">Rada kvality</option>
+                <option value="Sekaninova Anna">Sekaninova Anna</option>
+                <option value="Mlýnková Ruth">Mlýnková Ruth, Mgr.</option>
+                <option value="Bogocz Danuta">Bogocz Danut, Mgr.</option>
+                <option value="Vajglová Pavlína, Mgr.">Vajglová Pavlína, Mgr.</option>
               </select>
             </div>
           </div>
@@ -2783,7 +2844,8 @@
 
         <div class="modal-footer">
           <button class="btn btn-muted hover-shadow" data-bs-dismiss="modal" type="button">
-            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-inline" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+            <svg class="icon icon-inline" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor"
+                 fill="none" stroke-linecap="round" stroke-linejoin="round">
               <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
               <rect x="4" y="4" width="16" height="16" rx="2"></rect>
               <path d="M10 10l4 4m0 -4l-4 4"></path>
@@ -2791,14 +2853,16 @@
             {{ __('Close') }}
           </button>
           <button class="btn btn-primary ms-auto hover-shadow" id="addon-btn" type="button">
-            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-inline" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+            <svg class="icon icon-inline" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor"
+                 fill="none" stroke-linecap="round" stroke-linejoin="round">
               <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
               <path d="M15 7l-6.5 6.5a1.5 1.5 0 0 0 3 3l6.5 -6.5a3 3 0 0 0 -6 -6l-6.5 6.5a4.5 4.5 0 0 0 9 9l6.5 -6.5"></path>
             </svg>
             {{ __('Attachments') }}</button>
           <div class="align-content-end flex">
             <button class="btn btn-primary ms-auto hover-shadow" id="action_button" name="action_button" type="submit">
-              <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-book-upload" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+              <svg class="icon icon-tabler icon-tabler-book-upload" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                   stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
                 <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
                 <path d="M14 20h-8a2 2 0 0 1 -2 -2v-12a2 2 0 0 1 2 -2h12v5"></path>
                 <path d="M11 16h-5a2 2 0 0 0 -2 2"></path>
@@ -2828,7 +2892,11 @@
             <label class="form-label">{{ __('Position') }} č:</label>
             <input class="form-control" id="show-position" type="text" readonly>
           </div>
-          <div class="col-10 col-lg-5 mb-sm-1">
+          <div class="col-2 col-lg-1 mb-sm-1">
+            <label class="form-label">{{ __('Skupina') }} č:</label>
+            <input class="form-control" id="accordion_group" name="accordion_group" type="text">
+          </div>
+          <div class="col-8 col-lg-4 mb-sm-1">
             <label class="form-label">{{ __('Name') }} standardu</label>
             <input class="form-control" id="show-name" type="text" readonly>
           </div>
@@ -2897,8 +2965,9 @@
 
       <div class="modal-footer">
         <div class="align-content-end flex">
-          <a href="" class="btn btn-red ms-auto hover-shadow" id="download-btn" type="button">
-            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-inline" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+          <a class="btn btn-red ms-auto hover-shadow" id="download-btn" type="button" href="">
+            <svg class="icon icon-inline" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor"
+                 fill="none" stroke-linecap="round" stroke-linejoin="round">
               <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
               <path d="M12 20h-6a2 2 0 0 1 -2 -2v-12a2 2 0 0 1 2 -2h12v5"></path>
               <path d="M13 16h-7a2 2 0 0 0 -2 2"></path>
@@ -2908,7 +2977,8 @@
             {{ __('Download standard') }}</a>
         </div>
         <button class="btn btn-muted hover-shadow" data-bs-dismiss="modal" type="button">
-          <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-inline" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+          <svg class="icon icon-inline" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor"
+               fill="none" stroke-linecap="round" stroke-linejoin="round">
             <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
             <rect x="4" y="4" width="16" height="16" rx="2"></rect>
             <path d="M10 10l4 4m0 -4l-4 4"></path>
@@ -2961,48 +3031,49 @@
 
 @section('scripts')
 <script>
-  function fill(Value) {
-            $('#search').val(Value);
-            $('#display').hide();
-          }
-          $(document).ready(function() {
-            $("#search").keyup(function() {
-              var name = $('#search').val();
-              if (name == "") {
-                $("#display").html("");
-              } else {
-                $.ajax({
-                  type: "GET",
-                  url: "{{ route('standardy.standard.search') }}",
-                  data: {
-                    search: name
-                  },
-                  success: function(html) {
-                    $("#display").html(html).show();
-                  }
-                });
-              }
-            });
+  $(document).ready(function() {
+      $('.accordion-collapse').removeClass('show');
+      $('#showbtn').click(function() {
+        $('.accordion-collapse').addClass('show');
+        $('.accordion-button').removeClass('collapsed');
+      });
+
+      $('#closebtn').click(function() {
+        $('.accordion-collapse').removeClass('show');
+        $('.accordion-button').addClass('collapsed');
+      });
+    });
+
+    function fill(Value) {
+      $('#search').val(Value);
+      $('#display').hide();
+    }
+
+    $(document).ready(function() {
+      $("#search").keyup(function() {
+        var name = $('#search').val();
+        if (name === "") {
+          $("#display").html("");
+        } else {
+          $.ajax({
+            type: "GET",
+            url: "{{ route('standardy.standard.search') }}",
+            data: {
+              search: name
+            },
+            success: function(html) {
+              $("#display").html(html).show();
+            }
           });
+        }
+      });
+    });
 </script>
 
 <script>
-  $(document).ready(function() {
-              $('.accordion-collapse').removeClass('show');
-              $('#showbtn').click(function() {
-                $('.accordion-collapse').addClass('show');
-                $('.accordion-button').removeClass('collapsed');
-              });
-
-              $('#closebtn').click(function() {
-                $('.accordion-collapse').removeClass('show');
-                $('.accordion-button').addClass('collapsed');
-              });
-            });
-
-    // Form Modal Functions
+  // Form Modal Functions
     $(document).on('click', '.edit', function() {
-      var id = $(this).attr('id');
+      id = $(this).attr('id');
       $('#unique_code').prop('readonly', true);
       $('#form_result_modal, #form_result_window').html('');
       $.ajax({
@@ -3010,49 +3081,107 @@
         dataType: "json",
         success: function(html) {
           $('#inputForm')[0].reset();
-          $("#modal-icon, #modal-header").removeClass();
           $('.modal-title').val('');
+          $('#attachment, #action_button').removeClass('d-none');
           $('#formModal').modal('show');
-          $('#modal-icon').addClass('fas fa-{{ $categorie->fas_icon }} fa-2x m-2');
+          $('#modal-icon').html('{!! $categorie->svg_icon !!}').addClass('bg-{{ $categorie->color }}-lt');
           $('#modal-header').addClass("modal-header bg-{{ $categorie->color }}-lt");
-          $('#action_button, .modal-title').text("{{ __('Edit') }} {{ $categorie->button }} standard");
+          $('.modal-title').text("{{ __('Edit') }} {{ $categorie->button }} standard");
           $('#action').val("Edit");
           $('#category_id').val(html.data.category_id);
+          $('#accordion_group').val(html.data.accordion_group);
           $('#folder_name').val(html.data.category.folder_name);
           $('#name').val(html.data.name);
+          $('#processed').val(html.data.processed);
+          $('#authorize').val(html.data.authorize);
+          $('#examine').val(html.data.examine);
+          $('#efficiency').val(html.data.efficiency);
           $('#revision').val(html.data.revision);
+          $('#revision_date').val(html.data.revision_date);
+          $('#next_revision_date').val(moment($('#revision_date').val()).add(1, 'Y').format('YYYY-MM-DD'));
+          $('#tags').val(html.data.tags);
           $('#unique_code').val(html.data.unique_code);
           $('#description').val(html.data.description);
           $('#position').val(html.data.position);
           $('#attachment').val(html.data.attachment);
           $('#status').val(html.data.status);
+          $('#user_id').val('{{ auth()->user()->id ?? null }}');
+          $('#user_name').val(html.data.user.name);
           $('#hidden_id').val(html.data.id);
           $('#hidden_file').val(html.data.file);
+          $('#revision_date').change(function() {
+            var revisionDate = moment($(this).val()).format('YYYY-MM-DD')
+            var nextRevisionDate = moment(revisionDate).add(1, 'Y').format('YYYY-MM-DD')
+            var efficiencyDate = moment(revisionDate).year(2014).format('YYYY-MM-DD')
+            $('#efficiency').val(efficiencyDate)
+            $('#next_revision_date').val(nextRevisionDate)
+          })
         }
       })
-    })
+    });
+
+    $(document).on('click', '.show', function() {
+      id = $(this).attr('id');
+      $('#unique_code').prop('readonly', true);
+      $('#form_result_modal, #form_result_window').html('');
+      $.ajax({
+        url: "/documents/" + id,
+        dataType: "json",
+        success: function(html) {
+          $('#inputForm')[0].reset();
+          $('.modal-title').val('');
+          $('#showModal').modal('show');
+          $('#show-modal-icon').html('{!! $categorie->svg_icon !!}').addClass('bg-{{ $categorie->color }}-lt');
+          $('#show-modal-header').addClass("modal-header bg-{{ $categorie->color }}-lt");
+          $('.modal-title').text(html.data.name);
+          $('#action').val("Show");
+          $('#category_id').val(html.data.category_id);
+          $('#show-folder_name').val(html.data.category.folder_name);
+          $('#show-name').val(html.data.name);
+          $('#show-processed').val(html.data.processed);
+          $('#show-authorize').val(html.data.authorize);
+          $('#show-examine').val(html.data.examine);
+          $('#show-efficiency').val(html.data.efficiency);
+          $('#show-revision').val(html.data.revision);
+          $('#show-revision_date').val(html.data.revision_date);
+          $('#show-next_revision_date').val(html.data.next_revision_date)
+          $('#show-tags').val(html.data.tags);
+          $('#show-description').val(html.data.description);
+          $('#show-position').val(html.data.position);
+          $('#show-file').val(html.data.file);
+          $('#show-status').val(html.data.status);
+          $('#show-user_id').val('{{ auth()->user()->id ?? null }}');
+          $('#show-user_name').val(html.data.user.name);
+          $('#attachment, #action_button').addClass('d-none');
+          $('#show-hidden_id').val(html.data.id);
+          $('#download-btn').attr("href", "/standardy/standard/" + html.data.id + "");
+        }
+      })
+    });
 
     $('#openCreateModal').click(function() {
       $('#inputForm')[0].reset();
-      $("#modal-icon, #modal-header").removeClass();
+      $("#attachment, #action_button").removeClass('d-none');
+      $('#unique_code').prop('readonly', true);
       $('#category_id').val('{{ $categorie->id }}');
       $('#formModal').modal('show');
-      $('#modal-icon').addClass('fas fa-{{ $categorie->fas_icon }} fa-2x m-2');
+      $('#modal-icon').html('{!! $categorie->svg_icon !!}').addClass('bg-{{ $categorie->color }}-lt');
       $('#modal-header').addClass("modal-header bg-{{ $categorie->color }}-lt");
       $('#action_button, .modal-title').text("{{ __('Create new') }} {{ $categorie->button }} standard");
-      $('#unique_code').prop('readonly', false);
       $('#action').val("Add");
+      $('#position').val('{{ $lastpos + 1 }}');
       $('#folder_name').val("{{ $categorie->folder_name }}");
       $('#status').val('Schváleno');
-      $('#position').val('{{ $lastpos + 1 }}');
-      $('#unique_code').val('STD00{{ $lastpos + 1 }}');
-      $('#revision').val('{{ $lastpos -$lastpos + 1 }}')
+      $('#user_id').val('{{ auth()->user()->id ?? null }}');
+      $('#user_name').val('{{ auth()->user()->name ?? 'Guest' }}');
+      $('#unique_code').val('STD{{ $categorie->id }}#{{ $lastpos + 1 }}');
+      $('#revision').val('{{ $lastpos - $lastpos + 1 }}')
       $('#processed, #authorize, #examine').val('')
       $('#revision_date').change(function() {
-      var revisionDate = moment($(this).val()).format('YYYY-MM-DD')
-      var nextRevisionDate = moment(revisionDate).add(1, 'Y').format('YYYY-MM-DD')
-      $('#efficiency').val($('#revision_date').val())
-      $('#next_revision_date').val(nextRevisionDate)
+        var revisionDate = moment($(this).val()).format('YYYY-MM-DD')
+        var nextRevisionDate = moment(revisionDate).add(1, 'Y').format('YYYY-MM-DD')
+        $('#efficiency').val($('#revision_date').val())
+        $('#next_revision_date').val(nextRevisionDate)
       })
     })
 
@@ -3144,10 +3273,20 @@
       })
     })
 
+    // $("#stats").hide();
+    // $("#stats-btn").click(function() {
+    // console.log('clicked');
+    // $("#stats").toggle();
+    // });
+
+    // $("#stats").hide();
+    // $('#stats-btn').click(function() {
+    //   $('#stats').slideToggle("slow");
+    // });
+
     $("#attachments").hide();
-        $("#addon-btn").click(function() {
-        console.log('clicked');
-        $("#attachments").toggle();
-        });
+    $("#addon-btn").click(function() {
+      $('#attachments').slideToggle("slow");
+    });
 </script>
 @endsection

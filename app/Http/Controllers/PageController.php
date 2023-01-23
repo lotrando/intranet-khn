@@ -126,7 +126,7 @@ class PageController extends Controller
         $weekEndDate = $now->endOfWeek()->format('Y-m-d');
 
         $od = $now->startOfWeek()->format('d. m.');
-        $do = $now->endOfWeek()->format('d. m.');
+        $do = $now->endOfWeek()->subDays(2)->format('d. m.');
 
         $daylist = DB::table('calendar')->where('date', '>=', $weekStartDate)->where('date', '<=', $weekEndDate)->simplePaginate(7);
         return view('kantyna', ['pretitle' => 'Stravování', 'title' => 'Nabídka kantýny', 'daylist' => $daylist, 'od' => $od, 'do' => $do]);
@@ -138,10 +138,22 @@ class PageController extends Controller
         $accordion_groups = Document::where('status', 'Schváleno')->where('category_id', $id)->pluck('accordion_group');
 
         $allDocuments = Document::pluck('category_id');
-        $doctors = Employee::where('title_preffix', 'LIKE', '%' . 'Dr.' . '%')->orderBy('last_name')->get();
         $allAddons = Addon::pluck('document_id');
-        $categorie = Category::where('id', $id)->first();
-        $last = Document::where('category_id', $id)->latest()->first();
+        $categorie  = Category::where('id', $id)->first();
+        $doctors = Employee::where('title_preffix', 'LIKE', '%' . 'Dr.' . '%')
+            ->orWhere('job_id', 'LIKE', '%' . 47 . '%')
+            ->orWhere('job_id', 'LIKE', '%' . 47 . '%')
+            ->orWhere('job_id', 'LIKE', '%' . 17 . '%')
+            ->orderBy('last_name')
+            ->get();
+        $last = Document::where('category_id', $id)->orderBy('id', 'desc')->take(1)->first();
+
+        if ($last == null) {
+            $last = 0;
+        } else {
+            $position = $last->position;
+            $last = $position;
+        }
 
         $documents1 = Document::where('status', 'Schváleno')->with('category', 'addons')->where('category_id', $id)->where('accordion_group', 1)->orderBy('position')->get();
         $documents2 = Document::where('status', 'Schváleno')->with('category', 'addons')->where('category_id', $id)->where('accordion_group', 2)->orderBy('position')->get();

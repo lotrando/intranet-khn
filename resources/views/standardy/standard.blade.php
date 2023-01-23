@@ -342,6 +342,7 @@
                   <option value="Sekaninova Anna">Sekaninova Anna</option>
                   <option value="Mlýnková Ruth">Mlýnková Ruth, Mgr.</option>
                   <option value="Bogocz Danuta">Bogocz Danut, Mgr.</option>
+                  <option value="Vajglová Pavlína, Mgr.">Vajglová Pavlína, Mgr.</option>
                 </select>
               </div>
               <div class="col-12 col-lg-4 mb-sm-1">
@@ -355,6 +356,7 @@
                   <option value="Sekaninova Anna">Sekaninova Anna</option>
                   <option value="Mlýnková Ruth">Mlýnková Ruth, Mgr.</option>
                   <option value="Bogocz Danuta">Bogocz Danut, Mgr.</option>
+                  <option value="Vajglová Pavlína, Mgr.">Vajglová Pavlína, Mgr.</option>
                 </select>
               </div>
               <div class="col-12 col-lg-4 mb-sm-1">
@@ -368,6 +370,7 @@
                   <option value="Sekaninova Anna">Sekaninova Anna</option>
                   <option value="Mlýnková Ruth">Mlýnková Ruth, Mgr.</option>
                   <option value="Bogocz Danuta">Bogocz Danut, Mgr.</option>
+                  <option value="Vajglová Pavlína, Mgr.">Vajglová Pavlína, Mgr.</option>
                 </select>
               </div>
             </div>

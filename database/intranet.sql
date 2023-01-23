@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Počítač: localhost
--- Vytvořeno: Ned 22. led 2023, 22:09
+-- Vytvořeno: Pon 23. led 2023, 17:02
 -- Verze serveru: 8.0.31
 -- Verze PHP: 7.4.33
 
@@ -44,8 +44,10 @@ CREATE TABLE `addons` (
 --
 
 INSERT INTO `addons` (`id`, `document_id`, `addon_number`, `description`, `revision`, `file`, `status`, `created_at`, `updated_at`) VALUES
-(1, 21, 1, 'Název první přílohy', '1', 'standardy_okb-minim_sit_sit_magnazcrzrzcrz-revize-1.pdf', 'Schváleno', '2023-01-20 16:35:57', '2023-01-13 16:35:57'),
-(2, 21, 2, 'Název druhé přílohy', '1', 'standardy_okb-minim_sit_sit_magnazcrzrzcrz-revize-1.pdf', 'Schváleno', '2023-01-20 16:35:57', '2023-01-19 16:35:57');
+(1, 23, 1, 'Riziková léčiva s podobným názvem, balením (léčiva v injekční formě)', 'únor 2022', 'rizikova_leciva_s_podobnym_nazvem_balenim_(leciva_v_injekcni_forme)-revize-unor_2022.pdf', 'Schváleno', '2022-02-01 16:35:57', '2022-02-01 16:35:57'),
+(2, 24, 1, 'Verifikační protokol', 'únor 2022', 'verifikacni_protokol-revize-unor_2022.pdf', 'Schváleno', '2022-03-01 16:35:57', '2022-03-01 16:35:57'),
+(3, 24, 2, 'Perioperační bezpečnosní proces', 'únor 2022', 'perioperacni_bezpecnosni_proces-revize-unor_2022.pdf', 'Schváleno', '2022-03-01 16:35:57', '2022-03-01 16:35:57'),
+(4, 24, 3, 'Stranový protokol a bezpečnostní proces\r\npro ambulantní výkony v lokální anestezii', 'srpen 2022', 'stranovy_protokol_a_bezpecnostni_proces_pro_ambulantni vykony_v_lokalni_anestezii-revize-unor_2022.pdf', 'Schváleno', '2022-03-01 16:35:57', '2022-03-01 16:35:57');
 
 -- --------------------------------------------------------
 
@@ -655,8 +657,12 @@ INSERT INTO `documents` (`id`, `category_id`, `accordion_name`, `accordion_group
 (18, 3, 'Standard léčebného postupu', NULL, 18, 'Standard léčebného postupu', 'Soubor indikačních kritérií a postupů oddělení ortopedie', 'MUDr. Pešek Jiří', 'MUDr. Canibal Tomáš', 'MUDr. Pavličný Radek', '2011-01-01', '2', '2020-02-01', 'ORT-ODD', '2019-02-01', 'standardy_lecebne-soubor_indikacnich_kriterii_a_postupu_oddeleni_ortopedie-revize-2.pdf', 'STD3#18', 'Schváleno', 11, '2023-01-13 21:54:14', '2023-01-19 13:09:42'),
 (19, 3, 'Standard léčebného postupu', NULL, 19, 'Standard léčebného postupu', 'Soubor postupů při ošetření infikované nebo potenciálně infikované TEP', 'MUDr. Mráček Dalibor', 'MUDr. Canibal Tomáš', 'MUDr. Pavličný Radek', '2012-07-01', '2', '2017-12-29', 'ORT-ODD', '2016-12-29', 'standardy_lecebne-soubor_postupu_pri_osetreni_infikovane_nebo_potencialne_infikovane_tep-revize-2.pdf', 'STD3#19', 'Schváleno', 11, '2023-01-13 21:55:05', '2023-01-19 13:10:25'),
 (20, 3, 'Vředová choroba gastroduodena', NULL, 20, 'Vředová choroba gastroduodena', 'Soubor minimálních diagnostických a terapeutických standardů u pacientů s vředovou chorobou gastroduodena', 'MUDr. Střída Josef', 'MUDr. Canibal Tomáš', 'MUDr. Kultan Peter', '2007-01-01', '5', '2023-12-01', 'MEZ-JIP, INT-ODD', '2022-12-01', 'standardy_lecebne-vredova_choroba_gastroduodena-revize-5.pdf', 'STD3#20', 'Schváleno', 11, '2023-01-13 21:56:19', '2023-01-21 18:47:08'),
-(21, 8, 'Pokus', NULL, 1, 'Pokus', 'Pokusný vzorek', 'MUDr. Beran Daniel', 'MUDr. Brzeżański Henryk', 'MUDr. Canibal Tomáš', '2023-01-10', '1', '2024-01-10', 'Pokus', '2023-01-10', 'standardy_rehabilitacni-pokusny_vzorek-revize-1.pdf', 'STD8#1', 'Schváleno', 11, '2023-01-21 18:49:50', '2023-01-22 21:53:07'),
-(24, 7, 'Crohnova choroba', NULL, 1, 'Crohnova choroba', 'Soubor minimálních diagnostických a terapeutických standardů u pacientů s diabetes mellitus', 'MUDr. Beran Daniel', 'MUDr. Bernacká Janka', 'MUDr. Brzeżański Henryk', '2014-01-09', '1', '2014-01-09', NULL, '2013-01-09', 'standardy_rdg-soubor_minimalnich_diagnostickych_a_terapeutickych_standardu_u_pacientu_s_diabetes_mellitus-revize-1.pdf', 'STD7#1', 'Schváleno', 11, '2014-01-22 14:48:20', '2023-01-22 14:49:08');
+(21, 1, 'Bezpečnostní cíle', 1, 1, 'Bezpečnostní cíle', 'Správná identifikace pacientů', 'MUDr. Krajnová Pavla', 'MUDr. Kryvoruchko Stanislav', 'MUDr. Urbančíková Kamila', '2014-02-12', '3', '2021-02-12', NULL, '2020-02-12', 'standardy_akreditacni-spravna_identifikace_pacientu-revize-3.pdf', 'Vitae unde eiusmod p', 'Schváleno', 11, '2023-01-23 15:16:39', '2023-01-23 15:41:21'),
+(22, 1, 'Bezpečnostní cíle', 1, 2, 'Bezpečnostní cíle', 'Efektivní komunikace', NULL, 'Rada kvality', 'Vajglová Pavlína, Mgr.', '2017-04-01', '7', '2023-10-10', NULL, '2022-10-10', 'standardy_akreditacni-efektivni_komunikace-revize-7.pdf', 'STD1#2', 'Schváleno', 11, '2023-01-23 15:39:16', '2023-01-23 15:40:49'),
+(23, 1, 'Bezpečnostní cíle', 1, 3, 'Bezpečnostní cíle', 'Zvýšení bezpečí u rizikových léků', 'Bc. Bělicová Taťána', 'Rada kvality', 'Bc. Bělicová Taťána', '2018-01-01', '2', '2023-02-01', NULL, '2022-02-01', 'standardy_akreditacni-zvyseni_bezpeci_u_rizikovych_leku-revize-2.pdf', 'STD1#3', 'Schváleno', 11, '2023-01-23 15:53:59', '2023-01-23 15:53:59'),
+(24, 1, 'Bezpečnostní cíle', 1, 4, 'Bezpečnostní cíle', 'Prevence záměny pacienta, výkonu a lokalizace provedení', 'MUDr. Miškej Marek', 'Rada kvality', 'Kašingová Miroslava', '2017-04-01', '3', '2023-02-23', NULL, '2022-02-23', 'standardy_akreditacni-prevence_zameny_pacienta,_vykonu_a_lokalizace_provedeni-revize-3.pdf', 'STD1#4', 'Schváleno', 11, '2023-01-23 15:58:04', '2023-01-23 15:58:04'),
+(25, 1, 'Bezpečnostní cíle', 1, 5, 'Bezpečnostní cíle', 'Hygiena rukou při poskytování zdravotní péče', 'Vajglová Pavlína, Mgr.', 'Rada kvality', 'Vajglová Pavlína, Mgr.', '2017-04-01', '3', '2023-02-01', NULL, '2022-02-01', 'standardy_akreditacni-hygiena_rukou_pri_poskytovani_zdravotni_pece-revize-3.pdf', 'STD1#5', 'Schváleno', 11, '2023-01-23 16:01:52', '2023-01-23 16:01:52'),
+(26, 1, 'Bezpečnostní cíle', 1, 6, 'Bezpečnostní cíle', 'Postupy ke snížení rizika poškození pacientů v důsledku pádu', 'Cyroňová Irena', 'Rada kvality', 'Bc. Bělicová Taťána', '2017-04-01', '3', '2023-02-01', NULL, '2022-02-01', 'standardy_akreditacni-postupy_ke_snizeni_rizika_poskozeni_pacientu_v_dusledku_padu-revize-3.pdf', 'STD1#6', 'Schváleno', 11, '2023-01-23 16:03:24', '2023-01-23 16:03:24');
 
 -- --------------------------------------------------------
 
@@ -881,7 +887,7 @@ INSERT INTO `employees` (`id`, `personal_number`, `image`, `title_preffix`, `las
 (210, '61824', '61824.jpg', NULL, 'Klepek', NULL, NULL, 'Tomáš', NULL, '25', '28', 'klepek@khn.cz', '2009-02-01', NULL, '999999', NULL, NULL, 'Vydáno', 'N', 'HPP', 999, 'Aktivní', '2020-02-09 21:00:00', '2022-06-13 05:12:51'),
 (211, '64002', '64002.jpg', NULL, 'Takáčová', NULL, NULL, 'Vlasta', NULL, '19', '22', NULL, '2009-02-01', NULL, '999999', '', '', 'Vydáno', 'N', 'HPP', 999, 'Aktivní', '2020-02-09 21:00:00', NULL),
 (212, '61326', '61326.jpg', NULL, 'Hejnová', NULL, NULL, 'Alena', NULL, '8', '41', 'hejnova@khn.cz', '2009-04-01', NULL, 'd9fa05', '254', '604154554', 'Vydáno', 'N', 'HPP', 999, 'Aktivní', '2020-02-09 21:00:00', '2022-06-13 03:17:16'),
-(213, '61530', '61530.jpg', NULL, 'Janečková', NULL, NULL, 'Gabriela', NULL, '11', '41', 'janeckova@khn.cz', '2009-05-01', NULL, '66c908', '240', '602584395', 'Vydáno', 'N', 'HPP', 999, 'Aktivní', '2020-02-09 21:00:00', '2022-06-13 05:19:49'),
+(213, '61530', '61530.jpg', NULL, 'Janečková', NULL, NULL, 'Gabriela', NULL, '11', '47', 'janeckova@khn.cz', '2009-05-01', NULL, '66c908', '240', '602584395', 'Vydáno', 'N', 'HPP', 999, 'Aktivní', '2020-02-09 21:00:00', '2023-01-23 14:55:02'),
 (214, '60327', '60327.jpg', 'MUDr.', 'Sukopová', NULL, NULL, 'Kateřina', NULL, '15', '12', 'sukopova@khn.cz', '2009-07-01', NULL, 'c90818', NULL, '733711627', 'Vydáno', 'N', 'DPP', 999, 'Aktivní', '2020-02-09 21:00:00', '2022-09-20 08:53:38'),
 (218, '62517', '62517.jpg', 'MUDr.', 'Michalik', NULL, NULL, 'Daniel', NULL, '9', '12', NULL, '2009-10-01', NULL, 'd9fa05', '427', '606685251', 'Vydáno', 'N', 'HPP', 999, 'Aktivní', '2020-02-09 21:00:00', '2021-01-22 11:41:56'),
 (220, '64114', '64114.jpg', 'Bc.', 'Tchýrová', NULL, NULL, 'Lucie', NULL, '9', '55', NULL, '2009-10-05', NULL, 'd9fa05', '', '', 'Vydáno', 'N', 'HPP', 999, 'Aktivní', '2020-02-09 21:00:00', NULL),
@@ -1639,7 +1645,7 @@ INSERT INTO `users` (`id`, `personal_number`, `name`, `email`, `email_verified_a
 (8, '61199', 'PhDr. Ilona Kopečný', 'jakoubek.ivana@example.com', '2023-01-11 16:48:16', '$2y$10$LHGzVLpy/G9kAezVWgAyH.w4kZJM4sDCnTWicSCsVJwhueLR/EXkC', NULL, NULL, 'SreSqc3lYKXx7cC3k9lzdP2FARjraqw5bl3EwVMUDRG2Stbz2SRg3TXSWV1n', '2023-01-11 16:48:17', '2023-01-11 16:48:17'),
 (9, '64220', 'Vítězslav Studený', 'aprokop@example.net', '2023-01-11 16:48:16', '$2y$10$TXAjVT9k./.H4KjXoNAcn.ljLPiSjKS0B.vlGoGjEiJXFvNWX3CJG', NULL, NULL, 'Q84bE3b76njnJpTH1hee9690itatngELvYKuDNtYqpfuwZ72Y4EhZd2C0J3e', '2023-01-11 16:48:17', '2023-01-11 16:48:17'),
 (10, '62457', 'PhDr. Jan Kuča', 'milena93@example.net', '2023-01-11 16:48:16', '$2y$10$y.1Fr4LcccsAuc2CCAp9seh5PonzrjwBcBDlKqaIaO4r0eYvvow3W', NULL, NULL, 'uKtD3jRcmQagjEDZs2oF9PpRq14SsqwMna9HjdAGFR5U2lai6N50iFFPsfDC', '2023-01-11 16:48:17', '2023-01-11 16:48:17'),
-(11, '61625', 'Klika Miroslav', 'klika@khn.cz', NULL, '$2y$10$PSw5emAhbIR3u3sVNNg3iOe8t9z0Ct7dgJEKUud0jfeXFVkJzWZqK', NULL, NULL, 'qKHsrXrrYF3W1XBSkyAUf9ptg8DjpHVfgUSBxk2ZiP8m4CEmqj7OdRWAaw9T', '2023-01-11 18:53:36', '2023-01-22 21:46:33'),
+(11, '61625', 'Klika Miroslav', 'klika@khn.cz', NULL, '$2y$10$PSw5emAhbIR3u3sVNNg3iOe8t9z0Ct7dgJEKUud0jfeXFVkJzWZqK', NULL, NULL, '40AlsYEs6vSFu44Y6S3lryO0RFUy2rKOa4k24Z9O2k89l4NGnoI0WspaHBk2', '2023-01-11 18:53:36', '2023-01-22 21:46:33'),
 (12, '63882', 'Anna Seidlová', 'mbalogova@example.org', '2023-01-13 16:56:57', '$2y$10$ihu2uS/uhaS01vFcu8M.6eN5ElPL//0lTNnPybHJWDbVuNOGbWvfe', NULL, NULL, 'jSCn8DxL6F6HZFbc37QMtjBOtiWFUr5RuuHEw0DVZUbCS6s2vqM58fO2ZjXy', '2023-01-13 16:56:57', '2023-01-13 16:56:57'),
 (13, '64832', 'Marta Jílková', 'cibulkova.tomas@example.net', '2023-01-13 16:56:57', '$2y$10$43kzxF1NKZ/bu2BgUlG5D.I0JYRdvKu6v2ZyF83TkJBKh5nqeUCLW', NULL, NULL, 'rhlXHVt9qY9OsQA9Q8q4CRdFYxXxmbc5kliamjZKwMG5crFPZwTB1b2AE3XH', '2023-01-13 16:56:57', '2023-01-13 16:56:57'),
 (14, '62297', 'Vladimíra Bradová', 'ncahova@example.org', '2023-01-13 16:56:57', '$2y$10$lU2Pubr/W60AJ.rFRlM0l.8DHV1vBszqcNyoGqHjbIdGEvPIEWUZS', NULL, NULL, 'CuPFejVxGLKnbWf4cNf5kauzdYDdEMtGwTQ4eXfcRokoZG38HmYA45ePlZLa', '2023-01-13 16:56:57', '2023-01-13 16:56:57'),
@@ -1794,7 +1800,7 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT pro tabulku `addons`
 --
 ALTER TABLE `addons`
-  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT pro tabulku `adversevents`
@@ -1830,7 +1836,7 @@ ALTER TABLE `departments`
 -- AUTO_INCREMENT pro tabulku `documents`
 --
 ALTER TABLE `documents`
-  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=25;
+  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=27;
 
 --
 -- AUTO_INCREMENT pro tabulku `employees`

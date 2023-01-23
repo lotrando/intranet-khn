@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Addon;
 use App\Models\Category;
 use App\Models\Document;
 use Illuminate\Http\Request;
@@ -25,6 +26,26 @@ class FileController extends Controller
         if (file_exists(public_path() . '/standardy/' . $file[0])) {
 
             return Response::download('standardy/' . $file[0]);
+            redirect()->back();
+        } else {
+
+            return view('errors.404');
+        }
+    }
+
+    public function standardAddonDownload(Request $request)
+    {
+        $id = $request->id;
+
+        $addon = Addon::where('id', $id)->pluck('file');
+
+        if (empty($addon[0])) {
+            return view('errors.404');
+        }
+
+        if (file_exists(public_path() . '/standardy/' . $addon[0])) {
+
+            return Response::download('standardy/' . $addon[0]);
             redirect()->back();
         } else {
 
