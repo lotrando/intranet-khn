@@ -41,7 +41,6 @@
 <div class="page-body">
   <div class="container-fluid">
     <div class="row justify-content-start g-2">
-
       <div class="col-12 col-md-7 col-lg-7 col-xl-5 col-xxl-4">
         <div class="card" style="height: 40rem">
           <div class="text-left card-header bg-azure-lt">
@@ -53,7 +52,7 @@
                 </svg>
               </div>
               <div>
-                <h2 class="col-auto mb-0 ms-2">Nabídka teplých jídel - od {{ $od }} do {{ $do }}</small></h2>
+                <h2 class="col-auto mb-0 ms-2">Nabídka teplých jídel - {{ $od }} - {{ $do }}</small></h2>
               </div>
             </div>
           </div>

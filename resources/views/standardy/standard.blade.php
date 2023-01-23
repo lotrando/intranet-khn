@@ -297,6 +297,10 @@
                 <span id="form_result_modal"></span>
               </div>
             </div>
+            <div class="mb-1">
+              <label class="form-label">Náhled souboru</label>
+              <div id="pdf-preview"></div>
+            </div>
             <div class="row">
               <input class="form-control" id="category_id" name="category_id" type="hidden">
               <div class="col-2 col-lg-1 mb-sm-1">
@@ -533,7 +537,7 @@
 
   {{-- Show Modal --}}
   <div class="modal fade" id="showModal" role="dialog" aria-hidden="true" tabindex="-1">
-    <div class="modal-dialog modal-dialog-centered modal-full-width mx-3" role="document">
+    <div class="modal-dialog modal-dialog-centered modal-full-width" role="document">
       <div class="modal-content shadow-lg">
         <div id="show-modal-header">
           <h5 class="modal-title"></h5>
@@ -541,75 +545,91 @@
         </div>
         <div class="modal-body">
           <div class="row">
-            <div class="col-2 col-lg-1 mb-sm-1">
-              <label class="form-label">{{ __('Position') }} č:</label>
-              <input class="form-control" id="show-position" type="text" readonly>
+            <div class="col-6">
+
+              <div class="row">
+                <div class="col-2 mb-sm-1">
+                  <label class="form-label">{{ __('Position') }}</label>
+                  <input class="form-control" id="show-position" type="text" readonly>
+                </div>
+                <div class="col-8 mb-sm-1">
+                  <label class="form-label">{{ __('Name') }} standardu</label>
+                  <input class="form-control" id="show-name" type="text" readonly>
+                </div>
+                <div class="col-2 mb-sm-1">
+                  <label class="form-label">{{ __('Revision') }}</label>
+                  <input class="form-control" id="show-revision" type="text" readonly>
+                </div>
+              </div>
+
+              <div class="row">
+                <div class="col-12 mb-sm-1">
+                  <label class="form-label">{{ __('Popis standardu') }} </label>
+                  <input class="form-control" id="show-description" type="text" readonly>
+                </div>
+              </div>
+
+              <div class="row">
+                <div class="col-4 mb-sm-1">
+                  <label class="form-label">{{ __('Datum revize') }}</label>
+                  <input class="form-control" id="show-revision_date" type="date" readonly>
+                </div>
+                <div class="col-4 mb-sm-1">
+                  <label class="form-label">{{ __('Datum další revize') }}</label>
+                  <input class="form-control" id="show-next_revision_date" type="date" readonly>
+                </div>
+                <div class="col-4 mb-sm-1">
+                  <label class="form-label">{{ __('Platnost standardu od') }}</label>
+                  <input class="form-control" id="show-efficiency" type="date" readonly>
+                </div>
+              </div>
+
+              <div class="row">
+                <div class="col-4 mb-sm-1">
+                  <label class="form-label">{{ __('Zpracoval/a') }}</label>
+                  <input class="form-control" id="show-processed" type="text" readonly>
+                </div>
+                <div class="col-4 mb-sm-1">
+                  <label class="form-label">{{ __('Schválil/a') }}</label>
+                  <input class="form-control" id="show-authorize" type="text" readonly>
+                </div>
+                <div class="col-4 mb-sm-1">
+                  <label class="form-label">{{ __('Kontrolu provedl/a') }}</label>
+                  <input class="form-control" id="show-examine" type="text" readonly>
+                </div>
+              </div>
+
+              <div class="row">
+                <div class="col-12 mb-sm-1">
+                  <label class="form-label">{{ __('Oblast působnosti standardu') }}</label>
+                  <input class="form-control" id="show-tags" type="text" readonly>
+                </div>
+              </div>
+
+              <div class="row">
+                <div class="col-12 mb-sm-1">
+                  <label class="form-label">{{ __('Soubor') }}</label>
+                  <input class="form-control" id="show-file" type="text" readonly>
+                </div>
+                <div class="col-6 mb-sm-1">
+                  <label class="form-label">{{ __('Status') }}</label>
+                  <input class="form-control" id="show-status" readonly>
+                </div>
+                <div class="col-6 mb-sm-1">
+                  <label class="form-label">{{ __('Založil / upravil') }}</label>
+                  <input class="form-control" id="show-user_name" name="user_name" type="text" readonly>
+                </div>
+              </div>
             </div>
-            <div class="col-10 col-lg-5 mb-sm-1">
-              <label class="form-label">{{ __('Name') }} standardu</label>
-              <input class="form-control" id="show-name" type="text" readonly>
-            </div>
-            <div class="col-4 col-lg-2 mb-sm-1">
-              <label class="form-label">{{ __('Revision') }}</label>
-              <input class="form-control" id="show-revision" type="text" readonly>
-            </div>
-            <div class="col-4 col-lg-2 mb-sm-1">
-              <label class="form-label">{{ __('Datum revize') }}</label>
-              <input class="form-control" id="show-revision_date" type="date" readonly>
-            </div>
-            <div class="col-4 col-lg-2 mb-sm-1">
-              <label class="form-label">{{ __('Datum další revize') }}</label>
-              <input class="form-control" id="show-next_revision_date" type="date" readonly>
+
+            <div class="col-6 p-1">
+              <div id="pdf-preview-show"></div>
+              <input id="category_id" name="category_id" type="hidden">
+              <input id="action" name="action" type="hidden" />
+              <input id="hidden_id" name="hidden_id" type="hidden" />
+              <input id="user_id" name="user_id" type="hidden" />
             </div>
           </div>
-          <div class="row">
-            <div class="col-12 col-lg-12 mb-sm-1">
-              <label class="form-label">{{ __('Popis standardu') }} </label>
-              <input class="form-control" id="show-description" type="text" readonly>
-            </div>
-          </div>
-          <div class="row">
-            <div class="col-12 col-lg-4 mb-sm-1">
-              <label class="form-label">{{ __('Zpracoval/a') }}</label>
-              <input class="form-control" id="show-processed" type="text" readonly>
-            </div>
-            <div class="col-12 col-lg-4 mb-sm-1">
-              <label class="form-label">{{ __('Schválil/a') }}</label>
-              <input class="form-control" id="show-authorize" type="text" readonly>
-            </div>
-            <div class="col-12 col-lg-4 mb-sm-1">
-              <label class="form-label">{{ __('Kontrolu provedl/a') }}</label>
-              <input class="form-control" id="show-examine" type="text" readonly>
-            </div>
-          </div>
-          <div class="row">
-            <div class="col-12 col-lg-10 mb-sm-1">
-              <label class="form-label">{{ __('Oblast působnosti standardu') }}</label>
-              <input class="form-control" id="show-tags" type="text" readonly>
-            </div>
-            <div class="col-12 col-lg-2 mb-sm-1">
-              <label class="form-label">{{ __('Platnost standardu od') }}</label>
-              <input class="form-control" id="show-efficiency" type="date" readonly>
-            </div>
-          </div>
-          <div class="row">
-            <div class="col-12 col-lg-7 mb-sm-1">
-              <label class="form-label">{{ __('Soubor') }}</label>
-              <input class="form-control" id="show-file" type="text" readonly>
-            </div>
-            <div class="col-6 col-lg-2 mb-sm-1">
-              <label class="form-label">{{ __('Status') }}</label>
-              <input class="form-control" id="show-status" readonly>
-            </div>
-            <div class="col-6 col-lg-3 mb-sm-1">
-              <label class="form-label">{{ __('Založil / upravil') }}</label>
-              <input class="form-control" id="show-user_name" name="user_name" type="text" readonly>
-            </div>
-          </div>
-          <input id="category_id" name="category_id" type="hidden">
-          <input id="action" name="action" type="hidden" />
-          <input id="hidden_id" name="hidden_id" type="hidden" />
-          <input id="user_id" name="user_id" type="hidden" />
         </div>
 
         <div class="modal-footer">
@@ -633,6 +653,7 @@
             {{ __('Close') }}
           </button>
         </div>
+
       </div>
     </div>
   </div>
@@ -677,6 +698,7 @@
   @endsection
 
   @section('scripts')
+  <script src="{{ asset('js/pdfobject.js') }}"></script>
   <script>
     $(document).ready(function() {
 
@@ -753,6 +775,7 @@
               $('#efficiency').val(efficiencyDate)
               $('#next_revision_date').val(nextRevisionDate)
             })
+            PDFObject.embed("/standardy/" + html.data.file, "#pdf-preview");
           }
         })
       });
@@ -792,6 +815,7 @@
             $('#attachment, #action_button').addClass('d-none');
             $('#show-hidden_id').val(html.data.id);
             $('#download-btn').attr("href", "/standardy/standard/" + html.data.id + "");
+            PDFObject.embed("/standardy/" + html.data.file, "#pdf-preview-show");
           }
         })
       });
