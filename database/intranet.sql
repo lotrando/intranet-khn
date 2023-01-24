@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Počítač: localhost
--- Vytvořeno: Pon 23. led 2023, 17:02
+-- Vytvořeno: Úte 24. led 2023, 14:51
 -- Verze serveru: 8.0.31
 -- Verze PHP: 7.4.33
 
@@ -47,7 +47,8 @@ INSERT INTO `addons` (`id`, `document_id`, `addon_number`, `description`, `revis
 (1, 23, 1, 'Riziková léčiva s podobným názvem, balením (léčiva v injekční formě)', 'únor 2022', 'rizikova_leciva_s_podobnym_nazvem_balenim_(leciva_v_injekcni_forme)-revize-unor_2022.pdf', 'Schváleno', '2022-02-01 16:35:57', '2022-02-01 16:35:57'),
 (2, 24, 1, 'Verifikační protokol', 'únor 2022', 'verifikacni_protokol-revize-unor_2022.pdf', 'Schváleno', '2022-03-01 16:35:57', '2022-03-01 16:35:57'),
 (3, 24, 2, 'Perioperační bezpečnosní proces', 'únor 2022', 'perioperacni_bezpecnosni_proces-revize-unor_2022.pdf', 'Schváleno', '2022-03-01 16:35:57', '2022-03-01 16:35:57'),
-(4, 24, 3, 'Stranový protokol a bezpečnostní proces\r\npro ambulantní výkony v lokální anestezii', 'srpen 2022', 'stranovy_protokol_a_bezpecnostni_proces_pro_ambulantni vykony_v_lokalni_anestezii-revize-unor_2022.pdf', 'Schváleno', '2022-03-01 16:35:57', '2022-03-01 16:35:57');
+(4, 24, 3, 'Stranový protokol a bezpečnostní proces\r\npro ambulantní výkony v lokální anestezii', 'srpen 2022', 'stranovy_protokol_a_bezpecnostni_proces_pro_ambulantni vykony_v_lokalni_anestezii-revize-unor_2022.pdf', 'Schváleno', '2022-03-01 16:35:57', '2022-03-01 16:35:57'),
+(5, 30, 1, 'Záznamový list logopedické intervence u klientů s NKS', 'listopad 2021', 'zaznamovy_list_logopedicke_intervence_u_klientu_s_nks-revize-listopad_2021.pdf', 'Schváleno', '2022-03-01 16:35:57', '2022-03-01 16:35:57');
 
 -- --------------------------------------------------------
 
@@ -142,7 +143,7 @@ CREATE TABLE `calendar` (
   `id` bigint NOT NULL,
   `date` date DEFAULT NULL,
   `interni` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Vypisuji data pro tabulku `calendar`
@@ -644,7 +645,7 @@ INSERT INTO `documents` (`id`, `category_id`, `accordion_name`, `accordion_group
 (5, 3, 'Diabetes mellitus', NULL, 5, 'Diabetes mellitus', 'Soubor minimálních diagnostických a terapeutických standardů u pacientů s diabetes mellitus', 'MUDr. Blažík Martin', 'MUDr. Canibal Tomáš', 'MUDr. Kultan Peter', '2010-11-01', '4', '2023-12-01', 'KHN', '2022-12-01', 'standardy_lecebne-diabetes_mellitus-revize-4.pdf', 'STD3#5', 'Schváleno', 11, '2023-01-13 21:33:31', '2023-01-21 18:41:23'),
 (6, 3, 'Epilepsie', NULL, 6, 'Epilepsie', 'Soubor minimálních diagnostických a terapeutických standardů u pacientů s epilepsií', 'MUDr. Brzeżański Henryk', 'MUDr. Canibal Tomáš', 'MUDr. Sukop Roman', '2005-07-01', '6', '2023-12-01', 'NEU-ODD', '2022-12-01', 'standardy_lecebne-epilepsie-revize-6.pdf', 'STD3#6', 'Schváleno', 11, '2023-01-13 21:34:48', '2023-01-21 18:40:27'),
 (7, 3, 'Febrilie nejasné etiologie', NULL, 7, 'Febrilie nejasné etiologie', 'Soubor minimálních diagnostických a terapeutických standardů u pacientů s touto diagnózou', 'MUDr. Materna Petr', 'MUDr. Canibal Tomáš', 'MUDr. Kultan Peter', '2007-01-01', '4', '2023-12-01', 'MEZ-JIP, NEU-JIP, INT-ODD', '2022-12-01', 'standardy_lecebne-febrilie_nejasne_etiologie-revize-4.pdf', 'STD3#7', 'Schváleno', 11, '2023-01-13 21:36:13', '2023-01-21 16:45:56'),
-(8, 3, 'Chronická bolest u degenerativních onemocnění páteře', NULL, 8, 'Chronická bolest u degenerativních onemocnění páteře', 'Soubor minimálních diagnostických a terapeutických standardů u pacientů s touto diagnózou', 'MUDr. Brzeżański Henryk', 'MUDr. Canibal Tomáš', 'MUDr. Kocurová Kamila', '2005-07-01', '5', '2020-02-01', 'NEU-ODD', '2019-02-01', 'standardy_lecebne-chronicka_bolest_u_degenerativnich_onemocneni_patere-revize-5.pdf', 'STD3#8', 'Schváleno', 11, '2023-01-13 21:38:25', '2023-01-21 16:46:47'),
+(8, 3, 'Chronická bolest u degenerativních onemocnění páteře', NULL, 8, 'Chronická bolest u degenerativních onemocnění páteře', 'Soubor minimálních diagnostických a terapeutických standardů u pacientů s touto diagnózou', 'MUDr. Brzeżański Henryk', 'MUDr. Canibal Tomáš', 'MUDr. Kocurová Kamila', '2014-12-01', '6', '2023-12-01', 'NEU-ODD', '2022-12-01', 'standardy_lecebne-soubor_minimalnich_diagnostickych_a_terapeutickych_standardu_u_pacientu_s_touto_diagnozou-revize-6.pdf', 'STD3#8', 'Schváleno', 11, '2023-01-13 21:38:25', '2023-01-24 07:31:51'),
 (9, 3, 'Standard léčebného postupu', NULL, 9, 'Standard léčebného postupu', 'Soubor indikačních kritérií a postupů oddělení chirurgie páteře', 'MUDr. Sýkora Dušan', 'MUDr. Canibal Tomáš', 'MUDr. Buzek David', '2005-07-01', '6', '2023-12-01', 'ONP', '2022-12-01', 'standardy_lecebne-soubor_indikacnich_kriterii_a_postupu_oddeleni_chirurgie_patere-revize-6.pdf', 'STD3#9', 'Schváleno', 11, '2023-01-13 21:39:52', '2023-01-21 18:39:12'),
 (10, 3, 'Standard léčebného postupu', NULL, 10, 'Standard léčebného postupu', 'Indikace zátěžových vyšetření', 'MUDr. Janková Pavlína', 'MUDr. Canibal Tomáš', 'MUDr. Kultan Peter', '2007-01-01', '5', '2023-12-01', 'MEZ-JIP, NEU-JIP, INT-ODD, NEU-ODD', '2022-12-01', 'standardy_lecebne-indikace_zatezovych_vysetreni-revize-5.pdf', 'STD3#10', 'Schváleno', 11, '2023-01-13 21:40:42', '2023-01-19 12:43:14'),
 (11, 3, 'Standard léčebného postupu', NULL, 11, 'Standard léčebného postupu', 'Ischemická cévní mozková příhoda', 'MUDr. Brzeżański Henryk', 'MUDr. Canibal Tomáš', 'MUDr. Ing. Paloušková Hana', '2005-07-01', '6', '2023-12-01', 'MEZ-JIP, NEU-JIP, INT-ODD, NEU-ODD', '2022-12-01', 'standardy_lecebne-ischemicka_cevni_mozkova_prihoda-revize-6.pdf', 'STD3#11', 'Schváleno', 11, '2023-01-13 21:41:31', '2023-01-19 12:43:47'),
@@ -654,15 +655,18 @@ INSERT INTO `documents` (`id`, `category_id`, `accordion_name`, `accordion_group
 (15, 3, 'Polyneuropathie', NULL, 15, 'Polyneuropathie', 'Soubor minimálních diagnostických a terapeutických standardů u pacientů s polyneuropathií', 'MUDr. Böhm Marek', 'MUDr. Canibal Tomáš', 'MUDr. Sukop Roman', '2005-07-01', '6', '2023-12-01', 'NEU-ODD', '2022-12-01', 'standardy_lecebne-polyneuropathie-revize-6.pdf', 'STD3#15', 'Schváleno', 11, '2023-01-13 21:51:20', '2023-01-21 18:46:08'),
 (16, 3, 'Standard léčebného postupu', NULL, 16, 'Standard léčebného postupu', 'Předoperační vyšetření kardiaka před nekardiochirurgickými výkony', 'MUDr. Beran Daniel', 'MUDr. Janiková Andrea', 'MUDr. Adamová Andrea', '2006-10-01', '5', '2023-12-01', 'MEZ-JIP, INT-JIP, INT-AMB', '2022-12-01', 'standardy_lecebne-predoperacni_vysetreni_kardiaka_pred_nekardiochirurgickymi_vykony-revize-5.pdf', 'STD3#16', 'Schváleno', 11, '2023-01-13 21:52:04', '2023-01-19 13:08:09'),
 (17, 3, 'Roztroušená skleróza', NULL, 17, 'Roztroušená skleróza', 'Soubor minimálních diagnostických a terapeutických standardů u pacientů s roztroušenou sklerózou', 'MUDr. Brzeżański Henryk', 'MUDr. Canibal Tomáš', 'MUDr. Holubová Michaela', '2005-07-01', '6', '2023-12-01', 'NEU-ODD', '2022-12-01', 'standardy_lecebne-roztrousena_skleroza-revize-6.pdf', 'STD3#17', 'Schváleno', 11, '2023-01-13 21:53:04', '2023-01-21 18:46:33'),
-(18, 3, 'Standard léčebného postupu', NULL, 18, 'Standard léčebného postupu', 'Soubor indikačních kritérií a postupů oddělení ortopedie', 'MUDr. Pešek Jiří', 'MUDr. Canibal Tomáš', 'MUDr. Pavličný Radek', '2011-01-01', '2', '2020-02-01', 'ORT-ODD', '2019-02-01', 'standardy_lecebne-soubor_indikacnich_kriterii_a_postupu_oddeleni_ortopedie-revize-2.pdf', 'STD3#18', 'Schváleno', 11, '2023-01-13 21:54:14', '2023-01-19 13:09:42'),
-(19, 3, 'Standard léčebného postupu', NULL, 19, 'Standard léčebného postupu', 'Soubor postupů při ošetření infikované nebo potenciálně infikované TEP', 'MUDr. Mráček Dalibor', 'MUDr. Canibal Tomáš', 'MUDr. Pavličný Radek', '2012-07-01', '2', '2017-12-29', 'ORT-ODD', '2016-12-29', 'standardy_lecebne-soubor_postupu_pri_osetreni_infikovane_nebo_potencialne_infikovane_tep-revize-2.pdf', 'STD3#19', 'Schváleno', 11, '2023-01-13 21:55:05', '2023-01-19 13:10:25'),
+(18, 3, 'Standard léčebného postupu', NULL, 18, 'Standard léčebného postupu', 'Soubor indikačních kritérií a postupů oddělení ortopedie', 'MUDr. Pešek Jiří', 'MUDr. Canibal Tomáš', 'MUDr. Pavličný Radek', '2014-12-01', '3', '2023-12-01', 'ORT-ODD', '2022-12-01', 'standardy_lecebne-soubor_indikacnich_kriterii_a_postupu_oddeleni_ortopedie-revize-3.pdf', 'STD3#18', 'Schváleno', 11, '2023-01-13 21:54:14', '2023-01-24 12:43:45'),
+(19, 3, 'Standard léčebného postupu', NULL, 19, 'Standard léčebného postupu', 'Soubor postupů při ošetření infikované nebo potenciálně infikované TEP', 'MUDr. Mráček Dalibor', 'MUDr. Canibal Tomáš', 'MUDr. Pavličný Radek', '2012-07-01', '3', '2023-12-01', 'ORT-ODD', '2022-12-01', 'standardy_lecebne-soubor_postupu_pri_osetreni_infikovane_nebo_potencialne_infikovane_tep-revize-3.pdf', 'STD3#19', 'Schváleno', 11, '2023-01-13 21:55:05', '2023-01-24 07:13:27'),
 (20, 3, 'Vředová choroba gastroduodena', NULL, 20, 'Vředová choroba gastroduodena', 'Soubor minimálních diagnostických a terapeutických standardů u pacientů s vředovou chorobou gastroduodena', 'MUDr. Střída Josef', 'MUDr. Canibal Tomáš', 'MUDr. Kultan Peter', '2007-01-01', '5', '2023-12-01', 'MEZ-JIP, INT-ODD', '2022-12-01', 'standardy_lecebne-vredova_choroba_gastroduodena-revize-5.pdf', 'STD3#20', 'Schváleno', 11, '2023-01-13 21:56:19', '2023-01-21 18:47:08'),
 (21, 1, 'Bezpečnostní cíle', 1, 1, 'Bezpečnostní cíle', 'Správná identifikace pacientů', 'MUDr. Krajnová Pavla', 'MUDr. Kryvoruchko Stanislav', 'MUDr. Urbančíková Kamila', '2014-02-12', '3', '2021-02-12', NULL, '2020-02-12', 'standardy_akreditacni-spravna_identifikace_pacientu-revize-3.pdf', 'Vitae unde eiusmod p', 'Schváleno', 11, '2023-01-23 15:16:39', '2023-01-23 15:41:21'),
 (22, 1, 'Bezpečnostní cíle', 1, 2, 'Bezpečnostní cíle', 'Efektivní komunikace', NULL, 'Rada kvality', 'Vajglová Pavlína, Mgr.', '2017-04-01', '7', '2023-10-10', NULL, '2022-10-10', 'standardy_akreditacni-efektivni_komunikace-revize-7.pdf', 'STD1#2', 'Schváleno', 11, '2023-01-23 15:39:16', '2023-01-23 15:40:49'),
 (23, 1, 'Bezpečnostní cíle', 1, 3, 'Bezpečnostní cíle', 'Zvýšení bezpečí u rizikových léků', 'Bc. Bělicová Taťána', 'Rada kvality', 'Bc. Bělicová Taťána', '2018-01-01', '2', '2023-02-01', NULL, '2022-02-01', 'standardy_akreditacni-zvyseni_bezpeci_u_rizikovych_leku-revize-2.pdf', 'STD1#3', 'Schváleno', 11, '2023-01-23 15:53:59', '2023-01-23 15:53:59'),
 (24, 1, 'Bezpečnostní cíle', 1, 4, 'Bezpečnostní cíle', 'Prevence záměny pacienta, výkonu a lokalizace provedení', 'MUDr. Miškej Marek', 'Rada kvality', 'Kašingová Miroslava', '2017-04-01', '3', '2023-02-23', NULL, '2022-02-23', 'standardy_akreditacni-prevence_zameny_pacienta,_vykonu_a_lokalizace_provedeni-revize-3.pdf', 'STD1#4', 'Schváleno', 11, '2023-01-23 15:58:04', '2023-01-23 15:58:04'),
 (25, 1, 'Bezpečnostní cíle', 1, 5, 'Bezpečnostní cíle', 'Hygiena rukou při poskytování zdravotní péče', 'Vajglová Pavlína, Mgr.', 'Rada kvality', 'Vajglová Pavlína, Mgr.', '2017-04-01', '3', '2023-02-01', NULL, '2022-02-01', 'standardy_akreditacni-hygiena_rukou_pri_poskytovani_zdravotni_pece-revize-3.pdf', 'STD1#5', 'Schváleno', 11, '2023-01-23 16:01:52', '2023-01-23 16:01:52'),
-(26, 1, 'Bezpečnostní cíle', 1, 6, 'Bezpečnostní cíle', 'Postupy ke snížení rizika poškození pacientů v důsledku pádu', 'Cyroňová Irena', 'Rada kvality', 'Bc. Bělicová Taťána', '2017-04-01', '3', '2023-02-01', NULL, '2022-02-01', 'standardy_akreditacni-postupy_ke_snizeni_rizika_poskozeni_pacientu_v_dusledku_padu-revize-3.pdf', 'STD1#6', 'Schváleno', 11, '2023-01-23 16:03:24', '2023-01-23 16:03:24');
+(26, 1, 'Bezpečnostní cíle', 1, 6, 'Bezpečnostní cíle', 'Postupy ke snížení rizika poškození pacientů v důsledku pádu', 'Cyroňová Irena', 'Rada kvality', 'Bc. Bělicová Taťána', '2017-04-01', '3', '2023-02-01', NULL, '2022-02-01', 'standardy_akreditacni-postupy_ke_snizeni_rizika_poskozeni_pacientu_v_dusledku_padu-revize-3.pdf', 'STD1#6', 'Schváleno', 11, '2023-01-23 16:03:24', '2023-01-23 16:03:24'),
+(28, 11, 'Standard logopedické péče', NULL, 1, 'Standard logopedické péče', 'Příjem klienta a diagnostika narušené komunikační schopnosti', 'Mlýnková Ruth', 'Rada kvality', 'Bogocz Danuta', '2011-08-01', '3', '2022-11-01', 'LOG', '2021-11-01', 'standardy_logopedicke-prijem_klienta_a_diagnostika_narusene_komunikacni_schopnosti-revize-3.pdf', 'STD11#1', 'Schváleno', 11, '2023-01-24 13:29:07', '2023-01-24 13:29:07'),
+(29, 11, 'Standard logopedické péče', NULL, 2, 'Standard logopedické péče', 'Vedení dokumentace u klientů s narušenou komunikační schopností', 'Mlýnková Ruth', 'Rada kvality', 'Mlýnková Ruth', '2011-08-01', '3', '2022-11-01', NULL, '2021-11-01', 'standardy_logopedicke-vedeni_dokumentace_u_klientu_s_narusenou_komunikacni_schopnosti-revize-3.pdf', 'STD11#2', 'Schváleno', 11, '2023-01-24 13:34:13', '2023-01-24 13:34:13'),
+(30, 11, 'Standard logopedické péče', NULL, 3, 'Standard logopedické péče', 'Logopedická intervence u osob s narušenou komunikační schopností', 'Mlýnková Ruth', 'Rada kvality', 'Bogocz Danuta', '2011-08-01', '3', '2023-11-01', 'LOG', '2021-11-01', 'standardy_logopedicke-logopedicka_intervence_u_osob_s_narusenou_komunikacni_schopnosti-revize-3.pdf', 'STD11#3', 'Schváleno', 11, '2023-01-24 13:37:10', '2023-01-24 13:37:10');
 
 -- --------------------------------------------------------
 
@@ -1645,7 +1649,7 @@ INSERT INTO `users` (`id`, `personal_number`, `name`, `email`, `email_verified_a
 (8, '61199', 'PhDr. Ilona Kopečný', 'jakoubek.ivana@example.com', '2023-01-11 16:48:16', '$2y$10$LHGzVLpy/G9kAezVWgAyH.w4kZJM4sDCnTWicSCsVJwhueLR/EXkC', NULL, NULL, 'SreSqc3lYKXx7cC3k9lzdP2FARjraqw5bl3EwVMUDRG2Stbz2SRg3TXSWV1n', '2023-01-11 16:48:17', '2023-01-11 16:48:17'),
 (9, '64220', 'Vítězslav Studený', 'aprokop@example.net', '2023-01-11 16:48:16', '$2y$10$TXAjVT9k./.H4KjXoNAcn.ljLPiSjKS0B.vlGoGjEiJXFvNWX3CJG', NULL, NULL, 'Q84bE3b76njnJpTH1hee9690itatngELvYKuDNtYqpfuwZ72Y4EhZd2C0J3e', '2023-01-11 16:48:17', '2023-01-11 16:48:17'),
 (10, '62457', 'PhDr. Jan Kuča', 'milena93@example.net', '2023-01-11 16:48:16', '$2y$10$y.1Fr4LcccsAuc2CCAp9seh5PonzrjwBcBDlKqaIaO4r0eYvvow3W', NULL, NULL, 'uKtD3jRcmQagjEDZs2oF9PpRq14SsqwMna9HjdAGFR5U2lai6N50iFFPsfDC', '2023-01-11 16:48:17', '2023-01-11 16:48:17'),
-(11, '61625', 'Klika Miroslav', 'klika@khn.cz', NULL, '$2y$10$PSw5emAhbIR3u3sVNNg3iOe8t9z0Ct7dgJEKUud0jfeXFVkJzWZqK', NULL, NULL, '40AlsYEs6vSFu44Y6S3lryO0RFUy2rKOa4k24Z9O2k89l4NGnoI0WspaHBk2', '2023-01-11 18:53:36', '2023-01-22 21:46:33'),
+(11, '61625', 'Klika Miroslav', 'klika@khn.cz', NULL, '$2y$10$PSw5emAhbIR3u3sVNNg3iOe8t9z0Ct7dgJEKUud0jfeXFVkJzWZqK', NULL, NULL, '8dApan7EBM6Iltudk4YRiTVeweFWUNalghkZrejlNkZdgEMj3mul4Xqn1Ztt', '2023-01-11 18:53:36', '2023-01-22 21:46:33'),
 (12, '63882', 'Anna Seidlová', 'mbalogova@example.org', '2023-01-13 16:56:57', '$2y$10$ihu2uS/uhaS01vFcu8M.6eN5ElPL//0lTNnPybHJWDbVuNOGbWvfe', NULL, NULL, 'jSCn8DxL6F6HZFbc37QMtjBOtiWFUr5RuuHEw0DVZUbCS6s2vqM58fO2ZjXy', '2023-01-13 16:56:57', '2023-01-13 16:56:57'),
 (13, '64832', 'Marta Jílková', 'cibulkova.tomas@example.net', '2023-01-13 16:56:57', '$2y$10$43kzxF1NKZ/bu2BgUlG5D.I0JYRdvKu6v2ZyF83TkJBKh5nqeUCLW', NULL, NULL, 'rhlXHVt9qY9OsQA9Q8q4CRdFYxXxmbc5kliamjZKwMG5crFPZwTB1b2AE3XH', '2023-01-13 16:56:57', '2023-01-13 16:56:57'),
 (14, '62297', 'Vladimíra Bradová', 'ncahova@example.org', '2023-01-13 16:56:57', '$2y$10$lU2Pubr/W60AJ.rFRlM0l.8DHV1vBszqcNyoGqHjbIdGEvPIEWUZS', NULL, NULL, 'CuPFejVxGLKnbWf4cNf5kauzdYDdEMtGwTQ4eXfcRokoZG38HmYA45ePlZLa', '2023-01-13 16:56:57', '2023-01-13 16:56:57'),
@@ -1800,7 +1804,7 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT pro tabulku `addons`
 --
 ALTER TABLE `addons`
-  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT pro tabulku `adversevents`
@@ -1836,7 +1840,7 @@ ALTER TABLE `departments`
 -- AUTO_INCREMENT pro tabulku `documents`
 --
 ALTER TABLE `documents`
-  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=27;
+  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=31;
 
 --
 -- AUTO_INCREMENT pro tabulku `employees`
