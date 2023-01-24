@@ -46,11 +46,9 @@
                 <th>{{ __('Last name') }}</th>
                 <th>{{ __('First name') }}</th>
                 <th>{{ __('Department') }}</th>
-                @auth
                 <th>{{ __('Job title') }}</th>
                 <th>{{ __('Email') }}</th>
                 <th>{{ __('Mobile') }}</th>
-                @endauth
                 <th>{{ __('Phone') }}</th>
                 <th>{{ __('Status') }}</th>
                 @auth
@@ -476,30 +474,29 @@
           @endauth
           {
             data: 'title_preffix',
-            "width": "1%"
+            "width": "auto"
           },
           {
             data: 'last_name',
-            "width": "3%",
+            "width": "auto",
           },
           {
             data: 'first_name',
-            "width": "3%"
+            "width": "auto"
           },
           {
             data: 'department.department_name',
-            "width": "8%",
+            "width": "auto",
             orderable: false,
           },
-          @auth
           {
             data: 'job.job_title',
-            "width": "7%",
+            "width": "auto",
             orderable: false,
           },
           {
             data: 'email',
-            "width": "3%",
+            "width": "auto",
             render: function(data, type, full, meta) {
               if (data == null) {
                 return ""
@@ -508,20 +505,19 @@
                   "</a>";
                 }
               },
-            },
-            {
-              data: 'mobile',
-              "width": "2%"
-            },
-          @endauth
-            {
+          },
+          {
+            data: 'mobile',
+            "width": "auto"
+          },
+           {
             data: 'phone',
             className: "text-center",
-            "width": "0.5%"
+            "width": "auto"
           },
           {
             data: 'status',
-            "width": "0.5%",
+            "width": "0.1%",
             render: function(data, type, full, meta) {
               if (data == 'Neaktivní') {
                 return "<span title='{{ __('Inactive') }}' class='cursor-help mx-3 badge bg-red p-1 me-1'></span>";
@@ -537,7 +533,7 @@
           @auth
           {
             data: 'start_date',
-            "width": "1%",
+            "width": "auto",
             render: function(data, type, full, meta) {
               var date = moment(data).locale('cs');
               return date.format('DD. MM. YYYY');
@@ -545,7 +541,7 @@
           },
           {
             data: 'action',
-            "width": "1%",
+            "width": "0.5%",
             orderable: false,
             searchable: false
           },

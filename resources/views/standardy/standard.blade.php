@@ -850,7 +850,7 @@
               $('#efficiency').val(efficiencyDate)
               $('#next_revision_date').val(nextRevisionDate)
             })
-            PDFObject.embed("../../standardy/" + html.data.file, "#pdf-preview");
+            PDFObject.embed("../../standardy/" + html.data.file +"#toolbar=0", "#pdf-preview", {height: "31rem"})
           }
         })
       });
