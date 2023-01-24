@@ -45,7 +45,7 @@
 
         {{-- Searched events --}}
         <div>
-          <div class="display mt-2 mb-2" id="display"></div>
+          <div class="display mt-2 mb-3" id="display"></div>
         </div>
 
         {{-- Page title --}}
@@ -107,7 +107,7 @@
                       </div>
                       <div id="{{ $document->id }}" class="col text-truncate">
                         <span>
-                          <p id="{{ $document->id }}" class="show strong d-inline cursor-pointer text-primary text-decoration-none" style="margin-bottom: 0;" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-original-title="Více informací o standardu">{{ $document->name }}</p>
+                          <p id="{{ $document->id }}" class="show strong d-inline cursor-pointer text-primary text-decoration-none" style="margin-bottom: 0;" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-original-title="Více informací o standardu {{ $document->description }}">{{ $document->name }}</p>
                         </span>
                         <div class="d-block description text-muted text-truncate">{{ $document->description }}</div>
                       </div>
@@ -161,17 +161,17 @@
                         </div>
                       </div>
                       <div class="col-auto">
-                        <a href="{{ route('standardy.download', $add->id) }}">
+                        <a href="{{ route('standardy.download.addon', $add->id) }}">
                           <span class="avatar bg-{{ $document->category->color }}-lt" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-original-title="Stáhnout přílohu">
                             <img src="{{ asset('img/files/pdf-add.png') }}" height="32px" alt="PDF - Příloha standardu">
                           </span>
                         </a>
                       </div>
-                      <div class="col text-truncate">
-                        <a class="text-primary d-block d-block text-primary text-decoration-none" href="{{ route('standardy.download', $add->id) }}">
-                          <h3 style="margin-bottom: 0;">Příloha č. {{ $add->addon_number }}</h3>
-                        </a>
-                        <div class="d-block description text-muted text-truncate mt-n1">{{ $document->name }} - {{ $add->description }}</div>
+                      <div id="{{ $add->id }}" class="col text-truncate">
+                        <span>
+                          <p id="{{ $add->id }}" class="show strong d-inline cursor-pointer text-primary text-decoration-none" style="margin-bottom: 0;" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-original-title="Více informací o příloze {{ $add->description }}">{{ $document->description }}</p>
+                        </span>
+                        <div class="d-block description text-muted text-truncate">{{ $add->description }}</div>
                       </div>
                       {{-- <div class="col-auto">
                         @if (Carbon\Carbon::parse($add->created_at)->addDay() >= Carbon\Carbon::today())
@@ -297,45 +297,39 @@
                 <span id="form_result_modal"></span>
               </div>
             </div>
-            <div class="mb-1">
-              <label class="form-label">Náhled souboru</label>
-              <div id="pdf-preview"></div>
-            </div>
             <div class="row">
               <input class="form-control" id="category_id" name="category_id" type="hidden">
-              <div class="col-2 col-lg-1 mb-sm-1">
+              <div class="col-2 col-lg-1 mb-2">
                 <label class="form-label">{{ __('Position') }} č:</label>
                 <input class="form-control" id="position" name="position" type="text">
               </div>
-              <div class="col-10 col-lg-5 mb-sm-1">
+              <div class="col-10 col-lg-5 mb-2">
                 <label class="form-label">{{ __('Name') }} <small class="text-azure">usnadní vyhledávání</small></label>
                 <input class="form-control" id="name" name="name" type="text" placeholder="{{ __('Kategorický název standardu') }}">
               </div>
-              <div class="col-4 col-lg-2 mb-sm-1">
+              <div class="col-4 col-lg-2 mb-2">
                 <label class="form-label">{{ __('Revision') }}</label>
                 <input class="form-control" id="revision" name="revision" type="text" placeholder="{{ __('Číslo nebo datum') }}">
               </div>
-              <div class="col-4 col-lg-2 mb-sm-1">
+              <div class="col-4 col-lg-2 mb-2">
                 <label class="form-label">{{ __('Datum revize') }}</label>
                 <input class="form-control" id="revision_date" name="revision_date" type="date" placeholder="{{ __('Revision Date') }}">
               </div>
-              <div class="col-4 col-lg-2 mb-sm-1">
+              <div class="col-4 col-lg-2 mb-2">
                 <label class="form-label">{{ __('Datum další revize') }}</label>
                 <input class="form-control" id="next_revision_date" name="next_revision_date" type="date" placeholder="{{ __('Next revision Date') }}">
               </div>
-            </div>
-            <div class="row">
-              <div class="col-9 col-lg-10 mb-sm-1">
+              <div class="col-9 col-lg-10 mb-2">
                 <label class="form-label">{{ __('Popis standardu') }} <small class="text-azure">usnadní vyhledávání</small></label>
                 <input class="form-control" id="description" name="description" type="text" placeholder="{{ __('Konkrétní popis standardu') }}">
               </div>
-              <div class="col-3 col-lg-2 mb-sm-1">
+              <div class="col-3 col-lg-2 mb-2">
                 <label class="form-label">{{ __('Unikátní kód') }}</label>
                 <input class="form-control" id="unique_code" name="unique_code" type="text" placeholder="{{ __('Značka #') }}">
               </div>
             </div>
             <div class="row">
-              <div class="col-12 col-lg-4 mb-sm-1">
+              <div class="col-12 col-lg-2 mb-2">
                 <label class="form-label">{{ __('Zpracoval/a') }}</label>
                 <select class="form-select" id="processed" name="processed">
                   @foreach ($doctors as $doctor)
@@ -349,7 +343,7 @@
                   <option value="Vajglová Pavlína, Mgr.">Vajglová Pavlína, Mgr.</option>
                 </select>
               </div>
-              <div class="col-12 col-lg-4 mb-sm-1">
+              <div class="col-12 col-lg-2 mb-2">
                 <label class="form-label">{{ __('Schválil/a') }}</label>
                 <select class="form-select" id="authorize" name="authorize">
                   @foreach ($doctors as $doctor)
@@ -363,7 +357,7 @@
                   <option value="Vajglová Pavlína, Mgr.">Vajglová Pavlína, Mgr.</option>
                 </select>
               </div>
-              <div class="col-12 col-lg-4 mb-sm-1">
+              <div class="col-12 col-lg-2 mb-2">
                 <label class="form-label">{{ __('Kontrolu provedl/a') }}</label>
                 <select class="form-select" id="examine" name="examine">
                   @foreach ($doctors as $doctor)
@@ -377,31 +371,32 @@
                   <option value="Vajglová Pavlína, Mgr.">Vajglová Pavlína, Mgr.</option>
                 </select>
               </div>
-            </div>
-            <div class="row">
-              <div class="col-12 col-lg-10 mb-sm-1">
+              <div class="col-12 col-lg-4 mb-2">
                 <label class="form-label">{{ __('Oblast působnosti standardu') }} <small class="text-azure">usnadní vyhledávání</small></label>
                 <input class="form-control" id="tags" name="tags" type="text"
                        placeholder="{{ __('Zkratky oddělení nebo ambulancí, oddělené čárkou (INT-ODD,...)') }}">
               </div>
-              <div class="col-12 col-lg-2 mb-sm-1">
+              <div class="col-12 col-lg-2 mb-2">
                 <label class="form-label">{{ __('Platnost standardu od') }}</label>
                 <input class="form-control" id="efficiency" name="efficiency" type="date" placeholder="{{ __('Datum platnosti') }}">
               </div>
             </div>
+            <div class="mb-2 mt-2">
+              <div id="pdf-preview"></div>
+            </div>
             <div class="row">
-              <div class="col-12 col-lg-7 mb-sm-1">
+              <div class="col-12 col-lg-8 mb-2">
                 <label class="form-label">{{ __('Soubor') }}</label>
                 <input class="form-control" id="file" name="file" type="file" placeholder="{{ __('Soubor standardu ve formátu PDF') }}">
               </div>
-              <div class="col-6 col-lg-2 mb-sm-1">
+              <div class="col-6 col-lg-2 mb-2">
                 <label class="form-label">{{ __('Status') }}</label>
                 <select class="form-select" id="status" name="status">
                   <option value="Rozpracováno">Rozpracováno</option>
                   <option value="Schváleno">Schváleno</option>
                 </select>
               </div>
-              <div class="col-6 col-lg-3 mb-sm-1">
+              <div class="col-6 col-lg-2 mb-2">
                 <label class="form-label">{{ __('Založil / upravil') }}</label>
                 <input class="form-control" id="user_name" name="user_name" type="text" readonly>
               </div>
@@ -413,15 +408,15 @@
                   <span style="font-size: 0.6rem">{{ __('Attachment') }} 1</span>
                 </div>
 
-                <div class="col-12 col-lg-8 mb-sm-1">
+                <div class="col-12 col-lg-8 mb-2">
                   <label class="form-label">{{ __('Příloha') }} 1</label>
                   <input class="form-control" id="file-add" name="file-add[]" type="file" placeholder="{{ __('Soubor standardu ve formátu PDF') }}">
                 </div>
-                <div class="col-12 col-lg-2 mb-sm-1">
+                <div class="col-12 col-lg-2 mb-2">
                   <label class="form-label">{{ __('Revision') }}</label>
                   <input class="form-control" id="revision-add" name="revision-add[]" type="text" placeholder="{{ __('Číslo nebo datum') }}">
                 </div>
-                <div class="col-12 col-lg-2 mb-sm-1">
+                <div class="col-12 col-lg-2 mb-2">
                   <label class="form-label">{{ __('Status') }}</label>
                   <select class="form-select" id="status1" name="status1">
                     <option value="Schváleno">Schváleno</option>
@@ -434,15 +429,15 @@
                 <div class="hr-text text-muted my-3">
                   <span style="font-size: 0.6rem">{{ __('Attachment') }} 2</span>
                 </div>
-                <div class="col-12 col-lg-8 mb-sm-1">
+                <div class="col-12 col-lg-8 mb-3">
                   <label class="form-label">{{ __('Příloha') }} 2</label>
                   <input class="form-control" id="file-add" name="file-add[]" type="file" placeholder="{{ __('Soubor standardu ve formátu PDF') }}">
                 </div>
-                <div class="col-12 col-lg-2 mb-sm-1">
+                <div class="col-12 col-lg-2 mb-3">
                   <label class="form-label">{{ __('Revision') }}</label>
                   <input class="form-control" id="revision-add" name="revision-add[]" type="text" placeholder="{{ __('Číslo nebo datum') }}">
                 </div>
-                <div class="col-12 col-lg-2 mb-sm-1">
+                <div class="col-12 col-lg-2 mb-3">
                   <label class="form-label">{{ __('Status') }}</label>
                   <select class="form-select" id="status2" name="status2">
                     <option value="Schváleno">Schváleno</option>
@@ -455,15 +450,15 @@
                 <div class="hr-text text-muted my-3">
                   <span style="font-size: 0.6rem">{{ __('Attachment') }} 3</span>
                 </div>
-                <div class="col-12 col-lg-8 mb-sm-1">
+                <div class="col-12 col-lg-8 mb-3">
                   <label class="form-label">{{ __('Příloha') }} 3</label>
                   <input class="form-control" id="file-add" name="file-add[]" type="file" placeholder="{{ __('Soubor standardu ve formátu PDF') }}">
                 </div>
-                <div class="col-12 col-lg-2 mb-sm-1">
+                <div class="col-12 col-lg-2 mb-3">
                   <label class="form-label">{{ __('Revision') }}</label>
                   <input class="form-control" id="revision-add" name="revision-add[]" type="text" placeholder="{{ __('Číslo nebo datum') }}">
                 </div>
-                <div class="col-12 col-lg-2 mb-sm-1">
+                <div class="col-12 col-lg-2 mb-3">
                   <label class="form-label">{{ __('Status') }}</label>
                   <select class="form-select" id="status3" name="status3">
                     <option value="Schváleno">Schváleno</option>
@@ -476,15 +471,15 @@
                 <div class="hr-text text-muted my-3">
                   <span style="font-size: 0.6rem">{{ __('Attachment') }} 4</span>
                 </div>
-                <div class="col-12 col-lg-8 mb-sm-1">
+                <div class="col-12 col-lg-8 mb-3">
                   <label class="form-label">{{ __('Příloha') }} 4</label>
                   <input class="form-control" id="file-add" name="file-add[]" type="file" placeholder="{{ __('Soubor standardu ve formátu PDF') }}">
                 </div>
-                <div class="col-12 col-lg-2 mb-sm-1">
+                <div class="col-12 col-lg-2 mb-3">
                   <label class="form-label">{{ __('Revision') }}</label>
                   <input class="form-control" id="revision-add" name="revision-add[]" type="text" placeholder="{{ __('Číslo nebo datum') }}">
                 </div>
-                <div class="col-12 col-lg-2 mb-sm-1">
+                <div class="col-12 col-lg-2 mb-3">
                   <label class="form-label">{{ __('Status') }}</label>
                   <select class="form-select" id="status4" name="status4">
                     <option value="Schváleno">Schváleno</option>
@@ -494,7 +489,6 @@
               </div>
 
             </div>
-
           </div>
           <input id="action" name="action" type="hidden" />
           <input id="hidden_id" name="hidden_id" type="hidden" />
@@ -548,74 +542,74 @@
             <div class="col-6">
 
               <div class="row">
-                <div class="col-2 mb-sm-1">
+                <div class="col-2 mb-3 mt-3">
                   <label class="form-label">{{ __('Position') }}</label>
                   <input class="form-control" id="show-position" type="text" readonly>
                 </div>
-                <div class="col-8 mb-sm-1">
+                <div class="col-8 mb-3 mt-3">
                   <label class="form-label">{{ __('Name') }} standardu</label>
                   <input class="form-control" id="show-name" type="text" readonly>
                 </div>
-                <div class="col-2 mb-sm-1">
+                <div class="col-2 mb-3 mt-3">
                   <label class="form-label">{{ __('Revision') }}</label>
                   <input class="form-control" id="show-revision" type="text" readonly>
                 </div>
               </div>
 
               <div class="row">
-                <div class="col-12 mb-sm-1">
+                <div class="col-12 mb-3">
                   <label class="form-label">{{ __('Popis standardu') }} </label>
                   <input class="form-control" id="show-description" type="text" readonly>
                 </div>
               </div>
 
               <div class="row">
-                <div class="col-4 mb-sm-1">
+                <div class="col-4 mb-3">
                   <label class="form-label">{{ __('Datum revize') }}</label>
                   <input class="form-control" id="show-revision_date" type="date" readonly>
                 </div>
-                <div class="col-4 mb-sm-1">
+                <div class="col-4 mb-3">
                   <label class="form-label">{{ __('Datum další revize') }}</label>
                   <input class="form-control" id="show-next_revision_date" type="date" readonly>
                 </div>
-                <div class="col-4 mb-sm-1">
+                <div class="col-4 mb-3">
                   <label class="form-label">{{ __('Platnost standardu od') }}</label>
                   <input class="form-control" id="show-efficiency" type="date" readonly>
                 </div>
               </div>
 
               <div class="row">
-                <div class="col-4 mb-sm-1">
+                <div class="col-4 mb-3">
                   <label class="form-label">{{ __('Zpracoval/a') }}</label>
                   <input class="form-control" id="show-processed" type="text" readonly>
                 </div>
-                <div class="col-4 mb-sm-1">
+                <div class="col-4 mb-3">
                   <label class="form-label">{{ __('Schválil/a') }}</label>
                   <input class="form-control" id="show-authorize" type="text" readonly>
                 </div>
-                <div class="col-4 mb-sm-1">
+                <div class="col-4 mb-3">
                   <label class="form-label">{{ __('Kontrolu provedl/a') }}</label>
                   <input class="form-control" id="show-examine" type="text" readonly>
                 </div>
               </div>
 
               <div class="row">
-                <div class="col-12 mb-sm-1">
+                <div class="col-12 mb-3">
                   <label class="form-label">{{ __('Oblast působnosti standardu') }}</label>
                   <input class="form-control" id="show-tags" type="text" readonly>
                 </div>
               </div>
 
               <div class="row">
-                <div class="col-12 mb-sm-1">
+                <div class="col-12 mb-3">
                   <label class="form-label">{{ __('Soubor') }}</label>
                   <input class="form-control" id="show-file" type="text" readonly>
                 </div>
-                <div class="col-6 mb-sm-1">
+                <div class="col-6 mb-3">
                   <label class="form-label">{{ __('Status') }}</label>
                   <input class="form-control" id="show-status" readonly>
                 </div>
-                <div class="col-6 mb-sm-1">
+                <div class="col-6 mb-3">
                   <label class="form-label">{{ __('Založil / upravil') }}</label>
                   <input class="form-control" id="show-user_name" name="user_name" type="text" readonly>
                 </div>
@@ -665,14 +659,14 @@
         {{-- <button class="btn-close" data-bs-dismiss="modal" type="button" aria-label="{{ __('Close') }}"></button> --}}
         <div class="modal-status bg-danger"></div>
         <div class="modal-body py-4 text-center">
-          <svg class="icon text-danger icon-lg mb-2" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" stroke-width="2"
+          <svg class="icon text-danger icon-lg mb-3" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" stroke-width="2"
                stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
             <path stroke="none" d="M0 0h24v24H0z" fill="none" />
             <path d="M12 9v2m0 4v.01" />
             <path d="M5 19h14a2 2 0 0 0 1.84 -2.75l-7.1 -12.25a2 2 0 0 0 -3.5 0l-7.1 12.25a2 2 0 0 0 1.75 2.75" />
           </svg>
           <h3>{{ __('Are you sure?') }}</h3>
-          <div class="text-muted mb-2">
+          <div class="text-muted mb-3">
             {{ __('Do you really want to remove standard event?') }}<br>{{ __('This operation cannot be undone') }}
           </div>
           <div class="text-info">{{ __('If the standard contains appendices, it will be possible to subsequently attach these appendices to a new or different standard') }}
@@ -742,7 +736,7 @@
           success: function(html) {
             $('#inputForm')[0].reset();
             $('.modal-title').val('');
-            $('#attachment, #action_button').removeClass('d-none');
+            $('#attachment, #action_button, #pdf-preview-show, #pdf-preview').removeClass('d-none');
             $('#formModal').modal('show');
             $('#modal-icon').html('{!! $categorie->svg_icon !!}').addClass('bg-{{ $categorie->color }}-lt');
             $('#modal-header').addClass("modal-header bg-{{ $categorie->color }}-lt");
@@ -775,7 +769,7 @@
               $('#efficiency').val(efficiencyDate)
               $('#next_revision_date').val(nextRevisionDate)
             })
-            PDFObject.embed("standardy/" + html.data.file, "#pdf-preview");
+            PDFObject.embed("../../standardy/" + html.data.file, "#pdf-preview");
           }
         })
       });
@@ -788,54 +782,56 @@
           url: "/documents/" + id,
           dataType: "json",
           success: function(html) {
-            $('#inputForm')[0].reset();
-            $('.modal-title').val('');
-            $('#showModal').modal('show');
-            $('#show-modal-icon').html('{!! $categorie->svg_icon !!}').addClass('bg-{{ $categorie->color }}-lt');
-            $('#show-modal-header').addClass("modal-header bg-{{ $categorie->color }}-lt");
-            $('.modal-title').text(html.data.name);
-            $('#action').val("Show");
-            $('#category_id').val(html.data.category_id);
-            $('#show-folder_name').val(html.data.category.folder_name);
-            $('#show-name').val(html.data.name);
-            $('#show-processed').val(html.data.processed);
-            $('#show-authorize').val(html.data.authorize);
-            $('#show-examine').val(html.data.examine);
-            $('#show-efficiency').val(html.data.efficiency);
-            $('#show-revision').val(html.data.revision);
-            $('#show-revision_date').val(html.data.revision_date);
+            $('#inputForm')[0].reset()
+            $('.modal-title').val('')
+            $('#pdf-preview-show, #pdf-preview').removeClass('d-none')
+            $('#showModal').modal('show')
+            $('#show-modal-icon').html('{!! $categorie->svg_icon !!}').addClass('bg-{{ $categorie->color }}-lt')
+            $('#show-modal-header').addClass("modal-header bg-{{ $categorie->color }}-lt")
+            $('.modal-title').text(html.data.name)
+            $('#action').val("Show")
+            $('#category_id').val(html.data.category_id)
+            $('#show-folder_name').val(html.data.category.folder_name)
+            $('#show-name').val(html.data.name)
+            $('#show-processed').val(html.data.processed)
+            $('#show-authorize').val(html.data.authorize)
+            $('#show-examine').val(html.data.examine)
+            $('#show-efficiency').val(html.data.efficiency)
+            $('#show-revision').val(html.data.revision)
+            $('#show-revision_date').val(html.data.revision_date)
             $('#show-next_revision_date').val(html.data.next_revision_date)
-            $('#show-tags').val(html.data.tags);
-            $('#show-description').val(html.data.description);
-            $('#show-position').val(html.data.position);
-            $('#show-file').val(html.data.file);
-            $('#show-status').val(html.data.status);
-            $('#show-user_id').val('{{ auth()->user()->id ?? null }}');
-            $('#show-user_name').val(html.data.user.name);
-            $('#attachment, #action_button').addClass('d-none');
-            $('#show-hidden_id').val(html.data.id);
-            $('#download-btn').attr("href", "/standardy/standard/" + html.data.id + "");
-            PDFObject.embed("../../standardy/" + html.data.file, "#pdf-preview-show");
+            $('#show-tags').val(html.data.tags)
+            $('#show-description').val(html.data.description)
+            $('#show-position').val(html.data.position)
+            $('#show-file').val(html.data.file)
+            $('#show-status').val(html.data.status)
+            $('#show-user_id').val('{{ auth()->user()->id ?? null }}')
+            $('#show-user_name').val(html.data.user.name)
+            $('#attachment, #action_button').addClass('d-none')
+            $('#show-hidden_id').val(html.data.id)
+            $('#download-btn').attr("href", "/standardy/standard/" + html.data.id + "")
+            PDFObject.embed("../../standardy/" + html.data.file, "#pdf-preview-show")
           }
         })
       });
 
       $('#openCreateModal').click(function() {
         $('#inputForm')[0].reset();
-        $("#attachment, #action_button").removeClass('d-none');
-        $('#unique_code').prop('readonly', true);
-        $('#category_id').val('{{ $categorie->id }}');
-        $('#formModal').modal('show');
-        $('#modal-icon').html('{!! $categorie->svg_icon !!}').addClass('bg-{{ $categorie->color }}-lt');
-        $('#modal-header').addClass("modal-header bg-{{ $categorie->color }}-lt");
-        $('#action_button, .modal-title').text("{{ __('Create new') }} {{ $categorie->button }} standard");
-        $('#action').val("Add");
-        $('#position').val('{{ $lastpos + 1 }}');
-        $('#folder_name').val("{{ $categorie->folder_name }}");
-        $('#status').val('Schváleno');
-        $('#user_id').val('{{ auth()->user()->id ?? null }}');
-        $('#user_name').val('{{ auth()->user()->name ?? 'Guest' }}');
-        $('#unique_code').val('STD{{ $categorie->id }}#{{ $lastpos + 1 }}');
+        $("#attachment, #action_button").removeClass('d-none')
+        $('#pdf-preview-show, #pdf-preview').addClass('d-none')
+        $('#unique_code').prop('readonly', true)
+        $('#category_id').val('{{ $categorie->id }}')
+        $('#formModal').modal('show')
+        $('#modal-icon').html('{!! $categorie->svg_icon !!}').addClass('bg-{{ $categorie->color }}-lt')
+        $('#modal-header').addClass("modal-header bg-{{ $categorie->color }}-lt")
+        $('#action_button, .modal-title').text("{{ __('Create new') }} {{ $categorie->button }} standard")
+        $('#action').val("Add")
+        $('#position').val('{{ $lastpos + 1 }}')
+        $('#folder_name').val("{{ $categorie->folder_name }}")
+        $('#status').val('Schváleno')
+        $('#user_id').val('{{ auth()->user()->id ?? null }}')
+        $('#user_name').val('{{ auth()->user()->name ?? 'Guest' }}')
+        $('#unique_code').val('STD{{ $categorie->id }}#{{ $lastpos + 1 }}')
         $('#revision').val('{{ ($lastpos - $lastpos) + 1 }}')
         $('#processed, #authorize, #examine').val('')
         $('#revision_date').change(function() {
