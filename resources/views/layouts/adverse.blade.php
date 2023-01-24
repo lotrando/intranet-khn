@@ -18,8 +18,13 @@
     <link href="{{ asset('css/demo.css') }}" rel="stylesheet" />
     <style>
       body {
+        font-family: 'Roboto Condensed';
         min-height: 100vh;
-        color: #666;
+        color: #777777;
+      }
+
+      tr {
+        font-size: 0.84rem;
       }
     </style>
   </head>
