@@ -775,7 +775,7 @@
               $('#efficiency').val(efficiencyDate)
               $('#next_revision_date').val(nextRevisionDate)
             })
-            PDFObject.embed("/standardy/" + html.data.file, "#pdf-preview");
+            PDFObject.embed("standardy/" + html.data.file, "#pdf-preview");
           }
         })
       });
@@ -815,7 +815,7 @@
             $('#attachment, #action_button').addClass('d-none');
             $('#show-hidden_id').val(html.data.id);
             $('#download-btn').attr("href", "/standardy/standard/" + html.data.id + "");
-            PDFObject.embed("/standardy/" + html.data.file, "#pdf-preview-show");
+            PDFObject.embed("../../standardy/" + html.data.file, "#pdf-preview-show");
           }
         })
       });

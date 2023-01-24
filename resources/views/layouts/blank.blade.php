@@ -25,7 +25,7 @@
       }
 
       .pdfobject-container {
-        height: 48rem;
+        height: 35rem;
         border: 0.1rem solid rgba(0, 0, 0, 0.075);
       }
     </style>

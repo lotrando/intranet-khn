@@ -43,7 +43,7 @@
     <div class="container-fluid">
       <div class="row row-cards center g-3">
 
-        <div class="col-12 col-md-7 col-lg-7 col-xl-5 col-xxl-6">
+        <div class="col-12 col-md-7 col-lg-7 col-xl-4 col-xxl-6">
           <div class="card shadow-sm">
             <div class="text-left bg-red-lt">
               <div class="card-body p-2">
@@ -61,7 +61,7 @@
           </div>
         </div>
 
-        <div class="col-12 col-md-7 col-lg-7 col-xl-5 col-xxl-6">
+        <div class="col-12 col-md-7 col-lg-7 col-xl-4 col-xxl-6">
           <div class="card shadow-sm">
             <div class="text-left bg-red-lt">
               <div class="card-body p-2">
@@ -79,7 +79,7 @@
           </div>
         </div>
 
-        <div class="col-12 col-md-7 col-lg-7 col-xl-5 col-xxl-6">
+        <div class="col-12 col-md-7 col-lg-7 col-xl-4 col-xxl-6">
           <div class="card shadow-sm">
             <div class="text-left bg-lime-lt">
               <div class="card-body p-2">
@@ -97,7 +97,7 @@
           </div>
         </div>
 
-        <div class="col-12 col-md-7 col-lg-7 col-xl-5 col-xxl-6">
+        <div class="col-12 col-md-7 col-lg-7 col-xl-6 col-xxl-6">
           <div class="card shadow-sm">
             <div class="text-left bg-info-lt">
               <div class="card-body p-2">
@@ -115,7 +115,7 @@
           </div>
         </div>
 
-        <div class="col-12 col-md-7 col-lg-7 col-xl-5 col-xxl-6">
+        <div class="col-12 col-md-7 col-lg-7 col-xl-6 col-xxl-6">
           <div class="card shadow-sm">
             <div class="text-left bg-yellow-lt">
               <div class="card-body p-2">
@@ -133,7 +133,7 @@
           </div>
         </div>
 
-        <div class="col-12 col-md-7 col-lg-7 col-xl-5 col-xxl-6">
+        <div class="col-12 col-md-7 col-lg-7 col-xl-12 col-xxl-6">
           <div class="card shadow-sm">
             <div class="text-left bg-purple-lt">
               <div class="card-body p-2">
