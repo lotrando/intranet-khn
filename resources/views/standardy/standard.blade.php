@@ -35,13 +35,12 @@
           <div class="progress mt-2">
             @foreach ($categories as $category)
             <div class="progress-bar progress-sm bg-{{ $category->color }}-lt" data-bs-toggle="tooltip" data-bs-placement="bottom"
-                 data-bs-original-title="{{ $category->category_name . ' standardy ' . round(($category->documents->count() * 100) / $allDocuments->count()). '%' }}" role="progressbar" aria-label="{{ $category->category_name }}"
-                 style="width: {{ ($category->documents->count() * 100) / $allDocuments->count() }}%"></div>
+                 data-bs-original-title="{{ $category->category_name . ' standardy ' . round(($category->documents->count() * 100) / $allDocuments->count()) . '%' }}"
+                 role="progressbar" aria-label="{{ $category->category_name }}" style="width: {{ ($category->documents->count() * 100) / $allDocuments->count() }}%"></div>
             @endforeach
           </div>
 
         </div>
-
 
         {{-- Searched events --}}
         <div>
@@ -67,7 +66,8 @@
               @auth
               <button class="btn btn-lime d-inline-block me-2" id="openCreateModal" data-bs-toggle="tooltip" data-bs-placement="left"
                       data-bs-original-title="{{ __('Vytvoří nový ' . $categorie->button . ' standard') }}">
-                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-inline" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                <svg class="icon icon-inline" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor"
+                     fill="none" stroke-linecap="round" stroke-linejoin="round">
                   <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
                   <path d="M19 4v16h-12a2 2 0 0 1 -2 -2v-12a2 2 0 0 1 2 -2h12z"></path>
                   <path d="M19 16h-12a2 2 0 0 0 -2 2"></path>
@@ -91,7 +91,7 @@
               <div class="accordion-body p-1">
                 <div class="list-group list-group-flush list-group-hoverable pt-1">
                   <div class="list-group-item border-0 p-0">
-                    <div class="row align-items-center mx-2 g-3">
+                    <div class="row align-items-center g-3 mx-2">
                       <div class="avatar bg-{{ $document->category->color }}-lt col-auto" data-bs-toggle="tooltip" data-bs-placement="top"
                            data-bs-original-title="ID #{{ $document->id }}">
                         <div class="text-uppercase">
@@ -100,14 +100,19 @@
                       </div>
                       <div class="col-auto">
                         <a href="{{ route('standardy.download', $document->id) }}" target="_blank">
-                          <span class="avatar bg-{{ $document->category->color }}-lt" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-original-title="Stáhnout standard">
-                            <img src="{{ asset('img/files/pdf.png') }}" height="32px" alt="PDF soubor">
+                          <span class="avatar bg-{{ $document->category->color }}-lt" data-bs-toggle="tooltip" data-bs-placement="top"
+                                data-bs-original-title="Stáhnout standard">
+                            <img src="{{ asset('img/files/pdf.png') }}" alt="PDF soubor" height="32px">
                           </span>
                         </a>
                       </div>
-                      <div id="{{ $document->id }}" class="col text-truncate">
+                      <div class="col text-truncate" id="{{ $document->id }}">
                         <span>
-                          <p id="{{ $document->id }}" class="show strong d-inline cursor-pointer text-primary text-decoration-none" style="margin-bottom: 0;" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-original-title="Více informací o standardu {{ $document->description }}">{{ $document->name }}</p>
+                          <p class="show d-inline text-primary text-decoration-none cursor-pointer" id="{{ $document->id }}" data-bs-toggle="tooltip"
+                             data-bs-placement="top" data-bs-original-title="Více informací o standardu {{ $document->description }}" style="margin-bottom: 0;">
+                            @if($document->category_id <> 3)
+                              {{ $document->position }}.
+                              @endif {{ $document->name }}</p>
                         </span>
                         <div class="d-block description text-muted text-truncate">{{ $document->description }}</div>
                       </div>
@@ -124,8 +129,8 @@
                         </span>
                         <ul class="dropdown-menu">
                           <li class="dropdown-item edit" id="{{ $document->id }}">
-                            <svg class="icon dropdown-item-icon-edit" width="24" height="24" viewBox="0 0 24 24" stroke-width="2"
-                                 stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                            <svg class="icon dropdown-item-icon-edit" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor"
+                                 fill="none" stroke-linecap="round" stroke-linejoin="round">
                               <path stroke="none" d="M0 0h24v24H0z" fill="none" />
                               <path d="M7 7h-1a2 2 0 0 0 -2 2v9a2 2 0 0 0 2 2h9a2 2 0 0 0 2 -2v-1" />
                               <path d="M20.385 6.585a2.1 2.1 0 0 0 -2.97 -2.97l-8.415 8.385v3h3l8.385 -8.415z" />
@@ -149,7 +154,7 @@
                       @endauth
                     </div>
                     @foreach ($document->addons as $add)
-                    <div class="row align-items-center mx-2 g-3">
+                    <div class="row align-items-center g-3 mx-2">
                       <div class="avatar bg-{{ $document->category->color }}-lt col-auto">
                         <div class="text-uppercase" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-original-title="ID #{{ $document->id }}#{{ $add->id }}">
                           <svg class="icon icon-tabler icon-tabler-plus text-{{ $document->category->color }}" width="24" height="24" viewBox="0 0 24 24"
@@ -162,14 +167,17 @@
                       </div>
                       <div class="col-auto">
                         <a href="{{ route('standardy.download.addon', $add->id) }}">
-                          <span class="avatar bg-{{ $document->category->color }}-lt" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-original-title="Stáhnout přílohu">
-                            <img src="{{ asset('img/files/pdf-add.png') }}" height="32px" alt="PDF - Příloha standardu">
+                          <span class="avatar bg-{{ $document->category->color }}-lt" data-bs-toggle="tooltip" data-bs-placement="top"
+                                data-bs-original-title="Stáhnout přílohu">
+                            <img src="{{ asset('img/files/pdf-add.png') }}" alt="PDF - Příloha standardu" height="32px">
                           </span>
                         </a>
                       </div>
-                      <div id="{{ $add->id }}" class="col text-truncate">
+                      <div class="col text-truncate" id="{{ $add->id }}">
                         <span>
-                          <p id="{{ $add->id }}" class="show strong d-inline cursor-pointer text-primary text-decoration-none" style="margin-bottom: 0;" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-original-title="Více informací o příloze {{ $add->description }}">{{ $document->description }}</p>
+                          <p class="show-addon d-inline text-azure text-decoration-none cursor-pointer" id="{{ $add->id }}" data-bs-toggle="tooltip"
+                             data-bs-placement="top" data-bs-original-title="Více informací o příloze {{ $add->description }}" style="margin-bottom: 0;">
+                            {{ $document->position }}. {{ $document->name }} - příloha č.{{ $add->addon_number }}</p>
                         </span>
                         <div class="d-block description text-muted text-truncate">{{ $add->description }}</div>
                       </div>
@@ -211,8 +219,8 @@
                         <span class="badge badge-sm bg-lime-lt text-uppercase ms-auto">Aktualizováno !</span>
                         @endif
                         <span class="text-muted description">{{ Carbon\Carbon::parse($document->updated_at)->diffForHumans() }}</span>
-                        <svg class="icon text-yellow" xmlns="http://www.w3.org/2000/svg" width="24" height="24"
-                             viewBox="0 0 24 24" stroke-width="1" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                        <svg class="icon text-yellow" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" stroke-width="1"
+                             stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
                           <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
                           <circle cx="15" cy="15" r="3"></circle>
                           <path d="M13 17.5v4.5l2 -1.5l2 1.5v-4.5"></path>
@@ -231,9 +239,10 @@
                         @endauth
                       </div>
                       @auth
-                      <div class="col-auto d-xs-none d-sm-none d-lg-inline">
+                      <div class="d-xs-none d-sm-none d-lg-inline col-auto">
                         <span class="text-muted description">
-                          <svg xmlns="http://www.w3.org/2000/svg" class="icon text-lime" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                          <svg class="icon text-lime" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" stroke-width="2"
+                               stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
                             <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
                             <path d="M9 5h-2a2 2 0 0 0 -2 2v12a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2v-12a2 2 0 0 0 -2 -2h-2"></path>
                             <rect x="9" y="3" width="6" height="4" rx="2"></rect>
@@ -244,7 +253,8 @@
                           Zpracoval: {{ $document->processed }}
                         </span>
                         <span class="text-muted description">
-                          <svg xmlns="http://www.w3.org/2000/svg" class="icon text-yellow" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                          <svg class="icon text-yellow" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" stroke-width="2"
+                               stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
                             <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
                             <path d="M14 3v4a1 1 0 0 0 1 1h4"></path>
                             <path d="M12 21h-5a2 2 0 0 1 -2 -2v-14a2 2 0 0 1 2 -2h7l5 5v4.5"></path>
@@ -254,7 +264,8 @@
                           Přezkoumal: {{ $document->examine }}
                         </span>
                         <span class="text-muted description">
-                          <svg xmlns="http://www.w3.org/2000/svg" class="icon text-red" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                          <svg class="icon text-red" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" stroke-width="2"
+                               stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
                             <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
                             <path d="M14 3v4a1 1 0 0 0 1 1h4"></path>
                             <path d="M5 8v-3a2 2 0 0 1 2 -2h7l5 5v11a2 2 0 0 1 -2 2h-5"></path>
@@ -498,7 +509,8 @@
 
           <div class="modal-footer">
             <button class="btn btn-muted hover-shadow" data-bs-dismiss="modal" type="button">
-              <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-inline" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+              <svg class="icon icon-inline" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor"
+                   fill="none" stroke-linecap="round" stroke-linejoin="round">
                 <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
                 <rect x="4" y="4" width="16" height="16" rx="2"></rect>
                 <path d="M10 10l4 4m0 -4l-4 4"></path>
@@ -506,14 +518,16 @@
               {{ __('Close') }}
             </button>
             <button class="btn btn-primary ms-auto hover-shadow" id="addon-btn" type="button">
-              <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-inline" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+              <svg class="icon icon-inline" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor"
+                   fill="none" stroke-linecap="round" stroke-linejoin="round">
                 <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
                 <path d="M15 7l-6.5 6.5a1.5 1.5 0 0 0 3 3l6.5 -6.5a3 3 0 0 0 -6 -6l-6.5 6.5a4.5 4.5 0 0 0 9 9l6.5 -6.5"></path>
               </svg>
               {{ __('Attachments') }}</button>
             <div class="align-content-end flex">
               <button class="btn btn-primary ms-auto hover-shadow" id="action_button" name="action_button" type="submit">
-                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-book-upload" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                <svg class="icon icon-tabler icon-tabler-book-upload" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" stroke-width="2"
+                     stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
                   <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
                   <path d="M14 20h-8a2 2 0 0 1 -2 -2v-12a2 2 0 0 1 2 -2h12v5"></path>
                   <path d="M11 16h-5a2 2 0 0 0 -2 2"></path>
@@ -539,7 +553,7 @@
         </div>
         <div class="modal-body">
           <div class="row">
-            <div class="col-6">
+            <div class="col-5">
 
               <div class="row">
                 <div class="col-2 mb-3 mt-3">
@@ -616,7 +630,7 @@
               </div>
             </div>
 
-            <div class="col-6 p-1">
+            <div class="col-7 p-1">
               <div id="pdf-preview-show"></div>
               <input id="category_id" name="category_id" type="hidden">
               <input id="action" name="action" type="hidden" />
@@ -628,8 +642,9 @@
 
         <div class="modal-footer">
           <div class="align-content-end flex">
-            <a href="" class="btn btn-red ms-auto hover-shadow" id="download-btn" type="button">
-              <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-inline" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+            <a class="btn btn-red ms-auto hover-shadow" id="download-btn" type="button" href="">
+              <svg class="icon icon-inline" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor"
+                   fill="none" stroke-linecap="round" stroke-linejoin="round">
                 <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
                 <path d="M12 20h-6a2 2 0 0 1 -2 -2v-12a2 2 0 0 1 2 -2h12v5"></path>
                 <path d="M13 16h-7a2 2 0 0 0 -2 2"></path>
@@ -639,7 +654,74 @@
               {{ __('Download standard') }}</a>
           </div>
           <button class="btn btn-muted hover-shadow" data-bs-dismiss="modal" type="button">
-            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-inline" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+            <svg class="icon icon-inline" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor"
+                 fill="none" stroke-linecap="round" stroke-linejoin="round">
+              <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+              <rect x="4" y="4" width="16" height="16" rx="2"></rect>
+              <path d="M10 10l4 4m0 -4l-4 4"></path>
+            </svg>
+            {{ __('Close') }}
+          </button>
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+  {{-- Addon Show Modal --}}
+  <div class="modal fade" id="addonShowModal" role="dialog" aria-hidden="true" tabindex="-1">
+    <div class="modal-dialog modal-dialog-centered modal-full-width" role="document">
+      <div class="modal-content shadow-lg">
+        <div id="addon-show-modal-header">
+          <h5 class="modal-title"></h5>
+          <div class="avatar avatar-transparent" id="addon-show-modal-icon"></div>
+        </div>
+        <div class="modal-body">
+          <div class="row">
+            <div class="col-12">
+
+              {{-- <div class="row mt-3">
+                <div class="col-2 mb-3 ">
+                  <label class="form-label">{{ __('Příloha č.') }}</label>
+                  <input class="form-control" id="addon-show-position" type="text" readonly>
+                </div>
+                <div class="col-8 mb-3">
+                  <label class="form-label">{{ __('Popis přílohy standardu') }} </label>
+                  <input class="form-control" id="addon-show-description" type="text" readonly>
+                </div>
+                <div class="col-2 mb-3">
+                  <label class="form-label">{{ __('Revision') }}</label>
+                  <input class="form-control" id="addon-show-revision" type="text" readonly>
+                </div>
+              </div>
+
+              <div class="row mt-3">
+              </div> --}}
+
+              <div id="pdf-preview-addon-show"></div>
+            </div>
+
+            <input id="addon_hidden_id" name="addon_hidden_id" type="hidden" />
+            <input id="addon_user_id" name="addon_user_id" type="hidden" />
+          </div>
+        </div>
+
+        <div class="modal-footer">
+          <div class="align-content-end flex">
+            <a class="btn btn-red ms-auto hover-shadow" id="addon-download-btn" type="button" href="">
+              <svg class="icon icon-inline" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor"
+                   fill="none" stroke-linecap="round" stroke-linejoin="round">
+                <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+                <path d="M12 20h-6a2 2 0 0 1 -2 -2v-12a2 2 0 0 1 2 -2h12v5"></path>
+                <path d="M13 16h-7a2 2 0 0 0 -2 2"></path>
+                <path d="M15 19l3 3l3 -3"></path>
+                <path d="M18 22v-9"></path>
+              </svg>
+              {{ __('Download addon') }}</a>
+          </div>
+          <button class="btn btn-muted hover-shadow" data-bs-dismiss="modal" type="button">
+            <svg class="icon icon-inline" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor"
+                 fill="none" stroke-linecap="round" stroke-linejoin="round">
               <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
               <rect x="4" y="4" width="16" height="16" rx="2"></rect>
               <path d="M10 10l4 4m0 -4l-4 4"></path>
@@ -696,12 +778,11 @@
   <script>
     $(document).ready(function() {
 
+        function fill(Value) {
+          $('#search').val(Value);
+          $('#display').hide();
+        }
       })
-
-      function fill(Value) {
-        $('#search').val(Value);
-        $('#display').hide();
-      }
 
       $(document).ready(function() {
         $("#search").keyup(function() {
@@ -736,7 +817,7 @@
           success: function(html) {
             $('#inputForm')[0].reset();
             $('.modal-title').val('');
-            $('#attachment, #action_button, #pdf-preview-show, #pdf-preview').removeClass('d-none');
+            $('#attachment, #action_button, #pdf-preview-show, #pdf-preview, #pdf-preview-addon-show').removeClass('d-none');
             $('#formModal').modal('show');
             $('#modal-icon').html('{!! $categorie->svg_icon !!}').addClass('bg-{{ $categorie->color }}-lt');
             $('#modal-header').addClass("modal-header bg-{{ $categorie->color }}-lt");
@@ -784,12 +865,11 @@
           success: function(html) {
             $('#inputForm')[0].reset()
             $('.modal-title').val('')
-            $('#pdf-preview-show, #pdf-preview').removeClass('d-none')
+            $('#pdf-preview-show, #pdf-preview, #pdf-preview-addon-show').removeClass('d-none')
             $('#showModal').modal('show')
             $('#show-modal-icon').html('{!! $categorie->svg_icon !!}').addClass('bg-{{ $categorie->color }}-lt')
             $('#show-modal-header').addClass("modal-header bg-{{ $categorie->color }}-lt")
-            $('.modal-title').text(html.data.name)
-            $('#action').val("Show")
+            $('.modal-title').text(html.data.description)
             $('#category_id').val(html.data.category_id)
             $('#show-folder_name').val(html.data.category.folder_name)
             $('#show-name').val(html.data.name)
@@ -810,7 +890,32 @@
             $('#attachment, #action_button').addClass('d-none')
             $('#show-hidden_id').val(html.data.id)
             $('#download-btn').attr("href", "/standardy/standard/" + html.data.id + "")
-            PDFObject.embed("../../standardy/" + html.data.file, "#pdf-preview-show")
+            PDFObject.embed("../../standardy/" + html.data.file +"#toolbar=0", "#pdf-preview-show", {height: "33rem"})
+          }
+        })
+      });
+
+      $(document).on('click', '.show-addon', function() {
+        id = $(this).attr('id');
+        $.ajax({
+          url: "/documents/addon/" + id,
+          dataType: "json",
+          success: function(html) {
+            $('#inputForm')[0].reset()
+            $('.modal-title').val('')
+            $('#addonShowModal').modal('show')
+            $('#addon-show-modal-icon').html('{!! $categorie->svg_icon !!}').addClass('bg-{{ $categorie->color }}-lt')
+            $('#addon-show-modal-header').addClass("modal-header bg-{{ $categorie->color }}-lt")
+            $('.modal-title').html(html.data.description)
+            $('#addon-show-description').val(html.data.description)
+            $('#addon-show-position').val(html.data.addon_number)
+            $('#addon-show-file').val(html.data.file)
+            $('#addon-show-revision').val(html.data.revision)
+            $('#addon-show-status').val(html.data.status)
+            $('#show-user_id').val('{{ auth()->user()->id ?? null }}')
+            $('#show-hidden_id').val(html.data.id)
+            $('#addon-download-btn').attr("href", "/standardy/standard/addon/" + html.data.id + "")
+            PDFObject.embed("../../standardy/" + html.data.file + "#toolbar=0", "#pdf-preview-addon-show", {height: "30rem"})
           }
         })
       });
@@ -832,7 +937,7 @@
         $('#user_id').val('{{ auth()->user()->id ?? null }}')
         $('#user_name').val('{{ auth()->user()->name ?? 'Guest' }}')
         $('#unique_code').val('STD{{ $categorie->id }}#{{ $lastpos + 1 }}')
-        $('#revision').val('{{ ($lastpos - $lastpos) + 1 }}')
+        $('#revision').val('{{ $lastpos - $lastpos + 1 }}')
         $('#processed, #authorize, #examine').val('')
         $('#revision_date').change(function() {
           var revisionDate = moment($(this).val()).format('YYYY-MM-DD')

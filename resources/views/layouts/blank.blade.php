@@ -23,11 +23,6 @@
         min-height: 100vh;
         color: #777777;
       }
-
-      .pdfobject-container {
-        height: 30rem;
-        border: 0.1rem solid rgba(0, 0, 0, 0.075);
-      }
     </style>
   </head>
 

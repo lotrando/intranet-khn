@@ -134,5 +134,6 @@
   "but the file or page not exists": "ale soubor nebo stránka neexistuje",
   "Login": "Přihlásit",
   "Register": "Registrovat",
-  "Download standard": "Stáhnout standard"
+  "Download standard": "Stáhnout standard",
+  "Download addon": "Stáhnout přílohu"
 }

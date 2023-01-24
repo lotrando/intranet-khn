@@ -81,6 +81,7 @@ Route::resource('adversevents', AdverseventController::class)->except(['update',
 
 // Documents
 Route::resource('documents', DocumentController::class);
+Route::get('documents/addon/{id}', [DocumentController::class, 'addonShow'])->name('show.addon');
 
 Route::get('vcards', [EmployeeController::class, 'vcards'])->name('employees.vcards');
 Route::get('search', [EmployeeController::class, 'vcardSearch'])->name('employees.search');

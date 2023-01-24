@@ -37,7 +37,6 @@ class AppServiceProvider extends ServiceProvider
 
 
         $categories = Category::with('documents')->get();           // Categories items
-
         View::share('categories', $categories);
 
         $navitems = Navitem::with('category')->get();               // Navigation items
