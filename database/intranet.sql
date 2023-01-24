@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Počítač: localhost
--- Vytvořeno: Úte 24. led 2023, 14:51
+-- Vytvořeno: Úte 24. led 2023, 21:10
 -- Verze serveru: 8.0.31
 -- Verze PHP: 7.4.33
 
@@ -44,11 +44,12 @@ CREATE TABLE `addons` (
 --
 
 INSERT INTO `addons` (`id`, `document_id`, `addon_number`, `description`, `revision`, `file`, `status`, `created_at`, `updated_at`) VALUES
-(1, 23, 1, 'Riziková léčiva s podobným názvem, balením (léčiva v injekční formě)', 'únor 2022', 'rizikova_leciva_s_podobnym_nazvem_balenim_(leciva_v_injekcni_forme)-revize-unor_2022.pdf', 'Schváleno', '2022-02-01 16:35:57', '2022-02-01 16:35:57'),
+(1, 23, 2, 'Riziková léčiva s podobným názvem, balením (léčiva v injekční formě)', 'únor 2022', 'rizikova_leciva_s_podobnym_nazvem_balenim_(leciva_v_injekcni_forme)-revize-unor_2022.pdf', 'Schváleno', '2022-02-01 16:35:57', '2022-02-01 16:35:57'),
 (2, 24, 1, 'Verifikační protokol', 'únor 2022', 'verifikacni_protokol-revize-unor_2022.pdf', 'Schváleno', '2022-03-01 16:35:57', '2022-03-01 16:35:57'),
 (3, 24, 2, 'Perioperační bezpečnosní proces', 'únor 2022', 'perioperacni_bezpecnosni_proces-revize-unor_2022.pdf', 'Schváleno', '2022-03-01 16:35:57', '2022-03-01 16:35:57'),
 (4, 24, 3, 'Stranový protokol a bezpečnostní proces\r\npro ambulantní výkony v lokální anestezii', 'srpen 2022', 'stranovy_protokol_a_bezpecnostni_proces_pro_ambulantni vykony_v_lokalni_anestezii-revize-unor_2022.pdf', 'Schváleno', '2022-03-01 16:35:57', '2022-03-01 16:35:57'),
-(5, 30, 1, 'Záznamový list logopedické intervence u klientů s NKS', 'listopad 2021', 'zaznamovy_list_logopedicke_intervence_u_klientu_s_nks-revize-listopad_2021.pdf', 'Schváleno', '2022-03-01 16:35:57', '2022-03-01 16:35:57');
+(5, 30, 1, 'Záznamový list logopedické intervence u klientů s NKS', 'listopad 2021', 'zaznamovy_list_logopedicke_intervence_u_klientu_s_nks-revize-listopad_2021.pdf', 'Schváleno', '2022-03-01 16:35:57', '2022-03-01 16:35:57'),
+(6, 29, 1, '2.Záznamový list logopedické intervence u klientů s NKS', 'listopad 2021', 'zaznamovy_list_logopedicke_intervence_u_klientu_s_nks-revize-listopad_2021.pdf', 'Schváleno', '2022-03-01 16:35:57', '2022-03-01 16:35:57');
 
 -- --------------------------------------------------------
 
@@ -665,7 +666,7 @@ INSERT INTO `documents` (`id`, `category_id`, `accordion_name`, `accordion_group
 (25, 1, 'Bezpečnostní cíle', 1, 5, 'Bezpečnostní cíle', 'Hygiena rukou při poskytování zdravotní péče', 'Vajglová Pavlína, Mgr.', 'Rada kvality', 'Vajglová Pavlína, Mgr.', '2017-04-01', '3', '2023-02-01', NULL, '2022-02-01', 'standardy_akreditacni-hygiena_rukou_pri_poskytovani_zdravotni_pece-revize-3.pdf', 'STD1#5', 'Schváleno', 11, '2023-01-23 16:01:52', '2023-01-23 16:01:52'),
 (26, 1, 'Bezpečnostní cíle', 1, 6, 'Bezpečnostní cíle', 'Postupy ke snížení rizika poškození pacientů v důsledku pádu', 'Cyroňová Irena', 'Rada kvality', 'Bc. Bělicová Taťána', '2017-04-01', '3', '2023-02-01', NULL, '2022-02-01', 'standardy_akreditacni-postupy_ke_snizeni_rizika_poskozeni_pacientu_v_dusledku_padu-revize-3.pdf', 'STD1#6', 'Schváleno', 11, '2023-01-23 16:03:24', '2023-01-23 16:03:24'),
 (28, 11, 'Standard logopedické péče', NULL, 1, 'Standard logopedické péče', 'Příjem klienta a diagnostika narušené komunikační schopnosti', 'Mlýnková Ruth', 'Rada kvality', 'Bogocz Danuta', '2011-08-01', '3', '2022-11-01', 'LOG', '2021-11-01', 'standardy_logopedicke-prijem_klienta_a_diagnostika_narusene_komunikacni_schopnosti-revize-3.pdf', 'STD11#1', 'Schváleno', 11, '2023-01-24 13:29:07', '2023-01-24 13:29:07'),
-(29, 11, 'Standard logopedické péče', NULL, 2, 'Standard logopedické péče', 'Vedení dokumentace u klientů s narušenou komunikační schopností', 'Mlýnková Ruth', 'Rada kvality', 'Mlýnková Ruth', '2011-08-01', '3', '2022-11-01', NULL, '2021-11-01', 'standardy_logopedicke-vedeni_dokumentace_u_klientu_s_narusenou_komunikacni_schopnosti-revize-3.pdf', 'STD11#2', 'Schváleno', 11, '2023-01-24 13:34:13', '2023-01-24 13:34:13'),
+(29, 11, 'Standard logopedické péče', NULL, 2, 'Standard logopedické péče', 'Vedení dokumentace u klientů s narušenou komunikační schopností', 'Mlýnková Ruth', 'Rada kvality', 'Mlýnková Ruth', '2011-08-01', '3', '2022-11-01', 'LOG', '2021-11-01', 'standardy_logopedicke-vedeni_dokumentace_u_klientu_s_narusenou_komunikacni_schopnosti-revize-3.pdf', 'STD11#2', 'Schváleno', 11, '2023-01-24 13:34:13', '2023-01-24 13:34:13'),
 (30, 11, 'Standard logopedické péče', NULL, 3, 'Standard logopedické péče', 'Logopedická intervence u osob s narušenou komunikační schopností', 'Mlýnková Ruth', 'Rada kvality', 'Bogocz Danuta', '2011-08-01', '3', '2023-11-01', 'LOG', '2021-11-01', 'standardy_logopedicke-logopedicka_intervence_u_osob_s_narusenou_komunikacni_schopnosti-revize-3.pdf', 'STD11#3', 'Schváleno', 11, '2023-01-24 13:37:10', '2023-01-24 13:37:10');
 
 -- --------------------------------------------------------
@@ -1649,7 +1650,7 @@ INSERT INTO `users` (`id`, `personal_number`, `name`, `email`, `email_verified_a
 (8, '61199', 'PhDr. Ilona Kopečný', 'jakoubek.ivana@example.com', '2023-01-11 16:48:16', '$2y$10$LHGzVLpy/G9kAezVWgAyH.w4kZJM4sDCnTWicSCsVJwhueLR/EXkC', NULL, NULL, 'SreSqc3lYKXx7cC3k9lzdP2FARjraqw5bl3EwVMUDRG2Stbz2SRg3TXSWV1n', '2023-01-11 16:48:17', '2023-01-11 16:48:17'),
 (9, '64220', 'Vítězslav Studený', 'aprokop@example.net', '2023-01-11 16:48:16', '$2y$10$TXAjVT9k./.H4KjXoNAcn.ljLPiSjKS0B.vlGoGjEiJXFvNWX3CJG', NULL, NULL, 'Q84bE3b76njnJpTH1hee9690itatngELvYKuDNtYqpfuwZ72Y4EhZd2C0J3e', '2023-01-11 16:48:17', '2023-01-11 16:48:17'),
 (10, '62457', 'PhDr. Jan Kuča', 'milena93@example.net', '2023-01-11 16:48:16', '$2y$10$y.1Fr4LcccsAuc2CCAp9seh5PonzrjwBcBDlKqaIaO4r0eYvvow3W', NULL, NULL, 'uKtD3jRcmQagjEDZs2oF9PpRq14SsqwMna9HjdAGFR5U2lai6N50iFFPsfDC', '2023-01-11 16:48:17', '2023-01-11 16:48:17'),
-(11, '61625', 'Klika Miroslav', 'klika@khn.cz', NULL, '$2y$10$PSw5emAhbIR3u3sVNNg3iOe8t9z0Ct7dgJEKUud0jfeXFVkJzWZqK', NULL, NULL, '8dApan7EBM6Iltudk4YRiTVeweFWUNalghkZrejlNkZdgEMj3mul4Xqn1Ztt', '2023-01-11 18:53:36', '2023-01-22 21:46:33'),
+(11, '61625', 'Klika Miroslav', 'klika@khn.cz', NULL, '$2y$10$PSw5emAhbIR3u3sVNNg3iOe8t9z0Ct7dgJEKUud0jfeXFVkJzWZqK', NULL, NULL, 'hFq7AiT9rzvyXmZx087HOvxlZSukmits5NxesW9oAZO0udynhS6HuCSDi0HB', '2023-01-11 18:53:36', '2023-01-22 21:46:33'),
 (12, '63882', 'Anna Seidlová', 'mbalogova@example.org', '2023-01-13 16:56:57', '$2y$10$ihu2uS/uhaS01vFcu8M.6eN5ElPL//0lTNnPybHJWDbVuNOGbWvfe', NULL, NULL, 'jSCn8DxL6F6HZFbc37QMtjBOtiWFUr5RuuHEw0DVZUbCS6s2vqM58fO2ZjXy', '2023-01-13 16:56:57', '2023-01-13 16:56:57'),
 (13, '64832', 'Marta Jílková', 'cibulkova.tomas@example.net', '2023-01-13 16:56:57', '$2y$10$43kzxF1NKZ/bu2BgUlG5D.I0JYRdvKu6v2ZyF83TkJBKh5nqeUCLW', NULL, NULL, 'rhlXHVt9qY9OsQA9Q8q4CRdFYxXxmbc5kliamjZKwMG5crFPZwTB1b2AE3XH', '2023-01-13 16:56:57', '2023-01-13 16:56:57'),
 (14, '62297', 'Vladimíra Bradová', 'ncahova@example.org', '2023-01-13 16:56:57', '$2y$10$lU2Pubr/W60AJ.rFRlM0l.8DHV1vBszqcNyoGqHjbIdGEvPIEWUZS', NULL, NULL, 'CuPFejVxGLKnbWf4cNf5kauzdYDdEMtGwTQ4eXfcRokoZG38HmYA45ePlZLa', '2023-01-13 16:56:57', '2023-01-13 16:56:57'),
@@ -1804,7 +1805,7 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT pro tabulku `addons`
 --
 ALTER TABLE `addons`
-  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT pro tabulku `adversevents`
@@ -1840,7 +1841,7 @@ ALTER TABLE `departments`
 -- AUTO_INCREMENT pro tabulku `documents`
 --
 ALTER TABLE `documents`
-  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=31;
+  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=32;
 
 --
 -- AUTO_INCREMENT pro tabulku `employees`
