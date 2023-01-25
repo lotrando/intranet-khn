@@ -6,7 +6,7 @@
 
 @section('searchbar')
 <div class="col-12 me-2">
-  <input class="form-control d-lg-block d-xl-inline" id="search" type="text" placeholder="{{ __('Hledat standard ...') }}">
+  <input class="form-control d-lg-block d-xl-inline" id="search" type="text" placeholder="{{ __('Hledat dokument ...') }}">
 </div>
 @endsection
 
@@ -18,10 +18,10 @@
 
     <div class="container-fluid">
       <div class="row align-items-center">
-        @foreach ($categories as $category)
+        @foreach ($docs as $category)
         <div class="col-2 col-sm-2 col-md-2 col-xl-2 col-xxl-2 ps-0 m-0">
           <a class="btn bg-{{ $category->color }}-lt hover-shadow-sm w-100 m-1" data-bs-toggle="tooltip" data-bs-placement="top"
-             data-bs-original-title="{{ __('' . $category->category_name . ' standardy') }}" href="/standardy/{{ $category->folder_name . '/' . $category->id }}">
+             data-bs-original-title="{{ __('' . $category->category_name . ' dokumentace') }}" href="/dokumenty/{{ $category->folder_name . '/' . $category->id }}">
             <span class="d-inline d-sm-inline d-md-none d-lg-inline d-xl-inline">{!! $category->svg_icon !!}</span>
             <span class="d-none d-md-inline d-lg-inline d-xl-inline pe-1">{{ $category->category_name }}</span>
             <span class="text-small">
@@ -33,9 +33,9 @@
         <div class="col-12">
 
           <div class="progress mt-2">
-            @foreach ($categories as $category)
+            @foreach ($docs as $category)
             <div class="progress-bar progress-sm bg-{{ $category->color }}-lt" data-bs-toggle="tooltip" data-bs-placement="bottom"
-                 data-bs-original-title="{{ $category->category_name . ' standardy ' . round(($category->documents->count() * 100) / $allDocuments->count()) . '%' }}"
+                 data-bs-original-title="{{ $category->category_name . ' dokumentace ' . round(($category->documents->count() * 100) / $allDocuments->count()) . '%' }}"
                  role="progressbar" aria-label="{{ $category->category_name }}" style="width: {{ ($category->documents->count() * 100) / $allDocuments->count() }}%"></div>
             @endforeach
           </div>
@@ -99,7 +99,7 @@
                         </div>
                       </div>
                       <div class="col-auto">
-                        <a href="{{ route('standardy.download', $document->id) }}" target="_blank">
+                        <a href="{{ route('dokumenty.download', $document->id) }}" target="_blank">
                           <span class="avatar bg-{{ $document->category->color }}-lt" data-bs-toggle="tooltip" data-bs-placement="top"
                                 data-bs-original-title="Stáhnout standard">
                             <img src="{{ asset('img/files/pdf.png') }}" alt="PDF soubor" height="32px">
@@ -406,94 +406,6 @@
                 <input class="form-control" id="user_name" name="user_name" type="text" readonly>
               </div>
             </div>
-            <div class="row" id="attachments">
-
-              <div class="row">
-                <div class="hr-text text-muted my-3">
-                  <span style="font-size: 0.6rem">{{ __('Attachment') }} 1</span>
-                </div>
-
-                <div class="col-12 col-lg-8 mb-2">
-                  <label class="form-label">{{ __('Příloha') }} 1</label>
-                  <input class="form-control" id="file-add" name="file-add[]" type="file" placeholder="{{ __('Soubor standardu ve formátu PDF') }}">
-                </div>
-                <div class="col-12 col-lg-2 mb-2">
-                  <label class="form-label">{{ __('Revision') }}</label>
-                  <input class="form-control" id="revision-add" name="revision-add[]" type="text" placeholder="{{ __('Číslo nebo datum') }}">
-                </div>
-                <div class="col-12 col-lg-2 mb-2">
-                  <label class="form-label">{{ __('Status') }}</label>
-                  <select class="form-select" id="status1" name="status1">
-                    <option value="Schváleno">Schváleno</option>
-                    <option value="Rozpracováno">Rozpracováno</option>
-                  </select>
-                </div>
-              </div>
-
-              <div class="row">
-                <div class="hr-text text-muted my-3">
-                  <span style="font-size: 0.6rem">{{ __('Attachment') }} 2</span>
-                </div>
-                <div class="col-12 col-lg-8 mb-3">
-                  <label class="form-label">{{ __('Příloha') }} 2</label>
-                  <input class="form-control" id="file-add" name="file-add[]" type="file" placeholder="{{ __('Soubor standardu ve formátu PDF') }}">
-                </div>
-                <div class="col-12 col-lg-2 mb-3">
-                  <label class="form-label">{{ __('Revision') }}</label>
-                  <input class="form-control" id="revision-add" name="revision-add[]" type="text" placeholder="{{ __('Číslo nebo datum') }}">
-                </div>
-                <div class="col-12 col-lg-2 mb-3">
-                  <label class="form-label">{{ __('Status') }}</label>
-                  <select class="form-select" id="status2" name="status2">
-                    <option value="Schváleno">Schváleno</option>
-                    <option value="Rozpracováno">Rozpracováno</option>
-                  </select>
-                </div>
-              </div>
-
-              <div class="row">
-                <div class="hr-text text-muted my-3">
-                  <span style="font-size: 0.6rem">{{ __('Attachment') }} 3</span>
-                </div>
-                <div class="col-12 col-lg-8 mb-3">
-                  <label class="form-label">{{ __('Příloha') }} 3</label>
-                  <input class="form-control" id="file-add" name="file-add[]" type="file" placeholder="{{ __('Soubor standardu ve formátu PDF') }}">
-                </div>
-                <div class="col-12 col-lg-2 mb-3">
-                  <label class="form-label">{{ __('Revision') }}</label>
-                  <input class="form-control" id="revision-add" name="revision-add[]" type="text" placeholder="{{ __('Číslo nebo datum') }}">
-                </div>
-                <div class="col-12 col-lg-2 mb-3">
-                  <label class="form-label">{{ __('Status') }}</label>
-                  <select class="form-select" id="status3" name="status3">
-                    <option value="Schváleno">Schváleno</option>
-                    <option value="Rozpracováno">Rozpracováno</option>
-                  </select>
-                </div>
-              </div>
-
-              <div class="row">
-                <div class="hr-text text-muted my-3">
-                  <span style="font-size: 0.6rem">{{ __('Attachment') }} 4</span>
-                </div>
-                <div class="col-12 col-lg-8 mb-3">
-                  <label class="form-label">{{ __('Příloha') }} 4</label>
-                  <input class="form-control" id="file-add" name="file-add[]" type="file" placeholder="{{ __('Soubor standardu ve formátu PDF') }}">
-                </div>
-                <div class="col-12 col-lg-2 mb-3">
-                  <label class="form-label">{{ __('Revision') }}</label>
-                  <input class="form-control" id="revision-add" name="revision-add[]" type="text" placeholder="{{ __('Číslo nebo datum') }}">
-                </div>
-                <div class="col-12 col-lg-2 mb-3">
-                  <label class="form-label">{{ __('Status') }}</label>
-                  <select class="form-select" id="status4" name="status4">
-                    <option value="Schváleno">Schváleno</option>
-                    <option value="Rozpracováno">Rozpracováno</option>
-                  </select>
-                </div>
-              </div>
-
-            </div>
           </div>
           <input id="action" name="action" type="hidden" />
           <input id="hidden_id" name="hidden_id" type="hidden" />
@@ -776,7 +688,8 @@
           $('#search').val(Value);
           $('#display').hide();
         }
-      })
+
+      });
 
       $(document).ready(function() {
         $("#search").keyup(function() {
@@ -786,7 +699,7 @@
           } else {
             $.ajax({
               type: "GET",
-              url: "{{ route('standardy.standard.search') }}",
+              url: "{{ route('dokumenty.dokument.search') }}",
               data: {
                 search: name
               },
@@ -801,248 +714,248 @@
 
   <script>
     // Form Modal Functions
-      $(document).on('click', '.edit', function() {
-        id = $(this).attr('id');
-        $('#unique_code').prop('readonly', true);
-        $('#form_result_modal, #form_result_window').html('');
-        $.ajax({
-          url: "/documents/" + id + "/edit",
-          dataType: "json",
-          success: function(html) {
-            $('#inputForm')[0].reset();
-            $('.modal-title').val('');
-            $('#attachment, #action_button, #pdf-preview-show, #pdf-preview, #pdf-preview-addon-show').removeClass('d-none');
-            $('#formModal').modal('show');
-            $('#modal-icon').html('{!! $categorie->svg_icon !!}').addClass('bg-{{ $categorie->color }}-lt');
-            $('#modal-header').addClass("modal-header bg-{{ $categorie->color }}-lt");
-            $('.modal-title').text("{{ __('Edit') }} {{ $categorie->button }} standard");
-            $('#action').val("Edit");
-            $('#category_id').val(html.data.category_id);
-            $('#folder_name').val(html.data.category.folder_name);
-            $('#name').val(html.data.name);
-            $('#processed').val(html.data.processed);
-            $('#authorize').val(html.data.authorize);
-            $('#examine').val(html.data.examine);
-            $('#efficiency').val(html.data.efficiency);
-            $('#revision').val(html.data.revision);
-            $('#revision_date').val(html.data.revision_date);
-            $('#next_revision_date').val(moment($('#revision_date').val()).add(1, 'Y').format('YYYY-MM-DD'));
-            $('#tags').val(html.data.tags);
-            $('#unique_code').val(html.data.unique_code);
-            $('#description').val(html.data.description);
-            $('#position').val(html.data.position);
-            $('#attachment').val(html.data.attachment);
-            $('#status').val(html.data.status);
-            $('#user_id').val('{{ auth()->user()->id ?? null }}');
-            $('#user_name').val(html.data.user.name);
-            $('#hidden_id').val(html.data.id);
-            $('#hidden_file').val(html.data.file);
-            $('#revision_date').change(function() {
-              var revisionDate = moment($(this).val()).format('YYYY-MM-DD')
-              var nextRevisionDate = moment(revisionDate).add(1, 'Y').format('YYYY-MM-DD')
-              var efficiencyDate = moment(revisionDate).year(2014).format('YYYY-MM-DD')
-              $('#efficiency').val(efficiencyDate)
-              $('#next_revision_date').val(nextRevisionDate)
-            })
-            PDFObject.embed("../../standardy/" + html.data.file +"#toolbar=0", "#pdf-preview", {height: "31rem"})
-          }
-        })
-      });
-
-      $(document).on('click', '.show', function() {
-        id = $(this).attr('id');
-        $('#unique_code').prop('readonly', true);
-        $('#form_result_modal, #form_result_window').html('');
-        $.ajax({
-          url: "/documents/" + id,
-          dataType: "json",
-          success: function(html) {
-            $('#inputForm')[0].reset()
-            $('.modal-title').val('')
-            $('#pdf-preview-show, #pdf-preview, #pdf-preview-addon-show').removeClass('d-none')
-            $('#showModal').modal('show')
-            $('#show-modal-icon').html('{!! $categorie->svg_icon !!}').addClass('bg-{{ $categorie->color }}-lt')
-            $('#show-modal-header').addClass("modal-header bg-{{ $categorie->color }}-lt")
-            $('.modal-title').text(html.data.description)
-            $('#category_id').val(html.data.category_id)
-            $('#show-folder_name').val(html.data.category.folder_name)
-            $('#show-name').val(html.data.name)
-            $('#show-processed').val(html.data.processed)
-            $('#show-authorize').val(html.data.authorize)
-            $('#show-examine').val(html.data.examine)
-            $('#show-efficiency').val(html.data.efficiency)
-            $('#show-revision').val(html.data.revision)
-            $('#show-revision_date').val(html.data.revision_date)
-            $('#show-next_revision_date').val(html.data.next_revision_date)
-            $('#show-tags').val(html.data.tags)
-            $('#show-description').val(html.data.description)
-            $('#show-position').val(html.data.position)
-            $('#show-file').val(html.data.file)
-            $('#show-status').val(html.data.status)
-            $('#show-user_id').val('{{ auth()->user()->id ?? null }}')
-            $('#show-user_name').val(html.data.user.name)
-            $('#attachment, #action_button').addClass('d-none')
-            $('#show-hidden_id').val(html.data.id)
-            $('#download-btn').attr("href", "/standardy/standard/" + html.data.id + "")
-            PDFObject.embed("../../standardy/" + html.data.file +"#toolbar=0", "#pdf-preview-show", {height: "33rem"})
-          }
-        })
-      });
-
-      $(document).on('click', '.show-addon', function() {
-        id = $(this).attr('id');
-        $.ajax({
-          url: "/documents/addon/" + id,
-          dataType: "json",
-          success: function(html) {
-            $('#inputForm')[0].reset()
-            $('.modal-title').val('')
-            $('#addonShowModal').modal('show')
-            $('#addon-show-modal-icon').html('{!! $categorie->svg_icon !!}').addClass('bg-{{ $categorie->color }}-lt')
-            $('#addon-show-modal-header').addClass("modal-header bg-{{ $categorie->color }}-lt")
-            $('.modal-title').html(html.data.description)
-            $('#addon-show-description').val(html.data.description)
-            $('#addon-show-position').val(html.data.addon_number)
-            $('#addon-show-file').val(html.data.file)
-            $('#addon-show-revision').val(html.data.revision)
-            $('#addon-show-status').val(html.data.status)
-            $('#show-user_id').val('{{ auth()->user()->id ?? null }}')
-            $('#show-hidden_id').val(html.data.id)
-            $('#addon-download-btn').attr("href", "/standardy/standard/addon/" + html.data.id + "")
-            PDFObject.embed("../../standardy/" + html.data.file + "#toolbar=0", "#pdf-preview-addon-show", {height: "30rem"})
-          }
-        })
-      });
-
-      $('#openCreateModal').click(function() {
-        $('#inputForm')[0].reset();
-        $("#attachment, #action_button").removeClass('d-none')
-        $('#pdf-preview-show, #pdf-preview').addClass('d-none')
-        $('#unique_code').prop('readonly', true)
-        $('#category_id').val('{{ $categorie->id }}')
-        $('#formModal').modal('show')
-        $('#modal-icon').html('{!! $categorie->svg_icon !!}').addClass('bg-{{ $categorie->color }}-lt')
-        $('#modal-header').addClass("modal-header bg-{{ $categorie->color }}-lt")
-        $('#action_button, .modal-title').text("{{ __('Create new') }} {{ $categorie->button }} standard")
-        $('#action').val("Add")
-        $('#position').val('{{ $lastpos + 1 }}')
-        $('#folder_name').val("{{ $categorie->folder_name }}")
-        $('#status').val('Schváleno')
-        $('#user_id').val('{{ auth()->user()->id ?? null }}')
-        $('#user_name').val('{{ auth()->user()->name ?? 'Guest' }}')
-        $('#unique_code').val('STD{{ $categorie->id }}#{{ $lastpos + 1 }}')
-        $('#revision').val('{{ $lastpos - $lastpos + 1 }}')
-        $('#processed, #authorize, #examine').val('')
-        $('#revision_date').change(function() {
-          var revisionDate = moment($(this).val()).format('YYYY-MM-DD')
-          var nextRevisionDate = moment(revisionDate).add(1, 'Y').format('YYYY-MM-DD')
-          $('#efficiency').val($('#revision_date').val())
-          $('#next_revision_date').val(nextRevisionDate)
-        })
-      })
-
-      $('#inputForm').on('submit', function(event) {
-        event.preventDefault();
-        if ($('#action').val() === 'Add') {
+        $(document).on('click', '.edit', function() {
+          id = $(this).attr('id');
+          $('#unique_code').prop('readonly', true);
+          $('#form_result_modal, #form_result_window').html('');
           $.ajax({
-            url: "{{ route('documents.store') }}",
-            method: "POST",
-            data: new FormData(this),
-            contentType: false,
-            cache: false,
-            processData: false,
+            url: "/documents/" + id + "/edit",
             dataType: "json",
-            success: function(data) {
-              var html = '';
-              if (data.errors) {
-                html = '<div class="alert alert-danger text-danger shadow-sm"><ul> ';
-                for (var count = 0; count < data.errors.length; count++) {
-                  html += '<li>' + data.errors[count] + '</li>';
-                }
-                html += '</ul><a class="btn-close" data-bs-dismiss="alert" aria-label="close"></a></div>';
-                $('#form_result_modal').html(html);
-              }
-              if (data.success) {
-                html = '<div class="alert alert-success text-success shadow-sm"><ul><li>' + data.success + '</li></ul></div>';
-                $('#formModal').modal('hide')
-                $('#inputForm')[0].reset();
-                location.reload()
-                $('#form_result_window').html(html);
-              }
+            success: function(html) {
+              $('#inputForm')[0].reset();
+              $('.modal-title').val('');
+              $('#attachment, #action_button, #pdf-preview-show, #pdf-preview, #pdf-preview-addon-show').removeClass('d-none');
+              $('#formModal').modal('show');
+              $('#modal-icon').html('{!! $categorie->svg_icon !!}').addClass('bg-{{ $categorie->color }}-lt');
+              $('#modal-header').addClass("modal-header bg-{{ $categorie->color }}-lt");
+              $('.modal-title').text("{{ __('Edit') }} {{ $categorie->button }} standard");
+              $('#action').val("Edit");
+              $('#category_id').val(html.data.category_id);
+              $('#folder_name').val(html.data.category.folder_name);
+              $('#name').val(html.data.name);
+              $('#processed').val(html.data.processed);
+              $('#authorize').val(html.data.authorize);
+              $('#examine').val(html.data.examine);
+              $('#efficiency').val(html.data.efficiency);
+              $('#revision').val(html.data.revision);
+              $('#revision_date').val(html.data.revision_date);
+              $('#next_revision_date').val(moment($('#revision_date').val()).add(1, 'Y').format('YYYY-MM-DD'));
+              $('#tags').val(html.data.tags);
+              $('#unique_code').val(html.data.unique_code);
+              $('#description').val(html.data.description);
+              $('#position').val(html.data.position);
+              $('#attachment').val(html.data.attachment);
+              $('#status').val(html.data.status);
+              $('#user_id').val('{{ auth()->user()->id ?? null }}');
+              $('#user_name').val(html.data.user.name);
+              $('#hidden_id').val(html.data.id);
+              $('#hidden_file').val(html.data.file);
+              $('#revision_date').change(function() {
+                var revisionDate = moment($(this).val()).format('YYYY-MM-DD')
+                var nextRevisionDate = moment(revisionDate).add(1, 'Y').format('YYYY-MM-DD')
+                var efficiencyDate = moment(revisionDate).year(2014).format('YYYY-MM-DD')
+                $('#efficiency').val(efficiencyDate)
+                $('#next_revision_date').val(nextRevisionDate)
+              })
+              PDFObject.embed("../../dokumenty/" + html.data.file +"#toolbar=0", "#pdf-preview", {height: "31rem"})
             }
           })
-        }
+        });
 
-        if ($('#action').val() === "Edit") {
-          event.preventDefault();
+        $(document).on('click', '.show', function() {
+          id = $(this).attr('id');
+          $('#unique_code').prop('readonly', true);
+          $('#form_result_modal, #form_result_window').html('');
           $.ajax({
-            url: "{{ route('documents.update') }}",
-            method: "POST",
-            data: new FormData(this),
-            contentType: false,
-            cache: false,
-            processData: false,
+            url: "/documents/" + id,
             dataType: "json",
-            success: function(data) {
-              var html = '';
-              if (data.errors) {
-                html = '<div class="alert alert-danger text-danger shadow-sm"><ul>';
-                for (var count = 0; count < data.errors.length; count++) {
-                  html += '<li>' + data.errors[count] + '</li>';
-                }
-                html += '</ul></div>';
-                $('#form_result_modal').html(html);
-              }
-              if (data.success) {
-                html = '<div class="alert alert-success text-success shadow-sm"><ul><li>' +
-                  data.success + '</li></ul></div>';
-                $('#form_result_window').html(html);
-                location.reload();
-                $('#formModal').modal('hide');
-              }
+            success: function(html) {
+              $('#inputForm')[0].reset()
+              $('.modal-title').val('')
+              $('#pdf-preview-show, #pdf-preview, #pdf-preview-addon-show').removeClass('d-none')
+              $('#showModal').modal('show')
+              $('#show-modal-icon').html('{!! $categorie->svg_icon !!}').addClass('bg-{{ $categorie->color }}-lt')
+              $('#show-modal-header').addClass("modal-header bg-{{ $categorie->color }}-lt")
+              $('.modal-title').text(html.data.description)
+              $('#category_id').val(html.data.category_id)
+              $('#show-folder_name').val(html.data.category.folder_name)
+              $('#show-name').val(html.data.name)
+              $('#show-processed').val(html.data.processed)
+              $('#show-authorize').val(html.data.authorize)
+              $('#show-examine').val(html.data.examine)
+              $('#show-efficiency').val(html.data.efficiency)
+              $('#show-revision').val(html.data.revision)
+              $('#show-revision_date').val(html.data.revision_date)
+              $('#show-next_revision_date').val(html.data.next_revision_date)
+              $('#show-tags').val(html.data.tags)
+              $('#show-description').val(html.data.description)
+              $('#show-position').val(html.data.position)
+              $('#show-file').val(html.data.file)
+              $('#show-status').val(html.data.status)
+              $('#show-user_id').val('{{ auth()->user()->id ?? null }}')
+              $('#show-user_name').val(html.data.user.name)
+              $('#attachment, #action_button').addClass('d-none')
+              $('#show-hidden_id').val(html.data.id)
+              $('#download-btn').attr("href", "/standardy/standard/" + html.data.id + "")
+              PDFObject.embed("../../dokumenty/" + html.data.file +"#toolbar=0", "#pdf-preview-show", {height: "33rem"})
             }
-          });
-        }
-      })
+          })
+        });
 
-      // Delete Employee
-      $(document).on('click', '.delete', function() {
-        id = $(this).attr('id');
-        $('#ok_button').text("{{ __('Delete') }}");
-        $('#confirmModal').modal('show');
-      })
+        $(document).on('click', '.show-addon', function() {
+          id = $(this).attr('id');
+          $.ajax({
+            url: "/documents/addon/" + id,
+            dataType: "json",
+            success: function(html) {
+              $('#inputForm')[0].reset()
+              $('.modal-title').val('')
+              $('#addonShowModal').modal('show')
+              $('#addon-show-modal-icon').html('{!! $categorie->svg_icon !!}').addClass('bg-{{ $categorie->color }}-lt')
+              $('#addon-show-modal-header').addClass("modal-header bg-{{ $categorie->color }}-lt")
+              $('.modal-title').html(html.data.description)
+              $('#addon-show-description').val(html.data.description)
+              $('#addon-show-position').val(html.data.addon_number)
+              $('#addon-show-file').val(html.data.file)
+              $('#addon-show-revision').val(html.data.revision)
+              $('#addon-show-status').val(html.data.status)
+              $('#show-user_id').val('{{ auth()->user()->id ?? null }}')
+              $('#show-hidden_id').val(html.data.id)
+              $('#addon-download-btn').attr("href", "/standardy/standard/addon/" + html.data.id + "")
+              PDFObject.embed("../../standardy/" + html.data.file + "#toolbar=0", "#pdf-preview-addon-show", {height: "30rem"})
+            }
+          })
+        });
 
-      // Delete Confirm
-      $('#ok_button').click(function() {
-        $.ajax({
-          url: "/documents/destroy/" + id,
-          beforeSend: function() {
-            $('#ok_button').text("{{ __('Deleting ...') }}");
-          },
-          success: function(data) {
-            setTimeout(function() {
-              $('#confirmModal').modal('hide');
-              $('#ok_button').text("{{ __('Delete') }}");
-              location.reload();
-            }, 1000);
+        $('#openCreateModal').click(function() {
+          $('#inputForm')[0].reset();
+          $("#attachment, #action_button").removeClass('d-none')
+          $('#pdf-preview-show, #pdf-preview').addClass('d-none')
+          $('#unique_code').prop('readonly', true)
+          $('#category_id').val('{{ $categorie->id }}')
+          $('#formModal').modal('show')
+          $('#modal-icon').html('{!! $categorie->svg_icon !!}').addClass('bg-{{ $categorie->color }}-lt')
+          $('#modal-header').addClass("modal-header bg-{{ $categorie->color }}-lt")
+          $('#action_button, .modal-title').text("{{ __('Create new') }} {{ $categorie->button }} standard")
+          $('#action').val("Add")
+          $('#position').val('{{ $lastpos + 1 }}')
+          $('#folder_name').val("{{ $categorie->folder_name }}")
+          $('#status').val('Schváleno')
+          $('#user_id').val('{{ auth()->user()->id ?? null }}')
+          $('#user_name').val('{{ auth()->user()->name ?? 'Guest' }}')
+          $('#unique_code').val('STD{{ $categorie->id }}#{{ $lastpos + 1 }}')
+          $('#revision').val('{{ $lastpos - $lastpos + 1 }}')
+          $('#processed, #authorize, #examine').val('')
+          $('#revision_date').change(function() {
+            var revisionDate = moment($(this).val()).format('YYYY-MM-DD')
+            var nextRevisionDate = moment(revisionDate).add(1, 'Y').format('YYYY-MM-DD')
+            $('#efficiency').val($('#revision_date').val())
+            $('#next_revision_date').val(nextRevisionDate)
+          })
+        })
+
+        $('#inputForm').on('submit', function(event) {
+          event.preventDefault();
+          if ($('#action').val() === 'Add') {
+            $.ajax({
+              url: "{{ route('documents.store') }}",
+              method: "POST",
+              data: new FormData(this),
+              contentType: false,
+              cache: false,
+              processData: false,
+              dataType: "json",
+              success: function(data) {
+                var html = '';
+                if (data.errors) {
+                  html = '<div class="alert alert-danger text-danger shadow-sm"><ul> ';
+                  for (var count = 0; count < data.errors.length; count++) {
+                    html += '<li>' + data.errors[count] + '</li>';
+                  }
+                  html += '</ul><a class="btn-close" data-bs-dismiss="alert" aria-label="close"></a></div>';
+                  $('#form_result_modal').html(html);
+                }
+                if (data.success) {
+                  html = '<div class="alert alert-success text-success shadow-sm"><ul><li>' + data.success + '</li></ul></div>';
+                  $('#formModal').modal('hide')
+                  $('#inputForm')[0].reset();
+                  location.reload()
+                  $('#form_result_window').html(html);
+                }
+              }
+            })
+          }
+
+          if ($('#action').val() === "Edit") {
+            event.preventDefault();
+            $.ajax({
+              url: "{{ route('documents.update') }}",
+              method: "POST",
+              data: new FormData(this),
+              contentType: false,
+              cache: false,
+              processData: false,
+              dataType: "json",
+              success: function(data) {
+                var html = '';
+                if (data.errors) {
+                  html = '<div class="alert alert-danger text-danger shadow-sm"><ul>';
+                  for (var count = 0; count < data.errors.length; count++) {
+                    html += '<li>' + data.errors[count] + '</li>';
+                  }
+                  html += '</ul></div>';
+                  $('#form_result_modal').html(html);
+                }
+                if (data.success) {
+                  html = '<div class="alert alert-success text-success shadow-sm"><ul><li>' +
+                    data.success + '</li></ul></div>';
+                  $('#form_result_window').html(html);
+                  location.reload();
+                  $('#formModal').modal('hide');
+                }
+              }
+            });
           }
         })
-      })
 
-      // $("#stats").hide();
-      // $("#stats-btn").click(function() {
-      // console.log('clicked');
-      // $("#stats").toggle();
-      // });
+        // Delete Employee
+        $(document).on('click', '.delete', function() {
+          id = $(this).attr('id');
+          $('#ok_button').text("{{ __('Delete') }}");
+          $('#confirmModal').modal('show');
+        })
 
-      // $("#stats").hide();
-      // $('#stats-btn').click(function() {
-      //   $('#stats').slideToggle("slow");
-      // });
+        // Delete Confirm
+        $('#ok_button').click(function() {
+          $.ajax({
+            url: "/documents/destroy/" + id,
+            beforeSend: function() {
+              $('#ok_button').text("{{ __('Deleting ...') }}");
+            },
+            success: function(data) {
+              setTimeout(function() {
+                $('#confirmModal').modal('hide');
+                $('#ok_button').text("{{ __('Delete') }}");
+                location.reload();
+              }, 1000);
+            }
+          })
+        })
 
-      $("#attachments").hide();
-      $("#addon-btn").click(function() {
-        $('#attachments').slideToggle("slow");
-      });
+        // $("#stats").hide();
+        // $("#stats-btn").click(function() {
+        // console.log('clicked');
+        // $("#stats").toggle();
+        // });
+
+        // $("#stats").hide();
+        // $('#stats-btn').click(function() {
+        //   $('#stats').slideToggle("slow");
+        // });
+
+        $("#attachments").hide();
+        $("#addon-btn").click(function() {
+          $('#attachments').slideToggle("slow");
+        });
   </script>
   @endsection

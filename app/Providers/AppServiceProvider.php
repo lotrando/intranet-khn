@@ -35,10 +35,10 @@ class AppServiceProvider extends ServiceProvider
 
         Paginator::useBootstrap();
 
-        $docs = Category::with('documents')->where('category_type', '=', 'Dokument')->get();                // Dokuments items
+        $docs = Category::with('documents')->where('category_type', '=', 'dokumenty')->get();                // Dokuments items
         View::share('docs', $docs);
 
-        $stands = Category::with('documents')->where('category_type', '=', 'Standard')->get();              // Standards items
+        $stands = Category::with('documents')->where('category_type', '=', 'standardy')->get();              // Standards items
         View::share('stands', $stands);
 
         $categories = Category::with('documents')->get();           // Standards items

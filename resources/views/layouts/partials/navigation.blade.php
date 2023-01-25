@@ -241,7 +241,7 @@
               </span>
             </a>
           </li>
-          <li class="nav-item dropdown" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-original-title="Přehled dokumentace nemocnice">
+          <li class="nav-item dropdown {{ request()->segment(1) == 'dokumenty' ? 'active' : '' }}" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-original-title="Přehled dokumentace nemocnice">
             <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" data-bs-auto-close="outside" href="#" role="button" aria-expanded="false">
               <span class="nav-link-icon d-md-none d-lg-inline-block">
                 <svg xmlns="http://www.w3.org/2000/svg" class="icon text-pink" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
@@ -258,7 +258,7 @@
             </a>
             <div class="dropdown-menu">
               @foreach ($docs as $document)
-              <a class="dropdown-item {{ request()->segment(2) == $document->folder_name }}' ? 'active' : '' }}" href="{{ route('dokumenty.'. $document->folder_name.'', $document->id) }}">
+              <a class="dropdown-item {{ request()->segment(2) == $document->folder_name ? 'active' : '' }}" href="{{ route('dokumenty.'. $document->folder_name.'', $document->id) }}">
                 <span class="nav-link-icon d-md-none d-lg-inline-block">
                   {!! $document->svg_icon !!}
                 </span>
@@ -286,7 +286,7 @@
             </a>
             <div class="dropdown-menu">
               @foreach ($stands as $category)
-              <a class="dropdown-item {{ request()->segment(2) == $category->folder_name }}' ? 'active' : '' }}" href="{{ route('standardy.'. $category->folder_name.'', $category->id) }}">
+              <a class="dropdown-item {{ request()->segment(2) == $category->folder_name ? 'active' : '' }}" href="{{ route('standardy.'. $category->folder_name.'', $category->id) }}">
                 <span class="nav-link-icon d-md-none d-lg-inline-block">
                   {!! $category->svg_icon !!}
                 </span>

@@ -35,7 +35,7 @@ class PageController extends Controller
 
         $suma = Document::count();
 
-        $documents = Document::with('category', 'addons', 'user')
+        $documents = Document::with('category', 'addons', 'user')->where('category_id', '<', '13')
             ->where('updated_at', '>=', Carbon::now()->subHours(24))
             ->orderByDesc('updated_at')
             ->paginate(7);
@@ -63,12 +63,12 @@ class PageController extends Controller
 
         $suma = Document::count();
 
-        $documents = Document::with('category', 'addons', 'user')
+        $documents = Document::with('category', 'addons', 'user')->where('category_id', '>', '12')
             ->where('updated_at', '>=', Carbon::now()->subHours(48))
             ->orderBy('updated_at')
             ->paginate(7);
 
-        return view('zmeny-standardu', [
+        return view('zmeny-dokumentace', [
             'pretitle'  => 'Oznámení',
             'title'     => 'Změny v dokumentaci',
             'suma'      => $suma,
@@ -197,8 +197,6 @@ class PageController extends Controller
     public function document($id)
     {
 
-        return $id;
-
         $allDocuments = Document::pluck('category_id');
         $allAddons = Addon::pluck('document_id');
         $categorie  = Category::where('id', $id)->first();
@@ -213,14 +211,14 @@ class PageController extends Controller
         }
 
         if (Auth::user()) {
-            $documents = Document::with('category', 'addons', 'user')->where('category_id', $id)->orderBy('position')->get();
+            $documents = Document::with('category', 'addons', 'user')->where('onscreen', 1)->where('category_id', $id)->orderBy('position')->get();
         } else {
-            $documents = Document::with('category', 'addons', 'user')->where('status', 'Schváleno')->where('category_id', $id)->orderBy('position')->get();
+            $documents = Document::with('category', 'addons', 'user')->where('onscreen', 1)->where('status', 'Schváleno')->where('category_id', $id)->orderBy('position')->get();
         }
 
-        return view('standardy.standard', [
+        return view('dokumenty.dokument', [
             'title'             => $categorie->category_name,
-            'pretitle'          => 'Standardy',
+            'pretitle'          => 'Dokumentace',
             'categorie'         => $categorie,
             'icon'              => $categorie->fa_icon,
             'lastpos'           => $last,

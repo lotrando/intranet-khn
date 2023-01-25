@@ -52,4 +52,44 @@ class FileController extends Controller
             return view('errors.404');
         }
     }
+
+    public function documentDownload(Request $request)
+    {
+        $id = $request->id;
+
+        $file = Document::where('id', $id)->pluck('file');
+
+        if (empty($file[0])) {
+            return view('errors.404');
+        }
+
+        if (file_exists(public_path() . '/dokumenty/' . $file[0])) {
+
+            return Response::download('dokumenty/' . $file[0]);
+            redirect()->back();
+        } else {
+
+            return view('errors.404');
+        }
+    }
+
+    public function documentAddonDownload(Request $request)
+    {
+        $id = $request->id;
+
+        $addon = Addon::where('id', $id)->pluck('file');
+
+        if (empty($addon[0])) {
+            return view('errors.404');
+        }
+
+        if (file_exists(public_path() . '/dokumenty/' . $addon[0])) {
+
+            return Response::download('dokumenty/' . $addon[0]);
+            redirect()->back();
+        } else {
+
+            return view('errors.404');
+        }
+    }
 }

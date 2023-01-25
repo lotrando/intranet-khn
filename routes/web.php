@@ -43,11 +43,21 @@ Route::prefix('stravovani')->name('stravovani.')->group(function () {
 
 // Dokumenty
 Route::prefix('dokumenty')->name('dokumenty.')->group(function () {
-    Route::get('personalni/{id}', [PageController::class, 'personalni'])->name('personalni');
-    Route::get('sesterska/{id}', [PageController::class, 'sesterska'])->name('sesterska');                                     // Personální dokumentace route (dokumentace.personalni)
+    Route::get('personalni/{id}', [PageController::class, 'document'])->name('personalni');
+    Route::get('sesterska/{id}', [PageController::class, 'document'])->name('sesterska');
+    Route::get('hygiena/{id}', [PageController::class, 'document'])->name('hygiena');
+    Route::get('pacient/{id}', [PageController::class, 'document'])->name('pacient');
+    Route::get('okb/{id}', [PageController::class, 'document'])->name('okb');
+    Route::get('rdg/{id}', [PageController::class, 'document'])->name('rdg');
+    Route::get('it/{id}', [PageController::class, 'document'])->name('it');
+    Route::get('kpr/{id}', [PageController::class, 'document'])->name('kpr');
+    Route::get('komunikacni-karty/{id}', [PageController::class, 'document'])->name('komunikacni-karty');
+    Route::get('vyhodnoceni-dotazniku/{id}', [PageController::class, 'document'])->name('vyhodnoceni-dotazniku');
+    Route::get('navody/{id}', [PageController::class, 'document'])->name('navody');
+    Route::get('ukrajinske-dokumenty/{id}', [PageController::class, 'document'])->name('ukrajinske-dokumenty');
 
     Route::get('dokument-search', [DocumentController::class, 'documentSearch'])->name('dokument.search');                  // Vyhledávání dokumentů
-    Route::get('dokument/{id}', [FileController::class, 'documentDownload'])->name('dokument');
+    Route::get('dokument/{id}', [FileController::class, 'documentDownload'])->name('download');
     Route::get('dokument/addon/{id}', [FileController::class, 'documentAddonDownload'])->name('dokument.addon');            // Download document
 });
 
@@ -66,7 +76,7 @@ Route::prefix('standardy')->name('standardy.')->group(function () {
     Route::get('logopedicke/{id}', [PageController::class, 'standard'])->name('logopedicke');                               // Logopedické standardy route (standardy.logopedicke)
     Route::get('legislativni/{id}', [PageController::class, 'standard'])->name('legislativni');                             // Legislativní standardy route (standardy.legislativni)
 
-    Route::get('standard-search', [DocumentController::class, 'standardSearch'])->name('standard.search');                  // Vyhledávání dokumentů
+    Route::get('standard-search', [DocumentController::class, 'documentSearch'])->name('standard.search');                  // Vyhledávání dokumentů
     Route::get('standard/{id}', [FileController::class, 'standardDownload'])->name('download');
     Route::get('standard/addon/{id}', [FileController::class, 'standardAddonDownload'])->name('download.addon');            // Download standard
 });

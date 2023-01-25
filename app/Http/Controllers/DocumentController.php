@@ -305,21 +305,21 @@ class DocumentController extends Controller
         return response()->json(['success' => __('Standard deleted successfully')]);
     }
 
-    public function standardSearch(Request $request)
+    public function documentSearch(Request $request)
     {
         if ($request->ajax()) {
 
             $output = "";
 
             if (Auth::check()) {
-                $documents = Document::with('category', 'addons')->orderBy('category_id')
+                $documents = Document::with('category', 'addons')->orderByDesc('category_id')
                     ->orWhere('unique_code', 'LIKE', '%' . $request->search . "%")
                     ->orWhere('name', 'LIKE', '%' . $request->search . "%")
                     ->orWhere('description', 'LIKE', '%' . $request->search . "%")
                     ->orWhere('tags', 'LIKE', '%' . $request->search . "%")
                     ->get();
             } else {
-                $documents = Document::with('category', 'addons')->orderBy('category_id')
+                $documents = Document::with('category', 'addons')->orderByDesc('category_id')
                     ->orWhere('unique_code', 'LIKE', '%' . $request->search . "%")
                     ->orWhere('name', 'LIKE', '%' . $request->search . "%")
                     ->orWhere('description', 'LIKE', '%' . $request->search . "%")
@@ -340,14 +340,14 @@ class DocumentController extends Controller
                                 <div class="row align-items-center mx-2 g-3">
 
                                     <div class="avatar bg-' . $document->category->color . '-lt col-auto">
-                                    <a href="/standardy/' . $document->category->folder_name . '/' . $document->category->id . '">
+                                    <a href="/' . $document->category->category_type . '/' . $document->category->folder_name . '/' . $document->category->id . '">
                                     <div class="text-uppercase">
                                         ' . $document->category->svg_icon . '
                                     </div>
                                     </a>
                                     </div>
                                     <div class="col-auto">
-                                    <a href="/standardy/standard/' . $document->id . '" target="_blank">
+                                    <a href="/' . $document->category->category_type . '/' . $document->category->folder_name . '/' . $document->id . '" target="_blank">
                                         <span class="avatar bg-' . $document->category->color . '-lt">
                                         <img src="../../img/files/pdf.png" height="32px" alt="PDF soubor" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-original-title="Stáhnout standard">
                                         </span>
