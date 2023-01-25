@@ -257,178 +257,17 @@
               </span>
             </a>
             <div class="dropdown-menu">
-              <a class="dropdown-item" href="#">
+              @foreach ($docs as $document)
+              <a class="dropdown-item {{ request()->segment(2) == $document->folder_name }}' ? 'active' : '' }}" href="{{ route('dokumenty.'. $document->folder_name.'', $document->id) }}">
                 <span class="nav-link-icon d-md-none d-lg-inline-block">
-                  <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-user-plus text-azure" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
-                    <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
-                    <circle cx="9" cy="7" r="4"></circle>
-                    <path d="M3 21v-2a4 4 0 0 1 4 -4h4a4 4 0 0 1 4 4v2"></path>
-                    <path d="M16 11h6m-3 -3v6"></path>
-                  </svg>
+                  {!! $document->svg_icon !!}
                 </span>
                 <span class="nav-link-title">
-                  {{ __('Personální') }}
+                  {{ $document->category_name }}
                 </span>
+                <span class="badge badge-sm bg-{{ $document->color }}-lt text-uppercase ms-auto">{{ $document->documents->count() }}</span>
               </a>
-              <a class="dropdown-item" href="#">
-                <span class="nav-link-icon d-md-none d-lg-inline-block">
-                  <svg class="icon icon-tabler icon-tabler-nurse text-red" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" stroke-width="2"
-                       stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
-                    <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
-                    <path d="M12 6c2.941 0 5.685 .847 8 2.31l-2 9.69h-12l-2 -9.691a14.93 14.93 0 0 1 8 -2.309z">
-                    </path>
-                    <path d="M10 12h4"></path>
-                    <path d="M12 10v4"></path>
-                  </svg>
-                </span>
-                <span class="nav-link-title">
-                  {{ __('Sesterská') }}
-                </span>
-              </a>
-              <a class="dropdown-item" href="#">
-                <span class="nav-link-icon d-md-none d-lg-inline-block">
-                  <svg class="icon icon-tabler icon-tabler-hand-sanitizer text-azure" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
-                       stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
-                    <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
-                    <path d="M7 21h10v-10a3 3 0 0 0 -3 -3h-4a3 3 0 0 0 -3 3v10z"></path>
-                    <path d="M15 3h-6a2 2 0 0 0 -2 2"></path>
-                    <path d="M12 3v5"></path>
-                    <path d="M12 11v4"></path>
-                    <path d="M10 13h4"></path>
-                  </svg>
-                </span>
-                <span class="nav-link-title">
-                  {{ __('Hygiena') }}
-                </span>
-              </a>
-              <a class="dropdown-item" href="#">
-                <span class="nav-link-icon d-md-none d-lg-inline-block">
-                  <svg class="icon icon-tabler icon-tabler-old text-yellow" xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 24 24" stroke-width="21"
-                       stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
-                    <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
-                    <path d="M11 21l-1 -4l-2 -3v-6"></path>
-                    <path d="M5 14l-1 -3l4 -3l3 2l3 .5"></path>
-                    <circle cx="8" cy="4" r="1"></circle>
-                    <path d="M7 17l-2 4"></path>
-                    <path d="M16 21v-8.5a1.5 1.5 0 0 1 3 0v.5"></path>
-                  </svg>
-                </span>
-                <span class="nav-link-title">
-                  {{ __('Pacient') }}
-                </span>
-              </a>
-              <a class="dropdown-item" href="#">
-                <span class="nav-link-icon d-md-none d-lg-inline-block">
-                  <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-test-pipe text-purple" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
-                    <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
-                    <path d="M20 8.04l-12.122 12.124a2.857 2.857 0 1 1 -4.041 -4.04l12.122 -12.124"></path>
-                    <path d="M7 13h8"></path>
-                    <path d="M19 15l1.5 1.6a2 2 0 1 1 -3 0l1.5 -1.6z"></path>
-                    <path d="M15 3l6 6"></path>
-                  </svg>
-                </span>
-                <span class="nav-link-title">
-                  {{ __('OKB') }}
-                </span>
-              </a>
-              <a class="dropdown-item" href="#">
-                <span class="nav-link-icon d-md-none d-lg-inline-block">
-                  <svg class="icon icon-tabler icon-tabler-radioactive text-orange" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" stroke-width="2"
-                       stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
-                    <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
-                    <path d="M13.5 14.6l3 5.19a9 9 0 0 0 4.5 -7.79h-6a3 3 0 0 1 -1.5 2.6"></path>
-                    <path d="M13.5 9.4l3 -5.19a9 9 0 0 0 -9 0l3 5.19a3 3 0 0 1 3 0"></path>
-                    <path d="M10.5 14.6l-3 5.19a9 9 0 0 1 -4.5 -7.79h6a3 3 0 0 0 1.5 2.6"></path>
-                  </svg>
-                </span>
-                <span class="nav-link-title">
-                  {{ __('RDG') }}
-                </span>
-              </a>
-              <a class="dropdown-item" href="#">
-                <span class="nav-link-icon d-md-none d-lg-inline-block">
-                  <svg class="icon icon-tabler icon-tabler-devices-2 text-blue" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" stroke-width="2"
-                       stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
-                    <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
-                    <path d="M10 15h-6a1 1 0 0 1 -1 -1v-8a1 1 0 0 1 1 -1h6"></path>
-                    <rect x="13" y="4" width="8" height="16" rx="1"></rect>
-                    <line x1="7" y1="19" x2="10" y2="19"></line>
-                    <line x1="17" y1="8" x2="17" y2="8.01"></line>
-                    <circle cx="17" cy="16" r="1"></circle>
-                    <line x1="9" y1="15" x2="9" y2="19"></line>
-                  </svg>
-                </span>
-                <span class="nav-link-title">
-                  {{ __('IT') }}
-                </span>
-              </a>
-              <a class="dropdown-item" href="#">
-                <span class="nav-link-icon d-md-none d-lg-inline-block">
-                  <svg class="icon icon-tabler icon-tabler-heartbeat text-pink" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" stroke-width="2"
-                       stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
-                    <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
-                    <path d="M19.5 13.572l-7.5 7.428l-2.896 -2.868m-6.117 -8.104a5 5 0 0 1 9.013 -3.022a5 5 0 1 1 7.5 6.572">
-                    </path>
-                    <path d="M3 13h2l2 3l2 -6l1 3h3"></path>
-                  </svg>
-                </span>
-                <span class="nav-link-title">
-                  {{ __('KPR') }}
-                </span>
-              </a>
-              <a class="dropdown-item" href="#">
-                <span class="nav-link-icon d-md-none d-lg-inline-block">
-                  <svg class="icon icon-tabler icon-tabler-cards" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" stroke-width="2"
-                       stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
-                    <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
-                    <path
-                          d="M3.604 7.197l7.138 -3.109a0.96 .96 0 0 1 1.27 .527l4.924 11.902a1.004 1.004 0 0 1 -.514 1.304l-7.137 3.109a0.96 .96 0 0 1 -1.271 -.527l-4.924 -11.903a1.005 1.005 0 0 1 .514 -1.304z">
-                    </path>
-                    <path d="M15 4h1a1 1 0 0 1 1 1v3.5"></path>
-                    <path d="M20 6c.264 .112 .52 .217 .768 .315a1 1 0 0 1 .53 1.311l-2.298 5.374">
-                    </path>
-                  </svg>
-                </span>
-                <span class="nav-link-title">
-                  {{ __('Komunikační karty') }}
-                </span>
-              </a>
-              <a class="dropdown-item" href="#">
-                <span class="nav-link-icon d-md-none d-lg-inline-block">
-                  <svg class="icon icon-tabler icon-tabler-checkup-list text-lime" xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 24 24" stroke-width="21"
-                       stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
-                    <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
-                    <path d="M9 5h-2a2 2 0 0 0 -2 2v12a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2v-12a2 2 0 0 0 -2 -2h-2"></path>
-                    <rect x="9" y="3" width="6" height="4" rx="2"></rect>
-                    <path d="M9 14h.01"></path>
-                    <path d="M9 17h.01"></path>
-                    <path d="M12 16l1 1l3 -3"></path>
-                  </svg>
-                </span>
-                <span class="nav-link-title">
-                  {{ __('Vyhodnocení dotazníků') }}
-                </span>
-              </a>
-              <a class="dropdown-item" href="#">
-                <span class="nav-link-icon d-md-none d-lg-inline-block">
-                  <svg class="icon icon-tabler icon-tabler-help text-teal" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" stroke-width="2"
-                       stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
-                    <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
-                    <circle cx="12" cy="12" r="9"></circle>
-                    <line x1="12" y1="17" x2="12" y2="17.01"></line>
-                    <path d="M12 13.5a1.5 1.5 0 0 1 1 -1.5a2.6 2.6 0 1 0 -3 -4"></path>
-                  </svg>
-                </span>
-                <span class="nav-link-title">
-                  {{ __('Návody') }}
-                </span>
-              </a>
-              <a class="dropdown-item" href="#">
-                <span class="flag flag-country-ua me-2"></span>
-                <span class="nav-link-title">
-                  {{ __('Ukrajinské dokumenty') }}
-                </span>
-              </a>
+              @endforeach
             </div>
           </li>
           <li class="nav-item dropdown {{ request()->segment(1) == 'standardy' ? 'active' : '' }}" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-original-title="Přehled standadů nemocnice">
@@ -446,7 +285,7 @@
               </span>
             </a>
             <div class="dropdown-menu">
-              @foreach ($categories as $category)
+              @foreach ($stands as $category)
               <a class="dropdown-item {{ request()->segment(2) == $category->folder_name }}' ? 'active' : '' }}" href="{{ route('standardy.'. $category->folder_name.'', $category->id) }}">
                 <span class="nav-link-icon d-md-none d-lg-inline-block">
                   {!! $category->svg_icon !!}

@@ -35,8 +35,13 @@ class AppServiceProvider extends ServiceProvider
 
         Paginator::useBootstrap();
 
+        $docs = Category::with('documents')->where('category_type', '=', 'Dokument')->get();                // Dokuments items
+        View::share('docs', $docs);
 
-        $categories = Category::with('documents')->get();           // Categories items
+        $stands = Category::with('documents')->where('category_type', '=', 'Standard')->get();              // Standards items
+        View::share('stands', $stands);
+
+        $categories = Category::with('documents')->get();           // Standards items
         View::share('categories', $categories);
 
         $navitems = Navitem::with('category')->get();               // Navigation items

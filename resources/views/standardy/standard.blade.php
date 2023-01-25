@@ -18,7 +18,7 @@
 
     <div class="container-fluid">
       <div class="row align-items-center">
-        @foreach ($categories as $category)
+        @foreach ($stands as $category)
         <div class="col-2 col-sm-2 col-md-2 col-xl-2 col-xxl-2 ps-0 m-0">
           <a class="btn bg-{{ $category->color }}-lt hover-shadow-sm w-100 m-1" data-bs-toggle="tooltip" data-bs-placement="top"
              data-bs-original-title="{{ __('' . $category->category_name . ' standardy') }}" href="/standardy/{{ $category->folder_name . '/' . $category->id }}">
@@ -33,7 +33,7 @@
         <div class="col-12">
 
           <div class="progress mt-2">
-            @foreach ($categories as $category)
+            @foreach ($stands as $category)
             <div class="progress-bar progress-sm bg-{{ $category->color }}-lt" data-bs-toggle="tooltip" data-bs-placement="bottom"
                  data-bs-original-title="{{ $category->category_name . ' standardy ' . round(($category->documents->count() * 100) / $allDocuments->count()) . '%' }}"
                  role="progressbar" aria-label="{{ $category->category_name }}" style="width: {{ ($category->documents->count() * 100) / $allDocuments->count() }}%"></div>
@@ -341,45 +341,39 @@
             </div>
             <div class="row">
               <div class="col-12 col-lg-2 mb-2">
-                <label class="form-label">{{ __('Zpracoval/a') }}</label>
+                <label class="form-label">{{ __('Vytvořil/a') }}</label>
                 <select class="form-select" id="processed" name="processed">
+                  <option value="Kolektiv fyzioterapeutů">Kolektiv fyzioterapeutů</option>
+                  <option value="Rada kvality">Rada kvality</option>
                   @foreach ($doctors as $doctor)
                   <option value="{{ $doctor->title_preffix }} {{ $doctor->last_name }} {{ $doctor->first_name }}">
                     {{ $doctor->last_name }} {{ $doctor->first_name }}, {{ $doctor->title_preffix }}</option>
                   @endforeach
-                  <option value="Rada kvality">Rada kvality</option>
-                  <option value="Sekaninova Anna">Sekaninova Anna</option>
-                  <option value="Mlýnková Ruth">Mlýnková Ruth, Mgr.</option>
-                  <option value="Bogocz Danuta">Bogocz Danut, Mgr.</option>
-                  <option value="Vajglová Pavlína, Mgr.">Vajglová Pavlína, Mgr.</option>
+                  <hr>
                 </select>
               </div>
               <div class="col-12 col-lg-2 mb-2">
                 <label class="form-label">{{ __('Schválil/a') }}</label>
                 <select class="form-select" id="authorize" name="authorize">
+                  <option value="Kolektiv fyzioterapeutů">Kolektiv fyzioterapeutů</option>
+                  <option value="Rada kvality">Rada kvality</option>
                   @foreach ($doctors as $doctor)
                   <option value="{{ $doctor->title_preffix }} {{ $doctor->last_name }} {{ $doctor->first_name }}">
                     {{ $doctor->last_name }} {{ $doctor->first_name }}, {{ $doctor->title_preffix }}</option>
                   @endforeach
-                  <option value="Rada kvality">Rada kvality</option>
-                  <option value="Sekaninova Anna">Sekaninova Anna</option>
-                  <option value="Mlýnková Ruth">Mlýnková Ruth, Mgr.</option>
-                  <option value="Bogocz Danuta">Bogocz Danut, Mgr.</option>
-                  <option value="Vajglová Pavlína, Mgr.">Vajglová Pavlína, Mgr.</option>
+                  <hr>
                 </select>
               </div>
               <div class="col-12 col-lg-2 mb-2">
-                <label class="form-label">{{ __('Kontrolu provedl/a') }}</label>
+                <label class="form-label">{{ __('Přezkoumal/a') }}</label>
                 <select class="form-select" id="examine" name="examine">
+                  <option value="Kolektiv fyzioterapeutů">Kolektiv fyzioterapeutů</option>
+                  <option value="Rada kvality">Rada kvality</option>
                   @foreach ($doctors as $doctor)
                   <option value="{{ $doctor->title_preffix }} {{ $doctor->last_name }} {{ $doctor->first_name }}">
                     {{ $doctor->last_name }} {{ $doctor->first_name }}, {{ $doctor->title_preffix }}</option>
                   @endforeach
-                  <option value="Rada kvality">Rada kvality</option>
-                  <option value="Sekaninova Anna">Sekaninova Anna</option>
-                  <option value="Mlýnková Ruth">Mlýnková Ruth, Mgr.</option>
-                  <option value="Bogocz Danuta">Bogocz Danut, Mgr.</option>
-                  <option value="Vajglová Pavlína, Mgr.">Vajglová Pavlína, Mgr.</option>
+                  <hr>
                 </select>
               </div>
               <div class="col-12 col-lg-4 mb-2">

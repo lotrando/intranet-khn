@@ -3,6 +3,7 @@
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
+use Symfony\Component\Console\Helper\Table;
 
 class CreateEmployeesTable extends Migration
 {
@@ -35,6 +36,7 @@ class CreateEmployeesTable extends Migration
             $table->enum('coffee', ['A', 'N'])->default('N')->nullable();
             $table->string('employment');
             $table->integer('position')->nullable();
+            $table->integer('standard_signature')->nullable();
             $table->enum('status', ['Aktivní', 'Neaktivní', 'Mateřská'])->default('Neaktivní');
             $table->timestamps();
         });

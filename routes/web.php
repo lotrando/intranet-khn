@@ -12,60 +12,70 @@ use App\Http\Controllers\TrainingController;
 use Illuminate\Support\Facades\Route;
 
 
-// Index
+// Index page
 Route::get('/', function () {
     return view('home', ['pretitle' => 'Intranet', 'title' => 'Index', 'position' => 0]);
-})->name('index');                                                                                          // Index route
+})->name('index');                                                                                                          // Index route
 
 // Home page
 Route::get('home', function () {
     return view('home', ['pretitle' => 'Intranet', 'title' => 'Homepage', 'position' => 0]);
-})->name('home');                                                                                           // Home route
+})->name('home');                                                                                                           // Home route
 
 // Oznámení
 Route::prefix('oznameni')->name('oznameni.')->group(function () {
-    Route::get('prehledy', [PageController::class, 'prehledy'])->name('prehledy');                          // Přehledy route
-    Route::get('zmeny-standardu', [PageController::class, 'zmenyStandardu'])->name('zmeny-standardu');     // Změny standardů route
-    Route::get('zmeny-v-dokumentaci', [PageController::class, 'zmenyDokumentu'])->name('zmeny-v-dokumentaci');     // Změny dokumentů route
-    Route::get('akord', [PageController::class, 'akord'])->name('akord');                                   // Akord route
-    Route::get('servis', [PageController::class, 'servis'])->name('servis');                                // Servis route
-    Route::get('seminare', [PageController::class, 'seminare'])->name('seminare');                          // Semináře route
-    Route::get('sluzby', [PageController::class, 'sluzby'])->name('sluzby');                                // Služby route
-    Route::get('informace', [PageController::class, 'informace'])->name('informace');                       // Informace route
-    Route::get('kultura', [PageController::class, 'kultura'])->name('kultura');                             // Kultura route
+    Route::get('prehledy', [PageController::class, 'prehledy'])->name('prehledy');                                          // Přehledy route
+    Route::get('zmeny-standardu', [PageController::class, 'zmenyStandardu'])->name('zmeny-standardu');                      // Změny standardů route
+    Route::get('zmeny-v-dokumentaci', [PageController::class, 'zmenyDokumentu'])->name('zmeny-v-dokumentaci');              // Změny dokumentů route
+    Route::get('akord', [PageController::class, 'akord'])->name('akord');                                                   // Akord route
+    Route::get('servis', [PageController::class, 'servis'])->name('servis');                                                // Servis route
+    Route::get('seminare', [PageController::class, 'seminare'])->name('seminare');                                          // Semináře route
+    Route::get('sluzby', [PageController::class, 'sluzby'])->name('sluzby');                                                // Služby route
+    Route::get('informace', [PageController::class, 'informace'])->name('informace');                                       // Informace route
+    Route::get('kultura', [PageController::class, 'kultura'])->name('kultura');                                             // Kultura route
 });
 
 // Stravování
 Route::prefix('stravovani')->name('stravovani.')->group(function () {
-    Route::get('obedy', [PageController::class, 'obedy'])->name('obedy');                                   // Akreditační standardy route
-    Route::get('kantyna', [PageController::class, 'kantyna'])->name('kantyna');                             // Akreditační standardy route
+    Route::get('obedy', [PageController::class, 'obedy'])->name('obedy');                                                   // Akreditační standardy route
+    Route::get('kantyna', [PageController::class, 'kantyna'])->name('kantyna');                                             // Akreditační standardy route
+});
+
+// Dokumenty
+Route::prefix('dokumenty')->name('dokumenty.')->group(function () {
+    Route::get('personalni/{id}', [PageController::class, 'personalni'])->name('personalni');
+    Route::get('sesterska/{id}', [PageController::class, 'sesterska'])->name('sesterska');                                     // Personální dokumentace route (dokumentace.personalni)
+
+    Route::get('dokument-search', [DocumentController::class, 'documentSearch'])->name('dokument.search');                  // Vyhledávání dokumentů
+    Route::get('dokument/{id}', [FileController::class, 'documentDownload'])->name('dokument');
+    Route::get('dokument/addon/{id}', [FileController::class, 'documentAddonDownload'])->name('dokument.addon');            // Download document
 });
 
 // Standardy
 Route::prefix('standardy')->name('standardy.')->group(function () {
-    Route::get('akreditacni/{id}', [PageController::class, 'akreditacni'])->name('akreditacni');            // Akreditační standardy route (standardy.akreditacni)
-    Route::get('osetrovatelske/{id}', [PageController::class, 'standard'])->name('osetrovatelske');         // Ošetřovatelské standardy route (standardy.osetrovatelske)
-    Route::get('lecebne/{id}', [PageController::class, 'standard'])->name('lecebne');                       // Léčebné standardy route (standardy.lecebne)
-    Route::get('specialni/{id}', [PageController::class, 'standard'])->name('specialni');                   // Speciální standardy route (standardy.specialni)
-    Route::get('operacni/{id}', [PageController::class, 'standard'])->name('operacni');                     // Operační standardy route (standardy.operacni)
-    Route::get('anesteziologicke/{id}', [PageController::class, 'standard'])->name('anesteziologicke');     // Anesteziologické standardy route (standardy.anesteziologicke)
-    Route::get('rdg/{id}', [PageController::class, 'standard'])->name('rdg');                               // RDG standardy route (standardy.rdg)
-    Route::get('rehabilitacni/{id}', [PageController::class, 'standard'])->name('rehabilitacni');           // Rehabilitační standardy route (standardy.rehabilitacni)
-    Route::get('opl/{id}', [PageController::class, 'standard'])->name('opl');                               // OPL standardy route (standardy.opl)
-    Route::get('okb/{id}', [PageController::class, 'standard'])->name('okb');                               // OKB standardy route (standardy.okb)
-    Route::get('logopedicke/{id}', [PageController::class, 'standard'])->name('logopedicke');               // Logopedické standardy route (standardy.logopedicke)
-    Route::get('legislativni/{id}', [PageController::class, 'standard'])->name('legislativni');             // Legislativní standardy route (standardy.legislativni)
+    Route::get('akreditacni/{id}', [PageController::class, 'akreditacni'])->name('akreditacni');                            // Akreditační standardy route (standardy.akreditacni)
+    Route::get('osetrovatelske/{id}', [PageController::class, 'standard'])->name('osetrovatelske');                         // Ošetřovatelské standardy route (standardy.osetrovatelske)
+    Route::get('lecebne/{id}', [PageController::class, 'standard'])->name('lecebne');                                       // Léčebné standardy route (standardy.lecebne)
+    Route::get('specialni/{id}', [PageController::class, 'standard'])->name('specialni');                                   // Speciální standardy route (standardy.specialni)
+    Route::get('operacni/{id}', [PageController::class, 'standard'])->name('operacni');                                     // Operační standardy route (standardy.operacni)
+    Route::get('anesteziologicke/{id}', [PageController::class, 'standard'])->name('anesteziologicke');                     // Anesteziologické standardy route (standardy.anesteziologicke)
+    Route::get('rdg/{id}', [PageController::class, 'standard'])->name('rdg');                                               // RDG standardy route (standardy.rdg)
+    Route::get('rehabilitacni/{id}', [PageController::class, 'standard'])->name('rehabilitacni');                           // Rehabilitační standardy route (standardy.rehabilitacni)
+    Route::get('opl/{id}', [PageController::class, 'standard'])->name('opl');                                               // OPL standardy route (standardy.opl)
+    Route::get('okb/{id}', [PageController::class, 'standard'])->name('okb');                                               // OKB standardy route (standardy.okb)
+    Route::get('logopedicke/{id}', [PageController::class, 'standard'])->name('logopedicke');                               // Logopedické standardy route (standardy.logopedicke)
+    Route::get('legislativni/{id}', [PageController::class, 'standard'])->name('legislativni');                             // Legislativní standardy route (standardy.legislativni)
 
-    Route::get('standard-search', [DocumentController::class, 'standardSearch'])->name('standard.search');  // Vyhledávání dokumentů
+    Route::get('standard-search', [DocumentController::class, 'standardSearch'])->name('standard.search');                  // Vyhledávání dokumentů
     Route::get('standard/{id}', [FileController::class, 'standardDownload'])->name('download');
-    Route::get('standard/addon/{id}', [FileController::class, 'standardAddonDownload'])->name('download.addon');             // Download standard
+    Route::get('standard/addon/{id}', [FileController::class, 'standardAddonDownload'])->name('download.addon');            // Download standard
 });
 
 // Media
 Route::prefix('media')->name('media.')->group(function () {
-    Route::get('radio', [PageController::class, 'radio'])->name('radio');                                   // Radio route (media.radio)
-    Route::get('videa', [PageController::class, 'video'])->name('videa');                                   // Videa route (media.videa)
-    Route::get('prekladatele', [PageController::class, 'prekladatele'])->name('prekladatele');              // Videa route (media.prekladatele)
+    Route::get('radio', [PageController::class, 'radio'])->name('radio');                                                   // Radio route (media.radio)
+    Route::get('videa', [PageController::class, 'video'])->name('videa');                                                   // Videa route (media.videa)
+    Route::get('prekladatele', [PageController::class, 'prekladatele'])->name('prekladatele');                              // Videa route (media.prekladatele)
 });
 
 // Attendace

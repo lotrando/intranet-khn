@@ -193,6 +193,44 @@ class PageController extends Controller
         ]);
     }
 
+    // Dokument
+    public function document($id)
+    {
+
+        return $id;
+
+        $allDocuments = Document::pluck('category_id');
+        $allAddons = Addon::pluck('document_id');
+        $categorie  = Category::where('id', $id)->first();
+        $doctors = Employee::where('standard_signature', 1)->orderBy('last_name')->get();
+        $last = Document::where('category_id', $id)->orderBy('id', 'desc')->take(1)->first();
+
+        if ($last == null) {
+            $last = 0;
+        } else {
+            $position = $last->position;
+            $last = $position;
+        }
+
+        if (Auth::user()) {
+            $documents = Document::with('category', 'addons', 'user')->where('category_id', $id)->orderBy('position')->get();
+        } else {
+            $documents = Document::with('category', 'addons', 'user')->where('status', 'Schváleno')->where('category_id', $id)->orderBy('position')->get();
+        }
+
+        return view('standardy.standard', [
+            'title'             => $categorie->category_name,
+            'pretitle'          => 'Standardy',
+            'categorie'         => $categorie,
+            'icon'              => $categorie->fa_icon,
+            'lastpos'           => $last,
+            'documents'         => $documents,
+            'allDocuments'      => $allDocuments,
+            'allAddons'         => $allAddons,
+            'doctors'           => $doctors
+        ]);
+    }
+
     // Standardy
     public function standard($id)
     {
@@ -200,12 +238,7 @@ class PageController extends Controller
         $allDocuments = Document::pluck('category_id');
         $allAddons = Addon::pluck('document_id');
         $categorie  = Category::where('id', $id)->first();
-        $doctors = Employee::where('title_preffix', 'LIKE', '%' . 'Dr.' . '%')
-            ->orWhere('job_id', 'LIKE', '%' . 47 . '%')
-            ->orWhere('job_id', 'LIKE', '%' . 47 . '%')
-            ->orWhere('job_id', 'LIKE', '%' . 17 . '%')
-            ->orderBy('last_name')
-            ->get();
+        $doctors = Employee::where('standard_signature', 1)->orderBy('last_name')->get();
         $last = Document::where('category_id', $id)->orderBy('id', 'desc')->take(1)->first();
 
         if ($last == null) {
