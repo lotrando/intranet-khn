@@ -136,7 +136,7 @@
                               <path d="M20.385 6.585a2.1 2.1 0 0 0 -2.97 -2.97l-8.415 8.385v3h3l8.385 -8.415z" />
                               <path d="M16 5l3 3" />
                             </svg>
-                            {{ __('Upravit standard') }}
+                            {{ __('Upravit dokument') }}
                           </li>
                           <li class="dropdown-item delete" id="{{ $document->id }}'">
                             <svg class="icon icon dropdown-item-icon-delete" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
@@ -147,7 +147,7 @@
                               <path d="M9 7v-3a1 1 0 0 1 1 -1h4a1 1 0 0 1 1 1v3"></path>
                               <path d="M10 12l4 4m0 -4l-4 4"></path>
                             </svg>
-                            {{ __('Odstranit standard') }}
+                            {{ __('Odstranit dokument') }}
                           </li>
                         </ul>
                       </div>
@@ -331,7 +331,7 @@
                 <input class="form-control" id="next_revision_date" name="next_revision_date" type="date" placeholder="{{ __('Next revision Date') }}">
               </div>
               <div class="col-9 col-lg-10 mb-2">
-                <label class="form-label">{{ __('Popis standardu') }} <small class="text-azure">usnadní vyhledávání</small></label>
+                <label class="form-label">{{ __('Popis dokumentu') }} <small class="text-azure">usnadní vyhledávání</small></label>
                 <input class="form-control" id="description" name="description" type="text" placeholder="{{ __('Konkrétní popis standardu') }}">
               </div>
               <div class="col-3 col-lg-2 mb-2">
@@ -377,12 +377,12 @@
                 </select>
               </div>
               <div class="col-12 col-lg-4 mb-2">
-                <label class="form-label">{{ __('Oblast působnosti standardu') }} <small class="text-azure">usnadní vyhledávání</small></label>
+                <label class="form-label">{{ __('Oblast působnosti dokumentu') }} <small class="text-azure">usnadní vyhledávání</small></label>
                 <input class="form-control" id="tags" name="tags" type="text"
                        placeholder="{{ __('Zkratky oddělení nebo ambulancí, oddělené čárkou (INT-ODD,...)') }}">
               </div>
               <div class="col-12 col-lg-2 mb-2">
-                <label class="form-label">{{ __('Platnost standardu od') }}</label>
+                <label class="form-label">{{ __('Platnost od') }}</label>
                 <input class="form-control" id="efficiency" name="efficiency" type="date" placeholder="{{ __('Datum platnosti') }}">
               </div>
             </div>
@@ -402,7 +402,7 @@
                 </select>
               </div>
               <div class="col-6 col-lg-2 mb-2">
-                <label class="form-label">{{ __('Založil / upravil') }}</label>
+                <label class="form-label">{{ __('Založil/upravil') }}</label>
                 <input class="form-control" id="user_name" name="user_name" type="text" readonly>
               </div>
             </div>
@@ -467,7 +467,7 @@
                   <input class="form-control" id="show-position" type="text" readonly>
                 </div>
                 <div class="col-8 mb-3 mt-3">
-                  <label class="form-label">{{ __('Name') }} standardu</label>
+                  <label class="form-label">{{ __('Name') }} dokumentu</label>
                   <input class="form-control" id="show-name" type="text" readonly>
                 </div>
                 <div class="col-2 mb-3 mt-3">
@@ -478,7 +478,7 @@
 
               <div class="row">
                 <div class="col-12 mb-3">
-                  <label class="form-label">{{ __('Popis standardu') }} </label>
+                  <label class="form-label">{{ __('Popis dokumentu') }} </label>
                   <input class="form-control" id="show-description" type="text" readonly>
                 </div>
               </div>
@@ -728,7 +728,7 @@
               $('#formModal').modal('show');
               $('#modal-icon').html('{!! $categorie->svg_icon !!}').addClass('bg-{{ $categorie->color }}-lt');
               $('#modal-header').addClass("modal-header bg-{{ $categorie->color }}-lt");
-              $('.modal-title').text("{{ __('Edit') }} {{ $categorie->button }} standard");
+              $('.modal-title').text("{{ __('Edit') }} dokument");
               $('#action').val("Edit");
               $('#category_id').val(html.data.category_id);
               $('#folder_name').val(html.data.category.folder_name);
@@ -757,7 +757,7 @@
                 $('#efficiency').val(efficiencyDate)
                 $('#next_revision_date').val(nextRevisionDate)
               })
-              PDFObject.embed("../../dokumenty/" + html.data.file +"#toolbar=0", "#pdf-preview", {height: "31rem"})
+              PDFObject.embed("../../standardy/" + html.data.file +"#toolbar=0", "#pdf-preview", {height: "31rem"})
             }
           })
         });
@@ -797,7 +797,7 @@
               $('#attachment, #action_button').addClass('d-none')
               $('#show-hidden_id').val(html.data.id)
               $('#download-btn').attr("href", "/standardy/standard/" + html.data.id + "")
-              PDFObject.embed("../../dokumenty/" + html.data.file +"#toolbar=0", "#pdf-preview-show", {height: "33rem"})
+              PDFObject.embed("../../standardy/" + html.data.file +"#toolbar=0", "#pdf-preview-show", {height: "33rem"})
             }
           })
         });
@@ -836,7 +836,7 @@
           $('#formModal').modal('show')
           $('#modal-icon').html('{!! $categorie->svg_icon !!}').addClass('bg-{{ $categorie->color }}-lt')
           $('#modal-header').addClass("modal-header bg-{{ $categorie->color }}-lt")
-          $('#action_button, .modal-title').text("{{ __('Create new') }} {{ $categorie->button }} standard")
+          $('#action_button, .modal-title').text("{{ __('Create new') }} {{ $categorie->button }} dokument")
           $('#action').val("Add")
           $('#position').val('{{ $lastpos + 1 }}')
           $('#folder_name').val("{{ $categorie->folder_name }}")
