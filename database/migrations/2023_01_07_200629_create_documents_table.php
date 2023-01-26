@@ -33,6 +33,7 @@ class CreateDocumentsTable extends Migration
             $table->string('unique_code')->nullable();
             $table->enum('status', ['Rozpracováno', 'Schváleno']);
             $table->integer('user_id');
+            $table->integer('onscreen');
             $table->timestamps();
         });
     }

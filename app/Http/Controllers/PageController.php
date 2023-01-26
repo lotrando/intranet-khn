@@ -38,7 +38,7 @@ class PageController extends Controller
         $documents = Document::with('category', 'addons', 'user')->where('category_id', '<', '13')
             ->where('updated_at', '>=', Carbon::now()->subHours(24))
             ->orderByDesc('updated_at')
-            ->paginate(7);
+            ->paginate(6);
 
         // for ($i = 1; $i < $y; $i++) {
         //     $documents[$i] = Document::with('category', 'addons', 'user')
@@ -66,7 +66,7 @@ class PageController extends Controller
         $documents = Document::with('category', 'addons', 'user')->where('category_id', '>', '12')
             ->where('updated_at', '>=', Carbon::now()->subHours(48))
             ->orderBy('updated_at')
-            ->paginate(7);
+            ->paginate(6);
 
         return view('zmeny-dokumentace', [
             'pretitle'  => 'Oznámení',

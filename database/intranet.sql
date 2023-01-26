@@ -2,10 +2,10 @@
 -- version 5.2.0
 -- https://www.phpmyadmin.net/
 --
--- Počítač: localhost
--- Vytvořeno: Stř 25. led 2023, 19:04
--- Verze serveru: 8.0.31
--- Verze PHP: 7.4.33
+-- Počítač: 127.0.0.1
+-- Vytvořeno: Čtv 26. led 2023, 12:26
+-- Verze serveru: 10.4.24-MariaDB
+-- Verze PHP: 7.4.29
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -28,13 +28,13 @@ SET time_zone = "+00:00";
 --
 
 CREATE TABLE `addons` (
-  `id` bigint UNSIGNED NOT NULL,
-  `document_id` bigint NOT NULL,
-  `addon_number` int NOT NULL,
-  `description` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
-  `revision` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
-  `file` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
-  `status` enum('Rozpracováno','Schváleno') CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `id` bigint(20) UNSIGNED NOT NULL,
+  `document_id` bigint(20) NOT NULL,
+  `addon_number` int(11) NOT NULL,
+  `description` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `revision` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `file` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `status` enum('Rozpracováno','Schváleno') COLLATE utf8mb4_unicode_ci NOT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
@@ -57,40 +57,40 @@ INSERT INTO `addons` (`id`, `document_id`, `addon_number`, `description`, `revis
 --
 
 CREATE TABLE `adversevents` (
-  `id` bigint UNSIGNED NOT NULL,
-  `department_id` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
-  `misto` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `id` bigint(20) UNSIGNED NOT NULL,
+  `department_id` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `misto` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `datum_cas` date NOT NULL,
   `cas` time NOT NULL,
-  `spec_druh` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
-  `jinydoplnek` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `pracovnik` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
-  `svedek` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `pacient` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `spec_druh` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `jinydoplnek` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `pracovnik` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `svedek` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `pacient` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `datumnaroz` date DEFAULT NULL,
-  `chorobopis` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `udalost` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
-  `reseni` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `opatreni` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `informovan` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `pricina` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `jina_pricina` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `stav_pacienta` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `lokalizace` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `druh_zraneni` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `preventivni_opatreni` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `zhodnoceni_stavu` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `chorobopis` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `udalost` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `reseni` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `opatreni` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `informovan` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `pricina` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `jina_pricina` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `stav_pacienta` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `lokalizace` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `druh_zraneni` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `preventivni_opatreni` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `zhodnoceni_stavu` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `datum` date DEFAULT NULL,
-  `jmeno_lekare` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `vyvoj` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `upresneni` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `status` enum('Rozpracováno','Odesláno','Dokončeno') CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
-  `resitel` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `vyjadreni` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `resitel1` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `vyjadreni1` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `resitel2` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `vyjadreni2` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `jmeno_lekare` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `vyvoj` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `upresneni` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `status` enum('Rozpracováno','Odesláno','Dokončeno') COLLATE utf8mb4_unicode_ci NOT NULL,
+  `resitel` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `vyjadreni` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `resitel1` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `vyjadreni1` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `resitel2` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `vyjadreni2` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
@@ -122,11 +122,11 @@ INSERT INTO `adversevents` (`id`, `department_id`, `misto`, `datum_cas`, `cas`, 
 --
 
 CREATE TABLE `attendances` (
-  `id` bigint UNSIGNED NOT NULL,
-  `training_id` int NOT NULL,
-  `personal_number` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
-  `last_name` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
-  `first_name` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `id` bigint(20) UNSIGNED NOT NULL,
+  `training_id` int(11) NOT NULL,
+  `personal_number` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `last_name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `first_name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `start_time` time DEFAULT NULL,
   `end_time` time DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
@@ -140,10 +140,10 @@ CREATE TABLE `attendances` (
 --
 
 CREATE TABLE `calendar` (
-  `id` bigint NOT NULL,
+  `id` bigint(20) NOT NULL,
   `date` date DEFAULT NULL,
   `interni` varchar(50) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Vypisuji data pro tabulku `calendar`
@@ -523,15 +523,15 @@ INSERT INTO `calendar` (`id`, `date`, `interni`) VALUES
 --
 
 CREATE TABLE `categories` (
-  `id` bigint UNSIGNED NOT NULL,
-  `category_type` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
-  `category_name` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
-  `folder_name` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
-  `category_icon` text CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
-  `svg_icon` text CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
-  `fas_icon` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
-  `button` text CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
-  `color` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL
+  `id` bigint(20) UNSIGNED NOT NULL,
+  `category_type` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `category_name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `folder_name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `category_icon` text COLLATE utf8mb4_unicode_ci NOT NULL,
+  `svg_icon` text COLLATE utf8mb4_unicode_ci NOT NULL,
+  `fas_icon` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `button` text COLLATE utf8mb4_unicode_ci NOT NULL,
+  `color` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
@@ -571,11 +571,11 @@ INSERT INTO `categories` (`id`, `category_type`, `category_name`, `folder_name`,
 --
 
 CREATE TABLE `departments` (
-  `id` bigint UNSIGNED NOT NULL,
-  `department_code` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
-  `center_code` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
-  `color_id` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
-  `department_name` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL
+  `id` bigint(20) UNSIGNED NOT NULL,
+  `department_code` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `center_code` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `color_id` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `department_name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
@@ -622,25 +622,26 @@ INSERT INTO `departments` (`id`, `department_code`, `center_code`, `color_id`, `
 --
 
 CREATE TABLE `documents` (
-  `id` bigint UNSIGNED NOT NULL,
-  `category_id` bigint NOT NULL,
-  `accordion_name` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
-  `accordion_group` int DEFAULT NULL,
-  `position` int NOT NULL,
-  `name` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
-  `description` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
-  `processed` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `authorize` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `examine` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `id` bigint(20) UNSIGNED NOT NULL,
+  `category_id` bigint(20) NOT NULL,
+  `accordion_name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `accordion_group` int(11) DEFAULT NULL,
+  `position` int(11) NOT NULL,
+  `name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `description` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `processed` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `authorize` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `examine` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `efficiency` date DEFAULT NULL,
-  `revision` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `revision` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `next_revision_date` date DEFAULT NULL,
-  `tags` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `tags` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `revision_date` date DEFAULT NULL,
-  `file` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
-  `unique_code` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `status` enum('Rozpracováno','Schváleno') CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
-  `user_id` int NOT NULL,
+  `file` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `unique_code` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `status` enum('Rozpracováno','Schváleno') COLLATE utf8mb4_unicode_ci NOT NULL,
+  `user_id` int(11) NOT NULL,
+  `onscreen` int(11) DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
@@ -649,49 +650,83 @@ CREATE TABLE `documents` (
 -- Vypisuji data pro tabulku `documents`
 --
 
-INSERT INTO `documents` (`id`, `category_id`, `accordion_name`, `accordion_group`, `position`, `name`, `description`, `processed`, `authorize`, `examine`, `efficiency`, `revision`, `next_revision_date`, `tags`, `revision_date`, `file`, `unique_code`, `status`, `user_id`, `created_at`, `updated_at`) VALUES
-(1, 3, 'Akutní koronární syndromy', NULL, 1, 'Akutní koronární syndromy', 'Soubor minimálních diagnostických a terapeutických standardů u pacientů s akutními koronárními syndromy', 'MUDr. Janková Pavlína', 'MUDr. Canibal Tomáš', 'MUDr. Kultan Peter', '2007-01-01', '5', '2023-12-01', 'MEZ-JIP, NEU-JIP, INT-ODD, NEU-ODD', '2022-12-01', 'standardy_lecebne-akutni_koronarni_syndromy-revize-5.pdf', 'STD3#1', 'Schváleno', 11, '2023-01-17 21:02:48', '2023-01-25 07:02:41'),
-(2, 3, 'ATB profylaxe', NULL, 2, 'ATB profylaxe', 'Antibiotiková profylaxe u operovaných pacientů', 'MUDr. Hurtová Šárka', 'MUDr. Canibal Tomáš', 'MUDr. Adamová Andrea', '2014-01-01', '3', '2023-12-01', 'ONP, ORT', '2022-12-01', 'standardy_lecebne-antibiotikova_profylaxe_u_operovanych_pacientu-revize-3.pdf', 'STD3#2', 'Schváleno', 11, '2023-01-13 21:16:31', '2023-01-21 16:41:47'),
-(3, 3, 'Crohnova choroba', NULL, 3, 'Crohnova choroba', 'Soubor minimálních diagnostických a terapeutických standardů u pacientů s crohnovou chorobou', 'MUDr. Střída Josef', 'MUDr. Canibal Tomáš', 'MUDr. Kultan Peter', '2007-01-01', '5', '2023-12-01', 'MEZ-JIP, INT-ODD', '2022-12-01', 'standardy_lecebne-crohnova_choroba-revize-5.pdf', 'STD3#3', 'Schváleno', 11, '2023-01-13 21:17:50', '2023-01-21 18:42:01'),
-(4, 3, 'Demence', NULL, 4, 'Demence', 'Soubor minimálních diagnostických a terapeutických standardů u pacientů s demencí', 'MUDr. Böhm Marek', 'MUDr. Canibal Tomáš', 'MUDr. Vlachopulu Barbara', '2005-07-01', '6', '2023-12-01', 'NEU-ODD', '2022-12-01', 'standardy_lecebne-demence-revize-6.pdf', 'STD3#4', 'Schváleno', 11, '2023-01-13 21:28:06', '2023-01-21 18:41:37'),
-(5, 3, 'Diabetes mellitus', NULL, 5, 'Diabetes mellitus', 'Soubor minimálních diagnostických a terapeutických standardů u pacientů s diabetes mellitus', 'MUDr. Blažík Martin', 'MUDr. Canibal Tomáš', 'MUDr. Kultan Peter', '2010-11-01', '4', '2023-12-01', 'KHN', '2022-12-01', 'standardy_lecebne-diabetes_mellitus-revize-4.pdf', 'STD3#5', 'Schváleno', 11, '2023-01-13 21:33:31', '2023-01-21 18:41:23'),
-(6, 3, 'Epilepsie', NULL, 6, 'Epilepsie', 'Soubor minimálních diagnostických a terapeutických standardů u pacientů s epilepsií', 'MUDr. Brzeżański Henryk', 'MUDr. Canibal Tomáš', 'MUDr. Sukop Roman', '2005-07-01', '6', '2023-12-01', 'NEU-ODD', '2022-12-01', 'standardy_lecebne-epilepsie-revize-6.pdf', 'STD3#6', 'Schváleno', 11, '2023-01-13 21:34:48', '2023-01-21 18:40:27'),
-(7, 3, 'Febrilie nejasné etiologie', NULL, 7, 'Febrilie nejasné etiologie', 'Soubor minimálních diagnostických a terapeutických standardů u pacientů s touto diagnózou', 'MUDr. Materna Petr', 'MUDr. Canibal Tomáš', 'MUDr. Kultan Peter', '2007-01-01', '4', '2023-12-01', 'MEZ-JIP, NEU-JIP, INT-ODD', '2022-12-01', 'standardy_lecebne-febrilie_nejasne_etiologie-revize-4.pdf', 'STD3#7', 'Schváleno', 11, '2023-01-13 21:36:13', '2023-01-21 16:45:56'),
-(8, 3, 'Chronická bolest u degenerativních onemocnění páteře', NULL, 8, 'Chronická bolest u degenerativních onemocnění páteře', 'Soubor minimálních diagnostických a terapeutických standardů u pacientů s touto diagnózou', 'MUDr. Brzeżański Henryk', 'MUDr. Canibal Tomáš', 'MUDr. Kocurová Kamila', '2014-12-01', '6', '2023-12-01', 'NEU-ODD', '2022-12-01', 'standardy_lecebne-soubor_minimalnich_diagnostickych_a_terapeutickych_standardu_u_pacientu_s_touto_diagnozou-revize-6.pdf', 'STD3#8', 'Schváleno', 11, '2023-01-13 21:38:25', '2023-01-24 07:31:51'),
-(9, 3, 'Standard léčebného postupu', NULL, 9, 'Standard léčebného postupu', 'Soubor indikačních kritérií a postupů oddělení chirurgie páteře', 'MUDr. Sýkora Dušan', 'MUDr. Canibal Tomáš', 'MUDr. Buzek David', '2005-07-01', '6', '2023-12-01', 'ONP', '2022-12-01', 'standardy_lecebne-soubor_indikacnich_kriterii_a_postupu_oddeleni_chirurgie_patere-revize-6.pdf', 'STD3#9', 'Schváleno', 11, '2023-01-13 21:39:52', '2023-01-21 18:39:12'),
-(10, 3, 'Standard léčebného postupu', NULL, 10, 'Standard léčebného postupu', 'Indikace zátěžových vyšetření', 'MUDr. Janková Pavlína', 'MUDr. Canibal Tomáš', 'MUDr. Kultan Peter', '2007-01-01', '5', '2023-12-01', 'MEZ-JIP, NEU-JIP, INT-ODD, NEU-ODD', '2022-12-01', 'standardy_lecebne-indikace_zatezovych_vysetreni-revize-5.pdf', 'STD3#10', 'Schváleno', 11, '2023-01-13 21:40:42', '2023-01-19 12:43:14'),
-(11, 3, 'Standard léčebného postupu', NULL, 11, 'Standard léčebného postupu', 'Ischemická cévní mozková příhoda', 'MUDr. Brzeżański Henryk', 'MUDr. Canibal Tomáš', 'MUDr. Ing. Paloušková Hana', '2005-07-01', '6', '2023-12-01', 'MEZ-JIP, NEU-JIP, INT-ODD, NEU-ODD', '2022-12-01', 'standardy_lecebne-ischemicka_cevni_mozkova_prihoda-revize-6.pdf', 'STD3#11', 'Schváleno', 11, '2023-01-13 21:41:31', '2023-01-19 12:43:47'),
-(12, 3, 'Standard léčebného postupu', NULL, 12, 'Standard léčebného postupu', 'Myokarditida', 'MUDr. Janková Pavlína', 'MUDr. Canibal Tomáš', 'MUDr. Kultan Peter', '2006-12-01', '5', '2023-12-01', 'MEZ-JIP, INT-ODD', '2022-12-01', 'standardy_lecebne-myokarditida-revize-5.pdf', 'STD3#12', 'Schváleno', 11, '2023-01-13 21:42:52', '2023-01-19 12:44:23'),
-(13, 3, 'Myopatie', NULL, 13, 'Myopatie', 'Soubor minimálních diagnostických a terapeutických standardů u pacientů s myopatií', 'MUDr. Böhm Marek', 'MUDr. Canibal Tomáš', 'MUDr. Sukop Roman', '2007-12-01', '5', '2023-12-01', 'NEU-ODD', '2022-12-01', 'standardy_lecebne-myopatie-revize-5.pdf', 'STD3#13', 'Schváleno', 11, '2023-01-13 21:49:16', '2023-01-21 18:44:15'),
-(14, 3, 'Parkinsonova choroba', NULL, 14, 'Parkinsonova choroba', 'Soubor minimálních diagnostických a terapeutických standardů u pacientů s parkinsonovou chorobou', 'MUDr. Brzeżański Henryk', 'MUDr. Canibal Tomáš', 'MUDr. Sukop Roman', '2005-07-01', '6', '2023-12-01', 'NEU-ODD', '2022-12-01', 'standardy_lecebne-parkinsonova_choroba-revize-6.pdf', 'STD3#14', 'Schváleno', 11, '2023-01-13 21:49:58', '2023-01-21 18:45:32'),
-(15, 3, 'Polyneuropathie', NULL, 15, 'Polyneuropathie', 'Soubor minimálních diagnostických a terapeutických standardů u pacientů s polyneuropathií', 'MUDr. Böhm Marek', 'MUDr. Canibal Tomáš', 'MUDr. Sukop Roman', '2005-07-01', '6', '2023-12-01', 'NEU-ODD', '2022-12-01', 'standardy_lecebne-polyneuropathie-revize-6.pdf', 'STD3#15', 'Schváleno', 11, '2023-01-13 21:51:20', '2023-01-21 18:46:08'),
-(16, 3, 'Standard léčebného postupu', NULL, 16, 'Standard léčebného postupu', 'Předoperační vyšetření kardiaka před nekardiochirurgickými výkony', 'MUDr. Beran Daniel', 'MUDr. Janiková Andrea', 'MUDr. Adamová Andrea', '2006-10-01', '5', '2023-12-01', 'MEZ-JIP, INT-JIP, INT-AMB', '2022-12-01', 'standardy_lecebne-predoperacni_vysetreni_kardiaka_pred_nekardiochirurgickymi_vykony-revize-5.pdf', 'STD3#16', 'Schváleno', 11, '2023-01-13 21:52:04', '2023-01-19 13:08:09'),
-(17, 3, 'Roztroušená skleróza', NULL, 17, 'Roztroušená skleróza', 'Soubor minimálních diagnostických a terapeutických standardů u pacientů s roztroušenou sklerózou', 'MUDr. Brzeżański Henryk', 'MUDr. Canibal Tomáš', 'MUDr. Holubová Michaela', '2005-07-01', '6', '2023-12-01', 'NEU-ODD', '2022-12-01', 'standardy_lecebne-roztrousena_skleroza-revize-6.pdf', 'STD3#17', 'Schváleno', 11, '2023-01-13 21:53:04', '2023-01-21 18:46:33'),
-(18, 3, 'Standard léčebného postupu', NULL, 18, 'Standard léčebného postupu', 'Soubor indikačních kritérií a postupů oddělení ortopedie', 'MUDr. Pešek Jiří', 'MUDr. Canibal Tomáš', 'MUDr. Pavličný Radek', '2014-12-01', '3', '2023-12-01', 'ORT-ODD', '2022-12-01', 'standardy_lecebne-soubor_indikacnich_kriterii_a_postupu_oddeleni_ortopedie-revize-3.pdf', 'STD3#18', 'Schváleno', 11, '2023-01-13 21:54:14', '2023-01-24 12:43:45'),
-(19, 3, 'Standard léčebného postupu', NULL, 19, 'Standard léčebného postupu', 'Soubor postupů při ošetření infikované nebo potenciálně infikované TEP', 'MUDr. Mráček Dalibor', 'MUDr. Canibal Tomáš', 'MUDr. Pavličný Radek', '2012-07-01', '3', '2023-12-01', 'ORT-ODD', '2022-12-01', 'standardy_lecebne-soubor_postupu_pri_osetreni_infikovane_nebo_potencialne_infikovane_tep-revize-3.pdf', 'STD3#19', 'Schváleno', 11, '2023-01-13 21:55:05', '2023-01-24 07:13:27'),
-(20, 3, 'Vředová choroba gastroduodena', NULL, 20, 'Vředová choroba gastroduodena', 'Soubor minimálních diagnostických a terapeutických standardů u pacientů s vředovou chorobou gastroduodena', 'MUDr. Střída Josef', 'MUDr. Canibal Tomáš', 'MUDr. Kultan Peter', '2007-01-01', '5', '2023-12-01', 'MEZ-JIP, INT-ODD', '2022-12-01', 'standardy_lecebne-vredova_choroba_gastroduodena-revize-5.pdf', 'STD3#20', 'Schváleno', 11, '2023-01-13 21:56:19', '2023-01-21 18:47:08'),
-(21, 1, 'Bezpečnostní cíle', 1, 1, 'Bezpečnostní cíle', 'Správná identifikace pacientů', 'MUDr. Krajnová Pavla', 'MUDr. Kryvoruchko Stanislav', 'MUDr. Urbančíková Kamila', '2014-02-12', '3', '2021-02-12', NULL, '2020-02-12', 'standardy_akreditacni-spravna_identifikace_pacientu-revize-3.pdf', 'Vitae unde eiusmod p', 'Schváleno', 11, '2023-01-23 15:16:39', '2023-01-23 15:41:21'),
-(22, 1, 'Bezpečnostní cíle', 1, 2, 'Bezpečnostní cíle', 'Efektivní komunikace', NULL, 'Rada kvality', 'Vajglová Pavlína, Mgr.', '2017-04-01', '7', '2023-10-10', NULL, '2022-10-10', 'standardy_akreditacni-efektivni_komunikace-revize-7.pdf', 'STD1#2', 'Schváleno', 11, '2023-01-23 15:39:16', '2023-01-23 15:40:49'),
-(23, 1, 'Bezpečnostní cíle', 1, 3, 'Bezpečnostní cíle', 'Zvýšení bezpečí u rizikových léků', 'Bc. Bělicová Taťána', 'Rada kvality', 'Bc. Bělicová Taťána', '2018-01-01', '2', '2023-02-01', NULL, '2022-02-01', 'standardy_akreditacni-zvyseni_bezpeci_u_rizikovych_leku-revize-2.pdf', 'STD1#3', 'Schváleno', 11, '2023-01-23 15:53:59', '2023-01-23 15:53:59'),
-(24, 1, 'Bezpečnostní cíle', 1, 4, 'Bezpečnostní cíle', 'Prevence záměny pacienta, výkonu a lokalizace provedení', 'MUDr. Miškej Marek', 'Rada kvality', 'Kašingová Miroslava', '2017-04-01', '3', '2023-02-23', NULL, '2022-02-23', 'standardy_akreditacni-prevence_zameny_pacienta,_vykonu_a_lokalizace_provedeni-revize-3.pdf', 'STD1#4', 'Schváleno', 11, '2023-01-23 15:58:04', '2023-01-23 15:58:04'),
-(25, 1, 'Bezpečnostní cíle', 1, 5, 'Bezpečnostní cíle', 'Hygiena rukou při poskytování zdravotní péče', 'Vajglová Pavlína, Mgr.', 'Rada kvality', 'Vajglová Pavlína, Mgr.', '2017-04-01', '3', '2023-02-01', NULL, '2022-02-01', 'standardy_akreditacni-hygiena_rukou_pri_poskytovani_zdravotni_pece-revize-3.pdf', 'STD1#5', 'Schváleno', 11, '2023-01-23 16:01:52', '2023-01-23 16:01:52'),
-(26, 1, 'Bezpečnostní cíle', 1, 6, 'Bezpečnostní cíle', 'Postupy ke snížení rizika poškození pacientů v důsledku pádu', 'Cyroňová Irena', 'Rada kvality', 'Bc. Bělicová Taťána', '2017-04-01', '3', '2023-02-01', NULL, '2022-02-01', 'standardy_akreditacni-postupy_ke_snizeni_rizika_poskozeni_pacientu_v_dusledku_padu-revize-3.pdf', 'STD1#6', 'Schváleno', 11, '2023-01-23 16:03:24', '2023-01-23 16:03:24'),
-(28, 11, 'Standard logopedické péče', NULL, 1, 'Standard logopedické péče', 'Příjem klienta a diagnostika narušené komunikační schopnosti', 'Adámková Renáta MUDr.', NULL, NULL, '2011-08-01', '3', '2022-11-01', 'LOG', '2021-11-01', 'standardy_logopedicke-prijem_klienta_a_diagnostika_narusene_komunikacni_schopnosti-revize-3.pdf', 'STD11#1', 'Schváleno', 11, '2023-01-24 13:29:07', '2023-01-25 06:47:28'),
-(29, 11, 'Standard logopedické péče', NULL, 2, 'Standard logopedické péče', 'Vedení dokumentace u klientů s narušenou komunikační schopností', 'Mlýnková Ruth', 'Rada kvality', 'Mlýnková Ruth', '2011-08-01', '3', '2022-11-01', 'LOG', '2021-11-01', 'standardy_logopedicke-vedeni_dokumentace_u_klientu_s_narusenou_komunikacni_schopnosti-revize-3.pdf', 'STD11#2', 'Schváleno', 11, '2023-01-24 13:34:13', '2023-01-24 13:34:13'),
-(30, 11, 'Standard logopedické péče', NULL, 3, 'Standard logopedické péče', 'Logopedická intervence u osob s narušenou komunikační schopností', '', '', '', '2011-08-01', '3', '2023-11-01', 'LOG', '2021-11-01', 'standardy_logopedicke-logopedicka_intervence_u_osob_s_narusenou_komunikacni_schopnosti-revize-3.pdf', 'STD11#3', 'Schváleno', 11, '2023-01-24 13:37:10', '2023-01-24 13:37:10'),
-(31, 9, 'Standard ošetřovatelské péče - OCHP', NULL, 1, 'Standard ošetřovatelské péče - OCHP', 'Spirometr', 'Kuzníková Jaroslava,', 'Rada kvality', 'Kurusová Alexandra,', '2008-04-01', '6', '2022-10-01', 'OPL', '2021-10-01', 'standardy_opl-spirometr-revize-6.pdf', 'STD9#1', 'Schváleno', 11, '2023-01-25 06:53:18', '2023-01-25 07:01:06'),
-(32, 9, 'Standard ošetřovatelské péče - OCHP', NULL, 2, 'Standard ošetřovatelské péče - OCHP', 'Pletyzmigrafie', 'Kuzníková Jaroslava', 'Rada kvality', 'Kusová Zdeňka', '2008-04-01', '6', '2022-10-01', 'OPL', '2021-10-01', 'standardy_opl-pletyzmigrafie-revize-6.pdf', 'STD9#2', 'Schváleno', 11, '2023-01-25 07:06:22', '2023-01-25 07:06:46'),
-(33, 9, 'Standard ošetřovatelské péče - OCHP', NULL, 3, 'Standard ošetřovatelské péče - OCHP', 'Chladový test', 'Kuzníková Jaroslava', 'Rada kvality', 'Kusová Zdeňka', '2008-04-01', '6', '2023-10-01', 'OPL', '2021-10-01', 'standardy_opl-chladovy_test-revize-6.pdf', 'STD9#3', 'Schváleno', 11, '2023-01-25 07:08:30', '2023-01-25 07:08:30'),
-(34, 9, 'Standard ošetřovatelské péče - OCHP', NULL, 4, 'Standard ošetřovatelské péče - OCHP', 'Dvoustupňová dezinfekce spirometru', 'Kuzníková Jaroslava', 'Rada kvality', 'Kusová Zdeňka', '2021-10-01', '2', '2023-10-01', 'OPL', '2021-10-01', 'standardy_opl-dvoustupnova_dezinfekce_spirometru-revize-2.pdf', 'STD9#4', 'Schváleno', 11, '2023-01-25 07:09:26', '2023-01-25 07:09:26'),
-(35, 8, 'Pracovní standard pro rehabilitační oddělení', NULL, 1, 'Pracovní standard pro rehabilitační oddělení', 'Příjem pacienta na rehabilitační ambulanci', 'Kolektiv fyzioterapeutů', 'Rada kvality', 'Němcová Andrea', '2004-04-01', '8', '2022-10-01', 'REH-AMB', '2021-10-01', 'standardy_rehabilitacni-prijem_pacienta_na_rehabilitacni_ambulanci-revize-8.pdf', 'STD8#1', 'Schváleno', 11, '2023-01-25 07:19:32', '2023-01-25 07:41:00'),
-(36, 8, 'Pracovní standard pro rehabilitační oddělení', NULL, 2, 'Pracovní standard pro rehabilitační oddělení', 'Individální kinezioterapie', 'Kolektiv fyzioterapeutů', 'Rada kvality', 'Němcová Andrea', '2004-04-01', '8', '2022-10-01', 'REH-AMB, REH-ODD', '2021-10-01', 'standardy_rehabilitacni-individalni_kinezioterapie-revize-8.pdf', 'STD8#2', 'Schváleno', 11, '2023-01-25 07:32:31', '2023-01-25 07:41:12'),
-(37, 8, 'Pracovní standard pro rehabilitační oddělení', NULL, 3, 'Pracovní standard pro rehabilitační oddělení', 'Vodoléčba - cvičení v bazénu', 'Kolektiv fyzioterapeutů', 'Rada kvality', 'Bc. Bělicová Taťána', '2004-04-01', '8', '2022-10-01', 'REH-AMB, REH-ODD', '2021-10-01', 'standardy_rehabilitacni-vodolecba_-_cviceni_v_bazenu-revize-8.pdf', 'STD8#3', 'Schváleno', 11, '2023-01-25 07:34:58', '2023-01-25 07:41:25'),
-(38, 8, 'Pracovní standard pro rehabilitační oddělení', NULL, 4, 'Pracovní standard pro rehabilitační oddělení', 'Aplikace vířivé koupele', 'Kolektiv fyzioterapeutů', 'Rada kvality', 'Bc. Bělicová Taťána', '2004-04-01', '8', '2022-10-01', 'REH-AMB, REH-ODD', '2021-10-01', 'standardy_rehabilitacni-aplikace_virive_koupele-revize-8.pdf', 'STD8#4', 'Schváleno', 11, '2023-01-25 07:37:08', '2023-01-25 07:38:49'),
-(39, 8, 'Pracovní standard pro rehabilitační oddělení', NULL, 5, 'Pracovní standard pro rehabilitační oddělení', 'Aplikace podvodní masaže', 'Kolektiv fyzioterapeutů', 'Rada kvality', 'Bc. Bělicová Taťána', '2004-04-01', '8', '2023-10-01', 'REH-AMB, REH-ODD', '2021-10-01', 'standardy_rehabilitacni-aplikace_podvodni_masaze-revize-8.pdf', 'STD8#5', 'Schváleno', 11, '2023-01-25 07:43:30', '2023-01-25 07:43:30'),
-(40, 8, 'Pracovní standard pro rehabilitační oddělení', NULL, 6, 'Pracovní standard pro rehabilitační oddělení', 'Thermo terapie', 'Kolektiv fyzioterapeutů', 'Rada kvality', 'Bc. Bělicová Taťána', '2004-04-01', '8', '2023-10-01', 'REH-AMB, REH-ODD', '2021-10-01', 'standardy_rehabilitacni-thermo_terapie-revize-8.pdf', 'STD8#6', 'Schváleno', 11, '2023-01-25 07:45:21', '2023-01-25 07:45:21'),
-(41, 8, 'Pracovní standard pro rehabilitační oddělení', NULL, 7, 'Pracovní standard pro rehabilitační oddělení', 'Aplikace fototerapie', 'Kolektiv fyzioterapeutů', 'Rada kvality', 'Bc. Bělicová Taťána', '2004-04-01', '8', '2023-10-01', 'REH-AMB, REH-ODD', '2021-10-01', 'sesterska_dokumentace.pdf', 'STD8#7', 'Schváleno', 11, '2023-01-25 07:47:12', '2023-01-25 07:47:12'),
-(42, 13, 'dokument 1', NULL, 1, 'dokument 1', 'dokument 1', 'Kolektiv fyzioterapeutů', 'Rada kvality', 'Bc. Bělicová Taťána', '2004-04-01', '8', '2023-10-01', 'REH-AMB, REH-ODD', '2021-10-01', 'sesterska_dokumentace.pdf', 'STD8#7', 'Schváleno', 11, '2023-01-25 07:47:12', '2023-01-25 07:47:12'),
-(43, 14, 'dokument 2', NULL, 1, 'dokument 2', 'dokument 2', 'Kolektiv fyzioterapeutů', 'Rada kvality', 'Bc. Bělicová Taťána', '2004-04-01', '8', '2023-10-01', 'REH-AMB, REH-ODD', '2021-10-01', 'sesterska_dokumentace.pdf', 'STD8#7', 'Schváleno', 11, '2023-01-25 07:47:12', '2023-01-25 07:47:12');
+INSERT INTO `documents` (`id`, `category_id`, `accordion_name`, `accordion_group`, `position`, `name`, `description`, `processed`, `authorize`, `examine`, `efficiency`, `revision`, `next_revision_date`, `tags`, `revision_date`, `file`, `unique_code`, `status`, `user_id`, `onscreen`, `created_at`, `updated_at`) VALUES
+(1, 3, 'Akutní koronární syndromy', NULL, 1, 'Akutní koronární syndromy', 'Soubor minimálních diagnostických a terapeutických standardů u pacientů s akutními koronárními syndromy', 'MUDr. Janková Pavlína', 'MUDr. Canibal Tomáš', 'MUDr. Kultan Peter', '2007-01-01', '5', '2023-12-01', 'MEZ-JIP, NEU-JIP, INT-ODD, NEU-ODD', '2022-12-01', 'standardy_lecebne-akutni_koronarni_syndromy-revize-5.pdf', 'STD3#1', 'Schváleno', 11, NULL, '2023-01-17 21:02:48', '2023-01-25 07:02:41'),
+(2, 3, 'ATB profylaxe', NULL, 2, 'ATB profylaxe', 'Antibiotiková profylaxe u operovaných pacientů', 'MUDr. Hurtová Šárka', 'MUDr. Canibal Tomáš', 'MUDr. Adamová Andrea', '2014-01-01', '3', '2023-12-01', 'ONP, ORT', '2022-12-01', 'standardy_lecebne-antibiotikova_profylaxe_u_operovanych_pacientu-revize-3.pdf', 'STD3#2', 'Schváleno', 11, NULL, '2023-01-13 21:16:31', '2023-01-21 16:41:47'),
+(3, 3, 'Crohnova choroba', NULL, 3, 'Crohnova choroba', 'Soubor minimálních diagnostických a terapeutických standardů u pacientů s crohnovou chorobou', 'MUDr. Střída Josef', 'MUDr. Canibal Tomáš', 'MUDr. Kultan Peter', '2007-01-01', '5', '2023-12-01', 'MEZ-JIP, INT-ODD', '2022-12-01', 'standardy_lecebne-crohnova_choroba-revize-5.pdf', 'STD3#3', 'Schváleno', 11, NULL, '2023-01-13 21:17:50', '2023-01-21 18:42:01'),
+(4, 3, 'Demence', NULL, 4, 'Demence', 'Soubor minimálních diagnostických a terapeutických standardů u pacientů s demencí', 'MUDr. Böhm Marek', 'MUDr. Canibal Tomáš', 'MUDr. Vlachopulu Barbara', '2005-07-01', '6', '2023-12-01', 'NEU-ODD', '2022-12-01', 'standardy_lecebne-demence-revize-6.pdf', 'STD3#4', 'Schváleno', 11, NULL, '2023-01-13 21:28:06', '2023-01-21 18:41:37'),
+(5, 3, 'Diabetes mellitus', NULL, 5, 'Diabetes mellitus', 'Soubor minimálních diagnostických a terapeutických standardů u pacientů s diabetes mellitus', 'MUDr. Blažík Martin', 'MUDr. Canibal Tomáš', 'MUDr. Kultan Peter', '2010-11-01', '4', '2023-12-01', 'KHN', '2022-12-01', 'standardy_lecebne-diabetes_mellitus-revize-4.pdf', 'STD3#5', 'Schváleno', 11, NULL, '2023-01-13 21:33:31', '2023-01-21 18:41:23'),
+(6, 3, 'Epilepsie', NULL, 6, 'Epilepsie', 'Soubor minimálních diagnostických a terapeutických standardů u pacientů s epilepsií', 'MUDr. Brzeżański Henryk', 'MUDr. Canibal Tomáš', 'MUDr. Sukop Roman', '2005-07-01', '6', '2023-12-01', 'NEU-ODD', '2022-12-01', 'standardy_lecebne-epilepsie-revize-6.pdf', 'STD3#6', 'Schváleno', 11, NULL, '2023-01-13 21:34:48', '2023-01-21 18:40:27'),
+(7, 3, 'Febrilie nejasné etiologie', NULL, 7, 'Febrilie nejasné etiologie', 'Soubor minimálních diagnostických a terapeutických standardů u pacientů s touto diagnózou', 'MUDr. Materna Petr', 'MUDr. Canibal Tomáš', 'MUDr. Kultan Peter', '2007-01-01', '4', '2023-12-01', 'MEZ-JIP, NEU-JIP, INT-ODD', '2022-12-01', 'standardy_lecebne-febrilie_nejasne_etiologie-revize-4.pdf', 'STD3#7', 'Schváleno', 11, NULL, '2023-01-13 21:36:13', '2023-01-21 16:45:56'),
+(8, 3, 'Chronická bolest u degenerativních onemocnění páteře', NULL, 8, 'Chronická bolest u degenerativních onemocnění páteře', 'Soubor minimálních diagnostických a terapeutických standardů u pacientů s touto diagnózou', 'MUDr. Brzeżański Henryk', 'MUDr. Canibal Tomáš', 'MUDr. Kocurová Kamila', '2014-12-01', '6', '2023-12-01', 'NEU-ODD', '2022-12-01', 'standardy_lecebne-soubor_minimalnich_diagnostickych_a_terapeutickych_standardu_u_pacientu_s_touto_diagnozou-revize-6.pdf', 'STD3#8', 'Schváleno', 11, NULL, '2023-01-13 21:38:25', '2023-01-24 07:31:51'),
+(9, 3, 'Standard léčebného postupu', NULL, 9, 'Standard léčebného postupu', 'Soubor indikačních kritérií a postupů oddělení chirurgie páteře', 'MUDr. Sýkora Dušan', 'MUDr. Canibal Tomáš', 'MUDr. Buzek David', '2005-07-01', '6', '2023-12-01', 'ONP', '2022-12-01', 'standardy_lecebne-soubor_indikacnich_kriterii_a_postupu_oddeleni_chirurgie_patere-revize-6.pdf', 'STD3#9', 'Schváleno', 11, NULL, '2023-01-13 21:39:52', '2023-01-21 18:39:12'),
+(10, 3, 'Standard léčebného postupu', NULL, 10, 'Standard léčebného postupu', 'Indikace zátěžových vyšetření', 'MUDr. Janková Pavlína', 'MUDr. Canibal Tomáš', 'MUDr. Kultan Peter', '2007-01-01', '5', '2023-12-01', 'MEZ-JIP, NEU-JIP, INT-ODD, NEU-ODD', '2022-12-01', 'standardy_lecebne-indikace_zatezovych_vysetreni-revize-5.pdf', 'STD3#10', 'Schváleno', 11, NULL, '2023-01-13 21:40:42', '2023-01-19 12:43:14'),
+(11, 3, 'Standard léčebného postupu', NULL, 11, 'Standard léčebného postupu', 'Ischemická cévní mozková příhoda', 'MUDr. Brzeżański Henryk', 'MUDr. Canibal Tomáš', 'MUDr. Ing. Paloušková Hana', '2005-07-01', '6', '2023-12-01', 'MEZ-JIP, NEU-JIP, INT-ODD, NEU-ODD', '2022-12-01', 'standardy_lecebne-ischemicka_cevni_mozkova_prihoda-revize-6.pdf', 'STD3#11', 'Schváleno', 11, NULL, '2023-01-13 21:41:31', '2023-01-19 12:43:47'),
+(12, 3, 'Standard léčebného postupu', NULL, 12, 'Standard léčebného postupu', 'Myokarditida', 'MUDr. Janková Pavlína', 'MUDr. Canibal Tomáš', 'MUDr. Kultan Peter', '2006-12-01', '5', '2023-12-01', 'MEZ-JIP, INT-ODD', '2022-12-01', 'standardy_lecebne-myokarditida-revize-5.pdf', 'STD3#12', 'Schváleno', 11, NULL, '2023-01-13 21:42:52', '2023-01-19 12:44:23'),
+(13, 3, 'Myopatie', NULL, 13, 'Myopatie', 'Soubor minimálních diagnostických a terapeutických standardů u pacientů s myopatií', 'MUDr. Böhm Marek', 'MUDr. Canibal Tomáš', 'MUDr. Sukop Roman', '2007-12-01', '5', '2023-12-01', 'NEU-ODD', '2022-12-01', 'standardy_lecebne-myopatie-revize-5.pdf', 'STD3#13', 'Schváleno', 11, NULL, '2023-01-13 21:49:16', '2023-01-21 18:44:15'),
+(14, 3, 'Parkinsonova choroba', NULL, 14, 'Parkinsonova choroba', 'Soubor minimálních diagnostických a terapeutických standardů u pacientů s parkinsonovou chorobou', 'MUDr. Brzeżański Henryk', 'MUDr. Canibal Tomáš', 'MUDr. Sukop Roman', '2005-07-01', '6', '2023-12-01', 'NEU-ODD', '2022-12-01', 'standardy_lecebne-parkinsonova_choroba-revize-6.pdf', 'STD3#14', 'Schváleno', 11, NULL, '2023-01-13 21:49:58', '2023-01-21 18:45:32'),
+(15, 3, 'Polyneuropathie', NULL, 15, 'Polyneuropathie', 'Soubor minimálních diagnostických a terapeutických standardů u pacientů s polyneuropathií', 'MUDr. Böhm Marek', 'MUDr. Canibal Tomáš', 'MUDr. Sukop Roman', '2005-07-01', '6', '2023-12-01', 'NEU-ODD', '2022-12-01', 'standardy_lecebne-polyneuropathie-revize-6.pdf', 'STD3#15', 'Schváleno', 11, NULL, '2023-01-13 21:51:20', '2023-01-21 18:46:08'),
+(16, 3, 'Standard léčebného postupu', NULL, 16, 'Standard léčebného postupu', 'Předoperační vyšetření kardiaka před nekardiochirurgickými výkony', 'MUDr. Beran Daniel', 'MUDr. Janiková Andrea', 'MUDr. Adamová Andrea', '2006-10-01', '5', '2023-12-01', 'MEZ-JIP, INT-JIP, INT-AMB', '2022-12-01', 'standardy_lecebne-predoperacni_vysetreni_kardiaka_pred_nekardiochirurgickymi_vykony-revize-5.pdf', 'STD3#16', 'Schváleno', 11, NULL, '2023-01-13 21:52:04', '2023-01-19 13:08:09'),
+(17, 3, 'Roztroušená skleróza', NULL, 17, 'Roztroušená skleróza', 'Soubor minimálních diagnostických a terapeutických standardů u pacientů s roztroušenou sklerózou', 'MUDr. Brzeżański Henryk', 'MUDr. Canibal Tomáš', 'MUDr. Holubová Michaela', '2005-07-01', '6', '2023-12-01', 'NEU-ODD', '2022-12-01', 'standardy_lecebne-roztrousena_skleroza-revize-6.pdf', 'STD3#17', 'Schváleno', 11, NULL, '2023-01-13 21:53:04', '2023-01-21 18:46:33'),
+(18, 3, 'Standard léčebného postupu', NULL, 18, 'Standard léčebného postupu', 'Soubor indikačních kritérií a postupů oddělení ortopedie', 'MUDr. Pešek Jiří', 'MUDr. Canibal Tomáš', 'MUDr. Pavličný Radek', '2014-12-01', '3', '2023-12-01', 'ORT-ODD', '2022-12-01', 'standardy_lecebne-soubor_indikacnich_kriterii_a_postupu_oddeleni_ortopedie-revize-3.pdf', 'STD3#18', 'Schváleno', 11, NULL, '2023-01-13 21:54:14', '2023-01-24 12:43:45'),
+(19, 3, 'Standard léčebného postupu', NULL, 19, 'Standard léčebného postupu', 'Soubor postupů při ošetření infikované nebo potenciálně infikované TEP', 'MUDr. Mráček Dalibor', 'MUDr. Canibal Tomáš', 'MUDr. Pavličný Radek', '2012-07-01', '3', '2023-12-01', 'ORT-ODD', '2022-12-01', 'standardy_lecebne-soubor_postupu_pri_osetreni_infikovane_nebo_potencialne_infikovane_tep-revize-3.pdf', 'STD3#19', 'Schváleno', 11, NULL, '2023-01-13 21:55:05', '2023-01-24 07:13:27'),
+(20, 3, 'Vředová choroba gastroduodena', NULL, 20, 'Vředová choroba gastroduodena', 'Soubor minimálních diagnostických a terapeutických standardů u pacientů s vředovou chorobou gastroduodena', 'MUDr. Střída Josef', 'MUDr. Canibal Tomáš', 'MUDr. Kultan Peter', '2007-01-01', '5', '2023-12-01', 'MEZ-JIP, INT-ODD', '2022-12-01', 'standardy_lecebne-vredova_choroba_gastroduodena-revize-5.pdf', 'STD3#20', 'Schváleno', 11, NULL, '2023-01-13 21:56:19', '2023-01-21 18:47:08'),
+(21, 1, 'Bezpečnostní cíle', 1, 1, 'Bezpečnostní cíle', 'Správná identifikace pacientů', 'MUDr. Krajnová Pavla', 'MUDr. Kryvoruchko Stanislav', 'MUDr. Urbančíková Kamila', '2014-02-12', '3', '2021-02-12', NULL, '2020-02-12', 'standardy_akreditacni-spravna_identifikace_pacientu-revize-3.pdf', 'Vitae unde eiusmod p', 'Schváleno', 11, NULL, '2023-01-23 15:16:39', '2023-01-23 15:41:21'),
+(22, 1, 'Bezpečnostní cíle', 1, 2, 'Bezpečnostní cíle', 'Efektivní komunikace', NULL, 'Rada kvality', 'Vajglová Pavlína, Mgr.', '2017-04-01', '7', '2023-10-10', NULL, '2022-10-10', 'standardy_akreditacni-efektivni_komunikace-revize-7.pdf', 'STD1#2', 'Schváleno', 11, NULL, '2023-01-23 15:39:16', '2023-01-23 15:40:49'),
+(23, 1, 'Bezpečnostní cíle', 1, 3, 'Bezpečnostní cíle', 'Zvýšení bezpečí u rizikových léků', 'Bc. Bělicová Taťána', 'Rada kvality', 'Bc. Bělicová Taťána', '2018-01-01', '2', '2023-02-01', NULL, '2022-02-01', 'standardy_akreditacni-zvyseni_bezpeci_u_rizikovych_leku-revize-2.pdf', 'STD1#3', 'Schváleno', 11, NULL, '2023-01-23 15:53:59', '2023-01-23 15:53:59'),
+(24, 1, 'Bezpečnostní cíle', 1, 4, 'Bezpečnostní cíle', 'Prevence záměny pacienta, výkonu a lokalizace provedení', 'MUDr. Miškej Marek', 'Rada kvality', 'Kašingová Miroslava', '2017-04-01', '3', '2023-02-23', NULL, '2022-02-23', 'standardy_akreditacni-prevence_zameny_pacienta,_vykonu_a_lokalizace_provedeni-revize-3.pdf', 'STD1#4', 'Schváleno', 11, NULL, '2023-01-23 15:58:04', '2023-01-23 15:58:04'),
+(25, 1, 'Bezpečnostní cíle', 1, 5, 'Bezpečnostní cíle', 'Hygiena rukou při poskytování zdravotní péče', 'Vajglová Pavlína, Mgr.', 'Rada kvality', 'Vajglová Pavlína, Mgr.', '2017-04-01', '3', '2023-02-01', NULL, '2022-02-01', 'standardy_akreditacni-hygiena_rukou_pri_poskytovani_zdravotni_pece-revize-3.pdf', 'STD1#5', 'Schváleno', 11, NULL, '2023-01-23 16:01:52', '2023-01-23 16:01:52'),
+(26, 1, 'Bezpečnostní cíle', 1, 6, 'Bezpečnostní cíle', 'Postupy ke snížení rizika poškození pacientů v důsledku pádu', 'Cyroňová Irena', 'Rada kvality', 'Bc. Bělicová Taťána', '2017-04-01', '3', '2023-02-01', NULL, '2022-02-01', 'standardy_akreditacni-postupy_ke_snizeni_rizika_poskozeni_pacientu_v_dusledku_padu-revize-3.pdf', 'STD1#6', 'Schváleno', 11, 1, '2023-01-23 16:03:24', '2023-01-23 16:03:24'),
+(28, 11, 'Standard logopedické péče', NULL, 1, 'Standard logopedické péče', 'Příjem klienta a diagnostika narušené komunikační schopnosti', 'Mlýnková Ruth', 'Rada kvality', NULL, '2011-08-01', '3', '2022-11-01', 'LOG', '2021-11-01', 'standardy_logopedicke-prijem_klienta_a_diagnostika_narusene_komunikacni_schopnosti-revize-3.pdf', 'STD11#1', 'Schváleno', 11, NULL, '2023-01-24 13:29:07', '2023-01-25 06:47:28'),
+(29, 11, 'Standard logopedické péče', NULL, 2, 'Standard logopedické péče', 'Vedení dokumentace u klientů s narušenou komunikační schopností', 'Mlýnková Ruth', 'Rada kvality', NULL, '2011-08-01', '3', '2022-11-01', 'LOG', '2021-11-01', 'standardy_logopedicke-vedeni_dokumentace_u_klientu_s_narusenou_komunikacni_schopnosti-revize-3.pdf', 'STD11#2', 'Schváleno', 11, NULL, '2023-01-24 13:34:13', '2023-01-24 13:34:13'),
+(30, 11, 'Standard logopedické péče', NULL, 3, 'Standard logopedické péče', 'Logopedická intervence u osob s narušenou komunikační schopností', 'Mlýnková Ruth', 'Rada kvality', NULL, '2011-08-01', '3', '2023-11-01', 'LOG', '2021-11-01', 'standardy_logopedicke-logopedicka_intervence_u_osob_s_narusenou_komunikacni_schopnosti-revize-3.pdf', 'STD11#3', 'Schváleno', 11, NULL, '2023-01-24 13:37:10', '2023-01-24 13:37:10'),
+(31, 9, 'Standard ošetřovatelské péče - OCHP', NULL, 1, 'Standard ošetřovatelské péče - OCHP', 'Spirometr', 'Kuzníková Jaroslava,', 'Rada kvality', 'Kurusová Alexandra,', '2008-04-01', '6', '2022-10-01', 'OPL', '2021-10-01', 'standardy_opl-spirometr-revize-6.pdf', 'STD9#1', 'Schváleno', 11, NULL, '2023-01-25 06:53:18', '2023-01-25 07:01:06'),
+(32, 9, 'Standard ošetřovatelské péče - OCHP', NULL, 2, 'Standard ošetřovatelské péče - OCHP', 'Pletyzmigrafie', 'Kuzníková Jaroslava', 'Rada kvality', 'Kusová Zdeňka', '2008-04-01', '6', '2022-10-01', 'OPL', '2021-10-01', 'standardy_opl-pletyzmigrafie-revize-6.pdf', 'STD9#2', 'Schváleno', 11, NULL, '2023-01-25 07:06:22', '2023-01-25 07:06:46'),
+(33, 9, 'Standard ošetřovatelské péče - OCHP', NULL, 3, 'Standard ošetřovatelské péče - OCHP', 'Chladový test', 'Kuzníková Jaroslava', 'Rada kvality', 'Kusová Zdeňka', '2008-04-01', '6', '2023-10-01', 'OPL', '2021-10-01', 'standardy_opl-chladovy_test-revize-6.pdf', 'STD9#3', 'Schváleno', 11, NULL, '2023-01-25 07:08:30', '2023-01-25 07:08:30'),
+(34, 9, 'Standard ošetřovatelské péče - OCHP', NULL, 4, 'Standard ošetřovatelské péče - OCHP', 'Dvoustupňová dezinfekce spirometru', 'Kuzníková Jaroslava', 'Rada kvality', 'Kusová Zdeňka', '2021-10-01', '2', '2023-10-01', 'OPL', '2021-10-01', 'standardy_opl-dvoustupnova_dezinfekce_spirometru-revize-2.pdf', 'STD9#4', 'Schváleno', 11, NULL, '2023-01-25 07:09:26', '2023-01-25 07:09:26'),
+(35, 8, 'Pracovní standard pro rehabilitační oddělení', NULL, 1, 'Pracovní standard pro rehabilitační oddělení', 'Příjem pacienta na rehabilitační ambulanci', 'Kolektiv fyzioterapeutů', 'Rada kvality', 'Němcová Andrea', '2004-04-01', '8', '2022-10-01', 'REH-AMB', '2021-10-01', 'standardy_rehabilitacni-prijem_pacienta_na_rehabilitacni_ambulanci-revize-8.pdf', 'STD8#1', 'Schváleno', 11, NULL, '2023-01-25 07:19:32', '2023-01-25 07:41:00'),
+(36, 8, 'Pracovní standard pro rehabilitační oddělení', NULL, 2, 'Pracovní standard pro rehabilitační oddělení', 'Individální kinezioterapie', 'Kolektiv fyzioterapeutů', 'Rada kvality', 'Němcová Andrea', '2004-04-01', '8', '2022-10-01', 'REH-AMB, REH-ODD', '2021-10-01', 'standardy_rehabilitacni-individalni_kinezioterapie-revize-8.pdf', 'STD8#2', 'Schváleno', 11, NULL, '2023-01-25 07:32:31', '2023-01-25 07:41:12'),
+(37, 8, 'Pracovní standard pro rehabilitační oddělení', NULL, 3, 'Pracovní standard pro rehabilitační oddělení', 'Vodoléčba - cvičení v bazénu', 'Kolektiv fyzioterapeutů', 'Rada kvality', 'Bc. Bělicová Taťána', '2004-04-01', '8', '2022-10-01', 'REH-AMB, REH-ODD', '2021-10-01', 'standardy_rehabilitacni-vodolecba_-_cviceni_v_bazenu-revize-8.pdf', 'STD8#3', 'Schváleno', 11, NULL, '2023-01-25 07:34:58', '2023-01-25 07:41:25'),
+(38, 8, 'Pracovní standard pro rehabilitační oddělení', NULL, 4, 'Pracovní standard pro rehabilitační oddělení', 'Aplikace vířivé koupele', 'Kolektiv fyzioterapeutů', 'Rada kvality', 'Bc. Bělicová Taťána', '2004-04-01', '8', '2022-10-01', 'REH-AMB, REH-ODD', '2021-10-01', 'standardy_rehabilitacni-aplikace_virive_koupele-revize-8.pdf', 'STD8#4', 'Schváleno', 11, NULL, '2023-01-25 07:37:08', '2023-01-25 07:38:49'),
+(39, 8, 'Pracovní standard pro rehabilitační oddělení', NULL, 5, 'Pracovní standard pro rehabilitační oddělení', 'Aplikace podvodní masaže', 'Kolektiv fyzioterapeutů', 'Rada kvality', 'Bc. Bělicová Taťána', '2004-04-01', '8', '2023-10-01', 'REH-AMB, REH-ODD', '2021-10-01', 'standardy_rehabilitacni-aplikace_podvodni_masaze-revize-8.pdf', 'STD8#5', 'Schváleno', 11, NULL, '2023-01-25 07:43:30', '2023-01-25 07:43:30'),
+(40, 8, 'Pracovní standard pro rehabilitační oddělení', NULL, 6, 'Pracovní standard pro rehabilitační oddělení', 'Thermo terapie', 'Kolektiv fyzioterapeutů', 'Rada kvality', 'Bc. Bělicová Taťána', '2004-04-01', '8', '2023-10-01', 'REH-AMB, REH-ODD', '2021-10-01', 'standardy_rehabilitacni-thermo_terapie-revize-8.pdf', 'STD8#6', 'Schváleno', 11, NULL, '2023-01-25 07:45:21', '2023-01-25 07:45:21'),
+(41, 8, 'Pracovní standard pro rehabilitační oddělení', NULL, 7, 'Pracovní standard pro rehabilitační oddělení', 'Aplikace fototerapie', 'Kolektiv fyzioterapeutů', 'Rada kvality', 'Bc. Bělicová Taťána', '2004-04-01', '8', '2023-10-01', 'REH-AMB, REH-ODD', '2021-10-01', 'sesterska_dokumentace.pdf', 'STD8#7', 'Schváleno', 11, NULL, '2023-01-25 07:47:12', '2023-01-25 07:47:12'),
+(42, 13, 'Zápis o předání návykové látky', NULL, 1, 'Zápis o předání návykové látky', 'Zápis o předání návykové látky', '', '', '', '2004-04-01', '8', '2023-10-01', '', '2021-10-01', 'sesterska_dokumentace.pdf', 'STD8#7', 'Schváleno', 11, 1, '2023-01-25 07:47:12', '2023-01-25 07:47:12'),
+(43, 14, 'Zápis o zneškodnění nepoužité návykové látky', NULL, 2, 'Zápis o zneškodnění nepoužité návykové látky', 'Zápis o zneškodnění nepoužité návykové látky', '', '', '', '0000-00-00', '8', '2023-10-01', '', '2021-10-01', 'sesterska_dokumentace.pdf', 'STD8#7', 'Schváleno', 11, 1, '2023-01-25 07:47:12', '2023-01-25 07:47:12'),
+(44, 10, 'Standardní operační postup – OKB úsek krevní banka', NULL, 1, 'Standardní operační postup – OKB úsek krevní banka', 'Vyšetření krevní skupiny AB0/Rh d na jednorázové fólii hx seroplates 10', NULL, NULL, NULL, '2013-11-01', '4', '2022-12-01', 'OKB', '2021-12-01', 'standardy_okb-vysetreni_krevni_skupiny_ab0-rh_d_na_jednorazove_folii_hx_seroplates_10-revize-4.pdf', 'STD10#1', 'Schváleno', 11, NULL, '2023-01-26 08:59:54', '2023-01-26 09:00:50'),
+(45, 10, 'Standardní operační postup – OKB úsek krevní banka', NULL, 2, 'Standardní operační postup – OKB úsek krevní banka', 'Vvyšetření zkoušky kompatibility a vyšetření protilátek u příjemce bio-rad id–micro typing system', NULL, NULL, NULL, '2006-11-07', '9', '2023-12-01', 'OKB', '2021-12-01', 'standardy_okb-vvysetreni_zkousky_kompatibility_a_vysetreni_protilatek_u_prijemce_bio-rad_id–micro_typing_system-revize-9.pdf', 'STD10#2', 'Schváleno', 11, NULL, '2023-01-26 09:06:06', '2023-01-26 09:06:06'),
+(46, 10, 'Standardní operační postup – OKB úsek krevní banka', NULL, 3, 'Standardní operační postup – OKB úsek krevní banka', 'Příjem požadavků na předtransfúzní vyšetření', NULL, NULL, NULL, '2021-12-01', '9', '2023-12-01', NULL, '2021-12-01', 'standardy_okb-prijem_pozadavku_na_predtransfuzni_vysetreni-revize-9.pdf', 'STD10#3', 'Schváleno', 11, NULL, '2023-01-26 09:12:57', '2023-01-26 09:12:57'),
+(47, 10, 'Standardní operační postup – OKB úsek krevní banka', NULL, 4, 'Standardní operační postup – OKB úsek krevní banka', 'Výdej trasfůzních prostředků', NULL, NULL, NULL, '2006-11-15', '10', '2023-12-01', 'OKB', '2021-12-01', 'standardy_okb-vydej_trasfuznich_prostredku-revize-10.pdf', 'STD10#4', 'Schváleno', 11, NULL, '2023-01-26 09:16:00', '2023-01-26 09:16:00'),
+(48, 10, 'Standardní operační postup – OKB úsek krevní banka', NULL, 5, 'Standardní operační postup – OKB úsek krevní banka', 'Příjem, kontrola a skladování diagnostik', NULL, NULL, NULL, '2006-11-15', '10', '2023-12-01', NULL, '2021-12-01', 'standardy_okb-prijem,_kontrola_a_skladovani_diagnostik-revize-10.pdf', 'STD10#5', 'Schváleno', 11, NULL, '2023-01-26 09:18:45', '2023-01-26 09:18:45'),
+(49, 10, 'Standardní operační postup – OKB úsek krevní banka', NULL, 6, 'Standardní operační postup – OKB úsek krevní banka', 'Dezinfekční režim', NULL, NULL, NULL, '2006-11-15', '10', '2023-12-01', NULL, '2021-12-01', 'standardy_okb-dezinfekcni_rezim-revize-10.pdf', 'STD10#6', 'Schváleno', 11, NULL, '2023-01-26 09:20:06', '2023-01-26 09:20:06'),
+(50, 10, 'Standardní operační postup – OKB úsek krevní banka', NULL, 7, 'Standardní operační postup – OKB úsek krevní banka', 'Objednávání trombocytárního přípravku', NULL, NULL, NULL, '2006-11-15', '11', '2023-12-01', NULL, '2021-12-01', 'standardy_okb-objednavani_trombocytarniho_pripravku-revize-11.pdf', 'STD10#7', 'Schváleno', 11, NULL, '2023-01-26 09:30:46', '2023-01-26 09:30:46'),
+(51, 10, 'Standardní operační postup – OKB úsek krevní banka', NULL, 8, 'Standardní operační postup – OKB úsek krevní banka', 'Identifikace protilátek', NULL, NULL, NULL, '2006-11-15', '10', '2023-12-01', NULL, '2021-12-01', 'standardy_okb-identifikace_protilatek-revize-10.pdf', 'STD10#8', 'Schváleno', 11, NULL, '2023-01-26 09:32:33', '2023-01-26 09:32:33'),
+(52, 10, 'Standardní operační postup – OKB úsek krevní banka', NULL, 9, 'Standardní operační postup – OKB úsek krevní banka', 'Objednávání transfuzních přípravků z transfuzních', NULL, NULL, NULL, '2008-01-21', '8', '2023-12-01', NULL, '2021-12-01', 'standardy_okb-objednavani_transfuznich_pripravku_z_transfuznich-revize-8.pdf', 'STD10#9', 'Schváleno', 11, NULL, '2023-01-26 09:34:04', '2023-01-26 09:34:04'),
+(53, 10, 'Standardní operační postup – OKB úsek krevní banka', NULL, 10, 'Standardní operační postup – OKB úsek krevní banka', 'Dovoz autologní krve', NULL, NULL, NULL, '2007-08-20', '9', '2023-12-01', 'OKB', '2021-12-01', 'standardy_okb-dovoz_autologni_krve-revize-9.pdf', 'STD10#10', 'Schváleno', 11, NULL, '2023-01-26 09:35:21', '2023-01-26 09:35:21'),
+(54, 10, 'Standardní operační postup – OKB úsek krevní banka', NULL, 11, 'Standardní operační postup – OKB úsek krevní banka', 'Doporučený postup při vyšetřování a hlášení potransfuzních reakcí', NULL, NULL, NULL, '2007-08-20', '8', '2023-12-01', 'OKB', '2021-12-01', 'standardy_okb-doporuceny_postup_pri_vysetrovani_a_hlaseni_potransfuznich_reakci-revize-8.pdf', 'STD10#11', 'Schváleno', 11, NULL, '2023-01-26 09:36:48', '2023-01-26 09:36:48'),
+(55, 10, 'Standardní operační postup – OKB úsek krevní banka', NULL, 12, 'Standardní operační postup – OKB úsek krevní banka', 'STANDARD - Zrušen', NULL, NULL, NULL, '2022-12-01', '0', '2023-12-01', 'OKB', '2022-12-01', 'standardy_okb-standard_-_zrusen-revize-0.pdf', 'STD10#12', 'Schváleno', 11, NULL, '2023-01-26 09:42:52', '2023-01-26 09:43:22'),
+(56, 10, 'Standardní operační postup – OKB úsek krevní banka', NULL, 13, 'Standardní operační postup – OKB úsek krevní banka', 'Dokumentace a hlášení potransfuzních reakcí', NULL, NULL, NULL, '2006-11-20', '8', '2023-12-01', NULL, '2021-12-01', 'standardy_okb-dokumentace_a_hlaseni_potransfuznich_reakci-revize-8.pdf', 'STD10#13', 'Schváleno', 11, NULL, '2023-01-26 09:45:27', '2023-01-26 09:45:27'),
+(57, 10, 'Standardní operační postup – OKB úsek krevní banka', NULL, 14, 'Standardní operační postup – OKB úsek krevní banka', 'STANDARD - Zrušen', NULL, NULL, NULL, '2022-12-01', '0', '2023-12-01', 'OKB', '2022-12-01', 'standardy_okb-standard_-_zrusen-revize-0.pdf', 'STD10#12', 'Schváleno', 11, NULL, '2023-01-26 09:42:52', '2023-01-26 09:43:22'),
+(58, 10, 'Standardní operační postup – OKB úsek krevní banka', NULL, 15, 'Standardní operační postup – OKB úsek krevní banka', 'Sledování teplot chladicích a mrazicích zařízení kontrola funkčnosti alarmu', NULL, NULL, NULL, '2008-01-24', '9', '2023-12-01', 'OKB', '2021-12-01', 'standardy_okb-sledovani_teplot_chladicich_a_mrazicich_zarizeni_kontrola_funkcnosti_alarmu-revize-9.pdf', 'STD10#15', 'Schváleno', 11, NULL, '2023-01-26 09:53:59', '2023-01-26 09:53:59'),
+(59, 10, 'Standardní operační postup – OKB úsek krevní banka', NULL, 16, 'Standardní operační postup – OKB úsek krevní banka', 'Manipulace s transfuzními přípravky při poruše chladicího a mrazicího zařízení', NULL, NULL, NULL, '2006-11-20', '9', '2023-12-01', 'OKB', '2021-12-01', 'standardy_okb-manipulace_s_transfuznimi_pripravky_pri_poruse_chladiciho_a_mraziciho_zarizeni-revize-9.pdf', 'STD10#16', 'Schváleno', 11, NULL, '2023-01-26 09:56:42', '2023-01-26 09:56:42'),
+(60, 10, 'Standardní operační postup – OKB úsek krevní banka', NULL, 17, 'Standardní operační postup – OKB úsek krevní banka', 'Skladování transfuzních přípravků', NULL, NULL, NULL, '2006-11-20', '9', '2023-12-01', 'OKB', '2021-12-01', 'standardy_okb-skladovani_transfuznich_pripravku-revize-9.pdf', 'STD10#17', 'Schváleno', 11, NULL, '2023-01-26 09:58:34', '2023-01-26 09:58:34'),
+(61, 10, 'Standardní operační postup – OKB úsek krevní banka', NULL, 18, 'Standardní operační postup – OKB úsek krevní banka', 'Návod na použití a údržbu ID – Inkubátoru', NULL, NULL, NULL, '2006-11-20', '10', '2023-12-01', 'OKB', '2021-12-01', 'standardy_okb-navod_na_pouziti_a_udrzbu_id_–_inkubatoru-revize-10.pdf', 'STD10#18', 'Schváleno', 11, NULL, '2023-01-26 10:00:18', '2023-01-26 10:00:18'),
+(62, 10, 'Standardní operační postup – OKB úsek krevní banka', NULL, 19, 'Standardní operační postup – OKB úsek krevní banka', 'Návod na použití a údržbu ID – Centrifugy', NULL, NULL, NULL, '2006-11-20', '10', '2023-12-01', 'OKB', '2021-12-01', 'standardy_okb-navod_na_pouziti_a_udrzbu_id_–_centrifugy-revize-10.pdf', 'STD10#19', 'Schváleno', 11, NULL, '2023-01-26 10:01:39', '2023-01-26 10:01:39'),
+(63, 10, 'Standardní operační postup – OKB úsek krevní banka', NULL, 20, 'Standardní operační postup – OKB úsek krevní banka', 'Zajištění transfuzní přípravků pro oddělení nemocí páteře a ortopedii', NULL, NULL, NULL, '2008-01-29', '8', '2023-12-01', 'OKB', '2021-12-01', 'standardy_okb-zajisteni_transfuzni_pripravku_pro_oddeleni_nemoci_patere_a_ortopedii-revize-8.pdf', 'STD10#20', 'Schváleno', 11, NULL, '2023-01-26 10:18:26', '2023-01-26 10:18:26'),
+(64, 10, 'Standardní operační postup – OKB úsek krevní banka', NULL, 21, 'Standardní operační postup – OKB úsek krevní banka', 'Kontrola jakosti v imunohematologii', NULL, NULL, NULL, '2014-01-21', '4', '2023-12-01', 'OKB', '2021-12-01', 'standardy_okb-kontrola_jakosti_v_imunohematologii-revize-4.pdf', 'STD10#21', 'Schváleno', 11, NULL, '2023-01-26 10:29:06', '2023-01-26 10:29:06'),
+(65, 10, 'Standardní operační postup – OKB úsek krevní banka', NULL, 22, 'Standardní operační postup – OKB úsek krevní banka', 'Vnitřní vstupní kontrola kvality diagnostik', NULL, NULL, NULL, '2006-11-20', '8', '2023-12-01', NULL, '2021-12-01', 'standardy_okb-vnitrni_vstupni_kontrola_kvality_diagnostik-revize-8.pdf', 'STD10#22', 'Schváleno', 11, NULL, '2023-01-26 10:30:40', '2023-01-26 10:30:40'),
+(66, 10, 'Standardní operační postup – OKB úsek krevní banka', NULL, 23, 'Standardní operační postup – OKB úsek krevní banka', 'Likvidace nepoužitých exspirovaných transfuzních přípravků', NULL, NULL, NULL, '2006-11-20', '9', '2023-12-01', 'OKB', '2021-12-01', 'standardy_okb-likvidace_nepouzitych_exspirovanych_transfuznich_pripravku-revize-9.pdf', 'STD10#23', 'Schváleno', 11, NULL, '2023-01-26 10:32:41', '2023-01-26 10:32:41'),
+(67, 10, 'Standardní operační postup – OKB úsek krevní banka', NULL, 24, 'Standardní operační postup – OKB úsek krevní banka', 'Postup při poruše id-inkubátoru (centrifugy)', NULL, NULL, NULL, '2006-11-20', '7', '2023-12-01', 'OKB', '2021-12-01', 'standardy_okb-postup_pri_poruse_id-inkubatoru_(centrifugy)-revize-7.pdf', 'STD10#24', 'Schváleno', 11, NULL, '2023-01-26 10:34:52', '2023-01-26 10:34:52'),
+(68, 10, 'Standardní operační postup – OKB úsek krevní banka', NULL, 25, 'Standardní operační postup – OKB úsek krevní banka', 'Reklamace a stahování léčiv (transfuzních přípravků)', NULL, NULL, NULL, '2007-01-05', '8', '2023-12-01', 'OKB', '2021-12-01', 'standardy_okb-reklamace_a_stahovani_leciv_(transfuznich_pripravku)-revize-8.pdf', 'STD10#25', 'Schváleno', 11, NULL, '2023-01-26 10:37:01', '2023-01-26 10:37:01'),
+(69, 10, 'Standardní operační postup – OKB úsek krevní banka', NULL, 26, 'Standardní operační postup – OKB úsek krevní banka', 'Manipulace s čerstvě mraženou plazmou skmp', NULL, NULL, NULL, '2007-01-28', '8', '2023-12-01', 'OKB', '2021-12-01', 'standardy_okb-manipulace_s_cerstve_mrazenou_plazmou_skmp-revize-8.pdf', 'STD10#26', 'Schváleno', 11, NULL, '2023-01-26 10:39:08', '2023-01-26 10:39:08'),
+(70, 10, 'Standardní operační postup – OKB úsek krevní banka', NULL, 27, 'Standardní operační postup – OKB úsek krevní banka', 'Reklamace diagnostik', NULL, NULL, NULL, '2008-01-29', '8', '2023-12-01', 'OKB', '2021-12-01', 'standardy_okb-reklamace_diagnostik-revize-8.pdf', 'STD10#27', 'Schváleno', 11, NULL, '2023-01-26 10:40:27', '2023-01-26 10:40:27'),
+(71, 10, 'Standardní operační postup – OKB úsek krevní banka', NULL, 28, 'Standardní operační postup – OKB úsek krevní banka', 'STANDARD - Zrušen', NULL, NULL, NULL, '2021-12-01', '1', '2022-12-01', 'OKB', '2021-12-01', 'standardy_okb-standard_-_zrusen-revize-1.pdf', 'STD10#28', 'Schváleno', 11, NULL, '2023-01-26 10:41:36', '2023-01-26 10:41:36'),
+(72, 10, 'Standardní operační postup – OKB úsek krevní banka', NULL, 29, 'Standardní operační postup – OKB úsek krevní banka', 'Revize dokumentů (sop) na krevní bance', NULL, NULL, NULL, '2011-11-01', '4', '2023-12-01', 'OKB', '2021-12-01', 'standardy_okb-revize_dokumentu_(sop)_na_krevni_bance-revize-4.pdf', 'STD10#29', 'Schváleno', 11, NULL, '2023-01-26 10:43:14', '2023-01-26 10:43:14'),
+(73, 10, 'Standardní operační postup – OKB úsek krevní banka', NULL, 30, 'Standardní operační postup – OKB úsek krevní banka', 'Rozmrazování skmp a ohřev erytrocytárních transfuzních přípravků', NULL, NULL, NULL, '2018-01-01', '2', '2023-12-01', NULL, '2021-12-01', 'standardy_okb-rozmrazovani_skmp_a_ohrev_erytrocytarnich_transfuznich_pripravku-revize-2.pdf', 'STD10#30', 'Schváleno', 11, NULL, '2023-01-26 10:44:36', '2023-01-26 10:44:36'),
+(74, 6, 'Standard ošetřovatelské péče - anesteziologický', NULL, 1, 'Standard ošetřovatelské péče - anesteziologický', 'Příprava a asistence u celkové anestezie u TEP kyčle', NULL, NULL, NULL, '2004-04-01', '7', '2022-10-01', 'ANEST', '2021-10-01', 'standardy_anesteziologicke-priprava_a_asistence_u_celkove_anestezie_u_tep_kycle-revize-7.pdf', 'STD6#1', 'Schváleno', 11, NULL, '2023-01-26 11:04:19', '2023-01-26 11:23:46'),
+(75, 6, 'Standard ošetřovatelské péče - anesteziologický', NULL, 2, 'Standard ošetřovatelské péče - anesteziologický', 'Příprava a asistence u celkové anestezie u operace páteře', NULL, NULL, NULL, '2004-04-01', '7', '2022-10-01', NULL, '2021-10-01', 'standardy_anesteziologicke-priprava_a_asistence_u_celkove_anestezie_u_operace_patere-revize-7.pdf', 'STD6#2', 'Schváleno', 11, NULL, '2023-01-26 11:06:58', '2023-01-26 11:23:54'),
+(76, 6, 'Standard ošetřovatelské péče - anesteziologický', NULL, 3, 'Standard ošetřovatelské péče - anesteziologický', 'Příprava a asistence u celkové anestezie u periferní nervové blokád', NULL, NULL, NULL, '2005-09-20', '7', '2022-10-01', 'ANEST', '2021-10-01', 'standardy_anesteziologicke-priprava_a_asistence_u_celkove_anestezie_u_periferni_nervove_blokad-revize-7.pdf', 'STD6#3', 'Schváleno', 11, NULL, '2023-01-26 11:09:12', '2023-01-26 11:24:07'),
+(77, 6, 'Standard ošetřovatelské péče - anesteziologický', NULL, 4, 'Standard ošetřovatelské péče - anesteziologický', 'Příprava a asistence u epidurální a subarachnoidální anestezie', NULL, NULL, NULL, '2005-09-22', '7', '2022-10-01', 'ANEST', '2021-10-01', 'standardy_anesteziologicke-priprava_a_asistence_u_epiduralni_a_subarachnoidalni_anestezie-revize-7.pdf', 'STD6#4', 'Schváleno', 11, NULL, '2023-01-26 11:10:19', '2023-01-26 11:24:17');
 
 -- --------------------------------------------------------
 
@@ -700,29 +735,29 @@ INSERT INTO `documents` (`id`, `category_id`, `accordion_name`, `accordion_group
 --
 
 CREATE TABLE `employees` (
-  `id` bigint UNSIGNED NOT NULL,
-  `personal_number` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
-  `image` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
-  `title_preffix` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `last_name` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
-  `middle_name` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `married_name` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `first_name` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
-  `title_suffix` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `department_id` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
-  `job_id` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
-  `email` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `id` bigint(20) UNSIGNED NOT NULL,
+  `personal_number` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `image` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `title_preffix` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `last_name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `middle_name` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `married_name` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `first_name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `title_suffix` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `department_id` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `job_id` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `email` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `start_date` date NOT NULL,
   `end_date` date DEFAULT NULL,
-  `comment` text CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci,
-  `phone` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `mobile` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `id_card` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
-  `coffee` enum('A','N') CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT 'N',
-  `employment` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
-  `position` int DEFAULT NULL,
-  `standard_signature` int DEFAULT NULL,
-  `status` enum('Aktivní','Neaktivní','Mateřská') CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT 'Neaktivní',
+  `comment` text COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `phone` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `mobile` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `id_card` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `coffee` enum('A','N') COLLATE utf8mb4_unicode_ci DEFAULT 'N',
+  `employment` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `position` int(11) DEFAULT NULL,
+  `standard_signature` int(11) DEFAULT NULL,
+  `status` enum('Aktivní','Neaktivní','Mateřská') COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT 'Neaktivní',
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
@@ -761,7 +796,7 @@ INSERT INTO `employees` (`id`, `personal_number`, `image`, `title_preffix`, `las
 (32, '62603', '62603.jpg', NULL, 'Němcová', NULL, NULL, 'Anna', NULL, '22', '36', NULL, '1996-02-01', NULL, '2c612a', '', '', 'Vydáno', 'N', 'HPP', 999, NULL, 'Aktivní', '2020-02-09 21:00:00', NULL),
 (34, '62707', '62707.jpg', NULL, 'Ochodková', NULL, NULL, 'Jaroslava', NULL, '23', '55', NULL, '1996-02-01', NULL, 'a31561', '', '', 'Vydáno', 'N', 'HPP', 999, NULL, 'Aktivní', '2020-02-09 21:00:00', NULL),
 (35, '62719', '62719.jpg', NULL, 'Opolková', NULL, NULL, 'Renáta', NULL, '18', '24', NULL, '1996-02-01', NULL, 'ffa200', '', '', 'Vydáno', 'N', 'HPP', 999, NULL, 'Aktivní', '2020-02-09 21:00:00', '2020-02-27 08:55:24'),
-(37, '60527', '60527.jpg', NULL, 'Popková', NULL, NULL, 'Iveta', NULL, '9', '41', 'popkova@khn.cz', '1996-02-01', NULL, 'd9fa05', '439, 152', '724938780', 'Vydáno', 'N', 'HPP', 999, NULL, 'Aktivní', '2020-02-09 21:00:00', '2022-10-04 06:12:18'),
+(37, '60527', '60527.jpg', NULL, 'Popková', NULL, NULL, 'Iveta', NULL, '9', '47', 'popkova@khn.cz', '1996-02-01', NULL, 'd9fa05', '439, 152', '724938780', 'Vydáno', 'N', 'HPP', 999, NULL, 'Aktivní', '2020-02-09 21:00:00', '2023-01-26 11:03:48'),
 (38, '63017', '63017.jpg', 'Bc.', 'Pribula', NULL, NULL, 'Marek', NULL, '15', '36', 'pribula@khn.cz', '1996-02-01', NULL, 'c90818', '334', '605721963', 'Vydáno', 'N', 'HPP', 999, NULL, 'Aktivní', '2020-02-09 21:00:00', '2022-06-13 02:27:43'),
 (40, '63518', '63518.jpg', 'Bc.', 'Sigmundová', NULL, NULL, 'Pavla', NULL, '14', '65', 'sigmundova@khn.cz', '1996-02-01', NULL, 'a908c9', '102', '730188190', 'Vydáno', 'N', 'HPP', 999, NULL, 'Aktivní', '2020-02-09 21:00:00', '2022-06-13 02:25:18'),
 (42, '63719', '63719.jpg', 'MUDr.', 'Střída', NULL, NULL, 'Josef', NULL, '4', '12', 'strida@khn.cz', '1996-02-01', NULL, '4287f5', '226', '725669160', 'Vydáno', 'N', 'HPP', 999, 1, 'Aktivní', '2020-02-09 21:00:00', '2022-06-13 02:23:38'),
@@ -938,7 +973,7 @@ INSERT INTO `employees` (`id`, `personal_number`, `image`, `title_preffix`, `las
 (237, '64530', '64530.jpg', NULL, 'Wojnar', NULL, NULL, 'Jan', NULL, '16', '36', NULL, '2010-07-01', NULL, '94f700', '', '', 'Vydáno', 'N', 'HPP', 999, NULL, 'Aktivní', '2020-02-09 21:00:00', '2020-03-04 06:19:41'),
 (238, '62202', '62202.jpg', 'Mgr.', 'Malíková', NULL, NULL, 'Jana', NULL, '11', '9', NULL, '2010-07-15', NULL, '66c908', '', '', 'Vydáno', 'N', 'HPP', 999, NULL, 'Mateřská', '2020-02-09 21:00:00', '2020-03-04 05:37:18'),
 (239, '62504', '62504.jpg', NULL, 'Miturová', NULL, NULL, 'Dana', NULL, '12', '9', NULL, '2010-09-01', NULL, '66c908', '', '', 'Vydáno', 'N', 'HPP', 999, NULL, 'Aktivní', '2020-02-09 21:00:00', NULL),
-(240, '62529', '62529.jpg', 'Mgr.', 'Mrázová', NULL, NULL, 'Andrea', NULL, '14', '61', 'mrazova@khn.cz', '2010-09-01', NULL, 'a908c9', '102', NULL, 'Vydáno', 'N', 'HPP', 999, NULL, 'Aktivní', '2020-02-09 21:00:00', '2022-07-28 12:24:52'),
+(240, '62529', '62529.jpg', 'Mgr.', 'Mrázová', NULL, NULL, 'Andrea', NULL, '14', '61', 'mrazova@khn.cz', '2010-09-01', NULL, 'a908c9', '102', NULL, 'Vydáno', 'N', 'HPP', 999, 1, 'Aktivní', '2020-02-09 21:00:00', '2022-07-28 12:24:52'),
 (241, '63013', '63013.jpg', NULL, 'Protopsalti Robenková', 'Robenková', NULL, 'Zuzana', NULL, '5', '55', NULL, '2010-09-01', NULL, '4287f5', '', '', 'Vydáno', 'N', 'HPP', 999, NULL, 'Aktivní', '2020-02-09 21:00:00', '2020-03-04 06:01:38'),
 (242, '62821', '62821.jpg', 'Bc.', 'Krestová', NULL, NULL, 'Darina', NULL, '6', '55', NULL, '2010-10-15', NULL, '7833e8', NULL, NULL, 'Vydáno', 'N', 'HPP', 999, NULL, 'Aktivní', '2020-02-09 21:00:00', '2021-09-16 02:49:06'),
 (243, '64416', '64416.jpg', NULL, 'Volanská', NULL, NULL, 'Lydie', NULL, '19', '63', 'vedouci.uklidu@khn.cz', '2010-10-27', NULL, '999999', '292', '724370890', 'Vydáno', 'N', 'HPP', 999, NULL, 'Aktivní', '2020-02-09 21:00:00', '2022-06-13 02:12:50'),
@@ -1064,7 +1099,7 @@ INSERT INTO `employees` (`id`, `personal_number`, `image`, `title_preffix`, `las
 (391, '61311', '61311.jpg', NULL, 'Chobotová', NULL, NULL, 'Slavka', NULL, '19', '22', NULL, '2017-05-09', NULL, '999999', '', '', 'Vydáno', 'N', 'HPP', 999, NULL, 'Aktivní', '2020-02-09 21:00:00', NULL),
 (392, '63030', '63030.jpg', NULL, 'Przybylová', NULL, NULL, 'Barbara', NULL, '16', '20', NULL, '2017-05-15', NULL, '94f700', '', '', 'Vydáno', 'N', 'HPP', 999, NULL, 'Aktivní', '2020-02-09 21:00:00', NULL),
 (393, '61807', '61807.jpg', 'Bc.', 'Koudelová', NULL, NULL, 'Kateřina', NULL, '12', '9', NULL, '2017-06-01', NULL, '66c908', '', '', 'Vydáno', 'N', 'HPP', 999, NULL, 'Aktivní', '2020-02-09 21:00:00', '2020-02-17 09:25:28'),
-(394, '61803', '61803.jpg', 'Ing.', 'Kolatková', NULL, NULL, 'Marina', NULL, '14', '30', 'kolatkova@khn.cz', '2017-06-01', NULL, 'a908c9', '183', '724829867', 'Vydáno', 'N', 'HPP', 999, NULL, 'Aktivní', '2020-02-09 21:00:00', '2022-07-28 12:12:34'),
+(394, '61803', '61803.jpg', 'Ing.', 'Kolatková', NULL, NULL, 'Marina', NULL, '14', '30', 'kolatkova@khn.cz', '2017-06-01', NULL, 'a908c9', '183', '724829867', 'Vydáno', 'N', 'HPP', 999, 1, 'Aktivní', '2020-02-09 21:00:00', '2022-07-28 12:12:34'),
 (396, '61621', '61621.jpg', NULL, 'Kocůrková', NULL, NULL, 'Anna', 'DiS.', '6', '29', NULL, '2017-06-14', NULL, '7833e8', NULL, NULL, 'Vydáno', 'N', 'HPP', 999, NULL, 'Mateřská', '2020-02-09 21:00:00', '2021-11-03 04:12:57'),
 (397, '61619', '61619.jpg', 'Mgr.', 'Kalčíková', NULL, NULL, 'Miroslava', NULL, '12', '9', NULL, '2017-07-01', NULL, '66c908', '', '', 'Vydáno', 'N', 'HPP', 999, NULL, 'Aktivní', '2020-02-09 21:00:00', '2020-02-17 09:26:37'),
 (398, '64424', '64424.jpg', 'MUDr.', 'Wajdová', NULL, NULL, 'Gabriela', NULL, '5', '12', 'wajdova@khn.cz', '2017-07-01', NULL, '4287f5', NULL, NULL, 'Vydáno', 'N', 'HPP', 999, 1, 'Aktivní', '2020-02-09 21:00:00', '2022-06-13 02:11:52'),
@@ -1354,9 +1389,9 @@ INSERT INTO `employees` (`id`, `personal_number`, `image`, `title_preffix`, `las
 --
 
 CREATE TABLE `evidence` (
-  `id` bigint UNSIGNED NOT NULL,
-  `evidence_type` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
-  `evidence_pieces` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `id` bigint(20) UNSIGNED NOT NULL,
+  `evidence_type` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `evidence_pieces` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
@@ -1368,13 +1403,13 @@ CREATE TABLE `evidence` (
 --
 
 CREATE TABLE `failed_jobs` (
-  `id` bigint UNSIGNED NOT NULL,
-  `uuid` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
-  `connection` text CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
-  `queue` text CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
-  `payload` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
-  `exception` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
-  `failed_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP
+  `id` bigint(20) UNSIGNED NOT NULL,
+  `uuid` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `connection` text COLLATE utf8mb4_unicode_ci NOT NULL,
+  `queue` text COLLATE utf8mb4_unicode_ci NOT NULL,
+  `payload` longtext COLLATE utf8mb4_unicode_ci NOT NULL,
+  `exception` longtext COLLATE utf8mb4_unicode_ci NOT NULL,
+  `failed_at` timestamp NOT NULL DEFAULT current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 -- --------------------------------------------------------
@@ -1384,12 +1419,12 @@ CREATE TABLE `failed_jobs` (
 --
 
 CREATE TABLE `instructions` (
-  `id` bigint UNSIGNED NOT NULL,
-  `standard_id` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
-  `standard_category_id` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
-  `name` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
-  `revision` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
-  `status` enum('Rozpracováno','Schváleno') CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `id` bigint(20) UNSIGNED NOT NULL,
+  `standard_id` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `standard_category_id` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `revision` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `status` enum('Rozpracováno','Schváleno') COLLATE utf8mb4_unicode_ci NOT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
@@ -1401,8 +1436,8 @@ CREATE TABLE `instructions` (
 --
 
 CREATE TABLE `jobs` (
-  `id` bigint UNSIGNED NOT NULL,
-  `job_title` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL
+  `id` bigint(20) UNSIGNED NOT NULL,
+  `job_title` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
@@ -1490,9 +1525,9 @@ INSERT INTO `jobs` (`id`, `job_title`) VALUES
 --
 
 CREATE TABLE `migrations` (
-  `id` int UNSIGNED NOT NULL,
-  `migration` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
-  `batch` int NOT NULL
+  `id` int(10) UNSIGNED NOT NULL,
+  `migration` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `batch` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
@@ -1528,20 +1563,20 @@ INSERT INTO `migrations` (`id`, `migration`, `batch`) VALUES
 --
 
 CREATE TABLE `navitems` (
-  `id` bigint UNSIGNED NOT NULL,
-  `position` int NOT NULL,
-  `category_id` int NOT NULL,
-  `name` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
-  `subname` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
-  `alt_name` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
-  `tooltip` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
-  `color` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
-  `icon_class` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
-  `page_title` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
-  `route` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
-  `favicon` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
-  `fa_icon` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
-  `svg_icon` text CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL
+  `id` bigint(20) UNSIGNED NOT NULL,
+  `position` int(11) NOT NULL,
+  `category_id` int(11) NOT NULL,
+  `name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `subname` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `alt_name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `tooltip` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `color` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `icon_class` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `page_title` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `route` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `favicon` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `fa_icon` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `svg_icon` text COLLATE utf8mb4_unicode_ci NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
@@ -1558,8 +1593,8 @@ INSERT INTO `navitems` (`id`, `position`, `category_id`, `name`, `subname`, `alt
 --
 
 CREATE TABLE `password_resets` (
-  `email` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
-  `token` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `email` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `token` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `created_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
@@ -1570,12 +1605,12 @@ CREATE TABLE `password_resets` (
 --
 
 CREATE TABLE `personal_access_tokens` (
-  `id` bigint UNSIGNED NOT NULL,
-  `tokenable_type` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
-  `tokenable_id` bigint UNSIGNED NOT NULL,
-  `name` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
-  `token` varchar(64) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
-  `abilities` text CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci,
+  `id` bigint(20) UNSIGNED NOT NULL,
+  `tokenable_type` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `tokenable_id` bigint(20) UNSIGNED NOT NULL,
+  `name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `token` varchar(64) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `abilities` text COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `last_used_at` timestamp NULL DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
@@ -1588,11 +1623,11 @@ CREATE TABLE `personal_access_tokens` (
 --
 
 CREATE TABLE `printers` (
-  `id` bigint UNSIGNED NOT NULL,
-  `printer_vendor` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
-  `printer_type` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
-  `printer_number` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
-  `toner_id` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL
+  `id` bigint(20) UNSIGNED NOT NULL,
+  `printer_vendor` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `printer_type` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `printer_number` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `toner_id` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 -- --------------------------------------------------------
@@ -1602,12 +1637,12 @@ CREATE TABLE `printers` (
 --
 
 CREATE TABLE `slides` (
-  `id` bigint UNSIGNED NOT NULL,
-  `training_id` int NOT NULL,
-  `slide_title` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
-  `directory` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
-  `path` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
-  `position` int NOT NULL,
+  `id` bigint(20) UNSIGNED NOT NULL,
+  `training_id` int(11) NOT NULL,
+  `slide_title` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `directory` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `path` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `position` int(11) NOT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
@@ -1619,11 +1654,11 @@ CREATE TABLE `slides` (
 --
 
 CREATE TABLE `toners` (
-  `id` bigint UNSIGNED NOT NULL,
-  `toner_code` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
-  `toner_type` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
-  `toner_size` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
-  `toner_price` int NOT NULL
+  `id` bigint(20) UNSIGNED NOT NULL,
+  `toner_code` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `toner_type` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `toner_size` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `toner_price` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 -- --------------------------------------------------------
@@ -1633,9 +1668,9 @@ CREATE TABLE `toners` (
 --
 
 CREATE TABLE `trainings` (
-  `id` bigint UNSIGNED NOT NULL,
-  `title` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
-  `category` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `id` bigint(20) UNSIGNED NOT NULL,
+  `title` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `category` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
@@ -1647,15 +1682,15 @@ CREATE TABLE `trainings` (
 --
 
 CREATE TABLE `users` (
-  `id` bigint UNSIGNED NOT NULL,
-  `personal_number` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
-  `name` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
-  `email` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `id` bigint(20) UNSIGNED NOT NULL,
+  `personal_number` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `email` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `email_verified_at` timestamp NULL DEFAULT NULL,
-  `password` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
-  `two_factor_secret` text CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci,
-  `two_factor_recovery_codes` text CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci,
-  `remember_token` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `password` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `two_factor_secret` text COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `two_factor_recovery_codes` text COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `remember_token` varchar(100) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
@@ -1710,12 +1745,6 @@ ALTER TABLE `attendances`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indexy pro tabulku `calendar`
---
-ALTER TABLE `calendar`
-  ADD PRIMARY KEY (`id`);
-
---
 -- Indexy pro tabulku `categories`
 --
 ALTER TABLE `categories`
@@ -1757,52 +1786,10 @@ ALTER TABLE `failed_jobs`
 --
 
 --
--- AUTO_INCREMENT pro tabulku `addons`
---
-ALTER TABLE `addons`
-  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
-
---
--- AUTO_INCREMENT pro tabulku `adversevents`
---
-ALTER TABLE `adversevents`
-  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
-
---
--- AUTO_INCREMENT pro tabulku `attendances`
---
-ALTER TABLE `attendances`
-  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT;
-
---
--- AUTO_INCREMENT pro tabulku `calendar`
---
-ALTER TABLE `calendar`
-  MODIFY `id` bigint NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=366;
-
---
--- AUTO_INCREMENT pro tabulku `categories`
---
-ALTER TABLE `categories`
-  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=25;
-
---
--- AUTO_INCREMENT pro tabulku `departments`
---
-ALTER TABLE `departments`
-  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=32;
-
---
 -- AUTO_INCREMENT pro tabulku `documents`
 --
 ALTER TABLE `documents`
-  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=44;
-
---
--- AUTO_INCREMENT pro tabulku `employees`
---
-ALTER TABLE `employees`
-  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=834;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=78;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

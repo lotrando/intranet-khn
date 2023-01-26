@@ -60,7 +60,7 @@ class DocumentController extends Controller
             'accordion_group'       => 'nullable',
             'name'                  => 'required',
             'description'           => 'required',
-            'processed'             => 'required',
+            'processed'             => 'nullable',
             'authorize'             => 'nullable',
             'examine'               => 'nullable',
             'efficiency'            => 'nullable',

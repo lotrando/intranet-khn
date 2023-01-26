@@ -283,6 +283,80 @@
             </div>
           </div>
           @endforeach
+          {{-- accordion no db --}}
+          <div class="accordion-item">
+            <div id="test-{{ $document->position }}">
+              <div class="accordion-body p-1">
+                <div class="list-group list-group-flush list-group-hoverable pt-1">
+                  <div class="list-group-item border-0 p-0">
+                    <div class="row align-items-center g-3 mx-2">
+                      <div class="avatar bg-{{ $document->category->color }}-lt col-auto" data-bs-toggle="tooltip" data-bs-placement="top"
+                           data-bs-original-title="ID #{{ $document->id }}">
+                        <div class="text-uppercase">
+                          {!! $document->category->svg_icon !!}
+                        </div>
+                      </div>
+                      <div class="col text-truncate" id="{{ $document->id }}">
+                        <span>
+                          <p class="show d-inline text-primary text-decoration-none cursor-pointer" id="{{ $document->id }}" data-bs-toggle="tooltip"
+                             data-bs-placement="top" data-bs-original-title="Více informací o standardu {{ $document->description }}" style="margin-bottom: 0;">
+                            @if($document->category_id <> 3)
+                              {{ $document->position }}.
+                              @endif {{ $document->name }}</p>
+                        </span>
+                        <div class="d-block description text-muted text-truncate">{{ $document->description }}</div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="list-group-item py-1 px-2">
+                    <div class="row d-flex justify-content-between">
+                      <div class="col-auto">
+                        @if (Carbon\Carbon::parse($document->updated_at)->addDays(7) >= Carbon\Carbon::now())
+                        <span class="badge badge-sm bg-muted-lt text-uppercase ms-auto">Sklad</span>
+                        @endif
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          {{-- accordion no db end --}}
+          {{-- accordion no db --}}
+          <div class="accordion-item">
+            <div id="test-{{ $document->position }}">
+              <div class="accordion-body p-1">
+                <div class="list-group list-group-flush list-group-hoverable pt-1">
+                  <div class="list-group-item border-0 p-0">
+                    <div class="row align-items-center g-3 mx-2">
+                      <div class="avatar bg-{{ $document->category->color }}-lt col-auto" data-bs-toggle="tooltip" data-bs-placement="top"
+                           data-bs-original-title="ID #{{ $document->id }}">
+                        <div class="text-uppercase">
+                          {!! $document->category->svg_icon !!}
+                        </div>
+                      </div>
+                      <div class="col text-truncate" id="{{ $document->id }}">
+                        <span>
+                          <p class="show d-inline text-primary text-decoration-none cursor-pointer" id="{{ $document->id }}" data-bs-toggle="tooltip"
+                             data-bs-placement="top" data-bs-original-title="Více informací o standardu {{ $document->description }}" style="margin-bottom: 0;">
+                            {{ $document->position }}. {{ $document->name }}</p>
+                        </span>
+                        <div class="d-block description text-muted text-truncate">{{ $document->description }}</div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="list-group-item py-1 px-2">
+                    <div class="row d-flex justify-content-between">
+                      <div class="col-auto">
+                        <span class="badge badge-sm bg-muted-lt text-uppercase ms-auto">Sklad</span>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          {{-- accordion no db end --}}
         </div>
       </div>
       <!-- Page End -->
