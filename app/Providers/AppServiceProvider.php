@@ -35,16 +35,16 @@ class AppServiceProvider extends ServiceProvider
 
         Paginator::useBootstrap();
 
-        $docs = Category::with('documents')->where('category_type', '=', 'dokumenty')->get();                // Dokuments items
+        $docs = Category::with('documents')->where('category_type', '=', 'dokument')->get();                // Dokuments items
         View::share('docs', $docs);
 
-        $stands = Category::with('documents')->where('category_type', '=', 'standardy')->get();              // Standards items
+        $stands = Category::with('documents')->where('category_type', '=', 'standard')->get();              // Standards items
         View::share('stands', $stands);
 
-        $categories = Category::with('documents')->get();           // Standards items
+        $categories = Category::with('documents')->where('id', '>', 12)->get();           // Standards items
         View::share('categories', $categories);
 
-        $navitems = Navitem::with('category')->get();               // Navigation items
+        $navitems = Navitem::with('category')->get();                                       // Navigation items
         View::share('navitems', $navitems);
     }
 }

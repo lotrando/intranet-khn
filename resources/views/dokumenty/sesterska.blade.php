@@ -167,7 +167,7 @@
                         </div>
                       </div>
                       <div class="col-auto">
-                        <a href="{{ route('soubory.download.addon', $add->id) }}">
+                        <a href="{{ route('standardy.download.addon', $add->id) }}">
                           <span class="avatar bg-{{ $document->category->color }}-lt" data-bs-toggle="tooltip" data-bs-placement="top"
                                 data-bs-original-title="Stáhnout přílohu">
                             <img src="{{ asset('img/files/pdf-add.png') }}" alt="PDF - Příloha standardu" height="32px">
@@ -319,6 +319,42 @@
                         </span>
                         <div class="d-block description text-muted text-truncate">{{ $standard->description }}</div>
                       </div>
+                      @auth
+                      <div class="col-auto">
+                        <span class="btn btn-icon hover-shadow cursor-pointer" data-bs-toggle="dropdown">
+                          <svg class="icon dropdown-item-icon" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none"
+                               stroke-linecap="round" stroke-linejoin="round">
+                            <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+                            <line x1="4" y1="6" x2="20" y2="6"></line>
+                            <line x1="4" y1="12" x2="20" y2="12"></line>
+                            <line x1="4" y1="18" x2="20" y2="18"></line>
+                          </svg>
+                        </span>
+                        <ul class="dropdown-menu">
+                          <li class="dropdown-item edit" id="{{ $standard->id }}">
+                            <svg class="icon dropdown-item-icon-edit" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor"
+                                 fill="none" stroke-linecap="round" stroke-linejoin="round">
+                              <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+                              <path d="M7 7h-1a2 2 0 0 0 -2 2v9a2 2 0 0 0 2 2h9a2 2 0 0 0 2 -2v-1" />
+                              <path d="M20.385 6.585a2.1 2.1 0 0 0 -2.97 -2.97l-8.415 8.385v3h3l8.385 -8.415z" />
+                              <path d="M16 5l3 3" />
+                            </svg>
+                            {{ __('Upravit dokument') }}
+                          </li>
+                          <li class="dropdown-item delete" id="{{ $standard->id }}'">
+                            <svg class="icon icon dropdown-item-icon-delete" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                                 stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                              <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+                              <path d="M4 7h16"></path>
+                              <path d="M5 7l1 12a2 2 0 0 0 2 2h8a2 2 0 0 0 2 -2l1 -12"></path>
+                              <path d="M9 7v-3a1 1 0 0 1 1 -1h4a1 1 0 0 1 1 1v3"></path>
+                              <path d="M10 12l4 4m0 -4l-4 4"></path>
+                            </svg>
+                            {{ __('Odstranit dokument') }}
+                          </li>
+                        </ul>
+                      </div>
+                      @endauth
                     </div>
                     @foreach ($standard->addons as $add)
                     <div class="row align-items-center g-3 mx-2">
@@ -333,7 +369,7 @@
                         </div>
                       </div>
                       <div class="col-auto">
-                        <a href="{{ route('soubory.download.addon', $add->id) }}">
+                        <a href="{{ route('standardy.download.addon', $add->id) }}">
                           <span class="avatar bg-{{ $standard->category->color }}-lt" data-bs-toggle="tooltip" data-bs-placement="top"
                                 data-bs-original-title="Stáhnout přílohu">
                             <img src="{{ asset('img/files/pdf-add.png') }}" alt="PDF - Příloha standardu" height="32px">
@@ -348,7 +384,7 @@
                         </span>
                         <div class="d-block description text-muted text-truncate">{{ $add->description }}</div>
                       </div>
-                      <div class="col-auto">
+                      {{-- <div class="col-auto">
                         @if (Carbon\Carbon::parse($add->created_at)->addDay() >= Carbon\Carbon::today())
                         <span class="badge badge-sm bg-red-lt text-uppercase ms-auto">Nový !</span>
                         @endif
@@ -372,7 +408,7 @@
                         <span class="badge badge-sm bg-green-lt text-uppercase ms-auto">Schváleno</span>
                         @endif
                         @endauth
-                      </div>
+                      </div> --}}
                     </div>
                     @endforeach
                   </div>

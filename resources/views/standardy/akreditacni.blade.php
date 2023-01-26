@@ -16,10 +16,7 @@
   <div class="page-header d-print-none">
     <div class="container-fluid">
       <div class="row align-items-center">
-        <div class="col-12">
-        </div>
-
-        @foreach ($categories as $category)
+        @foreach ($stands as $category)
         <div class="col-2 col-sm-2 col-md-2 col-xl-2 col-xxl-2 ps-0 m-0">
           <a class="btn bg-{{ $category->color }}-lt hover-shadow-sm w-100 m-1" data-bs-toggle="tooltip" data-bs-placement="top"
              data-bs-original-title="{{ __('' . $category->category_name . ' standardy') }}" href="/standardy/{{ $category->folder_name . '/' . $category->id }}">
@@ -31,13 +28,16 @@
           </a>
         </div>
         @endforeach
+        <div class="col-12">
 
-        <div class="progress mt-2">
-          @foreach ($categories as $category)
-          <div class="progress-bar bg-{{ $category->color }}-lt" data-bs-toggle="tooltip" data-bs-placement="bottom"
-               data-bs-original-title="{{ $category->category_name . ' ' . $category->documents->count() }}" role="progressbar" aria-label="{{ $category->category_name }}"
-               style="width: {{ ($category->documents->count() * 100) / $allDocuments->count() }}%"></div>
-          @endforeach
+          <div class="progress mt-2">
+            @foreach ($stands as $category)
+            <div class="progress-bar progress-sm bg-{{ $category->color }}-lt" data-bs-toggle="tooltip" data-bs-placement="bottom"
+                 data-bs-original-title="{{ $category->category_name . ' standardy ' . round(($category->documents->count() * 100) / $allDocuments->count()) . '%' }}"
+                 role="progressbar" aria-label="{{ $category->category_name }}" style="width: {{ ($category->documents->count() * 100) / $allDocuments->count() }}%"></div>
+            @endforeach
+          </div>
+
         </div>
 
         {{-- Searched events --}}
@@ -130,7 +130,7 @@
                                 </div>
                               </div>
                               <div class="col-auto">
-                                <a href="{{ route('standardy.download', $document->id) }}" target="_blank">
+                                <a href="{{ route('soubory.download', $document->id) }}" target="_blank">
                                   <span class="avatar bg-{{ $document->category->color }}-lt" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-original-title="Stáhnout standard">
                                     <img src="{{ asset('img/files/pdf.png') }}" height="32px" alt="PDF soubor">
                                   </span>
@@ -192,14 +192,14 @@
                                 </div>
                               </div>
                               <div class="col-auto">
-                                <a href="{{ route('standardy.download', $add->id) }}">
+                                <a href="{{ route('soubory.download', $add->id) }}">
                                   <span class="avatar bg-{{ $document->category->color }}-lt" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-original-title="Stáhnout přílohu">
                                     <img src="{{ asset('img/files/pdf-add.png') }}" height="32px" alt="PDF - Příloha standardu">
                                   </span>
                                 </a>
                               </div>
                               <div class="col text-truncate">
-                                <a class="text-primary d-block d-block text-primary text-decoration-none" href="{{ route('standardy.download', $add->id) }}">
+                                <a class="text-primary d-block d-block text-primary text-decoration-none" href="{{ route('soubory.download', $add->id) }}">
                                   <h3 style="margin-bottom: 0;">{{ $document->accordion_group }}.{{ $document->position }}. {{ $document->name }} - příloha č.{{ $add->addon_number }}</h3>
                                 </a>
                                 <div class="d-block description text-muted text-truncate mt-n1">{{ $document->name }} - {{ $add->description }}</div>
@@ -324,14 +324,14 @@
                           <div class="list-group-item">
                             <div class="row align-items-center">
                               <div class="col-auto">
-                                <a href="{{ route('standardy.download', $document->id) }}" target="_blank">
+                                <a href="{{ route('soubory.download', $document->id) }}" target="_blank">
                                   <span class="avatar">
                                     <img src="{{ asset('img/files/pdf.png') }}" alt="PDF - Standard">
                                   </span>
                                 </a>
                               </div>
                               <div class="col text-truncate">
-                                <a class="text-primary d-block text-decoration-none" href="{{ route('standardy.download', $document->id) }}" target="_blank">
+                                <a class="text-primary d-block text-decoration-none" href="{{ route('soubory.download', $document->id) }}" target="_blank">
                                   <h3 style="margin-bottom: 0;">{{ $document->position }}. {{ $document->name }}</h3>
                                 </a>
                                 <div class="d-block text-muted text-truncate mt-n1">{{ $document->description }}</div>
@@ -413,14 +413,14 @@
                             @foreach ($document->addons as $add)
                             <div class="row align-items-center mb-1">
                               <div class="col-auto">
-                                <a href="{{ route('standardy.download', $add->id) }}">
+                                <a href="{{ route('soubory.download', $add->id) }}">
                                   <span class="avatar">
                                     <img src="{{ asset('img/files/pdf-add.png') }}" alt="PDF - Příloha standardu">
                                   </span>
                                 </a>
                               </div>
                               <div class="col text-truncate">
-                                <a class="text-primary d-block d-block text-primary text-decoration-none" href="{{ route('standardy.download', $add->id) }}">
+                                <a class="text-primary d-block d-block text-primary text-decoration-none" href="{{ route('soubory.download', $add->id) }}">
                                   <h3 style="margin-bottom: 0;">{{ $document->position }}. {{ $document->name }} - příloha č. {{ $add->name }}</h3>
                                 </a>
                                 <div class="d-block text-muted text-truncate mt-n1">{{ $add->description }}</div>
@@ -490,14 +490,14 @@
                           <div class="list-group-item">
                             <div class="row align-items-center">
                               <div class="col-auto">
-                                <a href="{{ route('standardy.download', $document->id) }}" target="_blank">
+                                <a href="{{ route('soubory.download', $document->id) }}" target="_blank">
                                   <span class="avatar">
                                     <img src="{{ asset('img/files/pdf.png') }}" alt="PDF - Standard">
                                   </span>
                                 </a>
                               </div>
                               <div class="col text-truncate">
-                                <a class="text-primary d-block text-decoration-none" href="{{ route('standardy.download', $document->id) }}" target="_blank">
+                                <a class="text-primary d-block text-decoration-none" href="{{ route('soubory.download', $document->id) }}" target="_blank">
                                   <h3 style="margin-bottom: 0;">{{ $document->position }}. {{ $document->name }}</h3>
                                 </a>
                                 <div class="d-block text-muted text-truncate mt-n1">{{ $document->description }}</div>
@@ -579,14 +579,14 @@
                             @foreach ($document->addons as $add)
                             <div class="row align-items-center mb-1">
                               <div class="col-auto">
-                                <a href="{{ route('standardy.download', $add->id) }}">
+                                <a href="{{ route('soubory.download', $add->id) }}">
                                   <span class="avatar">
                                     <img src="{{ asset('img/files/pdf-add.png') }}" alt="PDF - Příloha standardu">
                                   </span>
                                 </a>
                               </div>
                               <div class="col text-truncate">
-                                <a class="text-primary d-block d-block text-primary text-decoration-none" href="{{ route('standardy.download', $add->id) }}">
+                                <a class="text-primary d-block d-block text-primary text-decoration-none" href="{{ route('soubory.download', $add->id) }}">
                                   <h3 style="margin-bottom: 0;">{{ $document->position }}. {{ $document->name }} - příloha č. {{ $add->name }}</h3>
                                 </a>
                                 <div class="d-block text-muted text-truncate mt-n1">{{ $add->description }}</div>
@@ -656,14 +656,14 @@
                           <div class="list-group-item">
                             <div class="row align-items-center">
                               <div class="col-auto">
-                                <a href="{{ route('standardy.download', $document->id) }}" target="_blank">
+                                <a href="{{ route('soubory.download', $document->id) }}" target="_blank">
                                   <span class="avatar">
                                     <img src="{{ asset('img/files/pdf.png') }}" alt="PDF - Standard">
                                   </span>
                                 </a>
                               </div>
                               <div class="col text-truncate">
-                                <a class="text-primary d-block text-decoration-none" href="{{ route('standardy.download', $document->id) }}" target="_blank">
+                                <a class="text-primary d-block text-decoration-none" href="{{ route('soubory.download', $document->id) }}" target="_blank">
                                   <h3 style="margin-bottom: 0;">{{ $document->position }}. {{ $document->name }}</h3>
                                 </a>
                                 <div class="d-block text-muted text-truncate mt-n1">{{ $document->description }}</div>
@@ -746,14 +746,14 @@
                             @foreach ($document->addons as $add)
                             <div class="row align-items-center mb-1">
                               <div class="col-auto">
-                                <a href="{{ route('standardy.download', $add->id) }}">
+                                <a href="{{ route('soubory.download', $add->id) }}">
                                   <span class="avatar">
                                     <img src="{{ asset('img/files/pdf-add.png') }}" alt="PDF - Příloha standardu">
                                   </span>
                                 </a>
                               </div>
                               <div class="col text-truncate">
-                                <a class="text-primary d-block d-block text-primary text-decoration-none" href="{{ route('standardy.download', $document->id) }}">
+                                <a class="text-primary d-block d-block text-primary text-decoration-none" href="{{ route('soubory.download', $document->id) }}">
                                   <h3 style="margin-bottom: 0;">{{ $document->position }}. {{ $document->name }} - příloha č. {{ $add->name }}</h3>
                                 </a>
                                 <div class="d-block text-muted text-truncate mt-n1">{{ $add->description }}</div>
@@ -823,14 +823,14 @@
                           <div class="list-group-item">
                             <div class="row align-items-center">
                               <div class="col-auto">
-                                <a href="{{ route('standardy.download', $document->id) }}" target="_blank">
+                                <a href="{{ route('soubory.download', $document->id) }}" target="_blank">
                                   <span class="avatar">
                                     <img src="{{ asset('img/files/pdf.png') }}" alt="PDF - Standard">
                                   </span>
                                 </a>
                               </div>
                               <div class="col text-truncate">
-                                <a class="text-primary d-block text-decoration-none" href="{{ route('standardy.download', $document->id) }}" target="_blank">
+                                <a class="text-primary d-block text-decoration-none" href="{{ route('soubory.download', $document->id) }}" target="_blank">
                                   <h3 style="margin-bottom: 0;">{{ $document->position }}. {{ $document->name }}</h3>
                                 </a>
                                 <div class="d-block text-muted text-truncate mt-n1">{{ $document->description }}</div>
@@ -913,14 +913,14 @@
                             @foreach ($document->addons as $add)
                             <div class="row align-items-center mb-1">
                               <div class="col-auto">
-                                <a href="{{ route('standardy.download', $add->id) }}">
+                                <a href="{{ route('soubory.download', $add->id) }}">
                                   <span class="avatar">
                                     <img src="{{ asset('img/files/pdf-add.png') }}" alt="PDF - Příloha standardu">
                                   </span>
                                 </a>
                               </div>
                               <div class="col text-truncate">
-                                <a class="text-primary d-block d-block text-primary text-decoration-none" href="{{ route('standardy.download', $add->id) }}">
+                                <a class="text-primary d-block d-block text-primary text-decoration-none" href="{{ route('soubory.download', $add->id) }}">
                                   <h3 style="margin-bottom: 0;">{{ $document->position }}. {{ $document->name }} - příloha č. {{ $add->name }}</h3>
                                 </a>
                                 <div class="d-block text-muted text-truncate mt-n1">{{ $add->description }}</div>
@@ -990,14 +990,14 @@
                           <div class="list-group-item">
                             <div class="row align-items-center">
                               <div class="col-auto">
-                                <a href="{{ route('standardy.download', $document->id) }}" target="_blank">
+                                <a href="{{ route('soubory.download', $document->id) }}" target="_blank">
                                   <span class="avatar">
                                     <img src="{{ asset('img/files/pdf.png') }}" alt="PDF - Standard">
                                   </span>
                                 </a>
                               </div>
                               <div class="col text-truncate">
-                                <a class="text-primary d-block text-decoration-none" href="{{ route('standardy.download', $document->id) }}" target="_blank">
+                                <a class="text-primary d-block text-decoration-none" href="{{ route('soubory.download', $document->id) }}" target="_blank">
                                   <h3 style="margin-bottom: 0;">{{ $document->position }}. {{ $document->name }}</h3>
                                 </a>
                                 <div class="d-block text-muted text-truncate mt-n1">{{ $document->description }}</div>
@@ -1080,14 +1080,14 @@
                             @foreach ($document->addons as $add)
                             <div class="row align-items-center mb-1">
                               <div class="col-auto">
-                                <a href="{{ route('standardy.download', $add->id) }}">
+                                <a href="{{ route('soubory.download', $add->id) }}">
                                   <span class="avatar">
                                     <img src="{{ asset('img/files/pdf-add.png') }}" alt="PDF - Příloha standardu">
                                   </span>
                                 </a>
                               </div>
                               <div class="col text-truncate">
-                                <a class="text-primary d-block d-block text-primary text-decoration-none" href="{{ route('standardy.download', $add->id) }}">
+                                <a class="text-primary d-block d-block text-primary text-decoration-none" href="{{ route('soubory.download', $add->id) }}">
                                   <h3 style="margin-bottom: 0;">{{ $document->position }}. {{ $document->name }} - příloha č. {{ $add->name }}</h3>
                                 </a>
                                 <div class="d-block text-muted text-truncate mt-n1">{{ $add->description }}</div>
@@ -1157,14 +1157,14 @@
                           <div class="list-group-item">
                             <div class="row align-items-center">
                               <div class="col-auto">
-                                <a href="{{ route('standardy.download', $document->id) }}" target="_blank">
+                                <a href="{{ route('soubory.download', $document->id) }}" target="_blank">
                                   <span class="avatar">
                                     <img src="{{ asset('img/files/pdf.png') }}" alt="PDF - Standard">
                                   </span>
                                 </a>
                               </div>
                               <div class="col text-truncate">
-                                <a class="text-primary d-block text-decoration-none" href="{{ route('standardy.download', $document->id) }}" target="_blank">
+                                <a class="text-primary d-block text-decoration-none" href="{{ route('soubory.download', $document->id) }}" target="_blank">
                                   <h3 style="margin-bottom: 0;">{{ $document->position }}. {{ $document->name }}</h3>
                                 </a>
                                 <div class="d-block text-muted text-truncate mt-n1">{{ $document->description }}</div>
@@ -1247,14 +1247,14 @@
                             @foreach ($document->addons as $add)
                             <div class="row align-items-center mb-1">
                               <div class="col-auto">
-                                <a href="{{ route('standardy.download', $add->id) }}">
+                                <a href="{{ route('soubory.download', $add->id) }}">
                                   <span class="avatar">
                                     <img src="{{ asset('img/files/pdf-add.png') }}" alt="PDF - Příloha standardu">
                                   </span>
                                 </a>
                               </div>
                               <div class="col text-truncate">
-                                <a class="text-primary d-block d-block text-primary text-decoration-none" href="{{ route('standardy.download', $add->id) }}">
+                                <a class="text-primary d-block d-block text-primary text-decoration-none" href="{{ route('soubory.download', $add->id) }}">
                                   <h3 style="margin-bottom: 0;">{{ $document->position }}. {{ $document->name }} - příloha č. {{ $add->name }}</h3>
                                 </a>
                                 <div class="d-block text-muted text-truncate mt-n1">{{ $add->description }}</div>
@@ -1323,14 +1323,14 @@
                           <div class="list-group-item">
                             <div class="row align-items-center">
                               <div class="col-auto">
-                                <a href="{{ route('standardy.download', $document->id) }}" target="_blank">
+                                <a href="{{ route('soubory.download', $document->id) }}" target="_blank">
                                   <span class="avatar">
                                     <img src="{{ asset('img/files/pdf.png') }}" alt="PDF - Standard">
                                   </span>
                                 </a>
                               </div>
                               <div class="col text-truncate">
-                                <a class="text-primary d-block text-decoration-none" href="{{ route('standardy.download', $document->id) }}" target="_blank">
+                                <a class="text-primary d-block text-decoration-none" href="{{ route('soubory.download', $document->id) }}" target="_blank">
                                   <h3 style="margin-bottom: 0;">{{ $document->position }}. {{ $document->name }}</h3>
                                 </a>
                                 <div class="d-block text-muted text-truncate mt-n1">{{ $document->description }}</div>
@@ -1413,14 +1413,14 @@
                             @foreach ($document->addons as $add)
                             <div class="row align-items-center mb-1">
                               <div class="col-auto">
-                                <a href="{{ route('standardy.download', $add->id) }}">
+                                <a href="{{ route('soubory.download', $add->id) }}">
                                   <span class="avatar">
                                     <img src="{{ asset('img/files/pdf-add.png') }}" alt="PDF - Příloha standardu">
                                   </span>
                                 </a>
                               </div>
                               <div class="col text-truncate">
-                                <a class="text-primary d-block d-block text-primary text-decoration-none" href="{{ route('standardy.download', $add->id) }}">
+                                <a class="text-primary d-block d-block text-primary text-decoration-none" href="{{ route('soubory.download', $add->id) }}">
                                   <h3 style="margin-bottom: 0;">{{ $document->position }}. {{ $document->name }} - příloha č. {{ $add->name }}</h3>
                                 </a>
                                 <div class="d-block text-muted text-truncate mt-n1">{{ $add->description }}</div>
@@ -1490,14 +1490,14 @@
                           <div class="list-group-item">
                             <div class="row align-items-center">
                               <div class="col-auto">
-                                <a href="{{ route('standardy.download', $document->id) }}" target="_blank">
+                                <a href="{{ route('soubory.download', $document->id) }}" target="_blank">
                                   <span class="avatar">
                                     <img src="{{ asset('img/files/pdf.png') }}" alt="PDF - Standard">
                                   </span>
                                 </a>
                               </div>
                               <div class="col text-truncate">
-                                <a class="text-primary d-block text-decoration-none" href="{{ route('standardy.download', $document->id) }}" target="_blank">
+                                <a class="text-primary d-block text-decoration-none" href="{{ route('soubory.download', $document->id) }}" target="_blank">
                                   <h3 style="margin-bottom: 0;">{{ $document->position }}. {{ $document->name }}</h3>
                                 </a>
                                 <div class="d-block text-muted text-truncate mt-n1">{{ $document->description }}</div>
@@ -1580,14 +1580,14 @@
                             @foreach ($document->addons as $add)
                             <div class="row align-items-center mb-1">
                               <div class="col-auto">
-                                <a href="{{ route('standardy.download', $add->id) }}">
+                                <a href="{{ route('soubory.download', $add->id) }}">
                                   <span class="avatar">
                                     <img src="{{ asset('img/files/pdf-add.png') }}" alt="PDF - Příloha standardu">
                                   </span>
                                 </a>
                               </div>
                               <div class="col text-truncate">
-                                <a class="text-primary d-block d-block text-primary text-decoration-none" href="{{ route('standardy.download', $add->id) }}">
+                                <a class="text-primary d-block d-block text-primary text-decoration-none" href="{{ route('soubory.download', $add->id) }}">
                                   <h3 style="margin-bottom: 0;">{{ $document->position }}. {{ $document->name }} - příloha č. {{ $add->name }}</h3>
                                 </a>
                                 <div class="d-block text-muted text-truncate mt-n1">{{ $add->description }}</div>
@@ -1657,14 +1657,14 @@
                           <div class="list-group-item">
                             <div class="row align-items-center">
                               <div class="col-auto">
-                                <a href="{{ route('standardy.download', $document->id) }}" target="_blank">
+                                <a href="{{ route('soubory.download', $document->id) }}" target="_blank">
                                   <span class="avatar">
                                     <img src="{{ asset('img/files/pdf.png') }}" alt="PDF - Standard">
                                   </span>
                                 </a>
                               </div>
                               <div class="col text-truncate">
-                                <a class="text-primary d-block text-decoration-none" href="{{ route('standardy.download', $document->id) }}" target="_blank">
+                                <a class="text-primary d-block text-decoration-none" href="{{ route('soubory.download', $document->id) }}" target="_blank">
                                   <h3 style="margin-bottom: 0;">{{ $document->position }}. {{ $document->name }}</h3>
                                 </a>
                                 <div class="d-block text-muted text-truncate mt-n1">{{ $document->description }}</div>
@@ -1747,14 +1747,14 @@
                             @foreach ($document->addons as $add)
                             <div class="row align-items-center mb-1">
                               <div class="col-auto">
-                                <a href="{{ route('standardy.download', $add->id) }}">
+                                <a href="{{ route('soubory.download', $add->id) }}">
                                   <span class="avatar">
                                     <img src="{{ asset('img/files/pdf-add.png') }}" alt="PDF - Příloha standardu">
                                   </span>
                                 </a>
                               </div>
                               <div class="col text-truncate">
-                                <a class="text-primary d-block d-block text-primary text-decoration-none" href="{{ route('standardy.download', $add->id) }}">
+                                <a class="text-primary d-block d-block text-primary text-decoration-none" href="{{ route('soubory.download', $add->id) }}">
                                   <h3 style="margin-bottom: 0;">{{ $document->position }}. {{ $document->name }} - příloha č. {{ $add->name }}</h3>
                                 </a>
                                 <div class="d-block text-muted text-truncate mt-n1">{{ $add->description }}</div>
@@ -1824,14 +1824,14 @@
                           <div class="list-group-item">
                             <div class="row align-items-center">
                               <div class="col-auto">
-                                <a href="{{ route('standardy.download', $document->id) }}" target="_blank">
+                                <a href="{{ route('soubory.download', $document->id) }}" target="_blank">
                                   <span class="avatar">
                                     <img src="{{ asset('img/files/pdf.png') }}" alt="PDF - Standard">
                                   </span>
                                 </a>
                               </div>
                               <div class="col text-truncate">
-                                <a class="text-primary d-block text-decoration-none" href="{{ route('standardy.download', $document->id) }}" target="_blank">
+                                <a class="text-primary d-block text-decoration-none" href="{{ route('soubory.download', $document->id) }}" target="_blank">
                                   <h3 style="margin-bottom: 0;">{{ $document->position }}. {{ $document->name }}</h3>
                                 </a>
                                 <div class="d-block text-muted text-truncate mt-n1">{{ $document->description }}</div>
@@ -1914,14 +1914,14 @@
                             @foreach ($document->addons as $add)
                             <div class="row align-items-center mb-1">
                               <div class="col-auto">
-                                <a href="{{ route('standardy.download', $add->id) }}">
+                                <a href="{{ route('soubory.download', $add->id) }}">
                                   <span class="avatar">
                                     <img src="{{ asset('img/files/pdf-add.png') }}" alt="PDF - Příloha standardu">
                                   </span>
                                 </a>
                               </div>
                               <div class="col text-truncate">
-                                <a class="text-primary d-block d-block text-primary text-decoration-none" href="{{ route('standardy.download', $add->id) }}">
+                                <a class="text-primary d-block d-block text-primary text-decoration-none" href="{{ route('soubory.download', $add->id) }}">
                                   <h3 style="margin-bottom: 0;">{{ $document->position }}. {{ $document->name }} - příloha č. {{ $add->name }}</h3>
                                 </a>
                                 <div class="d-block text-muted text-truncate mt-n1">{{ $add->description }}</div>
@@ -1991,14 +1991,14 @@
                           <div class="list-group-item">
                             <div class="row align-items-center">
                               <div class="col-auto">
-                                <a href="{{ route('standardy.download', $document->id) }}" target="_blank">
+                                <a href="{{ route('soubory.download', $document->id) }}" target="_blank">
                                   <span class="avatar">
                                     <img src="{{ asset('img/files/pdf.png') }}" alt="PDF - Standard">
                                   </span>
                                 </a>
                               </div>
                               <div class="col text-truncate">
-                                <a class="text-primary d-block text-decoration-none" href="{{ route('standardy.download', $document->id) }}" target="_blank">
+                                <a class="text-primary d-block text-decoration-none" href="{{ route('soubory.download', $document->id) }}" target="_blank">
                                   <h3 style="margin-bottom: 0;">{{ $document->position }}. {{ $document->name }}</h3>
                                 </a>
                                 <div class="d-block text-muted text-truncate mt-n1">{{ $document->description }}</div>
@@ -2081,14 +2081,14 @@
                             @foreach ($document->addons as $add)
                             <div class="row align-items-center mb-1">
                               <div class="col-auto">
-                                <a href="{{ route('standardy.download', $add->id) }}">
+                                <a href="{{ route('soubory.download', $add->id) }}">
                                   <span class="avatar">
                                     <img src="{{ asset('img/files/pdf-add.png') }}" alt="PDF - Příloha standardu">
                                   </span>
                                 </a>
                               </div>
                               <div class="col text-truncate">
-                                <a class="text-primary d-block d-block text-primary text-decoration-none" href="{{ route('standardy.download', $add->id) }}">
+                                <a class="text-primary d-block d-block text-primary text-decoration-none" href="{{ route('soubory.download', $add->id) }}">
                                   <h3 style="margin-bottom: 0;">{{ $document->position }}. {{ $document->name }} - příloha č. {{ $add->name }}</h3>
                                 </a>
                                 <div class="d-block text-muted text-truncate mt-n1">{{ $add->description }}</div>
@@ -2158,14 +2158,14 @@
                           <div class="list-group-item">
                             <div class="row align-items-center">
                               <div class="col-auto">
-                                <a href="{{ route('standardy.download', $document->id) }}" target="_blank">
+                                <a href="{{ route('soubory.download', $document->id) }}" target="_blank">
                                   <span class="avatar">
                                     <img src="{{ asset('img/files/pdf.png') }}" alt="PDF - Standard">
                                   </span>
                                 </a>
                               </div>
                               <div class="col text-truncate">
-                                <a class="text-primary d-block text-decoration-none" href="{{ route('standardy.download', $document->id) }}" target="_blank">
+                                <a class="text-primary d-block text-decoration-none" href="{{ route('soubory.download', $document->id) }}" target="_blank">
                                   <h3 style="margin-bottom: 0;">{{ $document->position }}. {{ $document->name }}</h3>
                                 </a>
                                 <div class="d-block text-muted text-truncate mt-n1">{{ $document->description }}</div>
@@ -2248,14 +2248,14 @@
                             @foreach ($document->addons as $add)
                             <div class="row align-items-center mb-1">
                               <div class="col-auto">
-                                <a href="{{ route('standardy.download', $add->id) }}">
+                                <a href="{{ route('soubory.download', $add->id) }}">
                                   <span class="avatar">
                                     <img src="{{ asset('img/files/pdf-add.png') }}" alt="PDF - Příloha standardu">
                                   </span>
                                 </a>
                               </div>
                               <div class="col text-truncate">
-                                <a class="text-primary d-block d-block text-primary text-decoration-none" href="{{ route('standardy.download', $add->id) }}">
+                                <a class="text-primary d-block d-block text-primary text-decoration-none" href="{{ route('soubory.download', $add->id) }}">
                                   <h3 style="margin-bottom: 0;">{{ $document->position }}. {{ $document->name }} - příloha č. {{ $add->name }}</h3>
                                 </a>
                                 <div class="d-block text-muted text-truncate mt-n1">{{ $add->description }}</div>
@@ -2325,14 +2325,14 @@
                           <div class="list-group-item">
                             <div class="row align-items-center">
                               <div class="col-auto">
-                                <a href="{{ route('standardy.download', $document->id) }}" target="_blank">
+                                <a href="{{ route('soubory.download', $document->id) }}" target="_blank">
                                   <span class="avatar">
                                     <img src="{{ asset('img/files/pdf.png') }}" alt="PDF - Standard">
                                   </span>
                                 </a>
                               </div>
                               <div class="col text-truncate">
-                                <a class="text-primary d-block text-decoration-none" href="{{ route('standardy.download', $document->id) }}" target="_blank">
+                                <a class="text-primary d-block text-decoration-none" href="{{ route('soubory.download', $document->id) }}" target="_blank">
                                   <h3 style="margin-bottom: 0;">{{ $document->position }}. {{ $document->name }}</h3>
                                 </a>
                                 <div class="d-block text-muted text-truncate mt-n1">{{ $document->description }}</div>
@@ -2415,14 +2415,14 @@
                             @foreach ($document->addons as $add)
                             <div class="row align-items-center mb-1">
                               <div class="col-auto">
-                                <a href="{{ route('standardy.download', $add->id) }}">
+                                <a href="{{ route('soubory.download', $add->id) }}">
                                   <span class="avatar">
                                     <img src="{{ asset('img/files/pdf-add.png') }}" alt="PDF - Příloha standardu">
                                   </span>
                                 </a>
                               </div>
                               <div class="col text-truncate">
-                                <a class="text-primary d-block d-block text-primary text-decoration-none" href="{{ route('standardy.download', $add->id) }}">
+                                <a class="text-primary d-block d-block text-primary text-decoration-none" href="{{ route('soubory.download', $add->id) }}">
                                   <h3 style="margin-bottom: 0;">{{ $document->position }}. {{ $document->name }} - příloha č. {{ $add->name }}</h3>
                                 </a>
                                 <div class="d-block text-muted text-truncate mt-n1">{{ $add->description }}</div>
@@ -2492,14 +2492,14 @@
                           <div class="list-group-item">
                             <div class="row align-items-center">
                               <div class="col-auto">
-                                <a href="{{ route('standardy.download', $document->id) }}" target="_blank">
+                                <a href="{{ route('soubory.download', $document->id) }}" target="_blank">
                                   <span class="avatar">
                                     <img src="{{ asset('img/files/pdf.png') }}" alt="PDF - Standard">
                                   </span>
                                 </a>
                               </div>
                               <div class="col text-truncate">
-                                <a class="text-primary d-block text-decoration-none" href="{{ route('standardy.download', $document->id) }}" target="_blank">
+                                <a class="text-primary d-block text-decoration-none" href="{{ route('soubory.download', $document->id) }}" target="_blank">
                                   <h3 style="margin-bottom: 0;">{{ $document->position }}. {{ $document->name }}</h3>
                                 </a>
                                 <div class="d-block text-muted text-truncate mt-n1">{{ $document->description }}</div>
@@ -2582,14 +2582,14 @@
                             @foreach ($document->addons as $add)
                             <div class="row align-items-center mb-1">
                               <div class="col-auto">
-                                <a href="{{ route('standardy.download', $add->id) }}">
+                                <a href="{{ route('soubory.download', $add->id) }}">
                                   <span class="avatar">
                                     <img src="{{ asset('img/files/pdf-add.png') }}" alt="PDF - Příloha standardu">
                                   </span>
                                 </a>
                               </div>
                               <div class="col text-truncate">
-                                <a class="text-primary d-block d-block text-primary text-decoration-none" href="{{ route('standardy.download', $add->id) }}">
+                                <a class="text-primary d-block d-block text-primary text-decoration-none" href="{{ route('soubory.download', $add->id) }}">
                                   <h3 style="margin-bottom: 0;">{{ $document->position }}. {{ $document->name }} - příloha č. {{ $add->name }}</h3>
                                 </a>
                                 <div class="d-block text-muted text-truncate mt-n1">{{ $add->description }}</div>

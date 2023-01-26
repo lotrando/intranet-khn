@@ -75,8 +75,10 @@ Route::prefix('standardy')->name('standardy.')->group(function () {
     Route::get('okb/{id}', [PageController::class, 'standard'])->name('okb');                                               // OKB standardy route (standardy.okb)
     Route::get('logopedicke/{id}', [PageController::class, 'standard'])->name('logopedicke');                               // Logopedické standardy route (standardy.logopedicke)
     Route::get('legislativni/{id}', [PageController::class, 'standard'])->name('legislativni');                             // Legislativní standardy route (standardy.legislativni)
-
     Route::get('standard-search', [DocumentController::class, 'documentSearch'])->name('standard.search');                  // Vyhledávání dokumentů
+});
+
+Route::prefix('soubory')->name('soubory.')->group(function () {
     Route::get('standard/{id}', [FileController::class, 'standardDownload'])->name('download');
     Route::get('standard/addon/{id}', [FileController::class, 'standardAddonDownload'])->name('download.addon');            // Download standard
 });

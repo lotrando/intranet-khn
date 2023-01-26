@@ -71,6 +71,7 @@ class DocumentController extends Controller
             'next_revision_date'    => 'nullable',
             'tags'                  => 'nullable',
             'status'                => 'required',
+            'onscreen'              => 'nullable',
             'file'                  => 'required|mimes:pdf,doc,xls|max:4096'
         ];
 
@@ -84,7 +85,7 @@ class DocumentController extends Controller
         $description = Str::lower(strtr($request->description, $unwantedChars));
         $revision = Str::lower(strtr($request->revision, $unwantedChars));
         $file_name = 'standardy_' . $request->folder_name . '-' . $description . '-revize-' . $revision . '.' . $file_ext;
-        $request->file->move(public_path('/standardy/'), $file_name);
+        $request->file->move(public_path('/soubory/'), $file_name);
 
         $form_data = [
             'category_id'           => $request->category_id,
@@ -104,6 +105,7 @@ class DocumentController extends Controller
             'file'                  => $file_name,
             'unique_code'           => $request->unique_code,
             'status'                => $request->status,
+            'onscreen'              => $request->onscreen,
             'user_id'               => Auth::user()->id
         ];
 
@@ -186,6 +188,7 @@ class DocumentController extends Controller
                 'next_revision_date'    => 'nullable',
                 'tags'                  => 'nullable',
                 'status'                => 'required',
+                'onscreen'              => 'nullable',
                 'file'                  => 'required|mimes:pdf,doc,xls|max:4096'
             ];
 
@@ -208,7 +211,7 @@ class DocumentController extends Controller
             $description = Str::lower(strtr($request->description, $unwantedChars));
             $revision = Str::lower(strtr($request->revision, $unwantedChars));
             $file_name = 'standardy_' . $request->folder_name . '-' . $description . '-revize-' . $revision . '.' . $file_ext;
-            $request->file->move(public_path('/standardy/'), $file_name);
+            $request->file->move(public_path('/soubory/'), $file_name);
 
             $form_data = [
                 'category_id'           => $request->category_id,
@@ -228,6 +231,7 @@ class DocumentController extends Controller
                 'file'                  => $file_name,
                 'unique_code'           => $request->unique_code,
                 'status'                => $request->status,
+                'onscreen'              => $request->onscreen,
                 'user_id'               => Auth::user()->id
             ];
         } else {
@@ -247,7 +251,8 @@ class DocumentController extends Controller
                 'revision_date'         => 'nullable',
                 'next_revision_date'    => 'nullable',
                 'tags'                  => 'nullable',
-                'status'                => 'required'
+                'status'                => 'required',
+                'onscreen'              => 'nullable'
             ];
 
             $error = Validator::make($request->all(), $rules);
@@ -273,6 +278,7 @@ class DocumentController extends Controller
                 'position'              => $request->position,
                 'unique_code'           => $request->unique_code,
                 'status'                => $request->status,
+                'onscreen'              => $request->onscreen,
                 'user_id'               => Auth::user()->id
             ];
         }
@@ -299,7 +305,7 @@ class DocumentController extends Controller
         $document = Document::find($id);
         $filename = Document::where('id', $id)->pluck('file');
 
-        File::delete('standardy/' . $filename[0]);
+        File::delete('soubory/' . $filename[0]);
         $document->delete();
 
         return response()->json(['success' => __('Standard deleted successfully')]);
@@ -347,7 +353,7 @@ class DocumentController extends Controller
                                     </a>
                                     </div>
                                     <div class="col-auto">
-                                    <a href="/' . $document->category->category_type . '/' . $document->category->folder_name . '/' . $document->id . '" target="_blank">
+                                    <a href="/soubory/' . $document->category->category_type . '/' . $document->id . '" target="_blank">
                                         <span class="avatar bg-' . $document->category->color . '-lt">
                                         <img src="../../img/files/pdf.png" height="32px" alt="PDF soubor" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-original-title="Stáhnout standard">
                                         </span>

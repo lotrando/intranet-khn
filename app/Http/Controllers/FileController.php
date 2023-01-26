@@ -6,10 +6,8 @@ use App\Models\Addon;
 use App\Models\Category;
 use App\Models\Document;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\Redirect;
 use Illuminate\Support\Facades\Response;
-use Illuminate\Support\Facades\Session;
+
 
 class FileController extends Controller
 {
@@ -23,9 +21,9 @@ class FileController extends Controller
             return view('errors.404');
         }
 
-        if (file_exists(public_path() . '/standardy/' . $file[0])) {
+        if (file_exists(public_path() . '/soubory/' . $file[0])) {
 
-            return Response::download('standardy/' . $file[0]);
+            return Response::download('soubory/' . $file[0]);
             redirect()->back();
         } else {
 
@@ -43,9 +41,9 @@ class FileController extends Controller
             return view('errors.404');
         }
 
-        if (file_exists(public_path() . '/standardy/' . $addon[0])) {
+        if (file_exists(public_path() . '/soubory/' . $addon[0])) {
 
-            return Response::download('standardy/' . $addon[0]);
+            return Response::download('soubory/' . $addon[0]);
             redirect()->back();
         } else {
 

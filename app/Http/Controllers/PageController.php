@@ -4,14 +4,13 @@ namespace App\Http\Controllers;
 
 use App\Models\Addon;
 use App\Models\Category;
-use App\Models\Department;
 use App\Models\Document;
+use App\Models\Document as AppDocument;
 use App\Models\Employee;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
-use PhpParser\Node\Stmt\Return_;
 use RealRashid\SweetAlert\Facades\Alert;
 
 class PageController extends Controller
@@ -197,8 +196,9 @@ class PageController extends Controller
     public function document($id)
     {
 
-        $allDocuments = Document::pluck('category_id');
+        $allDocuments = Document::where('category_id', '>', 12)->pluck('category_id');
         $allAddons = Addon::pluck('document_id');
+        $standards = Document::where('onscreen', $id)->where('category_id', '<', 12)->orderBy('category_id')->get();
         $categorie  = Category::where('id', $id)->first();
         $doctors = Employee::where('standard_signature', 1)->orderBy('last_name')->get();
         $last = Document::where('category_id', $id)->orderBy('id', 'desc')->take(1)->first();
@@ -211,9 +211,9 @@ class PageController extends Controller
         }
 
         if (Auth::user()) {
-            $documents = Document::with('category', 'addons', 'user')->where('onscreen', 1)->where('category_id', $id)->orderBy('position')->get();
+            $documents = Document::with('category', 'addons', 'user')->where('category_id', $id)->orderBy('position')->get();
         } else {
-            $documents = Document::with('category', 'addons', 'user')->where('onscreen', 1)->where('status', 'Schváleno')->where('category_id', $id)->orderBy('position')->get();
+            $documents = Document::with('category', 'addons', 'user')->where('status', 'Schváleno')->where('category_id', $id)->orderBy('position')->get();
         }
 
         return view('dokumenty.dokument', [
@@ -225,7 +225,8 @@ class PageController extends Controller
             'documents'         => $documents,
             'allDocuments'      => $allDocuments,
             'allAddons'         => $allAddons,
-            'doctors'           => $doctors
+            'doctors'           => $doctors,
+            'standards'         => $standards
         ]);
     }
 
@@ -233,7 +234,7 @@ class PageController extends Controller
     public function standard($id)
     {
 
-        $allDocuments = Document::pluck('category_id');
+        $allDocuments = Document::where('category_id', '<', 12)->pluck('category_id');
         $allAddons = Addon::pluck('document_id');
         $categorie  = Category::where('id', $id)->first();
         $doctors = Employee::where('standard_signature', 1)->orderBy('last_name')->get();
