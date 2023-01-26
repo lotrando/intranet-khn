@@ -481,7 +481,7 @@
                           <p class="show d-inline text-primary text-decoration-none" style="margin-bottom: 0;">
                             1. Název</p>
                         </span>
-                        <div class="d-block description text-muted text-truncate">Tento dokument je předtišten a je k dispozici ( p.Čierníková )</div>
+                        <div class="d-block description text-muted text-truncate">Tento dokument je předtišten a je k dispozici u paní Čiernikové Marcely email: ciernikova@khn.cz mob: 602459731 klapka: 114</div>
                       </div>
                     </div>
                   </div>
@@ -524,7 +524,7 @@
                           <p class="show d-inline text-primary text-decoration-none" style="margin-bottom: 0;">
                             1. Název</p>
                         </span>
-                        <div class="d-block description text-muted text-truncate">Tento dokument je předtišten a je k dispozici ( p.Čierníková )</div>
+                        <div class="d-block description text-muted text-truncate">Tento dokument je předtišten a je k dispozici u paní Čiernikové Marcely email: ciernikova@khn.cz mob: 602459731 klapka: 114</div>
                       </div>
                     </div>
                   </div>
@@ -567,7 +567,7 @@
                           <p class="show d-inline text-primary text-decoration-none" style="margin-bottom: 0;">
                             1. Název</p>
                         </span>
-                        <div class="d-block description text-muted text-truncate">Tento dokument je předtišten a je k dispozici ( p.Čierníková )</div>
+                        <div class="d-block description text-muted text-truncate">Tento dokument je předtišten a je k dispozici u paní Čiernikové Marcely email: ciernikova@khn.cz mob: 602459731 klapka: 114</div>
                       </div>
                     </div>
                   </div>
@@ -610,7 +610,7 @@
                           <p class="show d-inline text-primary text-decoration-none" style="margin-bottom: 0;">
                             1. Název</p>
                         </span>
-                        <div class="d-block description text-muted text-truncate">Tento dokument je předtišten a je k dispozici ( p.Čierníková )</div>
+                        <div class="d-block description text-muted text-truncate">Tento dokument je předtišten a je k dispozici u paní Čiernikové Marcely email: ciernikova@khn.cz mob: 602459731 klapka: 114</div>
                       </div>
                     </div>
                   </div>
@@ -653,7 +653,7 @@
                           <p class="show d-inline text-primary text-decoration-none" style="margin-bottom: 0;">
                             1. Název</p>
                         </span>
-                        <div class="d-block description text-muted text-truncate">Tento dokument je předtišten a je k dispozici ( p.Čierníková )</div>
+                        <div class="d-block description text-muted text-truncate">Tento dokument je předtišten a je k dispozici u paní Čiernikové Marcely email: ciernikova@khn.cz mob: 602459731 klapka: 114</div>
                       </div>
                     </div>
                   </div>
@@ -696,7 +696,7 @@
                           <p class="show d-inline text-primary text-decoration-none" style="margin-bottom: 0;">
                             1. Název</p>
                         </span>
-                        <div class="d-block description text-muted text-truncate">Tento dokument je předtišten a je k dispozici ( p.Čierníková )</div>
+                        <div class="d-block description text-muted text-truncate">Tento dokument je předtišten a je k dispozici u paní Čiernikové Marcely email: ciernikova@khn.cz mob: 602459731 klapka: 114</div>
                       </div>
                     </div>
                   </div>
@@ -739,7 +739,7 @@
                           <p class="show d-inline text-primary text-decoration-none" style="margin-bottom: 0;">
                             1. Název</p>
                         </span>
-                        <div class="d-block description text-muted text-truncate">Tento dokument je předtišten a je k dispozici ( p.Čierníková )</div>
+                        <div class="d-block description text-muted text-truncate">Tento dokument je předtišten a je k dispozici u paní Čiernikové Marcely email: ciernikova@khn.cz mob: 602459731 klapka: 114</div>
                       </div>
                     </div>
                   </div>
