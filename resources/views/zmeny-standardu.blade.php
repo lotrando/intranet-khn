@@ -51,20 +51,21 @@
                         </a>
                       </div>
                       <div class="col-auto">
-                        <a href="{{ route('standardy.download', $document->id) }}" target="_blank">
+                        <a href="{{ route('soubory.download', $document->id) }}" target="_blank">
                           <span class="avatar" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-original-title="Stáhnout standard">
                             <img src="{{ asset('img/files/pdf.png') }}" alt="PDF soubor">
                           </span>
                         </a>
                       </div>
                       <div class="col text-truncate">
-                        <a class="text-primary d-block text-decoration-none" href="{{ route('standardy.download', $document->id) }}" target="_blank">
-                          <h3 style="margin-bottom: 0;" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-original-title="Stáhnout standard">{{ $document->name }}</h3>
+                        <a class="text-primary d-block text-decoration-none" href="{{ route('soubory.download', $document->id) }}" target="_blank">
+                          <h3 style="margin-bottom: 0;" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-original-title="Stáhnout standard">{{ $document->position }}. {{ $document->name }}</h3>
                         </a>
                         <div class="d-block description text-muted text-truncate">{{ $document->description }}</div>
                       </div>
                     </div>
-                    @foreach ($document->addons as $add)
+
+                    {{-- @foreach ($document->addons as $add)
                     <div class="row align-items-center">
                       <div class="avatar bg-{{ $document->category->color }}-lt col-auto">
                         <div class="text-uppercase" data-bs-toggle="tooltip" data-bs-placement="bottom" data-bs-original-title="#{{ $document->id }}#{{ $add->id }}">
@@ -77,38 +78,21 @@
                         </div>
                       </div>
                       <div class="col-auto">
-                        <a href="{{ route('standardy.download', $add->id) }}">
+                        <a href="{{ route('soubory.download', $add->id) }}">
                           <span class="avatar" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-original-title="Stáhnout přílohu">
                             <img src="{{ asset('img/files/pdf-add.png') }}" alt="PDF - Příloha standardu">
                           </span>
                         </a>
                       </div>
                       <div class="col text-truncate">
-                        <a class="text-primary d-block d-block text-primary text-decoration-none" href="{{ route('standardy.download', $add->id) }}">
+                        <a class="text-primary d-block d-block text-primary text-decoration-none" href="{{ route('soubory.download', $add->id) }}">
                           <h3 style="margin-bottom: 0;">Příloha č. {{ $add->addon_number }}</h3>
                         </a>
                         <div class="d-block description text-muted text-truncate mt-n1">{{ $document->name }} - {{ $add->description }} - Revize: {{ $add->revision }}</div>
                       </div>
-                      {{-- <div class="col-auto">
-                        @if (Carbon\Carbon::parse($add->created_at)->addDay() >= Carbon\Carbon::today())
-                        <span class="badge badge-sm bg-red-lt text-uppercase ms-auto">Nový !</span>
-                        @endif
-                        @if (Carbon\Carbon::parse($add->updated_at)->addDays(15) >= Carbon\Carbon::now())
-                        <span class="badge badge-sm bg-lime-lt text-uppercase ms-auto">Aktualizováno !</span>
-                        @endif
-                        <span class="text-muted description">{{ Carbon\Carbon::parse($add->updated_at)->diffForHumans() }}</span>
-                        <svg class="icon icon-tabler icon-tabler-certificate-2 text-yellow" xmlns="http://www.w3.org/2000/svg" width="24" height="24"
-                             viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
-                          <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
-                          <circle cx="12" cy="15" r="3"></circle>
-                          <path d="M10 7h4"></path>
-                          <path d="M10 18v4l2 -1l2 1v-4"></path>
-                          <path d="M10 19h-2a2 2 0 0 1 -2 -2v-12a2 2 0 0 1 2 -2h8a2 2 0 0 1 2 2v12a2 2 0 0 1 -2 2h-2"></path>
-                        </svg>
-                        <span class="text-muted description">Revize: {{ $add->revision }}</span>
-                      </div> --}}
                     </div>
-                    @endforeach
+                    @endforeach --}}
+
                   </div>
                   <div class="list-group-item py-2 px-2">
                     <div class="row d-flex justify-content-between">

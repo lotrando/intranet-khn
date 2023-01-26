@@ -51,7 +51,7 @@
                         </a>
                       </div>
                       <div class="col-auto">
-                        <a href="{{ route('dokumenty.download', $document->id) }}" target="_blank">
+                        <a href="{{ route('soubory.download', $document->id) }}" target="_blank">
                           <span class="avatar" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-original-title="Stáhnout standard">
                             <img src="{{ asset('img/files/pdf.png') }}" alt="PDF soubor">
                           </span>
