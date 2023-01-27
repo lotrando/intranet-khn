@@ -511,6 +511,7 @@
           <input id="hidden_id" name="hidden_id" type="hidden" />
           <input id="hidden_file" name="hidden_file" type="hidden" />
           <input id="folder_name" name="folder_name" type="hidden" />
+          <input id="category_file" name="category_file" type="hidden" />
           <input id="user_id" name="user_id" type="hidden" />
 
           <div class="modal-footer">
@@ -831,6 +832,7 @@
             $('#action').val("Edit");
             $('#category_id').val(html.data.category_id);
             $('#folder_name').val(html.data.category.folder_name);
+            $('#category_file').val(html.data.category.category_file);
             $('#name').val(html.data.name);
             $('#processed').val(html.data.processed);
             $('#authorize').val(html.data.authorize);
@@ -940,6 +942,7 @@
         $('#action').val("Add")
         $('#position').val('{{ $lastpos + 1 }}')
         $('#folder_name').val("{{ $categorie->folder_name }}")
+        $('#category_file').val("{{ $categorie->category_file }}")
         $('#status').val('Schváleno')
         $('#onscreen').val(null);
         $('#user_id').val('{{ auth()->user()->id ?? null }}')

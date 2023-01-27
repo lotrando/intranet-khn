@@ -210,7 +210,7 @@ class DocumentController extends Controller
             $file_ext  = $request->file->extension();
             $description = Str::lower(strtr($request->description, $unwantedChars));
             $revision = Str::lower(strtr($request->revision, $unwantedChars));
-            $file_name = 'standardy_' . $request->folder_name . '-' . $description . '-revize-' . $revision . '.' . $file_ext;
+            $file_name = $request->category_file . '_' . $request->folder_name . '-' . $description . '-revize-' . $revision . '.' . $file_ext;
             $request->file->move(public_path('/soubory/'), $file_name);
 
             $form_data = [

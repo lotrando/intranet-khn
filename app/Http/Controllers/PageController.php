@@ -199,6 +199,7 @@ class PageController extends Controller
         $allDocuments = Document::where('category_id', '>', 12)->pluck('category_id');
         $allAddons = Addon::pluck('document_id');
         $standards = Document::where('onscreen', $id)->where('category_id', '<', 12)->orderBy('category_id')->get();
+        $addons = Addon::with('document')->where('onscreen', $id)->orderBy('addon_number')->get();
         $categorie  = Category::where('id', $id)->first();
         $doctors = Employee::where('standard_signature', 1)->orderBy('last_name')->get();
         $last = Document::where('category_id', $id)->orderBy('id', 'desc')->take(1)->first();
@@ -226,7 +227,8 @@ class PageController extends Controller
             'allDocuments'      => $allDocuments,
             'allAddons'         => $allAddons,
             'doctors'           => $doctors,
-            'standards'         => $standards
+            'standards'         => $standards,
+            'addons'            => $addons
         ]);
     }
 

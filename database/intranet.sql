@@ -2,10 +2,10 @@
 -- version 5.2.0
 -- https://www.phpmyadmin.net/
 --
--- Počítač: localhost
--- Vytvořeno: Čtv 26. led 2023, 21:19
--- Verze serveru: 8.0.31
--- Verze PHP: 7.4.33
+-- Počítač: 127.0.0.1
+-- Vytvořeno: Pát 27. led 2023, 11:07
+-- Verze serveru: 10.4.24-MariaDB
+-- Verze PHP: 7.4.29
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -28,13 +28,14 @@ SET time_zone = "+00:00";
 --
 
 CREATE TABLE `addons` (
-  `id` bigint UNSIGNED NOT NULL,
-  `document_id` bigint NOT NULL,
-  `addon_number` int NOT NULL,
-  `description` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
-  `revision` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
-  `file` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
-  `status` enum('Rozpracováno','Schváleno') CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `id` bigint(20) UNSIGNED NOT NULL,
+  `document_id` bigint(20) NOT NULL,
+  `addon_number` int(11) NOT NULL,
+  `description` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `revision` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `file` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `status` enum('Rozpracováno','Schváleno') COLLATE utf8mb4_unicode_ci NOT NULL,
+  `onscreen` int(11) DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
@@ -43,12 +44,12 @@ CREATE TABLE `addons` (
 -- Vypisuji data pro tabulku `addons`
 --
 
-INSERT INTO `addons` (`id`, `document_id`, `addon_number`, `description`, `revision`, `file`, `status`, `created_at`, `updated_at`) VALUES
-(1, 23, 2, 'Riziková léčiva s podobným názvem, balením (léčiva v injekční formě)', 'únor 2022', 'rizikova_leciva_s_podobnym_nazvem_balenim_(leciva_v_injekcni_forme)-revize-unor_2022.pdf', 'Schváleno', '2022-02-01 16:35:57', '2022-02-01 16:35:57'),
-(2, 24, 1, 'Verifikační protokol', 'únor 2022', 'verifikacni_protokol-revize-unor_2022.pdf', 'Schváleno', '2022-03-01 16:35:57', '2022-03-01 16:35:57'),
-(3, 24, 2, 'Perioperační bezpečnosní proces', 'únor 2022', 'perioperacni_bezpecnosni_proces-revize-unor_2022.pdf', 'Schváleno', '2022-03-01 16:35:57', '2022-03-01 16:35:57'),
-(4, 24, 3, 'Stranový protokol a bezpečnostní proces\r\npro ambulantní výkony v lokální anestezii', 'srpen 2022', 'stranovy_protokol_a_bezpecnostni_proces_pro_ambulantni vykony_v_lokalni_anestezii-revize-unor_2022.pdf', 'Schváleno', '2022-03-01 16:35:57', '2022-03-01 16:35:57'),
-(5, 30, 1, 'Záznamový list logopedické intervence u klientů s NKS', 'listopad 2021', 'zaznamovy_list_logopedicke_intervence_u_klientu_s_nks-revize-listopad_2021.pdf', 'Schváleno', '2022-03-01 16:35:57', '2022-03-01 16:35:57');
+INSERT INTO `addons` (`id`, `document_id`, `addon_number`, `description`, `revision`, `file`, `status`, `onscreen`, `created_at`, `updated_at`) VALUES
+(1, 23, 2, 'Riziková léčiva s podobným názvem, balením (léčiva v injekční formě)', 'únor 2022', 'rizikova_leciva_s_podobnym_nazvem_balenim_(leciva_v_injekcni_forme)-revize-unor_2022.pdf', 'Schváleno', NULL, '2022-02-01 16:35:57', '2022-02-01 16:35:57'),
+(2, 24, 1, 'Verifikační protokol', 'únor 2022', 'verifikacni_protokol-revize-unor_2022.pdf', 'Schváleno', NULL, '2022-03-01 16:35:57', '2022-03-01 16:35:57'),
+(3, 24, 2, 'Perioperační bezpečnosní proces', 'únor 2022', 'perioperacni_bezpecnosni_proces-revize-unor_2022.pdf', 'Schváleno', NULL, '2022-03-01 16:35:57', '2022-03-01 16:35:57'),
+(4, 24, 3, 'Stranový protokol a bezpečnostní proces\r\npro ambulantní výkony v lokální anestezii', 'srpen 2022', 'stranovy_protokol_a_bezpecnostni_proces_pro_ambulantni vykony_v_lokalni_anestezii-revize-unor_2022.pdf', 'Schváleno', NULL, '2022-03-01 16:35:57', '2022-03-01 16:35:57'),
+(5, 30, 1, 'Záznamový list logopedické intervence u klientů s NKS', 'listopad 2021', 'zaznamovy_list_logopedicke_intervence_u_klientu_s_nks-revize-listopad_2021.pdf', 'Schváleno', NULL, '2022-03-01 16:35:57', '2022-03-01 16:35:57');
 
 -- --------------------------------------------------------
 
@@ -57,40 +58,40 @@ INSERT INTO `addons` (`id`, `document_id`, `addon_number`, `description`, `revis
 --
 
 CREATE TABLE `adversevents` (
-  `id` bigint UNSIGNED NOT NULL,
-  `department_id` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
-  `misto` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `id` bigint(20) UNSIGNED NOT NULL,
+  `department_id` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `misto` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `datum_cas` date NOT NULL,
   `cas` time NOT NULL,
-  `spec_druh` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
-  `jinydoplnek` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `pracovnik` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
-  `svedek` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `pacient` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `spec_druh` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `jinydoplnek` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `pracovnik` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `svedek` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `pacient` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `datumnaroz` date DEFAULT NULL,
-  `chorobopis` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `udalost` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
-  `reseni` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `opatreni` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `informovan` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `pricina` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `jina_pricina` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `stav_pacienta` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `lokalizace` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `druh_zraneni` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `preventivni_opatreni` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `zhodnoceni_stavu` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `chorobopis` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `udalost` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `reseni` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `opatreni` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `informovan` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `pricina` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `jina_pricina` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `stav_pacienta` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `lokalizace` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `druh_zraneni` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `preventivni_opatreni` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `zhodnoceni_stavu` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `datum` date DEFAULT NULL,
-  `jmeno_lekare` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `vyvoj` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `upresneni` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `status` enum('Rozpracováno','Odesláno','Dokončeno') CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
-  `resitel` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `vyjadreni` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `resitel1` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `vyjadreni1` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `resitel2` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `vyjadreni2` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `jmeno_lekare` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `vyvoj` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `upresneni` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `status` enum('Rozpracováno','Odesláno','Dokončeno') COLLATE utf8mb4_unicode_ci NOT NULL,
+  `resitel` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `vyjadreni` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `resitel1` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `vyjadreni1` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `resitel2` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `vyjadreni2` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
@@ -122,11 +123,11 @@ INSERT INTO `adversevents` (`id`, `department_id`, `misto`, `datum_cas`, `cas`, 
 --
 
 CREATE TABLE `attendances` (
-  `id` bigint UNSIGNED NOT NULL,
-  `training_id` int NOT NULL,
-  `personal_number` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
-  `last_name` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
-  `first_name` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `id` bigint(20) UNSIGNED NOT NULL,
+  `training_id` int(11) NOT NULL,
+  `personal_number` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `last_name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `first_name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `start_time` time DEFAULT NULL,
   `end_time` time DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
@@ -140,10 +141,10 @@ CREATE TABLE `attendances` (
 --
 
 CREATE TABLE `calendar` (
-  `id` bigint NOT NULL,
+  `id` bigint(20) NOT NULL,
   `date` date DEFAULT NULL,
-  `interni` varchar(50) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+  `interni` varchar(50) COLLATE utf8mb4_unicode_ci DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
 -- Vypisuji data pro tabulku `calendar`
@@ -523,46 +524,47 @@ INSERT INTO `calendar` (`id`, `date`, `interni`) VALUES
 --
 
 CREATE TABLE `categories` (
-  `id` bigint UNSIGNED NOT NULL,
-  `category_type` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
-  `category_name` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
-  `folder_name` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
-  `category_icon` text CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
-  `svg_icon` text CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
-  `fas_icon` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
-  `button` text CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
-  `color` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL
+  `id` bigint(20) UNSIGNED NOT NULL,
+  `category_file` varchar(50) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `category_type` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `category_name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `folder_name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `category_icon` text COLLATE utf8mb4_unicode_ci NOT NULL,
+  `svg_icon` text COLLATE utf8mb4_unicode_ci NOT NULL,
+  `fas_icon` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `button` text COLLATE utf8mb4_unicode_ci NOT NULL,
+  `color` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
 -- Vypisuji data pro tabulku `categories`
 --
 
-INSERT INTO `categories` (`id`, `category_type`, `category_name`, `folder_name`, `category_icon`, `svg_icon`, `fas_icon`, `button`, `color`) VALUES
-(1, 'standard', 'Akreditační', 'akreditacni', 'akreditacni.png', '<svg class=\"icon text-indigo\" width=\"40\" height=\"40\" viewBox=\"0 0 24 24\" stroke-width=\"2\" stroke=\"currentColor\" fill=\"none\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><path stroke=\"none\" d=\"M0 0h24v24H0z\" fill=\"none\"></path><path d=\"M14 3v4a1 1 0 0 0 1 1h4\"></path><path d=\"M5 8v-3a2 2 0 0 1 2 -2h7l5 5v11a2 2 0 0 1 -2 2h-5\"></path><circle cx=\"6\" cy=\"14\" r=\"3\"></circle><path d=\"M4.5 17l-1.5 5l3 -1.5l3 1.5l-1.5 -5\"></path></svg>', 'certificate', 'akreditační', 'blue'),
-(2, 'standard', 'Ošetřovatelské', 'osetrovatelske', 'osetrovatelske.png', '<svg class=\"icon text-pink\" width=\"40\" height=\"40\" viewBox=\"0 0 24 24\" stroke-width=\"2\" stroke=\"currentColor\" fill=\"none\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><path stroke=\"none\" d=\"M0 0h24v24H0z\" fill=\"none\"></path><path d=\"M6 4h-1a2 2 0 0 0 -2 2v3.5h0a5.5 5.5 0 0 0 11 0v-3.5a2 2 0 0 0 -2 -2h-1\"></path><path d=\"M8 15a6 6 0 1 0 12 0v-3\"></path><path d=\"M11 3v2\"></path><path d=\"M6 3v2\"></path><circle cx=\"20\" cy=\"10\" r=\"2\"></circle></svg>', 'stethoscope', 'ošetřovatelský', 'pink'),
-(3, 'standard', 'Léčebné', 'lecebne', 'lecebne.png', '<svg class=\"icon text-red\" width=\"40\" height=\"40\" viewBox=\"0 0 24 24\" stroke-width=\"2\" stroke=\"currentColor\" fill=\"none\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><path stroke=\"none\" d=\"M0 0h24v24H0z\" fill=\"none\"></path><path d=\"M14.017 18.001l-2.017 1.999l-7.5 -7.428a5 5 0 1 1 7.5 -6.566a5 5 0 0 1 8.153 5.784\"></path><path d=\"M15.99 20l4.197 -4.223a2.81 2.81 0 0 0 .006 -3.948a2.747 2.747 0 0 0 -3.91 -.007l-.28 .282l-.279 -.283a2.747 2.747 0 0 0 -3.91 -.007a2.81 2.81 0 0 0 -.007 3.948l4.182 4.238z\"></path></svg>', 'heart', 'léčebný', 'red'),
-(4, 'standard', 'Speciální', 'specialni', 'specialni.png', '<svg class=\"icon text-indigo\" width=\"40\" height=\"40\" viewBox=\"0 0 24 24\" stroke-width=\"2\" stroke=\"currentColor\" fill=\"none\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><path stroke=\"none\" d=\"M0 0h24v24H0z\" fill=\"none\"></path><path d=\"M9 5h-2a2 2 0 0 0 -2 2v12a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2v-12a2 2 0 0 0 -2 -2h-2\"></path><rect x=\"9\" y=\"3\" width=\"6\" height=\"4\" rx=\"2\"></rect><line x1=\"10\" y1=\"14\" x2=\"14\" y2=\"14\"></line><line x1=\"12\" y1=\"12\" x2=\"12\" y2=\"16\"></line></svg>', 'notes-medical', 'speciální', 'indigo'),
-(5, 'standard', 'Operační', 'operacni', 'operacni.png', '<svg class=\"icon text-lime\" width=\"40\" height=\"40\" viewBox=\"0 0 24 24\" stroke-width=\"1\" stroke=\"currentColor\" fill=\"none\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><path stroke=\"none\" d=\"M0 0h24v24H0z\" fill=\"none\"></path><path d=\"M3 19l15 -15l3 3l-6 6l2 2a14 14 0 0 1 -14 4\"></path></svg>', 'notes-medical', 'operační', 'lime'),
-(6, 'standard', 'Anesteziologické', 'anesteziologicke', 'anesteziologicke.png', '<svg class=\"icon text-green\" width=\"40\" height=\"40\" viewBox=\"0 0 24 24\" stroke-width=\"2\" stroke=\"currentColor\" fill=\"none\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><path stroke=\"none\" d=\"M0 0h24v24H0z\" fill=\"none\"></path><rect x=\"3\" y=\"4\" width=\"18\" height=\"12\" rx=\"1\"></rect><path d=\"M7 20h10\"></path><path d=\"M9 16v4\"></path><path d=\"M15 16v4\"></path><path d=\"M7 10h2l2 3l2 -6l1 3h3\"></path></svg>', 'heartbeat', 'anesteziologický', 'green'),
-(7, 'standard', 'RDG', 'rdg', 'rdg.png', '<svg class=\"icon text-yellow\" width=\"40\" height=\"40\" viewBox=\"0 0 24 24\" stroke-width=\"2\" stroke=\"currentColor\" fill=\"none\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><path stroke=\"none\" d=\"M0 0h24v24H0z\" fill=\"none\"></path><path d=\"M13.5 14.6l3 5.19a9 9 0 0 0 4.5 -7.79h-6a3 3 0 0 1 -1.5 2.6\"></path><path d=\"M13.5 9.4l3 -5.19a9 9 0 0 0 -9 0l3 5.19a3 3 0 0 1 3 0\"></path><path d=\"M10.5 14.6l-3 5.19a9 9 0 0 1 -4.5 -7.79h6a3 3 0 0 0 1.5 2.6\"></path></svg>', 'radiation-alt', 'radiologický', 'yellow'),
-(8, 'standard', 'Rehabilitační', 'rehabilitacni', 'rehabilitacni.png', '<svg class=\"icon text-reha\" width=\"40\" height=\"40\" viewBox=\"0 0 24 24\" stroke-width=\"2\" stroke=\"currentColor\" fill=\"none\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><path stroke=\"none\" d=\"M0 0h24v24H0z\" fill=\"none\"></path><path d=\"M9 15l-1 -3l4 -2l4 1h3.5\"></path><circle cx=\"4\" cy=\"19\" r=\"1\"></circle><circle cx=\"12\" cy=\"6\" r=\"1\"></circle><path d=\"M12 17v-7\"></path><path d=\"M8 20h7l1 -4l4 -2\"></path><path d=\"M18 20h3\"></path></svg>', 'crutch', 'rehabilitační', 'reha'),
-(9, 'standard', 'OPL', 'opl', 'opl.png', '<svg class=\"icon text-cyan\" width=\"40\" height=\"40\" viewBox=\"0 0 24 24\" stroke-width=\"2\" stroke=\"currentColor\" fill=\"none\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><path stroke=\"none\" d=\"M0 0h24v24H0z\" fill=\"none\"></path><line x1=\"14\" y1=\"12\" x2=\"14\" y2=\"12.01\"></line><line x1=\"10\" y1=\"12\" x2=\"10\" y2=\"12.01\"></line><line x1=\"12\" y1=\"10\" x2=\"12\" y2=\"10.01\"></line><line x1=\"12\" y1=\"14\" x2=\"12\" y2=\"14.01\"></line><path d=\"M4.5 12.5l8 -8a4.94 4.94 0 0 1 7 7l-8 8a4.94 4.94 0 0 1 -7 -7\"></path></svg>', 'briefcase-medical', 'pracovní', 'cyan'),
-(10, 'standard', 'OKB', 'okb', 'okb.png', '<svg class=\"icon text-purple\" width=\"24\" height=\"24\" viewBox=\"0 0 24 24\" stroke-width=\"2\" stroke=\"currentColor\" fill=\"none\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><path stroke=\"none\" d=\"M0 0h24v24H0z\" fill=\"none\"></path><path d=\"M20 8.04l-12.122 12.124a2.857 2.857 0 1 1 -4.041 -4.04l12.122 -12.124\"></path><path d=\"M7 13h8\"></path><path d=\"M19 15l1.5 1.6a2 2 0 1 1 -3 0l1.5 -1.6z\"></path><path d=\"M15 3l6 6\"></path></svg>', 'flask', 'laboratorní', 'purple'),
-(11, 'standard', 'Logopedické', 'logopedicke', 'logopedicke.png', '<svg class=\"icon text-teal\" width=\"40\" height=\"40\" viewBox=\"0 0 24 24\" stroke-width=\"2\" stroke=\"currentColor\" fill=\"none\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><path stroke=\"none\" d=\"M0 0h24v24H0z\" fill=\"none\"></path><path d=\"M21 14l-3 -3h-7a1 1 0 0 1 -1 -1v-6a1 1 0 0 1 1 -1h9a1 1 0 0 1 1 1v10\"></path><path d=\"M14 15v2a1 1 0 0 1 -1 1h-7l-3 3v-10a1 1 0 0 1 1 -1h2\"></path></svg>', 'comments', 'logopedický', 'teal'),
-(12, 'standard', 'Legislativní', 'legislativni', 'legistlativni.png', '<svg class=\"icon text-orange\" width=\"24\" height=\"24\" viewBox=\"0 0 24 24\" stroke-width=\"2\" stroke=\"currentColor\" fill=\"none\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><path stroke=\"none\" d=\"M0 0h24v24H0z\" fill=\"none\"></path><path d=\"M21 17.85h-18c0 -4.05 1.421 -4.05 3.79 -4.05c5.21 0 1.21 -4.59 1.21 -6.8a4 4 0 1 1 8 0c0 2.21 -4 6.8 1.21 6.8c2.369 0 3.79 0 3.79 4.05z\"></path><path d=\"M5 21h14\"></path></svg>', 'stamp', 'legislativní', 'orange'),
-(13, 'dokument', 'Personální', 'personalni', 'personalni.png', '<svg  class=\"icon text-azure\" width=\"24\" height=\"24\" viewBox=\"0 0 24 24\" stroke-width=\"2\" stroke=\"currentColor\" fill=\"none\" stroke-inecap=\"round\" stroke-linejoin=\"round\"><path stroke=\"none\" d=\"M0 0h24v24H0z\" fill=\"none\"></path><circle cx=\"9\" cy=\"7\" r=\"4\"></circle><path d=\"M3 21v-2a4 4 0 0 1 4 -4h4a4 4 0 0 1 4 4v2\"></path><path d=\"M16 11h6m-3 -3v6\"></path></svg>', 'users', 'personální', 'blue'),
-(14, 'dokument', 'Sesterská', 'sesterska', 'sesterska.png', '<svg class=\"icon text-red\" width=\"24\" height=\"24\" viewBox=\"0 0 24 24\" stroke-width=\"2\" stroke=\"currentColor\" fill=\"none\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><path stroke=\"none\" d=\"M0 0h24v24H0z\" fill=\"none\"></path><path d=\"M12 6c2.941 0 5.685 .847 8 2.31l-2 9.69h-12l-2 -9.691a14.93 14.93 0 0 1 8 -2.309z\"></path><path d=\"M10 12h4\"></path><path d=\"M12 10v4\"></path></svg>', 'nurse', 'sesterská', 'red'),
-(15, 'dokument', 'Hygiena', 'hygiena', 'hygiena.png', '<svg class=\"icon text-azure\" width=\"24\" height=\"24\" viewBox=\"0 0 24 24\" stroke-width=\"2\" stroke=\"currentColor\" fill=\"none\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><path stroke=\"none\" d=\"M0 0h24v24H0z\" fill=\"none\"></path><path d=\"M7 21h10v-10a3 3 0 0 0 -3 -3h-4a3 3 0 0 0 -3 3v10z\"></path><path d=\"M15 3h-6a2 2 0 0 0 -2 2\"></path><path d=\"M12 3v5\"></path><path d=\"M12 11v4\"></path><path d=\"M10 13h4\"></path></svg>', '', 'Hygiena', 'azure'),
-(16, 'dokument', 'Pacient', 'pacient', 'pacient.png', '<svg class=\"icon text-yellow\" width=\"40\" height=\"40\" viewBox=\"0 0 24 24\" stroke-width=\"21\" stroke=\"currentColor\" fill=\"none\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><path stroke=\"none\" d=\"M0 0h24v24H0z\" fill=\"none\"></path><path d=\"M11 21l-1 -4l-2 -3v-6\"></path><path d=\"M5 14l-1 -3l4 -3l3 2l3 .5\"></path><circle cx=\"8\" cy=\"4\" r=\"1\"></circle><path d=\"M7 17l-2 4\"></path><path d=\"M16 21v-8.5a1.5 1.5 0 0 1 3 0v.5\"></path></svg>', '', 'Pacient', 'yellow'),
-(17, 'dokument', 'OKB', 'okb', 'okb.png', '<svg class=\"icon text-purple\" width=\"24\" height=\"24\" viewBox=\"0 0 24 24\" stroke-width=\"2\" stroke=\"currentColor\" fill=\"none\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><path stroke=\"none\" d=\"M0 0h24v24H0z\" fill=\"none\"></path><path d=\"M20 8.04l-12.122 12.124a2.857 2.857 0 1 1 -4.041 -4.04l12.122 -12.124\"></path><path d=\"M7 13h8\"></path><path d=\"M19 15l1.5 1.6a2 2 0 1 1 -3 0l1.5 -1.6z\"></path><path d=\"M15 3l6 6\"></path></svg>', '', 'OKB', 'purple'),
-(18, 'dokument', 'RDG', 'rdg', 'rdg.png', '<svg class=\"icon text-orange\" width=\"24\" height=\"24\" viewBox=\"0 0 24 24\" stroke-width=\"2\" stroke=\"currentColor\" fill=\"none\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><path stroke=\"none\" d=\"M0 0h24v24H0z\" fill=\"none\"></path><path d=\"M13.5 14.6l3 5.19a9 9 0 0 0 4.5 -7.79h-6a3 3 0 0 1 -1.5 2.6\"></path><path d=\"M13.5 9.4l3 -5.19a9 9 0 0 0 -9 0l3 5.19a3 3 0 0 1 3 0\"></path><path d=\"M10.5 14.6l-3 5.19a9 9 0 0 1 -4.5 -7.79h6a3 3 0 0 0 1.5 2.6\"></path></svg>', '', 'RDG', 'orange'),
-(19, 'dokument', 'IT', 'it', 'it.png', '<svg class=\"icon text-blue\" width=\"24\" height=\"24\" viewBox=\"0 0 24 24\" stroke-width=\"2\" stroke=\"currentColor\" fill=\"none\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><path stroke=\"none\" d=\"M0 0h24v24H0z\" fill=\"none\"></path><path d=\"M10 15h-6a1 1 0 0 1 -1 -1v-8a1 1 0 0 1 1 -1h6\"></path><rect x=\"13\" y=\"4\" width=\"8\" height=\"16\" rx=\"1\"></rect><line x1=\"7\" y1=\"19\" x2=\"10\" y2=\"19\"></line><line x1=\"17\" y1=\"8\" x2=\"17\" y2=\"8.01\"></line><circle cx=\"17\" cy=\"16\" r=\"1\"></circle><line x1=\"9\" y1=\"15\" x2=\"9\" y2=\"19\"></line></svg>', '', 'IT', 'blue'),
-(20, 'dokument', 'KPR', 'kpr', 'kpr.png', '<svg class=\"icon text-pink\" width=\"24\" height=\"24\" viewBox=\"0 0 24 24\" stroke-width=\"2\" stroke=\"currentColor\" fill=\"none\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><path stroke=\"none\" d=\"M0 0h24v24H0z\" fill=\"none\"></path><path d=\"M19.5 13.572l-7.5 7.428l-2.896 -2.868m-6.117 -8.104a5 5 0 0 1 9.013 -3.022a5 5 0 1 1 7.5 6.572\"></path><path d=\"M3 13h2l2 3l2 -6l1 3h3\"></path></svg>', '', 'KPR', 'pink'),
-(21, 'dokument', 'Komunikační karty', 'komunikacni-karty', 'komunikacni-karty.png', '<svg class=\"icon text-purple\" width=\"24\" height=\"24\" viewBox=\"0 0 24 24\" stroke-width=\"2\" stroke=\"currentColor\" fill=\"none\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><path stroke=\"none\" d=\"M0 0h24v24H0z\" fill=\"none\"></path><path d=\"M3.604 7.197l7.138 -3.109a0.96 .96 0 0 1 1.27 .527l4.924 11.902a1.004 1.004 0 0 1 -.514 1.304l-7.137 3.109a0.96 .96 0 0 1 -1.271 -.527l-4.924 -11.903a1.005 1.005 0 0 1 .514 -1.304z\"></path><path d=\"M15 4h1a1 1 0 0 1 1 1v3.5\"></path><path d=\"M20 6c.264 .112 .52 .217 .768 .315a1 1 0 0 1 .53 1.311l-2.298 5.374\"></path></svg>', '', 'Komunikační karty', 'purple'),
-(22, 'dokument', 'Vyhodnocení dotazníků', 'vyhodnoceni-dotazniku', 'vyhodnoceni-dotazniku.png', '<svg class=\"icon text-lime\" width=\"40\" height=\"40\" viewBox=\"0 0 24 24\" stroke-width=\"21\" stroke=\"currentColor\" fill=\"none\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><path stroke=\"none\" d=\"M0 0h24v24H0z\" fill=\"none\"></path><path d=\"M9 5h-2a2 2 0 0 0 -2 2v12a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2v-12a2 2 0 0 0 -2 -2h-2\"></path><rect x=\"9\" y=\"3\" width=\"6\" height=\"4\" rx=\"2\"></rect><path d=\"M9 14h.01\"></path><path d=\"M9 17h.01\"></path><path d=\"M12 16l1 1l3 -3\"></path></svg>', '', 'Vyhodnocení dotazníků', 'lime'),
-(23, 'dokument', 'Návody', 'navody', 'navody.png', '<svg class=\"icon text-teal\" width=\"24\" height=\"24\" viewBox=\"0 0 24 24\" stroke-width=\"2\" stroke=\"currentColor\" fill=\"none\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><path stroke=\"none\" d=\"M0 0h24v24H0z\" fill=\"none\"></path><circle cx=\"12\" cy=\"12\" r=\"9\"></circle><line x1=\"12\" y1=\"17\" x2=\"12\" y2=\"17.01\"></line><path d=\"M12 13.5a1.5 1.5 0 0 1 1 -1.5a2.6 2.6 0 1 0 -3 -4\"></path></svg>', '', 'Návody', 'teal'),
-(24, 'dokument', 'Ukrajinské dokumenty', 'ukrajinske-dokumenty', 'ukrajinske-dokumenty.png', '<svg class=\"icon text-yellow\" width=\"24\" height=\"24\" viewBox=\"0 0 24 24\" stroke-width=\"2\" stroke=\"currentColor\" fill=\"none\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><path stroke=\"none\" d=\"M0 0h24v24H0z\" fill=\"none\"></path><path d=\"M4 8v-2a2 2 0 0 1 2 -2h2m-4 12v2a2 2 0 0 0 2 2h2m8 -16h2a2 2 0 0 1 2 2v2m-4 12h2a2 2 0 0 0 2 -2v-2m-11.397 -6.39a2.04 2.04 0 0 1 2.912 0l.485 .39l.5 -.396a2.035 2.035 0 0 1 2.897 .007a2.104 2.104 0 0 1 0 2.949l-3.397 3.44l-3.397 -3.44a2.104 2.104 0 0 1 0 -2.95z\"></path>\n</svg>', '', 'Ukrajinské dokumenty', 'yellow');
+INSERT INTO `categories` (`id`, `category_file`, `category_type`, `category_name`, `folder_name`, `category_icon`, `svg_icon`, `fas_icon`, `button`, `color`) VALUES
+(1, 'standardy', 'standard', 'Akreditační', 'akreditacni', 'akreditacni.png', '<svg class=\"icon text-indigo\" width=\"40\" height=\"40\" viewBox=\"0 0 24 24\" stroke-width=\"2\" stroke=\"currentColor\" fill=\"none\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><path stroke=\"none\" d=\"M0 0h24v24H0z\" fill=\"none\"></path><path d=\"M14 3v4a1 1 0 0 0 1 1h4\"></path><path d=\"M5 8v-3a2 2 0 0 1 2 -2h7l5 5v11a2 2 0 0 1 -2 2h-5\"></path><circle cx=\"6\" cy=\"14\" r=\"3\"></circle><path d=\"M4.5 17l-1.5 5l3 -1.5l3 1.5l-1.5 -5\"></path></svg>', 'certificate', 'akreditační', 'blue'),
+(2, 'standardy', 'standard', 'Ošetřovatelské', 'osetrovatelske', 'osetrovatelske.png', '<svg class=\"icon text-pink\" width=\"40\" height=\"40\" viewBox=\"0 0 24 24\" stroke-width=\"2\" stroke=\"currentColor\" fill=\"none\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><path stroke=\"none\" d=\"M0 0h24v24H0z\" fill=\"none\"></path><path d=\"M6 4h-1a2 2 0 0 0 -2 2v3.5h0a5.5 5.5 0 0 0 11 0v-3.5a2 2 0 0 0 -2 -2h-1\"></path><path d=\"M8 15a6 6 0 1 0 12 0v-3\"></path><path d=\"M11 3v2\"></path><path d=\"M6 3v2\"></path><circle cx=\"20\" cy=\"10\" r=\"2\"></circle></svg>', 'stethoscope', 'ošetřovatelský', 'pink'),
+(3, 'standardy', 'standard', 'Léčebné', 'lecebne', 'lecebne.png', '<svg class=\"icon text-red\" width=\"40\" height=\"40\" viewBox=\"0 0 24 24\" stroke-width=\"2\" stroke=\"currentColor\" fill=\"none\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><path stroke=\"none\" d=\"M0 0h24v24H0z\" fill=\"none\"></path><path d=\"M14.017 18.001l-2.017 1.999l-7.5 -7.428a5 5 0 1 1 7.5 -6.566a5 5 0 0 1 8.153 5.784\"></path><path d=\"M15.99 20l4.197 -4.223a2.81 2.81 0 0 0 .006 -3.948a2.747 2.747 0 0 0 -3.91 -.007l-.28 .282l-.279 -.283a2.747 2.747 0 0 0 -3.91 -.007a2.81 2.81 0 0 0 -.007 3.948l4.182 4.238z\"></path></svg>', 'heart', 'léčebný', 'red'),
+(4, 'standardy', 'standard', 'Speciální', 'specialni', 'specialni.png', '<svg class=\"icon text-indigo\" width=\"40\" height=\"40\" viewBox=\"0 0 24 24\" stroke-width=\"2\" stroke=\"currentColor\" fill=\"none\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><path stroke=\"none\" d=\"M0 0h24v24H0z\" fill=\"none\"></path><path d=\"M9 5h-2a2 2 0 0 0 -2 2v12a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2v-12a2 2 0 0 0 -2 -2h-2\"></path><rect x=\"9\" y=\"3\" width=\"6\" height=\"4\" rx=\"2\"></rect><line x1=\"10\" y1=\"14\" x2=\"14\" y2=\"14\"></line><line x1=\"12\" y1=\"12\" x2=\"12\" y2=\"16\"></line></svg>', 'notes-medical', 'speciální', 'indigo'),
+(5, 'standardy', 'standard', 'Operační', 'operacni', 'operacni.png', '<svg class=\"icon text-lime\" width=\"40\" height=\"40\" viewBox=\"0 0 24 24\" stroke-width=\"1\" stroke=\"currentColor\" fill=\"none\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><path stroke=\"none\" d=\"M0 0h24v24H0z\" fill=\"none\"></path><path d=\"M3 19l15 -15l3 3l-6 6l2 2a14 14 0 0 1 -14 4\"></path></svg>', 'notes-medical', 'operační', 'lime'),
+(6, 'standardy', 'standard', 'Anesteziologické', 'anesteziologicke', 'anesteziologicke.png', '<svg class=\"icon text-green\" width=\"40\" height=\"40\" viewBox=\"0 0 24 24\" stroke-width=\"2\" stroke=\"currentColor\" fill=\"none\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><path stroke=\"none\" d=\"M0 0h24v24H0z\" fill=\"none\"></path><rect x=\"3\" y=\"4\" width=\"18\" height=\"12\" rx=\"1\"></rect><path d=\"M7 20h10\"></path><path d=\"M9 16v4\"></path><path d=\"M15 16v4\"></path><path d=\"M7 10h2l2 3l2 -6l1 3h3\"></path></svg>', 'heartbeat', 'anesteziologický', 'green'),
+(7, 'standardy', 'standard', 'RDG', 'rdg', 'rdg.png', '<svg class=\"icon text-yellow\" width=\"40\" height=\"40\" viewBox=\"0 0 24 24\" stroke-width=\"2\" stroke=\"currentColor\" fill=\"none\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><path stroke=\"none\" d=\"M0 0h24v24H0z\" fill=\"none\"></path><path d=\"M13.5 14.6l3 5.19a9 9 0 0 0 4.5 -7.79h-6a3 3 0 0 1 -1.5 2.6\"></path><path d=\"M13.5 9.4l3 -5.19a9 9 0 0 0 -9 0l3 5.19a3 3 0 0 1 3 0\"></path><path d=\"M10.5 14.6l-3 5.19a9 9 0 0 1 -4.5 -7.79h6a3 3 0 0 0 1.5 2.6\"></path></svg>', 'radiation-alt', 'radiologický', 'yellow'),
+(8, 'standardy', 'standard', 'Rehabilitační', 'rehabilitacni', 'rehabilitacni.png', '<svg class=\"icon text-reha\" width=\"40\" height=\"40\" viewBox=\"0 0 24 24\" stroke-width=\"2\" stroke=\"currentColor\" fill=\"none\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><path stroke=\"none\" d=\"M0 0h24v24H0z\" fill=\"none\"></path><path d=\"M9 15l-1 -3l4 -2l4 1h3.5\"></path><circle cx=\"4\" cy=\"19\" r=\"1\"></circle><circle cx=\"12\" cy=\"6\" r=\"1\"></circle><path d=\"M12 17v-7\"></path><path d=\"M8 20h7l1 -4l4 -2\"></path><path d=\"M18 20h3\"></path></svg>', 'crutch', 'rehabilitační', 'reha'),
+(9, 'standardy', 'standard', 'OPL', 'opl', 'opl.png', '<svg class=\"icon text-cyan\" width=\"40\" height=\"40\" viewBox=\"0 0 24 24\" stroke-width=\"2\" stroke=\"currentColor\" fill=\"none\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><path stroke=\"none\" d=\"M0 0h24v24H0z\" fill=\"none\"></path><line x1=\"14\" y1=\"12\" x2=\"14\" y2=\"12.01\"></line><line x1=\"10\" y1=\"12\" x2=\"10\" y2=\"12.01\"></line><line x1=\"12\" y1=\"10\" x2=\"12\" y2=\"10.01\"></line><line x1=\"12\" y1=\"14\" x2=\"12\" y2=\"14.01\"></line><path d=\"M4.5 12.5l8 -8a4.94 4.94 0 0 1 7 7l-8 8a4.94 4.94 0 0 1 -7 -7\"></path></svg>', 'briefcase-medical', 'pracovní', 'cyan'),
+(10, 'standardy', 'standard', 'OKB', 'okb', 'okb.png', '<svg class=\"icon text-purple\" width=\"24\" height=\"24\" viewBox=\"0 0 24 24\" stroke-width=\"2\" stroke=\"currentColor\" fill=\"none\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><path stroke=\"none\" d=\"M0 0h24v24H0z\" fill=\"none\"></path><path d=\"M20 8.04l-12.122 12.124a2.857 2.857 0 1 1 -4.041 -4.04l12.122 -12.124\"></path><path d=\"M7 13h8\"></path><path d=\"M19 15l1.5 1.6a2 2 0 1 1 -3 0l1.5 -1.6z\"></path><path d=\"M15 3l6 6\"></path></svg>', 'flask', 'laboratorní', 'purple'),
+(11, 'standardy', 'standard', 'Logopedické', 'logopedicke', 'logopedicke.png', '<svg class=\"icon text-teal\" width=\"40\" height=\"40\" viewBox=\"0 0 24 24\" stroke-width=\"2\" stroke=\"currentColor\" fill=\"none\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><path stroke=\"none\" d=\"M0 0h24v24H0z\" fill=\"none\"></path><path d=\"M21 14l-3 -3h-7a1 1 0 0 1 -1 -1v-6a1 1 0 0 1 1 -1h9a1 1 0 0 1 1 1v10\"></path><path d=\"M14 15v2a1 1 0 0 1 -1 1h-7l-3 3v-10a1 1 0 0 1 1 -1h2\"></path></svg>', 'comments', 'logopedický', 'teal'),
+(12, 'standardy', 'standard', 'Legislativní', 'legislativni', 'legistlativni.png', '<svg class=\"icon text-orange\" width=\"24\" height=\"24\" viewBox=\"0 0 24 24\" stroke-width=\"2\" stroke=\"currentColor\" fill=\"none\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><path stroke=\"none\" d=\"M0 0h24v24H0z\" fill=\"none\"></path><path d=\"M21 17.85h-18c0 -4.05 1.421 -4.05 3.79 -4.05c5.21 0 1.21 -4.59 1.21 -6.8a4 4 0 1 1 8 0c0 2.21 -4 6.8 1.21 6.8c2.369 0 3.79 0 3.79 4.05z\"></path><path d=\"M5 21h14\"></path></svg>', 'stamp', 'legislativní', 'orange'),
+(13, 'dokumenty', 'dokument', 'Personální', 'personalni', 'personalni.png', '<svg  class=\"icon text-azure\" width=\"24\" height=\"24\" viewBox=\"0 0 24 24\" stroke-width=\"2\" stroke=\"currentColor\" fill=\"none\" stroke-inecap=\"round\" stroke-linejoin=\"round\"><path stroke=\"none\" d=\"M0 0h24v24H0z\" fill=\"none\"></path><circle cx=\"9\" cy=\"7\" r=\"4\"></circle><path d=\"M3 21v-2a4 4 0 0 1 4 -4h4a4 4 0 0 1 4 4v2\"></path><path d=\"M16 11h6m-3 -3v6\"></path></svg>', 'users', 'personální', 'blue'),
+(14, 'dokumenty', 'dokument', 'Sesterská', 'sesterska', 'sesterska.png', '<svg class=\"icon text-red\" width=\"24\" height=\"24\" viewBox=\"0 0 24 24\" stroke-width=\"2\" stroke=\"currentColor\" fill=\"none\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><path stroke=\"none\" d=\"M0 0h24v24H0z\" fill=\"none\"></path><path d=\"M12 6c2.941 0 5.685 .847 8 2.31l-2 9.69h-12l-2 -9.691a14.93 14.93 0 0 1 8 -2.309z\"></path><path d=\"M10 12h4\"></path><path d=\"M12 10v4\"></path></svg>', 'nurse', 'sesterská', 'red'),
+(15, 'dokumenty', 'dokument', 'Hygiena', 'hygiena', 'hygiena.png', '<svg class=\"icon text-azure\" width=\"24\" height=\"24\" viewBox=\"0 0 24 24\" stroke-width=\"2\" stroke=\"currentColor\" fill=\"none\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><path stroke=\"none\" d=\"M0 0h24v24H0z\" fill=\"none\"></path><path d=\"M7 21h10v-10a3 3 0 0 0 -3 -3h-4a3 3 0 0 0 -3 3v10z\"></path><path d=\"M15 3h-6a2 2 0 0 0 -2 2\"></path><path d=\"M12 3v5\"></path><path d=\"M12 11v4\"></path><path d=\"M10 13h4\"></path></svg>', '', 'Hygiena', 'azure'),
+(16, 'dokumenty', 'dokument', 'Pacient', 'pacient', 'pacient.png', '<svg class=\"icon text-yellow\" width=\"40\" height=\"40\" viewBox=\"0 0 24 24\" stroke-width=\"21\" stroke=\"currentColor\" fill=\"none\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><path stroke=\"none\" d=\"M0 0h24v24H0z\" fill=\"none\"></path><path d=\"M11 21l-1 -4l-2 -3v-6\"></path><path d=\"M5 14l-1 -3l4 -3l3 2l3 .5\"></path><circle cx=\"8\" cy=\"4\" r=\"1\"></circle><path d=\"M7 17l-2 4\"></path><path d=\"M16 21v-8.5a1.5 1.5 0 0 1 3 0v.5\"></path></svg>', '', 'Pacient', 'yellow'),
+(17, 'dokumenty', 'dokument', 'OKB', 'okb', 'okb.png', '<svg class=\"icon text-purple\" width=\"24\" height=\"24\" viewBox=\"0 0 24 24\" stroke-width=\"2\" stroke=\"currentColor\" fill=\"none\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><path stroke=\"none\" d=\"M0 0h24v24H0z\" fill=\"none\"></path><path d=\"M20 8.04l-12.122 12.124a2.857 2.857 0 1 1 -4.041 -4.04l12.122 -12.124\"></path><path d=\"M7 13h8\"></path><path d=\"M19 15l1.5 1.6a2 2 0 1 1 -3 0l1.5 -1.6z\"></path><path d=\"M15 3l6 6\"></path></svg>', '', 'OKB', 'purple'),
+(18, 'dokumenty', 'dokument', 'RDG', 'rdg', 'rdg.png', '<svg class=\"icon text-orange\" width=\"24\" height=\"24\" viewBox=\"0 0 24 24\" stroke-width=\"2\" stroke=\"currentColor\" fill=\"none\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><path stroke=\"none\" d=\"M0 0h24v24H0z\" fill=\"none\"></path><path d=\"M13.5 14.6l3 5.19a9 9 0 0 0 4.5 -7.79h-6a3 3 0 0 1 -1.5 2.6\"></path><path d=\"M13.5 9.4l3 -5.19a9 9 0 0 0 -9 0l3 5.19a3 3 0 0 1 3 0\"></path><path d=\"M10.5 14.6l-3 5.19a9 9 0 0 1 -4.5 -7.79h6a3 3 0 0 0 1.5 2.6\"></path></svg>', '', 'RDG', 'orange'),
+(19, 'dokumenty', 'dokument', 'IT', 'it', 'it.png', '<svg class=\"icon text-blue\" width=\"24\" height=\"24\" viewBox=\"0 0 24 24\" stroke-width=\"2\" stroke=\"currentColor\" fill=\"none\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><path stroke=\"none\" d=\"M0 0h24v24H0z\" fill=\"none\"></path><path d=\"M10 15h-6a1 1 0 0 1 -1 -1v-8a1 1 0 0 1 1 -1h6\"></path><rect x=\"13\" y=\"4\" width=\"8\" height=\"16\" rx=\"1\"></rect><line x1=\"7\" y1=\"19\" x2=\"10\" y2=\"19\"></line><line x1=\"17\" y1=\"8\" x2=\"17\" y2=\"8.01\"></line><circle cx=\"17\" cy=\"16\" r=\"1\"></circle><line x1=\"9\" y1=\"15\" x2=\"9\" y2=\"19\"></line></svg>', '', 'IT', 'blue'),
+(20, 'dokumenty', 'dokument', 'KPR', 'kpr', 'kpr.png', '<svg class=\"icon text-pink\" width=\"24\" height=\"24\" viewBox=\"0 0 24 24\" stroke-width=\"2\" stroke=\"currentColor\" fill=\"none\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><path stroke=\"none\" d=\"M0 0h24v24H0z\" fill=\"none\"></path><path d=\"M19.5 13.572l-7.5 7.428l-2.896 -2.868m-6.117 -8.104a5 5 0 0 1 9.013 -3.022a5 5 0 1 1 7.5 6.572\"></path><path d=\"M3 13h2l2 3l2 -6l1 3h3\"></path></svg>', '', 'KPR', 'pink'),
+(21, 'dokumenty', 'dokument', 'Komunikační karty', 'komunikacni-karty', 'komunikacni-karty.png', '<svg class=\"icon text-purple\" width=\"24\" height=\"24\" viewBox=\"0 0 24 24\" stroke-width=\"2\" stroke=\"currentColor\" fill=\"none\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><path stroke=\"none\" d=\"M0 0h24v24H0z\" fill=\"none\"></path><path d=\"M3.604 7.197l7.138 -3.109a0.96 .96 0 0 1 1.27 .527l4.924 11.902a1.004 1.004 0 0 1 -.514 1.304l-7.137 3.109a0.96 .96 0 0 1 -1.271 -.527l-4.924 -11.903a1.005 1.005 0 0 1 .514 -1.304z\"></path><path d=\"M15 4h1a1 1 0 0 1 1 1v3.5\"></path><path d=\"M20 6c.264 .112 .52 .217 .768 .315a1 1 0 0 1 .53 1.311l-2.298 5.374\"></path></svg>', '', 'Komunikační karty', 'purple'),
+(22, 'dokumenty', 'dokument', 'Vyhodnocení dotazníků', 'vyhodnoceni-dotazniku', 'vyhodnoceni-dotazniku.png', '<svg class=\"icon text-lime\" width=\"40\" height=\"40\" viewBox=\"0 0 24 24\" stroke-width=\"21\" stroke=\"currentColor\" fill=\"none\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><path stroke=\"none\" d=\"M0 0h24v24H0z\" fill=\"none\"></path><path d=\"M9 5h-2a2 2 0 0 0 -2 2v12a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2v-12a2 2 0 0 0 -2 -2h-2\"></path><rect x=\"9\" y=\"3\" width=\"6\" height=\"4\" rx=\"2\"></rect><path d=\"M9 14h.01\"></path><path d=\"M9 17h.01\"></path><path d=\"M12 16l1 1l3 -3\"></path></svg>', '', 'Vyhodnocení dotazníků', 'lime'),
+(23, 'dokumenty', 'dokument', 'Návody', 'navody', 'navody.png', '<svg class=\"icon text-teal\" width=\"24\" height=\"24\" viewBox=\"0 0 24 24\" stroke-width=\"2\" stroke=\"currentColor\" fill=\"none\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><path stroke=\"none\" d=\"M0 0h24v24H0z\" fill=\"none\"></path><circle cx=\"12\" cy=\"12\" r=\"9\"></circle><line x1=\"12\" y1=\"17\" x2=\"12\" y2=\"17.01\"></line><path d=\"M12 13.5a1.5 1.5 0 0 1 1 -1.5a2.6 2.6 0 1 0 -3 -4\"></path></svg>', '', 'Návody', 'teal'),
+(24, 'dokumenty', 'dokument', 'Ukrajinské dokumenty', 'ukrajinske-dokumenty', 'ukrajinske-dokumenty.png', '<svg class=\"icon text-yellow\" width=\"24\" height=\"24\" viewBox=\"0 0 24 24\" stroke-width=\"2\" stroke=\"currentColor\" fill=\"none\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><path stroke=\"none\" d=\"M0 0h24v24H0z\" fill=\"none\"></path><path d=\"M4 8v-2a2 2 0 0 1 2 -2h2m-4 12v2a2 2 0 0 0 2 2h2m8 -16h2a2 2 0 0 1 2 2v2m-4 12h2a2 2 0 0 0 2 -2v-2m-11.397 -6.39a2.04 2.04 0 0 1 2.912 0l.485 .39l.5 -.396a2.035 2.035 0 0 1 2.897 .007a2.104 2.104 0 0 1 0 2.949l-3.397 3.44l-3.397 -3.44a2.104 2.104 0 0 1 0 -2.95z\"></path>\n</svg>', '', 'Ukrajinské dokumenty', 'yellow');
 
 -- --------------------------------------------------------
 
@@ -571,11 +573,11 @@ INSERT INTO `categories` (`id`, `category_type`, `category_name`, `folder_name`,
 --
 
 CREATE TABLE `departments` (
-  `id` bigint UNSIGNED NOT NULL,
-  `department_code` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
-  `center_code` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
-  `color_id` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
-  `department_name` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL
+  `id` bigint(20) UNSIGNED NOT NULL,
+  `department_code` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `center_code` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `color_id` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `department_name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
@@ -622,26 +624,26 @@ INSERT INTO `departments` (`id`, `department_code`, `center_code`, `color_id`, `
 --
 
 CREATE TABLE `documents` (
-  `id` bigint UNSIGNED NOT NULL,
-  `category_id` bigint NOT NULL,
-  `accordion_name` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
-  `accordion_group` int DEFAULT NULL,
-  `position` int NOT NULL,
-  `name` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
-  `description` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
-  `processed` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `authorize` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `examine` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `id` bigint(20) UNSIGNED NOT NULL,
+  `category_id` bigint(20) NOT NULL,
+  `accordion_name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `accordion_group` int(11) DEFAULT NULL,
+  `position` int(11) NOT NULL,
+  `name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `description` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `processed` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `authorize` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `examine` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `efficiency` date DEFAULT NULL,
-  `revision` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `revision` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `next_revision_date` date DEFAULT NULL,
-  `tags` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `tags` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `revision_date` date DEFAULT NULL,
-  `file` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
-  `unique_code` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `status` enum('Rozpracováno','Schváleno') CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
-  `user_id` int NOT NULL,
-  `onscreen` int DEFAULT NULL,
+  `file` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `unique_code` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `status` enum('Rozpracováno','Schváleno') COLLATE utf8mb4_unicode_ci NOT NULL,
+  `user_id` int(11) NOT NULL,
+  `onscreen` int(11) DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
@@ -651,7 +653,7 @@ CREATE TABLE `documents` (
 --
 
 INSERT INTO `documents` (`id`, `category_id`, `accordion_name`, `accordion_group`, `position`, `name`, `description`, `processed`, `authorize`, `examine`, `efficiency`, `revision`, `next_revision_date`, `tags`, `revision_date`, `file`, `unique_code`, `status`, `user_id`, `onscreen`, `created_at`, `updated_at`) VALUES
-(1, 3, 'Akutní koronární syndromy', NULL, 1, 'Akutní koronární syndromy', 'Soubor minimálních diagnostických a terapeutických standardů u pacientů s akutními koronárními syndromy', 'MUDr. Janková Pavlína', 'MUDr. Canibal Tomáš', 'MUDr. Kultan Peter', '2007-01-01', '5', '2023-12-01', 'MEZ-JIP, NEU-JIP, INT-ODD, NEU-ODD', '2022-12-01', 'standardy_lecebne-akutni_koronarni_syndromy-revize-5.pdf', 'STD3#1', 'Schváleno', 11, NULL, '2023-01-17 21:02:48', '2023-01-26 20:46:17'),
+(1, 3, 'Akutní koronární syndromy', NULL, 1, 'Akutní koronární syndromy', 'Soubor minimálních diagnostických a terapeutických standardů u pacientů s akutními koronárními syndromy', 'MUDr. Janková Pavlína', 'MUDr. Canibal Tomáš', 'MUDr. Kultan Peter', '2007-01-01', '5', '2023-12-01', 'MEZ-JIP, NEU-JIP, INT-ODD, NEU-ODD', '2022-12-01', 'standardy_lecebne-akutni_koronarni_syndromy-revize-5.pdf', 'STD3#1', 'Schváleno', 11, 14, '2023-01-17 21:02:48', '2023-01-27 09:46:52'),
 (2, 3, 'ATB profylaxe', NULL, 2, 'ATB profylaxe', 'Antibiotiková profylaxe u operovaných pacientů', 'MUDr. Hurtová Šárka', 'MUDr. Canibal Tomáš', 'MUDr. Adamová Andrea', '2014-01-01', '3', '2023-12-01', 'ONP, ORT', '2022-12-01', 'standardy_lecebne-antibiotikova_profylaxe_u_operovanych_pacientu-revize-3.pdf', 'STD3#2', 'Schváleno', 11, NULL, '2023-01-13 21:16:31', '2023-01-21 16:41:47'),
 (3, 3, 'Crohnova choroba', NULL, 3, 'Crohnova choroba', 'Soubor minimálních diagnostických a terapeutických standardů u pacientů s crohnovou chorobou', 'MUDr. Střída Josef', 'MUDr. Canibal Tomáš', 'MUDr. Kultan Peter', '2007-01-01', '5', '2023-12-01', 'MEZ-JIP, INT-ODD', '2022-12-01', 'standardy_lecebne-crohnova_choroba-revize-5.pdf', 'STD3#3', 'Schváleno', 11, NULL, '2023-01-13 21:17:50', '2023-01-21 18:42:01'),
 (4, 3, 'Demence', NULL, 4, 'Demence', 'Soubor minimálních diagnostických a terapeutických standardů u pacientů s demencí', 'MUDr. Böhm Marek', 'MUDr. Canibal Tomáš', 'MUDr. Vlachopulu Barbara', '2005-07-01', '6', '2023-12-01', 'NEU-ODD', '2022-12-01', 'standardy_lecebne-demence-revize-6.pdf', 'STD3#4', 'Schváleno', 11, NULL, '2023-01-13 21:28:06', '2023-01-26 20:46:24'),
@@ -684,15 +686,15 @@ INSERT INTO `documents` (`id`, `category_id`, `accordion_name`, `accordion_group
 (32, 9, 'Standard ošetřovatelské péče - OCHP', NULL, 2, 'Standard ošetřovatelské péče - OCHP', 'Pletyzmigrafie', 'Kuzníková Jaroslava', 'Rada kvality', 'Kusová Zdeňka', '2008-04-01', '6', '2022-10-01', 'OPL', '2021-10-01', 'standardy_opl-pletyzmigrafie-revize-6.pdf', 'STD9#2', 'Schváleno', 11, NULL, '2023-01-25 07:06:22', '2023-01-25 07:06:46'),
 (33, 9, 'Standard ošetřovatelské péče - OCHP', NULL, 3, 'Standard ošetřovatelské péče - OCHP', 'Chladový test', 'Kuzníková Jaroslava', 'Rada kvality', 'Kusová Zdeňka', '2008-04-01', '6', '2023-10-01', 'OPL', '2021-10-01', 'standardy_opl-chladovy_test-revize-6.pdf', 'STD9#3', 'Schváleno', 11, NULL, '2023-01-25 07:08:30', '2023-01-25 07:08:30'),
 (34, 9, 'Standard ošetřovatelské péče - OCHP', NULL, 4, 'Standard ošetřovatelské péče - OCHP', 'Dvoustupňová dezinfekce spirometru', 'Kuzníková Jaroslava', 'Rada kvality', 'Kusová Zdeňka', '2021-10-01', '2', '2023-10-01', 'OPL', '2021-10-01', 'standardy_opl-dvoustupnova_dezinfekce_spirometru-revize-2.pdf', 'STD9#4', 'Schváleno', 11, NULL, '2023-01-25 07:09:26', '2023-01-25 07:09:26'),
-(35, 8, 'Pracovní standard pro rehabilitační oddělení', NULL, 1, 'Pracovní standard pro rehabilitační oddělení', 'Příjem pacienta na rehabilitační ambulanci', 'Kolektiv fyzioterapeutů', 'Rada kvality', NULL, '2004-04-01', '8', '2022-10-01', 'REH-AMB', '2021-10-01', 'standardy_rehabilitacni-prijem_pacienta_na_rehabilitacni_ambulanci-revize-8.pdf', 'STD8#1', 'Schváleno', 11, 18, '2023-01-25 07:19:32', '2023-01-26 20:21:47'),
-(36, 8, 'Pracovní standard pro rehabilitační oddělení', NULL, 2, 'Pracovní standard pro rehabilitační oddělení', 'Individální kinezioterapie', 'Kolektiv fyzioterapeutů', 'Rada kvality', NULL, '2004-04-01', '8', '2022-10-01', 'REH-AMB, REH-ODD', '2021-10-01', 'standardy_rehabilitacni-individalni_kinezioterapie-revize-8.pdf', 'STD8#2', 'Schváleno', 11, 1, '2023-01-25 07:32:31', '2023-01-26 20:10:39'),
-(37, 8, 'Pracovní standard pro rehabilitační oddělení', NULL, 3, 'Pracovní standard pro rehabilitační oddělení', 'Vodoléčba - cvičení v bazénu', 'Kolektiv fyzioterapeutů', 'Rada kvality', 'Bc. Bělicová Taťána', '2004-04-01', '8', '2022-10-01', 'REH-AMB, REH-ODD', '2021-10-01', 'standardy_rehabilitacni-vodolecba_-_cviceni_v_bazenu-revize-8.pdf', 'STD8#3', 'Schváleno', 11, 14, '2023-01-25 07:34:58', '2023-01-26 21:16:58'),
+(35, 8, 'Pracovní standard pro rehabilitační oddělení', NULL, 1, 'Pracovní standard pro rehabilitační oddělení', 'Příjem pacienta na rehabilitační ambulanci', 'Kolektiv fyzioterapeutů', 'Rada kvality', NULL, '2004-04-01', '8', '2022-10-01', 'REH-AMB', '2021-10-01', 'standardy_rehabilitacni-prijem_pacienta_na_rehabilitacni_ambulanci-revize-8.pdf', 'STD8#1', 'Schváleno', 11, NULL, '2023-01-25 07:19:32', '2023-01-27 08:37:51'),
+(36, 8, 'Pracovní standard pro rehabilitační oddělení', NULL, 2, 'Pracovní standard pro rehabilitační oddělení', 'Individální kinezioterapie', 'Kolektiv fyzioterapeutů', 'Rada kvality', NULL, '2004-04-01', '8', '2022-10-01', 'REH-AMB, REH-ODD', '2021-10-01', 'standardy_rehabilitacni-individalni_kinezioterapie-revize-8.pdf', 'STD8#2', 'Schváleno', 11, NULL, '2023-01-25 07:32:31', '2023-01-27 08:37:57'),
+(37, 8, 'Pracovní standard pro rehabilitační oddělení', NULL, 3, 'Pracovní standard pro rehabilitační oddělení', 'Vodoléčba - cvičení v bazénu', 'Kolektiv fyzioterapeutů', 'Rada kvality', 'Bc. Bělicová Taťána', '2004-04-01', '8', '2022-10-01', 'REH-AMB, REH-ODD', '2021-10-01', 'standardy_rehabilitacni-vodolecba_-_cviceni_v_bazenu-revize-8.pdf', 'STD8#3', 'Schváleno', 11, NULL, '2023-01-25 07:34:58', '2023-01-27 08:38:03'),
 (38, 8, 'Pracovní standard pro rehabilitační oddělení', NULL, 4, 'Pracovní standard pro rehabilitační oddělení', 'Aplikace vířivé koupele', 'Kolektiv fyzioterapeutů', 'Rada kvality', 'Bc. Bělicová Taťána', '2004-04-01', '8', '2022-10-01', 'REH-AMB, REH-ODD', '2021-10-01', 'standardy_rehabilitacni-aplikace_virive_koupele-revize-8.pdf', 'STD8#4', 'Schváleno', 11, NULL, '2023-01-25 07:37:08', '2023-01-26 19:00:25'),
 (39, 8, 'Pracovní standard pro rehabilitační oddělení', NULL, 5, 'Pracovní standard pro rehabilitační oddělení', 'Aplikace podvodní masaže', 'Kolektiv fyzioterapeutů', 'Rada kvality', 'Bc. Bělicová Taťána', '2004-04-01', '8', '2022-10-01', 'REH-AMB, REH-ODD', '2021-10-01', 'standardy_rehabilitacni-aplikace_podvodni_masaze-revize-8.pdf', 'STD8#5', 'Schváleno', 11, NULL, '2023-01-25 07:43:30', '2023-01-26 19:00:32'),
 (40, 8, 'Pracovní standard pro rehabilitační oddělení', NULL, 6, 'Pracovní standard pro rehabilitační oddělení', 'Thermo terapie', 'Kolektiv fyzioterapeutů', 'Rada kvality', 'Bc. Bělicová Taťána', '2004-04-01', '8', '2023-10-01', 'REH-AMB, REH-ODD', '2021-10-01', 'standardy_rehabilitacni-thermo_terapie-revize-8.pdf', 'STD8#6', 'Schváleno', 11, NULL, '2023-01-25 07:45:21', '2023-01-25 07:45:21'),
 (41, 8, 'Pracovní standard pro rehabilitační oddělení', NULL, 7, 'Pracovní standard pro rehabilitační oddělení', 'Aplikace fototerapie', 'Kolektiv fyzioterapeutů', 'Rada kvality', 'Bc. Bělicová Taťána', '2004-04-01', '8', '2023-10-01', 'REH-AMB, REH-ODD', '2021-10-01', 'sesterska_dokumentace.pdf', 'STD8#7', 'Schváleno', 11, NULL, '2023-01-25 07:47:12', '2023-01-25 07:47:12'),
-(42, 14, 'Sesterský dokument test', NULL, 2, 'Sesterský dokument test', 'Sesterský dokument test', NULL, NULL, NULL, '2004-04-01', '8', '2022-10-01', NULL, '2021-10-01', 'standardy_sesterska-zapis_o_predani_navykove_latky-revize-8.pdf', 'STD8#7', 'Schváleno', 11, NULL, '2023-01-25 07:47:12', '2023-01-26 19:52:41'),
-(43, 14, 'Sesterský dokument test', NULL, 1, 'Sesterský dokument test', 'Sesterský dokument test', NULL, NULL, NULL, NULL, '0', '2022-10-01', NULL, '2021-10-01', 'standardy_sesterska-zapis_o_zneskodneni_nepouzite_navykove_latky-revize-0.pdf', 'STD8#7', 'Schváleno', 11, NULL, '2023-01-25 07:47:12', '2023-01-26 19:52:52'),
+(42, 14, 'Zápis o zneškodnění návykové látky', NULL, 2, 'Zápis o zneškodnění návykové látky', 'Zápis o zneškodnění návykové látky', NULL, NULL, NULL, '2004-04-01', '8', '2022-10-01', NULL, '2021-10-01', 'dokumenty-sesterska-zapis_o_zneskodneni_navykove_latky-revize-8.pdf', 'STD8#7', 'Schváleno', 11, NULL, '2023-01-25 07:47:12', '2023-01-27 08:18:25'),
+(43, 14, 'Zápis o předání návykové látky', NULL, 1, 'Zápis o předání návykové látky', 'Zápis o předání návykové látky', NULL, NULL, NULL, NULL, '1', '2022-10-01', NULL, '2021-10-01', 'dokumenty-sesterska-zapis_o_predani_navykove_latky-revize-1.pdf', 'STD8#7', 'Schváleno', 11, NULL, '2023-01-25 07:47:12', '2023-01-27 08:17:48'),
 (44, 10, 'Standardní operační postup – OKB úsek krevní banka', NULL, 1, 'Standardní operační postup – OKB úsek krevní banka', 'Vyšetření krevní skupiny AB0/Rh D na jednorázové fólii hx seroplates 10', NULL, NULL, NULL, '2013-11-01', '4', '2022-12-01', 'OKB', '2021-12-01', 'standardy_okb-vysetreni_krevni_skupiny_ab0-rh_d_na_jednorazove_folii_hx_seroplates_10-revize-4.pdf', 'STD10#1', 'Schváleno', 11, NULL, '2023-01-26 08:59:54', '2023-01-26 17:38:33'),
 (45, 10, 'Standardní operační postup – OKB úsek krevní banka', NULL, 2, 'Standardní operační postup – OKB úsek krevní banka', 'Vvyšetření zkoušky kompatibility a vyšetření protilátek u příjemce bio-rad id–micro typing system', NULL, NULL, NULL, '2006-11-07', '9', '2023-12-01', 'OKB', '2021-12-01', 'standardy_okb-vvysetreni_zkousky_kompatibility_a_vysetreni_protilatek_u_prijemce_bio-rad_id–micro_typing_system-revize-9.pdf', 'STD10#2', 'Schváleno', 11, NULL, '2023-01-26 09:06:06', '2023-01-26 09:06:06'),
 (46, 10, 'Standardní operační postup – OKB úsek krevní banka', NULL, 3, 'Standardní operační postup – OKB úsek krevní banka', 'Příjem požadavků na předtransfúzní vyšetření', NULL, NULL, NULL, '2021-12-01', '9', '2023-12-01', NULL, '2021-12-01', 'standardy_okb-prijem_pozadavku_na_predtransfuzni_vysetreni-revize-9.pdf', 'STD10#3', 'Schváleno', 11, NULL, '2023-01-26 09:12:57', '2023-01-26 09:12:57'),
@@ -727,7 +729,21 @@ INSERT INTO `documents` (`id`, `category_id`, `accordion_name`, `accordion_group
 (75, 6, 'Standard ošetřovatelské péče - anesteziologický', NULL, 2, 'Standard ošetřovatelské péče - anesteziologický', 'Příprava a asistence u celkové anestezie u operace páteře', NULL, NULL, NULL, '2004-04-01', '7', '2022-10-01', NULL, '2021-10-01', 'standardy_anesteziologicke-priprava_a_asistence_u_celkove_anestezie_u_operace_patere-revize-7.pdf', 'STD6#2', 'Schváleno', 11, NULL, '2023-01-26 11:06:58', '2023-01-26 11:23:54'),
 (76, 6, 'Standard ošetřovatelské péče - anesteziologický', NULL, 3, 'Standard ošetřovatelské péče - anesteziologický', 'Příprava a asistence u celkové anestezie u periferní nervové blokád', NULL, NULL, NULL, '2005-09-20', '7', '2022-10-01', 'ANEST', '2021-10-01', 'standardy_anesteziologicke-priprava_a_asistence_u_celkove_anestezie_u_periferni_nervove_blokad-revize-7.pdf', 'STD6#3', 'Schváleno', 11, NULL, '2023-01-26 11:09:12', '2023-01-26 11:24:07'),
 (77, 6, 'Standard ošetřovatelské péče - anesteziologický', NULL, 4, 'Standard ošetřovatelské péče - anesteziologický', 'Příprava a asistence u epidurální a subarachnoidální anestezie', NULL, NULL, NULL, '2005-09-22', '7', '2022-10-01', 'ANEST', '2021-10-01', 'standardy_anesteziologicke-priprava_a_asistence_u_epiduralni_a_subarachnoidalni_anestezie-revize-7.pdf', 'STD6#4', 'Schváleno', 11, NULL, '2023-01-26 11:10:19', '2023-01-26 11:24:17'),
-(79, 13, 'Shannon Hubbard', NULL, 10, 'Shannon Hubbard', 'Ea illum harum sequ', 'MUDr. Šupšáková Petra', 'MUDr. Janková Pavlína', 'MUDr. Krajnová Pavla', '1979-11-02', '222', '1997-02-20', 'Vero qui molestiae r', '2003-07-15', 'standardy_personalni-ea_illum_harum_sequ-revize-222.pdf', 'STD13#2', 'Schváleno', 11, NULL, '2023-01-26 20:29:15', '2023-01-26 20:29:15');
+(79, 13, 'Shannon Hubbard', NULL, 10, 'Shannon Hubbard', 'Ea illum harum sequ', 'MUDr. Šupšáková Petra', 'MUDr. Janková Pavlína', 'MUDr. Krajnová Pavla', '1979-11-02', '222', '1997-02-20', 'Vero qui molestiae r', '2003-07-15', 'standardy_personalni-ea_illum_harum_sequ-revize-222.pdf', 'STD13#2', 'Schváleno', 11, NULL, '2023-01-26 20:29:15', '2023-01-26 20:29:15'),
+(81, 14, 'Identifikační údaje k opiátové knize', NULL, 3, 'Identifikační údaje k opiátové knize', 'Identifikační údaje k opiátové knize', NULL, NULL, NULL, NULL, '1', NULL, NULL, NULL, 'dokumenty-sesterska-identifikacni_udaje_k_opiatove_knize-revize-1.pdf', 'DOC14#2', 'Schváleno', 11, NULL, '2023-01-27 07:31:00', '2023-01-27 08:19:10'),
+(82, 14, 'Akutní karta pro standardní oddělení', NULL, 4, 'Akutní karta pro standardní oddělení', 'Akutní karta pro standardní oddělení', NULL, NULL, NULL, NULL, '1', NULL, NULL, NULL, 'dokumenty-sesterska-akutni_karta_pro_standardni_oddeleni-revize-1.pdf', 'DOC14#4', 'Schváleno', 11, NULL, '2023-01-27 07:31:37', '2023-01-27 08:19:28'),
+(83, 14, 'Protokol analytické kontroly glykémie', NULL, 5, 'Protokol analytické kontroly glykémie', 'Protokol analytické kontroly glykémie', NULL, NULL, NULL, NULL, '1', NULL, NULL, NULL, 'dokumenty-sesterska-protokol_analyticke_kontroly_glykemie-revize-1.pdf', 'DOC14#5', 'Schváleno', 11, NULL, '2023-01-27 07:32:08', '2023-01-27 08:19:45'),
+(84, 14, 'Transfuzní záznam', NULL, 6, 'Transfuzní záznam', 'Transfuzní záznam', NULL, NULL, NULL, NULL, '1', NULL, NULL, NULL, 'dokumenty-sesterska-transfuzni_zaznam-revize-1.pdf', 'DOC14#6', 'Schváleno', 11, NULL, '2023-01-27 07:32:33', '2023-01-27 08:19:59'),
+(85, 14, 'Hlášení o nepodaných transfuzních přípravcích', NULL, 7, 'Hlášení o nepodaných transfuzních přípravcích', 'Hlášení o nepodaných transfuzních přípravcích', NULL, NULL, NULL, NULL, '1', NULL, NULL, NULL, 'dokumenty-sesterska-hlaseni_o_nepodanych_transfuznich_pripravcich-revize-1.pdf', 'DOC14#7', 'Schváleno', 11, NULL, '2023-01-27 07:33:50', '2023-01-27 08:20:18'),
+(86, 14, 'Protokol o likvidaci transfuzního přípravku', NULL, 8, 'Protokol o likvidaci transfuzního přípravku', 'Protokol o likvidaci transfuzního přípravku', NULL, NULL, NULL, NULL, '1', NULL, NULL, NULL, 'dokumenty-sesterska-protokol_o_likvidaci_transfuzniho_pripravku-revize-1.pdf', 'DOC14#8', 'Schváleno', 11, NULL, '2023-01-27 07:34:16', '2023-01-27 08:20:34'),
+(87, 14, 'Hlášení reakcí po transfuzích', NULL, 9, 'Hlášení reakcí po transfuzích', 'Hlášení reakcí po transfuzích', NULL, NULL, NULL, NULL, '1', NULL, NULL, NULL, 'dokumenty-sesterska-hlaseni_reakci_po_transfuzich-revize-1.pdf', 'DOC14#9', 'Schváleno', 11, NULL, '2023-01-27 07:34:46', '2023-01-27 08:21:26'),
+(88, 14, 'Proškolení obsluhy zdravotnického prostředku', NULL, 10, 'Proškolení obsluhy zdravotnického prostředku', 'Proškolení obsluhy zdravotnického prostředku', NULL, NULL, NULL, NULL, '1', NULL, NULL, NULL, 'dokumenty-sesterska-proskoleni_obsluhy_zdravotnickeho_prostredku-revize-1.pdf', 'DOC14#10', 'Schváleno', 11, NULL, '2023-01-27 07:35:05', '2023-01-27 08:21:42'),
+(89, 2, 'Standard ošetřovatelské péče', NULL, 1, 'Standard ošetřovatelské péče', 'Příjem nemocného na standardní oddělení', 'Sekaninová Anna', 'Rada kvality', 'Bc. Bělicová Taťána', '2022-03-01', '13', '2023-06-01', NULL, '2022-03-01', 'standardy_osetrovatelske-prijem_nemocneho_na_standardni_oddeleni-revize-13.pdf', 'STD2#1', 'Schváleno', 11, NULL, '2023-01-27 08:45:43', '2023-01-27 08:45:43'),
+(90, 2, 'Standard ošetřovatelské péče', NULL, 2, 'Standard ošetřovatelské péče', 'Propuštění nebo překlad nemocného', 'Sekaninová Anna', 'Rada kvality', 'Bc. Bělicová Taťána', '2002-09-01', '13', '2023-06-01', NULL, '2021-06-01', 'standardy_osetrovatelske-propusteni_nebo_preklad_nemocneho-revize-13.pdf', 'STD2#2', 'Schváleno', 11, NULL, '2023-01-27 08:51:19', '2023-01-27 08:51:19'),
+(91, 2, 'Hygienická péče o nemocné', NULL, 3, 'Hygienická péče o nemocné', 'Hygienická péče o nemocné', 'Rada kvality', 'Rada kvality', 'Bc. Bělicová Taťána', '2002-09-01', '9', '2022-06-01', NULL, '2021-06-01', 'standardy_osetrovatelske-hygienicka_pece_o_nemocne-revize-9.pdf', 'STD2#3', 'Schváleno', 11, NULL, '2023-01-27 08:56:21', '2023-01-27 09:37:38'),
+(92, 2, 'Standard ošetřovatelské péče', NULL, 4, 'Standard ošetřovatelské péče', 'Měření vitálních funkcí', 'Sekaninová Anna', 'Rada kvality', 'MUDr. Kalina František', '2002-09-01', '8', '2023-06-01', NULL, '2021-06-01', 'standardy_osetrovatelske-mereni_vitalnich_funkci-revize-8.pdf', 'STD2#4', 'Schváleno', 11, NULL, '2023-01-27 08:58:23', '2023-01-27 08:58:23'),
+(93, 2, 'Standard ošetřovatelské péče', NULL, 5, 'Standard ošetřovatelské péče', 'Bezpečný odběr biologického materiálu', 'Sekaninová Anna', 'Rada kvality', NULL, '2002-09-01', '9', '2023-06-01', NULL, '2021-06-01', 'standardy_osetrovatelske-bezpecny_odber_biologickeho_materialu-revize-9.pdf', 'STD2#5', 'Schváleno', 11, NULL, '2023-01-27 09:01:50', '2023-01-27 09:01:50'),
+(94, 2, 'Standard ošetřovatelské péče', NULL, 7, 'Standard ošetřovatelské péče', 'Příprava a podávání léků injekční formou aplikace infuzí', NULL, NULL, NULL, '2002-09-01', '9', '2023-06-01', NULL, '2021-06-01', '-osetrovatelske-priprava_a_podavani_leku_injekcni_formou_aplikace_infuzi-revize-9.pdf', 'STD2#6', 'Schváleno', 11, NULL, '2023-01-27 09:08:58', '2023-01-27 09:08:58');
 
 -- --------------------------------------------------------
 
@@ -736,29 +752,29 @@ INSERT INTO `documents` (`id`, `category_id`, `accordion_name`, `accordion_group
 --
 
 CREATE TABLE `employees` (
-  `id` bigint UNSIGNED NOT NULL,
-  `personal_number` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
-  `image` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
-  `title_preffix` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `last_name` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
-  `middle_name` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `married_name` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `first_name` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
-  `title_suffix` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `department_id` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
-  `job_id` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
-  `email` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `id` bigint(20) UNSIGNED NOT NULL,
+  `personal_number` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `image` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `title_preffix` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `last_name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `middle_name` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `married_name` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `first_name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `title_suffix` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `department_id` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `job_id` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `email` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `start_date` date NOT NULL,
   `end_date` date DEFAULT NULL,
-  `comment` text CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci,
-  `phone` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `mobile` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `id_card` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
-  `coffee` enum('A','N') CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT 'N',
-  `employment` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
-  `position` int DEFAULT NULL,
-  `standard_signature` int DEFAULT NULL,
-  `status` enum('Aktivní','Neaktivní','Mateřská') CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT 'Neaktivní',
+  `comment` text COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `phone` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `mobile` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `id_card` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `coffee` enum('A','N') COLLATE utf8mb4_unicode_ci DEFAULT 'N',
+  `employment` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `position` int(11) DEFAULT NULL,
+  `standard_signature` int(11) DEFAULT NULL,
+  `status` enum('Aktivní','Neaktivní','Mateřská') COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT 'Neaktivní',
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
@@ -1390,9 +1406,9 @@ INSERT INTO `employees` (`id`, `personal_number`, `image`, `title_preffix`, `las
 --
 
 CREATE TABLE `evidence` (
-  `id` bigint UNSIGNED NOT NULL,
-  `evidence_type` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
-  `evidence_pieces` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `id` bigint(20) UNSIGNED NOT NULL,
+  `evidence_type` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `evidence_pieces` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
@@ -1404,13 +1420,13 @@ CREATE TABLE `evidence` (
 --
 
 CREATE TABLE `failed_jobs` (
-  `id` bigint UNSIGNED NOT NULL,
-  `uuid` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
-  `connection` text CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
-  `queue` text CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
-  `payload` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
-  `exception` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
-  `failed_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP
+  `id` bigint(20) UNSIGNED NOT NULL,
+  `uuid` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `connection` text COLLATE utf8mb4_unicode_ci NOT NULL,
+  `queue` text COLLATE utf8mb4_unicode_ci NOT NULL,
+  `payload` longtext COLLATE utf8mb4_unicode_ci NOT NULL,
+  `exception` longtext COLLATE utf8mb4_unicode_ci NOT NULL,
+  `failed_at` timestamp NOT NULL DEFAULT current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 -- --------------------------------------------------------
@@ -1420,12 +1436,12 @@ CREATE TABLE `failed_jobs` (
 --
 
 CREATE TABLE `instructions` (
-  `id` bigint UNSIGNED NOT NULL,
-  `standard_id` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
-  `standard_category_id` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
-  `name` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
-  `revision` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
-  `status` enum('Rozpracováno','Schváleno') CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `id` bigint(20) UNSIGNED NOT NULL,
+  `standard_id` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `standard_category_id` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `revision` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `status` enum('Rozpracováno','Schváleno') COLLATE utf8mb4_unicode_ci NOT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
@@ -1437,8 +1453,8 @@ CREATE TABLE `instructions` (
 --
 
 CREATE TABLE `jobs` (
-  `id` bigint UNSIGNED NOT NULL,
-  `job_title` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL
+  `id` bigint(20) UNSIGNED NOT NULL,
+  `job_title` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
@@ -1526,9 +1542,9 @@ INSERT INTO `jobs` (`id`, `job_title`) VALUES
 --
 
 CREATE TABLE `migrations` (
-  `id` int UNSIGNED NOT NULL,
-  `migration` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
-  `batch` int NOT NULL
+  `id` int(10) UNSIGNED NOT NULL,
+  `migration` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `batch` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
@@ -1564,20 +1580,20 @@ INSERT INTO `migrations` (`id`, `migration`, `batch`) VALUES
 --
 
 CREATE TABLE `navitems` (
-  `id` bigint UNSIGNED NOT NULL,
-  `position` int NOT NULL,
-  `category_id` int NOT NULL,
-  `name` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
-  `subname` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
-  `alt_name` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
-  `tooltip` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
-  `color` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
-  `icon_class` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
-  `page_title` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
-  `route` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
-  `favicon` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
-  `fa_icon` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
-  `svg_icon` text CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL
+  `id` bigint(20) UNSIGNED NOT NULL,
+  `position` int(11) NOT NULL,
+  `category_id` int(11) NOT NULL,
+  `name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `subname` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `alt_name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `tooltip` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `color` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `icon_class` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `page_title` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `route` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `favicon` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `fa_icon` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `svg_icon` text COLLATE utf8mb4_unicode_ci NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
@@ -1594,8 +1610,8 @@ INSERT INTO `navitems` (`id`, `position`, `category_id`, `name`, `subname`, `alt
 --
 
 CREATE TABLE `password_resets` (
-  `email` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
-  `token` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `email` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `token` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `created_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
@@ -1606,12 +1622,12 @@ CREATE TABLE `password_resets` (
 --
 
 CREATE TABLE `personal_access_tokens` (
-  `id` bigint UNSIGNED NOT NULL,
-  `tokenable_type` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
-  `tokenable_id` bigint UNSIGNED NOT NULL,
-  `name` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
-  `token` varchar(64) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
-  `abilities` text CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci,
+  `id` bigint(20) UNSIGNED NOT NULL,
+  `tokenable_type` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `tokenable_id` bigint(20) UNSIGNED NOT NULL,
+  `name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `token` varchar(64) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `abilities` text COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `last_used_at` timestamp NULL DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
@@ -1624,11 +1640,11 @@ CREATE TABLE `personal_access_tokens` (
 --
 
 CREATE TABLE `printers` (
-  `id` bigint UNSIGNED NOT NULL,
-  `printer_vendor` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
-  `printer_type` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
-  `printer_number` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
-  `toner_id` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL
+  `id` bigint(20) UNSIGNED NOT NULL,
+  `printer_vendor` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `printer_type` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `printer_number` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `toner_id` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 -- --------------------------------------------------------
@@ -1638,12 +1654,12 @@ CREATE TABLE `printers` (
 --
 
 CREATE TABLE `slides` (
-  `id` bigint UNSIGNED NOT NULL,
-  `training_id` int NOT NULL,
-  `slide_title` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
-  `directory` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
-  `path` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
-  `position` int NOT NULL,
+  `id` bigint(20) UNSIGNED NOT NULL,
+  `training_id` int(11) NOT NULL,
+  `slide_title` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `directory` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `path` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `position` int(11) NOT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
@@ -1655,11 +1671,11 @@ CREATE TABLE `slides` (
 --
 
 CREATE TABLE `toners` (
-  `id` bigint UNSIGNED NOT NULL,
-  `toner_code` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
-  `toner_type` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
-  `toner_size` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
-  `toner_price` int NOT NULL
+  `id` bigint(20) UNSIGNED NOT NULL,
+  `toner_code` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `toner_type` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `toner_size` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `toner_price` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 -- --------------------------------------------------------
@@ -1669,9 +1685,9 @@ CREATE TABLE `toners` (
 --
 
 CREATE TABLE `trainings` (
-  `id` bigint UNSIGNED NOT NULL,
-  `title` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
-  `category` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `id` bigint(20) UNSIGNED NOT NULL,
+  `title` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `category` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
@@ -1683,15 +1699,15 @@ CREATE TABLE `trainings` (
 --
 
 CREATE TABLE `users` (
-  `id` bigint UNSIGNED NOT NULL,
-  `personal_number` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
-  `name` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
-  `email` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `id` bigint(20) UNSIGNED NOT NULL,
+  `personal_number` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `email` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `email_verified_at` timestamp NULL DEFAULT NULL,
-  `password` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
-  `two_factor_secret` text CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci,
-  `two_factor_recovery_codes` text CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci,
-  `remember_token` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `password` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `two_factor_secret` text COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `two_factor_recovery_codes` text COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `remember_token` varchar(100) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
@@ -1790,7 +1806,7 @@ ALTER TABLE `failed_jobs`
 -- AUTO_INCREMENT pro tabulku `documents`
 --
 ALTER TABLE `documents`
-  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=81;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=95;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
