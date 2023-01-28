@@ -1,14 +1,10 @@
 <?php
 
 use App\Http\Controllers\AdverseventController;
-use App\Http\Controllers\AttendanceController;
 use App\Http\Controllers\DocumentController;
 use App\Http\Controllers\EmployeeController;
-use App\Http\Controllers\EvidenceController;
 use App\Http\Controllers\FileController;
 use App\Http\Controllers\PageController;
-use App\Http\Controllers\SlideController;
-use App\Http\Controllers\TrainingController;
 use Illuminate\Support\Facades\Route;
 
 
@@ -78,22 +74,18 @@ Route::prefix('standardy')->name('standardy.')->group(function () {
     Route::get('standard-search', [DocumentController::class, 'documentSearch'])->name('standard.search');                  // Vyhledávání dokumentů
 });
 
+// Download Files
 Route::prefix('soubory')->name('soubory.')->group(function () {
     Route::get('standard/{id}', [FileController::class, 'standardDownload'])->name('download');
     Route::get('standard/addon/{id}', [FileController::class, 'standardAddonDownload'])->name('download.addon');            // Download standard
 });
 
-// Media
+// Media links
 Route::prefix('media')->name('media.')->group(function () {
     Route::get('radio', [PageController::class, 'radio'])->name('radio');                                                   // Radio route (media.radio)
     Route::get('videa', [PageController::class, 'video'])->name('videa');                                                   // Videa route (media.videa)
     Route::get('prekladatele', [PageController::class, 'prekladatele'])->name('prekladatele');                              // Videa route (media.prekladatele)
 });
-
-// Attendace
-Route::resource('slides', SlideController::class);
-Route::resource('train', TrainingController::class);
-Route::resource('attendances', AttendanceController::class);
 
 // Employees
 Route::resource('employees', EmployeeController::class)->except(['update', 'show', 'destroy']);
@@ -105,6 +97,7 @@ Route::resource('adversevents', AdverseventController::class)->except(['update',
 Route::resource('documents', DocumentController::class);
 Route::get('documents/addon/{id}', [DocumentController::class, 'addonShow'])->name('show.addon');
 
+// VCards
 Route::get('vcards', [EmployeeController::class, 'vcards'])->name('employees.vcards');
 Route::get('search', [EmployeeController::class, 'vcardSearch'])->name('employees.search');
 
@@ -125,11 +118,6 @@ Route::group(['middleware' => 'auth'], function () {
     // Document Events
     Route::post('documents/update', [DocumentController::class, 'update'])->name('documents.update');
     Route::get('documents/destroy/{id}', [DocumentController::class, 'destroy']);
-
-    // Evidence
-    Route::resource('evidences', EvidenceController::class);
-    Route::post('evidences/update', [EvidenceController::class, 'update'])->name('evidences.update');
-    Route::get('evidences/destroy/{id}', [EvidenceController::class, 'destroy']);
 
     Route::get('user/profile', [PageController::class, 'profile'])->name('user.profile');
 });

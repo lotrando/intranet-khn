@@ -29,85 +29,63 @@ class PageController extends Controller
         return view('prehledy', ['pretitle' => 'Oznámení', 'title' => 'Přehledy']);
     }
 
+    // Změny standardů
     public function zmenyStandardu()
     {
-
-        $suma = Document::count();
-
         $documents = Document::with('category', 'addons', 'user')->where('category_id', '<', '13')
             ->where('updated_at', '>=', Carbon::now()->subHours(24))
             ->orderByDesc('updated_at')
-            ->paginate(6);
-
-        // for ($i = 1; $i < $y; $i++) {
-        //     $documents[$i] = Document::with('category', 'addons', 'user')
-        //         // ->where('updated_at', '>=', Carbon::now()->subHours(6), 'and')
-        //         // ->where('updated_at', '<=', Carbon::now()->addHours(12))
-        //         ->where('category_id', $i)
-        //         ->orderBy('category_id')
-        //         ->orderBy('created_at')
-        //         ->latest();
-        // }
+            ->paginate(5);
 
         return view('zmeny-standardu', [
             'pretitle'  => 'Oznámení',
             'title'     => 'Změny standardů',
-            'suma'      => $suma,
             'documents' => $documents,
         ]);
     }
 
+    // Změny v dokumentaci
     public function zmenyDokumentu()
     {
-
-        $suma = Document::count();
-
         $documents = Document::with('category', 'addons', 'user')->where('category_id', '>', '12')
-            ->where('updated_at', '>=', Carbon::now()->subHours(48))
+            ->where('updated_at', '>=', Carbon::now()->subHours(24))
             ->orderBy('updated_at')
-            ->paginate(6);
+            ->paginate(5);
 
         return view('zmeny-dokumentace', [
             'pretitle'  => 'Oznámení',
             'title'     => 'Změny v dokumentaci',
-            'suma'      => $suma,
             'documents' => $documents,
         ]);
     }
 
     public function akord()
     {
-
         return view('akord', ['pretitle' => 'Oznámení', 'title' => 'Akord']);
     }
 
     public function servis()
     {
-
         return view('servis', ['pretitle' => 'Oznámení', 'title' => 'Odstávky a servis']);
     }
 
     public function seminare()
     {
-
         return view('seminare', ['pretitle' => 'Oznámení', 'title' => 'Seminaře']);
     }
 
     public function sluzby()
     {
-
         return view('sluzby', ['pretitle' => 'Oznámení', 'title' => 'Změny služeb']);
     }
 
     public function informace()
     {
-
         return view('informace', ['pretitle' => 'Oznámení', 'title' => 'Informace']);
     }
 
     public function kultura()
     {
-
         return view('kultura', ['pretitle' => 'Oznámení', 'title' => 'Kultura']);
     }
 
@@ -119,16 +97,24 @@ class PageController extends Controller
 
     public function kantyna()
     {
+        $now            = Carbon::now();
+        $weekStartDate  = $now->startOfWeek()->format('Y-m-d');
+        $weekEndDate    = $now->endOfWeek()->format('Y-m-d');
+        $from           = $now->startOfWeek()->format('d. m.');
+        $to             = $now->endOfWeek()->subDays(2)->format('d. m.');
 
-        $now = Carbon::now();
-        $weekStartDate = $now->startOfWeek()->format('Y-m-d');
-        $weekEndDate = $now->endOfWeek()->format('Y-m-d');
+        $daylist        = DB::table('calendar')
+            ->where('date', '>=', $weekStartDate)
+            ->where('date', '<=', $weekEndDate)
+            ->simplePaginate(7);
 
-        $od = $now->startOfWeek()->format('d. m.');
-        $do = $now->endOfWeek()->subDays(2)->format('d. m.');
-
-        $daylist = DB::table('calendar')->where('date', '>=', $weekStartDate)->where('date', '<=', $weekEndDate)->simplePaginate(7);
-        return view('kantyna', ['pretitle' => 'Stravování', 'title' => 'Nabídka kantýny', 'daylist' => $daylist, 'od' => $od, 'do' => $do]);
+        return view('kantyna', [
+            'pretitle'  => 'Stravování',
+            'title'     => 'Nabídka kantýny',
+            'daylist'   => $daylist,
+            'od'        => $from,
+            'do'        => $to
+        ]);
     }
 
     // Akreditacní stadnardy
@@ -139,12 +125,7 @@ class PageController extends Controller
         $allDocuments = Document::pluck('category_id');
         $allAddons = Addon::pluck('document_id');
         $categorie  = Category::where('id', $id)->first();
-        $doctors = Employee::where('title_preffix', 'LIKE', '%' . 'Dr.' . '%')
-            ->orWhere('job_id', 'LIKE', '%' . 47 . '%')
-            ->orWhere('job_id', 'LIKE', '%' . 47 . '%')
-            ->orWhere('job_id', 'LIKE', '%' . 17 . '%')
-            ->orderBy('last_name')
-            ->get();
+        $doctors = Employee::where('standard_signature', 1)->orderBy('last_name')->get();
         $last = Document::where('category_id', $id)->orderBy('id', 'desc')->take(1)->first();
 
         if ($last == null) {
@@ -154,15 +135,15 @@ class PageController extends Controller
             $last = $position;
         }
 
-        $documents1 = Document::where('status', 'Schváleno')->with('category', 'addons')->where('category_id', $id)->where('accordion_group', 1)->orderBy('position')->get();
-        $documents2 = Document::where('status', 'Schváleno')->with('category', 'addons')->where('category_id', $id)->where('accordion_group', 2)->orderBy('position')->get();
-        $documents3 = Document::where('status', 'Schváleno')->with('category', 'addons')->where('category_id', $id)->where('accordion_group', 3)->orderBy('position')->get();
-        $documents4 = Document::where('status', 'Schváleno')->with('category', 'addons')->where('category_id', $id)->where('accordion_group', 4)->orderBy('position')->get();
-        $documents5 = Document::where('status', 'Schváleno')->with('category', 'addons')->where('category_id', $id)->where('accordion_group', 5)->orderBy('position')->get();
-        $documents6 = Document::where('status', 'Schváleno')->with('category', 'addons')->where('category_id', $id)->where('accordion_group', 6)->orderBy('position')->get();
-        $documents7 = Document::where('status', 'Schváleno')->with('category', 'addons')->where('category_id', $id)->where('accordion_group', 7)->orderBy('position')->get();
-        $documents8 = Document::where('status', 'Schváleno')->with('category', 'addons')->where('category_id', $id)->where('accordion_group', 8)->orderBy('position')->get();
-        $documents9 = Document::where('status', 'Schváleno')->with('category', 'addons')->where('category_id', $id)->where('accordion_group', 9)->orderBy('position')->get();
+        $documents1  = Document::where('status', 'Schváleno')->with('category', 'addons')->where('category_id', $id)->where('accordion_group', 1)->orderBy('position')->get();
+        $documents2  = Document::where('status', 'Schváleno')->with('category', 'addons')->where('category_id', $id)->where('accordion_group', 2)->orderBy('position')->get();
+        $documents3  = Document::where('status', 'Schváleno')->with('category', 'addons')->where('category_id', $id)->where('accordion_group', 3)->orderBy('position')->get();
+        $documents4  = Document::where('status', 'Schváleno')->with('category', 'addons')->where('category_id', $id)->where('accordion_group', 4)->orderBy('position')->get();
+        $documents5  = Document::where('status', 'Schváleno')->with('category', 'addons')->where('category_id', $id)->where('accordion_group', 5)->orderBy('position')->get();
+        $documents6  = Document::where('status', 'Schváleno')->with('category', 'addons')->where('category_id', $id)->where('accordion_group', 6)->orderBy('position')->get();
+        $documents7  = Document::where('status', 'Schváleno')->with('category', 'addons')->where('category_id', $id)->where('accordion_group', 7)->orderBy('position')->get();
+        $documents8  = Document::where('status', 'Schváleno')->with('category', 'addons')->where('category_id', $id)->where('accordion_group', 8)->orderBy('position')->get();
+        $documents9  = Document::where('status', 'Schváleno')->with('category', 'addons')->where('category_id', $id)->where('accordion_group', 9)->orderBy('position')->get();
         $documents10 = Document::where('status', 'Schváleno')->with('category', 'addons')->where('category_id', $id)->where('accordion_group', 10)->orderBy('position')->get();
         $documents11 = Document::where('status', 'Schváleno')->with('category', 'addons')->where('category_id', $id)->where('accordion_group', 11)->orderBy('position')->get();
         $documents12 = Document::where('status', 'Schváleno')->with('category', 'addons')->where('category_id', $id)->where('accordion_group', 12)->orderBy('position')->get();
@@ -195,7 +176,6 @@ class PageController extends Controller
     // Dokument
     public function document($id)
     {
-
         $allDocuments = Document::where('category_id', '>', 12)->pluck('category_id');
         $allAddons = Addon::pluck('document_id');
         $standards = Document::where('onscreen', $id)->where('category_id', '<', 12)->orderBy('category_id')->get();
@@ -235,7 +215,6 @@ class PageController extends Controller
     // Standardy
     public function standard($id)
     {
-
         $allDocuments = Document::where('category_id', '<', 12)->pluck('category_id');
         $allAddons = Addon::pluck('document_id');
         $categorie  = Category::where('id', $id)->first();
@@ -268,25 +247,25 @@ class PageController extends Controller
         ]);
     }
 
-
-    // Media
+    // Radio
     public function radio()
     {
         return redirect()->away('http://192.168.81.121:8000/radio.m3u');
     }
 
+    // Video
     public function video()
     {
-
         return view('videa', ['pretitle' => 'Média', 'title' => 'Videa']);
     }
 
+    // Překladatelé
     public function prekladatele()
     {
-
         return view('prekladatele', ['pretitle' => 'Média', 'title' => 'Překladatelé']);
     }
 
+    // Profil
     public function profile()
     {
         return view('profile.profile', ['pretitle' => 'Profil', 'title' => 'Uživatele']);
