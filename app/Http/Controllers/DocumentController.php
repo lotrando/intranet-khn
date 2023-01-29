@@ -346,7 +346,7 @@ class DocumentController extends Controller
                                 <div class="row align-items-center mx-2 g-3">
 
                                     <div class="avatar bg-' . $document->category->color . '-lt col-auto">
-                                    <a href="/' . $document->category->category_type . '/' . $document->category->folder_name . '/' . $document->category->id . '">
+                                    <a href="/' . $document->category->category_file . '/' . $document->category->folder_name . '/' . $document->category->id . '">
                                     <div class="text-uppercase">
                                         ' . $document->category->svg_icon . '
                                     </div>

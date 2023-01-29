@@ -156,10 +156,10 @@
                     </div>
                   </div>
                   @if (date('N', strtotime($day->date)) >= 6)
-                  <div class="col-6 d-flex align-items-center justify-content-center">
+                  <div class="col-7 d-flex align-items-center justify-content-center">
                     <div class="d-flex-col">
                       <div class="text-truncate text-pink">
-                        ZAVŘENO
+                        Žádná nabíka teplých jídel
                       </div>
                     </div>
                   </div>
@@ -240,7 +240,7 @@
                   @if (date('N', strtotime($day->date)) >= 6)
                   <div class="col-4 d-flex align-items-center justify-content-end">
                     <div class="text-truncate text-pink">
-                      ZAVŘENO
+                      14:30 - 17:30
                     </div>
                   </div>
                   @else

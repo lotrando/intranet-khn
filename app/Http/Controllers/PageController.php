@@ -183,6 +183,7 @@ class PageController extends Controller
         $categorie  = Category::where('id', $id)->first();
         $doctors = Employee::where('standard_signature', 1)->orderBy('last_name')->get();
         $last = Document::where('category_id', $id)->orderBy('id', 'desc')->take(1)->first();
+        $warehouse = Addon::where('document_id', 0)->where('onscreen', $id)->orderBy('addon_number')->get();
 
         if ($last == null) {
             $last = 0;
@@ -208,7 +209,8 @@ class PageController extends Controller
             'allAddons'         => $allAddons,
             'doctors'           => $doctors,
             'standards'         => $standards,
-            'addons'            => $addons
+            'addons'            => $addons,
+            'warehouse'         => $warehouse
         ]);
     }
 

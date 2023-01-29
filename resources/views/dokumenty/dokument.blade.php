@@ -5,8 +5,19 @@
 @endsection
 
 @section('searchbar')
-<div class="col-12 me-2">
-  <input class="form-control d-lg-block d-xl-inline" id="search" type="text" placeholder="{{ __('Hledat dokument ...') }}">
+<div class="my-2 my-md-0 flex-grow-1 flex-md-grow-0 order-first order-md-last">
+  <form autocomplete="off">
+    <div class="input-icon">
+      <span class="input-icon-addon">
+        <svg class="icon text-azure" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+          <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+          <path d="M10 10m-7 0a7 7 0 1 0 14 0a7 7 0 1 0 -14 0"></path>
+          <path d="M21 21l-6 -6"></path>
+        </svg>
+      </span>
+      <input type="text" id="search" class="form-control" size="25" placeholder="{{ __('Hledat standard nebo dokument...') }}">
+    </div>
+  </form>
 </div>
 @endsection
 
@@ -55,7 +66,7 @@
           </div>
           {{-- Page Title --}}
           <h2 class="page-title text-primary">
-            {{ __($categorie->category_name) ?? '' }}
+            {{ __(ucfirst($categorie->category_name)) ?? '' }}
           </h2>
         </div>
 
@@ -65,13 +76,13 @@
             <div class="d-flex justify-content-end">
               @auth
               <button class="btn btn-lime d-inline-block me-2" id="openCreateModal" data-bs-toggle="tooltip" data-bs-placement="left"
-                      data-bs-original-title="{{ __('Vytvoří nový ' . $categorie->button . ' standard') }}">
-                <svg class="icon icon-inline" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor"
-                     fill="none" stroke-linecap="round" stroke-linejoin="round">
+                      data-bs-original-title="{{ __('Vytvoří nový ' . $categorie->button . ' ' .$categorie->category_type. '') }}">
+                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-inline" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
                   <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
-                  <path d="M19 4v16h-12a2 2 0 0 1 -2 -2v-12a2 2 0 0 1 2 -2h12z"></path>
-                  <path d="M19 16h-12a2 2 0 0 0 -2 2"></path>
-                  <path d="M9 8h6"></path>
+                  <path d="M9 5h-2a2 2 0 0 0 -2 2v12a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2v-12a2 2 0 0 0 -2 -2h-2"></path>
+                  <rect x="9" y="3" width="6" height="4" rx="2"></rect>
+                  <path d="M10 14h4"></path>
+                  <path d="M12 12v4"></path>
                 </svg>
                 <span class="d-xs-none d-sm-inline d-md-inline d-lg-inline">{{ __('Nový') }}</span>
               </button>
@@ -170,7 +181,7 @@
                         <a href="{{ route('soubory.download.addon', $add->id) }}">
                           <span class="avatar bg-{{ $document->category->color }}-lt" data-bs-toggle="tooltip" data-bs-placement="top"
                                 data-bs-original-title="Stáhnout přílohu">
-                            <img src="{{ asset('img/files/pdf-add.png') }}" alt="PDF - Příloha standardu" height="32px">
+                            <img src="{{ asset('img/files/pdf-add.png') }}" alt="PDF - Příloha dokumentu" height="32px">
                           </span>
                         </a>
                       </div>
@@ -452,306 +463,48 @@
           @endforeach
 
           {{-- accordion no db --}}
+          @foreach ($warehouse as $item)
           <div class="accordion-item">
-            <div id="test">
-              <div class="accordion-body p-1">
-                <div class="list-group list-group-flush list-group-hoverable pt-1">
-                  <div class="list-group-item border-0 p-0">
-                    <div class="row align-items-center g-3 mx-2">
-                      <div class="avatar bg-muted-lt col-auto">
-                        <div class="text-uppercase">
-                          <svg class="icon text-muted" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
-                            <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
-                            <path d="M12 3l8 4.5v9l-8 4.5l-8 -4.5v-9l8 -4.5"></path>
-                            <path d="M12 12l8 -4.5"></path>
-                            <path d="M8.2 9.8l7.6 -4.6"></path>
-                            <path d="M12 12v9"></path>
-                            <path d="M12 12l-8 -4.5"></path>
-                          </svg>
-                        </div>
+            <div class="accordion-body p-1">
+              <div class="list-group list-group-flush list-group-hoverable pt-1">
+                <div class="list-group-item border-0 p-0">
+                  <div class="row align-items-center g-3 mx-2">
+                    <div class="avatar bg-muted-lt col-auto">
+                      <div class="text-uppercase">
+                        <svg class="icon text-muted" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                          <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+                          <path d="M12 3l8 4.5v9l-8 4.5l-8 -4.5v-9l8 -4.5"></path>
+                          <path d="M12 12l8 -4.5"></path>
+                          <path d="M8.2 9.8l7.6 -4.6"></path>
+                          <path d="M12 12v9"></path>
+                          <path d="M12 12l-8 -4.5"></path>
+                        </svg>
                       </div>
-                      <div class="col-auto">
-                        <span class="avatar bg-muted-lt" data-bs-toggle="tooltip" data-bs-placement="top"
-                              data-bs-original-title="Skladová položka">
-                          <img src="{{ asset('img/files/sklad.png') }}" alt="Skladová položka" height="32px">
-                        </span>
-                      </div>
-                      <div class="col text-truncate">
-                        <span>
-                          <p class="show d-inline text-primary text-decoration-none" style="margin-bottom: 0;">
-                            1. Název</p>
-                        </span>
-                        <div class="d-block description text-muted text-truncate">Tento dokument je předtišten a je k dispozici u paní Čiernikové Marcely email: ciernikova@khn.cz mob: 602459731 klapka: 114</div>
-                      </div>
+                    </div>
+                    <div class="col-auto">
+                      <span class="avatar bg-muted-lt" data-bs-toggle="tooltip" data-bs-placement="top"
+                            data-bs-original-title="Skladová položka">
+                        <img src="{{ asset('img/files/sklad.png') }}" alt="Skladová položka" height="32px">
+                      </span>
+                    </div>
+                    <div class="col text-truncate">
+                      <span>
+                        <p class="show d-inline text-primary text-decoration-none" style="margin-bottom: 0;">
+                          {{ $item->description }}</p>
+                      </span>
+                      <div class="d-block description text-muted text-truncate">Tento dokument je předtišten a je k dispozici u paní Čiernikové Marcely email: <a href="mailto:ciernikova@khn.cz">ciernikova@khn.cz</a> mob: <span class="text-azure fw-bold">602459731</span> klapka: <span class="text-azure fw-bold">114</span></div>
                     </div>
                   </div>
-                  <div class="list-group-item py-1 px-2">
-                    <div class="row d-flex justify-content-between">
-                    </div>
+                </div>
+                <div class="list-group-item py-1 px-2">
+                  <div class="row d-flex justify-content-between">
                   </div>
                 </div>
               </div>
             </div>
           </div>
           {{-- accordion no db end --}}
-          {{-- accordion no db --}}
-          <div class="accordion-item">
-            <div id="test">
-              <div class="accordion-body p-1">
-                <div class="list-group list-group-flush list-group-hoverable pt-1">
-                  <div class="list-group-item border-0 p-0">
-                    <div class="row align-items-center g-3 mx-2">
-                      <div class="avatar bg-muted-lt col-auto">
-                        <div class="text-uppercase">
-                          <svg class="icon text-muted" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
-                            <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
-                            <path d="M12 3l8 4.5v9l-8 4.5l-8 -4.5v-9l8 -4.5"></path>
-                            <path d="M12 12l8 -4.5"></path>
-                            <path d="M8.2 9.8l7.6 -4.6"></path>
-                            <path d="M12 12v9"></path>
-                            <path d="M12 12l-8 -4.5"></path>
-                          </svg>
-                        </div>
-                      </div>
-                      <div class="col-auto">
-                        <span class="avatar bg-muted-lt" data-bs-toggle="tooltip" data-bs-placement="top"
-                              data-bs-original-title="Skladová položka">
-                          <img src="{{ asset('img/files/sklad.png') }}" alt="Skladová položka" height="32px">
-                        </span>
-                      </div>
-                      <div class="col text-truncate">
-                        <span>
-                          <p class="show d-inline text-primary text-decoration-none" style="margin-bottom: 0;">
-                            1. Název</p>
-                        </span>
-                        <div class="d-block description text-muted text-truncate">Tento dokument je předtišten a je k dispozici u paní Čiernikové Marcely email: ciernikova@khn.cz mob: 602459731 klapka: 114</div>
-                      </div>
-                    </div>
-                  </div>
-                  <div class="list-group-item py-1 px-2">
-                    <div class="row d-flex justify-content-between">
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-          {{-- accordion no db end --}}
-          {{-- accordion no db --}}
-          <div class="accordion-item">
-            <div id="test">
-              <div class="accordion-body p-1">
-                <div class="list-group list-group-flush list-group-hoverable pt-1">
-                  <div class="list-group-item border-0 p-0">
-                    <div class="row align-items-center g-3 mx-2">
-                      <div class="avatar bg-muted-lt col-auto">
-                        <div class="text-uppercase">
-                          <svg class="icon text-muted" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
-                            <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
-                            <path d="M12 3l8 4.5v9l-8 4.5l-8 -4.5v-9l8 -4.5"></path>
-                            <path d="M12 12l8 -4.5"></path>
-                            <path d="M8.2 9.8l7.6 -4.6"></path>
-                            <path d="M12 12v9"></path>
-                            <path d="M12 12l-8 -4.5"></path>
-                          </svg>
-                        </div>
-                      </div>
-                      <div class="col-auto">
-                        <span class="avatar bg-muted-lt" data-bs-toggle="tooltip" data-bs-placement="top"
-                              data-bs-original-title="Skladová položka">
-                          <img src="{{ asset('img/files/sklad.png') }}" alt="Skladová položka" height="32px">
-                        </span>
-                      </div>
-                      <div class="col text-truncate">
-                        <span>
-                          <p class="show d-inline text-primary text-decoration-none" style="margin-bottom: 0;">
-                            1. Název</p>
-                        </span>
-                        <div class="d-block description text-muted text-truncate">Tento dokument je předtišten a je k dispozici u paní Čiernikové Marcely email: ciernikova@khn.cz mob: 602459731 klapka: 114</div>
-                      </div>
-                    </div>
-                  </div>
-                  <div class="list-group-item py-1 px-2">
-                    <div class="row d-flex justify-content-between">
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-          {{-- accordion no db end --}}
-          {{-- accordion no db --}}
-          <div class="accordion-item">
-            <div id="test">
-              <div class="accordion-body p-1">
-                <div class="list-group list-group-flush list-group-hoverable pt-1">
-                  <div class="list-group-item border-0 p-0">
-                    <div class="row align-items-center g-3 mx-2">
-                      <div class="avatar bg-muted-lt col-auto">
-                        <div class="text-uppercase">
-                          <svg class="icon text-muted" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
-                            <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
-                            <path d="M12 3l8 4.5v9l-8 4.5l-8 -4.5v-9l8 -4.5"></path>
-                            <path d="M12 12l8 -4.5"></path>
-                            <path d="M8.2 9.8l7.6 -4.6"></path>
-                            <path d="M12 12v9"></path>
-                            <path d="M12 12l-8 -4.5"></path>
-                          </svg>
-                        </div>
-                      </div>
-                      <div class="col-auto">
-                        <span class="avatar bg-muted-lt" data-bs-toggle="tooltip" data-bs-placement="top"
-                              data-bs-original-title="Skladová položka">
-                          <img src="{{ asset('img/files/sklad.png') }}" alt="Skladová položka" height="32px">
-                        </span>
-                      </div>
-                      <div class="col text-truncate">
-                        <span>
-                          <p class="show d-inline text-primary text-decoration-none" style="margin-bottom: 0;">
-                            1. Název</p>
-                        </span>
-                        <div class="d-block description text-muted text-truncate">Tento dokument je předtišten a je k dispozici u paní Čiernikové Marcely email: ciernikova@khn.cz mob: 602459731 klapka: 114</div>
-                      </div>
-                    </div>
-                  </div>
-                  <div class="list-group-item py-1 px-2">
-                    <div class="row d-flex justify-content-between">
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-          {{-- accordion no db end --}}
-          {{-- accordion no db --}}
-          <div class="accordion-item">
-            <div id="test">
-              <div class="accordion-body p-1">
-                <div class="list-group list-group-flush list-group-hoverable pt-1">
-                  <div class="list-group-item border-0 p-0">
-                    <div class="row align-items-center g-3 mx-2">
-                      <div class="avatar bg-muted-lt col-auto">
-                        <div class="text-uppercase">
-                          <svg class="icon text-muted" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
-                            <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
-                            <path d="M12 3l8 4.5v9l-8 4.5l-8 -4.5v-9l8 -4.5"></path>
-                            <path d="M12 12l8 -4.5"></path>
-                            <path d="M8.2 9.8l7.6 -4.6"></path>
-                            <path d="M12 12v9"></path>
-                            <path d="M12 12l-8 -4.5"></path>
-                          </svg>
-                        </div>
-                      </div>
-                      <div class="col-auto">
-                        <span class="avatar bg-muted-lt" data-bs-toggle="tooltip" data-bs-placement="top"
-                              data-bs-original-title="Skladová položka">
-                          <img src="{{ asset('img/files/sklad.png') }}" alt="Skladová položka" height="32px">
-                        </span>
-                      </div>
-                      <div class="col text-truncate">
-                        <span>
-                          <p class="show d-inline text-primary text-decoration-none" style="margin-bottom: 0;">
-                            1. Název</p>
-                        </span>
-                        <div class="d-block description text-muted text-truncate">Tento dokument je předtišten a je k dispozici u paní Čiernikové Marcely email: ciernikova@khn.cz mob: 602459731 klapka: 114</div>
-                      </div>
-                    </div>
-                  </div>
-                  <div class="list-group-item py-1 px-2">
-                    <div class="row d-flex justify-content-between">
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-          {{-- accordion no db end --}}
-          {{-- accordion no db --}}
-          <div class="accordion-item">
-            <div id="test">
-              <div class="accordion-body p-1">
-                <div class="list-group list-group-flush list-group-hoverable pt-1">
-                  <div class="list-group-item border-0 p-0">
-                    <div class="row align-items-center g-3 mx-2">
-                      <div class="avatar bg-muted-lt col-auto">
-                        <div class="text-uppercase">
-                          <svg class="icon text-muted" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
-                            <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
-                            <path d="M12 3l8 4.5v9l-8 4.5l-8 -4.5v-9l8 -4.5"></path>
-                            <path d="M12 12l8 -4.5"></path>
-                            <path d="M8.2 9.8l7.6 -4.6"></path>
-                            <path d="M12 12v9"></path>
-                            <path d="M12 12l-8 -4.5"></path>
-                          </svg>
-                        </div>
-                      </div>
-                      <div class="col-auto">
-                        <span class="avatar bg-muted-lt" data-bs-toggle="tooltip" data-bs-placement="top"
-                              data-bs-original-title="Skladová položka">
-                          <img src="{{ asset('img/files/sklad.png') }}" alt="Skladová položka" height="32px">
-                        </span>
-                      </div>
-                      <div class="col text-truncate">
-                        <span>
-                          <p class="show d-inline text-primary text-decoration-none" style="margin-bottom: 0;">
-                            1. Název</p>
-                        </span>
-                        <div class="d-block description text-muted text-truncate">Tento dokument je předtišten a je k dispozici u paní Čiernikové Marcely email: ciernikova@khn.cz mob: 602459731 klapka: 114</div>
-                      </div>
-                    </div>
-                  </div>
-                  <div class="list-group-item py-1 px-2">
-                    <div class="row d-flex justify-content-between">
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-          {{-- accordion no db end --}}
-          {{-- accordion no db --}}
-          <div class="accordion-item">
-            <div id="test">
-              <div class="accordion-body p-1">
-                <div class="list-group list-group-flush list-group-hoverable pt-1">
-                  <div class="list-group-item border-0 p-0">
-                    <div class="row align-items-center g-3 mx-2">
-                      <div class="avatar bg-muted-lt col-auto">
-                        <div class="text-uppercase">
-                          <svg class="icon text-muted" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
-                            <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
-                            <path d="M12 3l8 4.5v9l-8 4.5l-8 -4.5v-9l8 -4.5"></path>
-                            <path d="M12 12l8 -4.5"></path>
-                            <path d="M8.2 9.8l7.6 -4.6"></path>
-                            <path d="M12 12v9"></path>
-                            <path d="M12 12l-8 -4.5"></path>
-                          </svg>
-                        </div>
-                      </div>
-                      <div class="col-auto">
-                        <span class="avatar bg-muted-lt" data-bs-toggle="tooltip" data-bs-placement="top"
-                              data-bs-original-title="Skladová položka">
-                          <img src="{{ asset('img/files/sklad.png') }}" alt="Skladová položka" height="32px">
-                        </span>
-                      </div>
-                      <div class="col text-truncate">
-                        <span>
-                          <p class="show d-inline text-primary text-decoration-none" style="margin-bottom: 0;">
-                            1. Název</p>
-                        </span>
-                        <div class="d-block description text-muted text-truncate">Tento dokument je předtišten a je k dispozici u paní Čiernikové Marcely email: ciernikova@khn.cz mob: 602459731 klapka: 114</div>
-                      </div>
-                    </div>
-                  </div>
-                  <div class="list-group-item py-1 px-2">
-                    <div class="row d-flex justify-content-between">
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-          {{-- accordion no db end --}}
+          @endforeach
         </div>
       </div>
       <!-- Page End -->
@@ -785,7 +538,7 @@
               </div>
               <div class="col-10 col-lg-5 mb-2">
                 <label class="form-label">{{ __('Name') }} <small class="text-azure">usnadní vyhledávání</small></label>
-                <input class="form-control" id="name" name="name" type="text" placeholder="{{ __('Kategorický název standardu') }}">
+                <input class="form-control" id="name" name="name" type="text" placeholder="{{ __('Kategorický název dokumentu') }}">
               </div>
               <div class="col-4 col-lg-2 mb-2">
                 <label class="form-label">{{ __('Revision') }}</label>
@@ -801,7 +554,7 @@
               </div>
               <div class="col-9 col-lg-10 mb-2">
                 <label class="form-label">{{ __('Popis dokumentu') }} <small class="text-azure">usnadní vyhledávání</small></label>
-                <input class="form-control" id="description" name="description" type="text" placeholder="{{ __('Konkrétní popis standardu') }}">
+                <input class="form-control" id="description" name="description" type="text" placeholder="{{ __('Konkrétní popis dokumentu') }}">
               </div>
               <div class="col-3 col-lg-2 mb-2">
                 <label class="form-label">{{ __('Unikátní kód') }}</label>
@@ -861,7 +614,7 @@
             <div class="row">
               <div class="col-12 col-lg-8 mb-2">
                 <label class="form-label">{{ __('Soubor') }}</label>
-                <input class="form-control" id="file" name="file" type="file" placeholder="{{ __('Soubor standardu ve formátu PDF') }}">
+                <input class="form-control" id="file" name="file" type="file" placeholder="{{ __('Soubor dokumentu ve formátu PDF') }}">
               </div>
               <div class="col-6 col-lg-2 mb-2">
                 <label class="form-label">{{ __('Status') }}</label>
@@ -962,7 +715,7 @@
                   <input class="form-control" id="show-next_revision_date" type="date" readonly>
                 </div>
                 <div class="col-4 mb-3">
-                  <label class="form-label">{{ __('Platnost standardu od') }}</label>
+                  <label class="form-label">{{ __('Platnost dokumentu od') }}</label>
                   <input class="form-control" id="show-efficiency" type="date" readonly>
                 </div>
               </div>
@@ -984,7 +737,7 @@
 
               <div class="row">
                 <div class="col-12 mb-3">
-                  <label class="form-label">{{ __('Oblast působnosti standardu') }}</label>
+                  <label class="form-label">{{ __('Oblast působnosti dokumentu') }}</label>
                   <input class="form-control" id="show-tags" type="text" readonly>
                 </div>
               </div>
@@ -1026,7 +779,7 @@
                 <path d="M15 19l3 3l3 -3"></path>
                 <path d="M18 22v-9"></path>
               </svg>
-              {{ __('Download standard') }}</a>
+              {{ __('Download file') }}</a>
           </div>
           <button class="btn btn-muted hover-shadow" data-bs-dismiss="modal" type="button">
             <svg class="icon icon-inline" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor"
@@ -1197,7 +950,7 @@
               $('#formModal').modal('show');
               $('#modal-icon').html('{!! $categorie->svg_icon !!}').addClass('bg-{{ $categorie->color }}-lt');
               $('#modal-header').addClass("modal-header bg-{{ $categorie->color }}-lt");
-              $('.modal-title').text("{{ __('Edit') }} dokument");
+              $('#action_button, .modal-title').text("{{ __('Edit') }} dokument")
               $('#action').val("Edit");
               $('#category_id').val(html.data.category_id);
               $('#folder_name').val(html.data.category.folder_name);
@@ -1312,7 +1065,7 @@
           $('#status').val('Schváleno')
           $('#user_id').val('{{ auth()->user()->id ?? null }}')
           $('#user_name').val('{{ auth()->user()->name ?? 'Guest' }}')
-          $('#unique_code').val('STD{{ $categorie->id }}#{{ $lastpos + 1 }}')
+          $('#unique_code').val('DOC{{ $categorie->id }}#{{ $lastpos + 1 }}')
           $('#revision').val('{{ $lastpos - $lastpos + 1 }}')
           $('#processed, #authorize, #examine').val('')
           $('#revision_date').change(function() {
