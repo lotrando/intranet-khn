@@ -669,7 +669,7 @@
                 <path d="M15 19l3 3l3 -3"></path>
                 <path d="M18 22v-9"></path>
               </svg>
-              {{ __('Download standard') }}</a>
+              {{ __('Download file') }}</a>
           </div>
           <button class="btn btn-muted hover-shadow" data-bs-dismiss="modal" type="button">
             <svg class="icon icon-inline" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor"
