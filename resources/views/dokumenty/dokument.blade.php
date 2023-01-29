@@ -635,6 +635,7 @@
           <input id="hidden_id" name="hidden_id" type="hidden" />
           <input id="hidden_file" name="hidden_file" type="hidden" />
           <input id="folder_name" name="folder_name" type="hidden" />
+          <input id="category_file" name="category_file" type="hidden" />
           <input id="user_id" name="user_id" type="hidden" />
 
           <div class="modal-footer">
@@ -676,18 +677,18 @@
         </div>
         <div class="modal-body">
           <div class="row">
-            <div class="col-5">
+            <div class="col-7">
 
               <div class="row">
                 <div class="col-2 mb-3 mt-3">
                   <label class="form-label">{{ __('Position') }}</label>
                   <input class="form-control" id="show-position" type="text" readonly>
                 </div>
-                <div class="col-8 mb-3 mt-3">
+                <div class="col-7 mb-3 mt-3">
                   <label class="form-label">{{ __('Name') }} dokumentu</label>
                   <input class="form-control" id="show-name" type="text" readonly>
                 </div>
-                <div class="col-2 mb-3 mt-3">
+                <div class="col-3 mb-3 mt-3">
                   <label class="form-label">{{ __('Revision') }}</label>
                   <input class="form-control" id="show-revision" type="text" readonly>
                 </div>
@@ -753,7 +754,7 @@
               </div>
             </div>
 
-            <div class="col-7 p-1">
+            <div class="col-5 p-1">
               <div id="pdf-preview-show"></div>
               <input id="category_id" name="category_id" type="hidden">
               <input id="action" name="action" type="hidden" />
@@ -949,6 +950,7 @@
               $('#action').val("Edit");
               $('#category_id').val(html.data.category_id);
               $('#folder_name').val(html.data.category.folder_name);
+              $('#category_file').val(html.data.category.category_file);
               $('#name').val(html.data.name);
               $('#processed').val(html.data.processed);
               $('#authorize').val(html.data.authorize);
