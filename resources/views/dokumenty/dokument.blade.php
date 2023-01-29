@@ -105,7 +105,7 @@
                   <div class="list-group-item border-0 p-0">
                     <div class="row align-items-center g-3 mx-2">
                       <div class="avatar bg-{{ $document->category->color }}-lt col-auto" data-bs-toggle="tooltip" data-bs-placement="top"
-                           data-bs-original-title="ID #{{ $document->id }}">
+                           data-bs-original-title="{{ $document->category->category_name }} dokumentace">
                         <div class="text-uppercase">
                           {!! $document->category->svg_icon !!}
                         </div>
@@ -469,7 +469,8 @@
               <div class="list-group list-group-flush list-group-hoverable pt-1">
                 <div class="list-group-item border-0 p-0">
                   <div class="row align-items-center g-3 mx-2">
-                    <div class="avatar bg-muted-lt col-auto">
+                    <div class="avatar bg-muted-lt col-auto" data-bs-toggle="tooltip" data-bs-placement="top"
+                         data-bs-original-title="Skladová položka">
                       <div class="text-uppercase">
                         <svg class="icon text-muted" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
                           <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
@@ -482,8 +483,7 @@
                       </div>
                     </div>
                     <div class="col-auto">
-                      <span class="avatar bg-muted-lt" data-bs-toggle="tooltip" data-bs-placement="top"
-                            data-bs-original-title="Skladová položka">
+                      <span class="avatar bg-muted-lt">
                         <img src="{{ asset('img/files/sklad.png') }}" alt="Skladová položka" height="32px">
                       </span>
                     </div>

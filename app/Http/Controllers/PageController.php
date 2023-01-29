@@ -49,7 +49,7 @@ class PageController extends Controller
     {
         $documents = Document::with('category', 'addons', 'user')->where('category_id', '>', '12')
             ->where('updated_at', '>=', Carbon::now()->subHours(24))
-            ->orderBy('updated_at')
+            ->orderByDesc('updated_at')
             ->paginate(5);
 
         return view('zmeny-dokumentace', [
