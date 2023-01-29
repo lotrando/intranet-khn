@@ -10,7 +10,7 @@
 
   <!-- Page header -->
   <div class="page-header d-print-none">
-    <div class="container-fluid">
+    <div class="container">
       <div class="row align-items-center">
         <!-- Page pre-title -->
         <div class="col">

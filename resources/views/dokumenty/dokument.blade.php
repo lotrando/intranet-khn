@@ -105,10 +105,12 @@
                   <div class="list-group-item border-0 p-0">
                     <div class="row align-items-center g-3 mx-2">
                       <div class="avatar bg-{{ $document->category->color }}-lt col-auto" data-bs-toggle="tooltip" data-bs-placement="top"
-                           data-bs-original-title="{{ $document->category->category_name }} dokumentace">
-                        <div class="text-uppercase">
-                          {!! $document->category->svg_icon !!}
-                        </div>
+                           data-bs-original-title="{{ ($document->category->category_name) }} dokumentace">
+                        <a href="/dokumenty/{{ $document->category->folder_name}}/{{ $document->category->id }}">
+                          <div class="text-uppercase">
+                            {!! $document->category->svg_icon !!}
+                          </div>
+                        </a>
                       </div>
                       <div class="col-auto">
                         <a href="{{ route('soubory.download', $document->id) }}" target="_blank">
@@ -305,7 +307,7 @@
                   <div class="list-group-item border-0 p-0">
                     <div class="row align-items-center g-3 mx-2">
                       <div class="avatar bg-{{ $standard->category->color }}-lt col-auto" data-bs-toggle="tooltip" data-bs-placement="top"
-                           data-bs-original-title="Standardy {{ $standard->category->folder_name}}">
+                           data-bs-original-title="{{ ($standard->category->category_name) }} standardy">
                         <a href="/standardy/{{ $standard->category->folder_name}}/{{ $standard->category->id }}">
                           <div class="text-uppercase">
                             {!! $standard->category->svg_icon !!}
@@ -645,13 +647,6 @@
               </svg>
               {{ __('Close') }}
             </button>
-            <button class="btn btn-primary ms-auto hover-shadow" id="addon-btn" type="button">
-              <svg class="icon icon-inline" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor"
-                   fill="none" stroke-linecap="round" stroke-linejoin="round">
-                <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
-                <path d="M15 7l-6.5 6.5a1.5 1.5 0 0 0 3 3l6.5 -6.5a3 3 0 0 0 -6 -6l-6.5 6.5a4.5 4.5 0 0 0 9 9l6.5 -6.5"></path>
-              </svg>
-              {{ __('Attachments') }}</button>
             <div class="align-content-end flex">
               <button class="btn btn-primary ms-auto hover-shadow" id="action_button" name="action_button" type="submit">
                 <svg class="icon icon-tabler icon-tabler-book-upload" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" stroke-width="2"

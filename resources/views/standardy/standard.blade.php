@@ -104,10 +104,12 @@
                   <div class="list-group-item border-0 p-0">
                     <div class="row align-items-center g-3 mx-2">
                       <div class="avatar bg-{{ $document->category->color }}-lt col-auto" data-bs-toggle="tooltip" data-bs-placement="top"
-                           data-bs-original-title="ID #{{ $document->id }}">
-                        <div class="text-uppercase">
-                          {!! $document->category->svg_icon !!}
-                        </div>
+                           data-bs-original-title="{{ $document->category->category_name}} standardy">
+                        <a href="/standardy/{{ $document->category->folder_name}}/{{ $document->category->id }}">
+                          <div class="text-uppercase">
+                            {!! $document->category->svg_icon !!}
+                          </div>
+                        </a>
                       </div>
                       <div class="col-auto">
                         <a href="{{ route('soubory.download', $document->id) }}" target="_blank">
@@ -228,6 +230,8 @@
                         @endif
                         @if (Carbon\Carbon::parse($document->updated_at)->addDays(7) >= Carbon\Carbon::now())
                         <span class="badge badge-sm bg-lime-lt text-uppercase ms-auto">Aktualizováno !</span>
+                        @else
+                        <span class="text-muted description">Změněno</span>
                         @endif
                         <span class="text-muted description">{{ Carbon\Carbon::parse($document->updated_at)->diffForHumans() }}</span>
                         <svg class="icon text-yellow" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" stroke-width="1"

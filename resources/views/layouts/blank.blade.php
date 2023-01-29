@@ -45,7 +45,6 @@
 
     </section>
 
-
     @yield('modals')
 
     @include('layouts.partials.footer')
