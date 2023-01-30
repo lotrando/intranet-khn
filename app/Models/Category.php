@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Models\Addon;
 use App\Models\Document;
 use App\Models\Navitem;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
@@ -11,9 +12,7 @@ class Category extends Model
 {
     use HasFactory;
 
-    protected $fillable = [
-        'category_name',
-    ];
+    protected $guarded = ['id'];
 
     public $timestamps = false;
 
@@ -25,5 +24,10 @@ class Category extends Model
     public function navitems()
     {
         return $this->hasMany(Navitem::class);
+    }
+
+    public function addon()
+    {
+        return $this->hasMany(Addon::class);
     }
 }

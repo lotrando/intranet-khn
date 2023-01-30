@@ -167,61 +167,6 @@
                       </div>
                       @endauth
                     </div>
-                    @foreach ($document->addons as $add)
-                    <div class="row align-items-center g-3 mx-2">
-                      <div class="avatar bg-{{ $document->category->color }}-lt col-auto">
-                        <div class="text-uppercase" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-original-title="ID #{{ $document->id }}#{{ $add->id }}">
-                          <svg class="icon icon-tabler icon-tabler-plus text-{{ $document->category->color }}" width="24" height="24" viewBox="0 0 24 24"
-                               stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
-                            <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
-                            <line x1="12" y1="5" x2="12" y2="19"></line>
-                            <line x1="5" y1="12" x2="19" y2="12"></line>
-                          </svg>
-                        </div>
-                      </div>
-                      <div class="col-auto">
-                        <a href="{{ route('soubory.download.addon', $add->id) }}">
-                          <span class="avatar bg-{{ $document->category->color }}-lt" data-bs-toggle="tooltip" data-bs-placement="top"
-                                data-bs-original-title="Stáhnout přílohu">
-                            <img src="{{ asset('img/files/pdf-add.png') }}" alt="PDF - Příloha dokumentu" height="32px">
-                          </span>
-                        </a>
-                      </div>
-                      <div class="col text-truncate" id="{{ $add->id }}">
-                        <span>
-                          <p class="show-addon d-inline text-azure text-decoration-none cursor-pointer" id="{{ $add->id }}" data-bs-toggle="tooltip"
-                             data-bs-placement="top" data-bs-original-title="Více informací o příloze {{ $add->description }}" style="margin-bottom: 0;">
-                            {{ $document->position }}. {{ $document->name }} - příloha č.{{ $add->addon_number }}</p>
-                        </span>
-                        <div class="d-block description text-muted text-truncate">{{ $add->description }}</div>
-                      </div>
-                      {{-- <div class="col-auto">
-                        @if (Carbon\Carbon::parse($add->created_at)->addDay() >= Carbon\Carbon::today())
-                        <span class="badge badge-sm bg-red-lt text-uppercase ms-auto">Nový !</span>
-                        @endif
-                        @if (Carbon\Carbon::parse($add->updated_at)->addDays(15) >= Carbon\Carbon::now())
-                        <span class="badge badge-sm bg-lime-lt text-uppercase ms-auto">Aktualizováno !</span>
-                        @endif
-                        <span class="text-muted description">{{ Carbon\Carbon::parse($add->updated_at)->diffForHumans() }}</span>
-                        <svg class="icon icon-tabler icon-tabler-certificate-2 text-yellow" xmlns="http://www.w3.org/2000/svg" width="24" height="24"
-                             viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
-                          <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
-                          <circle cx="12" cy="15" r="3"></circle>
-                          <path d="M10 7h4"></path>
-                          <path d="M10 18v4l2 -1l2 1v-4"></path>
-                          <path d="M10 19h-2a2 2 0 0 1 -2 -2v-12a2 2 0 0 1 2 -2h8a2 2 0 0 1 2 2v12a2 2 0 0 1 -2 2h-2"></path>
-                        </svg>
-                        <span class="text-muted description">Revize: {{ $add->revision }}</span>
-                        @auth
-                        @if ($add->status == 'Rozpracováno')
-                        <span class="badge badge-sm bg-yellow-lt text-uppercase ms-auto">Rozpracováno</span>
-                        @else
-                        <span class="badge badge-sm bg-green-lt text-uppercase ms-auto">Schváleno</span>
-                        @endif
-                        @endauth
-                      </div> --}}
-                    </div>
-                    @endforeach
                   </div>
                   <div class="list-group-item py-1 px-2">
                     <div class="row d-flex justify-content-between">
@@ -333,61 +278,6 @@
                         <div class="d-block description text-muted text-truncate">{{ $standard->description }}</div>
                       </div>
                     </div>
-                    @foreach ($standard->addons as $add)
-                    <div class="row align-items-center g-3 mx-2">
-                      <div class="avatar bg-{{ $standard->category->color }}-lt col-auto">
-                        <div class="text-uppercase" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-original-title="ID #{{ $standard->id }}#{{ $add->id }}">
-                          <svg class="icon icon-tabler icon-tabler-plus text-{{ $standard->category->color }}" width="24" height="24" viewBox="0 0 24 24"
-                               stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
-                            <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
-                            <line x1="12" y1="5" x2="12" y2="19"></line>
-                            <line x1="5" y1="12" x2="19" y2="12"></line>
-                          </svg>
-                        </div>
-                      </div>
-                      <div class="col-auto">
-                        <a href="{{ route('soubory.download.addon', $add->id) }}">
-                          <span class="avatar bg-{{ $standard->category->color }}-lt" data-bs-toggle="tooltip" data-bs-placement="top"
-                                data-bs-original-title="Stáhnout přílohu">
-                            <img src="{{ asset('img/files/pdf-add.png') }}" alt="PDF - Příloha standardu" height="32px">
-                          </span>
-                        </a>
-                      </div>
-                      <div class="col text-truncate" id="{{ $add->id }}">
-                        <span>
-                          <p class="show-addon d-inline text-azure text-decoration-none cursor-pointer" id="{{ $add->id }}" data-bs-toggle="tooltip"
-                             data-bs-placement="top" data-bs-original-title="Více informací o příloze {{ $add->description }}" style="margin-bottom: 0;">
-                            {{ $standard->position }}. {{ $standard->name }} - příloha č.{{ $add->addon_number }}</p>
-                        </span>
-                        <div class="d-block description text-muted text-truncate">{{ $add->description }}</div>
-                      </div>
-                      <div class="col-auto">
-                        @if (Carbon\Carbon::parse($add->created_at)->addDay() >= Carbon\Carbon::today())
-                        <span class="badge badge-sm bg-red-lt text-uppercase ms-auto">Nový !</span>
-                        @endif
-                        @if (Carbon\Carbon::parse($add->updated_at)->addDays(15) >= Carbon\Carbon::now())
-                        <span class="badge badge-sm bg-lime-lt text-uppercase ms-auto">Aktualizováno !</span>
-                        @endif
-                        <span class="text-muted description">{{ Carbon\Carbon::parse($add->updated_at)->diffForHumans() }}</span>
-                        <svg class="icon icon-tabler icon-tabler-certificate-2 text-yellow" xmlns="http://www.w3.org/2000/svg" width="24" height="24"
-                             viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
-                          <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
-                          <circle cx="12" cy="15" r="3"></circle>
-                          <path d="M10 7h4"></path>
-                          <path d="M10 18v4l2 -1l2 1v-4"></path>
-                          <path d="M10 19h-2a2 2 0 0 1 -2 -2v-12a2 2 0 0 1 2 -2h8a2 2 0 0 1 2 2v12a2 2 0 0 1 -2 2h-2"></path>
-                        </svg>
-                        <span class="text-muted description">Revize: {{ $add->revision }}</span>
-                        @auth
-                        @if ($add->status == 'Rozpracováno')
-                        <span class="badge badge-sm bg-yellow-lt text-uppercase ms-auto">Rozpracováno</span>
-                        @else
-                        <span class="badge badge-sm bg-green-lt text-uppercase ms-auto">Schváleno</span>
-                        @endif
-                        @endauth
-                      </div>
-                    </div>
-                    @endforeach
                   </div>
                   <div class="list-group-item py-1 px-2">
                     <div class="row d-flex justify-content-between">
@@ -464,7 +354,7 @@
           </div>
           @endforeach
 
-          {{-- accordion no db --}}
+          {{-- Printed document --}}
           @foreach ($warehouse as $item)
           <div class="accordion-item">
             <div class="accordion-body p-1">
@@ -474,7 +364,7 @@
                     <div class="avatar bg-muted-lt col-auto" data-bs-toggle="tooltip" data-bs-placement="top"
                          data-bs-original-title="Skladová položka">
                       <div class="text-uppercase">
-                        <svg class="icon text-muted" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                        <svg class="icon text-muted mt-1 " width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
                           <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
                           <path d="M12 3l8 4.5v9l-8 4.5l-8 -4.5v-9l8 -4.5"></path>
                           <path d="M12 12l8 -4.5"></path>
@@ -482,6 +372,9 @@
                           <path d="M12 12v9"></path>
                           <path d="M12 12l-8 -4.5"></path>
                         </svg>
+                        <div class="description text-muted mb-0">
+                          {{ $item->revision }}
+                        </div>
                       </div>
                     </div>
                     <div class="col-auto">
@@ -495,6 +388,7 @@
                           {{ $item->description }}</p>
                       </span>
                       <div class="d-block description text-muted text-truncate">Tento dokument je předtišten a je k dispozici u paní Čiernikové Marcely email: <a href="mailto:ciernikova@khn.cz">ciernikova@khn.cz</a> mob: <span class="text-azure fw-bold">602459731</span> klapka: <span class="text-azure fw-bold">114</span></div>
+                      <div class="d-block description text-blue text-truncate">Mediprint KHN-{{ $item->revision }}</span></div>
                     </div>
                   </div>
                 </div>

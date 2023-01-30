@@ -289,7 +289,7 @@ class DocumentController extends Controller
         // $emailData = Document::with('category')->where('updated_at', '>=', '2023-01-18 13:35:09')->get();
         $stanicniSestry = Employee::where('job_id', '47')->pluck('email');
 
-        //Mail::to($stanicniSestry)->send(new StandardUpdatedMail($emailData));
+        Mail::to($stanicniSestry)->send(new StandardUpdatedMail($emailData));
 
         return response()->json(['success' => 'Standard aktualizován']);
     }
