@@ -20310,14 +20310,14 @@
                     </div>
                   </div>
                   <div class="col-auto">
-                    <a href="{{ route('standardy.download', $item->id) }}" target="_blank">
+                    <a href="{{ route('soubory.download', $item->id) }}" target="_blank">
                       <span class="avatar" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-original-title="Stáhnout standard">
                         <img src="{{ asset('img/files/pdf.png') }}" alt="PDF soubor">
                       </span>
                     </a>
                   </div>
                   <div class="col text-truncate">
-                    <a class="text-primary d-block text-decoration-none" href="{{ route('standardy.download', $item->id) }}" target="_blank">
+                    <a class="text-primary d-block text-decoration-none" href="{{ route('soubory.download', $item->id) }}" target="_blank">
                       <h3 style="margin-bottom: 0;">{{ $item->name }}</h3>
                     </a>
                     <div class="d-block description text-muted text-truncate">{{ $item->description }}</div>

@@ -445,10 +445,10 @@
     $(function() {
       $('#pad_panel').hide();
       $('#spec_druh').change(function() {
-        if ($(this).val() == "Pád") {
-          $('#pad_panel').slideToggle("slow");
-        } else {
-          $('#pad_panel').slideToggle("slow");
+        if ($(this).val() === "Pád") {
+          $('#pad_panel').show();
+        } if ($(this).val() !== "Pád") {
+          $('#pad_panel').hide();
         }
       });
     });

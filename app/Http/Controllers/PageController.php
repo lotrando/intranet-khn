@@ -52,6 +52,10 @@ class PageController extends Controller
             ->orderByDesc('updated_at')
             ->paginate(5);
 
+        if (empty($documents)) {
+            $documents = 'Nic';
+        }
+
         return view('zmeny-dokumentace', [
             'pretitle'  => 'Oznámení',
             'title'     => 'Změny v dokumentaci',
