@@ -42,7 +42,7 @@
 </div>
 
 <!-- Page -->
-<div class="row mt-2">
+<div class="row mt-2 container-fluid">
   <div class="col-12">
     {{-- documents --}}
     @foreach ($documents as $document)
