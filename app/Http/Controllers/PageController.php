@@ -37,10 +37,18 @@ class PageController extends Controller
             ->orderByDesc('updated_at')
             ->paginate(5);
 
-        return view('zmeny-standardu', [
+        if ($documents->isNotEmpty()) {
+
+            return view('zmeny-standardu', [
+                'pretitle'  => 'Oznámení',
+                'title'     => 'Změny standardů',
+                'documents' => $documents
+            ]);
+        }
+
+        return view('empty-standardy', [
             'pretitle'  => 'Oznámení',
-            'title'     => 'Změny standardů',
-            'documents' => $documents,
+            'title'     => 'Změny standardů'
         ]);
     }
 
@@ -52,14 +60,18 @@ class PageController extends Controller
             ->orderByDesc('updated_at')
             ->paginate(5);
 
-        if (empty($documents)) {
-            $documents = 'Nic';
+        if ($documents->isNotEmpty()) {
+
+            return view('zmeny-dokumentace', [
+                'pretitle'  => 'Oznámení',
+                'title'     => 'Změny v dokumentaci',
+                'documents' => $documents
+            ]);
         }
 
-        return view('zmeny-dokumentace', [
+        return view('empty-dokumentace', [
             'pretitle'  => 'Oznámení',
-            'title'     => 'Změny v dokumentaci',
-            'documents' => $documents,
+            'title'     => 'Změny v dokumentaci'
         ]);
     }
 
@@ -125,8 +137,7 @@ class PageController extends Controller
     public function akreditacni($id)
     {
         $accordion_groups = Document::where('status', 'Schváleno')->where('category_id', $id)->pluck('accordion_group');
-
-        $allDocuments = Document::pluck('category_id');
+        $allDocuments = Document::where('category_id', '>', 12)->pluck('category_id');
         $allAddons = Addon::pluck('document_id');
         $categorie  = Category::where('id', $id)->first();
         $doctors = Employee::where('standard_signature', 1)->orderBy('last_name')->get();
@@ -181,7 +192,6 @@ class PageController extends Controller
     public function document($id)
     {
         $allDocuments = Document::where('category_id', '>', 12)->pluck('category_id');
-        $allAddons = Addon::pluck('document_id');
         $standards = Document::where('onscreen', $id)->where('category_id', '<', 12)->orderBy('category_id')->get();
         $categorie  = Category::where('id', $id)->first();
         $doctors = Employee::where('standard_signature', 1)->orderBy('last_name')->get();
@@ -209,7 +219,6 @@ class PageController extends Controller
             'lastpos'           => $last,
             'documents'         => $documents,
             'allDocuments'      => $allDocuments,
-            'allAddons'         => $allAddons,
             'doctors'           => $doctors,
             'standards'         => $standards,
             'warehouse'         => $warehouse
@@ -220,7 +229,6 @@ class PageController extends Controller
     public function standard($id)
     {
         $allDocuments = Document::where('category_id', '<', 12)->pluck('category_id');
-        $allAddons = Addon::pluck('document_id');
         $categorie  = Category::where('id', $id)->first();
         $doctors = Employee::where('standard_signature', 1)->orderBy('last_name')->get();
         $last = Document::where('category_id', $id)->orderBy('id', 'desc')->take(1)->first();
@@ -246,7 +254,6 @@ class PageController extends Controller
             'lastpos'           => $last,
             'documents'         => $documents,
             'allDocuments'      => $allDocuments,
-            'allAddons'         => $allAddons,
             'doctors'           => $doctors
         ]);
     }

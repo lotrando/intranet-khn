@@ -41,9 +41,9 @@ class FileController extends Controller
             return view('errors.404');
         }
 
-        if (file_exists(public_path() . '/soubory/' . $addon[0])) {
+        if (file_exists(public_path() . '/standardy/' . $addon[0])) {
 
-            return Response::download('soubory/' . $addon[0]);
+            return Response::download('standardy/' . $addon[0]);
             redirect()->back();
         } else {
 
@@ -81,7 +81,7 @@ class FileController extends Controller
             return view('errors.404');
         }
 
-        if (file_exists(public_path() . '/dokumenty/' . $addon[0])) {
+        if (file_exists(public_path() . '/dokumenty/' . $file[0] . $addon[0])) {
 
             return Response::download('dokumenty/' . $addon[0]);
             redirect()->back();
