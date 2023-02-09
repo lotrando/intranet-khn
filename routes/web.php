@@ -20,21 +20,21 @@ Route::get('home', function () {
 
 // Oznámení
 Route::prefix('oznameni')->name('oznameni.')->group(function () {
-    Route::get('prehledy', [PageController::class, 'prehledy'])->name('prehledy');                                          // Přehledy route
-    Route::get('zmeny-standardu', [PageController::class, 'zmenyStandardu'])->name('zmeny-standardu');                      // Změny standardů route
-    Route::get('zmeny-v-dokumentaci', [PageController::class, 'zmenyDokumentu'])->name('zmeny-v-dokumentaci');              // Změny dokumentů route
-    Route::get('akord', [PageController::class, 'akord'])->name('akord');                                                   // Akord route
-    Route::get('servis', [PageController::class, 'servis'])->name('servis');                                                // Servis route
-    Route::get('seminare', [PageController::class, 'seminare'])->name('seminare');                                          // Semináře route
-    Route::get('sluzby', [PageController::class, 'sluzby'])->name('sluzby');                                                // Služby route
-    Route::get('informace', [PageController::class, 'informace'])->name('informace');                                       // Informace route
-    Route::get('kultura', [PageController::class, 'kultura'])->name('kultura');                                             // Kultura route
+    Route::get('prehledy', [PageController::class, 'prehledy'])->name('prehledy');                                          // Přehledy
+    Route::get('zmeny-standardu', [PageController::class, 'zmenyStandardu'])->name('zmeny-standardu');                      // Změny standardů
+    Route::get('zmeny-v-dokumentaci', [PageController::class, 'zmenyDokumentu'])->name('zmeny-v-dokumentaci');              // Změny dokumentů
+    Route::get('akord', [PageController::class, 'akord'])->name('akord');                                                   // Akord
+    Route::get('servis', [PageController::class, 'servis'])->name('servis');                                                // Servis
+    Route::get('seminare', [PageController::class, 'seminare'])->name('seminare');                                          // Semináře
+    Route::get('sluzby', [PageController::class, 'sluzby'])->name('sluzby');                                                // Služby
+    Route::get('informace', [PageController::class, 'informace'])->name('informace');                                       // Informace
+    Route::get('kultura', [PageController::class, 'kultura'])->name('kultura');                                             // Kultura
 });
 
 // Stravování
 Route::prefix('stravovani')->name('stravovani.')->group(function () {
-    Route::get('obedy', [PageController::class, 'obedy'])->name('obedy');                                                   // Akreditační standardy route
-    Route::get('kantyna', [PageController::class, 'kantyna'])->name('kantyna');                                             // Akreditační standardy route
+    Route::get('obedy', [PageController::class, 'obedy'])->name('obedy');                                                   // Obědy
+    Route::get('kantyna', [PageController::class, 'kantyna'])->name('kantyna');                                             // Kantýna
 });
 
 // Dokumenty
