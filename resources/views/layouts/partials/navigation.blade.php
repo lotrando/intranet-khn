@@ -1,20 +1,22 @@
 <div class="navbar-expand-md sticky-top shadow-sm">
-  <div class="collapse navbar-collapse" id="navbar-menu">
+  <div class="navbar-collapse collapse" id="navbar-menu">
     <div class="navbar navbar-light">
       <div class="container-fluid">
         <ul class="navbar-nav">
           @foreach ($navitems as $navitem)
-          <li class="nav-item {{ request()->segment(1) == $navitem->route ? 'active' : '' }}" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-original-title="{{ __($navitem->tooltip) }}">
-            <a class="nav-link" href="{{ route($navitem->route) }}">
-              <span class="nav-link-icon icon d-inline {{ $navitem->icon_class }}">
-                {!! $navitem->svg_icon !!}
-              </span>
-              {{ $navitem->name }}
-            </a>
-          </li>
+            <li class="nav-item {{ request()->segment(1) == $navitem->route ? 'active' : '' }}" data-bs-toggle="tooltip" data-bs-placement="top"
+                data-bs-original-title="{{ __($navitem->tooltip) }}">
+              <a class="nav-link" href="{{ route($navitem->route) }}">
+                <span class="nav-link-icon icon d-inline {{ $navitem->icon_class }}">
+                  {!! $navitem->svg_icon !!}
+                </span>
+                {{ $navitem->name }}
+              </a>
+            </li>
           @endforeach
           {{-- Oznámení Dropdown --}}
-          <li class="nav-item dropdown {{ request()->segment(1) == 'oznameni' ? 'active' : '' }}" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-original-title="Co se děje na intranetu KHN">
+          <li class="nav-item dropdown {{ request()->segment(1) == 'oznameni' ? 'active' : '' }}" data-bs-toggle="tooltip" data-bs-placement="top"
+              data-bs-original-title="Co se děje na intranetu KHN">
             <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" data-bs-auto-close="outside" href="#" role="button" aria-expanded="false">
               <span class="nav-link-icon d-md-none d-lg-inline-block">
                 <svg class="icon icon-tabler text-red" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor"
@@ -50,7 +52,8 @@
               </a>
               <a class="dropdown-item {{ request()->segment(2) == 'zmeny-standardu' ? 'active' : '' }}" href="{{ route('oznameni.zmeny-standardu') }}">
                 <span class="nav-link-icon d-md-none d-lg-inline-block">
-                  <svg xmlns="http://www.w3.org/2000/svg" class="icon text-purple" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                  <svg class="icon text-purple" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor"
+                       fill="none" stroke-linecap="round" stroke-linejoin="round">
                     <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
                     <path d="M14 20h-8a2 2 0 0 1 -2 -2v-12a2 2 0 0 1 2 -2h12v5"></path>
                     <path d="M11 16h-5a2 2 0 0 0 -2 2"></path>
@@ -64,7 +67,8 @@
               </a>
               <a class="dropdown-item {{ request()->segment(2) == 'zmeny-v-dokumentaci' ? 'active' : '' }}" href="{{ route('oznameni.zmeny-v-dokumentaci') }}">
                 <span class="nav-link-icon d-md-none d-lg-inline-block">
-                  <svg xmlns="http://www.w3.org/2000/svg" class="icon text-pink" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                  <svg class="icon text-pink" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor"
+                       fill="none" stroke-linecap="round" stroke-linejoin="round">
                     <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
                     <path d="M9 5h-2a2 2 0 0 0 -2 2v12a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2v-12a2 2 0 0 0 -2 -2h-2"></path>
                     <rect x="9" y="3" width="6" height="4" rx="2"></rect>
@@ -77,8 +81,8 @@
               </a>
               <a class="dropdown-item {{ request()->segment(2) == 'servis' ? 'active' : '' }}" href="{{ route('oznameni.servis') }}">
                 <span class="nav-link-icon d-md-none d-lg-inline-block">
-                  <svg class="icon text-cyan" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
-                       stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                  <svg class="icon text-cyan" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor"
+                       fill="none" stroke-linecap="round" stroke-linejoin="round">
                     <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
                     <path d="M7 10h3v-3l-3.5 -3.5a6 6 0 0 1 8 8l6 6a2 2 0 0 1 -3 3l-6 -6a6 6 0 0 1 -8 -8l3.5 3.5">
                     </path>
@@ -173,7 +177,8 @@
             </div>
           </li>
           {{-- Stravování --}}
-          <li class="nav-item dropdown {{ request()->segment(1) == 'stravovani' ? 'active' : '' }}" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-original-title="Nabídky stravovacího provozu">
+          <li class="nav-item dropdown {{ request()->segment(1) == 'stravovani' ? 'active' : '' }}" data-bs-toggle="tooltip" data-bs-placement="top"
+              data-bs-original-title="Nabídky stravovacího provozu">
             <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" data-bs-auto-close="outside" href="#" role="button" aria-expanded="false">
               <span class="nav-link-icon d-md-none d-lg-inline-block">
                 <svg class="icon icon-tabler icon-tabler-tools-kitchen-2 text-cyan" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
@@ -227,7 +232,7 @@
             </div>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="https://email.khn.cz" target="_blank" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-original-title="Email KHN">
+            <a class="nav-link" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-original-title="Email KHN" href="https://email.khn.cz" target="_blank">
               <span class="nav-link-icon d-md-none d-lg-inline-block">
                 <svg class="icon icon-tabler icon-tabler-mail text-yellow" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
                      stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
@@ -241,10 +246,12 @@
               </span>
             </a>
           </li>
-          <li class="nav-item dropdown {{ request()->segment(1) == 'dokumenty' ? 'active' : '' }}" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-original-title="Ddokumentace nemocnice">
+          <li class="nav-item dropdown {{ request()->segment(1) == 'dokumenty' ? 'active' : '' }}" data-bs-toggle="tooltip" data-bs-placement="top"
+              data-bs-original-title="Ddokumentace nemocnice">
             <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" data-bs-auto-close="outside" href="#" role="button" aria-expanded="false">
               <span class="nav-link-icon d-md-none d-lg-inline-block">
-                <svg xmlns="http://www.w3.org/2000/svg" class="icon text-pink" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                <svg class="icon text-pink" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor"
+                     fill="none" stroke-linecap="round" stroke-linejoin="round">
                   <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
                   <path d="M9 5h-2a2 2 0 0 0 -2 2v12a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2v-12a2 2 0 0 0 -2 -2h-2"></path>
                   <rect x="9" y="3" width="6" height="4" rx="2"></rect>
@@ -258,22 +265,25 @@
             </a>
             <div class="dropdown-menu">
               @foreach ($docs as $document)
-              <a class="dropdown-item {{ request()->segment(2) == $document->folder_name ? 'active' : '' }}" href="{{ route('dokumenty.'. $document->folder_name.'', $document->id) }}">
-                <span class="nav-link-icon d-md-none d-lg-inline-block">
-                  {!! $document->svg_icon !!}
-                </span>
-                <span class="nav-link-title">
-                  {{ $document->category_name }}
-                </span>
-                <span class="badge badge-sm bg-{{ $document->color }}-lt text-uppercase ms-auto">{{ $document->documents->count() }}</span>
-              </a>
+                <a class="dropdown-item {{ request()->segment(2) == $document->folder_name ? 'active' : '' }}"
+                   href="{{ route('dokumenty.' . $document->folder_name . '', $document->id) }}">
+                  <span class="nav-link-icon d-md-none d-lg-inline-block">
+                    {!! $document->svg_icon !!}
+                  </span>
+                  <span class="nav-link-title">
+                    {{ $document->category_name }}
+                  </span>
+                  <span class="badge badge-sm bg-{{ $document->color }}-lt text-uppercase ms-auto">{{ $document->documents->count() }}</span>
+                </a>
               @endforeach
             </div>
           </li>
-          <li class="nav-item dropdown {{ request()->segment(1) == 'standardy' ? 'active' : '' }}" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-original-title="Standardy nemocnice">
+          <li class="nav-item dropdown {{ request()->segment(1) == 'standardy' ? 'active' : '' }}" data-bs-toggle="tooltip" data-bs-placement="top"
+              data-bs-original-title="Standardy nemocnice">
             <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" data-bs-auto-close="outside" href="#" role="button" aria-expanded="false">
               <span class="nav-link-icon d-md-none d-lg-inline-block">
-                <svg xmlns="http://www.w3.org/2000/svg" class="icon text-purple" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                <svg class="icon text-purple" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor"
+                     fill="none" stroke-linecap="round" stroke-linejoin="round">
                   <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
                   <path d="M19 4v16h-12a2 2 0 0 1 -2 -2v-12a2 2 0 0 1 2 -2h12z"></path>
                   <path d="M19 16h-12a2 2 0 0 0 -2 2"></path>
@@ -286,19 +296,21 @@
             </a>
             <div class="dropdown-menu">
               @foreach ($stands as $category)
-              <a class="dropdown-item {{ request()->segment(2) == $category->folder_name ? 'active' : '' }}" href="{{ route('standardy.'. $category->folder_name.'', $category->id) }}">
-                <span class="nav-link-icon d-md-none d-lg-inline-block">
-                  {!! $category->svg_icon !!}
-                </span>
-                <span class="nav-link-title">
-                  {{ $category->category_name }}
-                </span>
-                <span class="badge badge-sm bg-{{ $category->color }}-lt text-uppercase ms-auto">{{ $category->documents->count() }}</span>
-              </a>
+                <a class="dropdown-item {{ request()->segment(2) == $category->folder_name ? 'active' : '' }}"
+                   href="{{ route('standardy.' . $category->folder_name . '', $category->id) }}">
+                  <span class="nav-link-icon d-md-none d-lg-inline-block">
+                    {!! $category->svg_icon !!}
+                  </span>
+                  <span class="nav-link-title">
+                    {{ $category->category_name }}
+                  </span>
+                  <span class="badge badge-sm bg-{{ $category->color }}-lt text-uppercase ms-auto">{{ $category->documents->count() }}</span>
+                </a>
               @endforeach
             </div>
           </li>
-          <li class="nav-item dropdown {{ request()->segment(1) == 'media' ? 'active' : '' }}" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-original-title="Radio, Video, Překladatelé...">
+          <li class="nav-item dropdown {{ request()->segment(1) == 'media' ? 'active' : '' }}" data-bs-toggle="tooltip" data-bs-placement="top"
+              data-bs-original-title="Radio, Video, Překladatelé...">
             <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" data-bs-auto-close="outside" href="#" role="button" aria-expanded="false">
               <span class="nav-link-icon d-md-none d-lg-inline-block">
                 <svg class="icon icon-tabler icon-tabler-device-tv-old text-lime" xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 24 24"
@@ -362,7 +374,8 @@
                 </a>
                 <a class="dropdown-item {{ request()->segment(2) == 'prekladatele' ? 'active' : '' }}" href="{{ route('media.prekladatele') }}">
                   <span class="nav-link-icon d-md-none d-lg-inline-block">
-                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-language nav-link-icon text-yellow" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                    <svg class="icon icon-tabler icon-tabler-language nav-link-icon text-yellow" xmlns="http://www.w3.org/2000/svg" width="24" height="24"
+                         viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
                       <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
                       <path d="M4 5h7"></path>
                       <path d="M9 3v2c0 4.418 -2.239 8 -5 8"></path>
@@ -376,10 +389,10 @@
                   </span>
                 </a>
                 <div class="dropend">
-                  <a class="dropdown-item dropdown-toggle show" data-bs-toggle="dropdown" data-bs-auto-close="outside" href="#" role="button"
-                     aria-expanded="true">
+                  <a class="dropdown-item dropdown-toggle show" data-bs-toggle="dropdown" data-bs-auto-close="outside" href="#" role="button" aria-expanded="true">
                     <span class="nav-link-icon d-md-none d-lg-inline-block">
-                      <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-headset text-green" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                      <svg class="icon icon-tabler icon-tabler-headset text-green" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                           stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
                         <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
                         <rect x="4" y="13" rx="2" width="4" height="6"></rect>
                         <rect x="16" y="13" rx="2" width="4" height="6"></rect>
@@ -392,7 +405,7 @@
                     </span>
                   </a>
                   <div class="dropdown-menu show" data-bs-popper="static">
-                    <a class="dropdown-item {{ request()->segment(2) == 'lekis' ? 'active' : '' }}" href="{{ route('media.videa') }}">
+                    <a class="dropdown-item {{ request()->segment(3) == 'lekis' ? 'active' : '' }}" href="{{ route('media.videa-lekis') }}">
                       <span class="nav-link-icon d-md-none d-lg-inline-block">
                         <svg class="icon icon-tabler icon-tabler-pill text-lime" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
                              stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
@@ -405,16 +418,19 @@
                         Lekis
                       </span>
                     </a>
-                    <a class="dropdown-item {{ request()->segment(2) == 'lekis' ? 'active' : '' }}" href="{{ route('media.videa') }}">
+                    <a class="dropdown-item {{ request()->segment(3) == 'bozp' ? 'active' : '' }}" href="{{ route('media.videa-bozp') }}">
                       <span class="nav-link-icon d-md-none d-lg-inline-block">
-                        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-flame-off text-red" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                        <svg class="icon icon-tabler icon-tabler-flame-off text-red" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                             stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
                           <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
-                          <path d="M8.973 8.974c-.335 .378 -.67 .716 -.973 1.026c-1.226 1.26 -2 3.24 -2 5a6 6 0 0 0 11.472 2.466m.383 -3.597c-.32 -1.409 -1.122 -3.045 -1.855 -3.869c-.281 .472 -.543 .87 -.79 1.202m-2.358 -2.35c-.068 -2.157 -1.182 -4.184 -1.852 -4.852c0 .968 -.18 1.801 -.465 2.527"></path>
+                          <path
+                                d="M8.973 8.974c-.335 .378 -.67 .716 -.973 1.026c-1.226 1.26 -2 3.24 -2 5a6 6 0 0 0 11.472 2.466m.383 -3.597c-.32 -1.409 -1.122 -3.045 -1.855 -3.869c-.281 .472 -.543 .87 -.79 1.202m-2.358 -2.35c-.068 -2.157 -1.182 -4.184 -1.852 -4.852c0 .968 -.18 1.801 -.465 2.527">
+                          </path>
                           <path d="M3 3l18 18"></path>
                         </svg>
                       </span>
                       <span class="nav-link-title">
-                        BOZP
+                        PO a BOZP
                       </span>
                     </a>
                   </div>
@@ -473,19 +489,6 @@
         </ul>
         <div class="my-2">
           @yield('searchbar')
-          {{-- <form action="." method="get">
-            <div class="input-icon">
-              <span class="input-icon-addon">
-                <svg class="icon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor"
-                     fill="none" stroke-linecap="round" stroke-linejoin="round">
-                  <path stroke="none" d="M0 0h24v24H0z" fill="none" />
-                  <circle cx="10" cy="10" r="7" />
-                  <line x1="21" y1="21" x2="15" y2="15" />
-                </svg>
-              </span>
-              <input class="form-control" type="text" aria-label="Search in website" placeholder="Hledej ...">
-            </div>
-          </form> --}}
         </div>
         @yield('buttons')
       </div>

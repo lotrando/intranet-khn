@@ -270,6 +270,18 @@ class PageController extends Controller
         return view('videa', ['pretitle' => 'Média', 'title' => 'Videa']);
     }
 
+    // Video-lekis
+    public function videoLekis()
+    {
+        return view('videa-lekis', ['pretitle' => 'Média', 'title' => 'Lekis']);
+    }
+
+    // Video-bozp
+    public function videoBozp()
+    {
+        return view('videa-bozp', ['pretitle' => 'Média', 'title' => 'BOZP']);
+    }
+
     // Překladatelé
     public function prekladatele()
     {

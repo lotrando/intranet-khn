@@ -85,6 +85,8 @@ Route::prefix('media')->name('media.')->group(function () {
     Route::get('radio', [PageController::class, 'radio'])->name('radio');                                                   // Radio route (media.radio)
     Route::get('videa', [PageController::class, 'video'])->name('videa');                                                   // Videa route (media.videa)
     Route::get('prekladatele', [PageController::class, 'prekladatele'])->name('prekladatele');                              // Videa route (media.prekladatele)
+    Route::get('videa/lekis', [PageController::class, 'videoLekis'])->name('videa-lekis');                                                // Videa route (media.videa.lekis)
+    Route::get('videa/bozp', [PageController::class, 'videoBozp'])->name('videa-bozp');                                              // Videa route (media.videa.bozp)
 });
 
 // Employees

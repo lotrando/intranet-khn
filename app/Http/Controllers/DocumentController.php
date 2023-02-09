@@ -72,7 +72,7 @@ class DocumentController extends Controller
             'tags'                  => 'nullable',
             'status'                => 'required',
             'onscreen'              => 'nullable',
-            'file'                  => 'required|mimes:pdf,doc,xls|max:4096'
+            'file'                  => 'required|mimes:pdf,doc,xls|max:8192'
         ];
 
         $error = Validator::make($request->all(), $rules);
@@ -189,7 +189,7 @@ class DocumentController extends Controller
                 'tags'                  => 'nullable',
                 'status'                => 'required',
                 'onscreen'              => 'nullable',
-                'file'                  => 'required|mimes:pdf,doc,xls|max:4096'
+                'file'                  => 'required|mimes:pdf,doc,xls|max:8192'
             ];
 
             $error = Validator::make($request->all(), $rules);
