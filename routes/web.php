@@ -5,6 +5,7 @@ use App\Http\Controllers\DocumentController;
 use App\Http\Controllers\EmployeeController;
 use App\Http\Controllers\FileController;
 use App\Http\Controllers\PageController;
+use App\Http\Controllers\PaintController;
 use Illuminate\Support\Facades\Route;
 
 
@@ -85,8 +86,8 @@ Route::prefix('media')->name('media.')->group(function () {
     Route::get('radio', [PageController::class, 'radio'])->name('radio');                                                   // Radio route (media.radio)
     Route::get('videa', [PageController::class, 'video'])->name('videa');                                                   // Videa route (media.videa)
     Route::get('prekladatele', [PageController::class, 'prekladatele'])->name('prekladatele');                              // Videa route (media.prekladatele)
-    Route::get('videa/lekis', [PageController::class, 'videoLekis'])->name('videa-lekis');                                                // Videa route (media.videa.lekis)
-    Route::get('videa/bozp', [PageController::class, 'videoBozp'])->name('videa-bozp');                                              // Videa route (media.videa.bozp)
+    Route::get('videa/lekis', [PageController::class, 'videoLekis'])->name('videa-lekis');                                  // Videa route (media.videa.lekis)
+    Route::get('videa/bozp', [PageController::class, 'videoBozp'])->name('videa-bozp');                                     // Videa route (media.videa.bozp)
 });
 
 // Employees
@@ -94,6 +95,9 @@ Route::resource('employees', EmployeeController::class)->except(['update', 'show
 
 // Adverse Events
 Route::resource('adversevents', AdverseventController::class)->except(['update', 'show', 'destroy']);
+
+// Paint Events
+Route::resource('paints', PaintController::class)->except(['update', 'show', 'destroy']);
 
 // Documents
 Route::resource('documents', DocumentController::class);
@@ -120,6 +124,10 @@ Route::group(['middleware' => 'auth'], function () {
     // Document Events
     Route::post('documents/update', [DocumentController::class, 'update'])->name('documents.update');
     Route::get('documents/destroy/{id}', [DocumentController::class, 'destroy']);
+
+    // Paint Events
+    Route::post('paints/update', [PaintController::class, 'update'])->name('paint.update');
+    Route::get('paints/destroy/{id}', [PaintController::class, 'destroy']);
 
     Route::get('user/profile', [PageController::class, 'profile'])->name('user.profile');
 });
