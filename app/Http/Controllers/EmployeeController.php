@@ -32,7 +32,7 @@ class EmployeeController extends Controller
 
         if ($request->ajax()) {
 
-            $model = Employee::with('department', 'job')->select('*');
+            $model = Employee::with('department', 'job')->select('*', 'employees.id');
 
             return DataTables::eloquent($model)
 

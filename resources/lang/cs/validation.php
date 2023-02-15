@@ -154,7 +154,10 @@ return [
         'description'       => 'Pole popis standardu',
         'personal_number'   => 'Osobní číslo',
         'password'          => 'Heslo',
-        'email'             => 'Pole emailová adresa'
+        'email'             => 'Pole emailová adresa',
+        'rooms'             => 'Pole místnosti',
+        'date_start'        => 'Od',
+        'date_end'          => 'Do'
     ],
     'values'                => [
         'after_or_equal'    => [

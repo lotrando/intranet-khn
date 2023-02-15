@@ -138,5 +138,8 @@
   "Reservation": "Rezervace",
   "Painting": "Malovaní",
   "Bikes": "Kola",
-  "Tires": "Pneumatiky"
+  "Tires": "Pneumatiky",
+  "Create new paint reservation": "Vytvořit novou rezervaci malování",
+  "New paint reservation": "Nová rezervace malování",
+  "Edit paint reservation": "Upravit rezevaci malování"
 }

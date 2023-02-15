@@ -7,7 +7,7 @@
 @section('buttons')
   <div class="btn-list">
     <button class="btn btn-success d-none d-sm-inline-block" id="openCreateModal" data-bs-toggle="tooltip" data-bs-placement="bottom"
-            data-bs-original-title="{{ __('Creates new adverse event') }}">
+            data-bs-original-title="{{ __('Create new paint reservation') }}">
       <svg class="icon icon-tabler" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round"
            stroke-linejoin="round">
         <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
@@ -90,7 +90,7 @@
               </div>
               <div class="col-6 col-lg-3 mb-sm-1">
                 <label class="form-label">{{ __('Do') }}</label>
-                <input class="form-control" id="date_end" name="date_end" type="date" value="{{ date('Y-m-d') ?? old('date_end') }}" placeholder="{{ __('Do') }}"
+                <input class="form-control" id="date_end" name="date_end" type="date" value="{{ old('date_end') ?? '' }}" placeholder="{{ __('Do') }}"
                        onkeydown="return false">
               </div>
             </div>
@@ -217,7 +217,7 @@
             "width": "2%",
             render: function(data, type, full, meta) {
               var date = moment(data).locale('cs');
-              return date.format('DD. MM. YYYY');
+              return date.format('D. M. YYYY');
             }
           },
           {
@@ -225,7 +225,7 @@
             "width": "2%",
             render: function(data, type, full, meta) {
               var date = moment(data).locale('cs');
-              return date.format('DD. MM. YYYY');
+              return date.format('D. M. YYYY');
             }
           },
           {
@@ -276,6 +276,7 @@
         success: function(html) {
           $('#inputForm')[0].reset();
           $("#modal-header, #modal-icon").removeClass();
+          $('#form_result_modal').html('');
           $('#formModal').modal('show');
           $('#modal-icon').addClass('fas fa-paint-roller fa-2x m-2');
           $('#modal-header').addClass("modal-header bg-yellow-lt");
@@ -299,10 +300,11 @@
       $('#inputForm')[0].reset();
       $("#modal-icon, #modal-header").removeClass();
       $('#department_id, #department_code').val('');
+      $('#form_result_modal').html('');
       $('#formModal').modal('show');
       $('#modal-icon').addClass('fas fa-paint-roller fa-2x m-2');
       $('#modal-header').addClass("modal-header bg-lime-lt");
-      $('#action_button, .modal-title').text("{{ __('Create new paint reservation') }}");
+      $('#action_button, .modal-title').text("{{ __('New paint reservation') }}");
       $('#action').val("Add");
       $('#status').val('Vloženo');
     })
@@ -318,6 +320,10 @@
           cache: false,
           processData: false,
           dataType: "json",
+          beforeSend: function() {
+            html = '<div class="alert alert-info text-info shadow-sm"><ul><li>Ukládám rezervaci a odesílám email, čekejte...</li></ul></div>';
+            $('#form_result_modal').html(html);
+          },
           success: function(data) {
             var html = '';
             if (data.errors) {
@@ -350,6 +356,10 @@
           cache: false,
           processData: false,
           dataType: "json",
+          beforeSend: function() {
+            html = '<div class="alert alert-info text-info shadow-sm"><ul><li>Ukládám změny a odesílám email, čekejte...</li></ul></div>';
+            $('#form_result_modal').html(html);
+          },
           success: function(data) {
             var html = '';
             if (data.errors) {
