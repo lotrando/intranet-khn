@@ -18,20 +18,9 @@ class Paint extends Model
         'date_start',
         'date_end',
         'rooms',
-        'doors',
         'specials',
         'status',
     ];
-
-    public function getCreatedAtAttribute($value)
-    {
-        return Carbon::parse($value)->format('d. m. Y');
-    }
-
-    public function getUpdatedAtAttribute($value)
-    {
-        return Carbon::parse($value)->format('d. m. Y');
-    }
 
     public function user()
     {

@@ -1,338 +1,344 @@
 @extends('layouts.adverse')
 
 @section('favicon')
-<link type="image/png" href="/img/udalost.png" rel="shortcut icon" />
+  <link type="image/png" href="/img/udalost.png" rel="shortcut icon" />
 @endsection
 
 @section('title', 'Nežádoucí události')
 
 @section('buttons')
-<div class="btn-list">
-  <button class="btn btn-success d-none d-sm-inline-block" id="openCreateModal" data-bs-toggle="tooltip" data-bs-placement="bottom" data-bs-original-title="{{ __('Creates new adverse event') }}">
-    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-alert-triangle" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
-      <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
-      <path d="M12 9v2m0 4v.01"></path>
-      <path d="M5 19h14a2 2 0 0 0 1.84 -2.75l-7.1 -12.25a2 2 0 0 0 -3.5 0l-7.1 12.25a2 2 0 0 0 1.75 2.75"></path>
-    </svg>
-    {{ __('Nová') }}
-  </button>
-</div>
+  <div class="btn-list">
+    <button class="btn btn-success d-none d-sm-inline-block" id="openCreateModal" data-bs-toggle="tooltip" data-bs-placement="bottom"
+            data-bs-original-title="{{ __('Creates new adverse event') }}">
+      <svg class="icon icon-tabler icon-tabler-alert-triangle" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" stroke-width="2"
+           stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+        <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+        <path d="M12 9v2m0 4v.01"></path>
+        <path d="M5 19h14a2 2 0 0 0 1.84 -2.75l-7.1 -12.25a2 2 0 0 0 -3.5 0l-7.1 12.25a2 2 0 0 0 1.75 2.75"></path>
+      </svg>
+      {{ __('Nová') }}
+    </button>
+  </div>
 @endsection
 
 @section('content')
-<div class="container-fluid">
-  <div class="row justify-content-center">
-    <div class="col-12">
-      <div class="card mb-2 mt-2 shadow-sm">
-        <div class="card-header align-items-center justify-content-between bg-muted-lt d-flex">
-          <h3 class="text-muted m-0 mb-0 p-0">
-            {{ __('Adverse events of KHN') }}
-          </h3>
-          <div class="ms-auto d-print-none col-auto">
-          </div>
-        </div>
-        <div class="card-body p-2">
-          <div class="row">
-            <div class="col-12">
-              <span id="form_result_window"></span>
+  <div class="container-fluid">
+    <div class="row justify-content-center">
+      <div class="col-12">
+        <div class="card mb-2 mt-2 shadow-sm">
+          <div class="card-header align-items-center justify-content-between bg-muted-lt d-flex">
+            <h3 class="text-muted m-0 mb-0 p-0">
+              {{ __('Adverse events of KHN') }}
+            </h3>
+            <div class="ms-auto d-print-none col-auto">
             </div>
           </div>
-          <table class="table-bordered table-hover dataTable w-100 table">
-            <thead>
-              <tr class="bg-azure-lt table bg-opacity-50 text-center text-white">
-                {{-- <th>{{ __('Department') }}</th> --}}
-                <th>{{ __('Typ') }}</th>
-                <th>{{ __('Místo') }}</th>
-                <th>{{ __('Date') }}</th>
-                <th>{{ __('Time') }}</th>
-                <th>{{ __('Pracovník') }}</th>
-                <th>{{ __('Status') }}</th>
-                <th class="text-center"><i class="fas fa-bars"></i></th>
-              </tr>
-            </thead>
-          </table>
+          <div class="card-body p-2">
+            <div class="row">
+              <div class="col-12">
+                <span id="form_result_window"></span>
+              </div>
+            </div>
+            <table class="table-bordered table-hover dataTable w-100 table">
+              <thead>
+                <tr class="bg-azure-lt table bg-opacity-50 text-center text-white">
+                  {{-- <th>{{ __('Department') }}</th> --}}
+                  <th>{{ __('Typ') }}</th>
+                  <th>{{ __('Místo') }}</th>
+                  <th>{{ __('Date') }}</th>
+                  <th>{{ __('Time') }}</th>
+                  <th>{{ __('Pracovník') }}</th>
+                  <th>{{ __('Status') }}</th>
+                  <th class="text-center"><i class="fas fa-bars"></i></th>
+                </tr>
+              </thead>
+            </table>
+          </div>
         </div>
       </div>
     </div>
   </div>
-</div>
 @endsection
 
 @section('modals')
-{{-- Main Form Modal --}}
-<div class="modal modal-blur fade" id="formModal" data-bs-backdrop="static" data-bs-keyboard="false" role="dialog" aria-hidden="true" tabindex="-1">
-  <div class="modal-dialog modal-full-width mx-5 modal-dialog-centered" role="document">
-    <div class="modal-content shadow-lg">
-      <div id="modal-header">
-        <h5 class="modal-title"></h5>
-        <i id="modal-icon"></i>
-      </div>
-      <form id="inputForm" action="{{ route('adversevents.create') }}">
-        @csrf
-        <div class="modal-body">
-          <div class="row">
-            <div class="col-12">
-              <span id="form_result_modal"></span>
-            </div>
-          </div>
-          <div class="row">
-            <div class="col-12 col-lg-4 mb-sm-1">
-              <label class="form-label">{{ __('Department') }}</label>
-              <select class="form-select" id="department_id" name="department_id">
-                @foreach ($departments as $department)
-                <option value="{{ $department->id }}" @if (old('department_id')==$department->id) selected @endif>
-                  {{ $department->department_code }} -
-                  {{ $department->department_name }}</option>
-                @endforeach
-              </select>
-            </div>
-            <div class="col-12 col-lg-4 mb-sm-1">
-              <label class="form-label">{{ __('Místo') }}</label>
-              <input class="form-control" id="misto" name="misto" type="text" placeholder="{{ __('Místo kde se událost stala') }}">
-            </div>
-            <div class="col-6 col-lg-2 mb-sm-1">
-              <label class="form-label">{{ __('Datum') }}</label>
-              <input class="form-control" id="datum_cas" name="datum_cas" type="date" value="{{ date('Y-m-d') ?? old('date') }}" placeholder="{{ __('Dnešní datum') }}" onkeydown="return false">
-            </div>
-            <div class="col-6 col-lg-2 mb-sm-1">
-              <label class="form-label">{{ __('Čas') }}</label>
-              <input class="form-control" id="cas" name="cas" type="time" value="{{ date('H:i') ?? old('time') }}" placeholder="{{ __('Aktuální čas') }}">
-            </div>
-          </div>
-          <div class="row">
-            <div class="col-12 col-lg-4 mb-sm-1">
-              <label class="form-label">{{ __('Specifikace nežádoucí události') }}</label>
-              <select class="form-select" id="spec_druh" name="spec_druh" type="text">
-                <option value="Administrativní problém">Administrativní problém</option>
-                <option value="Klinický výkon">Klinický výkon</option>
-                <option value="Problém se zdravotnickou dokumentací">Problém se zdravotnickou
-                  dokumentací</option>
-                <option value="Medikace">Medikace</option>
-                <option value="Nežádoucí účinek léčiva">Nežádoucí účinek léčiva</option>
-                <option value="Transfuze, krevní deriváty">Transfuze, krevní deriváty</option>
-                <option value="Sedace, anestezie">Sedace, anestezie</option>
-                <option value="Neshody mezi předoperační a pooperační diagnózou">Neshody mezi
-                  předoperační a pooperační diagnózou</option>
-                <option value="Nevhodné chování">Nevhodné chování</option>
-                <option value="Svévolný odchod pacienta">Svévolný odchod pacienta</option>
-                <option value="Krádež">Krádež</option>
-                <option value="Nehody a neočekávaná zranění">Nehody a neočekávaná zranění</option>
-                <option value="Problém s technikou nebo vybavením">Problém s technikou nebo
-                  vybavením</option>
-                <option value="Pád">Pád</option>
-                <option value="Jiný">Jiný</option>
-              </select>
-            </div>
-            <div class="col-8 col-lg-6 mb-sm-1">
-              <label class="form-label">{{ __('Jiný druh nežádoucí události') }}</label>
-              <input class="form-control" id="jinydoplnek" name="jinydoplnek" type="text" placeholder="{{ __('Vyplňuje se jen v případě jiného druhu nežádoucí události') }}">
-            </div>
-            <div class="col-4 col-lg-2 mb-sm-1">
-              <label class="form-label">{{ __('Chorobopis') }}</label>
-              <input class="form-control" id="chorobopis" name="chorobopis" type="text" placeholder="{{ __('Číslo chorobopisu') }}">
-            </div>
-          </div>
-          <div class="row">
-            <div class="col-4 col-lg-3 mb-sm-1">
-              <label class="form-label">{{ __('Jméno pacienta / účastníka') }}</label>
-              <input class="form-control" id="pacient" name="pacient" type="text" placeholder="{{ __('Jméno pacienta') }}">
-            </div>
-            <div class="col-4 col-lg-2 mb-sm-1">
-              <label class="form-label">{{ __('Datum narození pacienta') }}</label>
-              <input class="form-control" id="datumnaroz" name="datumnaroz" type="date" placeholder="{{ __('Datum narození pacienta') }}">
-            </div>
-            <div class="col-4 col-lg-3 mb-sm-1">
-              <label class="form-label">{{ __('Jméno pracovníka') }}</label>
-              <input class="form-control" id="pracovnik" name="pracovnik" type="text" value="{{ Auth::user()->name ?? '' }}" placeholder="{{ __('Jméno pracovníka který událost zapsal') }}">
-            </div>
-            <div class="col-12 col-lg-4 mb-sm-1">
-              <label class="form-label">{{ __('Svědek / Svědci') }}</label>
-              <input class="form-control" id="svedek" name="svedek" type="text" placeholder="{{ __('Svědek nebo svědci události') }}">
-            </div>
-          </div>
-          <div class="row">
-            <div class="col-12 col-lg-4 mb-sm-1">
-              <label class="form-label">{{ __('K čemu došlo') }}</label>
-              <textarea class="form-control" id="udalost" name="udalost" type="text" placeholder="{{ __('Popiš nežádoucí událost') }}" rows="3"></textarea>
-            </div>
-            <div class="col-12 col-lg-4 mb-sm-1">
-              <label class="form-label">{{ __('Následující řešení po zjištění ') }}</label>
-              <textarea class="form-control" id="reseni" name="reseni" type="text" placeholder="{{ __('Následující řešení po zjištění ') }}" rows="3"></textarea>
-            </div>
-            <div class="col-12 col-lg-4 mb-sm-1">
-              <label class="form-label">{{ __('Navržená preventivní opatření') }}</label>
-              <textarea class="form-control" id="opatreni" name="opatreni" type="text" placeholder="{{ __('Navržená preventivní opatření') }}" rows="3"></textarea>
-            </div>
-          </div>
-          <div class="row">
-            <div class="col-9 col-lg-10 mb-sm-1">
-              <label class="form-label">{{ __('Informován') }}</label>
-              <input class="form-control" id="informovan" name="informovan" type="text" placeholder="{{ __('Kdo byl o události informován') }}">
-            </div>
-            <div class="col-3 col-lg-2 mb-sm-1">
-              <label class="form-label">{{ __('Status') }}</label>
-              <select class="form-select" id="status" name="status">
-                <option value="Rozpracováno">Rozpracováno</option>
-                <option value="Odesláno">Odesláno</option>
-                <option value="Dokončeno">Dokončeno</option>
-              </select>
-            </div>
-          </div>
-          <div id="pad_panel">
+  {{-- Main Form Modal --}}
+  <div class="modal modal-blur fade" id="formModal" data-bs-backdrop="static" data-bs-keyboard="false" role="dialog" aria-hidden="true" tabindex="-1">
+    <div class="modal-dialog modal-full-width modal-dialog-centered mx-5" role="document">
+      <div class="modal-content shadow-lg">
+        <div id="modal-header">
+          <h5 class="modal-title"></h5>
+          <i id="modal-icon"></i>
+        </div>
+        <form id="inputForm" action="{{ route('adversevents.create') }}">
+          @csrf
+          <div class="modal-body">
             <div class="row">
-              <div class="col-6 col-lg-6 mb-sm-1">
-                <label class="form-label">{{ __('Příčina pádu') }}</label>
-                <select class="form-select" id="pricina" name="pricina" aria-required="true" style="width: 100%;">
-                  <option value="" selected="selected">
-                  </option>
-                  <option value="pád z lůžka s postranicemi">Pád z lůžka s postranicemi
-                  </option>
-                  <option value="pád z lůžka bez postranic">Pád z lůžka bez postranic
-                  </option>
-                  <option value="vstávání z lůžka">Vstávání z lůžka</option>
-                  <option value="opření o nestabilní oporu">Opření o nestabilní oporu
-                  </option>
-                  <option value="nestabilita při chůzi">nestabilita při chůzi</option>
-                  <option value="zakopnutí, uklouznutí">zakopnutí, uklouznutí</option>
-                  <option value="z důvodu medikace">z důvodu medikace</option>
-                  <option value="jiný důvod pádu">Jiný důvod pádu</option>
-                </select>
-              </div>
-              <div class="col-6 col-lg-6 mb-sm-1">
-                <label class="form-label">{{ __('Stav pacienta po pádu') }}</label>
-                <select class="form-select" id="stav_pacienta" name="stav_pacienta" aria-required="true" style="width: 100%;">
-                  <option id="stav_pacienta_0" value="" selected="selected"></option>
-                  <option id="stav_pacienta_1" value="orientovaný/á">orientovaný/á</option>
-                  <option id="stav_pacienta_2" value="zmatený/á">zmatený/á</option>
-                  <option id="stav_pacienta_3" value="bezvědomí">bezvědomí</option>
-                </select>
-              </div>
-              <div class="col-6 col-lg-6 mb-sm-1">
-                <label class="form-label">{{ __('Lokalizace zranění po pádu') }}</label>
-                <select class="form-select" id="lokalizace" name="lokalizace" aria-required="true" style="width: 100%;">
-                  <option id="lokalizace_0" value="" selected="selected"></option>
-                  <option id="lokalizace_1" value="hlava">Hlava</option>
-                  <option id="lokalizace_2" value="hrudník">Hrudník</option>
-                  <option id="lokalizace_3" value="horní končetiny">Horní končetina</option>
-                  <option id="lokalizace_4" value="ruka">Ruka</option>
-                  <option id="lokalizace_5" value="břicho">Břicho</option>
-                  <option id="lokalizace_6" value="záda">Záda</option>
-                  <option id="lokalizace_7" value="pánev">Pánev</option>
-                  <option id="lokalizace_8" value="dolní končetiny">Dolní končetina
-                  </option>
-                  <option id="lokalizace-9" value="noha">Noha</option>
-                </select>
-              </div>
-              <div class="col-6 col-lg-6 mb-sm-1">
-                <label class="form-label">{{ __('Příznaky po pádu') }}</label>
-                <select class="form-select" id="druh_zraneni" name="druh_zraneni" aria-required="true" style="width: 100%;">
-                  <option id="druh_zraneni_0" value="" selected="selected"></option>
-                  <option id="druh_zraneni_1" value="Bezvědomí (lehké zranění)">Bezvědomí (lehké zranění)</option>
-                  <option id="druh_zraneni_2" value="Komoce mozku (těžké zranění)">Komoce mozku (těžké zranění)</option>
-                  <option id="druh_zraneni_3" value="Zlomenina (těžké zranění)">Zlomenina (těžké zranění)</option>
-                  <option id="druh_zraneni_4" value="Tržná rána">Tržná rána (střední zranění)</option>
-                  <option id="druh_zraneni_5" value="Povrchová odřenina (lehké zranění)">Povrchová odřenina (lehké zranění)</option>
-                  <option id="druh_zraneni_6" value="Hematom (lehké zranění)">Hematom (lehké zranění)</option>
-                  <option id="druh_zraneni_7" value="Jiné LZ (lehké zranění)">Jiné LZ (lehké zranění)</option>
-                  <option id="druh_zraneni_8" value="Jiné SZ (střední zranění)">Jiné SZ (střední zranění)</option>
-                  <option id="druh_zraneni_9" value="Jiné TZ (těžké zranění">Jiné TZ (těžké zranění)</option>
-                </select>
+              <div class="col-12">
+                <span id="form_result_modal"></span>
               </div>
             </div>
             <div class="row">
-              <div class="col-12 col-md-6 mb-sm-1">
-                <label class="form-label">{{ __('Předchozí preventivní opatření') }}</label>
-                <textarea class="form-control" id="preventivni_opatreni" name="preventivni_opatreni" type="text" placeholder="{{ __('Předchozí preventivní opatření') }}" rows="3"></textarea>
-              </div>
-              <div class="col-12 col-md-6 mb-sm-1">
-                <label class="form-label">{{ __('Zhodnocení zdrav. stavu, lékařem') }}</label>
-                <textarea class="form-control" id="zhodnoceni_stavu" name="zhodnoceni_stavu" type="text" placeholder="{{ __('Zhodnocení zdrav. stavu, lékařem') }}" rows="3"></textarea>
-              </div>
-            </div>
-            <div class="row">
-              <div class="col-4 col-lg-2 mb-sm-1">
-                <label class="form-label">Datum zhodnocení lékařem</label>
-                <input class="form-control" id="datum" name="datum" type="date" placeholder="Upřesnění k překladu, jiný">
-              </div>
-              <div class="col-4 col-lg-3 mb-sm-1">
-                <label class="form-label">Jméno lékaře</label>
-                <select class="form-select" id="jmeno_lekare" name="jmeno_lekare">
-                  @foreach ($doctors as $doctor)
-                  <option value="{{ $doctor->title_preffix }} {{ $doctor->last_name }} {{ $doctor->first_name }}">
-                    {{ $doctor->last_name }} {{ $doctor->first_name }}, {{ $doctor->title_preffix }}</option>
+              <div class="col-12 col-lg-4 mb-sm-1">
+                <label class="form-label">{{ __('Department') }}</label>
+                <select class="form-select" id="department_id" name="department_id">
+                  @foreach ($departments as $department)
+                    <option value="{{ $department->id }}" @if (old('department_id') == $department->id) selected @endif>
+                      {{ $department->department_code }} -
+                      {{ $department->department_name }}</option>
                   @endforeach
                 </select>
               </div>
-              <div class="col-4 col-lg-2 mb-sm-1">
-                <label class="form-label">{{ __('Další vývoj') }}</label>
-                <select class="form-select" id="vyvoj" name="vyvoj" aria-required="true" style="width: 100%;">
-                  <option id="vyvoj_0" value="žádný" selected="selected">žádný</option>
-                  <option id="vyvoj_1" value="operace">operace</option>
-                  <option id="vyvoj_2" value="umrtí">umrtí</option>
-                  <option id="vyvoj_3" value="překlad">překlad</option>
-                  <option id="vyvoj_4" value="jiný">jiný</option>
+              <div class="col-12 col-lg-4 mb-sm-1">
+                <label class="form-label">{{ __('Místo') }}</label>
+                <input class="form-control" id="misto" name="misto" type="text" placeholder="{{ __('Místo kde se událost stala') }}">
+              </div>
+              <div class="col-6 col-lg-2 mb-sm-1">
+                <label class="form-label">{{ __('Datum') }}</label>
+                <input class="form-control" id="datum_cas" name="datum_cas" type="date" value="{{ date('Y-m-d') ?? old('date') }}" placeholder="{{ __('Dnešní datum') }}"
+                       onkeydown="return false">
+              </div>
+              <div class="col-6 col-lg-2 mb-sm-1">
+                <label class="form-label">{{ __('Čas') }}</label>
+                <input class="form-control" id="cas" name="cas" type="time" value="{{ date('H:i') ?? old('time') }}" placeholder="{{ __('Aktuální čas') }}">
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-12 col-lg-4 mb-sm-1">
+                <label class="form-label">{{ __('Specifikace nežádoucí události') }}</label>
+                <select class="form-select" id="spec_druh" name="spec_druh" type="text">
+                  <option value="Administrativní problém">Administrativní problém</option>
+                  <option value="Klinický výkon">Klinický výkon</option>
+                  <option value="Problém se zdravotnickou dokumentací">Problém se zdravotnickou
+                    dokumentací</option>
+                  <option value="Medikace">Medikace</option>
+                  <option value="Nežádoucí účinek léčiva">Nežádoucí účinek léčiva</option>
+                  <option value="Transfuze, krevní deriváty">Transfuze, krevní deriváty</option>
+                  <option value="Sedace, anestezie">Sedace, anestezie</option>
+                  <option value="Neshody mezi předoperační a pooperační diagnózou">Neshody mezi
+                    předoperační a pooperační diagnózou</option>
+                  <option value="Nevhodné chování">Nevhodné chování</option>
+                  <option value="Svévolný odchod pacienta">Svévolný odchod pacienta</option>
+                  <option value="Krádež">Krádež</option>
+                  <option value="Nehody a neočekávaná zranění">Nehody a neočekávaná zranění</option>
+                  <option value="Problém s technikou nebo vybavením">Problém s technikou nebo
+                    vybavením</option>
+                  <option value="Pád">Pád</option>
+                  <option value="Jiný">Jiný</option>
                 </select>
               </div>
-              <div class="col-128 col-lg-5 mb-sm-1">
-                <label class="form-label">Upřesnění k jinému vývoji</label>
-                <input class="form-control" id="upresneni" name="upresneni" type="text" placeholder="Upřesnění k jinému vývoji">
+              <div class="col-8 col-lg-6 mb-sm-1">
+                <label class="form-label">{{ __('Jiný druh nežádoucí události') }}</label>
+                <input class="form-control" id="jinydoplnek" name="jinydoplnek" type="text"
+                       placeholder="{{ __('Vyplňuje se jen v případě jiného druhu nežádoucí události') }}">
+              </div>
+              <div class="col-4 col-lg-2 mb-sm-1">
+                <label class="form-label">{{ __('Chorobopis') }}</label>
+                <input class="form-control" id="chorobopis" name="chorobopis" type="text" placeholder="{{ __('Číslo chorobopisu') }}">
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-4 col-lg-3 mb-sm-1">
+                <label class="form-label">{{ __('Jméno pacienta / účastníka') }}</label>
+                <input class="form-control" id="pacient" name="pacient" type="text" placeholder="{{ __('Jméno pacienta') }}">
+              </div>
+              <div class="col-4 col-lg-2 mb-sm-1">
+                <label class="form-label">{{ __('Datum narození pacienta') }}</label>
+                <input class="form-control" id="datumnaroz" name="datumnaroz" type="date" placeholder="{{ __('Datum narození pacienta') }}">
+              </div>
+              <div class="col-4 col-lg-3 mb-sm-1">
+                <label class="form-label">{{ __('Jméno pracovníka') }}</label>
+                <input class="form-control" id="pracovnik" name="pracovnik" type="text" value="{{ Auth::user()->name ?? '' }}"
+                       placeholder="{{ __('Jméno pracovníka který událost zapsal') }}">
+              </div>
+              <div class="col-12 col-lg-4 mb-sm-1">
+                <label class="form-label">{{ __('Svědek / Svědci') }}</label>
+                <input class="form-control" id="svedek" name="svedek" type="text" placeholder="{{ __('Svědek nebo svědci události') }}">
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-12 col-lg-4 mb-sm-1">
+                <label class="form-label">{{ __('K čemu došlo') }}</label>
+                <textarea class="form-control" id="udalost" name="udalost" type="text" placeholder="{{ __('Popiš nežádoucí událost') }}" rows="3"></textarea>
+              </div>
+              <div class="col-12 col-lg-4 mb-sm-1">
+                <label class="form-label">{{ __('Následující řešení po zjištění ') }}</label>
+                <textarea class="form-control" id="reseni" name="reseni" type="text" placeholder="{{ __('Následující řešení po zjištění ') }}" rows="3"></textarea>
+              </div>
+              <div class="col-12 col-lg-4 mb-sm-1">
+                <label class="form-label">{{ __('Navržená preventivní opatření') }}</label>
+                <textarea class="form-control" id="opatreni" name="opatreni" type="text" placeholder="{{ __('Navržená preventivní opatření') }}" rows="3"></textarea>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-9 col-lg-10 mb-sm-1">
+                <label class="form-label">{{ __('Informován') }}</label>
+                <input class="form-control" id="informovan" name="informovan" type="text" placeholder="{{ __('Kdo byl o události informován') }}">
+              </div>
+              <div class="col-3 col-lg-2 mb-sm-1">
+                <label class="form-label">{{ __('Status') }}</label>
+                <select class="form-select" id="status" name="status">
+                  <option value="Rozpracováno">Rozpracováno</option>
+                  <option value="Odesláno">Odesláno</option>
+                  <option value="Dokončeno">Dokončeno</option>
+                </select>
+              </div>
+            </div>
+            <div id="pad_panel">
+              <div class="row">
+                <div class="col-6 col-lg-6 mb-sm-1">
+                  <label class="form-label">{{ __('Příčina pádu') }}</label>
+                  <select class="form-select" id="pricina" name="pricina" aria-required="true" style="width: 100%;">
+                    <option value="" selected="selected">
+                    </option>
+                    <option value="pád z lůžka s postranicemi">Pád z lůžka s postranicemi
+                    </option>
+                    <option value="pád z lůžka bez postranic">Pád z lůžka bez postranic
+                    </option>
+                    <option value="vstávání z lůžka">Vstávání z lůžka</option>
+                    <option value="opření o nestabilní oporu">Opření o nestabilní oporu
+                    </option>
+                    <option value="nestabilita při chůzi">nestabilita při chůzi</option>
+                    <option value="zakopnutí, uklouznutí">zakopnutí, uklouznutí</option>
+                    <option value="z důvodu medikace">z důvodu medikace</option>
+                    <option value="jiný důvod pádu">Jiný důvod pádu</option>
+                  </select>
+                </div>
+                <div class="col-6 col-lg-6 mb-sm-1">
+                  <label class="form-label">{{ __('Stav pacienta po pádu') }}</label>
+                  <select class="form-select" id="stav_pacienta" name="stav_pacienta" aria-required="true" style="width: 100%;">
+                    <option id="stav_pacienta_0" value="" selected="selected"></option>
+                    <option id="stav_pacienta_1" value="orientovaný/á">orientovaný/á</option>
+                    <option id="stav_pacienta_2" value="zmatený/á">zmatený/á</option>
+                    <option id="stav_pacienta_3" value="bezvědomí">bezvědomí</option>
+                  </select>
+                </div>
+                <div class="col-6 col-lg-6 mb-sm-1">
+                  <label class="form-label">{{ __('Lokalizace zranění po pádu') }}</label>
+                  <select class="form-select" id="lokalizace" name="lokalizace" aria-required="true" style="width: 100%;">
+                    <option id="lokalizace_0" value="" selected="selected"></option>
+                    <option id="lokalizace_1" value="hlava">Hlava</option>
+                    <option id="lokalizace_2" value="hrudník">Hrudník</option>
+                    <option id="lokalizace_3" value="horní končetiny">Horní končetina</option>
+                    <option id="lokalizace_4" value="ruka">Ruka</option>
+                    <option id="lokalizace_5" value="břicho">Břicho</option>
+                    <option id="lokalizace_6" value="záda">Záda</option>
+                    <option id="lokalizace_7" value="pánev">Pánev</option>
+                    <option id="lokalizace_8" value="dolní končetiny">Dolní končetina
+                    </option>
+                    <option id="lokalizace-9" value="noha">Noha</option>
+                  </select>
+                </div>
+                <div class="col-6 col-lg-6 mb-sm-1">
+                  <label class="form-label">{{ __('Příznaky po pádu') }}</label>
+                  <select class="form-select" id="druh_zraneni" name="druh_zraneni" aria-required="true" style="width: 100%;">
+                    <option id="druh_zraneni_0" value="" selected="selected"></option>
+                    <option id="druh_zraneni_1" value="Bezvědomí (lehké zranění)">Bezvědomí (lehké zranění)</option>
+                    <option id="druh_zraneni_2" value="Komoce mozku (těžké zranění)">Komoce mozku (těžké zranění)</option>
+                    <option id="druh_zraneni_3" value="Zlomenina (těžké zranění)">Zlomenina (těžké zranění)</option>
+                    <option id="druh_zraneni_4" value="Tržná rána">Tržná rána (střední zranění)</option>
+                    <option id="druh_zraneni_5" value="Povrchová odřenina (lehké zranění)">Povrchová odřenina (lehké zranění)</option>
+                    <option id="druh_zraneni_6" value="Hematom (lehké zranění)">Hematom (lehké zranění)</option>
+                    <option id="druh_zraneni_7" value="Jiné LZ (lehké zranění)">Jiné LZ (lehké zranění)</option>
+                    <option id="druh_zraneni_8" value="Jiné SZ (střední zranění)">Jiné SZ (střední zranění)</option>
+                    <option id="druh_zraneni_9" value="Jiné TZ (těžké zranění">Jiné TZ (těžké zranění)</option>
+                  </select>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-12 col-md-6 mb-sm-1">
+                  <label class="form-label">{{ __('Předchozí preventivní opatření') }}</label>
+                  <textarea class="form-control" id="preventivni_opatreni" name="preventivni_opatreni" type="text" placeholder="{{ __('Předchozí preventivní opatření') }}" rows="3"></textarea>
+                </div>
+                <div class="col-12 col-md-6 mb-sm-1">
+                  <label class="form-label">{{ __('Zhodnocení zdrav. stavu, lékařem') }}</label>
+                  <textarea class="form-control" id="zhodnoceni_stavu" name="zhodnoceni_stavu" type="text" placeholder="{{ __('Zhodnocení zdrav. stavu, lékařem') }}" rows="3"></textarea>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-4 col-lg-2 mb-sm-1">
+                  <label class="form-label">Datum zhodnocení lékařem</label>
+                  <input class="form-control" id="datum" name="datum" type="date" placeholder="Upřesnění k překladu, jiný">
+                </div>
+                <div class="col-4 col-lg-3 mb-sm-1">
+                  <label class="form-label">Jméno lékaře</label>
+                  <select class="form-select" id="jmeno_lekare" name="jmeno_lekare">
+                    @foreach ($doctors as $doctor)
+                      <option value="{{ $doctor->title_preffix }} {{ $doctor->last_name }} {{ $doctor->first_name }}">
+                        {{ $doctor->last_name }} {{ $doctor->first_name }}, {{ $doctor->title_preffix }}</option>
+                    @endforeach
+                  </select>
+                </div>
+                <div class="col-4 col-lg-2 mb-sm-1">
+                  <label class="form-label">{{ __('Další vývoj') }}</label>
+                  <select class="form-select" id="vyvoj" name="vyvoj" aria-required="true" style="width: 100%;">
+                    <option id="vyvoj_0" value="žádný" selected="selected">žádný</option>
+                    <option id="vyvoj_1" value="operace">operace</option>
+                    <option id="vyvoj_2" value="umrtí">umrtí</option>
+                    <option id="vyvoj_3" value="překlad">překlad</option>
+                    <option id="vyvoj_4" value="jiný">jiný</option>
+                  </select>
+                </div>
+                <div class="col-128 col-lg-5 mb-sm-1">
+                  <label class="form-label">Upřesnění k jinému vývoji</label>
+                  <input class="form-control" id="upresneni" name="upresneni" type="text" placeholder="Upřesnění k jinému vývoji">
+                </div>
+              </div>
+            </div>
+          </div>
+          <input id="action" name="action" type="hidden" />
+          <input id="hidden_id" name="hidden_id" type="hidden" />
+
+          <div class="modal-footer">
+            <button class="btn btn-muted hover-shadow" data-bs-dismiss="modal" type="button">
+              {{ __('Close') }}
+            </button>
+            <button class="btn btn-primary ms-auto hover-shadow" id="action_button" name="action_button" type="submit"></button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+
+  {{-- Delete Event Modal --}}
+  <div class="modal modal-blur fade" id="confirmModal" data-bs-backdrop="static" data-bs-keyboard="false" role="dialog" aria-hidden="true" tabindex="-1">
+    <div class="modal-dialog modal-sm modal-dialog-centered" role="document">
+      <div class="modal-content shadow-lg">
+        {{-- <button class="btn-close" data-bs-dismiss="modal" type="button" aria-label="{{ __('Close') }}"></button> --}}
+        <div class="modal-status bg-danger"></div>
+        <div class="modal-body py-4 text-center">
+          <svg class="icon text-danger icon-lg mb-2" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" stroke-width="2"
+               stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+            <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+            <path d="M12 9v2m0 4v.01" />
+            <path d="M5 19h14a2 2 0 0 0 1.84 -2.75l-7.1 -12.25a2 2 0 0 0 -3.5 0l-7.1 12.25a2 2 0 0 0 1.75 2.75" />
+          </svg>
+          <h3>{{ __('Are you sure?') }}</h3>
+          <div class="text-muted">
+            {{ __('Do you really want to remove adverse event?') }}<br>{{ __('This operation cannot be undone') }}
+          </div>
+        </div>
+        <div class="modal-footer">
+          <div class="w-100">
+            <div class="row">
+              <div class="col">
+                <button class="btn btn-muted w-100 hover-shadow" data-bs-dismiss="modal">
+                  {{ __('Cancel') }}
+                </button>
+              </div>
+              <div class="col">
+                <button class="btn btn-danger w-100 hover-shadow" id="ok_button"></button>
               </div>
             </div>
           </div>
         </div>
-        <input id="action" name="action" type="hidden" />
-        <input id="hidden_id" name="hidden_id" type="hidden" />
-
-        <div class="modal-footer">
-          <button class="btn btn-muted hover-shadow" data-bs-dismiss="modal" type="button">
-            {{ __('Close') }}
-          </button>
-          <button class="btn btn-primary ms-auto hover-shadow" id="action_button" name="action_button" type="submit"></button>
-        </div>
-      </form>
-    </div>
-  </div>
-</div>
-
-{{-- Delete Event Modal --}}
-<div class="modal modal-blur fade" id="confirmModal" data-bs-backdrop="static" data-bs-keyboard="false" role="dialog" aria-hidden="true" tabindex="-1">
-  <div class="modal-dialog modal-sm modal-dialog-centered" role="document">
-    <div class="modal-content shadow-lg">
-      {{-- <button class="btn-close" data-bs-dismiss="modal" type="button" aria-label="{{ __('Close') }}"></button> --}}
-      <div class="modal-status bg-danger"></div>
-      <div class="modal-body py-4 text-center">
-        <svg class="icon text-danger icon-lg mb-2" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
-          <path stroke="none" d="M0 0h24v24H0z" fill="none" />
-          <path d="M12 9v2m0 4v.01" />
-          <path d="M5 19h14a2 2 0 0 0 1.84 -2.75l-7.1 -12.25a2 2 0 0 0 -3.5 0l-7.1 12.25a2 2 0 0 0 1.75 2.75" />
-        </svg>
-        <h3>{{ __('Are you sure?') }}</h3>
-        <div class="text-muted">
-          {{ __('Do you really want to remove adverse event?') }}<br>{{ __('This operation cannot be undone') }}
-        </div>
-      </div>
-      <div class="modal-footer">
-        <div class="w-100">
-          <div class="row">
-            <div class="col">
-              <button class="btn btn-muted w-100 hover-shadow" data-bs-dismiss="modal">
-                {{ __('Cancel') }}
-              </button>
-            </div>
-            <div class="col">
-              <button class="btn btn-danger w-100 hover-shadow" id="ok_button"></button>
-            </div>
-          </div>
-        </div>
       </div>
     </div>
   </div>
-</div>
 @endsection
 
 @section('scripts')
-<script>
-  // Data Table
+  <script>
+    // Data Table
     $(document).ready(function() {
       $('.dataTable').DataTable({
         filter: true,
@@ -447,7 +453,8 @@
       $('#spec_druh').change(function() {
         if ($(this).val() === "Pád") {
           $('#pad_panel').show();
-        } if ($(this).val() !== "Pád") {
+        }
+        if ($(this).val() !== "Pád") {
           $('#pad_panel').hide();
         }
       });
@@ -612,5 +619,5 @@
         }
       })
     })
-</script>
+  </script>
 @endsection

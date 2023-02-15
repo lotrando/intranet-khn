@@ -96,9 +96,6 @@ Route::resource('employees', EmployeeController::class)->except(['update', 'show
 // Adverse Events
 Route::resource('adversevents', AdverseventController::class)->except(['update', 'show', 'destroy']);
 
-// Paint Events
-Route::resource('paints', PaintController::class)->except(['update', 'show', 'destroy']);
-
 // Documents
 Route::resource('documents', DocumentController::class);
 Route::get('documents/addon/{id}', [DocumentController::class, 'addonShow'])->name('show.addon');
@@ -128,6 +125,8 @@ Route::group(['middleware' => 'auth'], function () {
     // Paint Events
     Route::post('paints/update', [PaintController::class, 'update'])->name('paint.update');
     Route::get('paints/destroy/{id}', [PaintController::class, 'destroy']);
+    // Paint Events
+    Route::resource('paints', PaintController::class)->except(['update', 'show', 'destroy']);
 
     Route::get('user/profile', [PageController::class, 'profile'])->name('user.profile');
 });

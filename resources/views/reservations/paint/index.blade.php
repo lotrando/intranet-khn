@@ -41,6 +41,7 @@
                   <th>{{ __('Od') }}</th>
                   <th>{{ __('do') }}</th>
                   <th>{{ __('Místnosti') }}</th>
+                  <th>{{ __('Zvláštní požadavky') }}</th>
                   <th>{{ __('Vytvořeno') }}</th>
                   <th>{{ __('Status') }}</th>
                   <th class="text-center"><i class="fas fa-bars"></i></th>
@@ -63,7 +64,7 @@
           <h5 class="modal-title"></h5>
           <i id="modal-icon"></i>
         </div>
-        <form id="inputForm" action="{{ route('adversevents.create') }}">
+        <form id="inputForm" action="{{ route('paints.create') }}">
           @csrf
           <div class="modal-body">
             <div class="row">
@@ -97,15 +98,14 @@
               <div class="col-12 col-lg-12 mb-sm-1">
                 <label class="form-label">{{ __('Místnosti') }} <small class="text-azure">( Vypište čísla jednotlivých místností, které chcete vymalovat. V případe malování celého
                     oddělení zadejte "celé oddělení" )</small></label>
-                <input class="form-control" id="rooms" name="rooms" type="text" value="{{ old('rooms') }}" placeholder="{{ __('Místnosti') }}" onkeydown="return false">
+                <input class="form-control" id="rooms" name="rooms" type="text" value="{{ old('rooms') }}" placeholder="{{ __('Místnosti') }}">
               </div>
             </div>
             <div class="row">
               <div class="col-12 col-lg-12 mb-sm-1">
                 <label class="form-label">{{ __('Zvláštní požadavky') }} <small class="text-azure">( Vypište v případě malování speciálních věcí jako jsou zárubně, žebřiny, apod.
                     )</small></label>
-                <input class="form-control" id="special" name="special" type="text" value="{{ old('special') }}" placeholder="{{ __('Zvláštní požadavky') }}"
-                       onkeydown="return false">
+                <input class="form-control" id="specials" name="specials" type="text" value="{{ old('special') }}" placeholder="{{ __('Zvláštní požadavky') }}">
               </div>
             </div>
             <div class="row">
@@ -119,6 +119,7 @@
             </div>
           </div>
           <input id="action" name="action" type="hidden" />
+          <input id="hidden_id" name="hidden_id" type="hidden" />
           <input id="user_id" name="user_id" type="hidden" value="{{ Auth::user()->id }}" />
           <div class="modal-footer">
             <button class="btn btn-muted hover-shadow" data-bs-dismiss="modal" type="button">
@@ -184,9 +185,9 @@
           footer: false
         },
         order: [
-          [1, "asc"]
+          [2, "asc"]
         ],
-        "lengthMenu": [
+        lengthMenu: [
           [10, 20, 30, 60, 100, -1],
           [10, 20, 30, 60, 100, "Všechny"]
         ],
@@ -206,7 +207,6 @@
         columns: [{
             data: 'department.department_name',
             "width": "7%",
-            searchable: false
           },
           {
             data: 'user.name',
@@ -233,18 +233,26 @@
             "width": "2%"
           },
           {
-            data: 'doors',
+            data: 'specials',
             "width": "3%"
+          },
+          {
+            data: 'created_at',
+            "width": "2%",
+            render: function(data, type, full, meta) {
+              var date = moment(data).locale('cs');
+              return date.format('D. M. Y');
+            }
           },
           {
             data: 'status',
             "width": "0.5%",
             render: function(data, type, full, meta) {
               if (data == 'Vloženo') {
-                return "<span title='{{ __('Vloženo') }}' class='cursor-help mx-3 badge bg-success p-1 me-1'></span>";
+                return "<span title='{{ __('Vloženo') }}' class='cursor-help mx-3 badge bg-orange p-1 me-1'></span>";
               }
               if (data == 'Schváleno') {
-                return "<span title='{{ __('Schváleno') }}' class='cursor-help mx-3 badge bg-orange p-1 me-1'></span>";
+                return "<span title='{{ __('Schváleno') }}' class='cursor-help mx-3 badge bg-green p-1 me-1'></span>";
               }
             }
           },
@@ -269,15 +277,19 @@
           $('#inputForm')[0].reset();
           $("#modal-header, #modal-icon").removeClass();
           $('#formModal').modal('show');
-          $('#modal-icon').addClass('fas fa-exclamation-triangle fa-2x m-2');
+          $('#modal-icon').addClass('fas fa-paint-roller fa-2x m-2');
           $('#modal-header').addClass("modal-header bg-yellow-lt");
-          $('#action_button, .modal-title').text("{{ __('Edit adverse event') }}");
+          $('#action_button, .modal-title').text("{{ __('Edit paint reservation') }}");
           $('#action').val("Edit");
           $('#department_code').val(html.data.department.department_code);
           $('#department_id').val(html.data.department_id);
           $('#status').val(html.data.status);
+          $('#date_start').val(html.data.date_start);
+          $('#date_end').val(html.data.date_end);
           $('#created_at').val(html.data.created_at);
           $('#updated_at').val(html.data.updated_at);
+          $('#rooms').val(html.data.rooms);
+          $('#specials').val(html.data.specials);
           $('#hidden_id').val(html.data.id);
         }
       })
@@ -288,8 +300,8 @@
       $("#modal-icon, #modal-header").removeClass();
       $('#department_id, #department_code').val('');
       $('#formModal').modal('show');
-      $('#modal-icon').addClass('fas fa-exclamation-triangle fa-2x m-2');
-      $('#modal-header').addClass("modal-header bg-red-lt");
+      $('#modal-icon').addClass('fas fa-paint-roller fa-2x m-2');
+      $('#modal-header').addClass("modal-header bg-lime-lt");
       $('#action_button, .modal-title').text("{{ __('Create new paint reservation') }}");
       $('#action').val("Add");
       $('#status').val('Vloženo');
@@ -362,14 +374,14 @@
 
     // Delete Paint
     $(document).on('click', '.delete', function() {
-      event_id = $(this).attr('id');
+      id = $(this).attr('id');
       $('#ok_button').text("{{ __('Delete') }}");
       $('#confirmModal').modal('show');
     })
 
     $('#ok_button').click(function() {
       $.ajax({
-        url: "paint/destroy/" + event_id,
+        url: "paints/destroy/" + id,
         beforeSend: function() {
           $('#ok_button').text("{{ __('Deleting ...') }}");
         },

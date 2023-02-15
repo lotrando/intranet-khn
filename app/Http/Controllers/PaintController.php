@@ -2,10 +2,15 @@
 
 namespace App\Http\Controllers;
 
+use App\Mail\PaintClean;
+use App\Mail\PaintCreate;
+use App\Mail\PaintDelete;
+use App\Mail\PaintUpdate;
 use App\Models\Department;
 use App\Models\Paint;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Schema;
 use Illuminate\Support\Facades\Validator;
 use Yajra\DataTables\Facades\DataTables;
@@ -24,7 +29,7 @@ class PaintController extends Controller
 
         if ($request->ajax()) {
 
-            $model = Paint::with('department', 'user')->select('*');
+            $model = Paint::with('department', 'user')->select('*', 'paints.id');
 
             return DataTables::eloquent($model)
 
@@ -85,6 +90,7 @@ class PaintController extends Controller
             'user_id'               => 'required',
             'date_start'            => 'required',
             'date_end'              => 'required',
+            'rooms'                 => 'required',
             'status'                => 'required',
         ];
 
@@ -99,11 +105,144 @@ class PaintController extends Controller
             'user_id'               => $request->user_id,
             'date_start'            => $request->date_start,
             'date_end'              => $request->date_end,
+            'rooms'                 => $request->rooms,
+            'specials'              => $request->specials,
             'status'                => $request->status,
         ];
 
         Paint::create($form_data);
 
+        $reservation = Paint::with('department', 'user')->latest()->first();
+
+        $data = [
+            'id'            => $reservation->id,
+            'user'          => $reservation->user->name,
+            'email'         => $reservation->user->email,
+            'department'    => $reservation->department->department_name,
+            'rooms'         => $reservation->rooms,
+            'specials'      => $reservation->specials,
+            'status'        => $reservation->status,
+            'start'         => $reservation->date_start,
+            'end'           => $reservation->date_end,
+        ];
+
+        foreach (['belica@khn.cz', 'vedouci.uklidu@khn.cz'] as $recipients) {
+            Mail::to($recipients)->send(new PaintCreate($data));
+        }
+
         return response()->json(['success' => 'Nová rezervace malování uložena do databáze']);
+    }
+
+    /**
+     * Show the form for editing the specified resource.
+     *
+     * @param  \App\Models\Paint  $adversevent
+     * @return \Illuminate\Http\Response
+     */
+    public function edit($id)
+    {
+        $data = Paint::with('department')->findOrFail($id);
+        if (request()->ajax()) {
+            return response()->json(['data' => $data]);
+        }
+    }
+
+    /**
+     * Update the specified resource in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @param  \App\Models\Adversevent  $adversevent
+     * @return \Illuminate\Http\Response
+     */
+    public function update(Request $request)
+    {
+        $rules = [
+            'department_id'         => 'required',
+            'user_id'               => 'required',
+            'date_start'            => 'required',
+            'date_end'              => 'required',
+            'rooms'                 => 'required',
+            'specials'              => 'nullable',
+            'status'                => 'required',
+        ];
+
+        $error = Validator::make($request->all(), $rules);
+
+        if ($error->fails()) {
+            return response()->json(['errors' => $error->errors()->all()]);
+        }
+
+        $form_data = [
+            'department_id'         => $request->department_id,
+            'user_id'               => Auth::user()->id,
+            'date_start'            => $request->date_start,
+            'date_end'              => $request->date_end,
+            'rooms'                 => $request->rooms,
+            'specials'              => $request->specials,
+            'status'                => $request->status,
+        ];
+
+
+        Paint::whereId($request->hidden_id)->update($form_data);
+
+        $oldreservation = Paint::find($request->hidden_id);
+        $reservation = Paint::with('department', 'user')->find($request->hidden_id);
+
+        $data = [
+            'id'            => $reservation->id,
+            'user'          => $reservation->user->name,
+            'email'         => $reservation->user->email,
+            'olddepartment' => $oldreservation->department->department_name,
+            'oldrooms'      => $oldreservation->rooms,
+            'oldstart'      => $oldreservation->date_start,
+            'oldend'        => $oldreservation->date_end,
+            'department'    => $reservation->department->department_name,
+            'rooms'         => $reservation->rooms,
+            'start'         => $reservation->date_start,
+            'end'           => $reservation->date_end,
+            'status'        => $reservation->status,
+        ];
+
+        if ($reservation->status == 'Schváleno') {
+            Mail::to('vedouci.uklidu@khn.cz')->send(new PaintClean($data));
+        }
+
+        foreach (['belica@khn.cz', 'vedouci.uklidu@khn.cz'] as $recipients) {
+            Mail::to($recipients)->send(new PaintUpdate($data));
+        }
+
+
+        return response()->json(['success' => 'Rezervace aktualizována']);
+    }
+
+    /**
+     * Remove the specified resource from storage.
+     *
+     * @param  \App\Models\Paint  $adversevent
+     * @return \Illuminate\Http\Response
+     */
+    public function destroy($id)
+    {
+        $reservation = Paint::with('department', 'user')->find($id);
+
+        $data = [
+            'id'            => $reservation->id,
+            'user'          => $reservation->user->name,
+            'email'         => $reservation->user->email,
+            'department'    => $reservation->department->department_name,
+            'rooms'         => $reservation->rooms,
+            'specials'      => $reservation->specials,
+            'status'        => $reservation->status,
+            'start'         => $reservation->date_start,
+            'end'           => $reservation->date_end,
+        ];
+
+        foreach (['belica@khn.cz', 'vedouci.uklidu@khn.cz'] as $recipients) {
+            Mail::to($recipients)->send(new PaintDelete($data));
+        }
+
+        $paint = Paint::find($id);
+        $paint->delete();
+        return response()->json(['success' => 'Paint reservation deleted successfully']);
     }
 }
