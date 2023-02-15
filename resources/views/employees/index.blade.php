@@ -7,23 +7,22 @@
 @section('content')
   <div class="page-wrapper">
 
-    {{--
-  <!-- Page header -->
-  <div class="page-header d-print-none ">
-    <div class="container-fluid ">
-      <div class="row align-items-center ">
-        <!-- Page pre-title -->
-        <div class="col">
-          <div class="page-pretitle text-primary">
-            {{ __('Intranet') }}
+    <!-- Page header -->
+    <div class="page-header d-print-none">
+      <div class="container-fluid">
+        <div class="row align-items-center">
+          <!-- Page pre-title -->
+          <div class="col">
+            <div class="page-pretitle text-primary">
+              {{ __('Intranet') }}
+            </div>
+            <h2 class="page-title text-primary">
+              {{ __('Zaměstnanci') }}
+            </h2>
           </div>
-          <h2 class="page-title text-primary">
-            {{ __('Zaměstnanci') }}
-          </h2>
         </div>
       </div>
     </div>
-  </div> --}}
 
     <!-- Page body -->
     <div class="page-body">

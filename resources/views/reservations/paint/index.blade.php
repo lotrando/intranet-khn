@@ -24,15 +24,33 @@
 
 @section('content')
   <div class="container-fluid">
+
+    <!-- Page header -->
+    <div class="page-header d-print-none">
+      <div class="container-fluid">
+        <div class="row align-items-center mt-2">
+          <!-- Page pre-title -->
+          <div class="col">
+            <div class="page-pretitle text-primary">
+              {{ __('Rezervace') }}
+            </div>
+            <h2 class="page-title text-primary">
+              {{ __('Malování') }}
+            </h2>
+          </div>
+        </div>
+        <div class="row align-items-center mt-2">
+          <div class="col">
+            <span id="form_result_window"></span>
+          </div>
+        </div>
+      </div>
+    </div>
+
     <div class="row justify-content-center">
       <div class="col-12">
-        <div class="card mb-2 mt-2 shadow-sm">
+        <div class="card mb-2 shadow-sm">
           <div class="card-body p-2">
-            <div class="row">
-              <div class="col-12">
-                <span id="form_result_window"></span>
-              </div>
-            </div>
             <table class="table-bordered table-hover dataTable w-100 table">
               <thead>
                 <tr class="bg-azure-lt table bg-opacity-50 text-center text-white">
@@ -147,7 +165,7 @@
           </svg>
           <h3>{{ __('Are you sure?') }}</h3>
           <div class="text-muted">
-            {{ __('Do you really want to remove adverse event?') }}<br>{{ __('This operation cannot be undone') }}
+            {{ __('Do you really want to remove reservation?') }}<br>{{ __('This operation cannot be undone') }}
           </div>
         </div>
         <div class="modal-footer">
