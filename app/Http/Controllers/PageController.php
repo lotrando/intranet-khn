@@ -5,7 +5,6 @@ namespace App\Http\Controllers;
 use App\Models\Addon;
 use App\Models\Category;
 use App\Models\Document;
-use App\Models\Document as AppDocument;
 use App\Models\Employee;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
