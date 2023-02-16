@@ -435,54 +435,92 @@
                     </a>
                   </div>
                 </div>
-                {{-- <div class="dropend">
-                  <a class="dropdown-item dropdown-toggle show" data-bs-toggle="dropdown" data-bs-auto-close="outside" href="#" role="button"
-                     aria-expanded="true">
-                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-language nav-link-icon text-yellow" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
-                      <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
-                      <path d="M4 5h7"></path>
-                      <path d="M9 3v2c0 4.418 -2.239 8 -5 8"></path>
-                      <path d="M5 9c-.003 2.144 2.952 3.908 6.7 4"></path>
-                      <path d="M12 20l4 -9l4 9"></path>
-                      <path d="M19.1 18h-6.2"></path>
-                    </svg>
+              </div>
+            </div>
+          </li>
+          <li class="nav-item dropdown {{ request()->segment(1) == 'rezervace' ? 'active' : '' }}" data-bs-toggle="tooltip" data-bs-placement="top"
+              data-bs-original-title="Rezervace">
+            <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" data-bs-auto-close="outside" href="#" role="button" aria-expanded="false">
+              <span class="nav-link-icon d-md-none d-lg-inline-block">
+                <svg class="icon text-green" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor"
+                     fill="none" stroke-linecap="round" stroke-linejoin="round">
+                  <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+                  <path d="M4 5m0 2a2 2 0 0 1 2 -2h12a2 2 0 0 1 2 2v12a2 2 0 0 1 -2 2h-12a2 2 0 0 1 -2 -2z"></path>
+                  <path d="M16 3l0 4"></path>
+                  <path d="M8 3l0 4"></path>
+                  <path d="M4 11l16 0"></path>
+                  <path d="M8 15h2v2h-2z"></path>
+                </svg>
+              </span>
+              <span class="nav-link-title">
+                {{ __('Možnosti') }}
+              </span>
+            </a>
+            <div class="dropdown-menu">
+              <div class="dropdown">
+                <div class="dropend">
+                  <a class="dropdown-item dropdown-toggle show" data-bs-toggle="dropdown" data-bs-auto-close="outside" href="#" role="button" aria-expanded="true">
+                    <span class="nav-link-icon d-md-none d-lg-inline-block">
+                      <svg class="icon text-azure" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" stroke-width="2"
+                           stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                        <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+                        <path d="M4 5m0 2a2 2 0 0 1 2 -2h12a2 2 0 0 1 2 2v12a2 2 0 0 1 -2 2h-12a2 2 0 0 1 -2 -2z"></path>
+                        <path d="M16 3l0 4"></path>
+                        <path d="M8 3l0 4"></path>
+                        <path d="M4 11l16 0"></path>
+                        <path d="M8 15h2v2h-2z"></path>
+                      </svg>
+                    </span>
                     <span class="nav-link-title">
-                      {{ __('Překladatelé') }}
+                      {{ __('Reservation') }}
                     </span>
                   </a>
                   <div class="dropdown-menu show" data-bs-popper="static">
-                    <a class="dropdown-item {{ request()->segment(2) == 'lekis' ? 'active' : '' }}" href="{{ route('media.videa') }}">
-                      <span class="flag flag-country-pl me-2"></span>
+                    <a class="dropdown-item {{ request()->segment(1) == 'paints' ? 'active' : '' }}" href="{{ route('paints.index') }}">
+                      <span class="nav-link-icon d-md-none d-lg-inline-block">
+                        <svg class="icon text-red" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none"
+                             stroke-linecap="round" stroke-linejoin="round">
+                          <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+                          <path d="M5 3m0 2a2 2 0 0 1 2 -2h10a2 2 0 0 1 2 2v2a2 2 0 0 1 -2 2h-10a2 2 0 0 1 -2 -2z"></path>
+                          <path d="M19 6h1a2 2 0 0 1 2 2a5 5 0 0 1 -5 5l-5 0v2"></path>
+                          <path d="M10 15m0 1a1 1 0 0 1 1 -1h2a1 1 0 0 1 1 1v4a1 1 0 0 1 -1 1h-2a1 1 0 0 1 -1 -1z"></path>
+                        </svg>
+                      </span>
                       <span class="nav-link-title">
-                        Polština
+                        {{ __('Painting') }}
                       </span>
                     </a>
-                    <a class="dropdown-item {{ request()->segment(2) == 'lekis' ? 'active' : '' }}" href="{{ route('media.videa') }}">
-                      <span class="flag flag-country-gb me-2"></span>
+                    <a class="dropdown-item {{ request()->segment(2) == 'bikes' ? 'active' : '' }}" href="#">
+                      <span class="nav-link-icon d-md-none d-lg-inline-block">
+                        <svg class="icon text-blue" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none"
+                             stroke-linecap="round" stroke-linejoin="round">
+                          <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+                          <path d="M5 18m-3 0a3 3 0 1 0 6 0a3 3 0 1 0 -6 0"></path>
+                          <path d="M19 18m-3 0a3 3 0 1 0 6 0a3 3 0 1 0 -6 0"></path>
+                          <path d="M12 19l0 -4l-3 -3l5 -4l2 3l3 0"></path>
+                          <path d="M17 5m-1 0a1 1 0 1 0 2 0a1 1 0 1 0 -2 0"></path>
+                        </svg>
+                      </span>
                       <span class="nav-link-title">
-                        Angličtina
+                        {{ __('Bikes') }}
                       </span>
                     </a>
-                    <a class="dropdown-item {{ request()->segment(2) == 'lekis' ? 'active' : '' }}" href="{{ route('media.videa') }}">
-                      <span class="flag flag-country-de me-2"></span>
-                      <span class="nav-link-title">
-                        Němčina
+                    <a class="dropdown-item {{ request()->segment(2) == 'tires' ? 'active' : '' }}" href="#">
+                      <span class="nav-link-icon d-md-none d-lg-inline-block">
+                        <svg class="icon text-mute" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" stroke-width="2"
+                             stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                          <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+                          <path d="M7 17m-2 0a2 2 0 1 0 4 0a2 2 0 1 0 -4 0"></path>
+                          <path d="M17 17m-2 0a2 2 0 1 0 4 0a2 2 0 1 0 -4 0"></path>
+                          <path d="M5 17h-2v-6l2 -5h9l4 5h1a2 2 0 0 1 2 2v4h-2m-4 0h-6m-6 -6h15m-6 0v-5"></path>
+                        </svg>
                       </span>
-                    </a>
-                    <a class="dropdown-item {{ request()->segment(2) == 'lekis' ? 'active' : '' }}" href="{{ route('media.videa') }}">
-                      <span class="flag flag-country-fr me-2"></span>
                       <span class="nav-link-title">
-                        Francouština
-                      </span>
-                    </a>
-                    <a class="dropdown-item {{ request()->segment(2) == 'lekis' ? 'active' : '' }}" href="{{ route('media.videa') }}">
-                      <span class="flag flag-country-ua me-2"></span>
-                      <span class="nav-link-title">
-                        Ukrajinština
+                        {{ __('Tires') }}
                       </span>
                     </a>
                   </div>
-                </div> --}}
+                </div>
               </div>
             </div>
           </li>

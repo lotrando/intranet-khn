@@ -4,7 +4,6 @@ namespace App\Http\Controllers;
 
 use App\Mail\StandardUpdatedMail;
 use App\Models\Addon;
-use App\Models\Category;
 use App\Models\Document;
 use App\Models\Employee;
 use Illuminate\Http\Request;

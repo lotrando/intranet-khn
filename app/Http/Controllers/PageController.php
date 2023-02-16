@@ -4,8 +4,10 @@ namespace App\Http\Controllers;
 
 use App\Models\Addon;
 use App\Models\Category;
+use App\Models\Department;
 use App\Models\Document;
 use App\Models\Employee;
+use App\Models\Paint;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -285,6 +287,12 @@ class PageController extends Controller
     public function prekladatele()
     {
         return view('prekladatele', ['pretitle' => 'Média', 'title' => 'Překladatelé']);
+    }
+
+    // Pneumatiky
+    public function tires()
+    {
+        return redirect()->away('https://docs.google.com/spreadsheets/d/19Tzhxrq7tVBpZ7LhZ5qEL6ehI3om3q6b/edit#gid=1690889270');
     }
 
     // Profil

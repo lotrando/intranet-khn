@@ -1,13 +1,14 @@
 -- phpMyAdmin SQL Dump
--- version 5.2.0
+-- version 4.9.5deb2
 -- https://www.phpmyadmin.net/
 --
--- Počítač: localhost
--- Vytvořeno: Úte 31. led 2023, 16:07
--- Verze serveru: 8.0.31
--- Verze PHP: 7.4.33
+-- Počítač: localhost:3306
+-- Vytvořeno: Pon 13. úno 2023, 13:00
+-- Verze serveru: 8.0.32-0ubuntu0.20.04.2
+-- Verze PHP: 7.4.3-4ubuntu2.17
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
+SET AUTOCOMMIT = 0;
 START TRANSACTION;
 SET time_zone = "+00:00";
 
@@ -679,7 +680,7 @@ CREATE TABLE `documents` (
 --
 
 INSERT INTO `documents` (`id`, `category_id`, `accordion_name`, `accordion_group`, `position`, `name`, `description`, `processed`, `authorize`, `examine`, `efficiency`, `revision`, `next_revision_date`, `tags`, `revision_date`, `file`, `unique_code`, `status`, `user_id`, `onscreen`, `created_at`, `updated_at`) VALUES
-(1, 3, 'Akutní koronární syndromy', NULL, 1, 'Akutní koronární syndromy', 'Soubor minimálních diagnostických a terapeutických standardů u pacientů s akutními koronárními syndromy', 'MUDr. Janková Pavlína', 'MUDr. Canibal Tomáš', 'MUDr. Kultan Peter', '2007-01-01', '5', '2023-12-01', 'MEZ-JIP, NEU-JIP, INT-ODD, NEU-ODD', '2022-12-01', 'standardy_lecebne-akutni_koronarni_syndromy-revize-5.pdf', 'STD3#1', 'Schváleno', 11, 14, '2023-01-17 21:02:48', '2023-01-31 06:39:37'),
+(1, 3, 'Akutní koronární syndromy', NULL, 1, 'Akutní koronární syndromy', 'Soubor minimálních diagnostických a terapeutických standardů u pacientů s akutními koronárními syndromy', 'MUDr. Janková Pavlína', 'MUDr. Canibal Tomáš', 'MUDr. Kultan Peter', '2007-01-01', '5', '2023-12-01', 'MEZ-JIP, NEU-JIP, INT-ODD, NEU-ODD', '2022-12-01', 'standardy_lecebne-akutni_koronarni_syndromy-revize-5.pdf', 'STD3#1', 'Schváleno', 11, 14, '2023-01-17 21:02:48', '2023-02-08 07:39:28'),
 (2, 3, 'ATB profylaxe', NULL, 2, 'ATB profylaxe', 'Antibiotiková profylaxe u operovaných pacientů', 'MUDr. Hurtová Šárka', 'MUDr. Canibal Tomáš', 'MUDr. Adamová Andrea', '2014-01-01', '3', '2023-12-01', 'ONP, ORT', '2022-12-01', 'standardy_lecebne-antibiotikova_profylaxe_u_operovanych_pacientu-revize-3.pdf', 'STD3#2', 'Schváleno', 11, NULL, '2023-01-13 21:16:31', '2023-01-30 10:20:23'),
 (3, 3, 'Crohnova choroba', NULL, 3, 'Crohnova choroba', 'Soubor minimálních diagnostických a terapeutických standardů u pacientů s crohnovou chorobou', 'MUDr. Střída Josef', 'MUDr. Canibal Tomáš', 'MUDr. Kultan Peter', '2007-01-01', '5', '2023-12-01', 'MEZ-JIP, INT-ODD', '2022-12-01', 'standardy_lecebne-crohnova_choroba-revize-5.pdf', 'STD3#3', 'Schváleno', 11, NULL, '2023-01-13 21:17:50', '2023-01-21 18:42:01'),
 (4, 3, 'Demence', NULL, 4, 'Demence', 'Soubor minimálních diagnostických a terapeutických standardů u pacientů s demencí', 'MUDr. Böhm Marek', 'MUDr. Canibal Tomáš', 'MUDr. Vlachopulu Barbara', '2005-07-01', '6', '2023-12-01', 'NEU-ODD', '2022-12-01', 'standardy_lecebne-demence-revize-6.pdf', 'STD3#4', 'Schváleno', 11, NULL, '2023-01-13 21:28:06', '2023-01-26 20:46:24'),
@@ -719,8 +720,8 @@ INSERT INTO `documents` (`id`, `category_id`, `accordion_name`, `accordion_group
 (39, 8, 'Pracovní standard pro rehabilitační oddělení', NULL, 5, 'Pracovní standard pro rehabilitační oddělení', 'Aplikace podvodní masaže', 'Kolektiv fyzioterapeutů', 'Rada kvality', 'Bc. Bělicová Taťána', '2004-04-01', '8', '2022-10-01', 'REH-AMB, REH-ODD', '2021-10-01', 'standardy_rehabilitacni-aplikace_podvodni_masaze-revize-8.pdf', 'STD8#5', 'Schváleno', 11, NULL, '2023-01-25 07:43:30', '2023-01-26 19:00:32'),
 (40, 8, 'Pracovní standard pro rehabilitační oddělení', NULL, 6, 'Pracovní standard pro rehabilitační oddělení', 'Thermo terapie', 'Kolektiv fyzioterapeutů', 'Rada kvality', 'Bc. Bělicová Taťána', '2004-04-01', '8', '2023-10-01', 'REH-AMB, REH-ODD', '2021-10-01', 'standardy_rehabilitacni-thermo_terapie-revize-8.pdf', 'STD8#6', 'Schváleno', 11, NULL, '2023-01-25 07:45:21', '2023-01-25 07:45:21'),
 (41, 8, 'Pracovní standard pro rehabilitační oddělení', NULL, 7, 'Pracovní standard pro rehabilitační oddělení', 'Aplikace fototerapie', 'Kolektiv fyzioterapeutů', 'Rada kvality', 'Bc. Bělicová Taťána', '2004-04-01', '8', '2023-10-01', 'REH-AMB, REH-ODD', '2021-10-01', 'sesterska_dokumentace.pdf', 'STD8#7', 'Schváleno', 11, NULL, '2023-01-25 07:47:12', '2023-01-25 07:47:12'),
-(42, 14, 'Zápis o zneškodnění návykové látky', NULL, 2, 'Zápis o zneškodnění návykové látky', 'Zápis o zneškodnění návykové látky', NULL, NULL, NULL, '2014-06-01', 'červen 2022', '2023-06-01', NULL, '2022-06-01', 'dokumenty_sesterska-zapis_o_zneskodneni_navykove_latky-revize-cerven_2022.pdf', 'STD8#7', 'Schváleno', 11, NULL, '2023-01-25 07:47:12', '2023-01-31 15:35:22'),
-(43, 14, 'Zápis o předání návykové látky', NULL, 1, 'Zápis o předání návykové látky', 'Zápis o předání návykové látky', NULL, NULL, NULL, '2014-06-01', 'červen 2022', '2023-06-01', NULL, '2022-06-01', 'dokumenty_sesterska-zapis_o_predani_navykove_latky-revize-cerven_2022.pdf', 'STD8#7', 'Schváleno', 11, NULL, '2023-01-25 07:47:12', '2023-01-31 15:31:17'),
+(42, 14, 'Zápis o zneškodnění návykové látky', NULL, 2, 'Zápis o zneškodnění návykové látky', 'Zápis o zneškodnění návykové látky', NULL, NULL, NULL, '2014-06-01', 'červen 2022', '2023-06-01', NULL, '2022-06-01', 'dokumenty_sesterska-zapis_o_zneskodneni_navykove_latky-revize-cerven_2022.pdf', 'STD8#7', 'Schváleno', 11, NULL, '2023-01-25 07:47:12', '2023-02-01 06:42:42'),
+(43, 14, 'Zápis o předání návykové látky', NULL, 1, 'Zápis o předání návykové látky', 'Zápis o předání návykové látky', NULL, NULL, NULL, '2014-06-01', 'červen 2022', '2023-06-01', NULL, '2022-06-01', 'dokumenty_sesterska-zapis_o_predani_navykove_latky-revize-cerven_2022.pdf', 'STD8#7', 'Schváleno', 11, NULL, '2023-01-25 07:47:12', '2023-02-08 07:36:55'),
 (44, 10, 'Standardní operační postup – OKB úsek krevní banka', NULL, 1, 'Standardní operační postup – OKB úsek krevní banka', 'Vyšetření krevní skupiny AB0/Rh D na jednorázové fólii hx seroplates 10', NULL, 'Rada kvality', 'Ing. Kolatková Marina', '2013-11-01', '4', '2022-12-01', 'OKB', '2021-12-01', 'standardy_okb-vysetreni_krevni_skupiny_ab0-rh_d_na_jednorazove_folii_hx_seroplates_10-revize-4.pdf', 'STD10#1', 'Schváleno', 11, NULL, '2023-01-26 08:59:54', '2023-01-29 20:41:09'),
 (45, 10, 'Standardní operační postup – OKB úsek krevní banka', NULL, 2, 'Standardní operační postup – OKB úsek krevní banka', 'Vvyšetření zkoušky kompatibility a vyšetření protilátek u příjemce bio-rad id–micro typing system', NULL, NULL, NULL, '2006-11-07', '9', '2023-12-01', 'OKB', '2021-12-01', 'standardy_okb-vvysetreni_zkousky_kompatibility_a_vysetreni_protilatek_u_prijemce_bio-rad_id–micro_typing_system-revize-9.pdf', 'STD10#2', 'Schváleno', 11, NULL, '2023-01-26 09:06:06', '2023-01-26 09:06:06'),
 (46, 10, 'Standardní operační postup – OKB úsek krevní banka', NULL, 3, 'Standardní operační postup – OKB úsek krevní banka', 'Příjem požadavků na předtransfúzní vyšetření', NULL, NULL, NULL, '2021-12-01', '9', '2023-12-01', NULL, '2021-12-01', 'standardy_okb-prijem_pozadavku_na_predtransfuzni_vysetreni-revize-9.pdf', 'STD10#3', 'Schváleno', 11, NULL, '2023-01-26 09:12:57', '2023-01-26 09:12:57'),
@@ -748,7 +749,7 @@ INSERT INTO `documents` (`id`, `category_id`, `accordion_name`, `accordion_group
 (68, 10, 'Standardní operační postup – OKB úsek krevní banka', NULL, 25, 'Standardní operační postup – OKB úsek krevní banka', 'Reklamace a stahování léčiv (transfuzních přípravků)', NULL, NULL, NULL, '2007-01-05', '8', '2023-12-01', 'OKB', '2021-12-01', 'standardy_okb-reklamace_a_stahovani_leciv_(transfuznich_pripravku)-revize-8.pdf', 'STD10#25', 'Schváleno', 11, NULL, '2023-01-26 10:37:01', '2023-01-26 10:37:01'),
 (69, 10, 'Standardní operační postup – OKB úsek krevní banka', NULL, 26, 'Standardní operační postup – OKB úsek krevní banka', 'Manipulace s čerstvě mraženou plazmou skmp', NULL, NULL, NULL, '2007-01-28', '8', '2023-12-01', 'OKB', '2021-12-01', 'standardy_okb-manipulace_s_cerstve_mrazenou_plazmou_skmp-revize-8.pdf', 'STD10#26', 'Schváleno', 11, NULL, '2023-01-26 10:39:08', '2023-01-26 10:39:08'),
 (70, 10, 'Standardní operační postup – OKB úsek krevní banka', NULL, 27, 'Standardní operační postup – OKB úsek krevní banka', 'Reklamace diagnostik', NULL, NULL, NULL, '2008-01-29', '8', '2023-12-01', 'OKB', '2021-12-01', 'standardy_okb-reklamace_diagnostik-revize-8.pdf', 'STD10#27', 'Schváleno', 11, NULL, '2023-01-26 10:40:27', '2023-01-26 10:40:27'),
-(71, 10, 'Standardní operační postup – OKB úsek krevní banka', NULL, 28, 'Standardní operační postup – OKB úsek krevní banka', 'STANDARD - Zrušen', NULL, NULL, NULL, '2021-12-01', '0', '2022-12-01', 'OKB', '2021-12-01', 'standardy_okb-standard_-_zrusen-revize-0.pdf', 'STD10#28', 'Schváleno', 11, 1, '2023-01-26 10:41:36', '2023-01-26 17:42:08'),
+(71, 10, 'Standardní operační postup – OKB úsek krevní banka', NULL, 28, 'Standardní operační postup – OKB úsek krevní banka', 'STANDARD - Zrušen', NULL, NULL, NULL, '2021-12-01', '0', '2022-12-01', 'OKB', '2021-12-01', 'standardy_okb-standard_-_zrusen-revize-0.pdf', 'STD10#28', 'Schváleno', 11, NULL, '2023-01-26 10:41:36', '2023-02-01 10:25:43'),
 (72, 10, 'Standardní operační postup – OKB úsek krevní banka', NULL, 29, 'Standardní operační postup – OKB úsek krevní banka', 'Revize dokumentů (sop) na krevní bance', NULL, NULL, NULL, '2011-11-01', '4', '2023-12-01', 'OKB', '2021-12-01', 'standardy_okb-revize_dokumentu_(sop)_na_krevni_bance-revize-4.pdf', 'STD10#29', 'Schváleno', 11, NULL, '2023-01-26 10:43:14', '2023-01-26 10:43:14'),
 (73, 10, 'Standardní operační postup – OKB úsek krevní banka', NULL, 30, 'Standardní operační postup – OKB úsek krevní banka', 'Rozmrazování skmp a ohřev erytrocytárních transfuzních přípravků', NULL, NULL, NULL, '2018-01-01', '2', '2023-12-01', NULL, '2021-12-01', 'standardy_okb-rozmrazovani_skmp_a_ohrev_erytrocytarnich_transfuznich_pripravku-revize-2.pdf', 'STD10#30', 'Schváleno', 11, 1, '2023-01-26 10:44:36', '2023-01-26 10:44:36'),
 (74, 6, 'Standard ošetřovatelské péče - anesteziologický', NULL, 1, 'Standard ošetřovatelské péče - anesteziologický', 'Příprava a asistence u celkové anestezie u TEP kyčle', NULL, NULL, NULL, '2004-04-01', '7', '2022-10-01', 'ANEST', '2021-10-01', 'standardy_anesteziologicke-priprava_a_asistence_u_celkove_anestezie_u_tep_kycle-revize-7.pdf', 'STD6#1', 'Schváleno', 11, 13, '2023-01-26 11:04:19', '2023-01-29 11:19:23'),
@@ -764,14 +765,23 @@ INSERT INTO `documents` (`id`, `category_id`, `accordion_name`, `accordion_group
 (86, 14, 'Protokol o likvidaci transfuzního přípravku', NULL, 8, 'Protokol o likvidaci transfuzního přípravku', 'Protokol o likvidaci transfuzního přípravku', NULL, NULL, NULL, NULL, '1', NULL, NULL, NULL, 'dokumenty-sesterska-protokol_o_likvidaci_transfuzniho_pripravku-revize-1.pdf', 'DOC14#8', 'Schváleno', 11, NULL, '2023-01-27 07:34:16', '2023-01-27 08:20:34'),
 (87, 14, 'Hlášení reakcí po transfuzích', NULL, 9, 'Hlášení reakcí po transfuzích', 'Hlášení reakcí po transfuzích', NULL, NULL, NULL, NULL, '1', NULL, NULL, NULL, 'dokumenty-sesterska-hlaseni_reakci_po_transfuzich-revize-1.pdf', 'DOC14#9', 'Schváleno', 11, NULL, '2023-01-27 07:34:46', '2023-01-27 08:21:26'),
 (88, 14, 'Proškolení obsluhy zdravotnického prostředku', NULL, 10, 'Proškolení obsluhy zdravotnického prostředku', 'Proškolení obsluhy zdravotnického prostředku', NULL, NULL, NULL, NULL, '1', NULL, NULL, NULL, 'dokumenty-sesterska-proskoleni_obsluhy_zdravotnickeho_prostredku-revize-1.pdf', 'DOC14#10', 'Schváleno', 11, NULL, '2023-01-27 07:35:05', '2023-01-27 08:21:42'),
-(89, 2, 'Standard ošetřovatelské péče', NULL, 1, 'Standard ošetřovatelské péče', 'Příjem nemocného na standardní oddělení', 'Sekaninová Anna', 'Rada kvality', 'Bc. Bělicová Taťána', '2022-03-01', '13', '2023-06-01', NULL, '2022-03-01', 'standardy_osetrovatelske-prijem_nemocneho_na_standardni_oddeleni-revize-13.pdf', 'STD2#1', 'Schváleno', 11, NULL, '2023-01-27 08:45:43', '2023-01-27 08:45:43'),
+(89, 2, 'Standard ošetřovatelské péče', NULL, 1, 'Standard ošetřovatelské péče', 'Příjem nemocného na standardní oddělení', NULL, 'Rada kvality', 'Bc. Bělicová Taťána', '2022-03-01', '13', '2023-03-01', NULL, '2022-03-01', 'standardy_osetrovatelske-prijem_nemocneho_na_standardni_oddeleni-revize-13.pdf', 'STD2#1', 'Schváleno', 11, NULL, '2023-01-27 08:45:43', '2023-02-01 06:38:52'),
 (90, 2, 'Standard ošetřovatelské péče', NULL, 2, 'Standard ošetřovatelské péče', 'Propuštění nebo překlad nemocného', 'Sekaninová Anna', 'Rada kvality', 'Bc. Bělicová Taťána', '2002-09-01', '13', '2023-06-01', NULL, '2021-06-01', 'standardy_osetrovatelske-propusteni_nebo_preklad_nemocneho-revize-13.pdf', 'STD2#2', 'Schváleno', 11, NULL, '2023-01-27 08:51:19', '2023-01-27 08:51:19'),
 (91, 2, 'Hygienická péče o nemocné', NULL, 3, 'Hygienická péče o nemocné', 'Hygienická péče o nemocné', 'Rada kvality', 'Rada kvality', 'Bc. Bělicová Taťána', '2002-09-01', '9', '2022-06-01', NULL, '2021-06-01', 'standardy_osetrovatelske-hygienicka_pece_o_nemocne-revize-9.pdf', 'STD2#3', 'Schváleno', 11, NULL, '2023-01-27 08:56:21', '2023-01-27 09:37:38'),
 (92, 2, 'Standard ošetřovatelské péče', NULL, 4, 'Standard ošetřovatelské péče', 'Měření vitálních funkcí', 'Sekaninová Anna', 'Rada kvality', 'MUDr. Kalina František', '2002-09-01', '8', '2023-06-01', NULL, '2021-06-01', 'standardy_osetrovatelske-mereni_vitalnich_funkci-revize-8.pdf', 'STD2#4', 'Schváleno', 11, NULL, '2023-01-27 08:58:23', '2023-01-27 08:58:23'),
 (93, 2, 'Standard ošetřovatelské péče', NULL, 5, 'Standard ošetřovatelské péče', 'Bezpečný odběr biologického materiálu', 'Sekaninová Anna', 'Rada kvality', NULL, '2002-09-01', '9', '2022-06-01', NULL, '2021-06-01', 'standardy_osetrovatelske-bezpecny_odber_biologickeho_materialu-revize-9.pdf', 'STD2#5', 'Schváleno', 11, NULL, '2023-01-27 09:01:50', '2023-01-29 20:08:17'),
 (94, 2, 'Standard ošetřovatelské péče', NULL, 7, 'Standard ošetřovatelské péče', 'Příprava a podávání léků injekční formou aplikace infuzí', NULL, NULL, NULL, '2002-09-01', '9', '2022-06-01', NULL, '2021-06-01', 'standardy_osetrovatelske-priprava_a_podavani_leku_injekcni_formou_aplikace_infuzi-revize-9.pdf', 'STD2#6', 'Schváleno', 11, NULL, '2023-01-27 09:08:58', '2023-01-29 20:13:02'),
 (95, 13, 'Claire Fitzpatrick', NULL, 2, 'Claire Fitzpatrick', 'Ut iure esse dicta o', 'MUDr. Bernacká Janka', 'MUDr. Hurtová Šárka', 'MUDr. Dadoková Monika', '1979-08-07', '1', '1978-06-05', 'Sed ut qui aut volup', '1977-06-05', 'standardy_personalni-ut_iure_esse_dicta_o-revize-1.pdf', 'DOC13#2', 'Schváleno', 11, NULL, '2023-01-29 18:13:47', '2023-01-29 18:13:56'),
-(96, 1, 'Skladování, předepisování a podávání léčiv', 7, 1, 'Skladování, předepisování a podávání léčiv', 'Skladování, předepisování a podávání léčiv', 'Bc. Bělicová Taťána', 'Rada kvality', 'Bc. Bělicová Taťána', '2022-11-08', '4', '2023-11-01', NULL, '2022-11-01', 'standardy_akreditacni-skladovani,_predepisovani_a_podavani_leciv-revize-4.pdf', 'STD1#7', 'Schváleno', 11, NULL, '2023-01-30 05:52:19', '2023-01-30 05:52:19');
+(96, 1, 'Skladování, předepisování a podávání léčiv', 7, 1, 'Skladování, předepisování a podávání léčiv', 'Skladování, předepisování a podávání léčiv', 'Bc. Bělicová Taťána', 'Rada kvality', 'Bc. Bělicová Taťána', '2022-11-08', '4', '2023-11-01', NULL, '2022-11-01', 'standardy_akreditacni-skladovani,_predepisovani_a_podavani_leciv-revize-4.pdf', 'STD1#7', 'Schváleno', 11, NULL, '2023-01-30 05:52:19', '2023-01-30 05:52:19'),
+(97, 2, 'Standard ošetřovatelské péče', NULL, 8, 'Standard ošetřovatelské péče', 'Příprava a asistence u aplikace transfúzních přípravků', 'Sekaninová Anna', 'Rada kvality', 'Bc. Bělicová Taťána', '2002-09-01', '11', '2022-06-01', NULL, '2021-06-01', 'standardy_osetrovatelske-priprava_a_asistence_u_aplikace_transfuznich_pripravku-revize-11.pdf', 'STD2#8', 'Schváleno', 11, NULL, '2023-02-01 07:27:40', '2023-02-01 07:27:40'),
+(98, 2, 'Standard ošetřovatelské péče', NULL, 9, 'Standard ošetřovatelské péče', 'Péče o žilní vstupy - ( periferní žilní katétr )', 'Rada kvality', NULL, NULL, '2002-09-01', '9', '2022-06-01', NULL, '2021-06-01', 'standardy_osetrovatelske-pece_o_zilni_vstupy-revize-9.pdf', 'STD2#9', 'Schváleno', 11, NULL, '2023-02-01 07:42:23', '2023-02-01 07:44:17'),
+(99, 2, 'Standard ošetřovatelské péče', NULL, 10, 'Standard ošetřovatelské péče', 'Péče o horní cesty dýchací', NULL, NULL, NULL, '2002-09-02', '9', '2023-06-01', NULL, '2021-06-01', 'standardy_osetrovatelske-pece_o_horni_cesty_dychaci-revize-9.pdf', 'STD2#10', 'Schváleno', 11, NULL, '2023-02-01 07:53:11', '2023-02-01 07:53:11'),
+(100, 2, 'Standard ošetřovatelské péče', NULL, 11, 'Standard ošetřovatelské péče', 'Kyslíková teparie', NULL, NULL, NULL, '2002-09-02', '1', '2023-06-01', NULL, '2021-06-01', 'standardy_osetrovatelske-kyslikova_teparie-revize-1.pdf', 'STD2#11', 'Schváleno', 11, NULL, '2023-02-01 07:54:04', '2023-02-01 07:54:04'),
+(101, 2, 'Standard ošetřovatelské péče', NULL, 12, 'Standard ošetřovatelské péče', 'Zavádění naso-gastrické sondy', NULL, NULL, NULL, '2002-02-01', '9', '2023-06-01', NULL, '2021-06-01', 'standardy_osetrovatelske-zavadeni_naso-gastricke_sondy-revize-9.pdf', 'STD2#12', 'Schváleno', 11, NULL, '2023-02-01 08:02:29', '2023-02-01 08:02:29'),
+(102, 2, 'Standard ošetřovatelské péče', NULL, 13, 'Standard ošetřovatelské péče', 'Cévkování nemocných', 'Sekaninová Anna', 'Rada kvality', 'Bc. Bělicová Taťána', '2021-06-01', '10', '2023-06-01', NULL, '2021-06-01', 'standardy_osetrovatelske-cevkovani_nemocnych-revize-10.pdf', 'STD2#13', 'Schváleno', 11, NULL, '2023-02-01 08:04:39', '2023-02-01 08:04:39'),
+(103, 2, 'Standard ošetřovatelské péče', NULL, 14, 'Standard ošetřovatelské péče', 'Očistné klyzma', 'Sekaninová Anna', 'Rada kvality', 'Bc. Bělicová Taťána', '2002-09-02', '9', '2023-06-01', NULL, '2021-06-01', 'standardy_osetrovatelske-ocistne_klyzma-revize-9.pdf', 'STD2#14', 'Schváleno', 11, NULL, '2023-02-01 08:06:44', '2023-02-01 08:06:44'),
+(104, 2, 'Standard ošetřovatelské péče', NULL, 15, 'Standard ošetřovatelské péče', 'Předoperační příprava pacientů', NULL, NULL, NULL, '2002-09-02', '10', '2022-06-01', NULL, '2021-06-01', 'standardy_osetrovatelske-predoperacni_priprava_pacientu-revize-10.pdf', 'STD2#15', 'Schváleno', 11, NULL, '2023-02-01 08:08:05', '2023-02-01 08:58:57'),
+(105, 2, 'Standard ošetřovatelské péče', NULL, 19, 'Standard ošetřovatelské péče', 'Stravování nemocných', NULL, NULL, NULL, '2004-04-13', '12', '2024-02-01', 'strava, ošetřovatel', '2023-02-01', 'standardy_osetrovatelske-stravovani_nemocnych-revize-12.pdf', 'STD2#16', 'Schváleno', 11, NULL, '2023-02-07 07:20:06', '2023-02-07 07:21:38');
 
 -- --------------------------------------------------------
 
@@ -1755,7 +1765,7 @@ INSERT INTO `users` (`id`, `personal_number`, `name`, `email`, `email_verified_a
 (8, '61199', 'PhDr. Ilona Kopečný', 'jakoubek.ivana@example.com', '2023-01-11 16:48:16', '$2y$10$LHGzVLpy/G9kAezVWgAyH.w4kZJM4sDCnTWicSCsVJwhueLR/EXkC', NULL, NULL, 'SreSqc3lYKXx7cC3k9lzdP2FARjraqw5bl3EwVMUDRG2Stbz2SRg3TXSWV1n', '2023-01-11 16:48:17', '2023-01-11 16:48:17'),
 (9, '64220', 'Vítězslav Studený', 'aprokop@example.net', '2023-01-11 16:48:16', '$2y$10$TXAjVT9k./.H4KjXoNAcn.ljLPiSjKS0B.vlGoGjEiJXFvNWX3CJG', NULL, NULL, 'Q84bE3b76njnJpTH1hee9690itatngELvYKuDNtYqpfuwZ72Y4EhZd2C0J3e', '2023-01-11 16:48:17', '2023-01-11 16:48:17'),
 (10, '62457', 'PhDr. Jan Kuča', 'milena93@example.net', '2023-01-11 16:48:16', '$2y$10$y.1Fr4LcccsAuc2CCAp9seh5PonzrjwBcBDlKqaIaO4r0eYvvow3W', NULL, NULL, 'uKtD3jRcmQagjEDZs2oF9PpRq14SsqwMna9HjdAGFR5U2lai6N50iFFPsfDC', '2023-01-11 16:48:17', '2023-01-11 16:48:17'),
-(11, '61625', 'Klika Miroslav', 'klika@khn.cz', NULL, '$2y$10$PSw5emAhbIR3u3sVNNg3iOe8t9z0Ct7dgJEKUud0jfeXFVkJzWZqK', NULL, NULL, 'JKbMXlK0UNQAXbON2zdrMcaDYyWAZZfo5mJ5PKOJDl5xM2cg7RSvp4vjhPlJ', '2023-01-11 18:53:36', '2023-01-22 21:46:33'),
+(11, '61625', 'Klika Miroslav', 'klika@khn.cz', NULL, '$2y$10$PSw5emAhbIR3u3sVNNg3iOe8t9z0Ct7dgJEKUud0jfeXFVkJzWZqK', NULL, NULL, 'UA8haZIQajosR4mLK0EyyDj3TeSxj4RGytfHc0UyhXOEAGSCIxRa7iveUDDY', '2023-01-11 18:53:36', '2023-01-22 21:46:33'),
 (12, '63882', 'Anna Seidlová', 'mbalogova@example.org', '2023-01-13 16:56:57', '$2y$10$ihu2uS/uhaS01vFcu8M.6eN5ElPL//0lTNnPybHJWDbVuNOGbWvfe', NULL, NULL, 'jSCn8DxL6F6HZFbc37QMtjBOtiWFUr5RuuHEw0DVZUbCS6s2vqM58fO2ZjXy', '2023-01-13 16:56:57', '2023-01-13 16:56:57'),
 (13, '64832', 'Marta Jílková', 'cibulkova.tomas@example.net', '2023-01-13 16:56:57', '$2y$10$43kzxF1NKZ/bu2BgUlG5D.I0JYRdvKu6v2ZyF83TkJBKh5nqeUCLW', NULL, NULL, 'rhlXHVt9qY9OsQA9Q8q4CRdFYxXxmbc5kliamjZKwMG5crFPZwTB1b2AE3XH', '2023-01-13 16:56:57', '2023-01-13 16:56:57'),
 (14, '62297', 'Vladimíra Bradová', 'ncahova@example.org', '2023-01-13 16:56:57', '$2y$10$lU2Pubr/W60AJ.rFRlM0l.8DHV1vBszqcNyoGqHjbIdGEvPIEWUZS', NULL, NULL, 'CuPFejVxGLKnbWf4cNf5kauzdYDdEMtGwTQ4eXfcRokoZG38HmYA45ePlZLa', '2023-01-13 16:56:57', '2023-01-13 16:56:57'),
@@ -1768,59 +1778,59 @@ INSERT INTO `users` (`id`, `personal_number`, `name`, `email`, `email_verified_a
 (21, '63881', 'Anežka Melicharová', 'ipsenickova@example.com', '2023-01-13 16:56:57', '$2y$10$Y4KDV1Sll4YhalKynVpxNu0nQBIs92cYY6xV0Z96HK4TSt5N9X5kS', NULL, NULL, 'aaU0aket8hncus2N0G8VFRP7EmgQPdShm1XwQv9dROWkA9r79FTE2T1aZrez', '2023-01-13 16:56:57', '2023-01-13 16:56:57');
 
 --
--- Indexy pro exportované tabulky
+-- Klíče pro exportované tabulky
 --
 
 --
--- Indexy pro tabulku `addons`
+-- Klíče pro tabulku `addons`
 --
 ALTER TABLE `addons`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indexy pro tabulku `adversevents`
+-- Klíče pro tabulku `adversevents`
 --
 ALTER TABLE `adversevents`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indexy pro tabulku `attendances`
+-- Klíče pro tabulku `attendances`
 --
 ALTER TABLE `attendances`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indexy pro tabulku `categories`
+-- Klíče pro tabulku `categories`
 --
 ALTER TABLE `categories`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indexy pro tabulku `departments`
+-- Klíče pro tabulku `departments`
 --
 ALTER TABLE `departments`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indexy pro tabulku `documents`
+-- Klíče pro tabulku `documents`
 --
 ALTER TABLE `documents`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indexy pro tabulku `employees`
+-- Klíče pro tabulku `employees`
 --
 ALTER TABLE `employees`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indexy pro tabulku `evidence`
+-- Klíče pro tabulku `evidence`
 --
 ALTER TABLE `evidence`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indexy pro tabulku `failed_jobs`
+-- Klíče pro tabulku `failed_jobs`
 --
 ALTER TABLE `failed_jobs`
   ADD PRIMARY KEY (`id`),
@@ -1840,7 +1850,7 @@ ALTER TABLE `addons`
 -- AUTO_INCREMENT pro tabulku `documents`
 --
 ALTER TABLE `documents`
-  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=97;
+  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=106;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
