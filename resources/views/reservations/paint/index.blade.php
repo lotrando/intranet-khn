@@ -47,6 +47,16 @@
       </div>
     </div>
 
+    <div class="row mb-2" id="date_filter">
+      <div class="col-6">
+        <span class="form-label" id="date-label-from">Od </span>
+        <input class="form-control date" id="datepicker_from" type="date" />
+      </div>
+      <div class="col-6">
+        <span class="form-label" id="date-label-to">Do </span>
+        <input class="form-control col-6 date" id="datepicker_to" type="date" />
+      </div>
+    </div>
     <div class="row justify-content-center">
       <div class="col-12">
         <div class="card mb-2 shadow-sm">
@@ -59,7 +69,7 @@
                   <th>{{ __('Od') }}</th>
                   <th>{{ __('do') }}</th>
                   <th>{{ __('Místnosti') }}</th>
-                  <th>{{ __('Zvláštní požadavky') }}</th>
+                  {{-- <th>{{ __('Zvláštní požadavky') }}</th> --}}
                   <th>{{ __('Vytvořeno') }}</th>
                   <th>{{ __('Status') }}</th>
                   <th class="text-center"><i class="fas fa-bars"></i></th>
@@ -224,15 +234,15 @@
         }],
         columns: [{
             data: 'department.department_name',
-            "width": "7%",
+            "width": "1%",
           },
           {
             data: 'user.name',
-            "width": "5%"
+            "width": "1%"
           },
           {
             data: 'date_start',
-            "width": "2%",
+            "width": "1%",
             render: function(data, type, full, meta) {
               var date = moment(data).locale('cs');
               return date.format('D. M. YYYY');
@@ -240,7 +250,7 @@
           },
           {
             data: 'date_end',
-            "width": "2%",
+            "width": "1%",
             render: function(data, type, full, meta) {
               var date = moment(data).locale('cs');
               return date.format('D. M. YYYY');
@@ -248,11 +258,7 @@
           },
           {
             data: 'rooms',
-            "width": "2%"
-          },
-          {
-            data: 'specials',
-            "width": "3%"
+            "width": "6%"
           },
           {
             data: 'created_at',
@@ -422,5 +428,47 @@
         }
       })
     })
+  </script>
+
+  <script>
+    $(function() {
+
+      $("#datepicker_from").change(function() {
+        minDateFilter = moment(this.value).locale('cs').format('D. M. Y')
+        oTable.fnDraw();
+      });
+
+      $("#datepicker_to").change(function() {
+        minDateFilter = moment(this.value).locale('cs').format('D. M. Y')
+        oTable.fnDraw();
+      });
+
+    });
+
+    // Date range filter
+    minDateFilter = "";
+    maxDateFilter = "";
+
+    $.fn.dataTableExt.afnFiltering.push(
+      function(oSettings, aData, iDataIndex) {
+        if (typeof aData._date == 'undefined') {
+          aData._date = new Date(aData[0]).getTime();
+        }
+
+        if (minDateFilter && !isNaN(minDateFilter)) {
+          if (aData._date < minDateFilter) {
+            return false;
+          }
+        }
+
+        if (maxDateFilter && !isNaN(maxDateFilter)) {
+          if (aData._date > maxDateFilter) {
+            return false;
+          }
+        }
+
+        return true;
+      }
+    );
   </script>
 @endsection
