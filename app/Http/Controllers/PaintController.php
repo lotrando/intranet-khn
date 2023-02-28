@@ -8,6 +8,7 @@ use App\Mail\PaintDelete;
 use App\Mail\PaintUpdate;
 use App\Models\Department;
 use App\Models\Paint;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Mail;
@@ -25,11 +26,17 @@ class PaintController extends Controller
     public function index(Request $request)
     {
         $departments = Department::orderBy('department_name')->get();
-        $columns = Schema::getColumnListing('paints');
+        $columns     = Schema::getColumnListing('paints');
+
+        $startDate  = Carbon::parse($request->filter_start)->format('Y-m-d');
+        $endDate    = Carbon::parse($request->filter_end)->format('Y-m-d');
+
+        $model = Paint::with('department', 'user')
+        ->WhereDate('date_start', '>=', $startDate)
+        ->WhereDate('date_end', '<=', $endDate)
+        ->select('*', 'paints.id');
 
         if ($request->ajax()) {
-
-            $model = Paint::with('department', 'user')->select('*', 'paints.id');
 
             return DataTables::eloquent($model)
 

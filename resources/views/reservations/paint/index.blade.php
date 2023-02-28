@@ -50,11 +50,11 @@
     <div class="row mb-2" id="date_filter">
       <div class="col-6">
         <span class="form-label" id="date-label-from">Od </span>
-        <input class="form-control date" id="datepicker_from" type="date" />
+        <input class="form-control date" id="filter_start" type="date" />
       </div>
       <div class="col-6">
         <span class="form-label" id="date-label-to">Do </span>
-        <input class="form-control col-6 date" id="datepicker_to" type="date" />
+        <input class="form-control col-6 date" id="filter_end" type="date" />
       </div>
     </div>
     <div class="row justify-content-center">
@@ -435,40 +435,14 @@
 
       $("#datepicker_from").change(function() {
         minDateFilter = moment(this.value).locale('cs').format('D. M. Y')
-        oTable.fnDraw();
+        console.log(minDateFilter)
       });
 
       $("#datepicker_to").change(function() {
-        minDateFilter = moment(this.value).locale('cs').format('D. M. Y')
-        oTable.fnDraw();
+        maxDateFilter = moment(this.value).locale('cs').format('D. M. Y')
+        console.log(maxDateFilter)
       });
 
     });
-
-    // Date range filter
-    minDateFilter = "";
-    maxDateFilter = "";
-
-    $.fn.dataTableExt.afnFiltering.push(
-      function(oSettings, aData, iDataIndex) {
-        if (typeof aData._date == 'undefined') {
-          aData._date = new Date(aData[0]).getTime();
-        }
-
-        if (minDateFilter && !isNaN(minDateFilter)) {
-          if (aData._date < minDateFilter) {
-            return false;
-          }
-        }
-
-        if (maxDateFilter && !isNaN(maxDateFilter)) {
-          if (aData._date > maxDateFilter) {
-            return false;
-          }
-        }
-
-        return true;
-      }
-    );
   </script>
 @endsection
