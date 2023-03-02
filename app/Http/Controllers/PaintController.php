@@ -28,13 +28,19 @@ class PaintController extends Controller
         $departments = Department::orderBy('department_name')->get();
         $columns     = Schema::getColumnListing('paints');
 
-        $startDate  = Carbon::parse($request->filter_start)->format('Y-m-d');
-        $endDate    = Carbon::parse($request->filter_end)->format('Y-m-d');
+        $startDate  = Carbon::parse($request->filter_start);
+        $endDate    = Carbon::parse($request->filter_end);
 
         $model = Paint::with('department', 'user')
-        ->WhereDate('date_start', '>=', $startDate)
-        ->WhereDate('date_end', '<=', $endDate)
-        ->select('*', 'paints.id');
+            ->WhereDate('date_start', '>=', $startDate->format('Y-m-d'))
+            ->WhereDate('date_end', '<=', $endDate->format('Y-m-d'))
+            ->select('*', 'paints.id');
+
+        return view('reservations.paint.index')->with([
+            'title'         => 'Rezervace',
+            'departments'   => $departments,
+            'columns'       => $columns
+        ]);
 
         if ($request->ajax()) {
 

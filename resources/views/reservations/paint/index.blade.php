@@ -6,10 +6,10 @@
 
 @section('buttons')
   <div class="btn-list">
-    <button class="btn btn-success d-none d-sm-inline-block" id="openCreateModal" data-bs-toggle="tooltip" data-bs-placement="bottom"
-            data-bs-original-title="{{ __('Create new paint reservation') }}">
-      <svg class="icon icon-tabler" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round"
-           stroke-linejoin="round">
+    <button class="btn btn-success d-none d-sm-inline-block" id="openCreateModal" data-bs-toggle="tooltip"
+      data-bs-placement="bottom" data-bs-original-title="{{ __('Create new paint reservation') }}">
+      <svg class="icon icon-tabler" width="24" height="24" viewBox="0 0 24 24" stroke-width="2"
+        stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
         <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
         <path d="M4 5m0 2a2 2 0 0 1 2 -2h12a2 2 0 0 1 2 2v12a2 2 0 0 1 -2 2h-12a2 2 0 0 1 -2 -2z"></path>
         <path d="M16 3l0 4"></path>
@@ -47,16 +47,6 @@
       </div>
     </div>
 
-    <div class="row mb-2" id="date_filter">
-      <div class="col-6">
-        <span class="form-label" id="date-label-from">Od </span>
-        <input class="form-control date" id="filter_start" type="date" />
-      </div>
-      <div class="col-6">
-        <span class="form-label" id="date-label-to">Do </span>
-        <input class="form-control col-6 date" id="filter_end" type="date" />
-      </div>
-    </div>
     <div class="row justify-content-center">
       <div class="col-12">
         <div class="card mb-2 shadow-sm">
@@ -85,7 +75,8 @@
 
 @section('modals')
   {{-- Main Form Modal --}}
-  <div class="modal modal-blur fade" id="formModal" data-bs-backdrop="static" data-bs-keyboard="false" role="dialog" aria-hidden="true" tabindex="-1">
+  <div class="modal modal-blur fade" id="formModal" data-bs-backdrop="static" data-bs-keyboard="false" role="dialog"
+    aria-hidden="true" tabindex="-1">
     <div class="modal-dialog modal-xl modal-dialog-centered" role="document">
       <div class="modal-content shadow-lg">
         <div id="modal-header">
@@ -113,27 +104,32 @@
               </div>
               <div class="col-6 col-lg-3 mb-sm-1">
                 <label class="form-label">{{ __('Od') }}</label>
-                <input class="form-control" id="date_start" name="date_start" type="date" value="{{ date('Y-m-d') ?? old('date_start') }}" placeholder="{{ __('Od') }}"
-                       onkeydown="return false">
+                <input class="form-control" id="date_start" name="date_start" type="date"
+                  value="{{ date('Y-m-d') ?? old('date_start') }}" placeholder="{{ __('Od') }}"
+                  onkeydown="return false">
               </div>
               <div class="col-6 col-lg-3 mb-sm-1">
                 <label class="form-label">{{ __('Do') }}</label>
-                <input class="form-control" id="date_end" name="date_end" type="date" value="{{ old('date_end') ?? '' }}" placeholder="{{ __('Do') }}"
-                       onkeydown="return false">
+                <input class="form-control" id="date_end" name="date_end" type="date"
+                  value="{{ old('date_end') ?? '' }}" placeholder="{{ __('Do') }}" onkeydown="return false">
               </div>
             </div>
             <div class="row">
               <div class="col-12 col-lg-12 mb-sm-1">
-                <label class="form-label">{{ __('Místnosti') }} <small class="text-azure">( Vypište čísla jednotlivých místností, které chcete vymalovat. V případe malování celého
+                <label class="form-label">{{ __('Místnosti') }} <small class="text-azure">( Vypište čísla jednotlivých
+                    místností, které chcete vymalovat. V případe malování celého
                     oddělení zadejte "celé oddělení" )</small></label>
-                <input class="form-control" id="rooms" name="rooms" type="text" value="{{ old('rooms') }}" placeholder="{{ __('Místnosti') }}">
+                <input class="form-control" id="rooms" name="rooms" type="text" value="{{ old('rooms') }}"
+                  placeholder="{{ __('Místnosti') }}">
               </div>
             </div>
             <div class="row">
               <div class="col-12 col-lg-12 mb-sm-1">
-                <label class="form-label">{{ __('Zvláštní požadavky') }} <small class="text-azure">( Vypište v případě malování speciálních věcí jako jsou zárubně, žebřiny, apod.
+                <label class="form-label">{{ __('Zvláštní požadavky') }} <small class="text-azure">( Vypište v případě
+                    malování speciálních věcí jako jsou zárubně, žebřiny, apod.
                     )</small></label>
-                <input class="form-control" id="specials" name="specials" type="text" value="{{ old('special') }}" placeholder="{{ __('Zvláštní požadavky') }}">
+                <input class="form-control" id="specials" name="specials" type="text"
+                  value="{{ old('special') }}" placeholder="{{ __('Zvláštní požadavky') }}">
               </div>
             </div>
             <div class="row">
@@ -153,7 +149,8 @@
             <button class="btn btn-muted hover-shadow" data-bs-dismiss="modal" type="button">
               {{ __('Close') }}
             </button>
-            <button class="btn btn-primary ms-auto hover-shadow" id="action_button" name="action_button" type="submit"></button>
+            <button class="btn btn-primary ms-auto hover-shadow" id="action_button" name="action_button"
+              type="submit"></button>
           </div>
         </form>
       </div>
@@ -161,14 +158,16 @@
   </div>
 
   {{-- Delete Event Modal --}}
-  <div class="modal modal-blur fade" id="confirmModal" data-bs-backdrop="static" data-bs-keyboard="false" role="dialog" aria-hidden="true" tabindex="-1">
+  <div class="modal modal-blur fade" id="confirmModal" data-bs-backdrop="static" data-bs-keyboard="false"
+    role="dialog" aria-hidden="true" tabindex="-1">
     <div class="modal-dialog modal-sm modal-dialog-centered" role="document">
       <div class="modal-content shadow-lg">
         {{-- <button class="btn-close" data-bs-dismiss="modal" type="button" aria-label="{{ __('Close') }}"></button> --}}
         <div class="modal-status bg-danger"></div>
         <div class="modal-body py-4 text-center">
-          <svg class="icon text-danger icon-lg mb-2" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" stroke-width="2"
-               stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+          <svg class="icon text-danger icon-lg mb-2" xmlns="http://www.w3.org/2000/svg" width="24" height="24"
+            viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round"
+            stroke-linejoin="round">
             <path stroke="none" d="M0 0h24v24H0z" fill="none" />
             <path d="M12 9v2m0 4v.01" />
             <path d="M5 19h14a2 2 0 0 0 1.84 -2.75l-7.1 -12.25a2 2 0 0 0 -3.5 0l-7.1 12.25a2 2 0 0 0 1.75 2.75" />
@@ -345,7 +344,8 @@
           processData: false,
           dataType: "json",
           beforeSend: function() {
-            html = '<div class="alert alert-info text-info shadow-sm"><ul><li>Ukládám rezervaci a odesílám email, čekejte...</li></ul></div>';
+            html =
+              '<div class="alert alert-info text-info shadow-sm"><ul><li>Ukládám rezervaci a odesílám email, čekejte...</li></ul></div>';
             $('#form_result_modal').html(html);
           },
           success: function(data) {
@@ -360,7 +360,8 @@
               $('#form_result_modal').html(html);
             }
             if (data.success) {
-              html = '<div class="alert alert-success text-success shadow-sm"><ul><li>' + data.success + '</li></ul></div>';
+              html = '<div class="alert alert-success text-success shadow-sm"><ul><li>' + data.success +
+                '</li></ul></div>';
               $('#formModal').modal('hide')
               $('#inputForm')[0].reset();
               $('.dataTable').DataTable().ajax.reload(null, false);
@@ -381,7 +382,8 @@
           processData: false,
           dataType: "json",
           beforeSend: function() {
-            html = '<div class="alert alert-info text-info shadow-sm"><ul><li>Ukládám změny a odesílám email, čekejte...</li></ul></div>';
+            html =
+              '<div class="alert alert-info text-info shadow-sm"><ul><li>Ukládám změny a odesílám email, čekejte...</li></ul></div>';
             $('#form_result_modal').html(html);
           },
           success: function(data) {
@@ -428,21 +430,5 @@
         }
       })
     })
-  </script>
-
-  <script>
-    $(function() {
-
-      $("#datepicker_from").change(function() {
-        minDateFilter = moment(this.value).locale('cs').format('D. M. Y')
-        console.log(minDateFilter)
-      });
-
-      $("#datepicker_to").change(function() {
-        maxDateFilter = moment(this.value).locale('cs').format('D. M. Y')
-        console.log(maxDateFilter)
-      });
-
-    });
   </script>
 @endsection

@@ -30,16 +30,11 @@ class ReservationController extends Controller
 			return redirect(route('login'));
 		}
 
-		$reservations = Reservation::sortable()
-			->with('user', 'department')
+		$reservations = Reservation::with('user', 'department')
 			->orderBy('created_at', 'asc')
 			->paginate(10);
 
-		if (Gate::denies('logged-in')) {
-			return view('home');
-		} else {
-			return view('user.reservations.index', ['reservations' => $reservations]);
-		}
+		return view('user.reservations.index', ['reservations' => $reservations]);
 	}
 
 	/**
