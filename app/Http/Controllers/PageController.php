@@ -259,6 +259,37 @@ class PageController extends Controller
         ]);
     }
 
+    // BOZP = PO
+    public function bozp($id)
+    {
+        $allDocuments = Document::where('category_type', 'bozp')->pluck('category_id');
+        $categorie  = Category::where('id', $id)->first();
+        $last = Document::where('category_id', $id)->orderBy('id', 'desc')->take(1)->first();
+
+        if ($last == null) {
+            $last = 0;
+        } else {
+            $position = $last->position;
+            $last = $position;
+        }
+
+        if (Auth::user()) {
+            $documents = Document::with('category', 'addons', 'user')->where('category_id', $id)->orderBy('position')->get();
+        } else {
+            $documents = Document::with('category', 'addons', 'user')->where('status', 'Schváleno')->where('category_id', $id)->orderBy('position')->get();
+        }
+
+        return view('standardy.standard', [
+            'title'             => $categorie->category_name,
+            'pretitle'          => 'BOZP - PO',
+            'categorie'         => $categorie,
+            'icon'              => $categorie->fa_icon,
+            'lastpos'           => $last,
+            'documents'         => $documents,
+            'allDocuments'      => $allDocuments
+        ]);
+    }
+
     // Radio
     public function radio()
     {
