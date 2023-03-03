@@ -262,9 +262,13 @@ class PageController extends Controller
     // BOZP = PO
     public function bozp($id)
     {
-        $allDocuments = Document::where('category_type', 'bozp')->pluck('category_id');
+        $allDocuments = Document::where('category_id', '>', '24')->pluck('category_id');
         $categorie  = Category::where('id', $id)->first();
+        $standards = Document::where('onscreen', $id)->where('category_id', '<', 12)->orderBy('category_id')->get();
         $last = Document::where('category_id', $id)->orderBy('id', 'desc')->take(1)->first();
+        $warehouse = Addon::where('document_id', 0)->where('onscreen', $id)->orderBy('description')->get();
+        $warehouse = Addon::where('document_id', 0)->where('onscreen', $id)->orderBy('description')->get();
+        $doctors = Employee::where('standard_signature', 1)->orderBy('last_name')->get();
 
         if ($last == null) {
             $last = 0;
@@ -274,18 +278,21 @@ class PageController extends Controller
         }
 
         if (Auth::user()) {
-            $documents = Document::with('category', 'addons', 'user')->where('category_id', $id)->orderBy('position')->get();
+            $documents = Document::with('category', 'user')->where('category_id', $id)->orderBy('position')->get();
         } else {
-            $documents = Document::with('category', 'addons', 'user')->where('status', 'Schváleno')->where('category_id', $id)->orderBy('position')->get();
+            $documents = Document::with('category', 'user')->where('status', 'Schváleno')->where('category_id', $id)->orderBy('position')->get();
         }
 
-        return view('standardy.standard', [
+        return view('bozp.index', [
             'title'             => $categorie->category_name,
             'pretitle'          => 'BOZP - PO',
             'categorie'         => $categorie,
             'icon'              => $categorie->fa_icon,
             'lastpos'           => $last,
             'documents'         => $documents,
+            'standards'         => $standards,
+            'warehouse'         => $warehouse,
+            'doctors'           => $doctors,
             'allDocuments'      => $allDocuments
         ]);
     }

@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Počítač: 127.0.0.1
--- Vytvořeno: Čtv 02. bře 2023, 14:05
+-- Vytvořeno: Pát 03. bře 2023, 13:43
 -- Verze serveru: 10.4.24-MariaDB
 -- Verze PHP: 7.4.29
 
@@ -75,7 +75,10 @@ INSERT INTO `addons` (`id`, `document_id`, `category_id`, `addon_number`, `descr
 (27, 0, 0, 116, 'Soupis cenných věcí pacienta pro všechny oddělení', '116', 'none', 'Schváleno', 14, '2023-01-30 10:47:56', '2023-01-30 10:47:56'),
 (28, 0, 0, 0, 'Ošetřovatelská anamnéza pro jednodenní chirurgii', '???', 'none', 'Schváleno', 14, '2023-01-30 10:47:56', '2023-01-30 10:47:56'),
 (29, 0, 0, 0, 'Telemetrie', '???', 'none', 'Schváleno', 14, '2023-01-30 10:47:56', '2023-01-30 10:47:56'),
-(30, 0, 0, 122, 'Verifikační protokol', '122', 'none', 'Schváleno', 14, '2023-01-30 10:47:56', '2023-01-30 10:47:56');
+(30, 0, 0, 122, 'Verifikační protokol', '122', 'none', 'Schváleno', 14, '2023-01-30 10:47:56', '2023-01-30 10:47:56'),
+(31, 106, 25, 1, 'Evidenční list evakuovaných osob z místa vzniku NU na místo shromáždění', '1', 'none', 'Schváleno', 0, '2023-01-30 10:47:56', '2023-01-30 10:47:56'),
+(32, 106, 25, 2, 'Evidenční list evakuovaných osob na místě shromážděníshromáždění', '1', 'none', 'Schváleno', 0, '2023-01-30 10:47:56', '2023-01-30 10:47:56'),
+(33, 106, 25, 3, 'Evidenční list evakuovaných osob z KHN do jiného ZZ nebo domácího léčení', '1', 'none', 'Schváleno', 0, '2023-01-30 10:47:56', '2023-01-30 10:47:56');
 
 -- --------------------------------------------------------
 
@@ -156,6 +159,38 @@ CREATE TABLE `attendances` (
   `first_name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `start_time` time DEFAULT NULL,
   `end_time` time DEFAULT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Struktura tabulky `bozps`
+--
+
+CREATE TABLE `bozps` (
+  `id` bigint(20) UNSIGNED NOT NULL,
+  `category_id` bigint(20) NOT NULL,
+  `accordion_name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `accordion_group` int(11) DEFAULT NULL,
+  `position` int(11) NOT NULL,
+  `document_position` int(11) NOT NULL,
+  `document_name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `description` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `processed` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `authorize` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `examine` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `efficiency` date DEFAULT NULL,
+  `revision` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `revision_date` date DEFAULT NULL,
+  `next_revision_date` date DEFAULT NULL,
+  `tags` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `file` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `unique_code` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `status` enum('Rozpracováno','Schváleno') COLLATE utf8mb4_unicode_ci NOT NULL,
+  `user_id` int(11) NOT NULL,
+  `onscreen` int(11) NOT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
@@ -600,8 +635,8 @@ INSERT INTO `categories` (`id`, `category_file`, `category_type`, `category_name
 (31, 'dokumenty', 'bozp', 'Prověrky a kontroly ', 'proverky-kontroly', 'proverky-kontroly.png', '<svg xmlns=\"http://www.w3.org/2000/svg\" class=\"icon text-azure\" width=\"40\" height=\"40\" viewBox=\"0 0 24 24\" stroke-width=\"2\" stroke=\"currentColor\" fill=\"none\" stroke-linecap=\"round\" stroke-linejoin=\"round\">\r\n<path stroke=\"none\" d=\"M0 0h24v24H0z\" fill=\"none\"></path><path d=\"M12 14m-2 0a2 2 0 1 0 4 0a2 2 0 1 0 -4 0\"></path><path d=\"M12 10.5v1.5\"></path><path d=\"M12 16v1.5\"></path><path d=\"M15.031 12.25l-1.299 .75\"></path><path d=\"M10.268 15l-1.3 .75\"></path><path d=\"M15 15.803l-1.285 -.773\"></path><path d=\"M10.285 12.97l-1.285 -.773\"></path><path d=\"M14 3v4a1 1 0 0 0 1 1h4\"></path><path d=\"M17 21h-10a2 2 0 0 1 -2 -2v-14a2 2 0 0 1 2 -2h7l5 5v11a2 2 0 0 1 -2 2z\"></path></svg>', '', 'Prověrky a kontroly ', 'azure'),
 (32, 'dokumenty', 'bozp', 'Provozně bezp. předpisy', 'provozne-bezpecnostni-predpisy', 'provozne-bezpecnostni-predpisy.png', '<svg xmlns=\"http://www.w3.org/2000/svg\" class=\"icon text-red\" width=\"40\" height=\"40\" viewBox=\"0 0 24 24\" stroke-width=\"2\" stroke=\"currentColor\" fill=\"none\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><path stroke=\"none\" d=\"M0 0h24v24H0z\" fill=\"none\"></path><path d=\"M11.99 1.968c1.023 0 1.97 .521 2.512 1.359l.103 .172l7.1 12.25l.062 .126a3 3 0 0 1 -2.568 4.117l-.199 .008h-14l-.049 -.003l-.112 .002a3 3 0 0 1 -2.268 -1.226l-.109 -.16a3 3 0 0 1 -.32 -2.545l.072 -.194l.06 -.125l7.092 -12.233a3 3 0 0 1 2.625 -1.548zm.02 12.032l-.127 .007a1 1 0 0 0 0 1.986l.117 .007l.127 -.007a1 1 0 0 0 0 -1.986l-.117 -.007zm-.01 -6a1 1 0 0 0 -.993 .883l-.007 .117v2l.007 .117a1 1 0 0 0 1.986 0l.007 -.117v-2l-.007 -.117a1 1 0 0 0 -.993 -.883z\" stroke-width=\"0\" fill=\"currentColor\"></path></svg>', '', 'Provozně bezpečnostní předpisy', 'red'),
 (33, 'dokumenty', 'bozp', 'Rizika', 'rizika', 'rizika.png', '<svg xmlns=\"http://www.w3.org/2000/svg\" class=\"icon text-teal\" width=\"40\" height=\"40\" viewBox=\"0 0 24 24\" stroke-width=\"2\" stroke=\"currentColor\" fill=\"none\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><path stroke=\"none\" d=\"M0 0h24v24H0z\" fill=\"none\"></path><path d=\"M17 3.34a10 10 0 1 1 -14.995 8.984l-.005 -.324l.005 -.324a10 10 0 0 1 14.995 -8.336zm-4.99 11.66l-.127 .007a1 1 0 0 0 0 1.986l.117 .007l.127 -.007a1 1 0 0 0 0 -1.986l-.117 -.007zm-.01 -8a1 1 0 0 0 -.993 .883l-.007 .117v4l.007 .117a1 1 0 0 0 1.986 0l.007 -.117v-4l-.007 -.117a1 1 0 0 0 -.993 -.883z\" stroke-width=\"0\" fill=\"currentColor\"></path></svg>', '', 'Rizika', 'teal'),
-(34, 'dokumenty', 'bozp', 'Požární ochrana', 'pozarni-ochrana', 'pozarni-ochrana.png', '<svg xmlns=\"http://www.w3.org/2000/svg\" class=\"icon icon-tabler icon-tabler-cards\" width=\"40\" height=\"40\" viewBox=\"0 0 24 24\" stroke-width=\"2\" stroke=\"currentColor\" fill=\"none\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><path stroke=\"none\" d=\"M0 0h24v24H0z\" fill=\"none\"></path><path d=\"M3.604 7.197l7.138 -3.109a.96 .96 0 0 1 1.27 .527l4.924 11.902a1 1 0 0 1 -.514 1.304l-7.137 3.109a.96 .96 0 0 1 -1.271 -.527l-4.924 -11.903a1 1 0 0 1 .514 -1.304z\"></path>\r\n<path d=\"M15 4h1a1 1 0 0 1 1 1v3.5\"></path><path d=\"M20 6c.264 .112 .52 .217 .768 .315a1 1 0 0 1 .53 1.311l-2.298 5.374\"></path></svg>', '', 'Požární operativní karty', 'teal'),
-(35, 'dokumenty', 'bozp', 'Požární operativní karty', 'bezpecnostni-listy', 'bezpecnostni-listy.png', '<svg xmlns=\"http://www.w3.org/2000/svg\" class=\"icon icon-tabler icon-tabler-file-delta\" width=\"40\" height=\"40\" viewBox=\"0 0 24 24\" stroke-width=\"2\" stroke=\"currentColor\" fill=\"none\" stroke-linecap=\"round\" stroke-linejoin=\"round\">\r\n<path stroke=\"none\" d=\"M0 0h24v24H0z\" fill=\"none\"></path><path d=\"M14 3v4a1 1 0 0 0 1 1h4\"></path><path d=\"M17 21h-10a2 2 0 0 1 -2 -2v-14a2 2 0 0 1 2 -2h7l5 5v11a2 2 0 0 1 -2 2z\"></path><path d=\"M9 17h6l-3 -6z\"></path></svg>', '', 'Bezpečnostní listy', 'orange'),
+(34, 'dokumenty', 'bozp', 'Požární ochrana', 'pozarni-ochrana', 'pozarni-ochrana.png', '<svg xmlns=\"http://www.w3.org/2000/svg\" class=\"icon text-red\" width=\"24\" height=\"24\" viewBox=\"0 0 24 24\" stroke-width=\"2\" stroke=\"currentColor\" fill=\"none\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><path stroke=\"none\" d=\"M0 0h24v24H0z\" fill=\"none\"></path><path d=\"M5 17m-2 0a2 2 0 1 0 4 0a2 2 0 1 0 -4 0\"></path><path d=\"M17 17m-2 0a2 2 0 1 0 4 0a2 2 0 1 0 -4 0\"></path><path d=\"M7 18h8m4 0h2v-6a5 5 0 0 0 -5 -5h-1l1.5 5h4.5\"></path><path d=\"M12 18v-11h3\"></path><path d=\"M3 17l0 -5l9 0\"></path><path d=\"M3 9l18 -6\"></path><path d=\"M6 12l0 -4\"></path></svg>', '', 'Požární ochrana', 'red'),
+(35, 'dokumenty', 'bozp', 'Požární operativní karty', 'pozarni-operativni-karty', 'pozarni-operativni-karty.png', '<svg xmlns=\"http://www.w3.org/2000/svg\" class=\"icon text-lime\" width=\"40\" height=\"40\" viewBox=\"0 0 24 24\" stroke-width=\"2\" stroke=\"currentColor\" fill=\"none\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><path stroke=\"none\" d=\"M0 0h24v24H0z\" fill=\"none\"></path><path d=\"M3.604 7.197l7.138 -3.109a.96 .96 0 0 1 1.27 .527l4.924 11.902a1 1 0 0 1 -.514 1.304l-7.137 3.109a.96 .96 0 0 1 -1.271 -.527l-4.924 -11.903a1 1 0 0 1 .514 -1.304z\"></path>\n<path d=\"M15 4h1a1 1 0 0 1 1 1v3.5\"></path><path d=\"M20 6c.264 .112 .52 .217 .768 .315a1 1 0 0 1 .53 1.311l-2.298 5.374\"></path></svg>', '', 'Požární operativní karty', 'lime'),
 (36, 'dokumenty', 'bozp', 'Bezpečnostní listy', 'bezpecnostni-listy', 'bezpecnostni-listy.png', '<svg xmlns=\"http://www.w3.org/2000/svg\" class=\"icon icon-tabler icon-tabler-file-delta\" width=\"40\" height=\"40\" viewBox=\"0 0 24 24\" stroke-width=\"2\" stroke=\"currentColor\" fill=\"none\" stroke-linecap=\"round\" stroke-linejoin=\"round\">\r\n<path stroke=\"none\" d=\"M0 0h24v24H0z\" fill=\"none\"></path><path d=\"M14 3v4a1 1 0 0 0 1 1h4\"></path><path d=\"M17 21h-10a2 2 0 0 1 -2 -2v-14a2 2 0 0 1 2 -2h7l5 5v11a2 2 0 0 1 -2 2z\"></path><path d=\"M9 17h6l-3 -6z\"></path></svg>', '', 'Bezpečnostní listy', 'orange');
 
 -- --------------------------------------------------------
@@ -792,7 +827,8 @@ INSERT INTO `documents` (`id`, `category_id`, `accordion_name`, `accordion_group
 (102, 2, 'Standard ošetřovatelské péče', NULL, 13, 'Standard ošetřovatelské péče', 'Cévkování nemocných', 'Sekaninová Anna', 'Rada kvality', 'Bc. Bělicová Taťána', '2021-06-01', '10', '2023-06-01', NULL, '2021-06-01', 'standardy_osetrovatelske-cevkovani_nemocnych-revize-10.pdf', 'STD2#13', 'Schváleno', 11, NULL, '2023-02-01 08:04:39', '2023-02-01 08:04:39'),
 (103, 2, 'Standard ošetřovatelské péče', NULL, 14, 'Standard ošetřovatelské péče', 'Očistné klyzma', 'Sekaninová Anna', 'Rada kvality', 'Bc. Bělicová Taťána', '2002-09-02', '9', '2023-06-01', NULL, '2021-06-01', 'standardy_osetrovatelske-ocistne_klyzma-revize-9.pdf', 'STD2#14', 'Schváleno', 11, NULL, '2023-02-01 08:06:44', '2023-02-01 08:06:44'),
 (104, 2, 'Standard ošetřovatelské péče', NULL, 15, 'Standard ošetřovatelské péče', 'Předoperační příprava pacientů', NULL, NULL, NULL, '2002-09-02', '10', '2022-06-01', NULL, '2021-06-01', 'standardy_osetrovatelske-predoperacni_priprava_pacientu-revize-10.pdf', 'STD2#15', 'Schváleno', 11, NULL, '2023-02-01 08:08:05', '2023-02-01 08:58:57'),
-(105, 2, 'Standard ošetřovatelské péče', NULL, 19, 'Standard ošetřovatelské péče', 'Stravování nemocných', NULL, NULL, NULL, '2004-04-13', '12', '2024-02-01', 'strava, ošetřovatel', '2023-02-01', 'standardy_osetrovatelske-stravovani_nemocnych-revize-12.pdf', 'STD2#16', 'Schváleno', 11, NULL, '2023-02-07 07:20:06', '2023-02-07 07:21:38');
+(105, 2, 'Standard ošetřovatelské péče', NULL, 19, 'Standard ošetřovatelské péče', 'Stravování nemocných', NULL, NULL, NULL, '2004-04-13', '12', '2024-02-01', 'strava, ošetřovatel', '2023-02-01', 'standardy_osetrovatelske-stravovani_nemocnych-revize-12.pdf', 'STD2#16', 'Schváleno', 11, NULL, '2023-02-07 07:20:06', '2023-02-07 07:21:38'),
+(106, 25, 'Evakuační plán', NULL, 1, 'Evakuační plán', 'Plán evakuace v případě požáru', NULL, NULL, NULL, NULL, '', NULL, NULL, NULL, '', NULL, 'Schváleno', 0, NULL, NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -1620,7 +1656,9 @@ INSERT INTO `migrations` (`id`, `migration`, `batch`) VALUES
 (131, '2023_01_07_203151_create_addons_table', 3),
 (133, '2022_12_14_084811_create_categories_table', 4),
 (134, '2023_01_15_003551_create_calendar_table', 5),
-(136, '2023_01_20_104223_create_navitems_table', 6);
+(136, '2023_01_20_104223_create_navitems_table', 6),
+(137, '2023_02_13_065610_create_paints_table', 7),
+(138, '2023_03_03_102419_create_bozps_table', 7);
 
 -- --------------------------------------------------------
 
@@ -1671,17 +1709,6 @@ CREATE TABLE `paints` (
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
-
---
--- Vypisuji data pro tabulku `paints`
---
-
-INSERT INTO `paints` (`id`, `department_id`, `user_id`, `date_start`, `date_end`, `rooms`, `doors`, `specials`, `status`, `created_at`, `updated_at`) VALUES
-(1, 20, 11, '2020-01-17', '2020-01-27', 'lkljkl', NULL, 'iyujiyu', 'Schváleno', '2023-02-28 08:26:23', '2023-03-01 08:35:43'),
-(2, 20, 11, '2023-02-01', '2023-02-07', 'lkljkl', NULL, 'iyujiyu', 'Vloženo', '2023-02-14 08:26:23', '2023-02-26 08:26:23'),
-(3, 20, 11, '2023-02-05', '2023-02-14', 'lkljkl', NULL, 'iyujiyu', 'Vloženo', '2023-02-28 08:26:23', '2023-02-28 08:26:23'),
-(4, 20, 11, '2022-02-15', '2022-02-17', 'lkljkl', NULL, 'iyujiyu', 'Vloženo', '2023-02-14 08:26:23', '2023-02-26 08:26:23'),
-(5, 20, 11, '2023-02-28', '2023-03-10', 'aad', NULL, 'asdas', 'Vloženo', '2023-02-28 12:23:00', '2023-02-28 12:23:00');
 
 -- --------------------------------------------------------
 
@@ -1842,6 +1869,12 @@ ALTER TABLE `attendances`
   ADD PRIMARY KEY (`id`);
 
 --
+-- Indexy pro tabulku `bozps`
+--
+ALTER TABLE `bozps`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- Indexy pro tabulku `categories`
 --
 ALTER TABLE `categories`
@@ -1879,6 +1912,12 @@ ALTER TABLE `failed_jobs`
   ADD UNIQUE KEY `failed_jobs_uuid_unique` (`uuid`);
 
 --
+-- Indexy pro tabulku `migrations`
+--
+ALTER TABLE `migrations`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- Indexy pro tabulku `paints`
 --
 ALTER TABLE `paints`
@@ -1892,7 +1931,13 @@ ALTER TABLE `paints`
 -- AUTO_INCREMENT pro tabulku `addons`
 --
 ALTER TABLE `addons`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=31;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=34;
+
+--
+-- AUTO_INCREMENT pro tabulku `bozps`
+--
+ALTER TABLE `bozps`
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT pro tabulku `categories`
@@ -1904,13 +1949,19 @@ ALTER TABLE `categories`
 -- AUTO_INCREMENT pro tabulku `documents`
 --
 ALTER TABLE `documents`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=106;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=107;
+
+--
+-- AUTO_INCREMENT pro tabulku `migrations`
+--
+ALTER TABLE `migrations`
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=139;
 
 --
 -- AUTO_INCREMENT pro tabulku `paints`
 --
 ALTER TABLE `paints`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

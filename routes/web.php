@@ -77,18 +77,18 @@ Route::prefix('standardy')->name('standardy.')->group(function () {
 
 // BOZP - PO
 Route::prefix('bozp')->name('bozp.')->group(function () {
-    Route::get('bezpecnostni-plany/{id}', [PageController::class, 'bezpecnostniPlany'])->name('bezpecnostni-plany');                            // Bezpečnostní plány (bozp.bezpecnostni-plany)
-    Route::get('organizacni-smernice/{id}', [PageController::class, 'organizacniSmernice'])->name('organizacni-smernice');                      // Organizační směrnice (bozp.organizacni-smernice)
-    Route::get('metodiky-skoleni/{id}', [PageController::class, 'metodikySkoleni'])->name('metodiky-skoleni');                                  // Metodiky školení (bozp.metodiky-skoleni)
-    Route::get('prezencni-listiny/{id}', [PageController::class, 'metodikySkoleni'])->name('prezencni-listiny');                                // Prezenční listiny (bozp.prezencni-listiny)
-    Route::get('pracovni-urazy/{id}', [PageController::class, 'pracovniUrazy'])->name('pracovni-urazy');                                        // Pracovní úrazy (bozp.pracovni-urazy)
-    Route::get('bezpecnostni-znaceni/{id}', [PageController::class, 'pracovniUrazy'])->name('bezpecnostni-znaceni');                            // Bezpečnostní značení (bozp.bezpecnostni-znaceni)
-    Route::get('proverky-kontroly/{id}', [PageController::class, 'proverkyKontroly'])->name('proverky-kontroly');                               // Prověrky - kontroly (bozp.proverky-kontroly)
-    Route::get('provozne-bezpecnostni-predpisy/{id}', [PageController::class, 'proverkyKontroly'])->name('provozne-bezpecnostni-predpisy');     // Provozně bezpečnostní předpisy (bozp.provozne-bezpecnostni-predpisy)
-    Route::get('rizika/{id}', [PageController::class, 'rizika'])->name('rizika');                                                               // Rizika (bozp.rizika)
-    Route::get('pozarni-ochrana/{id}', [PageController::class, 'pozarniOchrana'])->name('pozarni-ochrana');                                     // Požární ochrana ()bozp.pozarni-ochrana)
-    Route::get('pozarni-operativni-karty/{id}', [PageController::class, 'pozarni-operativni-karty'])->name('pozarni-operativni-karty');         // Požární ochrana ()bozp.pozarni-ochrana)
-    Route::get('bezpecnostni-listy/{id}', [PageController::class, 'bezpecnostniListy'])->name('bezpecnostni-listy');                            // Požární ochrana ()bozp.pozarni-ochrana)                          
+    Route::get('bezpecnostni-plany/{id}', [PageController::class, 'bozp'])->name('bezpecnostni-plany');                            // Bezpečnostní plány (bozp.bezpecnostni-plany)
+    Route::get('organizacni-smernice/{id}', [PageController::class, 'bozp'])->name('organizacni-smernice');                      // Organizační směrnice (bozp.organizacni-smernice)
+    Route::get('metodiky-skoleni/{id}', [PageController::class, 'bozp'])->name('metodiky-skoleni');                                  // Metodiky školení (bozp.metodiky-skoleni)
+    Route::get('prezencni-listiny/{id}', [PageController::class, 'bozp'])->name('prezencni-listiny');                                // Prezenční listiny (bozp.prezencni-listiny)
+    Route::get('pracovni-urazy/{id}', [PageController::class, 'bozp'])->name('pracovni-urazy');                                        // Pracovní úrazy (bozp.pracovni-urazy)
+    Route::get('bezpecnostni-znaceni/{id}', [PageController::class, 'bozp'])->name('bezpecnostni-znaceni');                            // Bezpečnostní značení (bozp.bezpecnostni-znaceni)
+    Route::get('proverky-kontroly/{id}', [PageController::class, 'bozp'])->name('proverky-kontroly');                               // Prověrky - kontroly (bozp.proverky-kontroly)
+    Route::get('provozne-bezpecnostni-predpisy/{id}', [PageController::class, 'bozp'])->name('provozne-bezpecnostni-predpisy');     // Provozně bezpečnostní předpisy (bozp.provozne-bezpecnostni-predpisy)
+    Route::get('rizika/{id}', [PageController::class, 'bozp'])->name('rizika');                                                               // Rizika (bozp.rizika)
+    Route::get('pozarni-ochrana/{id}', [PageController::class, 'bozp'])->name('pozarni-ochrana');                                     // Požární ochrana ()bozp.pozarni-ochrana)
+    Route::get('pozarni-operativni-karty/{id}', [PageController::class, 'bozp'])->name('pozarni-operativni-karty');         // Požární ochrana ()bozp.pozarni-ochrana)
+    Route::get('bezpecnostni-listy/{id}', [PageController::class, 'bozp'])->name('bezpecnostni-listy');                            // Požární ochrana ()bozp.pozarni-ochrana)                          
 });
 
 // Download Files
