@@ -34,7 +34,7 @@
           @foreach ($bozps as $category)
             <div class="col-2 col-sm-2 col-md-2 col-xl-2 col-xxl-2 ps-0 m-0">
               <a class="btn bg-{{ $category->color }}-lt hover-shadow-sm w-100 m-1" data-bs-toggle="tooltip"
-                data-bs-placement="top" data-bs-original-title="{{ __('' . $category->category_name . ' dokumentace') }}"
+                data-bs-placement="top" data-bs-original-title="{{ __('BOZP a PO - ' . $category->category_name) }}"
                 href="/bozp/{{ $category->folder_name . '/' . $category->id }}">
                 <span class="d-inline d-sm-inline d-md-none d-lg-inline d-xl-inline">{!! $category->svg_icon !!}</span>
                 <span class="d-none d-md-inline d-lg-inline d-xl-inline pe-1">{{ $category->category_name }}</span>
@@ -122,7 +122,7 @@
                             </a>
                           </div>
                           <div class="col-auto">
-                            <a href="{{ route('soubory.download', $document->id) }}" target="_blank">
+                            <a href="{{ route('soubory.bozp.download', $document->id) }}" target="_blank">
                               <span class="avatar bg-{{ $document->category->color }}-lt" data-bs-toggle="tooltip"
                                 data-bs-placement="top" data-bs-original-title="Stáhnout dokument">
                                 <img src="{{ asset('img/files/pdf.png') }}" alt="PDF soubor" height="32px">
@@ -232,31 +232,7 @@
                                   <path d="M12 11v6"></path>
                                   <path d="M11 17h2"></path>
                                 </svg>
-                                Zpracoval: {{ $document->processed }}
-                              </span>
-                              <span class="text-muted description">
-                                <svg class="icon text-yellow" xmlns="http://www.w3.org/2000/svg" width="24"
-                                  height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor"
-                                  fill="none" stroke-linecap="round" stroke-linejoin="round">
-                                  <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
-                                  <path d="M14 3v4a1 1 0 0 0 1 1h4"></path>
-                                  <path d="M12 21h-5a2 2 0 0 1 -2 -2v-14a2 2 0 0 1 2 -2h7l5 5v4.5"></path>
-                                  <circle cx="16.5" cy="17.5" r="2.5"></circle>
-                                  <line x1="18.5" y1="19.5" x2="21" y2="22"></line>
-                                </svg>
-                                Přezkoumal: {{ $document->examine }}
-                              </span>
-                              <span class="text-muted description">
-                                <svg class="icon text-red" xmlns="http://www.w3.org/2000/svg" width="24"
-                                  height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor"
-                                  fill="none" stroke-linecap="round" stroke-linejoin="round">
-                                  <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
-                                  <path d="M14 3v4a1 1 0 0 0 1 1h4"></path>
-                                  <path d="M5 8v-3a2 2 0 0 1 2 -2h7l5 5v11a2 2 0 0 1 -2 2h-5"></path>
-                                  <circle cx="6" cy="14" r="3"></circle>
-                                  <path d="M4.5 17l-1.5 5l3 -1.5l3 1.5l-1.5 -5"></path>
-                                </svg>
-                                Autorizoval: {{ $document->authorize }}
+                                Zpracoval: Bc. Pribula Marek
                               </span>
                             </div>
                           @endauth
@@ -278,7 +254,7 @@
                           </div>
                         </div>
                         <div class="col-auto">
-                          <a href="{{ route('soubory.download', $add->id) }}">
+                          <a href="{{ route('soubory.bozp.addon.download', $add->id) }}">
                             <span class="avatar bg-{{ $document->category->color }}-lt" data-bs-toggle="tooltip"
                               data-bs-placement="top" data-bs-original-title="Stáhnout přílohu">
                               <img src="{{ asset('img/files/pdf-add.png') }}" alt="PDF - Příloha standardu"
@@ -288,7 +264,7 @@
                         </div>
                         <div class="col text-truncate">
                           <a class="text-primary d-block d-block text-primary text-decoration-none"
-                            href="{{ route('soubory.download', $add->id) }}">
+                            href="{{ route('soubory.bozp.addon.download', $add->id) }}">
                             <h3 style="margin-bottom: 0;">{{ $document->name }} - příloha č.{{ $add->addon_number }}
                             </h3>
                           </a>
@@ -329,186 +305,6 @@
                   </div>
                 </div>
               </div>
-            @endforeach
-
-            {{-- Standards --}}
-            @foreach ($standards as $standard)
-              <div class="accordion-item">
-                <div id="test-{{ $standard->position }}">
-                  <div class="accordion-body p-1">
-                    <div class="list-group list-group-flush list-group-hoverable pt-1">
-                      <div class="list-group-item border-0 p-0">
-                        <div class="row align-items-center g-3 mx-2">
-                          <div class="avatar bg-{{ $standard->category->color }}-lt col-auto" data-bs-toggle="tooltip"
-                            data-bs-placement="top"
-                            data-bs-original-title="{{ $standard->category->category_name }} standardy">
-                            <a href="/standardy/{{ $standard->category->folder_name }}/{{ $standard->category->id }}">
-                              <div class="text-uppercase">
-                                {!! $standard->category->svg_icon !!}
-                              </div>
-                            </a>
-                          </div>
-                          <div class="col-auto">
-                            <a href="{{ route('soubory.download', $standard->id) }}" target="_blank">
-                              <span class="avatar bg-{{ $standard->category->color }}-lt" data-bs-toggle="tooltip"
-                                data-bs-placement="top" data-bs-original-title="Stáhnout standard">
-                                <img src="{{ asset('img/files/pdf.png') }}" alt="PDF soubor" height="32px">
-                              </span>
-                            </a>
-                          </div>
-                          <div class="col text-truncate" id="{{ $standard->id }}">
-                            <span>
-                              <p class="show d-inline text-primary text-decoration-none cursor-pointer"
-                                id="{{ $standard->id }}" data-bs-toggle="tooltip" data-bs-placement="top"
-                                data-bs-original-title="Více informací o standardu {{ $standard->description }}"
-                                style="margin-bottom: 0;">
-                                @if ($standard->category_id != 3)
-                                  {{ $standard->position }}.
-                                @endif {{ $standard->name }}
-                              </p>
-                            </span>
-                            <div class="d-block description text-muted text-truncate">{{ $standard->description }}</div>
-                          </div>
-                        </div>
-                      </div>
-                      <div class="list-group-item py-1 px-2">
-                        <div class="row d-flex justify-content-between">
-                          <div class="col-auto">
-                            @if (Carbon\Carbon::parse($standard->created_at)->addDays(1) >= Carbon\Carbon::today())
-                              <span class="badge badge-sm bg-red-lt text-uppercase ms-auto">Nový !</span>
-                            @endif
-                            @if (Carbon\Carbon::parse($standard->updated_at)->addDays(7) >= Carbon\Carbon::now())
-                              <span class="badge badge-sm bg-lime-lt text-uppercase ms-auto">Aktualizováno !</span>
-                            @endif
-                            <span
-                              class="text-muted description">{{ Carbon\Carbon::parse($standard->updated_at)->diffForHumans() }}</span>
-                            <svg class="icon text-yellow" xmlns="http://www.w3.org/2000/svg" width="24"
-                              height="24" viewBox="0 0 24 24" stroke-width="1" stroke="currentColor"
-                              fill="none" stroke-linecap="round" stroke-linejoin="round">
-                              <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
-                              <circle cx="15" cy="15" r="3"></circle>
-                              <path d="M13 17.5v4.5l2 -1.5l2 1.5v-4.5"></path>
-                              <path
-                                d="M10 19h-5a2 2 0 0 1 -2 -2v-10c0 -1.1 .9 -2 2 -2h14a2 2 0 0 1 2 2v10a2 2 0 0 1 -1 1.73">
-                              </path>
-                              <line x1="6" y1="9" x2="18" y2="9"></line>
-                              <line x1="6" y1="12" x2="9" y2="12"></line>
-                              <line x1="6" y1="15" x2="8" y2="15"></line>
-                            </svg>
-                            <span class="text-muted description">Revize: {{ $standard->revision }}</span>
-                            @auth
-                              @if ($standard->status == 'Rozpracováno')
-                                <span class="badge badge-sm bg-yellow-lt text-uppercase ms-auto">Rozpracováno</span>
-                              @else
-                                <span class="badge badge-sm bg-green-lt text-uppercase ms-auto">Schváleno</span>
-                              @endif
-                            @endauth
-                          </div>
-                          @auth
-                            <div class="d-xs-none d-sm-none d-lg-inline col-auto">
-                              <span class="text-muted description">
-                                <svg class="icon text-lime" xmlns="http://www.w3.org/2000/svg" width="24"
-                                  height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor"
-                                  fill="none" stroke-linecap="round" stroke-linejoin="round">
-                                  <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
-                                  <path
-                                    d="M9 5h-2a2 2 0 0 0 -2 2v12a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2v-12a2 2 0 0 0 -2 -2h-2">
-                                  </path>
-                                  <rect x="9" y="3" width="6" height="4" rx="2">
-                                  </rect>
-                                  <path d="M9 12v-1h6v1"></path>
-                                  <path d="M12 11v6"></path>
-                                  <path d="M11 17h2"></path>
-                                </svg>
-                                Zpracoval: {{ $standard->processed }}
-                              </span>
-                              <span class="text-muted description">
-                                <svg class="icon text-yellow" xmlns="http://www.w3.org/2000/svg" width="24"
-                                  height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor"
-                                  fill="none" stroke-linecap="round" stroke-linejoin="round">
-                                  <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
-                                  <path d="M14 3v4a1 1 0 0 0 1 1h4"></path>
-                                  <path d="M12 21h-5a2 2 0 0 1 -2 -2v-14a2 2 0 0 1 2 -2h7l5 5v4.5"></path>
-                                  <circle cx="16.5" cy="17.5" r="2.5"></circle>
-                                  <line x1="18.5" y1="19.5" x2="21" y2="22"></line>
-                                </svg>
-                                Přezkoumal: {{ $standard->examine }}
-                              </span>
-                              <span class="text-muted description">
-                                <svg class="icon text-red" xmlns="http://www.w3.org/2000/svg" width="24"
-                                  height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor"
-                                  fill="none" stroke-linecap="round" stroke-linejoin="round">
-                                  <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
-                                  <path d="M14 3v4a1 1 0 0 0 1 1h4"></path>
-                                  <path d="M5 8v-3a2 2 0 0 1 2 -2h7l5 5v11a2 2 0 0 1 -2 2h-5"></path>
-                                  <circle cx="6" cy="14" r="3"></circle>
-                                  <path d="M4.5 17l-1.5 5l3 -1.5l3 1.5l-1.5 -5"></path>
-                                </svg>
-                                Autorizoval: {{ $standard->authorize }}
-                              </span>
-                            </div>
-                          @endauth
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            @endforeach
-
-            {{-- Printed document --}}
-            @foreach ($warehouse as $item)
-              <div class="accordion-item">
-                <div class="accordion-body p-1">
-                  <div class="list-group list-group-flush list-group-hoverable pt-1">
-                    <div class="list-group-item border-0 p-0">
-                      <div class="row align-items-center g-3 mx-2">
-                        <div class="avatar bg-muted-lt col-auto" data-bs-toggle="tooltip" data-bs-placement="top"
-                          data-bs-original-title="Skladová položka">
-                          <div class="text-uppercase">
-                            <svg class="icon text-muted mt-1" width="24" height="24" viewBox="0 0 24 24"
-                              stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round"
-                              stroke-linejoin="round">
-                              <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
-                              <path d="M12 3l8 4.5v9l-8 4.5l-8 -4.5v-9l8 -4.5"></path>
-                              <path d="M12 12l8 -4.5"></path>
-                              <path d="M8.2 9.8l7.6 -4.6"></path>
-                              <path d="M12 12v9"></path>
-                              <path d="M12 12l-8 -4.5"></path>
-                            </svg>
-                            <div class="description text-muted mb-0">
-                              {{ $item->revision }}
-                            </div>
-                          </div>
-                        </div>
-                        <div class="col-auto">
-                          <span class="avatar bg-muted-lt">
-                            <img src="{{ asset('img/files/sklad.png') }}" alt="Skladová položka" height="32px">
-                          </span>
-                        </div>
-                        <div class="col text-truncate">
-                          <span>
-                            <p class="show d-inline text-primary text-decoration-none" style="margin-bottom: 0;">
-                              {{ $item->description }}</p>
-                          </span>
-                          <div class="d-block description text-muted text-truncate">Tento dokument je předtišten a je k
-                            dispozici u paní Čiernikové Marcely email: <a
-                              href="mailto:ciernikova@khn.cz">ciernikova@khn.cz</a> mob: <span
-                              class="text-azure fw-bold">602459731</span> klapka: <span
-                              class="text-azure fw-bold">114</span></div>
-                          <div class="d-block description text-blue text-truncate">Mediprint
-                            KHN-{{ $item->revision }}</span></div>
-                        </div>
-                      </div>
-                    </div>
-                    <div class="list-group-item py-1 px-2">
-                      <div class="row d-flex justify-content-between">
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-              {{-- accordion no db end --}}
             @endforeach
           </div>
         </div>
@@ -578,42 +374,9 @@
               <div class="row">
                 <div class="col-12 col-lg-2 mb-2">
                   <label class="form-label">{{ __('Vytvořil/a') }}</label>
-                  <select class="form-select" id="processed" name="processed">
-                    <option value="Kolektiv fyzioterapeutů">Kolektiv fyzioterapeutů</option>
-                    <option value="Rada kvality">Rada kvality</option>
-                    @foreach ($doctors as $doctor)
-                      <option value="{{ $doctor->title_preffix }} {{ $doctor->last_name }} {{ $doctor->first_name }}">
-                        {{ $doctor->last_name }} {{ $doctor->first_name }}, {{ $doctor->title_preffix }}</option>
-                    @endforeach
-                    <hr>
-                  </select>
+                  <input class="form-control" id="processed" name="processed" type="text">
                 </div>
-                <div class="col-12 col-lg-2 mb-2">
-                  <label class="form-label">{{ __('Schválil/a') }}</label>
-                  <select class="form-select" id="authorize" name="authorize">
-                    <option value="Kolektiv fyzioterapeutů">Kolektiv fyzioterapeutů</option>
-                    <option value="Rada kvality">Rada kvality</option>
-                    @foreach ($doctors as $doctor)
-                      <option value="{{ $doctor->title_preffix }} {{ $doctor->last_name }} {{ $doctor->first_name }}">
-                        {{ $doctor->last_name }} {{ $doctor->first_name }}, {{ $doctor->title_preffix }}</option>
-                    @endforeach
-                    <hr>
-                  </select>
-                </div>
-                <div class="col-12 col-lg-2 mb-2">
-                  <label class="form-label">{{ __('Přezkoumal/a') }}</label>
-                  <select class="form-select" id="examine" name="examine">
-                    <option value="Kolektiv fyzioterapeutů">Kolektiv fyzioterapeutů</option>
-                    <option value="Rada kvality">Rada kvality</option>
-                    @foreach ($doctors as $doctor)
-                      <option
-                        value="{{ $doctor->title_preffix }} {{ $doctor->last_name }} {{ $doctor->first_name }}">
-                        {{ $doctor->last_name }} {{ $doctor->first_name }}, {{ $doctor->title_preffix }}</option>
-                    @endforeach
-                    <hr>
-                  </select>
-                </div>
-                <div class="col-12 col-lg-4 mb-2">
+                <div class="col-12 col-lg-8 mb-2">
                   <label class="form-label">{{ __('Oblast působnosti dokumentu') }} <small class="text-azure">usnadní
                       vyhledávání</small></label>
                   <input class="form-control" id="tags" name="tags" type="text"
@@ -677,7 +440,7 @@
                     <path d="M15 16l3 -3l3 3"></path>
                     <path d="M18 13v9"></path>
                   </svg>
-                  Upravit standard
+                  Upravit BOZP-PO dokument
                 </button>
               </div>
             </div>
@@ -736,22 +499,11 @@
                 </div>
 
                 <div class="row">
-                  <div class="col-4 mb-3">
+                  <div class="col-3 mb-3">
                     <label class="form-label">{{ __('Zpracoval/a') }}</label>
                     <input class="form-control" id="show-processed" type="text" readonly>
                   </div>
-                  <div class="col-4 mb-3">
-                    <label class="form-label">{{ __('Schválil/a') }}</label>
-                    <input class="form-control" id="show-authorize" type="text" readonly>
-                  </div>
-                  <div class="col-4 mb-3">
-                    <label class="form-label">{{ __('Kontrolu provedl/a') }}</label>
-                    <input class="form-control" id="show-examine" type="text" readonly>
-                  </div>
-                </div>
-
-                <div class="row">
-                  <div class="col-12 mb-3">
+                  <div class="col-9 mb-3">
                     <label class="form-label">{{ __('Oblast působnosti dokumentu') }}</label>
                     <input class="form-control" id="show-tags" type="text" readonly>
                   </div>
@@ -943,7 +695,7 @@
           } else {
             $.ajax({
               type: "GET",
-              url: "{{ route('dokumenty.dokument.search') }}",
+              url: "{{ route('dokument.search') }}",
               data: {
                 search: name
               },
@@ -979,9 +731,7 @@
             $('#folder_name').val(html.data.category.folder_name);
             $('#category_file').val(html.data.category.category_file);
             $('#name').val(html.data.name);
-            $('#processed').val(html.data.processed);
-            $('#authorize').val(html.data.authorize);
-            $('#examine').val(html.data.examine);
+            $('#processed').val('Pribula Marek, Bc.');
             $('#efficiency').val(html.data.efficiency);
             $('#revision').val(html.data.revision);
             $('#revision_date').val(html.data.revision_date);
@@ -1028,9 +778,7 @@
             $('#category_id').val(html.data.category_id)
             $('#show-folder_name').val(html.data.category.folder_name)
             $('#show-name').val(html.data.name)
-            $('#show-processed').val(html.data.processed)
-            $('#show-authorize').val(html.data.authorize)
-            $('#show-examine').val(html.data.examine)
+            $('#show-processed').val('Bc. Pribula Marek')
             $('#show-efficiency').val(html.data.efficiency)
             $('#show-revision').val(html.data.revision)
             $('#show-revision_date').val(html.data.revision_date)

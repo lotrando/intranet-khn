@@ -52,10 +52,6 @@ Route::prefix('dokumenty')->name('dokumenty.')->group(function () {
     Route::get('vyhodnoceni-dotazniku/{id}', [PageController::class, 'document'])->name('vyhodnoceni-dotazniku');
     Route::get('navody/{id}', [PageController::class, 'document'])->name('navody');
     Route::get('ukrajinske-dokumenty/{id}', [PageController::class, 'document'])->name('ukrajinske-dokumenty');
-
-    Route::get('dokument-search', [DocumentController::class, 'documentSearch'])->name('dokument.search');                  // Vyhledávání dokumentů
-    Route::get('dokument/{id}', [FileController::class, 'documentDownload'])->name('download');                             // Download dokumentu
-    Route::get('dokument/addon/{id}', [FileController::class, 'documentAddonDownload'])->name('dokument.addon');            // Addon documentu
 });
 
 // Standardy
@@ -91,10 +87,18 @@ Route::prefix('bozp')->name('bozp.')->group(function () {
     Route::get('bezpecnostni-listy/{id}', [PageController::class, 'bozp'])->name('bezpecnostni-listy');                            // Požární ochrana ()bozp.pozarni-ochrana)                          
 });
 
+Route::get('dokument-search', [DocumentController::class, 'documentSearch'])->name('dokument.search');                          // Vyhledávání dokumentů
 // Download Files
 Route::prefix('soubory')->name('soubory.')->group(function () {
-    Route::get('standard/{id}', [FileController::class, 'standardDownload'])->name('download');
-    Route::get('standard/addon/{id}', [FileController::class, 'standardAddonDownload'])->name('download.addon');            // Download standard
+
+    Route::get('dokument/{id}', [FileController::class, 'documentDownload'])->name('dokument.download');                            // Download dokumentu
+    Route::get('dokument/addon/{id}', [FileController::class, 'documentAddonDownload'])->name('dokument.addon.download');           // Download standard addon
+
+    Route::get('standard/{id}', [FileController::class, 'documentDownload'])->name('standard.download');                             // Download standardu
+    Route::get('standard/addon/{id}', [FileController::class, 'standardAddonDownload'])->name('standard.addon.download');            // Download standardu addon
+
+    Route::get('bozp/{id}', [FileController::class, 'documentDownload'])->name('bozp.download');                                      // Download bozp
+    Route::get('bozp/addon/{id}', [FileController::class, 'standardAddonDownload'])->name('bozp.addon.download');                     // Download bozp addon
 });
 
 // Media links
