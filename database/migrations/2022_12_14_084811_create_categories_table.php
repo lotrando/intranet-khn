@@ -20,9 +20,9 @@ class CreateCategoriesTable extends Migration
             $table->string('folder_name');
             $table->text('category_icon');
             $table->text('svg_icon');
-            $table->string('fas_icon');
             $table->text('button');
             $table->string('color');
+            $table->string('fa_icon');
         });
     }
 
