@@ -314,9 +314,9 @@
                                                 <div class="col text-truncate">
                                                     <a class="text-primary d-block d-block text-primary text-decoration-none"
                                                         href="{{ route('soubory.bozp.addon.download', $add->id) }}">
-                                                        <h3 style="margin-bottom: 0;">{{ $document->name }} - příloha
+                                                        <p style="margin-bottom: 0;">Příloha
                                                             č.{{ $add->addon_number }}
-                                                        </h3>
+                                                        </p>
                                                     </a>
                                                     <div class="d-block description text-muted text-truncate mt-n1">
                                                         {{ $document->name }} -
