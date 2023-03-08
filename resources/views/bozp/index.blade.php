@@ -49,13 +49,13 @@
                     @endforeach
                     <div class="col-12">
                         <div class="progress mt-2">
-
+                            
                             @foreach ($bozps as $category)
                                 <div class="progress-bar progress-sm bg-{{ $category->color }}-lt" data-bs-toggle="tooltip"
                                     data-bs-placement="bottom"
-                                    data-bs-original-title="{{ $category->category_name . round(($category->documents->count() * 100) / $allDocuments->count()) . '%' }}"
+                                    data-bs-original-title="{{ $category->category_name . round(($category->documents->count() * 100) / $allDocuments->count()) . ' %' }}"
                                     role="progressbar" aria-label="{{ $category->category_name }}"
-                                    style="width: {{ ($category->documents->count() * 100) / $allDocuments->count() }}%">
+                                    style="width: {{ ($category->documents->count() * 100) / $allDocuments->count() }} %">
                                 </div>
                             @endforeach
 
@@ -85,23 +85,6 @@
                         <div class="btn-list">
                             <div class="d-flex justify-content-end">
                                 @auth
-                                    <button class="btn btn-lime d-inline-block me-2" id="openCreateAddModal"
-                                        data-bs-toggle="tooltip" data-bs-placement="left"
-                                        data-bs-original-title="{{ __('Vytvoří nový ' . $categorie->button . ' ' . $categorie->category_type . '') }}">
-                                        <svg class="icon icon-inline" xmlns="http://www.w3.org/2000/svg" width="24"
-                                            height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor"
-                                            fill="none" stroke-linecap="round" stroke-linejoin="round">
-                                            <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
-                                            <path
-                                                d="M9 5h-2a2 2 0 0 0 -2 2v12a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2v-12a2 2 0 0 0 -2 -2h-2">
-                                            </path>
-                                            <rect x="9" y="3" width="6" height="4" rx="2">
-                                            </rect>
-                                            <path d="M10 14h4"></path>
-                                            <path d="M12 12v4"></path>
-                                        </svg>
-                                        <span class="d-xs-none d-sm-inline d-md-inline d-lg-inline">{{ __('Příloha') }}</span>
-                                    </button>
                                     <button class="btn btn-lime d-inline-block me-2" id="openCreateModal"
                                         data-bs-toggle="tooltip" data-bs-placement="left"
                                         data-bs-original-title="{{ __('Vytvoří nový ' . $categorie->button . ' ' . $categorie->category_type . '') }}">
@@ -112,8 +95,7 @@
                                             <path
                                                 d="M9 5h-2a2 2 0 0 0 -2 2v12a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2v-12a2 2 0 0 0 -2 -2h-2">
                                             </path>
-                                            <rect x="9" y="3" width="6" height="4"
-                                                rx="2">
+                                            <rect x="9" y="3" width="6" height="4" rx="2">
                                             </rect>
                                             <path d="M10 14h4"></path>
                                             <path d="M12 12v4"></path>
@@ -208,8 +190,24 @@
                                                                     </svg>
                                                                     {{ __('Upravit dokument') }}
                                                                 </li>
+                                                                <li class="dropdown-item addon" id="{{ $document->id }}">
+                                                                    <svg class="icon dropdown-item-icon-addon" width="24"
+                                                                        height="24" viewBox="0 0 24 24" stroke-width="2"
+                                                                        stroke="currentColor" fill="none"
+                                                                        stroke-linecap="round" stroke-linejoin="round">
+                                                                        <path stroke="none" d="M0 0h24v24H0z"
+                                                                            fill="none"></path>
+                                                                        <path d="M14 3v4a1 1 0 0 0 1 1h4"></path>
+                                                                        <path
+                                                                            d="M17 21h-10a2 2 0 0 1 -2 -2v-14a2 2 0 0 1 2 -2h7l5 5v11a2 2 0 0 1 -2 2z">
+                                                                        </path>
+                                                                        <path d="M12 11l0 6"></path>
+                                                                        <path d="M9 14l6 0"></path>
+                                                                    </svg>
+                                                                    {{ __('Vložit přílohu') }}
+                                                                </li>
                                                                 <li class="dropdown-item delete" id="{{ $document->id }}'">
-                                                                    <svg class="icon icon dropdown-item-icon-delete"
+                                                                    <svg class="icon dropdown-item-icon-delete"
                                                                         xmlns="http://www.w3.org/2000/svg" width="24"
                                                                         height="24" viewBox="0 0 24 24" stroke-width="2"
                                                                         stroke="currentColor" fill="none"
@@ -334,7 +332,7 @@
                                                     <a class="text-primary d-block d-block text-primary text-decoration-none"
                                                         href="{{ route('soubory.bozp.addon.download', $add->id) }}">
                                                         <p style="margin-bottom: 0;">Příloha
-                                                            č.{{ $add->addon_number }}
+                                                            č.{{ $add->position }}
                                                         </p>
                                                     </a>
                                                     <div class="d-block description text-muted text-truncate mt-n1">
@@ -396,7 +394,7 @@
                                                             </svg>
                                                         </span>
                                                         <ul class="dropdown-menu">
-                                                            <li class="dropdown-item edit" id="{{ $add->id }}">
+                                                            <li class="dropdown-item add-edit" id="{{ $add->id }}">
                                                                 <svg class="icon dropdown-item-icon-edit" width="24"
                                                                     height="24" viewBox="0 0 24 24" stroke-width="2"
                                                                     stroke="currentColor" fill="none"
@@ -410,7 +408,7 @@
                                                                 </svg>
                                                                 {{ __('Upravit přílohu') }}
                                                             </li>
-                                                            <li class="dropdown-item delete" id="{{ $add->id }}'">
+                                                            <li class="dropdown-item add-delete" id="{{ $add->id }}">
                                                                 <svg class="icon icon dropdown-item-icon-delete"
                                                                     xmlns="http://www.w3.org/2000/svg" width="24"
                                                                     height="24" viewBox="0 0 24 24" stroke-width="2"
@@ -446,7 +444,7 @@
 @endsection
 
 @section('modals')
-    {{-- Main Form Modal --}}
+    {{-- Document Form Modal --}}
     <div class="modal fade" id="formModal" data-bs-backdrop="static" data-bs-keyboard="false" role="dialog"
         aria-hidden="true" tabindex="-1">
         <div class="modal-dialog modal-dialog-centered modal-full-width mx-3" role="document">
@@ -582,7 +580,105 @@
         </div>
     </div>
 
-    {{-- Show Modal --}}
+    {{-- Add Form Modal --}}
+    <div class="modal fade" id="addFormModal" data-bs-backdrop="static" data-bs-keyboard="false" role="dialog"
+        aria-hidden="true" tabindex="-1">
+        <div class="modal-dialog modal-dialog-centered modal-full-width mx-3" role="document">
+            <div class="modal-content shadow-lg">
+                <div id="add-modal-header">
+                    <h5 class="modal-title"></h5>
+                    <div class="avatar avatar-transparent" id="add-modal-icon"></div>
+                </div>
+                <form id="addInputForm" action="{{ route('addons.create') }}">
+                    @csrf
+                    <div class="modal-body">
+                        <div class="row">
+                            <div class="col-12">
+                                <span id="add_form_result_modal"></span>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-2 col-lg-1 mb-2">
+                                <label class="form-label">{{ __('Position') }} č:</label>
+                                <input class="form-control" id="add_position" name="add_position" type="text">
+                            </div>
+                            <div class="col-9 col-lg-9 mb-2">
+                                <label class="form-label">{{ __('Popis přílohy') }} <small class="text-azure">usnadní vyhledávání</small></label>
+                                <input class="form-control" id="add_description" name="add_description" type="text"
+                                    placeholder="{{ __('Konkrétní popis přílohy') }}">
+                            </div>
+                            <div class="col-1 col-lg-2 mb-2">
+                                <label class="form-label">{{ __('Revision') }}</label>
+                                <input class="form-control" id="add_revision" name="add_revision" type="text"
+                                    placeholder="{{ __('Číslo nebo datum') }}">
+                            </div>
+                        </div>
+                        <div class="mb-2 mt-2">
+                            <div id="pdf-preview"></div>
+                        </div>
+                        <div class="row">
+                            <div class="col-12 col-lg-8 mb-2">
+                                <label class="form-label">{{ __('Soubor') }}</label>
+                                <input class="form-control" id="add_file" name="add_file" type="file"
+                                    placeholder="{{ __('Příloha dokumentu ve formátu PDF') }}">
+                            </div>
+                            <div class="col-6 col-lg-2 mb-2">
+                                <label class="form-label">{{ __('Status') }}</label>
+                                <select class="form-select" id="add_status" name="add_status">
+                                    <option value="Schváleno">Schváleno</option>
+                                    <option value="Rozpracováno">Rozpracováno</option>
+                                </select>
+                            </div>
+                            <div class="col-6 col-lg-2 mb-2">
+                                <label class="form-label">{{ __('Založil/upravil') }}</label>
+                                <input class="form-control" id="add_user_name" name="add_user_name" type="text"
+                                    readonly>
+                            </div>
+                        </div>
+                    </div>
+                    <input id="add_action" name="add_action" type="hidden" />
+                    <input id="add_hidden_id" name="add_hidden_id" type="hidden" />
+                    <input id="add_hidden_file" name="add_hidden_file" type="hidden" />
+                    <input id="add_folder_name" name="add_folder_name" type="hidden" />
+                    <input id="add_document_id" name="add_document_id" type="hidden">
+                    <input id="add_category_id" name="add_category_id" type="hidden">
+                    <input id="add_category_file" name="add_category_file" type="hidden" />
+                    <input id="add_user_id" name="add_user_id" type="hidden" />
+
+                    <div class="modal-footer">
+                        <button class="btn btn-muted hover-shadow" data-bs-dismiss="modal" type="button">
+                            <svg class="icon icon-inline" xmlns="http://www.w3.org/2000/svg" width="24"
+                                height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor"
+                                fill="none" stroke-linecap="round" stroke-linejoin="round">
+                                <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+                                <rect x="4" y="4" width="16" height="16" rx="2">
+                                </rect>
+                                <path d="M10 10l4 4m0 -4l-4 4"></path>
+                            </svg>
+                            {{ __('Close') }}
+                        </button>
+                        <div class="align-content-end flex">
+                            <button class="btn btn-primary ms-auto hover-shadow" id="add_action_button" name="add_action_button"
+                                type="submit">
+                                <svg class="icon icon-tabler icon-tabler-book-upload" xmlns="http://www.w3.org/2000/svg"
+                                    width="24" height="24" viewBox="0 0 24 24" stroke-width="2"
+                                    stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                                    <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+                                    <path d="M14 20h-8a2 2 0 0 1 -2 -2v-12a2 2 0 0 1 2 -2h12v5"></path>
+                                    <path d="M11 16h-5a2 2 0 0 0 -2 2"></path>
+                                    <path d="M15 16l3 -3l3 3"></path>
+                                    <path d="M18 13v9"></path>
+                                </svg>
+                                Upravit BOZP-PO dokument
+                            </button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    {{-- Document Show Modal --}}
     <div class="modal fade" id="showModal" role="dialog" aria-hidden="true" tabindex="-1">
         <div class="modal-dialog modal-dialog-centered modal-full-width" role="document">
             <div class="modal-content shadow-lg">
@@ -711,25 +807,6 @@
                 <div class="modal-body">
                     <div class="row">
                         <div class="col-12">
-
-                            {{-- <div class="row mt-3">
-                <div class="col-2 mb-3 ">
-                  <label class="form-label">{{ __('Příloha č.') }}</label>
-                  <input class="form-control" id="addon-show-position" type="text" readonly>
-                </div>
-                <div class="col-8 mb-3">
-                  <label class="form-label">{{ __('Popis přílohy standardu') }} </label>
-                  <input class="form-control" id="addon-show-description" type="text" readonly>
-                </div>
-                <div class="col-2 mb-3">
-                  <label class="form-label">{{ __('Revision') }}</label>
-                  <input class="form-control" id="addon-show-revision" type="text" readonly>
-                </div>
-              </div>
-
-              <div class="row mt-3">
-              </div> --}}
-
                             <div id="pdf-preview-addon-show"></div>
                         </div>
 
@@ -804,6 +881,45 @@
                             </div>
                             <div class="col">
                                 <button class="btn btn-danger w-100 hover-shadow" id="ok_button"></button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    {{-- Addon Delete Modal --}}
+    <div class="modal fade" id="addConfirmModal" data-bs-backdrop="static" data-bs-keyboard="false" role="dialog"
+        aria-hidden="true" tabindex="-1">
+        <div class="modal-dialog modal-sm modal-dialog-centered" role="document">
+            <div class="modal-content shadow-lg">
+                {{-- <button class="btn-close" data-bs-dismiss="modal" type="button" aria-label="{{ __('Close') }}"></button> --}}
+                <div class="modal-status bg-danger"></div>
+                <div class="modal-body py-4 text-center">
+                    <svg class="icon text-danger icon-lg mb-3" xmlns="http://www.w3.org/2000/svg" width="24"
+                        height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none"
+                        stroke-linecap="round" stroke-linejoin="round">
+                        <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+                        <path d="M12 9v2m0 4v.01" />
+                        <path
+                            d="M5 19h14a2 2 0 0 0 1.84 -2.75l-7.1 -12.25a2 2 0 0 0 -3.5 0l-7.1 12.25a2 2 0 0 0 1.75 2.75" />
+                    </svg>
+                    <h3>{{ __('Are you sure?') }}</h3>
+                    <div class="text-muted mb-3">
+                        {{ __('Do you really want to remove addon event?') }}<br>{{ __('This operation cannot be undone') }}
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <div class="w-100">
+                        <div class="row">
+                            <div class="col">
+                                <button class="btn btn-muted w-100 hover-shadow" data-bs-dismiss="modal">
+                                    {{ __('Cancel') }}
+                                </button>
+                            </div>
+                            <div class="col">
+                                <button class="btn btn-danger w-100 hover-shadow" id="add_ok_button"></button>
                             </div>
                         </div>
                     </div>
@@ -902,6 +1018,40 @@
             })
         });
 
+        $(document).on('click', '.add-edit', function() {
+            id = $(this).attr('id');
+            $('#add_form_result_modal, #form_result_window').html('');
+            $.ajax({
+                url: "/documents/addons/" + id + "/edit",
+                dataType: "json",
+                success: function(html) {
+                    $('#addInputForm')[0].reset();
+                    $('.modal-title').val('');
+                    $('#add_action_button, #add-pdf-preview-show, #add-pdf-preview, #add-pdf-preview-addon-show').removeClass('d-none');
+                    $('#addFormModal').modal('show');
+                    $('#add-modal-icon').html('{!! $categorie->svg_icon !!}').addClass('bg-{{ $categorie->color }}-lt');
+                    $('#add-modal-header').addClass("modal-header bg-{{ $categorie->color }}-lt");
+                    $('#add_action_button, .modal-title').text("{{ __('Addon Edit') }}")
+                    $('#add_action').val("Edit");
+                    $('#add_category_id').val(html.data.category_id);
+                    $('#add_folder_name').val(html.data.category.folder_name);
+                    $('#add_category_file').val(html.data.category.category_file);
+                    $('#add_revision').val(html.data.revision);
+                    $('#add_description').val(html.data.description);
+                    $('#add_position').val(html.data.addon_number);
+                    $('#add_status').val(html.data.status);
+                    $('#add_user_id').val('{{ auth()->user()->id ?? null }}');
+                    $('#add_document_id').val(html.data.document_id);
+                    $('#add_user_name').val(html.data.user.name);
+                    $('#add_hidden_id').val(html.data.id);
+                    $('#add_hidden_file').val(html.data.file);
+                    PDFObject.embed("../../soubory/" + html.data.file + "#toolbar=0", "#pdf-preview", {
+                        height: "31rem"
+                    })
+                }
+            })
+        });
+
         $(document).on('click', '.show', function() {
             id = $(this).attr('id');
             $('#unique_code').prop('readonly', true);
@@ -984,7 +1134,7 @@
             $('#formModal').modal('show')
             $('#modal-icon').html('{!! $categorie->svg_icon !!}').addClass('bg-{{ $categorie->color }}-lt')
             $('#modal-header').addClass("modal-header bg-{{ $categorie->color }}-lt")
-            $('#action_button, .modal-title').text("{{ __('Create new') }} {{ $categorie->button }} dokument")
+            $('#action_button, .modal-title').text("{{ __('Create new') }}")
             $('#action').val("Add")
             $('#position').val('{{ $lastpos + 1 }}')
             $('#folder_name').val("{{ $categorie->folder_name }}")
@@ -993,6 +1143,7 @@
             $('#user_name').val('{{ auth()->user()->name ?? 'Guest' }}')
             $('#unique_code').val('BOZP{{ $categorie->id }}#{{ $lastpos + 1 }}')
             $('#revision').val('{{ $lastpos - $lastpos + 1 }}')
+            $('#category_file').val('{{ $categorie->category_file }}');
             $('#processed').val('Pribula Marek, Bc.')
             $('#revision_date').change(function() {
                 var revisionDate = moment($(this).val()).format('YYYY-MM-DD')
@@ -1069,14 +1220,102 @@
             }
         })
 
-        // Delete
+        $('.addon').click(function() {
+            $('#addInputForm')[0].reset();
+            $("#add_action_button").removeClass('d-none')
+            $('#add-pdf-preview-show, #add-pdf-preview').addClass('d-none')
+            $('#add_category_id').val('{{ $categorie->id }}')
+            $('#addFormModal').modal('show')
+            $('#add-modal-icon').html('{!! $categorie->svg_icon !!}').addClass('bg-{{ $categorie->color }}-lt')
+            $('#add-modal-header').addClass("modal-header bg-{{ $categorie->color }}-lt")
+            $('#add_action_button, .modal-title').text("{{ __('Create new addon') }}")
+            $('#add_action').val("Add")
+            $('#add_position').val('{{ $lastpos + 1 }}')
+            $('#add_folder_name').val("{{ $categorie->folder_name }}")
+            $('#add_status').val('Schváleno')
+            $('#add_user_id').val('{{ auth()->user()->id ?? null }}')
+            $('#add_user_name').val('{{ auth()->user()->name ?? 'Guest' }}')
+            $('#add_revision').val('{{ $lastpos - $lastpos + 1 }}')
+            $('#add_document_id').val('{{ $document->id ?? null }}')
+            $('#add_category_file').val('{{ $categorie->category_file }}');
+            $('#add_processed').val('Pribula Marek, Bc.')
+        })
+
+        $('#addInputForm').on('submit', function(event) {
+            event.preventDefault();
+            if ($('#add_action').val() === 'Add') {
+                $.ajax({
+                    url: "{{ route('addons.store') }}",
+                    method: "POST",
+                    data: new FormData(this),
+                    contentType: false,
+                    cache: false,
+                    processData: false,
+                    dataType: "json",
+                    success: function(data) {
+                        var html = '';
+                        if (data.errors) {
+                            html = '<div class="alert alert-danger text-danger shadow-sm"><ul> ';
+                            for (var count = 0; count < data.errors.length; count++) {
+                                html += '<li>' + data.errors[count] + '</li>';
+                            }
+                            html +=
+                                '</ul><a class="btn-close" data-bs-dismiss="alert" aria-label="close"></a></div>';
+                            $('#add_form_result_modal').html(html);
+                        }
+                        if (data.success) {
+                            html = '<div class="alert alert-success text-success shadow-sm"><ul><li>' +
+                                data.success +
+                                '</li></ul></div>';
+                            $('#addFormModal').modal('hide')
+                            $('#addInputForm')[0].reset();
+                            location.reload()
+                            $('#add_form_result_window').html(html);
+                        }
+                    }
+                })
+            }
+
+            if ($('#add_action').val() === "Edit") {
+                event.preventDefault();
+                $.ajax({
+                    url: "{{ route('addons.update') }}",
+                    method: "POST",
+                    data: new FormData(this),
+                    contentType: false,
+                    cache: false,
+                    processData: false,
+                    dataType: "json",
+                    success: function(data) {
+                        var html = '';
+                        if (data.errors) {
+                            html = '<div class="alert alert-danger text-danger shadow-sm"><ul>';
+                            for (var count = 0; count < data.errors.length; count++) {
+                                html += '<li>' + data.errors[count] + '</li>';
+                            }
+                            html += '</ul></div>';
+                            $('#form_result_modal').html(html);
+                        }
+                        if (data.success) {
+                            html = '<div class="alert alert-success text-success shadow-sm"><ul><li>' +
+                                data.success + '</li></ul></div>';
+                            $('#form_result_window').html(html);
+                            location.reload();
+                            $('#addFormModal').modal('hide');
+                        }
+                    }
+                });
+            }
+        })
+
+        // Delete document
         $(document).on('click', '.delete', function() {
             id = $(this).attr('id');
             $('#ok_button').text("{{ __('Delete') }}");
             $('#confirmModal').modal('show');
         })
 
-        // Delete Confirm
+        // Delete Document Confirm
         $('#ok_button').click(function() {
             $.ajax({
                 url: "/documents/destroy/" + id,
@@ -1093,9 +1332,28 @@
             })
         })
 
-        $("#attachments").hide();
-        $("#addon-btn").click(function() {
-            $('#attachments').slideToggle("slow");
-        });
+        // Delete addon
+        $(document).on('click', '.add-delete', function() {
+            id = $(this).attr('id');
+            $('#add_ok_button').text("{{ __('Delete') }}");
+            $('#addConfirmModal').modal('show');
+        })
+
+        // Delete Addon Confirm
+        $('#add_ok_button').click(function() {
+            $.ajax({
+                url: "/documents/addons/destroy/" + id,
+                beforeSend: function() {
+                    $('#add_ok_button').text("{{ __('Deleting ...') }}");
+                },
+                success: function(data) {
+                    setTimeout(function() {
+                        $('#addConfirmModal').modal('hide');
+                        $('#add_ok_button').text("{{ __('Delete') }}");
+                        location.reload();
+                    }, 1000);
+                }
+            })
+        })
     </script>
 @endsection

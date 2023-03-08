@@ -21,7 +21,8 @@ class CategorySeeder extends Seeder
         // Standards categories
 
         DB::table('categories')->insert([
-            'category_type' => 'Standard',
+            'category_file' => 'standardy',
+            'category_type' => 'standard',
             'category_name' => 'Akreditační',
             'folder_name'   => 'akreditacni',
             'category_icon' => 'akreditacni.png',
@@ -32,7 +33,8 @@ class CategorySeeder extends Seeder
         ]);
 
         DB::table('categories')->insert([
-            'category_type' => 'Standard',
+            'category_file' => 'standardy',
+            'category_type' => 'standard',
             'category_name' => 'Ošetřovatelské',
             'folder_name'   => 'osetrovatelske',
             'category_icon' => 'osetrovatelske.png',
@@ -43,7 +45,8 @@ class CategorySeeder extends Seeder
         ]);
 
         DB::table('categories')->insert([
-            'category_type' => 'Standard',
+            'category_file' => 'standardy',
+            'category_type' => 'standard',
             'category_name' => 'Léčebné',
             'folder_name'   => 'lecebne',
             'category_icon' => 'lecebne.png',
@@ -54,7 +57,8 @@ class CategorySeeder extends Seeder
         ]);
 
         DB::table('categories')->insert([
-            'category_type' => 'Standard',
+            'category_file' => 'standardy',
+            'category_type' => 'standard',
             'category_name' => 'Speciální',
             'folder_name'   => 'specialni',
             'category_icon' => 'specialni.png',
@@ -65,7 +69,8 @@ class CategorySeeder extends Seeder
         ]);
 
         DB::table('categories')->insert([
-            'category_type' => 'Standard',
+            'category_file' => 'standardy',
+            'category_type' => 'standard',
             'category_name' => 'Operační',
             'folder_name'   => 'operacni',
             'category_icon' => 'operacni.png',
@@ -76,7 +81,8 @@ class CategorySeeder extends Seeder
         ]);
 
         DB::table('categories')->insert([
-            'category_type' => 'Standard',
+            'category_file' => 'standardy',
+            'category_type' => 'standard',
             'category_name' => 'Anesteziologické',
             'folder_name'   => 'anesteziologicke',
             'category_icon' => 'anesteziologicke.png',
@@ -87,7 +93,8 @@ class CategorySeeder extends Seeder
         ]);
 
         DB::table('categories')->insert([
-            'category_type' => 'Standard',
+            'category_file' => 'standardy',
+            'category_type' => 'standard',
             'category_name' => 'RDG',
             'folder_name'   => 'rdg',
             'category_icon' => 'rdg.png',
@@ -98,7 +105,8 @@ class CategorySeeder extends Seeder
         ]);
 
         DB::table('categories')->insert([
-            'category_type' => 'Standard',
+            'category_file' => 'standardy',
+            'category_type' => 'standard',
             'category_name' => 'Rehabilitační',
             'folder_name'   => 'rehabilitacni',
             'category_icon' => 'rehabilitacni.png',
@@ -109,7 +117,8 @@ class CategorySeeder extends Seeder
         ]);
 
         DB::table('categories')->insert([
-            'category_type' => 'Standard',
+            'category_file' => 'standardy',
+            'category_type' => 'standard',
             'category_name' => 'OPL',
             'folder_name'   => 'opl',
             'category_icon' => 'opl.png',
@@ -120,7 +129,8 @@ class CategorySeeder extends Seeder
         ]);
 
         DB::table('categories')->insert([
-            'category_type' => 'Standard',
+            'category_file' => 'standardy',
+            'category_type' => 'standard',
             'category_name' => 'OKB',
             'folder_name'   => 'okb',
             'category_icon' => 'okb.png',
@@ -131,7 +141,8 @@ class CategorySeeder extends Seeder
         ]);
 
         DB::table('categories')->insert([
-            'category_type' => 'Standard',
+            'category_file' => 'standardy',
+            'category_type' => 'standard',
             'category_name' => 'Logopedické',
             'folder_name'   => 'logopedicke',
             'category_icon' => 'logopedicke.png',
@@ -142,7 +153,8 @@ class CategorySeeder extends Seeder
         ]);
 
         DB::table('categories')->insert([
-            'category_type' => 'Standard',
+            'category_file' => 'standardy',
+            'category_type' => 'standard',
             'category_name' => 'Legislativní',
             'folder_name'   => 'legislativni',
             'category_icon' => 'legislativni.png',
@@ -155,6 +167,7 @@ class CategorySeeder extends Seeder
         // Documents Data
 
         DB::table('categories')->insert([
+            'category_file' => 'dokumenty',
             'category_type' => 'dokument',
             'category_name' => 'Personální',
             'folder_name'   => 'personalni',
@@ -166,6 +179,7 @@ class CategorySeeder extends Seeder
         ]);
 
         DB::table('categories')->insert([
+            'category_file' => 'dokumenty',
             'category_type' => 'dokument',
             'category_name' => 'Sesterská',
             'folder_name'   => 'sesterska',
@@ -177,6 +191,7 @@ class CategorySeeder extends Seeder
         ]);
 
         DB::table('categories')->insert([
+            'category_file' => 'dokumenty',
             'category_type' => 'dokument',
             'category_name' => 'Hygienická',
             'folder_name'   => 'hygiena',
@@ -188,6 +203,7 @@ class CategorySeeder extends Seeder
         ]);
 
         DB::table('categories')->insert([
+            'category_file' => 'dokumenty',
             'category_type' => 'dokument',
             'category_name' => 'Pacient',
             'folder_name'   => 'pacient',
@@ -199,6 +215,7 @@ class CategorySeeder extends Seeder
         ]);
 
         DB::table('categories')->insert([
+            'category_file' => 'dokumenty',
             'category_type' => 'dokument',
             'category_name' => 'OKB',
             'folder_name'   => 'okb',
@@ -210,6 +227,7 @@ class CategorySeeder extends Seeder
         ]);
 
         DB::table('categories')->insert([
+            'category_file' => 'dokumenty',
             'category_type' => 'dokument',
             'category_name' => 'RDG',
             'folder_name'   => 'rdg',
@@ -221,6 +239,7 @@ class CategorySeeder extends Seeder
         ]);
 
         DB::table('categories')->insert([
+            'category_file' => 'dokumenty',
             'category_type' => 'dokument',
             'category_name' => 'IT',
             'folder_name'   => 'it',
@@ -232,6 +251,7 @@ class CategorySeeder extends Seeder
         ]);
 
         DB::table('categories')->insert([
+            'category_file' => 'dokumenty',
             'category_type' => 'dokument',
             'category_name' => 'KPR',
             'folder_name'   => 'kpr',
@@ -243,6 +263,7 @@ class CategorySeeder extends Seeder
         ]);
 
         DB::table('categories')->insert([
+            'category_file' => 'dokumenty',
             'category_type' => 'dokument',
             'category_name' => 'Komunikační karty',
             'folder_name'   => 'komunikacni-karty',
@@ -254,6 +275,7 @@ class CategorySeeder extends Seeder
         ]);
 
         DB::table('categories')->insert([
+            'category_file' => 'dokumenty',
             'category_type' => 'dokument',
             'category_name' => 'Vyhodnocovací',
             'folder_name'   => 'vyhodnoceni-dotazniku',
@@ -265,6 +287,7 @@ class CategorySeeder extends Seeder
         ]);
 
         DB::table('categories')->insert([
+            'category_file' => 'dokumenty',
             'category_type' => 'dokument',
             'category_name' => 'Postupová',
             'folder_name'   => 'navody',
@@ -276,6 +299,7 @@ class CategorySeeder extends Seeder
         ]);
 
         DB::table('categories')->insert([
+            'category_file' => 'dokumenty',
             'category_type' => 'dokument',
             'category_name' => 'Ukrajinská',
             'folder_name'   => 'ukrajinske-dokumenty',
@@ -289,6 +313,7 @@ class CategorySeeder extends Seeder
         // BOZP Data
 
         DB::table('categories')->insert([
+            'category_file' => 'bozp',
             'category_type' => 'bozp',
             'category_name' => 'Bezpečnostní plány',
             'folder_name'   => 'bezpecnostni-plany',
@@ -300,6 +325,7 @@ class CategorySeeder extends Seeder
         ]);
 
         DB::table('categories')->insert([
+            'category_file' => 'bozp',
             'category_type' => 'bozp',
             'category_name' => 'Organizační směrnice',
             'folder_name'   => 'organizacni-smernice',
@@ -311,6 +337,7 @@ class CategorySeeder extends Seeder
         ]);
 
         DB::table('categories')->insert([
+            'category_file' => 'bozp',
             'category_type' => 'bozp',
             'category_name' => 'Metodiky školení',
             'folder_name'   => 'metodiky-skoleni',
@@ -322,6 +349,7 @@ class CategorySeeder extends Seeder
         ]);
 
         DB::table('categories')->insert([
+            'category_file' => 'bozp',
             'category_type' => 'bozp',
             'category_name' => 'Prezenční listiny',
             'folder_name'   => 'prezencni-listiny',
@@ -333,6 +361,7 @@ class CategorySeeder extends Seeder
         ]);
 
         DB::table('categories')->insert([
+            'category_file' => 'bozp',
             'category_type' => 'bozp',
             'category_name' => 'Pracovní úrazy',
             'folder_name'   => 'pracovni-urazy',
@@ -344,6 +373,7 @@ class CategorySeeder extends Seeder
         ]);
 
         DB::table('categories')->insert([
+            'category_file' => 'bozp',
             'category_type' => 'bozp',
             'category_name' => 'Bezpečnostní značení',
             'folder_name'   => 'bezpecnostni-znaceni',
@@ -355,6 +385,7 @@ class CategorySeeder extends Seeder
         ]);
 
         DB::table('categories')->insert([
+            'category_file' => 'bozp',
             'category_type' => 'bozp',
             'category_name' => 'Prověrky a kontroly',
             'folder_name'   => 'proverky-kontroly',
@@ -366,6 +397,7 @@ class CategorySeeder extends Seeder
         ]);
 
         DB::table('categories')->insert([
+            'category_file' => 'bozp',
             'category_type' => 'bozp',
             'category_name' => 'Provozně bezp. předpisy',
             'folder_name'   => 'provozne-bezpecnostni-predpisy',
@@ -377,6 +409,7 @@ class CategorySeeder extends Seeder
         ]);
 
         DB::table('categories')->insert([
+            'category_file' => 'bozp',
             'category_type' => 'bozp',
             'category_name' => 'Rizika',
             'folder_name'   => 'rizika',
@@ -388,6 +421,7 @@ class CategorySeeder extends Seeder
         ]);
 
         DB::table('categories')->insert([
+            'category_file' => 'bozp',
             'category_type' => 'bozp',
             'category_name' => 'Požární ochrana',
             'folder_name'   => 'pozarni-ochrana',
@@ -399,6 +433,7 @@ class CategorySeeder extends Seeder
         ]);
 
         DB::table('categories')->insert([
+            'category_file' => 'bozp',
             'category_type' => 'bozp',
             'category_name' => 'Požární operativní karty',
             'folder_name'   => 'pozarni-operativni-karty',
@@ -410,6 +445,7 @@ class CategorySeeder extends Seeder
         ]);
 
         DB::table('categories')->insert([
+            'category_file' => 'bozp',
             'category_type' => 'bozp',
             'category_name' => 'Bezpečnostní listy',
             'folder_name'   => 'bezpecnostni-listy',

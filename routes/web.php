@@ -1,12 +1,13 @@
 <?php
 
-use App\Http\Controllers\AdverseventController;
-use App\Http\Controllers\DocumentController;
-use App\Http\Controllers\EmployeeController;
+use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\FileController;
 use App\Http\Controllers\PageController;
+use App\Http\Controllers\AddonController;
 use App\Http\Controllers\PaintController;
-use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\DocumentController;
+use App\Http\Controllers\EmployeeController;
+use App\Http\Controllers\AdverseventController;
 
 
 // Index page
@@ -117,8 +118,8 @@ Route::resource('employees', EmployeeController::class)->except(['update', 'show
 Route::resource('adversevents', AdverseventController::class)->except(['update', 'show', 'destroy']);
 
 // Documents
-Route::resource('documents', DocumentController::class);
-Route::get('documents/addon/{id}', [DocumentController::class, 'addonShow'])->name('show.addon');
+Route::resource('documents', DocumentController::class)->except(['update', 'destroy']);
+Route::resource('documents/addons', AddonController::class)->except(['update', 'destroy']);
 
 // VCards
 Route::get('vcards', [EmployeeController::class, 'vcards'])->name('employees.vcards');
@@ -141,6 +142,10 @@ Route::group(['middleware' => 'auth'], function () {
     // Document Events
     Route::post('documents/update', [DocumentController::class, 'update'])->name('documents.update');
     Route::get('documents/destroy/{id}', [DocumentController::class, 'destroy']);
+
+       // Document Events
+    Route::post('documents/addons/update', [AddonController::class, 'update'])->name('addons.update');
+    Route::get('documents/addons/destroy/{id}', [AddonController::class, 'destroy']);
 
     // Paint Events
     Route::post('paints/update', [PaintController::class, 'update'])->name('paint.update');

@@ -12,6 +12,19 @@ class Addon extends Model
 {
     use HasFactory;
 
+    protected $fillable = [
+        'category_id',
+        'document_id',
+        'position',
+        'description',
+        'revision',
+        'file',
+        'user_id',
+        
+
+
+    ];
+
     public function document()
     {
         return $this->belongsTo(Document::class);
@@ -20,5 +33,10 @@ class Addon extends Model
     public function category()
     {
         return $this->belongsTo(Category::class);
+    }
+
+    public function user()
+    {
+        return $this->belongsTo(User::class);
     }
 }
