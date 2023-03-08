@@ -48,17 +48,16 @@
                         </div>
                     @endforeach
                     <div class="col-12">
+
                         <div class="progress mt-2">
-                            
                             @foreach ($bozps as $category)
                                 <div class="progress-bar progress-sm bg-{{ $category->color }}-lt" data-bs-toggle="tooltip"
                                     data-bs-placement="bottom"
-                                    data-bs-original-title="{{ $category->category_name . round(($category->documents->count() * 100) / $allDocuments->count()) . ' %' }}"
+                                    data-bs-original-title="{{ $category->category_name . ' dokumentace ' . round(($category->documents->count() * 100) / $allDocuments->count()) . '%' }}"
                                     role="progressbar" aria-label="{{ $category->category_name }}"
-                                    style="width: {{ ($category->documents->count() * 100) / $allDocuments->count() }} %">
+                                    style="width: {{ ($category->documents->count() * 100) / $allDocuments->count() }}%">
                                 </div>
                             @endforeach
-
                         </div>
 
                     </div>
@@ -603,7 +602,8 @@
                                 <input class="form-control" id="add_position" name="add_position" type="text">
                             </div>
                             <div class="col-9 col-lg-9 mb-2">
-                                <label class="form-label">{{ __('Popis přílohy') }} <small class="text-azure">usnadní vyhledávání</small></label>
+                                <label class="form-label">{{ __('Popis přílohy') }} <small class="text-azure">usnadní
+                                        vyhledávání</small></label>
                                 <input class="form-control" id="add_description" name="add_description" type="text"
                                     placeholder="{{ __('Konkrétní popis přílohy') }}">
                             </div>
@@ -658,8 +658,8 @@
                             {{ __('Close') }}
                         </button>
                         <div class="align-content-end flex">
-                            <button class="btn btn-primary ms-auto hover-shadow" id="add_action_button" name="add_action_button"
-                                type="submit">
+                            <button class="btn btn-primary ms-auto hover-shadow" id="add_action_button"
+                                name="add_action_button" type="submit">
                                 <svg class="icon icon-tabler icon-tabler-book-upload" xmlns="http://www.w3.org/2000/svg"
                                     width="24" height="24" viewBox="0 0 24 24" stroke-width="2"
                                     stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
@@ -1027,9 +1027,11 @@
                 success: function(html) {
                     $('#addInputForm')[0].reset();
                     $('.modal-title').val('');
-                    $('#add_action_button, #add-pdf-preview-show, #add-pdf-preview, #add-pdf-preview-addon-show').removeClass('d-none');
+                    $('#add_action_button, #add-pdf-preview-show, #add-pdf-preview, #add-pdf-preview-addon-show')
+                        .removeClass('d-none');
                     $('#addFormModal').modal('show');
-                    $('#add-modal-icon').html('{!! $categorie->svg_icon !!}').addClass('bg-{{ $categorie->color }}-lt');
+                    $('#add-modal-icon').html('{!! $categorie->svg_icon !!}').addClass(
+                        'bg-{{ $categorie->color }}-lt');
                     $('#add-modal-header').addClass("modal-header bg-{{ $categorie->color }}-lt");
                     $('#add_action_button, .modal-title').text("{{ __('Addon Edit') }}")
                     $('#add_action').val("Edit");
