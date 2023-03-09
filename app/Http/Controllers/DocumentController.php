@@ -130,22 +130,6 @@ class DocumentController extends Controller
     }
 
     /**
-     * Display the specified resource.
-     *
-     * @param  \App\Models\Document  $document
-     * @return \Illuminate\Http\Response
-     */
-    public function addonShow(Document $document, $id)
-    {
-        $data = Addon::with('category')->find($id);
-
-        if (request()->ajax()) {
-            return response()->json(['data' => $data]);
-        }
-    }
-
-
-    /**
      * Show the form for editing the specified resource.
      *
      * @param  \App\Models\Document  $document

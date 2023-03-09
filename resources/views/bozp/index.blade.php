@@ -50,7 +50,7 @@
                 @foreach ($bozps as $category)
                   <div class="progress-bar progress-sm bg-{{ $category->color }}-lt" data-bs-toggle="tooltip"
                     data-bs-placement="bottom"
-                    data-bs-original-title="{{ $category->category_name . ' dokumentace ' . round(($category->documents->count() * 100) / $allDocuments->count()) . '%' }}"
+                    data-bs-original-title="{{ $category->category_name . ' ' . round(($category->documents->count() * 100) / $allDocuments->count()) . '%' }}"
                     role="progressbar" aria-label="{{ $category->category_name }}"
                     style="width: {{ ($category->documents->count() * 100) / $allDocuments->count() }}%">
                   </div>
@@ -116,8 +116,7 @@
                       <div class="list-group-item border-0 p-0">
                         <div class="row align-items-center g-3 mx-2">
                           <div class="avatar bg-{{ $document->category->color }}-lt col-auto" data-bs-toggle="tooltip"
-                            data-bs-placement="top"
-                            data-bs-original-title="{{ $document->category->category_name }}">
+                            data-bs-placement="top" data-bs-original-title="{{ $document->category->category_name }}">
                             <a href="/bozp/{{ $document->category->folder_name }}/{{ $document->category->id }}">
                               <div class="text-uppercase">
                                 {!! $document->category->svg_icon !!}
@@ -287,16 +286,19 @@
                             </span>
                           </a>
                         </div>
-                        <div class="col text-truncate">
-                          <a class="text-primary d-block d-block text-primary text-decoration-none"
-                            href="{{ route('soubory.bozp.addon.download', $add->id) }}">
-                            <p style="margin-bottom: 0;">Příloha
-                              č.{{ $add->position }}
+                        <div class="col text-truncate" id="{{ $add->id }}">
+                          <span>
+                            <p class="show-addon d-inline text-primary text-decoration-none cursor-pointer"
+                              id="{{ $add->id }}" data-bs-toggle="tooltip" data-bs-placement="top"
+                              data-bs-original-title="Více informací o příloze {{ $add->description }}"
+                              style="margin-bottom: 0;">
+                              @if ($add->category_id != 3)
+                                {{ $add->position }}.
+                              @endif {{ $add->name }}
                             </p>
-                          </a>
-                          <div class="d-block description text-muted text-truncate mt-n1">
-                            {{ $document->name }} -
-                            {{ $add->description }}</div>
+                          </span>
+                          <div class="d-block description text-muted text-truncate">
+                            {{ $document->description }}</div>
                         </div>
                         <div class="col-auto">
                           @if (Carbon\Carbon::parse($add->created_at)->addDay() >= Carbon\Carbon::today())
@@ -543,11 +545,11 @@
             </div>
             <div class="row">
               <div class="col-2 col-lg-1 mb-2">
-                <label class="form-label">{{ __('Position') }} č:</label>
+                <label class="form-label">{{ __('Číslo přílohy') }}</label>
                 <input class="form-control" id="add_position" name="add_position" type="text">
               </div>
               <div class="col-9 col-lg-9 mb-2">
-                <label class="form-label">{{ __('Popis přílohy') }} <small class="text-azure">usnadní
+                <label class="form-label">{{ __('Název přílohy') }} <small class="text-azure">usnadní
                     vyhledávání</small></label>
                 <input class="form-control" id="add_description" name="add_description" type="text"
                   placeholder="{{ __('Konkrétní popis přílohy') }}">
@@ -740,27 +742,72 @@
   </div>
 
   {{-- Addon Show Modal --}}
-  <div class="modal fade" id="addonShowModal" role="dialog" aria-hidden="true" tabindex="-1">
+  <div class="modal fade" id="addShowModal" role="dialog" aria-hidden="true" tabindex="-1">
     <div class="modal-dialog modal-dialog-centered modal-full-width" role="document">
       <div class="modal-content shadow-lg">
-        <div id="addon-show-modal-header">
+        <div id="show-modal-header">
           <h5 class="modal-title"></h5>
-          <div class="avatar avatar-transparent" id="addon-show-modal-icon"></div>
+          <div class="avatar avatar-transparent" id="add-show-modal-icon"></div>
         </div>
         <div class="modal-body">
           <div class="row">
-            <div class="col-12">
-              <div id="pdf-preview-addon-show"></div>
+            <div class="col-7">
+
+              <div class="row">
+                <div class="col-2 mb-3 mt-3">
+                  <label class="form-label">{{ __('Position') }}</label>
+                  <input class="form-control" id="add-show-position" type="text" readonly>
+                </div>
+                <div class="col-12 mb-3">
+                  <label class="form-label">{{ __('Popis dokumentu') }} </label>
+                  <input class="form-control" id="add-show-description" type="text" readonly>
+                </div>
+                <div class="col-3 mb-3 mt-3">
+                  <label class="form-label">{{ __('Revision') }}</label>
+                  <input class="form-control" id="add-show-revision" type="text" readonly>
+                </div>
+              </div>
+
+              <div class="row">
+                <div class="col-3 mb-3">
+                  <label class="form-label">{{ __('Zpracoval/a') }}</label>
+                  <input class="form-control" id="add-show-processed" type="text" readonly>
+                </div>
+                <div class="col-9 mb-3">
+                  <label class="form-label">{{ __('Oblast působnosti dokumentu') }}</label>
+                  <input class="form-control" id="add-show-tags" type="text" readonly>
+                </div>
+              </div>
+
+              <div class="row">
+                <div class="col-12 mb-3">
+                  <label class="form-label">{{ __('Soubor') }}</label>
+                  <input class="form-control" id="add-show-file" type="text" readonly>
+                </div>
+                <div class="col-6 mb-3">
+                  <label class="form-label">{{ __('Status') }}</label>
+                  <input class="form-control" id="add-show-status" readonly>
+                </div>
+                <div class="col-6 mb-3">
+                  <label class="form-label">{{ __('Založil / upravil') }}</label>
+                  <input class="form-control" id="add-show-user_name" readonly>
+                </div>
+              </div>
             </div>
 
-            <input id="addon_hidden_id" name="addon_hidden_id" type="hidden" />
-            <input id="addon_user_id" name="addon_user_id" type="hidden" />
+            <div class="col-5 p-1">
+              <div id="pdf-preview-addon-show"></div>
+              <input id="category_id" name="category_id" type="hidden">
+              <input id="action" name="action" type="hidden" />
+              <input id="hidden_id" name="hidden_id" type="hidden" />
+              <input id="user_id" name="user_id" type="hidden" />
+            </div>
           </div>
         </div>
 
         <div class="modal-footer">
           <div class="align-content-end flex">
-            <a class="btn btn-red ms-auto hover-shadow" id="addon-download-btn" type="button" href="">
+            <a class="btn btn-red ms-auto hover-shadow" id="download-btn" type="button" href="">
               <svg class="icon icon-inline" xmlns="http://www.w3.org/2000/svg" width="24" height="24"
                 viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round"
                 stroke-linejoin="round">
@@ -770,7 +817,7 @@
                 <path d="M15 19l3 3l3 -3"></path>
                 <path d="M18 22v-9"></path>
               </svg>
-              {{ __('Download addon') }}</a>
+              {{ __('Download file') }}</a>
           </div>
           <button class="btn btn-muted hover-shadow" data-bs-dismiss="modal" type="button">
             <svg class="icon icon-inline" xmlns="http://www.w3.org/2000/svg" width="24" height="24"
@@ -967,7 +1014,7 @@
         success: function(html) {
           $('#addInputForm')[0].reset();
           $('.modal-title').val('');
-          $('#add_action_button, #add-pdf-preview-show, #add-pdf-preview, #add-pdf-preview-addon-show')
+          $('#add_action_button, #add-pdf-preview')
             .removeClass('d-none');
           $('#addFormModal').modal('show');
           $('#add-modal-icon').html('{!! $categorie->svg_icon !!}').addClass(
@@ -980,14 +1027,14 @@
           $('#add_category_file').val(html.data.category.category_file);
           $('#add_revision').val(html.data.revision);
           $('#add_description').val(html.data.description);
-          $('#add_position').val(html.data.addon_number);
+          $('#add_position').val(html.data.position);
           $('#add_status').val(html.data.status);
           $('#add_user_id').val('{{ auth()->user()->id ?? null }}');
           $('#add_document_id').val(html.data.document_id);
           $('#add_user_name').val(html.data.user.name);
           $('#add_hidden_id').val(html.data.id);
           $('#add_hidden_file').val(html.data.file);
-          PDFObject.embed("../../soubory/" + html.data.file + "#toolbar=0", "#pdf-preview", {
+          PDFObject.embed("../../soubory/" + html.data.file + "#toolbar=0", "#add-pdf-preview", {
             height: "31rem"
           })
         }
@@ -1039,25 +1086,25 @@
     $(document).on('click', '.show-addon', function() {
       id = $(this).attr('id');
       $.ajax({
-        url: "/documents/addon/" + id,
+        url: "/documents/addons/" + id,
         dataType: "json",
         success: function(html) {
-          $('#inputForm')[0].reset()
+          $('#addInputForm')[0].reset()
           $('.modal-title').val('')
-          $('#addonShowModal').modal('show')
-          $('#addon-show-modal-icon').html('{!! $categorie->svg_icon !!}').addClass(
+          $('#addShowModal').modal('show')
+          $('#add-show-modal-icon').html('{!! $categorie->svg_icon !!}').addClass(
             'bg-{{ $categorie->color }}-lt')
-          $('#addon-show-modal-header').addClass(
+          $('#add-show-modal-header').addClass(
             "modal-header bg-{{ $categorie->color }}-lt")
           $('.modal-title').html(html.data.description)
-          $('#addon-show-description').val(html.data.description)
-          $('#addon-show-position').val(html.data.addon_number)
-          $('#addon-show-file').val(html.data.file)
-          $('#addon-show-revision').val(html.data.revision)
-          $('#addon-show-status').val(html.data.status)
-          $('#show-user_id').val('{{ auth()->user()->id ?? null }}')
-          $('#show-hidden_id').val(html.data.id)
-          $('#addon-download-btn').attr("href", "/soubory/bozp/addon/" + html.data.id +
+          $('#add-show-description').val(html.data.description)
+          $('#add-show-position').val(html.data.position)
+          $('#add-show-file').val(html.data.file)
+          $('#add-show-revision').val(html.data.revision)
+          $('#add-show-status').val(html.data.status)
+          $('#add-show-user_id').val('{{ auth()->user()->id ?? null }}')
+          $('#add-show-hidden_id').val(html.data.id)
+          $('#add-download-btn').attr("href", "/soubory/bozp/addon/" + html.data.id +
             "")
           PDFObject.embed("../../soubory/" + html.data.file + "#toolbar=0",
             "#pdf-preview-addon-show", {
@@ -1222,7 +1269,7 @@
         event.preventDefault();
         $.ajax({
           url: "{{ route('addons.update') }}",
-          method: "POST",
+          method: "PUT",
           data: new FormData(this),
           contentType: false,
           cache: false,
@@ -1236,12 +1283,12 @@
                 html += '<li>' + data.errors[count] + '</li>';
               }
               html += '</ul></div>';
-              $('#form_result_modal').html(html);
+              $('#add_form_result_modal').html(html);
             }
             if (data.success) {
               html = '<div class="alert alert-success text-success shadow-sm"><ul><li>' +
                 data.success + '</li></ul></div>';
-              $('#form_result_window').html(html);
+              $('#add_form_result_window').html(html);
               location.reload();
               $('#addFormModal').modal('hide');
             }
@@ -1250,51 +1297,47 @@
       }
     })
 
-    // Delete document
+    // Delete document and delete confirm modal
     $(document).on('click', '.delete', function() {
-      id = $(this).attr('id');
-      $('#ok_button').text("{{ __('Delete') }}");
-      $('#confirmModal').modal('show');
-    })
-
-    // Delete Document Confirm
-    $('#ok_button').click(function() {
-      $.ajax({
-        url: "/documents/destroy/" + id,
-        beforeSend: function() {
-          $('#ok_button').text("{{ __('Deleting ...') }}");
-        },
-        success: function(data) {
-          setTimeout(function() {
-            $('#confirmModal').modal('hide');
-            $('#ok_button').text("{{ __('Delete') }}");
-            location.reload();
-          }, 1000);
-        }
+      id = $(this).attr('id')
+      $('#ok_button').text("{{ __('Delete') }}")
+      $('#confirmModal').modal('show')
+      $('#ok_button').click(function() {
+        $.ajax({
+          url: "/documents/destroy/" + id,
+          beforeSend: function() {
+            $('#ok_button').text("{{ __('Deleting ...') }}")
+          },
+          success: function(data) {
+            setTimeout(function() {
+              $('#confirmModal').modal('hide');
+              $('#ok_button').text("{{ __('Delete') }}")
+              location.reload();
+            }, 1000);
+          }
+        })
       })
     })
 
-    // Delete addon
+    // Delete addon and delete confirm modal
     $(document).on('click', '.add-delete', function() {
-      id = $(this).attr('id');
-      $('#add_ok_button').text("{{ __('Delete') }}");
-      $('#addConfirmModal').modal('show');
-    })
-
-    // Delete Addon Confirm
-    $('#add_ok_button').click(function() {
-      $.ajax({
-        url: "/documents/addons/destroy/" + id,
-        beforeSend: function() {
-          $('#add_ok_button').text("{{ __('Deleting ...') }}");
-        },
-        success: function(data) {
-          setTimeout(function() {
-            $('#addConfirmModal').modal('hide');
-            $('#add_ok_button').text("{{ __('Delete') }}");
-            location.reload();
-          }, 1000);
-        }
+      id = $(this).attr('id')
+      $('#add_ok_button').text("{{ __('Delete') }}")
+      $('#addConfirmModal').modal('show')
+      $('#add_ok_button').click(function() {
+        $.ajax({
+          url: "/documents/addons/destroy/" + id,
+          beforeSend: function() {
+            $('#add_ok_button').text("{{ __('Deleting ...') }}")
+          },
+          success: function(data) {
+            setTimeout(function() {
+              $('#addConfirmModal').modal('hide');
+              $('#add_ok_button').text("{{ __('Delete') }}")
+              location.reload();
+            }, 1000);
+          }
+        })
       })
     })
   </script>

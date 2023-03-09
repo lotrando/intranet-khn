@@ -73,7 +73,7 @@ class AddonController extends Controller
         $file_ext  = $request->add_file->extension();
         $description = Str::lower(strtr($request->add_description, $unwantedChars));
         $revision = Str::lower(strtr($request->add_revision, $unwantedChars));
-        $file_name = $request->add_category_file . '_' . $request->add_folder_name . '-' . $description . '-revize-' . $revision . '.' . $file_ext;
+        $file_name = $request->add_category_file . '_' . $request->add_folder_name . '-' . $description . '-priloha-' . $request->add_position . '-revize-' . $revision . '.' . $file_ext;
         $request->add_file->move(public_path('/soubory/'), $file_name);
 
         $form_data = [
@@ -97,10 +97,10 @@ class AddonController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\Document  $document
+     * @param  \App\Models\Addon  $addon
      * @return \Illuminate\Http\Response
      */
-    public function show(Document $document, $id)
+    public function show($id)
     {
         $data = Addon::with('document', 'category', 'user')->findOrFail($id);
 
@@ -109,11 +109,10 @@ class AddonController extends Controller
         }
     }
 
-
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Models\Document  $document
+     * @param  \App\Models\Addon  $addon
      * @return \Illuminate\Http\Response
      */
     public function edit($id)
@@ -128,11 +127,14 @@ class AddonController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\Document  $document
+     * @param  \App\Models\Addon  $addon
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request)
     {
+
+        dd($request);
+        
         $file = $request->file;
         if ($file != '') {
 
@@ -165,10 +167,11 @@ class AddonController extends Controller
             $file_ext  = $request->add_file->extension();
             $description = Str::lower(strtr($request->description, $unwantedChars));
             $revision = Str::lower(strtr($request->revision, $unwantedChars));
-            $file_name = $request->category_file . '_' . $request->folder_name . '-' . $description . '-revize-' . $revision . '.' . $file_ext;
+            $file_name = $request->add_category_file . '_' . $request->add_folder_name . '-' . $description . '-priloha-' . $request->add_position . '-revize-' . $revision . '.' . $file_ext;
             $request->add_file->move(public_path('/soubory/'), $file_name);
 
             $form_data = [
+                'document_id'           => $request->add_document_id,
                 'category_id'           => $request->add_category_id,
                 'description'           => $request->add_description,
                 'processed'             => $request->add_processed,
@@ -179,6 +182,7 @@ class AddonController extends Controller
                 'onscreen'              => $request->add_onscreen,
                 'user_id'               => Auth::user()->id
             ];
+
         } else {
 
             $rules = [
@@ -198,6 +202,7 @@ class AddonController extends Controller
             }
 
             $form_data = [
+                'document_id'           => $request->add_document_id,
                 'category_id'           => $request->add_category_id,
                 'description'           => $request->add_description,
                 'revision'              => $request->add_revision,
@@ -210,7 +215,7 @@ class AddonController extends Controller
 
         Addon::whereId($request->hidden_id)->update($form_data);
 
-        $emailData = Document::with('category')->where('id', $request->hidden_id)->get();
+        $emailData = Addon::with('category')->where('id', $request->hidden_id)->get();
         // $emailData = Document::with('category')->where('updated_at', '>=', '2023-01-18 13:35:09')->get();
         $stanicniSestry = Employee::where('job_id', '47')->pluck('email');
 
@@ -222,7 +227,7 @@ class AddonController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\Document  $document
+     * @param  \App\Models\Addon  $addon
      * @return \Illuminate\Http\Response
      */
     public function destroy($id)

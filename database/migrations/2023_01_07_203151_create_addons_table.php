@@ -21,7 +21,7 @@ class CreateAddonsTable extends Migration
             $table->string('revision');
             $table->integer('user_id')
             $table->string('file');
-            $table->enum('status', ['Rozpracováno', 'Schváleno']);
+            $table->enum('status', ['Schváleno','Rozpracováno']);
             $table->integer('onscreen')->nullable();
             $table->timestamps();
         });
