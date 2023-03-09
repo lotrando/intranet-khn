@@ -53,6 +53,7 @@ class AddonController extends Controller
         ];
 
         $rules = [
+            'add_document_id'           => 'required',
             'add_category_id'           => 'required',
             'add_description'           => 'required',
             'add_processed'             => 'nullable',
@@ -70,9 +71,9 @@ class AddonController extends Controller
         }
 
         $file_ext  = $request->add_file->extension();
-        $description = Str::lower(strtr($request->description, $unwantedChars));
-        $revision = Str::lower(strtr($request->revision, $unwantedChars));
-        $file_name = $request->category_file . '_' . $request->folder_name . '-' . $description . '-revize-' . $revision . '.' . $file_ext;
+        $description = Str::lower(strtr($request->add_description, $unwantedChars));
+        $revision = Str::lower(strtr($request->add_revision, $unwantedChars));
+        $file_name = $request->add_category_file . '_' . $request->add_folder_name . '-' . $description . '-revize-' . $revision . '.' . $file_ext;
         $request->add_file->move(public_path('/soubory/'), $file_name);
 
         $form_data = [
@@ -101,7 +102,7 @@ class AddonController extends Controller
      */
     public function show(Document $document, $id)
     {
-        $data = Addon::with('category')->find($id);
+        $data = Addon::with('document', 'category', 'user')->findOrFail($id);
 
         if (request()->ajax()) {
             return response()->json(['data' => $data]);
@@ -117,7 +118,7 @@ class AddonController extends Controller
      */
     public function edit($id)
     {
-        $data = Addon::with('category', 'user')->findOrFail($id);
+        $data = Addon::with('document', 'category', 'user')->findOrFail($id);
         if (request()->ajax()) {
             return response()->json(['data' => $data]);
         }

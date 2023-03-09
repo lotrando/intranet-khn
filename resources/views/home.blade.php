@@ -142,8 +142,9 @@
                     <span class="avatar bg-purple-lt pt-1"><strong>{{ Carbon\Carbon::now()->format('d|m') }}<br>{{ Carbon\Carbon::now()->format('Y') }}</strong></span>
                   </div>
                   <div class="px-3">
-                    <h2>Kulturní oznámení !</h2>
-                    <p class="text-start mb-1">Officia dolore debitis esse rem eligendi illum accusamus alias molestiae laboriosam!</p>
+                    <h2>Velké poděkování</h2>
+                    <p class="text-start mb-1">DĚKUJEME všem pracovníkům stravovacího provozu za dnešní "snídaňové menu", které u příležitosti MDŽ pro naše zaměstnankyně připravili.</p>
+                    <p style="text-align: right">Bylo to vynikající !!!!!</p>
                   </div>
                 </div>
               </div>
