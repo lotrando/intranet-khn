@@ -276,7 +276,8 @@
                               @endif
                               @if ($document->onscreen != 0)
                                 <span class="badge badge-sm bg-orange-lt text-uppercase ms-auto">Zobrazeno také v
-                                  dokumentaci</span>
+                                  dokumentaci -
+                                  {{ App\Models\Category::whereId($document->onscreen)->pluck('category_name')->first() }}</span>
                               @endif
                             @endauth
                           </div>

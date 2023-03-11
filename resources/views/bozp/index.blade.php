@@ -137,7 +137,7 @@
                                 id="{{ $document->id }}" data-bs-toggle="tooltip" data-bs-placement="top"
                                 data-bs-original-title="Více informací o dokumentu {{ $document->description }}"
                                 style="margin-bottom: 0;">
-                                @if ($document->category_id != 3)
+                                @if ($document->category_id != 36)
                                   {{ $document->position }}.
                                 @endif {{ $document->name }}
                               </p>
@@ -213,6 +213,18 @@
                               <span class="badge badge-sm bg-lime-lt text-uppercase ms-auto">Aktualizováno
                                 !</span>
                             @endif
+                            @auth
+                              @if ($document->status == 'Rozpracováno')
+                                <span class="badge badge-sm bg-yellow-lt text-uppercase ms-auto">Rozpracováno</span>
+                              @else
+                                <span class="badge badge-sm bg-green-lt text-uppercase ms-auto">Schváleno</span>
+                              @endif
+                              @if ($document->onscreen != 0)
+                                <span class="badge badge-sm bg-orange-lt text-uppercase ms-auto">Zobrazeno také v
+                                  dokumentaci -
+                                  {{ App\Models\Category::whereId($document->onscreen)->pluck('category_name')->first() }}</span>
+                              @endif
+                            @endauth
                             <span
                               class="text-muted description">{{ Carbon\Carbon::parse($document->updated_at)->diffForHumans() }}</span>
                             <svg class="icon text-yellow" xmlns="http://www.w3.org/2000/svg" width="24"
@@ -231,13 +243,6 @@
                             </svg>
                             <span class="text-muted description">Revize:
                               {{ $document->revision }}</span>
-                            @auth
-                              @if ($document->status == 'Rozpracováno')
-                                <span class="badge badge-sm bg-yellow-lt text-uppercase ms-auto">Rozpracováno</span>
-                              @else
-                                <span class="badge badge-sm bg-green-lt text-uppercase ms-auto">Schváleno</span>
-                              @endif
-                            @endauth
                           </div>
                           @auth
                             <div class="d-xs-none d-sm-none d-lg-inline col-auto">
@@ -292,13 +297,12 @@
                               id="{{ $add->id }}" data-bs-toggle="tooltip" data-bs-placement="top"
                               data-bs-original-title="Více informací o příloze {{ $add->description }}"
                               style="margin-bottom: 0;">
-                              @if ($add->category_id != 3)
-                                {{ $add->position }}.
-                              @endif {{ $add->name }}
+                              {{ $add->description }}
                             </p>
                           </span>
                           <div class="d-block description text-muted text-truncate">
-                            {{ $document->description }}</div>
+                            {{ $add->document->name }} - Příloha č.{{ $add->position }}
+                          </div>
                         </div>
                         <div class="col-auto">
                           @if (Carbon\Carbon::parse($add->created_at)->addDay() >= Carbon\Carbon::today())
@@ -309,6 +313,18 @@
                             <span class="badge badge-sm bg-lime-lt text-uppercase ms-auto">Aktualizováno
                               !</span>
                           @endif
+                          @auth
+                            @if ($add->status == 'Rozpracováno')
+                              <span class="badge badge-sm bg-yellow-lt text-uppercase ms-auto">Rozpracováno</span>
+                            @else
+                              <span class="badge badge-sm bg-green-lt text-uppercase ms-auto">Schváleno</span>
+                            @endif
+                            @if ($add->onscreen != 0)
+                              <span class="badge badge-sm bg-orange-lt text-uppercase ms-auto">Zobrazeno také v
+                                dokumentaci -
+                                {{ App\Models\Category::whereId($add->onscreen)->pluck('category_name')->first() }}</span>
+                            @endif
+                          @endauth
                           <span
                             class="text-muted description">{{ Carbon\Carbon::parse($add->updated_at)->diffForHumans() }}</span>
                           <svg class="icon icon-tabler icon-tabler-certificate-2 text-yellow"
@@ -324,13 +340,6 @@
                           </svg>
                           <span class="text-muted description">Revize:
                             {{ $add->revision }}</span>
-                          @auth
-                            @if ($add->status == 'Rozpracováno')
-                              <span class="badge badge-sm bg-yellow-lt text-uppercase ms-auto">Rozpracováno</span>
-                            @else
-                              <span class="badge badge-sm bg-green-lt text-uppercase ms-auto">Schváleno</span>
-                            @endif
-                          @endauth
                         </div>
                         @auth
                           <div class="col-auto">
@@ -468,7 +477,7 @@
               <div id="pdf-preview"></div>
             </div>
             <div class="row">
-              <div class="col-12 col-lg-8 mb-2">
+              <div class="col-12 col-lg-6 mb-2">
                 <label class="form-label">{{ __('Soubor') }}</label>
                 <input class="form-control" id="file" name="file" type="file"
                   placeholder="{{ __('Soubor dokumentu ve formátu PDF') }}">
@@ -478,6 +487,15 @@
                 <select class="form-select" id="status" name="status">
                   <option value="Rozpracováno">Rozpracováno</option>
                   <option value="Schváleno">Schváleno</option>
+                </select>
+              </div>
+              <div class="col-6 col-lg-2 mb-2">
+                <label class="form-label">{{ __('Zobrazit v dokumentaci') }}</label>
+                <select class="form-select" id="onscreen" name="onscreen">
+                  <option value=""></option>
+                  @foreach ($categories as $category)
+                    <option value="{{ $category->id }}">{{ $category->category_name }}</option>
+                  @endforeach
                 </select>
               </div>
               <div class="col-6 col-lg-2 mb-2">
@@ -564,19 +582,28 @@
               <div id="pdf-preview"></div>
             </div>
             <div class="row">
-              <div class="col-12 col-lg-8 mb-2">
+              <div class="col-12 col-lg-6 mb-2">
                 <label class="form-label">{{ __('Soubor') }}</label>
                 <input class="form-control" id="add_file" name="add_file" type="file"
                   placeholder="{{ __('Příloha dokumentu ve formátu PDF') }}">
               </div>
-              <div class="col-6 col-lg-2 mb-2">
+              <div class="col-4 col-lg-2 mb-2">
+                <label class="form-label">{{ __('Zobrazit v dokumentaci') }}</label>
+                <select class="form-select" id="add_onscreen" name="add_onscreen">
+                  <option value=""></option>
+                  @foreach ($categories as $category)
+                    <option value="{{ $category->id }}">{{ $category->category_name }}</option>
+                  @endforeach
+                </select>
+              </div>
+              <div class="col-4 col-lg-2 mb-2">
                 <label class="form-label">{{ __('Status') }}</label>
                 <select class="form-select" id="add_status" name="add_status">
                   <option value="Schváleno">Schváleno</option>
                   <option value="Rozpracováno">Rozpracováno</option>
                 </select>
               </div>
-              <div class="col-6 col-lg-2 mb-2">
+              <div class="col-4 col-lg-2 mb-2">
                 <label class="form-label">{{ __('Založil/upravil') }}</label>
                 <input class="form-control" id="add_user_name" name="add_user_name" type="text" readonly>
               </div>
@@ -758,11 +785,11 @@
                   <label class="form-label">{{ __('Position') }}</label>
                   <input class="form-control" id="add-show-position" type="text" readonly>
                 </div>
-                <div class="col-12 mb-3">
+                <div class="col-8 mb-3 mt-3">
                   <label class="form-label">{{ __('Popis dokumentu') }} </label>
                   <input class="form-control" id="add-show-description" type="text" readonly>
                 </div>
-                <div class="col-3 mb-3 mt-3">
+                <div class="col-2 mb-3 mt-3">
                   <label class="form-label">{{ __('Revision') }}</label>
                   <input class="form-control" id="add-show-revision" type="text" readonly>
                 </div>
@@ -885,9 +912,9 @@
         {{-- <button class="btn-close" data-bs-dismiss="modal" type="button" aria-label="{{ __('Close') }}"></button> --}}
         <div class="modal-status bg-danger"></div>
         <div class="modal-body py-4 text-center">
-          <svg class="icon text-danger icon-lg mb-3" xmlns="http://www.w3.org/2000/svg" width="24" height="24"
-            viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round"
-            stroke-linejoin="round">
+          <svg class="icon text-danger icon-lg mb-3" xmlns="http://www.w3.org/2000/svg" width="24"
+            height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none"
+            stroke-linecap="round" stroke-linejoin="round">
             <path stroke="none" d="M0 0h24v24H0z" fill="none" />
             <path d="M12 9v2m0 4v.01" />
             <path d="M5 19h14a2 2 0 0 0 1.84 -2.75l-7.1 -12.25a2 2 0 0 0 -3.5 0l-7.1 12.25a2 2 0 0 0 1.75 2.75" />
@@ -985,6 +1012,7 @@
           $('#position').val(html.data.position);
           $('#attachment').val(html.data.attachment);
           $('#status').val(html.data.status);
+          $('#onscreen').val(html.data.onscreen);
           $('#user_id').val('{{ auth()->user()->id ?? null }}');
           $('#user_name').val(html.data.user.name);
           $('#hidden_id').val(html.data.id);
@@ -1029,6 +1057,7 @@
           $('#add_description').val(html.data.description);
           $('#add_position').val(html.data.position);
           $('#add_status').val(html.data.status);
+          $('#add_onscreen').val(html.data.onscreen);
           $('#add_user_id').val('{{ auth()->user()->id ?? null }}');
           $('#add_document_id').val(html.data.document_id);
           $('#add_user_name').val(html.data.user.name);
@@ -1210,6 +1239,7 @@
     })
 
     $('.addon').click(function() {
+      documentId = $(this).attr('id')
       $('#addInputForm')[0].reset();
       $("#add_action_button").removeClass('d-none')
       $('#add-pdf-preview-show, #add-pdf-preview').addClass('d-none')
@@ -1219,15 +1249,16 @@
       $('#add-modal-header').addClass("modal-header bg-{{ $categorie->color }}-lt")
       $('#add_action_button, .modal-title').text("{{ __('Create new addon') }}")
       $('#add_action').val("Add")
-      $('#add_position').val('{{ $lastpos + 1 }}')
+      $('#add_position').val('')
       $('#add_folder_name').val("{{ $categorie->folder_name }}")
       $('#add_status').val('Schváleno')
       $('#add_user_id').val('{{ auth()->user()->id ?? null }}')
       $('#add_user_name').val('{{ auth()->user()->name ?? 'Guest' }}')
-      $('#add_revision').val('{{ $lastpos - $lastpos + 1 }}')
-      $('#add_document_id').val('{{ $document->id ?? null }}')
+      $('#add_revision').val('')
+      $('#add_document_id').val(documentId ?? null)
       $('#add_category_file').val('{{ $categorie->category_file }}');
-      $('#add_processed').val('Pribula Marek, Bc.')
+      $('#add_processed').val(
+        'Pribula Marek, Bc.')
     })
 
     $('#addInputForm').on('submit', function(event) {
@@ -1269,7 +1300,7 @@
         event.preventDefault();
         $.ajax({
           url: "{{ route('addons.update') }}",
-          method: "PUT",
+          method: "POST",
           data: new FormData(this),
           contentType: false,
           cache: false,

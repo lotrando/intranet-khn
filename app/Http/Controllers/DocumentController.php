@@ -2,16 +2,16 @@
 
 namespace App\Http\Controllers;
 
-use App\Mail\StandardUpdatedMail;
-use App\Models\Addon;
-use App\Models\Document;
-use App\Models\Employee;
-use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\File;
-use Illuminate\Support\Facades\Mail;
-use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Str;
+use Illuminate\Support\Facades\Validator;
+use Illuminate\Support\Facades\Mail;
+use Illuminate\Support\Facades\File;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Http\Request;
+use App\Models\Employee;
+use App\Models\Document;
+use App\Models\Addon;
+use App\Mail\StandardUpdatedMail;
 
 
 class DocumentController extends Controller
@@ -309,11 +309,11 @@ class DocumentController extends Controller
                     ->get();
             } else {
                 $documents = Document::with('category', 'addons')->orderByDesc('category_id')
+                    ->whereStatus('Schváleno')
                     ->orWhere('unique_code', 'LIKE', '%' . $request->search . "%")
                     ->orWhere('name', 'LIKE', '%' . $request->search . "%")
                     ->orWhere('description', 'LIKE', '%' . $request->search . "%")
                     ->orWhere('tags', 'LIKE', '%' . $request->search . "%")
-                    ->where('status', 'Schváleno')
                     ->get();
             }
 
@@ -404,7 +404,7 @@ class DocumentController extends Controller
                             </div>
                             </div>
                         </div>
-                    </div>';;
+                    </div>';
             }
 
             return Response($output);

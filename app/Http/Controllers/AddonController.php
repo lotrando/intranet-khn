@@ -2,16 +2,16 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Addon;
-use App\Models\Document;
-use App\Models\Employee;
 use Illuminate\Support\Str;
-use Illuminate\Http\Request;
-use App\Mail\StandardUpdatedMail;
-use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\File;
-use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Validator;
+use Illuminate\Support\Facades\Mail;
+use Illuminate\Support\Facades\File;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Http\Request;
+use App\Models\Employee;
+use App\Models\Document;
+use App\Models\Addon;
+use App\Mail\StandardUpdatedMail;
 
 class AddonController extends Controller
 {
@@ -132,9 +132,6 @@ class AddonController extends Controller
      */
     public function update(Request $request)
     {
-
-        dd($request);
-        
         $file = $request->file;
         if ($file != '') {
 
@@ -182,7 +179,6 @@ class AddonController extends Controller
                 'onscreen'              => $request->add_onscreen,
                 'user_id'               => Auth::user()->id
             ];
-
         } else {
 
             $rules = [

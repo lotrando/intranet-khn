@@ -2,17 +2,17 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Addon;
-use App\Models\Category;
-use App\Models\Department;
-use App\Models\Document;
-use App\Models\Employee;
-use App\Models\Paint;
-use Carbon\Carbon;
-use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\DB;
 use RealRashid\SweetAlert\Facades\Alert;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Http\Request;
+use Carbon\Carbon;
+use App\Models\Paint;
+use App\Models\Employee;
+use App\Models\Document;
+use App\Models\Department;
+use App\Models\Category;
+use App\Models\Addon;
 
 class PageController extends Controller
 {
@@ -56,7 +56,9 @@ class PageController extends Controller
     // Změny v dokumentaci
     public function zmenyDokumentu()
     {
-        $documents = Document::with('category', 'addons', 'user')->where('category_id', '>', '12')
+        $documents = Document::with('category', 'addons', 'user')
+            ->where('category_id', '>', '12')
+            ->where('category_id', '<', '25')
             ->where('updated_at', '>=', Carbon::now()->subHours(24))
             ->orderByDesc('updated_at')
             ->paginate(5);
@@ -193,10 +195,12 @@ class PageController extends Controller
     public function document($id)
     {
         $allDocuments = Document::where('category_id', '>', 12)->pluck('category_id');
-        $standards = Document::where('onscreen', $id)->where('category_id', '<', 12)->orderBy('category_id')->get();
+        $standards = Document::where('onscreen', $id)->orderBy('category_id')->get();
+        $bozppos = Document::with('category')->where('onscreen', $id)->orderBy('category_id')->get();
         $categorie  = Category::where('id', $id)->first();
         $doctors = Employee::where('standard_signature', 1)->orderBy('last_name')->get();
         $last = Document::where('category_id', $id)->orderBy('id', 'desc')->take(1)->first();
+        $addons = Addon::with('category')->where('document_id', '!=', 0)->where('onscreen', $id)->orderBy('category_id')->get();
         $warehouse = Addon::where('document_id', 0)->where('onscreen', $id)->orderBy('description')->get();
 
         if ($last == null) {
@@ -222,6 +226,8 @@ class PageController extends Controller
             'allDocuments'      => $allDocuments,
             'doctors'           => $doctors,
             'standards'         => $standards,
+            'bozppos'           => $bozppos,
+            'addons'            => $addons,
             'warehouse'         => $warehouse
         ]);
     }

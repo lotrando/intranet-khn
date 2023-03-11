@@ -2,10 +2,10 @@
 
 namespace App\Models;
 
-use App\Models\Category;
-use App\Models\Document;
-use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
+use App\Models\Document;
+use App\Models\Category;
 
 
 class Addon extends Model
@@ -13,14 +13,15 @@ class Addon extends Model
     use HasFactory;
 
     protected $fillable = [
-        'category_id',
         'document_id',
+        'category_id',
         'position',
         'description',
         'revision',
         'file',
+        'onscreen',
         'user_id',
-        
+
 
 
     ];

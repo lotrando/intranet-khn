@@ -1,13 +1,13 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\FileController;
-use App\Http\Controllers\PageController;
-use App\Http\Controllers\AddonController;
 use App\Http\Controllers\PaintController;
-use App\Http\Controllers\DocumentController;
+use App\Http\Controllers\PageController;
+use App\Http\Controllers\FileController;
 use App\Http\Controllers\EmployeeController;
+use App\Http\Controllers\DocumentController;
 use App\Http\Controllers\AdverseventController;
+use App\Http\Controllers\AddonController;
 
 
 // Index page
@@ -57,35 +57,60 @@ Route::prefix('dokumenty')->name('dokumenty.')->group(function () {
 
 // Standardy
 Route::prefix('standardy')->name('standardy.')->group(function () {
-    Route::get('akreditacni/{id}', [PageController::class, 'akreditacni'])->name('akreditacni');                     // Akreditační standardy route (standardy.akreditacni)
-    Route::get('osetrovatelske/{id}', [PageController::class, 'standard'])->name('osetrovatelske');                  // Ošetřovatelské standardy route (standardy.osetrovatelske)
-    Route::get('lecebne/{id}', [PageController::class, 'standard'])->name('lecebne');                                // Léčebné standardy route (standardy.lecebne)
-    Route::get('specialni/{id}', [PageController::class, 'standard'])->name('specialni');                            // Speciální standardy route (standardy.specialni)
-    Route::get('operacni/{id}', [PageController::class, 'standard'])->name('operacni');                              // Operační standardy route (standardy.operacni)
-    Route::get('anesteziologicke/{id}', [PageController::class, 'standard'])->name('anesteziologicke');              // Anesteziologické standardy route tandardy.anesteziologicke)
-    Route::get('rdg/{id}', [PageController::class, 'standard'])->name('rdg');                                        // RDG standardy route (standardy.rdg)
-    Route::get('rehabilitacni/{id}', [PageController::class, 'standard'])->name('rehabilitacni');                    // Rehabilitační standardy route (standardy.rehabilitacni)
-    Route::get('opl/{id}', [PageController::class, 'standard'])->name('opl');                                        // OPL standardy route (standardy.opl)
-    Route::get('okb/{id}', [PageController::class, 'standard'])->name('okb');                                        // OKB standardy route (standardy.okb)
-    Route::get('logopedicke/{id}', [PageController::class, 'standard'])->name('logopedicke');                        // Logopedické standardy route (standardy.logopedicke)
-    Route::get('legislativni/{id}', [PageController::class, 'standard'])->name('legislativni');                      // Legislativní standardy route (standardy.legislativni)
-    Route::get('standard-search', [DocumentController::class, 'documentSearch'])->name('standard.search');           // Vyhledávání dokumentů
+    // Akreditační standardy
+    Route::get('akreditacni/{id}', [PageController::class, 'akreditacni'])->name('akreditacni');
+    // Ošetřovatelské standardy                    
+    Route::get('osetrovatelske/{id}', [PageController::class, 'standard'])->name('osetrovatelske');
+    // Léčebné standardy                 
+    Route::get('lecebne/{id}', [PageController::class, 'standard'])->name('lecebne');
+    // Speciální standardy    
+    Route::get('specialni/{id}', [PageController::class, 'standard'])->name('specialni');
+    // Operační standardy                      
+    Route::get('operacni/{id}', [PageController::class, 'standard'])->name('operacni');
+    // Anesteziologické standardy                           
+    Route::get('anesteziologicke/{id}', [PageController::class, 'standard'])->name('anesteziologicke');
+    // RDG standardy 
+    Route::get('rdg/{id}', [PageController::class, 'standard'])->name('rdg');
+    // Rehabilitační standardy
+    Route::get('rehabilitacni/{id}', [PageController::class, 'standard'])->name('rehabilitacni');
+    // OPL standardy                    
+    Route::get('opl/{id}', [PageController::class, 'standard'])->name('opl');
+    // OKB standardy                                        
+    Route::get('okb/{id}', [PageController::class, 'standard'])->name('okb');
+    // Logopedické standardy
+    Route::get('logopedicke/{id}', [PageController::class, 'standard'])->name('logopedicke');
+    // Legislativní standardy                 
+    Route::get('legislativni/{id}', [PageController::class, 'standard'])->name('legislativni');
+    // Vyhledávání dokumentů
+    Route::get('standard-search', [DocumentController::class, 'documentSearch'])->name('standard.search');
 });
 
 // BOZP - PO
 Route::prefix('bozp')->name('bozp.')->group(function () {
-    Route::get('bezpecnostni-plany/{id}', [PageController::class, 'bozp'])->name('bezpecnostni-plany');                          // Bezpečnostní plány
-    Route::get('organizacni-smernice/{id}', [PageController::class, 'bozp'])->name('organizacni-smernice');                      // Organizační směrnice
-    Route::get('metodiky-skoleni/{id}', [PageController::class, 'bozp'])->name('metodiky-skoleni');                              // Metodiky školení
-    Route::get('prezencni-listiny/{id}', [PageController::class, 'bozp'])->name('prezencni-listiny');                            // Prezenční listiny
-    Route::get('pracovni-urazy/{id}', [PageController::class, 'bozp'])->name('pracovni-urazy');                                  // Pracovní úrazy
-    Route::get('bezpecnostni-znaceni/{id}', [PageController::class, 'bozp'])->name('bezpecnostni-znaceni');                      // Bezpečnostní značení
-    Route::get('proverky-kontroly/{id}', [PageController::class, 'bozp'])->name('proverky-kontroly');                            // Prověrky - kontroly
-    Route::get('provozne-bezpecnostni-predpisy/{id}', [PageController::class, 'bozp'])->name('provozne-bezpecnostni-predpisy');  // Provozně bezpečnostní předpisy
-    Route::get('rizika/{id}', [PageController::class, 'bozp'])->name('rizika');                                                  // Rizika
-    Route::get('pozarni-ochrana/{id}', [PageController::class, 'bozp'])->name('pozarni-ochrana');                                // Požární ochrana
-    Route::get('pozarni-operativni-karty/{id}', [PageController::class, 'bozp'])->name('pozarni-operativni-karty');              // Požární operativní karty
-    Route::get('bezpecnostni-listy/{id}', [PageController::class, 'bozp'])->name('bezpecnostni-listy');                          // Požární ochranaochrana)                          
+    // Bezpečnostní plány
+    Route::get('bezpecnostni-plany/{id}', [PageController::class, 'bozp'])->name('bezpecnostni-plany');
+    // Organizační směrnice                          
+    Route::get('organizacni-smernice/{id}', [PageController::class, 'bozp'])->name('organizacni-smernice');
+    // Metodiky školení                      
+    Route::get('metodiky-skoleni/{id}', [PageController::class, 'bozp'])->name('metodiky-skoleni');
+    // Prezenční listiny                        
+    Route::get('prezencni-listiny/{id}', [PageController::class, 'bozp'])->name('prezencni-listiny');
+    // Pracovní úrazy                       
+    Route::get('pracovni-urazy/{id}', [PageController::class, 'bozp'])->name('pracovni-urazy');
+    // Bezpečnostní značení                                  
+    Route::get('bezpecnostni-znaceni/{id}', [PageController::class, 'bozp'])->name('bezpecnostni-znaceni');
+    // Prověrky - kontroly                      
+    Route::get('proverky-kontroly/{id}', [PageController::class, 'bozp'])->name('proverky-kontroly');
+    // Provozně bezpečnostní předpisy
+    Route::get('provozne-bezpecnostni-predpisy/{id}', [PageController::class, 'bozp'])->name('provozne-bezpecnostni-predpisy');
+    // Rizika
+    Route::get('rizika/{id}', [PageController::class, 'bozp'])->name('rizika');
+    // Požární ochrana
+    Route::get('pozarni-ochrana/{id}', [PageController::class, 'bozp'])->name('pozarni-ochrana');
+    // Požární operativní karty                                
+    Route::get('pozarni-operativni-karty/{id}', [PageController::class, 'bozp'])->name('pozarni-operativni-karty');
+    // Bezpečnostní listy
+    Route::get('bezpecnostni-listy/{id}', [PageController::class, 'bozp'])->name('bezpecnostni-listy');
 });
 
 Route::get('dokument-search', [DocumentController::class, 'documentSearch'])->name('dokument.search');                          // Vyhledávání dokumentů
@@ -143,7 +168,7 @@ Route::group(['middleware' => 'auth'], function () {
     Route::post('documents/update', [DocumentController::class, 'update'])->name('documents.update');
     Route::get('documents/destroy/{id}', [DocumentController::class, 'destroy']);
 
-       // Document Events
+    // Document Events
     Route::post('documents/addons/update', [AddonController::class, 'update'])->name('addons.update');
     Route::get('documents/addons/destroy/{id}', [AddonController::class, 'destroy']);
 

@@ -279,7 +279,8 @@
                           <div class="avatar bg-{{ $standard->category->color }}-lt col-auto" data-bs-toggle="tooltip"
                             data-bs-placement="top"
                             data-bs-original-title="{{ $standard->category->category_name }} standardy">
-                            <a href="/standardy/{{ $standard->category->folder_name }}/{{ $standard->category->id }}">
+                            <a
+                              href="/{{ $standard->category->category_file }}/{{ $standard->category->folder_name }}/{{ $standard->category->id }}">
                               <div class="text-uppercase">
                                 {!! $standard->category->svg_icon !!}
                               </div>
@@ -382,6 +383,130 @@
                                   <path d="M4.5 17l-1.5 5l3 -1.5l3 1.5l-1.5 -5"></path>
                                 </svg>
                                 Autorizoval: {{ $standard->authorize }}
+                              </span>
+                            </div>
+                          @endauth
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            @endforeach
+
+            {{-- Addons --}}
+            @foreach ($addons as $addon)
+              <div class="accordion-item">
+                <div id="test-{{ $addon->position }}">
+                  <div class="accordion-body p-1">
+                    <div class="list-group list-group-flush list-group-hoverable pt-1">
+                      <div class="list-group-item border-0 p-0">
+                        <div class="row align-items-center g-3 mx-2">
+                          <div class="avatar bg-{{ $addon->category->color }}-lt col-auto" data-bs-toggle="tooltip"
+                            data-bs-placement="top" data-bs-original-title="{{ $addon->category->category_name }}">
+                            <a href="/bozp/{{ $addon->category->folder_name }}/{{ $addon->category->id }}">
+                              <div class="text-uppercase">
+                                {!! $addon->category->svg_icon !!}
+                              </div>
+                            </a>
+                          </div>
+                          <div class="col-auto">
+                            <a href="{{ route('soubory.bozp.download', $addon->id) }}" target="_blank">
+                              <span class="avatar bg-{{ $addon->category->color }}-lt" data-bs-toggle="tooltip"
+                                data-bs-placement="top" data-bs-original-title="Stáhnout standard">
+                                <img src="{{ asset('img/files/pdf.png') }}" alt="PDF soubor" height="32px">
+                              </span>
+                            </a>
+                          </div>
+                          <div class="col text-truncate" id="{{ $addon->id }}">
+                            <span>
+                              <p class="show d-inline text-primary text-decoration-none cursor-pointer"
+                                id="{{ $addon->id }}" data-bs-toggle="tooltip" data-bs-placement="top"
+                                data-bs-original-title="Více informací o standardu {{ $addon->description }}"
+                                style="margin-bottom: 0;">
+                                {{ $addon->description }}
+                              </p>
+                            </span>
+                            <div class="d-block description text-muted text-truncate">{{ $addon->document->name }} -
+                              Příloha č.{{ $addon->position }}
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="list-group-item py-1 px-2">
+                        <div class="row d-flex justify-content-between">
+                          <div class="col-auto">
+                            @if (Carbon\Carbon::parse($addon->created_at)->addDays(1) >= Carbon\Carbon::today())
+                              <span class="badge badge-sm bg-red-lt text-uppercase ms-auto">Nový !</span>
+                            @endif
+                            @if (Carbon\Carbon::parse($addon->updated_at)->addDays(7) >= Carbon\Carbon::now())
+                              <span class="badge badge-sm bg-lime-lt text-uppercase ms-auto">Aktualizováno !</span>
+                            @endif
+                            <span
+                              class="text-muted description">{{ Carbon\Carbon::parse($addon->updated_at)->diffForHumans() }}</span>
+                            <svg class="icon text-yellow" xmlns="http://www.w3.org/2000/svg" width="24"
+                              height="24" viewBox="0 0 24 24" stroke-width="1" stroke="currentColor"
+                              fill="none" stroke-linecap="round" stroke-linejoin="round">
+                              <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+                              <circle cx="15" cy="15" r="3"></circle>
+                              <path d="M13 17.5v4.5l2 -1.5l2 1.5v-4.5"></path>
+                              <path
+                                d="M10 19h-5a2 2 0 0 1 -2 -2v-10c0 -1.1 .9 -2 2 -2h14a2 2 0 0 1 2 2v10a2 2 0 0 1 -1 1.73">
+                              </path>
+                              <line x1="6" y1="9" x2="18" y2="9"></line>
+                              <line x1="6" y1="12" x2="9" y2="12"></line>
+                              <line x1="6" y1="15" x2="8" y2="15"></line>
+                            </svg>
+                            <span class="text-muted description">Revize: {{ $addon->revision }}</span>
+                            @auth
+                              @if ($addon->status == 'Rozpracováno')
+                                <span class="badge badge-sm bg-yellow-lt text-uppercase ms-auto">Rozpracováno</span>
+                              @else
+                                <span class="badge badge-sm bg-green-lt text-uppercase ms-auto">Schváleno</span>
+                              @endif
+                            @endauth
+                          </div>
+                          @auth
+                            <div class="d-xs-none d-sm-none d-lg-inline col-auto">
+                              <span class="text-muted description">
+                                <svg class="icon text-lime" xmlns="http://www.w3.org/2000/svg" width="24"
+                                  height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor"
+                                  fill="none" stroke-linecap="round" stroke-linejoin="round">
+                                  <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+                                  <path
+                                    d="M9 5h-2a2 2 0 0 0 -2 2v12a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2v-12a2 2 0 0 0 -2 -2h-2">
+                                  </path>
+                                  <rect x="9" y="3" width="6" height="4" rx="2">
+                                  </rect>
+                                  <path d="M9 12v-1h6v1"></path>
+                                  <path d="M12 11v6"></path>
+                                  <path d="M11 17h2"></path>
+                                </svg>
+                                Zpracoval: {{ $addon->processed }}
+                              </span>
+                              <span class="text-muted description">
+                                <svg class="icon text-yellow" xmlns="http://www.w3.org/2000/svg" width="24"
+                                  height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor"
+                                  fill="none" stroke-linecap="round" stroke-linejoin="round">
+                                  <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+                                  <path d="M14 3v4a1 1 0 0 0 1 1h4"></path>
+                                  <path d="M12 21h-5a2 2 0 0 1 -2 -2v-14a2 2 0 0 1 2 -2h7l5 5v4.5"></path>
+                                  <circle cx="16.5" cy="17.5" r="2.5"></circle>
+                                  <line x1="18.5" y1="19.5" x2="21" y2="22"></line>
+                                </svg>
+                                Přezkoumal: {{ $addon->examine }}
+                              </span>
+                              <span class="text-muted description">
+                                <svg class="icon text-red" xmlns="http://www.w3.org/2000/svg" width="24"
+                                  height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor"
+                                  fill="none" stroke-linecap="round" stroke-linejoin="round">
+                                  <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+                                  <path d="M14 3v4a1 1 0 0 0 1 1h4"></path>
+                                  <path d="M5 8v-3a2 2 0 0 1 2 -2h7l5 5v11a2 2 0 0 1 -2 2h-5"></path>
+                                  <circle cx="6" cy="14" r="3"></circle>
+                                  <path d="M4.5 17l-1.5 5l3 -1.5l3 1.5l-1.5 -5"></path>
+                                </svg>
+                                Autorizoval: {{ $addon->authorize }}
                               </span>
                             </div>
                           @endauth
@@ -531,7 +656,8 @@
                     <option value="Kolektiv fyzioterapeutů">Kolektiv fyzioterapeutů</option>
                     <option value="Rada kvality">Rada kvality</option>
                     @foreach ($doctors as $doctor)
-                      <option value="{{ $doctor->title_preffix }} {{ $doctor->last_name }} {{ $doctor->first_name }}">
+                      <option
+                        value="{{ $doctor->title_preffix }} {{ $doctor->last_name }} {{ $doctor->first_name }}">
                         {{ $doctor->last_name }} {{ $doctor->first_name }}, {{ $doctor->title_preffix }}</option>
                     @endforeach
                     <hr>
@@ -543,7 +669,8 @@
                     <option value="Kolektiv fyzioterapeutů">Kolektiv fyzioterapeutů</option>
                     <option value="Rada kvality">Rada kvality</option>
                     @foreach ($doctors as $doctor)
-                      <option value="{{ $doctor->title_preffix }} {{ $doctor->last_name }} {{ $doctor->first_name }}">
+                      <option
+                        value="{{ $doctor->title_preffix }} {{ $doctor->last_name }} {{ $doctor->first_name }}">
                         {{ $doctor->last_name }} {{ $doctor->first_name }}, {{ $doctor->title_preffix }}</option>
                     @endforeach
                     <hr>
