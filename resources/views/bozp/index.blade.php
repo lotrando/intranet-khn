@@ -109,9 +109,9 @@
           <div class="col-12">
             {{-- documents --}}
             @foreach ($documents as $document)
-              <div class="accordion-item bg-white">
+              <div class="accordion-item bg-white px-1">
                 <div id="test-{{ $document->position }}">
-                  <div class="accordion-body p-1">
+                  <div class="accordion-body">
                     <div class="list-group list-group-flush list-group-hoverable py-2">
                       <div class="list-group-item border-0 p-0">
                         <div class="row align-items-center g-3 mx-1">

@@ -9,6 +9,7 @@ use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
+use Carbon\Carbon;
 use App\Models\Employee;
 use App\Models\Document;
 use App\Models\Addon;
@@ -304,14 +305,14 @@ class DocumentController extends Controller
             $output = "";
 
             if (Auth::check()) {
-                $documents = Document::with('category', 'addons')->orderByDesc('category_id')
+                $documents = Document::with('category', 'addons')->orderBy('name')
                     ->orWhere('unique_code', 'LIKE', '%' . $request->search . "%")
                     ->orWhere('name', 'LIKE', '%' . $request->search . "%")
                     ->orWhere('description', 'LIKE', '%' . $request->search . "%")
                     ->orWhere('tags', 'LIKE', '%' . $request->search . "%")
                     ->get();
             } else {
-                $documents = Document::with('category', 'addons')->orderByDesc('category_id')
+                $documents = Document::with('category', 'addons')->orderBy('name')
                     ->orWhere('unique_code', 'LIKE', '%' . $request->search . "%")
                     ->orWhere('name', 'LIKE', '%' . $request->search . "%")
                     ->orWhere('description', 'LIKE', '%' . $request->search . "%")
@@ -324,9 +325,9 @@ class DocumentController extends Controller
             foreach ($documents as $document) {
 
                 $output .=
-                    '<div class="accordion-item">
+                    '<div class="accordion-item py-1 bg-white">
                         <div id="test-' . $document->position . '">
-                            <div class="accordion-body p-1">
+                            <div class="accordion-body">
                             <div class="list-group list-group-flush list-group-hoverable pt-1">
                                 <div class="list-group-item border-0 p-0">
                                 <div class="row align-items-center mx-2 g-3">
@@ -349,14 +350,16 @@ class DocumentController extends Controller
                                     <span>
                                         <p id="' . $document->id . '" class="show strong d-inline cursor-pointer text-primary text-decoration-none" style="margin-bottom: 0;" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-original-title="Více informací o standardu">' . $document->name . '</p>
                                     </span>
-                                    <div class="d-block description text-muted text-truncate">' . $document->description . '</div>
+                                    
+                                    <div class="d-block description text-muted text-truncate"><span class="text-' . $document->category->color . '">' . ucfirst($document->category->button . ' ' . $document->category->category_type) . '</span> - ' . $document->description . '</div>
                                     </div>
                                 </div>
                                 </div>
                                 <div class="list-group-item py-1 px-2">
                                 <div class="row d-flex justify-content-between">
                                     <div class="col-auto">
-                                    <span class="text-muted description">Aktualizováno ' . \Carbon\Carbon::parse($document->updated_at)->diffForHumans() . '</span>
+                                    <span class="badge badge-sm bg-lime-lt text-uppercase ms-auto">Aktualizováno !</span>
+                                    <span class="text-muted description">' . Carbon::parse($document->updated_at)->diffForHumans() . '</span>
                                     <svg class="icon text-yellow" xmlns="http://www.w3.org/2000/svg" width="24" height="24"
                                     viewBox="0 0 24 24" stroke-width="1" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
                                     <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>

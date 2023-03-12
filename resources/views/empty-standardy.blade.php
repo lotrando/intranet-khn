@@ -44,7 +44,7 @@
   <!-- Page -->
   <div class="row container-fluid mt-2">
     <div class="col-12">
-      <div class="accordion-item bg-azure-lt shadow-sm">
+      <div class="accordion-item bg-white shadow-sm">
         <div class="accordion-body p-1">
           <div class="list-group list-group-flush list-group-hoverable pt-1">
             <div class="list-group-item py-1 px-2">

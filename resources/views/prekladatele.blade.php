@@ -144,7 +144,7 @@
               <div class="card-body p-4 text-center">
                 <ul class="list-unstyled lh-lg">
                   <li>
-                    <span class="flag flag-lg flag-country-de shadow"></span>
+                    <span class="flag flag-lg flag-country-ru shadow"></span>
                   </li>
                   <li>
                     Ruština

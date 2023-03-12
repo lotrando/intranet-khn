@@ -81,7 +81,9 @@
                         </p>
                       </span>
                       <div class="d-block description text-muted text-truncate">
-                        {{ $document->description }}</div>
+                        <span class="text-{{ $document->category->color }}">{{ ucfirst($document->category->button) }}
+                          {{ $document->category->category_type }}</span> - {{ $document->description }}
+                      </div>
                     </div>
                   </div>
                   @foreach ($document->addons as $add)
