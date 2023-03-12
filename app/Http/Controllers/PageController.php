@@ -22,7 +22,7 @@ class PageController extends Controller
     // Homepage
     public function home()
     {
-        $notifications = Notification::with('user')->get();
+        $notifications = Notification::with('user')->latest()->get();
 
         return view('home', [
             'pretitle' => 'Intranet',
