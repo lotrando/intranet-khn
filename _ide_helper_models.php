@@ -312,12 +312,13 @@ namespace App\Models{
  * @property string|null $unique_code
  * @property string $status
  * @property int $user_id
+ * @property int|null $onscreen
  * @property \Illuminate\Support\Carbon|null $created_at
  * @property \Illuminate\Support\Carbon|null $updated_at
- * @property-read \Illuminate\Database\Eloquent\Collection<int, Addon> $addons
+ * @property-read \Illuminate\Database\Eloquent\Collection<int, \App\Models\Addon> $addons
  * @property-read int|null $addons_count
- * @property-read Category|null $category
- * @property-read User|null $user
+ * @property-read \App\Models\Category|null $category
+ * @property-read \App\Models\User|null $user
  * @method static \Illuminate\Database\Eloquent\Builder|Document newModelQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|Document newQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|Document query()
@@ -333,6 +334,7 @@ namespace App\Models{
  * @method static \Illuminate\Database\Eloquent\Builder|Document whereId($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Document whereName($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Document whereNextRevisionDate($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Document whereOnscreen($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Document wherePosition($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Document whereProcessed($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Document whereRevision($value)
@@ -342,10 +344,6 @@ namespace App\Models{
  * @method static \Illuminate\Database\Eloquent\Builder|Document whereUniqueCode($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Document whereUpdatedAt($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Document whereUserId($value)
- * @mixin \Eloquent
- * @property int|null $onscreen
- * @property-read \Illuminate\Database\Eloquent\Collection<int, \App\Models\Addon> $addons
- * @method static \Illuminate\Database\Eloquent\Builder|Document whereOnscreen($value)
  */
 	class Document extends \Eloquent {}
 }

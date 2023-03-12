@@ -352,7 +352,7 @@
             </div>
           </li>
           <li class="nav-item dropdown {{ request()->segment(1) == 'bozp' ? 'active' : '' }}"
-            data-bs-toggle="tooltip" data-bs-placement="top" data-bs-original-title="BOZP a PO dokumentace">
+            data-bs-toggle="tooltip" data-bs-placement="top" data-bs-original-title="BOZP a PO dokumenty">
             <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" data-bs-auto-close="outside"
               href="" role="button" aria-expanded="false">
               <span class="nav-link-icon d-md-none d-lg-inline-block">

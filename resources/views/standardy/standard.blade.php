@@ -134,7 +134,11 @@
                                 style="margin-bottom: 0;">
                                 @if ($document->category_id != 3)
                                   {{ $document->position }}.
-                                @endif {{ $document->name }}
+                                @endif
+                                {{ $document->name }}
+                                @if ($document->addons->count() > 0)
+                                  - celkem {{ $document->addons->count() }} příloh
+                                @endif
                               </p>
                             </span>
                             <div class="d-block description text-muted text-truncate">{{ $document->description }}</div>

@@ -2,14 +2,13 @@
 
 namespace App\Providers;
 
-use App\Models\Category;
-use App\Models\Navitem;
-
-use Carbon\Carbon;
-use function GuzzleHttp\Promise\all;
-use Illuminate\Pagination\Paginator;
-use Illuminate\Support\Facades\View;
 use Illuminate\Support\ServiceProvider;
+
+use Illuminate\Support\Facades\View;
+use Illuminate\Pagination\Paginator;
+use Carbon\Carbon;
+use App\Models\Navitem;
+use App\Models\Category;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -30,24 +29,30 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-
+        // Localize Carbon class
         Carbon::setLocale('cz');
 
+        // Paginator Bootstrap CSS
         Paginator::useBootstrap();
 
-        $docs = Category::with('documents')->where('category_type', '=', 'dokument')->get();                // Dokuments items
+        // Navigation items
+        $navitems = Navitem::all();
+        View::share('navitems', $navitems);
+
+        // Dokuments items
+        $docs = Category::with('documents')->where('category_type', '=', 'dokument')->get();
         View::share('docs', $docs);
 
-        $stands = Category::with('documents')->where('category_type', '=', 'standard')->get();              // Standards items
+        // Standards items
+        $stands = Category::with('documents')->where('category_type', '=', 'standard')->get();
         View::share('stands', $stands);
 
-        $bozps = Category::with('documents')->where('category_type', '=', 'bozp')->get();                   // Bozps items
+        // BOZP a PO items
+        $bozps = Category::with('documents')->where('category_type', '=', 'bozp')->get();
         View::share('bozps', $bozps);
 
-        $categories = Category::with('documents')->where('id', '>', 12)->get();                             // Categories items
+        // Categories items
+        $categories = Category::with('documents')->where('id', '>', 12)->get();
         View::share('categories', $categories);
-
-        $navitems = Navitem::with('category')->get();                                                       // Navigation items
-        View::share('navitems', $navitems);
     }
 }
