@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Počítač: localhost
--- Vytvořeno: Ned 12. bře 2023, 13:22
+-- Vytvořeno: Ned 12. bře 2023, 22:26
 -- Verze serveru: 8.0.31
 -- Verze PHP: 7.4.33
 
@@ -743,7 +743,7 @@ INSERT INTO `documents` (`id`, `category_id`, `accordion_name`, `accordion_group
 (1, 3, 'Akutní koronární syndromy', NULL, 1, 'Akutní koronární syndromy', 'Soubor minimálních diagnostických a terapeutických standardů u pacientů s akutními koronárními syndromy', 'MUDr. Janková Pavlína', 'MUDr. Canibal Tomáš', 'MUDr. Kultan Peter', '2007-01-01', '5', '2023-12-01', 'MEZ-JIP, NEU-JIP, INT-ODD, NEU-ODD', '2022-12-01', 'standardy_lecebne-akutni_koronarni_syndromy-revize-5.pdf', 'STD3#1', 'Schváleno', 11, NULL, '2023-01-17 21:02:48', '2023-03-11 17:35:09'),
 (2, 3, 'ATB profylaxe', NULL, 2, 'ATB profylaxe', 'Antibiotiková profylaxe u operovaných pacientů', 'MUDr. Hurtová Šárka', 'MUDr. Canibal Tomáš', 'MUDr. Adamová Andrea', '2014-01-01', '3', '2023-12-01', 'ONP, ORT', '2022-12-01', 'standardy_lecebne-antibiotikova_profylaxe_u_operovanych_pacientu-revize-3.pdf', 'STD3#2', 'Schváleno', 11, NULL, '2023-01-13 21:16:31', '2023-01-30 10:20:23'),
 (3, 3, 'Crohnova choroba', NULL, 3, 'Crohnova choroba', 'Soubor minimálních diagnostických a terapeutických standardů u pacientů s crohnovou chorobou', 'MUDr. Střída Josef', 'MUDr. Canibal Tomáš', 'MUDr. Kultan Peter', '2007-01-01', '5', '2023-12-01', 'MEZ-JIP, INT-ODD', '2022-12-01', 'standardy_lecebne-crohnova_choroba-revize-5.pdf', 'STD3#3', 'Schváleno', 11, NULL, '2023-01-13 21:17:50', '2023-01-21 18:42:01'),
-(4, 3, 'Demence', NULL, 4, 'Demence', 'Soubor minimálních diagnostických a terapeutických standardů u pacientů s demencí', 'MUDr. Böhm Marek', 'MUDr. Canibal Tomáš', 'MUDr. Vlachopulu Barbara', '2005-07-01', '6', '2023-12-01', 'NEU-ODD', '2022-12-01', 'standardy_lecebne-demence-revize-6.pdf', 'STD3#4', 'Schváleno', 11, NULL, '2023-01-13 21:28:06', '2023-01-26 20:46:24'),
+(4, 3, 'Demence', NULL, 4, 'Demence', 'Soubor minimálních diagnostických a terapeutických standardů u pacientů s demencí', 'MUDr. Böhm Marek', 'MUDr. Canibal Tomáš', 'MUDr. Vlachopulu Barbara', '2005-07-01', '6', '2023-12-01', 'NEU-ODD', '2022-12-01', 'standardy_lecebne-demence-revize-6.pdf', 'STD3#4', 'Schváleno', 11, 14, '2023-01-13 21:28:06', '2023-03-12 20:44:17'),
 (5, 3, 'Diabetes mellitus', NULL, 5, 'Diabetes mellitus', 'Soubor minimálních diagnostických a terapeutických standardů u pacientů s diabetes mellitus', 'MUDr. Blažík Martin', 'MUDr. Canibal Tomáš', 'MUDr. Kultan Peter', '2010-11-01', '4', '2023-12-01', 'KHN', '2022-12-01', 'standardy_lecebne-diabetes_mellitus-revize-4.pdf', 'STD3#5', 'Schváleno', 11, NULL, '2023-01-13 21:33:31', '2023-01-21 18:41:23'),
 (6, 3, 'Epilepsie', NULL, 6, 'Epilepsie', 'Soubor minimálních diagnostických a terapeutických standardů u pacientů s epilepsií', 'MUDr. Brzeżański Henryk', 'MUDr. Canibal Tomáš', 'MUDr. Sukop Roman', '2005-07-01', '6', '2023-12-01', 'NEU-ODD', '2022-12-01', 'standardy_lecebne-epilepsie-revize-6.pdf', 'STD3#6', 'Schváleno', 11, NULL, '2023-01-13 21:34:48', '2023-01-21 18:40:27'),
 (7, 3, 'Febrilie nejasné etiologie', NULL, 7, 'Febrilie nejasné etiologie', 'Soubor minimálních diagnostických a terapeutických standardů u pacientů s touto diagnózou', 'MUDr. Materna Petr', 'MUDr. Canibal Tomáš', 'MUDr. Kultan Peter', '2007-01-01', '4', '2023-12-01', 'MEZ-JIP, NEU-JIP, INT-ODD', '2022-12-01', 'standardy_lecebne-febrilie_nejasne_etiologie-revize-4.pdf', 'STD3#7', 'Schváleno', 11, NULL, '2023-01-13 21:36:13', '2023-01-21 16:45:56'),
@@ -812,7 +812,7 @@ INSERT INTO `documents` (`id`, `category_id`, `accordion_name`, `accordion_group
 (71, 10, 'Standardní operační postup – OKB úsek krevní banka', NULL, 28, 'Standardní operační postup – OKB úsek krevní banka', 'STANDARD - Zrušen', NULL, NULL, NULL, '2021-12-01', '0', '2022-12-01', 'OKB', '2021-12-01', 'standardy_okb-standard_-_zrusen-revize-0.pdf', 'STD10#28', 'Schváleno', 11, NULL, '2023-01-26 10:41:36', '2023-02-01 10:25:43'),
 (72, 10, 'Standardní operační postup – OKB úsek krevní banka', NULL, 29, 'Standardní operační postup – OKB úsek krevní banka', 'Revize dokumentů (sop) na krevní bance', NULL, NULL, NULL, '2011-11-01', '4', '2023-12-01', 'OKB', '2021-12-01', 'standardy_okb-revize_dokumentu_(sop)_na_krevni_bance-revize-4.pdf', 'STD10#29', 'Schváleno', 11, NULL, '2023-01-26 10:43:14', '2023-01-26 10:43:14'),
 (73, 10, 'Standardní operační postup – OKB úsek krevní banka', NULL, 30, 'Standardní operační postup – OKB úsek krevní banka', 'Rozmrazování skmp a ohřev erytrocytárních transfuzních přípravků', NULL, NULL, NULL, '2018-01-01', '2', '2023-12-01', NULL, '2021-12-01', 'standardy_okb-rozmrazovani_skmp_a_ohrev_erytrocytarnich_transfuznich_pripravku-revize-2.pdf', 'STD10#30', 'Schváleno', 11, 1, '2023-01-26 10:44:36', '2023-01-26 10:44:36'),
-(74, 6, 'Standard ošetřovatelské péče - anesteziologický', NULL, 1, 'Standard ošetřovatelské péče - anesteziologický', 'Příprava a asistence u celkové anestezie u TEP kyčle', NULL, NULL, NULL, '2004-04-01', '7', '2022-10-01', 'ANEST', '2021-10-01', 'standardy_anesteziologicke-priprava_a_asistence_u_celkove_anestezie_u_tep_kycle-revize-7.pdf', 'STD6#1', 'Schváleno', 11, 13, '2023-01-26 11:04:19', '2023-01-29 11:19:23'),
+(74, 6, 'Standard ošetřovatelské péče - anesteziologický', NULL, 1, 'Standard ošetřovatelské péče - anesteziologický', 'Příprava a asistence u celkové anestezie u TEP kyčle', NULL, NULL, NULL, '2004-04-01', '7', '2022-10-01', 'ANEST', '2021-10-01', 'standardy_anesteziologicke-priprava_a_asistence_u_celkove_anestezie_u_tep_kycle-revize-7.pdf', 'STD6#1', 'Schváleno', 11, 14, '2023-01-26 11:04:19', '2023-03-12 21:40:53'),
 (75, 6, 'Standard ošetřovatelské péče - anesteziologický', NULL, 2, 'Standard ošetřovatelské péče - anesteziologický', 'Příprava a asistence u celkové anestezie u operace páteře', NULL, NULL, NULL, '2004-04-01', '7', '2022-10-01', NULL, '2021-10-01', 'standardy_anesteziologicke-priprava_a_asistence_u_celkove_anestezie_u_operace_patere-revize-7.pdf', 'STD6#2', 'Schváleno', 11, NULL, '2023-01-26 11:06:58', '2023-01-26 11:23:54'),
 (76, 6, 'Standard ošetřovatelské péče - anesteziologický', NULL, 3, 'Standard ošetřovatelské péče - anesteziologický', 'Příprava a asistence u celkové anestezie u periferní nervové blokád', NULL, NULL, NULL, '2005-09-20', '7', '2022-10-01', 'ANEST', '2021-10-01', 'standardy_anesteziologicke-priprava_a_asistence_u_celkove_anestezie_u_periferni_nervove_blokad-revize-7.pdf', 'STD6#3', 'Schváleno', 11, NULL, '2023-01-26 11:09:12', '2023-01-26 11:24:07'),
 (77, 6, 'Standard ošetřovatelské péče - anesteziologický', NULL, 4, 'Standard ošetřovatelské péče - anesteziologický', 'Příprava a asistence u epidurální a subarachnoidální anestezie', NULL, NULL, NULL, '2005-09-22', '7', '2022-10-01', 'ANEST', '2021-10-01', 'standardy_anesteziologicke-priprava_a_asistence_u_epiduralni_a_subarachnoidalni_anestezie-revize-7.pdf', 'STD6#4', 'Schváleno', 11, NULL, '2023-01-26 11:10:19', '2023-01-26 11:24:17'),
@@ -862,7 +862,7 @@ INSERT INTO `documents` (`id`, `category_id`, `accordion_name`, `accordion_group
 (141, 31, 'Záznam o kontrole - Drogy', NULL, 2, 'Záznam o kontrole - Drogy', 'Záznam o provedení orientačního testu na drogy', 'Pribula Marek, Bc.', NULL, NULL, '2016-03-01', '1', '2017-03-01', NULL, '2016-03-01', 'bozp_proverky-kontroly-zaznam_o_provedeni_orientacniho_testu_na_drogy-revize-1.pdf', 'BOZP31#2', 'Schváleno', 11, NULL, '2023-03-11 13:44:50', '2023-03-11 13:44:50'),
 (142, 29, 'Kniha úrazů a drobných poranění', NULL, 1, 'Kniha úrazů a drobných poranění', 'Kniha úrazů a drobných poranění', 'Pribula Marek, Bc.', NULL, NULL, '2016-03-01', '1', '2017-03-01', NULL, '2016-03-01', 'bozp_pracovni-urazy-kniha_urazu_a_drobnych_poraneni-revize-1.pdf', 'BOZP29#1', 'Schváleno', 11, NULL, '2023-03-11 13:48:54', '2023-03-11 13:48:54');
 INSERT INTO `documents` (`id`, `category_id`, `accordion_name`, `accordion_group`, `position`, `name`, `description`, `processed`, `authorize`, `examine`, `efficiency`, `revision`, `next_revision_date`, `tags`, `revision_date`, `file`, `unique_code`, `status`, `user_id`, `onscreen`, `created_at`, `updated_at`) VALUES
-(143, 36, 'Aceton', NULL, 1, 'Aceton', 'Bezpečnostní list - Aceton', 'Pribula Marek, Bc.', NULL, NULL, '2016-03-01', '1', '2017-03-01', NULL, '2016-03-01', 'bozp_bezpecnostni-listy-bezpecnostni_list_-_aceton-revize-1.pdf', 'BOZP36#1', 'Schváleno', 11, NULL, '2023-03-11 13:51:40', '2023-03-11 13:51:40'),
+(143, 36, 'Aceton', NULL, 1, 'Aceton', 'Bezpečnostní list - Aceton', 'Pribula Marek, Bc.', NULL, NULL, '2016-03-01', '1', '2017-03-01', NULL, '2016-03-01', 'bozp_bezpecnostni-listy-bezpecnostni_list_-_aceton-revize-1.pdf', 'BOZP36#1', 'Schváleno', 11, NULL, '2023-03-11 13:51:40', '2023-03-12 20:35:51'),
 (144, 36, 'Alcosan', NULL, 2, 'Alcosan', 'Bezpečnostní list - Alcosan VT10', 'Pribula Marek, Bc.', NULL, NULL, '2016-03-01', '1', '2017-03-01', NULL, '2016-03-01', 'bozp_bezpecnostni-listy-bezpecnostni_list_-_alcosan_vt10-revize-1.pdf', 'BOZP36#2', 'Schváleno', 11, NULL, '2023-03-11 13:52:45', '2023-03-11 13:52:45'),
 (145, 36, 'Aniosept Activ', NULL, 3, 'Aniosept Activ', 'Bezpečnostní list - Aniosept Activ', 'Pribula Marek, Bc.', NULL, NULL, '2016-03-01', '1', '2017-03-01', NULL, '2016-03-01', 'bozp_bezpecnostni-listy-bezpecnostni_list_-_aniosept_activ-revize-1.pdf', 'BOZP36#3', 'Schváleno', 11, NULL, '2023-03-11 13:55:15', '2023-03-11 13:55:15'),
 (146, 36, 'Baccalin', NULL, 4, 'Baccalin', 'Bezpečnostní list - Baccalin', 'Pribula Marek, Bc.', NULL, NULL, '2016-03-01', '1', '2017-03-01', NULL, '2016-03-01', 'bozp_bezpecnostni-listy-bezpecnostni_list_-_baccalin-revize-1.pdf', 'BOZP36#4', 'Schváleno', 11, NULL, '2023-03-11 13:57:15', '2023-03-11 13:57:15'),
@@ -973,8 +973,8 @@ INSERT INTO `documents` (`id`, `category_id`, `accordion_name`, `accordion_group
 (251, 36, 'Toluen', NULL, 108, 'Toluen', 'Bezpečnostní list - Toluen', 'Pribula Marek, Bc.', NULL, NULL, '2016-03-01', '1', '2017-03-01', NULL, '2016-03-01', 'bozp_bezpecnostni-listy-bezpecnostni_list_-_toluen-revize-1.pdf', 'BOZP36#108', 'Schváleno', 11, NULL, '2023-03-11 16:28:37', '2023-03-11 16:28:37'),
 (252, 36, 'Topmatic Universal', NULL, 109, 'Topmatic Universal', 'Bezpečnostní list - Topmatic Universal', 'Pribula Marek, Bc.', NULL, NULL, '2016-03-01', '1', '2017-03-01', NULL, '2016-03-01', 'bozp_bezpecnostni-listy-bezpecnostni_list_-_topmatic_universal-revize-1.pdf', 'BOZP36#109', 'Schváleno', 11, NULL, '2023-03-11 16:29:12', '2023-03-11 16:29:12'),
 (253, 36, 'WD-40', NULL, 110, 'WD-40', 'Bezpečnostní list - WD-40', 'Pribula Marek, Bc.', NULL, NULL, '2016-03-01', '1', '2017-03-01', NULL, '2016-03-01', 'bozp_bezpecnostni-listy-bezpecnostni_list_-_wd-40-revize-1.pdf', 'BOZP36#110', 'Schváleno', 11, NULL, '2023-03-11 16:29:39', '2023-03-11 16:29:39'),
-(254, 8, 'Čtyřkomovová galvanická lázeň', NULL, 8, 'Čtyřkomovová galvanická lázeň', 'Čtyřkomovová galvanická lázeň', 'Kolektiv fyzioterapeutů', 'Rada kvality', 'Bc. Bělicová Taťána', '2004-04-01', '8', '2022-10-01', NULL, '2021-10-01', 'standardy_rehabilitacni-ctyrkomovova_galvanicka_lazen-revize-8.pdf', 'STD8#8', 'Schváleno', 11, NULL, '2023-03-11 17:20:23', '2023-03-11 17:39:51'),
-(255, 30, 'Značení v objektech', NULL, 1, 'Značení v objektech', 'Význam bezpečnostních zkratek a značení v KHN a.s.', 'Pribula Marek, Bc.', NULL, NULL, '2016-03-01', '1', '2017-03-01', NULL, '2016-03-01', 'bozp_bezpecnostni-znaceni-vyznam_bezpecnostnich_zkratek_a_znaceni_v_khn_a.s.-revize-1.pdf', 'BOZP30#1', 'Schváleno', 11, NULL, '2023-03-12 10:17:15', '2023-03-12 10:17:15'),
+(254, 8, 'Čtyřkomovová galvanická lázeň', NULL, 8, 'Čtyřkomovová galvanická lázeň', 'Čtyřkomovová galvanická lázeň', 'Kolektiv fyzioterapeutů', 'Rada kvality', 'Bc. Bělicová Taťána', '2004-04-01', '8', '2022-10-01', NULL, '2021-10-01', 'standardy_rehabilitacni-ctyrkomovova_galvanicka_lazen-revize-8.pdf', 'STD8#8', 'Schváleno', 11, 14, '2023-03-11 17:20:23', '2023-03-12 21:42:57'),
+(255, 30, 'Značení v objektech', NULL, 1, 'Značení v objektech', 'Význam bezpečnostních zkratek a značení v KHN a.s.', 'Pribula Marek, Bc.', NULL, NULL, '2016-03-01', '1', '2017-03-01', NULL, '2016-03-01', 'bozp_bezpecnostni-znaceni-vyznam_bezpecnostnich_zkratek_a_znaceni_v_khn_a.s.-revize-1.pdf', 'BOZP30#1', 'Schváleno', 11, 13, '2023-03-12 10:17:15', '2023-03-12 20:32:37'),
 (256, 30, 'Barevné označení zásuvek', NULL, 2, 'Barevné označení zásuvek', 'Barevné označení zásuvkových vývodů OP a JIP', 'Pribula Marek, Bc.', NULL, NULL, '2016-03-01', '1', '2017-03-01', NULL, '2016-03-01', 'bozp_bezpecnostni-znaceni-barevne_oznaceni_zasuvkovych_vyvodu_op_a_jip-revize-1.pdf', 'BOZP30#2', 'Schváleno', 11, NULL, '2023-03-12 10:18:06', '2023-03-12 10:25:12'),
 (257, 30, 'Barevné označení zásuvek', NULL, 3, 'Barevné označení zásuvek', 'Barevné označení zásuvkových vývodů CPM', 'Pribula Marek, Bc.', NULL, NULL, '0216-03-01', '1', '0217-03-01', NULL, '0216-03-01', 'bozp_bezpecnostni-znaceni-barevne_oznaceni_zasuvkovych_vyvodu_cpm-revize-1.pdf', 'BOZP30#3', 'Schváleno', 11, NULL, '2023-03-12 10:18:32', '2023-03-12 10:24:16');
 
@@ -1806,7 +1806,8 @@ INSERT INTO `migrations` (`id`, `migration`, `batch`) VALUES
 (134, '2023_01_15_003551_create_calendar_table', 5),
 (136, '2023_01_20_104223_create_navitems_table', 6),
 (137, '2023_02_13_065610_create_paints_table', 7),
-(138, '2023_03_03_102419_create_bozps_table', 7);
+(138, '2023_03_03_102419_create_bozps_table', 7),
+(140, '2023_03_12_195624_create_notifications_table', 8);
 
 -- --------------------------------------------------------
 
@@ -1837,6 +1838,33 @@ CREATE TABLE `navitems` (
 
 INSERT INTO `navitems` (`id`, `position`, `category_id`, `name`, `subname`, `alt_name`, `tooltip`, `color`, `icon_class`, `page_title`, `route`, `favicon`, `fa_icon`, `svg_icon`) VALUES
 (1, 1, 1, 'Homepage', 'Intranet', 'Homepage', 'Domů', 'blue', 'text-blue', 'Homepage', 'home', 'home.png', 'fa-home', '<svg class=\"icon\" width=\"24\" height=\"24\" viewBox=\"0 0 24 24\" stroke-width=\"2\" stroke=\"currentColor\" fill=\"none\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><path stroke=\"none\" d=\"M0 0h24v24H0z\" fill=\"none\"></path><polyline points=\"5 12 3 12 12 3 21 12 19 12\"></polyline><path d=\"M5 12v7a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2v-7\"></path><path d=\"M9 21v-6a2 2 0 0 1 2 -2h2a2 2 0 0 1 2 2v6\"></path></svg>');
+
+-- --------------------------------------------------------
+
+--
+-- Struktura tabulky `notifications`
+--
+
+CREATE TABLE `notifications` (
+  `id` bigint UNSIGNED NOT NULL,
+  `user_id` int NOT NULL,
+  `title` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `content` text COLLATE utf8mb4_unicode_ci NOT NULL,
+  `type` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Vypisuji data pro tabulku `notifications`
+--
+
+INSERT INTO `notifications` (`id`, `user_id`, `title`, `content`, `type`, `created_at`, `updated_at`) VALUES
+(1, 11, 'Test 1', 'Nullam justo enim, consectetuer nec, ullamcorper ac, vestibulum in, elit. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos hymenaeos. Nullam rhoncus aliquam metus. Donec ipsum massa, ullamcorper in, auctor et, scelerisque sed, est. Etiam dui sem, fermentum vitae, sagittis id, malesuada in, quam. Etiam bibendum elit eget erat. In laoreet, magna id viverra tincidunt, sem odio bibendum justo, vel imperdiet sapien wisi sed libero. Donec vitae arcu. Integer imperdiet lectus quis justo. Fusce consectetuer risus a nunc. In sem justo, commodo ut, suscipit at, pharetra vitae, orci. Aenean vel massa quis mauris vehicula lacinia. ', 'lime', '2023-03-01 19:02:35', '2023-03-12 19:02:35'),
+(2, 11, 'Test 2', 'Nullam justo enim, consectetuer nec, ullamcorper ac, vestibulum in, elit. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos hymenaeos. Nullam rhoncus aliquam metus. Donec ipsum massa, ullamcorper in, auctor et, scelerisque sed, est. Etiam dui sem, fermentum vitae, sagittis id, malesuada in, quam. Etiam bibendum elit eget erat. In laoreet, magna id viverra tincidunt, sem odio bibendum justo, vel imperdiet sapien wisi sed libero. Donec vitae arcu. Integer imperdiet lectus quis justo. Fusce consectetuer risus a nunc. In sem justo, commodo ut, suscipit at, pharetra vitae, orci. Aenean vel massa quis mauris vehicula lacinia. ', 'purple', '2023-01-01 19:02:35', '2023-03-12 19:02:35'),
+(3, 9, 'Test 3', 'Nullam justo enim, consectetuer nec, ullamcorper ac, vestibulum in, elit. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos hymenaeos. Nullam rhoncus aliquam metus. Donec ipsum massa, ullamcorper in, auctor et, scelerisque sed, est. Etiam dui sem, fermentum vitae, sagittis id, malesuada in, quam. Etiam bibendum elit eget erat. In laoreet, magna id viverra tincidunt, sem odio bibendum justo, vel imperdiet sapien wisi sed libero. Donec vitae arcu. Integer imperdiet lectus quis justo. Fusce consectetuer risus a nunc. In sem justo, commodo ut, suscipit at, pharetra vitae, orci. Aenean vel massa quis mauris vehicula lacinia. ', 'pink', '2023-02-10 19:02:35', '2023-03-12 19:02:35'),
+(4, 6, 'Test 4', 'Nullam justo enim, consectetuer nec, ullamcorper ac, vestibulum in, elit. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos hymenaeos. Nullam rhoncus aliquam metus. Donec ipsum massa, ullamcorper in, auctor et, scelerisque sed, est. Etiam dui sem, fermentum vitae, sagittis id, malesuada in, quam. Etiam bibendum elit eget erat.', 'teal', '2022-12-08 19:02:35', '2023-03-12 19:02:35'),
+(5, 11, 'Test 5', 'Nullam justo enim, consectetuer nec, ullamcorper ac, vestibulum in, elit. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos hymenaeos.', 'blue', '2022-09-14 18:02:35', '2023-03-12 19:02:35');
 
 -- --------------------------------------------------------
 
@@ -1989,7 +2017,7 @@ INSERT INTO `users` (`id`, `personal_number`, `name`, `email`, `email_verified_a
 (8, '61199', 'PhDr. Ilona Kopečný', 'jakoubek.ivana@example.com', '2023-01-11 16:48:16', '$2y$10$LHGzVLpy/G9kAezVWgAyH.w4kZJM4sDCnTWicSCsVJwhueLR/EXkC', NULL, NULL, 'SreSqc3lYKXx7cC3k9lzdP2FARjraqw5bl3EwVMUDRG2Stbz2SRg3TXSWV1n', '2023-01-11 16:48:17', '2023-01-11 16:48:17'),
 (9, '64220', 'Vítězslav Studený', 'aprokop@example.net', '2023-01-11 16:48:16', '$2y$10$TXAjVT9k./.H4KjXoNAcn.ljLPiSjKS0B.vlGoGjEiJXFvNWX3CJG', NULL, NULL, 'Q84bE3b76njnJpTH1hee9690itatngELvYKuDNtYqpfuwZ72Y4EhZd2C0J3e', '2023-01-11 16:48:17', '2023-01-11 16:48:17'),
 (10, '62457', 'PhDr. Jan Kuča', 'milena93@example.net', '2023-01-11 16:48:16', '$2y$10$y.1Fr4LcccsAuc2CCAp9seh5PonzrjwBcBDlKqaIaO4r0eYvvow3W', NULL, NULL, 'uKtD3jRcmQagjEDZs2oF9PpRq14SsqwMna9HjdAGFR5U2lai6N50iFFPsfDC', '2023-01-11 16:48:17', '2023-01-11 16:48:17'),
-(11, '61625', 'Klika Miroslav', 'klika@khn.cz', NULL, '$2y$10$PSw5emAhbIR3u3sVNNg3iOe8t9z0Ct7dgJEKUud0jfeXFVkJzWZqK', NULL, NULL, 'U0TpqUdb7jfLXGCiXlG9v5ZhQZ5lyRDRhnaLo8ftUulexYJDiNmERqISUid0', '2023-01-11 18:53:36', '2023-01-22 21:46:33'),
+(11, '61625', 'Klika Miroslav', 'klika@khn.cz', NULL, '$2y$10$PSw5emAhbIR3u3sVNNg3iOe8t9z0Ct7dgJEKUud0jfeXFVkJzWZqK', NULL, NULL, 'EiHG6P78vHV0iGuKG8tBOuDE85oiBq8Vj0ybsb0DcuDYca7nKL2LW4rk74kS', '2023-01-11 18:53:36', '2023-01-22 21:46:33'),
 (12, '63882', 'Anna Seidlová', 'mbalogova@example.org', '2023-01-13 16:56:57', '$2y$10$ihu2uS/uhaS01vFcu8M.6eN5ElPL//0lTNnPybHJWDbVuNOGbWvfe', NULL, NULL, 'jSCn8DxL6F6HZFbc37QMtjBOtiWFUr5RuuHEw0DVZUbCS6s2vqM58fO2ZjXy', '2023-01-13 16:56:57', '2023-01-13 16:56:57'),
 (13, '64832', 'Marta Jílková', 'cibulkova.tomas@example.net', '2023-01-13 16:56:57', '$2y$10$43kzxF1NKZ/bu2BgUlG5D.I0JYRdvKu6v2ZyF83TkJBKh5nqeUCLW', NULL, NULL, 'rhlXHVt9qY9OsQA9Q8q4CRdFYxXxmbc5kliamjZKwMG5crFPZwTB1b2AE3XH', '2023-01-13 16:56:57', '2023-01-13 16:56:57'),
 (14, '62297', 'Vladimíra Bradová', 'ncahova@example.org', '2023-01-13 16:56:57', '$2y$10$lU2Pubr/W60AJ.rFRlM0l.8DHV1vBszqcNyoGqHjbIdGEvPIEWUZS', NULL, NULL, 'CuPFejVxGLKnbWf4cNf5kauzdYDdEMtGwTQ4eXfcRokoZG38HmYA45ePlZLa', '2023-01-13 16:56:57', '2023-01-13 16:56:57'),
@@ -2073,6 +2101,12 @@ ALTER TABLE `migrations`
   ADD PRIMARY KEY (`id`);
 
 --
+-- Indexy pro tabulku `notifications`
+--
+ALTER TABLE `notifications`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- Indexy pro tabulku `paints`
 --
 ALTER TABLE `paints`
@@ -2104,13 +2138,19 @@ ALTER TABLE `categories`
 -- AUTO_INCREMENT pro tabulku `documents`
 --
 ALTER TABLE `documents`
-  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=258;
+  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=262;
 
 --
 -- AUTO_INCREMENT pro tabulku `migrations`
 --
 ALTER TABLE `migrations`
-  MODIFY `id` int UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=139;
+  MODIFY `id` int UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=141;
+
+--
+-- AUTO_INCREMENT pro tabulku `notifications`
+--
+ALTER TABLE `notifications`
+  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT pro tabulku `paints`

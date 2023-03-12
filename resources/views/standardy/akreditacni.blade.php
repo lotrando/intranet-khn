@@ -118,7 +118,7 @@
           <div class="col-12 mt-1">
             <div class="accordion shadow-sm" id="accordion-standard">
 
-              <div class="accordion-item">
+              <div class="accordion-item bg-white">
                 <h2 class="accordion-header" id="main-heading-1">
                   <button class="accordion-button collapsed" data-bs-toggle="collapse" data-bs-target="#standard-1"
                     type="button" aria-expanded="true">
@@ -128,7 +128,7 @@
                 <div class="accordion-collapse collapse m-1" id="standard-1" data-bs-parent="#accordion-standard">
                   <div class="accordion" id="accordion-example">
                     @foreach ($documents1 as $document)
-                      <div class="accordion-item">
+                      <div class="accordion-item bg-white">
                         <div id="test-{{ $document->position }}">
                           <div class="accordion-body p-1">
                             <div class="list-group list-group-flush list-group-hoverable pt-1">
@@ -366,7 +366,7 @@
                 </div>
               </div>
 
-              <div class="accordion-item">
+              <div class="accordion-item bg-white">
                 <h2 class="accordion-header" id="main-heading-2">
                   <button class="accordion-button collapsed" data-bs-toggle="collapse" data-bs-target="#standard-2"
                     type="button" aria-expanded="true">
@@ -376,7 +376,7 @@
                 <div class="accordion-collapse collapse m-1" id="standard-2" data-bs-parent="#accordion-standard">
                   <div class="accordion" id="accordion-example">
                     @foreach ($documents2 as $document)
-                      <div class="accordion-item">
+                      <div class="accordion-item bg-white">
                         <div class="show" id="collapse-{{ $document->position }}"
                           data-bs-parent="#accordion-standard" style="">
                           <div class="accordion-body pt-0">
@@ -569,7 +569,7 @@
                 </div>
               </div>
 
-              <div class="accordion-item">
+              <div class="accordion-item bg-white">
                 <h2 class="accordion-header" id="main-heading-3">
                   <button class="accordion-button collapsed" data-bs-toggle="collapse" data-bs-target="#standard-3"
                     type="button" aria-expanded="true">
@@ -579,7 +579,7 @@
                 <div class="accordion-collapse collapse m-1" id="standard-3" data-bs-parent="#accordion-standard">
                   <div class="accordion" id="accordion-example">
                     @foreach ($documents3 as $document)
-                      <div class="accordion-item">
+                      <div class="accordion-item bg-white">
                         <div class="show" id="collapse-{{ $document->position }}"
                           data-bs-parent="#accordion-standard" style="">
                           <div class="accordion-body pt-0">
@@ -772,7 +772,7 @@
                 </div>
               </div>
 
-              <div class="accordion-item">
+              <div class="accordion-item bg-white">
                 <h2 class="accordion-header" id="main-heading-4">
                   <button class="accordion-button collapsed" data-bs-toggle="collapse" data-bs-target="#standard-4"
                     type="button" aria-expanded="true">
@@ -782,7 +782,7 @@
                 <div class="accordion-collapse collapse m-1" id="standard-4" data-bs-parent="#accordion-standard">
                   <div class="accordion" id="accordion-example">
                     @foreach ($documents4 as $document)
-                      <div class="accordion-item">
+                      <div class="accordion-item bg-white">
                         <div class="show" id="collapse-{{ $document->position }}"
                           data-bs-parent="#accordion-standard" style="">
                           <div class="accordion-body pt-0">
@@ -977,7 +977,7 @@
                 </div>
               </div>
 
-              <div class="accordion-item">
+              <div class="accordion-item bg-white">
                 <h2 class="accordion-header" id="main-heading-5">
                   <button class="accordion-button collapsed" data-bs-toggle="collapse" data-bs-target="#standard-5"
                     type="button" aria-expanded="true">
@@ -987,7 +987,7 @@
                 <div class="accordion-collapse collapse m-1" id="standard-5" data-bs-parent="#accordion-standard">
                   <div class="accordion" id="accordion-example">
                     @foreach ($documents5 as $document)
-                      <div class="accordion-item">
+                      <div class="accordion-item bg-white">
                         <div class="show" id="collapse-{{ $document->position }}"
                           data-bs-parent="#accordion-standard" style="">
                           <div class="accordion-body pt-0">
@@ -1184,7 +1184,7 @@
                 </div>
               </div>
 
-              <div class="accordion-item">
+              <div class="accordion-item bg-white">
                 <h2 class="accordion-header" id="main-heading-6">
                   <button class="accordion-button collapsed" data-bs-toggle="collapse" data-bs-target="#standard-6"
                     type="button" aria-expanded="true">
@@ -1194,7 +1194,7 @@
                 <div class="accordion-collapse collapse m-1" id="standard-6" data-bs-parent="#accordion-standard">
                   <div class="accordion" id="accordion-example">
                     @foreach ($documents6 as $document)
-                      <div class="accordion-item">
+                      <div class="accordion-item bg-white">
                         <div class="show" id="collapse-{{ $document->position }}"
                           data-bs-parent="#accordion-standard" style="">
                           <div class="accordion-body pt-0">
@@ -1391,7 +1391,7 @@
                 </div>
               </div>
 
-              <div class="accordion-item">
+              <div class="accordion-item bg-white">
                 <h2 class="accordion-header" id="main-heading-7">
                   <button class="accordion-button collapsed" data-bs-toggle="collapse" data-bs-target="#standard-7"
                     type="button" aria-expanded="true">
@@ -1401,7 +1401,7 @@
                 <div class="accordion-collapse collapse m-1" id="standard-7" data-bs-parent="#accordion-standard">
                   <div class="accordion" id="accordion-example">
                     @foreach ($documents7 as $document)
-                      <div class="accordion-item">
+                      <div class="accordion-item bg-white">
                         <div id="test-{{ $document->position }}">
                           <div class="accordion-body p-1">
                             <div class="list-group list-group-flush list-group-hoverable pt-1">
@@ -1644,7 +1644,7 @@
                 </div>
               </div>
 
-              <div class="accordion-item">
+              <div class="accordion-item bg-white">
                 <h2 class="accordion-header" id="main-heading-8">
                   <button class="accordion-button collapsed" data-bs-toggle="collapse" data-bs-target="#standard-8"
                     type="button" aria-expanded="true">
@@ -1654,7 +1654,7 @@
                 <div class="accordion-collapse collapse m-1" id="standard-8" data-bs-parent="#accordion-standard">
                   <div class="accordion" id="accordion-example">
                     @foreach ($documents8 as $document)
-                      <div class="accordion-item">
+                      <div class="accordion-item bg-white">
                         <div class="show" id="collapse-{{ $document->position }}"
                           data-bs-parent="#accordion-standard" style="">
                           <div class="accordion-body pt-0">
@@ -1851,7 +1851,7 @@
                 </div>
               </div>
 
-              <div class="accordion-item">
+              <div class="accordion-item bg-white">
                 <h2 class="accordion-header" id="main-heading-9">
                   <button class="accordion-button collapsed" data-bs-toggle="collapse" data-bs-target="#standard-9"
                     type="button" aria-expanded="true">
@@ -1861,7 +1861,7 @@
                 <div class="accordion-collapse collapse m-1" id="standard-9" data-bs-parent="#accordion-standard">
                   <div class="accordion" id="accordion-example">
                     @foreach ($documents9 as $document)
-                      <div class="accordion-item">
+                      <div class="accordion-item bg-white">
                         <div class="show" id="collapse-{{ $document->position }}"
                           data-bs-parent="#accordion-standard" style="">
                           <div class="accordion-body pt-0">
@@ -2058,7 +2058,7 @@
                 </div>
               </div>
 
-              <div class="accordion-item">
+              <div class="accordion-item bg-white">
                 <h2 class="accordion-header" id="main-heading-10">
                   <button class="accordion-button collapsed" data-bs-toggle="collapse" data-bs-target="#standard-10"
                     type="button" aria-expanded="true">
@@ -2068,7 +2068,7 @@
                 <div class="accordion-collapse collapse m-1" id="standard-10" data-bs-parent="#accordion-standard">
                   <div class="accordion" id="accordion-example">
                     @foreach ($documents10 as $document)
-                      <div class="accordion-item">
+                      <div class="accordion-item bg-white">
                         <div class="show" id="collapse-{{ $document->position }}"
                           data-bs-parent="#accordion-standard" style="">
                           <div class="accordion-body pt-0">
@@ -2265,7 +2265,7 @@
                 </div>
               </div>
 
-              <div class="accordion-item">
+              <div class="accordion-item bg-white">
                 <h2 class="accordion-header" id="main-heading-11">
                   <button class="accordion-button collapsed" data-bs-toggle="collapse" data-bs-target="#standard-11"
                     type="button" aria-expanded="true">
@@ -2275,7 +2275,7 @@
                 <div class="accordion-collapse collapse m-1" id="standard-11" data-bs-parent="#accordion-standard">
                   <div class="accordion" id="accordion-example">
                     @foreach ($documents11 as $document)
-                      <div class="accordion-item">
+                      <div class="accordion-item bg-white">
                         <div class="show" id="collapse-{{ $document->position }}"
                           data-bs-parent="#accordion-standard" style="">
                           <div class="accordion-body pt-0">
@@ -2472,7 +2472,7 @@
                 </div>
               </div>
 
-              <div class="accordion-item">
+              <div class="accordion-item bg-white">
                 <h2 class="accordion-header" id="main-heading-12">
                   <button class="accordion-button collapsed" data-bs-toggle="collapse" data-bs-target="#standard-12"
                     type="button" aria-expanded="true">
@@ -2482,7 +2482,7 @@
                 <div class="accordion-collapse collapse m-1" id="standard-12" data-bs-parent="#accordion-standard">
                   <div class="accordion" id="accordion-example">
                     @foreach ($documents12 as $document)
-                      <div class="accordion-item">
+                      <div class="accordion-item bg-white">
                         <div class="show" id="collapse-{{ $document->position }}"
                           data-bs-parent="#accordion-standard" style="">
                           <div class="accordion-body pt-0">
@@ -2679,7 +2679,7 @@
                 </div>
               </div>
 
-              <div class="accordion-item">
+              <div class="accordion-item bg-white">
                 <h2 class="accordion-header" id="main-heading-13">
                   <button class="accordion-button collapsed" data-bs-toggle="collapse" data-bs-target="#standard-13"
                     type="button" aria-expanded="true">
@@ -2689,7 +2689,7 @@
                 <div class="accordion-collapse collapse m-1" id="standard-13" data-bs-parent="#accordion-standard">
                   <div class="accordion" id="accordion-example">
                     @foreach ($documents12 as $document)
-                      <div class="accordion-item">
+                      <div class="accordion-item bg-white">
                         <div class="show" id="collapse-{{ $document->position }}"
                           data-bs-parent="#accordion-standard" style="">
                           <div class="accordion-body pt-0">
@@ -2886,7 +2886,7 @@
                 </div>
               </div>
 
-              <div class="accordion-item">
+              <div class="accordion-item bg-white">
                 <h2 class="accordion-header" id="main-heading-14">
                   <button class="accordion-button collapsed" data-bs-toggle="collapse" data-bs-target="#standard-14"
                     type="button" aria-expanded="true">
@@ -2896,7 +2896,7 @@
                 <div class="accordion-collapse collapse m-1" id="standard-14" data-bs-parent="#accordion-standard">
                   <div class="accordion" id="accordion-example">
                     @foreach ($documents12 as $document)
-                      <div class="accordion-item">
+                      <div class="accordion-item bg-white">
                         <div class="show" id="collapse-{{ $document->position }}"
                           data-bs-parent="#accordion-standard" style="">
                           <div class="accordion-body pt-0">
@@ -3093,7 +3093,7 @@
                 </div>
               </div>
 
-              <div class="accordion-item">
+              <div class="accordion-item bg-white">
                 <h2 class="accordion-header" id="main-heading-15">
                   <button class="accordion-button collapsed" data-bs-toggle="collapse" data-bs-target="#standard-15"
                     type="button" aria-expanded="true">
@@ -3103,7 +3103,7 @@
                 <div class="accordion-collapse collapse m-1" id="standard-15" data-bs-parent="#accordion-standard">
                   <div class="accordion" id="accordion-example">
                     @foreach ($documents12 as $document)
-                      <div class="accordion-item">
+                      <div class="accordion-item bg-white">
                         <div class="show" id="collapse-{{ $document->position }}"
                           data-bs-parent="#accordion-standard" style="">
                           <div class="accordion-body pt-0">

@@ -19,19 +19,21 @@ class PageController extends Controller
 {
 
 
-    // Homepage
+    // HOMEPAGE
     public function home()
     {
         $notifications = Notification::with('user')->latest()->get();
 
         return view('home', [
-            'pretitle' => 'Intranet',
+            'pretitle' => 'Aktuality',
             'title' => 'Homepage',
             'notifications' => $notifications
         ]);
     }
 
-    // Oznámení
+    // OZNÁMENÍ
+
+    // Přehledy
     public function prehledy()
     {
         return view('prehledy', ['pretitle' => 'Oznámení', 'title' => 'Přehledy']);

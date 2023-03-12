@@ -22,6 +22,7 @@
       font-family: 'Roboto Condensed';
       min-height: 100vh;
       color: #777777;
+      background-color: #f5f9fa;
     }
 
     tr {
@@ -56,6 +57,7 @@
   <script src="{{ asset('js/demo.min.js') }}"></script>
   <script src="{{ asset('js/moment-with-locales.js') }}"></script>
   <script src="{{ asset('js/m3u-player.js') }}" defer></script>
+  @include('sweetalert::alert')
   @include('layouts.partials.scripts')
   @yield('scripts')
 </body>

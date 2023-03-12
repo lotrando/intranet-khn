@@ -44,12 +44,12 @@
   <!-- Page -->
   <div class="row container-fluid mt-2">
     <div class="col-12">
-      <div class="accordion-item">
+      <div class="accordion-item bg-azure-lt shadow-sm">
         <div class="accordion-body p-1">
           <div class="list-group list-group-flush list-group-hoverable pt-1">
             <div class="list-group-item py-1 px-2">
-              <div class="row d-flex justify-content-start">
-                <div class="text-muted text-truncate">Nebyly nalezeny žádné změny v dokumentaci</div>
+              <div class="row d-flex justify-content-center">
+                <div class="text-muted text-truncate pb-1">Nebyly nalezeny žádné změny v dokumentaci</div>
               </div>
             </div>
           </div>

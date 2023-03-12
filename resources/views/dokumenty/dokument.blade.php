@@ -106,7 +106,7 @@
           <div class="col-12">
             {{-- documents --}}
             @foreach ($documents as $document)
-              <div class="accordion-item">
+              <div class="accordion-item bg-white">
                 <div id="test-{{ $document->position }}">
                   <div class="accordion-body p-1">
                     <div class="list-group list-group-flush list-group-hoverable pt-1">
@@ -270,7 +270,7 @@
 
             {{-- Standards --}}
             @foreach ($standards as $standard)
-              <div class="accordion-item">
+              <div class="accordion-item bg-white">
                 <div id="test-{{ $standard->position }}">
                   <div class="accordion-body p-1">
                     <div class="list-group list-group-flush list-group-hoverable pt-1">
@@ -300,10 +300,8 @@
                                 id="{{ $standard->id }}" data-bs-toggle="tooltip" data-bs-placement="top"
                                 data-bs-original-title="Více informací o standardu {{ $standard->description }}"
                                 style="margin-bottom: 0;">
-                                @if ($standard->category_id != 3)
-                                  {{ $standard->position }}.
-                                @endif {{ $standard->name }}
-                              </p>
+                                {{ $standard->name }} - {{ $standard->category->button }}
+                                {{ $standard->category->category_type }} </p>
                             </span>
                             <div class="d-block description text-muted text-truncate">{{ $standard->description }}</div>
                           </div>
@@ -396,7 +394,7 @@
 
             {{-- Addons --}}
             @foreach ($addons as $addon)
-              <div class="accordion-item">
+              <div class="accordion-item bg-white">
                 <div id="test-{{ $addon->position }}">
                   <div class="accordion-body p-1">
                     <div class="list-group list-group-flush list-group-hoverable pt-1">
@@ -520,7 +518,7 @@
 
             {{-- Printed document --}}
             @foreach ($warehouse as $item)
-              <div class="accordion-item">
+              <div class="accordion-item bg-muted-lt">
                 <div class="accordion-body p-1">
                   <div class="list-group list-group-flush list-group-hoverable pt-1">
                     <div class="list-group-item border-0 p-0">

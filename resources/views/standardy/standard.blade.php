@@ -103,7 +103,7 @@
         <div class="row mt-2">
           <div class="col-12">
             @foreach ($documents as $document)
-              <div class="accordion-item">
+              <div class="accordion-item bg-white">
                 <div id="test-{{ $document->position }}">
                   <div class="accordion-body p-1">
                     <div class="list-group list-group-flush list-group-hoverable pt-1">

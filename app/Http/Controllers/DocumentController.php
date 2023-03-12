@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use RealRashid\SweetAlert\Facades\Alert;
 use Illuminate\Support\Str;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\Mail;
@@ -290,6 +291,8 @@ class DocumentController extends Controller
 
         File::delete('soubory/' . $filename[0]);
         $document->delete();
+
+        Alert::toast('Toast Message', 'Toast Type');
 
         return response()->json(['success' => __('Standard deleted successfully')]);
     }
