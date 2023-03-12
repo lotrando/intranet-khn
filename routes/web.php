@@ -16,9 +16,7 @@ Route::get('/', function () {
 })->name('index');                                                                                                          // Index route
 
 // Home page
-Route::get('home', function () {
-    return view('home', ['pretitle' => 'Intranet', 'title' => 'Homepage', 'position' => 0]);
-})->name('home');                                                                                                           // Home route
+Route::get('home', [PageController::class, 'home'])->name('home');                                                                                                           // Home route
 
 // Oznámení
 Route::prefix('oznameni')->name('oznameni.')->group(function () {

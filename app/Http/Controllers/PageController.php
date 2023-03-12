@@ -8,6 +8,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
 use Carbon\Carbon;
 use App\Models\Paint;
+use App\Models\Notification;
 use App\Models\Employee;
 use App\Models\Document;
 use App\Models\Department;
@@ -21,7 +22,13 @@ class PageController extends Controller
     // Homepage
     public function home()
     {
-        return view('home', ['pretitle' => 'Intranet', 'title' => 'Homepage']);
+        $notifications = Notification::with('user')->get();
+
+        return view('home', [
+            'pretitle' => 'Intranet',
+            'title' => 'Homepage',
+            'notifications' => $notifications
+        ]);
     }
 
     // Oznámení

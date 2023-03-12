@@ -1,8 +1,8 @@
 <?php
 
-use Illuminate\Database\Migrations\Migration;
-use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
+use Illuminate\Database\Schema\Blueprint;
+use Illuminate\Database\Migrations\Migration;
 
 class CreateAddonsTable extends Migration
 {
@@ -19,9 +19,9 @@ class CreateAddonsTable extends Migration
             $table->string('position');
             $table->string('description');
             $table->string('revision');
-            $table->integer('user_id')
+            $table->integer('user_id');
             $table->string('file');
-            $table->enum('status', ['Schváleno','Rozpracováno']);
+            $table->enum('status', ['Schváleno', 'Rozpracováno']);
             $table->integer('onscreen')->nullable();
             $table->timestamps();
         });

@@ -309,11 +309,11 @@ class DocumentController extends Controller
                     ->get();
             } else {
                 $documents = Document::with('category', 'addons')->orderByDesc('category_id')
-                    ->whereStatus('Schváleno')
                     ->orWhere('unique_code', 'LIKE', '%' . $request->search . "%")
                     ->orWhere('name', 'LIKE', '%' . $request->search . "%")
                     ->orWhere('description', 'LIKE', '%' . $request->search . "%")
                     ->orWhere('tags', 'LIKE', '%' . $request->search . "%")
+                    ->whereStatus('Schváleno')
                     ->get();
             }
 
