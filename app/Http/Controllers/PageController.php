@@ -352,7 +352,7 @@ class PageController extends Controller
     // ZVOS
     public function zvos()
     {
-        $bulletins = Bulletin::all();
+        $bulletins = Bulletin::orderBy('date_edition')->get();
         return view('zvos.index', ['pretitle' => 'Odbory', 'title' => 'ZV OS', 'bulletins' => $bulletins]);
     }
 
