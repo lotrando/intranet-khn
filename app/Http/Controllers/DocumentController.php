@@ -305,14 +305,16 @@ class DocumentController extends Controller
             $output = "";
 
             if (Auth::check()) {
-                $documents = Document::with('category', 'addons')->orderBy('name')
+                $documents = Document::with('category', 'addons')
+                    ->orderBy('name')
                     ->orWhere('unique_code', 'LIKE', '%' . $request->search . "%")
                     ->orWhere('name', 'LIKE', '%' . $request->search . "%")
                     ->orWhere('description', 'LIKE', '%' . $request->search . "%")
                     ->orWhere('tags', 'LIKE', '%' . $request->search . "%")
                     ->get();
             } else {
-                $documents = Document::with('category', 'addons')->orderBy('name')
+                $documents = Document::with('category', 'addons')
+                    ->orderBy('name')
                     ->orWhere('unique_code', 'LIKE', '%' . $request->search . "%")
                     ->orWhere('name', 'LIKE', '%' . $request->search . "%")
                     ->orWhere('description', 'LIKE', '%' . $request->search . "%")
@@ -320,7 +322,6 @@ class DocumentController extends Controller
                     ->whereStatus('Schváleno')
                     ->get();
             }
-
 
             foreach ($documents as $document) {
 

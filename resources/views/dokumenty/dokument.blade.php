@@ -16,7 +16,7 @@
             <path d="M21 21l-6 -6"></path>
           </svg>
         </span>
-        <input class="form-control" id="search" type="text" size="25"
+        <input class="form-control" id="search" type="text" size="15"
           placeholder="{{ __('Hledat dokument ...') }}">
       </div>
     </form>
