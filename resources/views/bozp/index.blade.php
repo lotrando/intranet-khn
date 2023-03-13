@@ -137,7 +137,7 @@
                                 id="{{ $document->id }}" data-bs-toggle="tooltip" data-bs-placement="top"
                                 data-bs-original-title="Více informací o dokumentu {{ $document->description }}"
                                 style="margin-bottom: 0;">
-                                @if ($document->category_id != 36)
+                                @if ($document->category_id > 35)
                                   {{ $document->position }}.
                                 @endif
                                 {{ $document->name }}

@@ -132,6 +132,9 @@ Route::prefix('media')->name('media.')->group(function () {
     Route::get('videa/bozp', [PageController::class, 'videoBozp'])->name('videa-bozp');                                             // Videa route (media.videa.bozp)
 });
 
+// ZV OS
+Route::get('zvos', [PageController::class, 'zvos'])->name('zvos');                                                           
+
 // Employees
 Route::resource('employees', EmployeeController::class)->except(['update', 'show', 'destroy']);
 

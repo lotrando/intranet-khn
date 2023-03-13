@@ -14,6 +14,7 @@ use App\Models\Document;
 use App\Models\Department;
 use App\Models\Category;
 use App\Models\Addon;
+use App\Models\Bulletin;
 
 class PageController extends Controller
 {
@@ -346,6 +347,13 @@ class PageController extends Controller
     public function tires()
     {
         return redirect()->away('https://docs.google.com/spreadsheets/d/19Tzhxrq7tVBpZ7LhZ5qEL6ehI3om3q6b/edit#gid=1690889270');
+    }
+
+    // ZVOS
+    public function zvos()
+    {
+        $bulletins = Bulletin::all();
+        return view('zvos.index', ['pretitle' => 'Odbory', 'title' => 'ZV OS', 'bulletins' => $bulletins]);
     }
 
     // Profil

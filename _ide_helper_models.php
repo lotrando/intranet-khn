@@ -224,6 +224,27 @@ namespace App\Models{
 
 namespace App\Models{
 /**
+ * App\Models\Bulletin
+ *
+ * @property int $id
+ * @property string $edition
+ * @property string $date_edition
+ * @property \Illuminate\Support\Carbon|null $created_at
+ * @property \Illuminate\Support\Carbon|null $updated_at
+ * @method static \Illuminate\Database\Eloquent\Builder|Bulletin newModelQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|Bulletin newQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|Bulletin query()
+ * @method static \Illuminate\Database\Eloquent\Builder|Bulletin whereCreatedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Bulletin whereDateEdition($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Bulletin whereEdition($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Bulletin whereId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Bulletin whereUpdatedAt($value)
+ */
+	class Bulletin extends \Eloquent {}
+}
+
+namespace App\Models{
+/**
  * App\Models\Category
  *
  * @property int $id

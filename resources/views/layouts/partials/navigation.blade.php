@@ -356,7 +356,7 @@
             <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" data-bs-auto-close="outside"
               href="" role="button" aria-expanded="false">
               <span class="nav-link-icon d-md-none d-lg-inline-block">
-                <svg xmlns="http://www.w3.org/2000/svg" class="icon text-red" width="24" height="24"
+                <svg class="icon text-red" xmlns="http://www.w3.org/2000/svg" width="24" height="24"
                   viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round"
                   stroke-linejoin="round">
                   <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
@@ -534,12 +534,32 @@
               </div>
             </div>
           </li>
+          <li class="nav-item">
+            <a class="nav-link" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-original-title="Odbory KHN a.s."
+              href="{{ route('zvos') }}">
+              <span class="nav-link-icon d-md-none d-lg-inline-block">
+                <svg class="icon text-pink" xmlns="http://www.w3.org/2000/svg" width="24" height="24"
+                  viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round"
+                  stroke-linejoin="round">
+                  <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+                  <path d="M8 9l5 5v7h-5v-4m0 4h-5v-7l5 -5m1 1v-6a1 1 0 0 1 1 -1h10a1 1 0 0 1 1 1v17h-8"></path>
+                  <path d="M13 7l0 .01"></path>
+                  <path d="M17 7l0 .01"></path>
+                  <path d="M17 11l0 .01"></path>
+                  <path d="M17 15l0 .01"></path>
+                </svg>
+              </span>
+              <span class="nav-link-title">
+                {{ __('ZV OS') }}
+              </span>
+            </a>
+          </li>
           <li class="nav-item dropdown {{ request()->segment(1) == 'rezervace' ? 'active' : '' }}"
             data-bs-toggle="tooltip" data-bs-placement="top" data-bs-original-title="Rezervace">
             <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" data-bs-auto-close="outside"
               href="#" role="button" aria-expanded="false">
               <span class="nav-link-icon d-md-none d-lg-inline-block">
-                <svg xmlns="http://www.w3.org/2000/svg" class="icon text-yellow" width="24" height="24"
+                <svg class="icon text-yellow" xmlns="http://www.w3.org/2000/svg" width="24" height="24"
                   viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round"
                   stroke-linejoin="round">
                   <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>

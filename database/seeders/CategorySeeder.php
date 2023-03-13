@@ -402,10 +402,10 @@ class CategorySeeder extends Seeder
             'category_name' => 'Provozně bezp. předpisy',
             'folder_name'   => 'provozne-bezpecnostni-predpisy',
             'category_icon' => 'provozne-bezpecnostni-predpisy.png',
-            'svg_icon'      => '<svg xmlns="http://www.w3.org/2000/svg" class="icon text-teal" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path: stroke="none" d="M0 0h24v24H0z" fill="none"></path:<path d="M3 5a2 2 0 0 1 2 -2h14a2 2 0 0 1 2 2v14a2 2 0 0 1 -2 2h-14a2 2 0 0 1 -2 -2v-14z"></path><path d="M12 8v4"></path><path d="M12 16h.01"></path></svg>',
+            'svg_icon'      => '<svg xmlns="http://www.w3.org/2000/svg" class="icon text-cyan" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"></path><path d="M3 5a2 2 0 0 1 2 -2h14a2 2 0 0 1 2 2v14a2 2 0 0 1 -2 2h-14a2 2 0 0 1 -2 -2v-14z"></path><path d="M12 8v4"></path><path d="M12 16h.01"></path></svg>',
             'fa_icon'      => null,
             'button'        => 'provozně bezp. předpisy',
-            'color'         => 'teal'
+            'color'         => 'cyan'
         ]);
 
         DB::table('categories')->insert([
@@ -438,10 +438,10 @@ class CategorySeeder extends Seeder
             'category_name' => 'Požární operativní karty',
             'folder_name'   => 'pozarni-operativni-karty',
             'category_icon' => 'pozarni-operativni-karty.png',
-            'svg_icon'      => '<svg xmlns="http://www.w3.org/2000/svg" class="icon text-lime" width="40" height="40" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"></path><path d="M3.604 7.197l7.138 -3.109a.96 .96 0 0 1 1.27 .527l4.924 11.902a1 1 0 0 1 -.514 1.304l-7.137 3.109a.96 .96 0 0 1 -1.271 -.527l-4.924 -11.903a1 1 0 0 1 .514 -1.304z"></path><path d="M15 4h1a1 1 0 0 1 1 1v3.5"></path><path d="M20 6c.264 .112 .52 .217 .768 .315a1 1 0 0 1 .53 1.311l-2.298 5.374"></path></svg>',
+            'svg_icon'      => '<svg xmlns="http://www.w3.org/2000/svg" class="icon text-teal" width="40" height="40" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"></path><path d="M3.604 7.197l7.138 -3.109a.96 .96 0 0 1 1.27 .527l4.924 11.902a1 1 0 0 1 -.514 1.304l-7.137 3.109a.96 .96 0 0 1 -1.271 -.527l-4.924 -11.903a1 1 0 0 1 .514 -1.304z"></path><path d="M15 4h1a1 1 0 0 1 1 1v3.5"></path><path d="M20 6c.264 .112 .52 .217 .768 .315a1 1 0 0 1 .53 1.311l-2.298 5.374"></path></svg>',
             'fa_icon'      => null,
             'button'        => 'požární operativní karty',
-            'color'         => 'lime'
+            'color'         => 'teal'
         ]);
 
         DB::table('categories')->insert([
