@@ -17,7 +17,7 @@
           </svg>
         </span>
         <input class="form-control" id="search" type="text" size="25"
-          placeholder="{{ __('Hledat standard nebo dokument...') }}">
+          placeholder="{{ __('Hledat dokument ...') }}">
       </div>
     </form>
   </div>

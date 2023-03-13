@@ -57,6 +57,36 @@
   <script src="{{ asset('js/demo.min.js') }}"></script>
   <script src="{{ asset('js/moment-with-locales.js') }}"></script>
   <script src="{{ asset('js/m3u-player.js') }}" defer></script>
+  <script>
+    $(document).ready(function() {
+
+      function fill(Value) {
+        $('#search').val(Value);
+        $('#display').hide();
+      }
+
+    });
+
+    $(document).ready(function() {
+      $("#search").keyup(function() {
+        var name = $('#search').val();
+        if (name === "") {
+          $("#display").html("");
+        } else {
+          $.ajax({
+            type: "GET",
+            url: "{{ route('dokument.search') }}",
+            data: {
+              search: name
+            },
+            success: function(html) {
+              $("#display").html(html).show();
+            }
+          });
+        }
+      });
+    });
+  </script>
   @include('sweetalert::alert')
   @include('layouts.partials.scripts')
   @yield('scripts')

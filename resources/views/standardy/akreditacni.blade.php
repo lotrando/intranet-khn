@@ -7,7 +7,7 @@
 @section('searchbar')
   <div class="col-12 me-2">
     <input class="form-control d-lg-block d-xl-inline" id="search" type="text"
-      placeholder="{{ __('Hledat standard ...') }}">
+      placeholder="{{ __('Hledat dokument ...') }}">
   </div>
 @endsection
 

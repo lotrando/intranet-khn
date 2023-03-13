@@ -346,9 +346,9 @@ class DocumentController extends Controller
                                         </span>
                                     </a>
                                     </div>
-                                    <div id="' . $document->id . '" class="col text-truncate">
+                                    <div id="' . $document->id . '" class="col text-truncate show">
                                     <span>
-                                        <p id="' . $document->id . '" class="show strong d-inline cursor-pointer text-primary text-decoration-none" style="margin-bottom: 0;" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-original-title="Více informací o standardu">' . $document->name . '</p>
+                                        <p id="' . $document->id . '" class="strong d-inline cursor-pointer text-primary text-decoration-none" style="margin-bottom: 0;">' . $document->name . '</p>
                                     </span>
                                     
                                     <div class="d-block description text-muted text-truncate"><span class="text-' . $document->category->color . '">' . ucfirst($document->category->button . ' ' . $document->category->category_type) . '</span> - ' . $document->description . '</div>
