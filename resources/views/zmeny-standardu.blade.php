@@ -48,10 +48,10 @@
       @foreach ($documents as $document)
         <div class="accordion-item bg-white">
           <div id="test-{{ $document->position }}">
-            <div class="accordion-body p-1">
+            <div class="accordion-body">
               <div class="list-group list-group-flush list-group-hoverable pt-1">
                 <div class="list-group-item border-0 p-0">
-                  <div class="row align-items-center g-3 mx-2">
+                  <div class="row align-items-center g-3 mx-1">
                     <div class="avatar bg-{{ $document->category->color }}-lt col-auto" data-bs-toggle="tooltip"
                       data-bs-placement="top" data-bs-original-title="{{ $document->category->folder_name }} dokumentace">
                       <a
@@ -75,9 +75,7 @@
                           id="{{ $document->id }}" data-bs-toggle="tooltip" data-bs-placement="top"
                           data-bs-original-title="Více informací o dokumentu {{ $document->description }}"
                           style="margin-bottom: 0;">
-                          @if ($document->category_id != 3)
-                            {{ $document->position }}.
-                          @endif {{ $document->name }}
+                          {{ $document->name }}
                         </p>
                       </span>
                       <div class="d-block description text-muted text-truncate">
@@ -122,35 +120,39 @@
                         <div class="d-block description text-muted text-truncate">
                           {{ $add->description }}</div>
                       </div>
-                      {{-- <div class="col-auto">
-                  @if (Carbon\Carbon::parse($add->created_at)->addDay() >= Carbon\Carbon::today())
-                  <span class="badge badge-sm bg-red-lt text-uppercase ms-auto">Nový !</span>
-                  @endif
-                  @if (Carbon\Carbon::parse($add->updated_at)->addDays(15) >= Carbon\Carbon::now())
-                  <span class="badge badge-sm bg-lime-lt text-uppercase ms-auto">Aktualizováno !</span>
-                  @endif
-                  <span class="text-muted description">{{ Carbon\Carbon::parse($add->updated_at)->diffForHumans() }}</span>
-                  <svg class="icon icon-tabler icon-tabler-certificate-2 text-yellow" xmlns="http://www.w3.org/2000/svg" width="24" height="24"
-                       viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
-                    <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
-                    <circle cx="12" cy="15" r="3"></circle>
-                    <path d="M10 7h4"></path>
-                    <path d="M10 18v4l2 -1l2 1v-4"></path>
-                    <path d="M10 19h-2a2 2 0 0 1 -2 -2v-12a2 2 0 0 1 2 -2h8a2 2 0 0 1 2 2v12a2 2 0 0 1 -2 2h-2"></path>
-                  </svg>
-                  <span class="text-muted description">Revize: {{ $add->revision }}</span>
-                  @auth
-                  @if ($add->status == 'Rozpracováno')
-                  <span class="badge badge-sm bg-yellow-lt text-uppercase ms-auto">Rozpracováno</span>
-                  @else
-                  <span class="badge badge-sm bg-green-lt text-uppercase ms-auto">Schváleno</span>
-                  @endif
-                  @endauth
-                </div> --}}
+                      <div class="col-auto">
+                        @if (Carbon\Carbon::parse($add->created_at)->addDay() >= Carbon\Carbon::today())
+                          <span class="badge badge-sm bg-red-lt text-uppercase ms-auto">Nový !</span>
+                        @endif
+                        @if (Carbon\Carbon::parse($add->updated_at)->addDays(15) >= Carbon\Carbon::now())
+                          <span class="badge badge-sm bg-lime-lt text-uppercase ms-auto">Aktualizováno !</span>
+                        @endif
+                        <span
+                          class="text-muted description">{{ Carbon\Carbon::parse($add->updated_at)->diffForHumans() }}</span>
+                        <svg class="icon icon-tabler icon-tabler-certificate-2 text-yellow"
+                          xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                          stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round"
+                          stroke-linejoin="round">
+                          <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+                          <circle cx="12" cy="15" r="3"></circle>
+                          <path d="M10 7h4"></path>
+                          <path d="M10 18v4l2 -1l2 1v-4"></path>
+                          <path d="M10 19h-2a2 2 0 0 1 -2 -2v-12a2 2 0 0 1 2 -2h8a2 2 0 0 1 2 2v12a2 2 0 0 1 -2 2h-2">
+                          </path>
+                        </svg>
+                        <span class="text-muted description">Revize: {{ $add->revision }}</span>
+                        @auth
+                          @if ($add->status == 'Rozpracováno')
+                            <span class="badge badge-sm bg-yellow-lt text-uppercase ms-auto">Rozpracováno</span>
+                          @else
+                            <span class="badge badge-sm bg-green-lt text-uppercase ms-auto">Schváleno</span>
+                          @endif
+                        @endauth
+                      </div>
                     </div>
                   @endforeach
                 </div>
-                <div class="list-group-item py-1 px-2">
+                <div class="list-group-item py-1 px-1">
                   <div class="row d-flex justify-content-between">
                     <div class="col-auto">
                       @if (Carbon\Carbon::parse($document->created_at)->addDays(1) >= Carbon\Carbon::today())

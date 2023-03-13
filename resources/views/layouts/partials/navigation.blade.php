@@ -69,7 +69,7 @@
                   </svg>
                 </span>
                 <span class="nav-link-title">
-                  {{ __('Změny standardů') }}
+                  {{ __('Změny ve standardech') }}
                 </span>
               </a>
               <a class="dropdown-item {{ request()->segment(2) == 'zmeny-v-dokumentaci' ? 'active' : '' }}"

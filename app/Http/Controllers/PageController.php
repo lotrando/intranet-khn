@@ -51,7 +51,7 @@ class PageController extends Controller
 
             return view('zmeny-standardu', [
                 'pretitle'  => 'Oznámení',
-                'title'     => 'Změny standardů',
+                'title'     => 'Změny ve standardech',
                 'documents' => $documents
             ]);
         }
@@ -67,7 +67,7 @@ class PageController extends Controller
     {
         $documents = Document::with('category', 'addons', 'user')
             ->where('category_id', '>', '12')
-            ->where('category_id', '<', '25')
+            // ->where('category_id', '<', '25')
             ->where('updated_at', '>=', Carbon::now()->subHours(24))
             ->orderByDesc('updated_at')
             ->paginate(5);

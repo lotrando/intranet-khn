@@ -74,7 +74,7 @@
                     <div class="d-flex align-items-top justify-content-start">
                       <div class="avatar bg-transparent">
                         <span
-                          class="avatar bg-{{ $notification->type ?? 'muted' }}-lt pt-1"><strong>{{ Carbon\Carbon::parse($notification->created_at)->format('d|m') }}<br>{{ Carbon\Carbon::now()->format('Y') }}</strong></span>
+                          class="avatar bg-{{ $notification->type ?? 'muted' }}-lt pt-1"><strong>{{ Carbon\Carbon::parse($notification->created_at)->format('d|m') }}<br>{{ Carbon\Carbon::parse($notification->created_at)->format('Y') }}</strong></span>
                       </div>
                       <div class="px-3">
                         <h2>{{ $notification->title }}</h2>
@@ -100,7 +100,7 @@
                     <div class="d-flex align-items-top justify-content-start">
                       <div class="avatar bg-transparent">
                         <span
-                          class="avatar bg-{{ $notification->type ?? 'muted' }}-lt pt-1"><strong>{{ Carbon\Carbon::parse($notification->created_at)->format('d|m') }}<br>{{ Carbon\Carbon::now()->format('Y') }}</strong></span>
+                          class="avatar bg-{{ $notification->type ?? 'muted' }}-lt pt-1"><strong>{{ Carbon\Carbon::parse($notification->created_at)->format('d|m') }}<br>{{ Carbon\Carbon::parse($notification->created_at)->format('Y') }}</strong></span>
                       </div>
                       <div class="px-3">
                         <h2>{{ $notification->title }}</h2>
