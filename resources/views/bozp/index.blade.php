@@ -34,7 +34,7 @@
           @foreach ($bozps as $category)
             <div class="col-2 col-sm-2 col-md-2 col-xl-2 col-xxl-2 ps-0 m-0">
               <a class="btn bg-{{ $category->color }}-lt hover-shadow-sm w-100 m-1" data-bs-toggle="tooltip"
-                data-bs-placement="top" data-bs-original-title="{{ __('BOZP a PO - ' . $category->category_name) }}"
+                data-bs-placement="top" data-bs-original-title="{{ __($category->category_name) }} - BOZP a PO"
                 href="/bozp/{{ $category->folder_name . '/' . $category->id }}">
                 <span class="d-inline d-sm-inline d-md-none d-lg-inline d-xl-inline">{!! $category->svg_icon !!}</span>
                 <span class="d-none d-md-inline d-lg-inline d-xl-inline pe-1">{{ $category->category_name }}</span>
@@ -249,27 +249,25 @@
                             <span class="text-muted description">Revize:
                               {{ $document->revision }}</span>
                           </div>
-                          @auth
-                            <div class="d-xs-none d-sm-none d-lg-inline col-auto">
-                              <span class="text-muted description">
-                                <svg class="icon text-lime" xmlns="http://www.w3.org/2000/svg" width="24"
-                                  height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor"
-                                  fill="none" stroke-linecap="round" stroke-linejoin="round">
-                                  <path stroke="none" d="M0 0h24v24H0z" fill="none">
-                                  </path>
-                                  <path
-                                    d="M9 5h-2a2 2 0 0 0 -2 2v12a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2v-12a2 2 0 0 0 -2 -2h-2">
-                                  </path>
-                                  <rect x="9" y="3" width="6" height="4" rx="2">
-                                  </rect>
-                                  <path d="M9 12v-1h6v1"></path>
-                                  <path d="M12 11v6"></path>
-                                  <path d="M11 17h2"></path>
-                                </svg>
-                                Zpracoval: Bc. Pribula Marek
-                              </span>
-                            </div>
-                          @endauth
+                          <div class="d-xs-none d-sm-none d-lg-inline col-auto">
+                            <span class="text-muted description">
+                              <svg class="icon text-lime" xmlns="http://www.w3.org/2000/svg" width="24"
+                                height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor"
+                                fill="none" stroke-linecap="round" stroke-linejoin="round">
+                                <path stroke="none" d="M0 0h24v24H0z" fill="none">
+                                </path>
+                                <path
+                                  d="M9 5h-2a2 2 0 0 0 -2 2v12a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2v-12a2 2 0 0 0 -2 -2h-2">
+                                </path>
+                                <rect x="9" y="3" width="6" height="4" rx="2">
+                                </rect>
+                                <path d="M9 12v-1h6v1"></path>
+                                <path d="M12 11v6"></path>
+                                <path d="M11 17h2"></path>
+                              </svg>
+                              Zpracoval: Bc. Pribula Marek
+                            </span>
+                          </div>
                         </div>
                       </div>
                     </div>

@@ -11,9 +11,7 @@ use App\Http\Controllers\AddonController;
 
 
 // Index page
-Route::get('/', function () {
-    return view('home', ['pretitle' => 'Intranet', 'title' => 'Index', 'position' => 0]);
-})->name('index');                                                                                                          // Index route
+Route::get('/', [PageController::class, 'home'])->name('index');                                                                                                          // Index route
 
 // Home page
 Route::get('home', [PageController::class, 'home'])->name('home');                                                                                                           // Home route

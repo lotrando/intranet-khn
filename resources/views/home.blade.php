@@ -64,11 +64,11 @@
         <div>
           <div class="display mt-2 mb-3" id="display"></div>
         </div>
-        <div class="row g-2">
 
-          @foreach ($notifications as $notification)
-            <div class="col-12 col-md-6">
-              <div class="card shadow-sm">
+        <div class="row g-2">
+          <div class="col-12 col-lg-8">
+            @foreach ($notifications as $notification)
+              <div class="card mb-2 shadow-sm">
                 <div class="bg-{{ $notification->type }}-lt text-left">
                   <div class="card-body p-2">
                     <div class="d-flex align-items-top justify-content-start">
@@ -86,246 +86,171 @@
                       </div>
                     </div>
                   </div>
-                  {{-- Show Modal --}}
-                  <div class="modal fade" id="showModal" role="dialog" aria-hidden="true" tabindex="-1">
-                    <div class="modal-dialog modal-dialog-centered modal-full-width" role="document">
-                      <div class="modal-content shadow-lg">
-                        <div id="show-modal-header">
-                          <h5 class="modal-title"></h5>
-                          <div class="avatar avatar-transparent" id="show-modal-icon"></div>
-                        </div>
-                        <div class="modal-body">
-                          <div class="row">
-                            <div class="col-7">
 
-                              <div class="row">
-                                <div class="col-2 mb-3 mt-3">
-                                  <label class="form-label">{{ __('Position') }}</label>
-                                  <input class="form-control" id="show-position" type="text" readonly>
-                                </div>
-                                <div class="col-7 mb-3 mt-3">
-                                  <label class="form-label">{{ __('Name') }} dokumentu</label>
-                                  <input class="form-control" id="show-name" type="text" readonly>
-                                </div>
-                                <div class="col-3 mb-3 mt-3">
-                                  <label class="form-label">{{ __('Revision') }}</label>
-                                  <input class="form-control" id="show-revision" type="text" readonly>
-                                </div>
-                              </div>
+                </div>
+              </div>
+            @endforeach
+          </div>
 
-                              <div class="row">
-                                <div class="col-12 mb-3">
-                                  <label class="form-label">{{ __('Popis dokumentu') }} </label>
-                                  <input class="form-control" id="show-description" type="text" readonly>
-                                </div>
-                              </div>
-
-                              <div class="row">
-                                <div class="col-4 mb-3">
-                                  <label class="form-label">{{ __('Datum revize') }}</label>
-                                  <input class="form-control" id="show-revision_date" type="date" readonly>
-                                </div>
-                                <div class="col-4 mb-3">
-                                  <label class="form-label">{{ __('Datum další revize') }}</label>
-                                  <input class="form-control" id="show-next_revision_date" type="date" readonly>
-                                </div>
-                                <div class="col-4 mb-3">
-                                  <label class="form-label">{{ __('Platnost dokumentu od') }}</label>
-                                  <input class="form-control" id="show-efficiency" type="date" readonly>
-                                </div>
-                              </div>
-
-                              <div class="row">
-                                <div class="col-4 mb-3">
-                                  <label class="form-label">{{ __('Zpracoval/a') }}</label>
-                                  <input class="form-control" id="show-processed" type="text" readonly>
-                                </div>
-                                <div class="col-4 mb-3">
-                                  <label class="form-label">{{ __('Schválil/a') }}</label>
-                                  <input class="form-control" id="show-authorize" type="text" readonly>
-                                </div>
-                                <div class="col-4 mb-3">
-                                  <label class="form-label">{{ __('Kontrolu provedl/a') }}</label>
-                                  <input class="form-control" id="show-examine" type="text" readonly>
-                                </div>
-                              </div>
-
-                              <div class="row">
-                                <div class="col-12 mb-3">
-                                  <label class="form-label">{{ __('Oblast působnosti dokumentu') }}</label>
-                                  <input class="form-control" id="show-tags" type="text" readonly>
-                                </div>
-                              </div>
-
-                              <div class="row">
-                                <div class="col-12 mb-3">
-                                  <label class="form-label">{{ __('Soubor') }}</label>
-                                  <input class="form-control" id="show-file" type="text" readonly>
-                                </div>
-                                <div class="col-6 mb-3">
-                                  <label class="form-label">{{ __('Status') }}</label>
-                                  <input class="form-control" id="show-status" readonly>
-                                </div>
-                                <div class="col-6 mb-3">
-                                  <label class="form-label">{{ __('Založil / upravil') }}</label>
-                                  <input class="form-control" id="show-user_name" name="user_name" type="text"
-                                    readonly>
-                                </div>
-                              </div>
-                            </div>
-
-                            <div class="col-5 p-1">
-                              <div id="pdf-preview-show"></div>
-                              <input id="category_id" name="category_id" type="hidden">
-                              <input id="action" name="action" type="hidden" />
-                              <input id="hidden_id" name="hidden_id" type="hidden" />
-                              <input id="user_id" name="user_id" type="hidden" />
-                            </div>
-                          </div>
-                        </div>
-
-                        <div class="modal-footer">
-                          <div class="align-content-end flex">
-                            <a class="btn btn-red ms-auto hover-shadow" id="download-btn" type="button"
-                              href="">
-                              <svg class="icon icon-inline" xmlns="http://www.w3.org/2000/svg" width="24"
-                                height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor"
-                                fill="none" stroke-linecap="round" stroke-linejoin="round">
-                                <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
-                                <path d="M12 20h-6a2 2 0 0 1 -2 -2v-12a2 2 0 0 1 2 -2h12v5"></path>
-                                <path d="M13 16h-7a2 2 0 0 0 -2 2"></path>
-                                <path d="M15 19l3 3l3 -3"></path>
-                                <path d="M18 22v-9"></path>
-                              </svg>
-                              {{ __('Download file') }}</a>
-                          </div>
-                          <button class="btn btn-muted hover-shadow" data-bs-dismiss="modal" type="button">
-                            <svg class="icon icon-inline" xmlns="http://www.w3.org/2000/svg" width="24"
-                              height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor"
-                              fill="none" stroke-linecap="round" stroke-linejoin="round">
-                              <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
-                              <rect x="4" y="4" width="16" height="16" rx="2">
-                              </rect>
-                              <path d="M10 10l4 4m0 -4l-4 4"></path>
-                            </svg>
-                            {{ __('Close') }}
-                          </button>
-                        </div>
-
+          <div class="col-12 col-lg-4">
+            @foreach ($notifications as $notification)
+              <div class="card mb-2 shadow-sm">
+                <div class="bg-{{ $notification->type }}-lt text-left">
+                  <div class="card-body p-2">
+                    <div class="d-flex align-items-top justify-content-start">
+                      <div class="avatar bg-transparent">
+                        <span
+                          class="avatar bg-{{ $notification->type ?? 'muted' }}-lt pt-1"><strong>{{ Carbon\Carbon::parse($notification->created_at)->format('d|m') }}<br>{{ Carbon\Carbon::now()->format('Y') }}</strong></span>
+                      </div>
+                      <div class="px-3">
+                        <h2>{{ $notification->title }}</h2>
+                        <p class="d-block description text-muted text-truncate">
+                          Autor: {{ $notification->user->name }}
+                        </p>
+                        <p class="text-muted mb-1 text-start">
+                          {!! $notification->content !!}</p>
                       </div>
                     </div>
                   </div>
-                </div>
-              </div>
-            </div>
-          @endforeach
 
-          {{-- <div class="col-12 col-md-7 col-lg-4 col-xl-4 col-xxl-6">
-            <div class="card shadow-sm">
-              <div class="bg-red-lt text-left">
-                <div class="card-body p-2">
-                  <div class="d-flex align-items-top justify-content-start">
-                    <div class="avatar bg-transparent">
-                      <span
-                        class="avatar bg-red-lt pt-1"><strong>{{ Carbon\Carbon::now()->format('d|m') }}<br>{{ Carbon\Carbon::now()->format('Y') }}</strong></span>
-                    </div>
-                    <div class="px-3">
-                      <h2>Důležité oznámení !</h2>
-                      <p class="mb-1 text-start">Officia dolore debitis esse rem eligendi illum accusamus alias molestiae
-                        laboriosam!</p>
-                    </div>
-                  </div>
                 </div>
               </div>
-            </div>
+            @endforeach
           </div>
-
-          <div class="col-12 col-md-7 col-lg-6 col-xl-4 col-xxl-6">
-            <div class="card shadow-sm">
-              <div class="bg-lime-lt text-left">
-                <div class="card-body p-2">
-                  <div class="d-flex align-items-top justify-content-start">
-                    <div class="avatar bg-transparent">
-                      <span
-                        class="avatar bg-lime-lt pt-1"><strong>{{ Carbon\Carbon::now()->format('d|m') }}<br>{{ Carbon\Carbon::now()->format('Y') }}</strong></span>
-                    </div>
-                    <div class="px-3">
-                      <h2>Normální oznámení !</h2>
-                      <p class="mb-1 text-start">Officia dolore debitis esse rem eligendi illum accusamus alias molestiae
-                        laboriosam!</p>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          <div class="col-12 col-md-7 col-lg-4 col-xl-6 col-xxl-6">
-            <div class="card shadow-sm">
-              <div class="bg-info-lt text-left">
-                <div class="card-body p-2">
-                  <div class="d-flex align-items-top justify-content-start">
-                    <div class="avatar bg-transparent">
-                      <span
-                        class="avatar bg-info-lt pt-1"><strong>{{ Carbon\Carbon::now()->format('d|m') }}<br>{{ Carbon\Carbon::now()->format('Y') }}</strong></span>
-                    </div>
-                    <div class="px-3">
-                      <h2>Informativní oznámení !</h2>
-                      <p class="mb-1 text-start">Officia dolore debitis esse rem eligendi illum accusamus alias molestiae
-                        laboriosam!</p>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          <div class="col-12 col-md-7 col-lg-4 col-xl-6 col-xxl-6">
-            <div class="card shadow-sm">
-              <div class="bg-yellow-lt text-left">
-                <div class="card-body p-2">
-                  <div class="d-flex align-items-top justify-content-start">
-                    <div class="avatar bg-transparent">
-                      <span
-                        class="avatar bg-yellow-lt pt-1"><strong>{{ Carbon\Carbon::now()->format('d|m') }}<br>{{ Carbon\Carbon::now()->format('Y') }}</strong></span>
-                    </div>
-                    <div class="px-3">
-                      <h2>Varovné oznámení !</h2>
-                      <p class="mb-1 text-start">Officia dolore debitis esse rem eligendi illum accusamus alias molestiae
-                        laboriosam!</p>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          <div class="col-12 col-md-7 col-lg-4 col-xl-12 col-xxl-6">
-            <div class="card shadow-sm">
-              <div class="bg-purple-lt text-left">
-                <div class="card-body p-2">
-                  <div class="d-flex align-items-top justify-content-start">
-                    <div class="avatar bg-transparent">
-                      <span
-                        class="avatar bg-purple-lt pt-1"><strong>{{ Carbon\Carbon::now()->format('d|m') }}<br>{{ Carbon\Carbon::now()->format('Y') }}</strong></span>
-                    </div>
-                    <div class="px-3">
-                      <h2>Velké poděkování</h2>
-                      <p class="mb-1 text-start">DĚKUJEME všem pracovníkům stravovacího provozu za dnešní "snídaňové
-                        menu", které u příležitosti MDŽ pro naše zaměstnankyně připravili.</p>
-                      <p style="text-align: right">Bylo to vynikající !!!!!</p>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div> --}}
 
         </div>
       </div>
       {{-- End Page body --}}
     </div>
     <!-- Wrapper End -->
+
+    {{-- Show Modal --}}
+    <div class="modal fade" id="showModal" role="dialog" aria-hidden="true" tabindex="-1">
+      <div class="modal-dialog modal-dialog-centered modal-full-width" role="document">
+        <div class="modal-content shadow-lg">
+          <div id="show-modal-header">
+            <h5 class="modal-title"></h5>
+            <div class="avatar avatar-transparent" id="show-modal-icon"></div>
+          </div>
+          <div class="modal-body">
+            <div class="row">
+              <div class="col-7">
+
+                <div class="row">
+                  <div class="col-2 mb-3 mt-3">
+                    <label class="form-label">{{ __('Position') }}</label>
+                    <input class="form-control" id="show-position" type="text" readonly>
+                  </div>
+                  <div class="col-7 mb-3 mt-3">
+                    <label class="form-label">{{ __('Name') }} dokumentu</label>
+                    <input class="form-control" id="show-name" type="text" readonly>
+                  </div>
+                  <div class="col-3 mb-3 mt-3">
+                    <label class="form-label">{{ __('Revision') }}</label>
+                    <input class="form-control" id="show-revision" type="text" readonly>
+                  </div>
+                </div>
+
+                <div class="row">
+                  <div class="col-12 mb-3">
+                    <label class="form-label">{{ __('Popis dokumentu') }} </label>
+                    <input class="form-control" id="show-description" type="text" readonly>
+                  </div>
+                </div>
+
+                <div class="row">
+                  <div class="col-4 mb-3">
+                    <label class="form-label">{{ __('Datum revize') }}</label>
+                    <input class="form-control" id="show-revision_date" type="date" readonly>
+                  </div>
+                  <div class="col-4 mb-3">
+                    <label class="form-label">{{ __('Datum další revize') }}</label>
+                    <input class="form-control" id="show-next_revision_date" type="date" readonly>
+                  </div>
+                  <div class="col-4 mb-3">
+                    <label class="form-label">{{ __('Platnost dokumentu od') }}</label>
+                    <input class="form-control" id="show-efficiency" type="date" readonly>
+                  </div>
+                </div>
+
+                <div class="row">
+                  <div class="col-4 mb-3">
+                    <label class="form-label">{{ __('Zpracoval/a') }}</label>
+                    <input class="form-control" id="show-processed" type="text" readonly>
+                  </div>
+                  <div class="col-4 mb-3">
+                    <label class="form-label">{{ __('Schválil/a') }}</label>
+                    <input class="form-control" id="show-authorize" type="text" readonly>
+                  </div>
+                  <div class="col-4 mb-3">
+                    <label class="form-label">{{ __('Kontrolu provedl/a') }}</label>
+                    <input class="form-control" id="show-examine" type="text" readonly>
+                  </div>
+                </div>
+
+                <div class="row">
+                  <div class="col-12 mb-3">
+                    <label class="form-label">{{ __('Oblast působnosti dokumentu') }}</label>
+                    <input class="form-control" id="show-tags" type="text" readonly>
+                  </div>
+                </div>
+
+                <div class="row">
+                  <div class="col-12 mb-3">
+                    <label class="form-label">{{ __('Soubor') }}</label>
+                    <input class="form-control" id="show-file" type="text" readonly>
+                  </div>
+                  <div class="col-6 mb-3">
+                    <label class="form-label">{{ __('Status') }}</label>
+                    <input class="form-control" id="show-status" readonly>
+                  </div>
+                  <div class="col-6 mb-3">
+                    <label class="form-label">{{ __('Založil / upravil') }}</label>
+                    <input class="form-control" id="show-user_name" name="user_name" type="text" readonly>
+                  </div>
+                </div>
+              </div>
+
+              <div class="col-5 p-1">
+                <div id="pdf-preview-show"></div>
+                <input id="category_id" name="category_id" type="hidden">
+                <input id="action" name="action" type="hidden" />
+                <input id="hidden_id" name="hidden_id" type="hidden" />
+                <input id="user_id" name="user_id" type="hidden" />
+              </div>
+            </div>
+          </div>
+
+          <div class="modal-footer">
+            <div class="align-content-end flex">
+              <a class="btn btn-red ms-auto hover-shadow" id="download-btn" type="button" href="">
+                <svg class="icon icon-inline" xmlns="http://www.w3.org/2000/svg" width="24" height="24"
+                  viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round"
+                  stroke-linejoin="round">
+                  <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+                  <path d="M12 20h-6a2 2 0 0 1 -2 -2v-12a2 2 0 0 1 2 -2h12v5"></path>
+                  <path d="M13 16h-7a2 2 0 0 0 -2 2"></path>
+                  <path d="M15 19l3 3l3 -3"></path>
+                  <path d="M18 22v-9"></path>
+                </svg>
+                {{ __('Download file') }}</a>
+            </div>
+            <button class="btn btn-muted hover-shadow" data-bs-dismiss="modal" type="button">
+              <svg class="icon icon-inline" xmlns="http://www.w3.org/2000/svg" width="24" height="24"
+                viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round"
+                stroke-linejoin="round">
+                <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+                <rect x="4" y="4" width="16" height="16" rx="2">
+                </rect>
+                <path d="M10 10l4 4m0 -4l-4 4"></path>
+              </svg>
+              {{ __('Close') }}
+            </button>
+          </div>
+
+        </div>
+      </div>
+    </div>
   @endsection
 
   @section('scripts')
