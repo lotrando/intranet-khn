@@ -2,18 +2,18 @@
 
 namespace App\Http\Controllers;
 
-use RealRashid\SweetAlert\Facades\Alert;
-use Illuminate\Support\Str;
-use Illuminate\Support\Facades\Validator;
-use Illuminate\Support\Facades\Mail;
-use Illuminate\Support\Facades\File;
-use Illuminate\Support\Facades\Auth;
-use Illuminate\Http\Request;
-use Carbon\Carbon;
-use App\Models\Employee;
-use App\Models\Document;
-use App\Models\Addon;
 use App\Mail\StandardUpdatedMail;
+use App\Models\Addon;
+use App\Models\Document;
+use App\Models\Employee;
+use Carbon\Carbon;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\File;
+use Illuminate\Support\Facades\Mail;
+use Illuminate\Support\Facades\Validator;
+use Illuminate\Support\Str;
+use RealRashid\SweetAlert\Facades\Alert;
 
 
 class DocumentController extends Controller
@@ -52,7 +52,8 @@ class DocumentController extends Controller
             'Ú' => 'U', 'Û' => 'U', 'Ü' => 'U', 'Ý' => 'Y', 'Þ' => 'B', 'ß' => 'Ss', 'à' => 'a', 'á' => 'a', 'â' => 'a', 'ã' => 'a', 'ä' => 'a', 'å' => 'a', 'æ' => 'a', 'ç' => 'c',
             'è' => 'e', 'é' => 'e', 'ê' => 'e', 'ë' => 'e', 'ì' => 'i', 'í' => 'i', 'î' => 'i', 'ï' => 'i', 'ð' => 'o', 'ñ' => 'n', 'ò' => 'o', 'ó' => 'o', 'ô' => 'o', 'õ' => 'o',
             'ö' => 'o', 'ø' => 'o', 'ù' => 'u', 'ú' => 'u', 'û' => 'u', 'ý' => 'y', 'þ' => 'b', 'ÿ' => 'y', 'ř' => 'r', 'č' => 'c', 'ě' => 'e', 'ů' => 'u', 'ň' => 'n', 'Ř' => 'R',
-            'Č' => 'C', 'Ě' => 'E', 'Ů' => 'U', 'Ú' => 'U', 'Ň' => 'N', '/' => '-', ':' => '-', ';' => '-', ' ' => '_', '+' => '_'
+            'Č' => 'C', 'Ě' => 'E', 'Ů' => 'U', 'Ú' => 'U', 'Ň' => 'N', '/' => '_', ':' => '_', ';' => '_', ' ' => '_', '+' =>
+            '_', '.' => '_'
         ];
 
         $rules = [
@@ -189,13 +190,15 @@ class DocumentController extends Controller
                 'Ú' => 'U', 'Û' => 'U', 'Ü' => 'U', 'Ý' => 'Y', 'Þ' => 'B', 'ß' => 'Ss', 'à' => 'a', 'á' => 'a', 'â' => 'a', 'ã' => 'a', 'ä' => 'a', 'å' => 'a', 'æ' => 'a', 'ç' => 'c',
                 'è' => 'e', 'é' => 'e', 'ê' => 'e', 'ë' => 'e', 'ì' => 'i', 'í' => 'i', 'î' => 'i', 'ï' => 'i', 'ð' => 'o', 'ñ' => 'n', 'ò' => 'o', 'ó' => 'o', 'ô' => 'o', 'õ' => 'o',
                 'ö' => 'o', 'ø' => 'o', 'ù' => 'u', 'ú' => 'u', 'û' => 'u', 'ý' => 'y', 'þ' => 'b', 'ÿ' => 'y', 'ř' => 'r', 'č' => 'c', 'ě' => 'e', 'ů' => 'u', 'ň' => 'n', 'Ř' => 'R',
-                'Č' => 'C', 'Ě' => 'E', 'Ů' => 'U', 'Ú' => 'U', 'Ň' => 'N', '/' => '-', ':' => '-', ';' => '-', ' ' => '_', '+' => '_'
+                'Č' => 'C', 'Ě' => 'E', 'Ů' => 'U', 'Ú' => 'U', 'Ň' => 'N', '/' => '_', ':' => '_', ';' => '_', ' ' => '_', '+' =>
+                '_', '.' => '_'
             ];
 
             $file_ext  = $request->file->extension();
+            $name = Str::lower(strtr($request->name, $unwantedChars));
             $description = Str::lower(strtr($request->description, $unwantedChars));
             $revision = Str::lower(strtr($request->revision, $unwantedChars));
-            $file_name = $request->category_file . '_' . $request->folder_name . '-' . $description . '-revize-' . $revision . '.' . $file_ext;
+            $file_name = $request->category_file . '_' . $request->folder_name . '-' . $name . '-' . $description . '-revize-' . $revision . '.' . $file_ext;
             $request->file->move(public_path('/soubory/'), $file_name);
 
             $form_data = [
@@ -274,7 +277,7 @@ class DocumentController extends Controller
         // $emailData = Document::with('category')->where('updated_at', '>=', '2023-01-18 13:35:09')->get();
         $stanicniSestry = Employee::where('job_id', '47')->pluck('email');
 
-        Mail::to($stanicniSestry)->send(new StandardUpdatedMail($emailData));
+        //Mail::to($stanicniSestry)->send(new StandardUpdatedMail($emailData));
 
         return response()->json(['success' => 'Standard aktualizován']);
     }

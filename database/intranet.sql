@@ -2,10 +2,10 @@
 -- version 5.2.0
 -- https://www.phpmyadmin.net/
 --
--- Počítač: localhost
--- Vytvořeno: Ned 12. bře 2023, 23:18
--- Verze serveru: 8.0.31
--- Verze PHP: 7.4.33
+-- Počítač: 127.0.0.1
+-- Vytvořeno: Úte 14. bře 2023, 13:31
+-- Verze serveru: 10.4.24-MariaDB
+-- Verze PHP: 7.4.29
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -28,16 +28,16 @@ SET time_zone = "+00:00";
 --
 
 CREATE TABLE `addons` (
-  `id` bigint UNSIGNED NOT NULL,
-  `document_id` bigint NOT NULL,
-  `category_id` int NOT NULL,
-  `position` int NOT NULL,
-  `description` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
-  `revision` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
-  `file` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
-  `status` enum('Schváleno','Rozpracováno') CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
-  `onscreen` int DEFAULT NULL,
-  `user_id` int NOT NULL,
+  `id` bigint(20) UNSIGNED NOT NULL,
+  `document_id` bigint(20) NOT NULL,
+  `category_id` int(11) NOT NULL,
+  `position` int(11) NOT NULL,
+  `description` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `revision` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `file` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `status` enum('Schváleno','Rozpracováno') COLLATE utf8mb4_unicode_ci NOT NULL,
+  `onscreen` int(11) DEFAULT NULL,
+  `user_id` int(11) NOT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
@@ -92,7 +92,81 @@ INSERT INTO `addons` (`id`, `document_id`, `category_id`, `position`, `descripti
 (62, 122, 25, 7, 'Trauma balík', 'červen 2021', 'bozp_bezpecnostni-plany-trauma_balik-priloha-7-revize-1.pdf', 'Schváleno', NULL, 11, '2023-03-11 12:40:00', '2023-03-11 12:40:00'),
 (63, 122, 25, 8, 'Organizační set', 'červen 2021', 'bozp_bezpecnostni-plany-organizacni_set-priloha-8-revize-1.pdf', 'Schváleno', NULL, 11, '2023-03-11 12:40:22', '2023-03-11 12:40:22'),
 (64, 122, 25, 9, 'Pokyny pro přidělování fiktivních rodných při aktivaci traumatologického plánu v KHN a.s.', 'červen 2021', 'bozp_bezpecnostni-plany-pokyny_pro_pridelovani_fiktivnich_rodnych_cisel-priloha-9-revize-cerven_2021.pdf', 'Schváleno', NULL, 11, '2023-03-11 12:41:57', '2023-03-11 12:41:57'),
-(65, 121, 25, 3, 'Třeba doplnit', 'květen 2022', 'bozp_bezpecnostni-plany-treba_doplnit-priloha-3-revize-kveten_2022.pdf', 'Schváleno', NULL, 11, '2023-03-11 12:31:41', '2023-03-11 12:31:41');
+(65, 121, 25, 3, 'Evidenční list evakuovaných osob z KHN do jiného ZZ nebo domácího léčení', 'květen 2022', 'bozp_bezpecnostni-plany-evidencni_list_evakuovanych_osob_do_jineho_zz_nebo_domaciho_leceni-priloha-3-revize-kveten_2022.pdf', 'Schváleno', NULL, 11, '2023-03-11 12:31:41', '2023-03-11 12:31:41'),
+(76, 275, 33, 1, 'Ambulance interní - lékaři', '1', 'bozp_rizika-ambulance_interni_-_lekari-priloha-1-revize-1.pdf', 'Schváleno', NULL, 11, '2023-03-14 07:07:43', '2023-03-14 07:07:43'),
+(77, 275, 33, 2, 'Ambulance interní - sestra', '1', 'bozp_rizika-ambulance_interni_-_sestra-priloha-2-revize-1.pdf', 'Schváleno', NULL, 11, '2023-03-14 07:08:10', '2023-03-14 07:08:10'),
+(78, 275, 33, 3, 'Ambulance interní - sanitář', '1', 'bozp_rizika-ambulance_interni_-_sanitar-priloha-3-revize-1.pdf', 'Schváleno', NULL, 11, '2023-03-14 07:11:06', '2023-03-14 07:11:06'),
+(79, 276, 33, 1, 'Ambulance neurologická - lékaři', '1', 'bozp_rizika-ambulance_neurologicka_-_lekari-priloha-1-revize-1.pdf', 'Schváleno', NULL, 11, '2023-03-14 07:12:44', '2023-03-14 07:12:44'),
+(80, 276, 33, 2, 'Ambulance neurologická - sestra', '1', 'bozp_rizika-ambulance_neurologicka_-_sestra-priloha-2-revize-1.pdf', 'Schváleno', NULL, 11, '2023-03-14 07:13:07', '2023-03-14 07:13:07'),
+(81, 276, 33, 3, 'Ambulance neurologická - sanitář', '1', 'bozp_rizika-ambulance_neurologicka_-_sanitar-priloha-3-revize-1.pdf', 'Schváleno', NULL, 11, '2023-03-14 07:13:44', '2023-03-14 07:13:44'),
+(82, 277, 33, 1, 'Ambulance ONP a ortopedická - lékaři', '1', 'bozp_rizika-ambulance_onp_a_ortopedicka_-_lekari-priloha-1-revize-1.pdf', 'Schváleno', NULL, 11, '2023-03-14 07:15:37', '2023-03-14 07:15:37'),
+(83, 277, 33, 2, 'Ambulance ONP a ortopedická - sestra', '1', 'bozp_rizika-ambulance_onp_a_ortopedicka_-_sestra-priloha-2-revize-1.pdf', 'Schváleno', NULL, 11, '2023-03-14 07:16:13', '2023-03-14 07:16:13'),
+(84, 277, 33, 3, 'Ambulance ONP a ortopedická - sanitář', '1', 'bozp_rizika-ambulance_onp_a_ortopedicka_-_sanitar-priloha-3-revize-1.pdf', 'Schváleno', NULL, 11, '2023-03-14 07:16:39', '2023-03-14 07:16:39'),
+(85, 279, 33, 1, 'Interní oddělení - lékaři', '1', 'bozp_rizika-interni_oddeleni_-_lekari-priloha-1-revize-1.pdf', 'Schváleno', NULL, 11, '2023-03-14 07:18:38', '2023-03-14 07:18:38'),
+(86, 279, 33, 2, 'Interní oddělení - sestra', '1', 'bozp_rizika-interni_oddeleni_-_sestra-priloha-2-revize-1.pdf', 'Schváleno', NULL, 11, '2023-03-14 07:19:02', '2023-03-14 07:19:02'),
+(87, 279, 33, 3, 'Interní oddělení - sanitář', '1', 'bozp_rizika-interni_oddeleni_-_sanitar-priloha-3-revize-1.pdf', 'Schváleno', NULL, 11, '2023-03-14 07:19:35', '2023-03-14 07:19:35'),
+(88, 279, 33, 4, 'Interní oddělení - dokumentační pracovník', '1', 'bozp_rizika-interni_oddeleni_-_dokumentacni_pracovnik-priloha-4-revize-1.pdf', 'Schváleno', NULL, 11, '2023-03-14 07:20:05', '2023-03-14 07:20:05'),
+(89, 280, 33, 1, 'JIP Mezioborová - lékaři', '1', 'bozp_rizika-jip_mezioborova_-_lekari-priloha-1-revize-1.pdf', 'Schváleno', NULL, 11, '2023-03-14 07:21:07', '2023-03-14 07:21:07'),
+(90, 280, 33, 2, 'JIP Mezioborová - sestra', '1', 'bozp_rizika-jip_mezioborova_-_sestra-priloha-2-revize-1.pdf', 'Schváleno', NULL, 11, '2023-03-14 07:21:24', '2023-03-14 07:21:24'),
+(91, 280, 33, 3, 'JIP Mezioborová - sanitář', '1', 'bozp_rizika-jip_mezioborova_-_sanitar-priloha-3-revize-1.pdf', 'Schváleno', NULL, 11, '2023-03-14 07:21:45', '2023-03-14 07:21:45'),
+(92, 281, 33, 1, 'JIP chirurgie páteře - lékaři', '1', 'bozp_rizika-jip_chirurgie_patere_-_lekari-priloha-1-revize-1.pdf', 'Schváleno', NULL, 11, '2023-03-14 07:22:37', '2023-03-14 07:22:37'),
+(93, 281, 33, 3, 'JIP chirurgie páteře - sanitář', '1', 'bozp_rizika-jip_chirurgie_patere_-_sanitar-priloha-3-revize-1.pdf', 'Schváleno', NULL, 11, '2023-03-14 07:24:08', '2023-03-14 07:24:08'),
+(94, 282, 33, 1, 'Lékárna - farmaceut, laborant', '1', 'bozp_rizika-lekarna_-_farmaceut,_laborant-priloha-1-revize-1.pdf', 'Schváleno', NULL, 11, '2023-03-14 07:25:06', '2023-03-14 07:25:06'),
+(95, 282, 33, 2, 'Lékárna - sanitář', '1', 'bozp_rizika-lekarna_-_sanitar-priloha-2-revize-1.pdf', 'Schváleno', NULL, 11, '2023-03-14 07:26:20', '2023-03-14 07:26:20'),
+(96, 283, 33, 1, 'Neurologické oddělení - lékaři', '1', 'bozp_rizika-neurologicke_oddeleni_-_lekari-priloha-1-revize-1.pdf', 'Schváleno', NULL, 11, '2023-03-14 07:27:56', '2023-03-14 07:27:56'),
+(97, 283, 33, 2, 'Neurologické oddělení - sestra', '1', 'bozp_rizika-neurologicke_oddeleni_-_sestra-priloha-2-revize-1.pdf', 'Schváleno', NULL, 11, '2023-03-14 07:28:30', '2023-03-14 07:28:30'),
+(98, 283, 33, 3, 'Neurologické oddělení - sanitář', '1', 'bozp_rizika-neurologicke_oddeleni_-_sanitar-priloha-3-revize-1.pdf', 'Schváleno', NULL, 11, '2023-03-14 07:28:48', '2023-03-14 07:28:48'),
+(99, 283, 33, 4, 'Neurologické oddělení - dokumentační pracovník', '1', 'bozp_rizika-neurologicke_oddeleni_-_dokumentacni_pracovnik-priloha-4-revize-1.pdf', 'Schváleno', NULL, 11, '2023-03-14 07:29:16', '2023-03-14 07:29:16'),
+(100, 284, 33, 1, 'Oddělení chirurgie páteře - lékaři', '1', 'bozp_rizika-oddeleni_chirurgie_patere_-_lekari-priloha-1-revize-1.pdf', 'Schváleno', NULL, 11, '2023-03-14 07:30:40', '2023-03-14 07:30:40'),
+(101, 284, 33, 2, 'Oddělení chirurgie páteře - sestra', '1', 'bozp_rizika-oddeleni_chirurgie_patere_-_sestra-priloha-2-revize-1.pdf', 'Schváleno', NULL, 11, '2023-03-14 07:30:57', '2023-03-14 07:30:57'),
+(102, 284, 33, 3, 'Oddělení chirurgie páteře - sanitář', '1', 'bozp_rizika-oddeleni_chirurgie_patere_-_sanitar-priloha-3-revize-1.pdf', 'Schváleno', NULL, 11, '2023-03-14 07:31:20', '2023-03-14 07:31:20'),
+(103, 284, 33, 4, 'Oddělení chirurgie páteře - dokumentační pracovník', '1', 'bozp_rizika-oddeleni_chirurgie_patere_-_dokumentacni_pracovnik-priloha-4-revize-1.pdf', 'Schváleno', NULL, 11, '2023-03-14 07:52:36', '2023-03-14 07:52:36'),
+(104, 285, 33, 1, 'OCHP - lékaři', '1', 'bozp_rizika-ochp_-_lekari-priloha-1-revize-1.pdf', 'Schváleno', NULL, 11, '2023-03-14 07:53:37', '2023-03-14 07:53:37'),
+(105, 285, 33, 2, 'OCHP - sestra', '1', 'bozp_rizika-ochp_-_sestra-priloha-2-revize-1.pdf', 'Schváleno', NULL, 11, '2023-03-14 07:54:07', '2023-03-14 07:54:07'),
+(106, 285, 33, 3, 'OCHP - sanitář', '1', 'bozp_rizika-ochp_-_sanitar-priloha-3-revize-1.pdf', 'Schváleno', NULL, 11, '2023-03-14 07:55:04', '2023-03-14 07:55:04'),
+(107, 286, 33, 1, 'OKB - lékaři', '1', 'bozp_rizika-okb_-_lekari-priloha-1-revize-1.pdf', 'Schváleno', NULL, 11, '2023-03-14 07:55:25', '2023-03-14 07:55:25'),
+(108, 286, 33, 2, 'OKB - laborant', '1', 'bozp_rizika-okb_-_laborant-priloha-2-revize-1.pdf', 'Schváleno', NULL, 11, '2023-03-14 07:55:48', '2023-03-14 07:55:48'),
+(109, 286, 33, 3, 'OKB - sanitář', '1', 'bozp_rizika-okb_-_sanitar-priloha-3-revize-1.pdf', 'Schváleno', NULL, 11, '2023-03-14 07:56:12', '2023-03-14 07:56:12'),
+(110, 287, 33, 1, 'Operační sál - lékaři', '1', 'bozp_rizika-operacni_sal_-_lekari-priloha-1-revize-1.pdf', 'Schváleno', NULL, 11, '2023-03-14 07:56:55', '2023-03-14 07:56:55'),
+(111, 287, 33, 2, 'Operační sál - sestra', '1', 'bozp_rizika-operacni_sal_-_sestra-priloha-2-revize-1.pdf', 'Schváleno', NULL, 11, '2023-03-14 07:57:17', '2023-03-14 07:57:17'),
+(112, 287, 33, 3, 'Operační sál - sanitář', '1', 'bozp_rizika-operacni_sal_-_sanitar-priloha-3-revize-1.pdf', 'Schváleno', NULL, 11, '2023-03-14 07:57:34', '2023-03-14 07:57:34'),
+(113, 288, 33, 1, 'OPLS - lékaři', '1', 'bozp_rizika-opls_-_lekari-priloha-1-revize-1.pdf', 'Schváleno', NULL, 11, '2023-03-14 07:59:48', '2023-03-14 07:59:48'),
+(114, 288, 33, 2, 'OPLS - sestra', '1', 'bozp_rizika-opls_-_sestra-priloha-2-revize-1.pdf', 'Schváleno', NULL, 11, '2023-03-14 08:00:24', '2023-03-14 08:00:24'),
+(115, 288, 33, 3, 'OPLS - sanitář', '1', 'bozp_rizika-opls_-_sanitar-priloha-3-revize-1.pdf', 'Schváleno', NULL, 11, '2023-03-14 08:00:49', '2023-03-14 08:00:49'),
+(116, 289, 33, 1, 'Ortopedické oddělení - lékaři', '1', 'bozp_rizika-ortopedicke_oddeleni_-_lekari-priloha-1-revize-1.pdf', 'Schváleno', NULL, 11, '2023-03-14 08:02:11', '2023-03-14 08:02:11'),
+(117, 289, 33, 2, 'Ortopedické oddělení - sestra', '1', 'bozp_rizika-ortopedicke_oddeleni_-_sestra-priloha-2-revize-1.pdf', 'Schváleno', NULL, 11, '2023-03-14 08:02:51', '2023-03-14 08:02:51'),
+(118, 289, 33, 3, 'Ortopedické oddělení - sanitář', '1', 'bozp_rizika-ortopedicke_oddeleni_-_sanitar-priloha-3-revize-1.pdf', 'Schváleno', NULL, 11, '2023-03-14 08:03:16', '2023-03-14 08:03:16'),
+(119, 289, 33, 4, 'Ortopedické oddělení - dokumentační pracovník', '1', 'bozp_rizika-ortopedicke_oddeleni_-_dokumentacni_pracovnik-priloha-4-revize-1.pdf', 'Schváleno', NULL, 11, '2023-03-14 08:04:12', '2023-03-14 08:04:12'),
+(120, 290, 33, 1, 'Provozní oddělení - mtz, skladní', '1', 'bozp_rizika-provozni_oddeleni_-_mtz,_skladni-priloha-1-revize-1.pdf', 'Schváleno', NULL, 11, '2023-03-14 08:05:02', '2023-03-14 08:05:02'),
+(121, 290, 33, 2, 'Provozní oddělení - podatelna', '1', 'bozp_rizika-provozni_oddeleni_-_podatelna-priloha-2-revize-1.pdf', 'Schváleno', NULL, 11, '2023-03-14 08:05:17', '2023-03-14 08:05:17'),
+(122, 290, 33, 3, 'Provozní oddělení - recepční', '1', 'bozp_rizika-provozni_oddeleni_-_recepcni-priloha-3-revize-1.pdf', 'Schváleno', NULL, 11, '2023-03-14 08:06:10', '2023-03-14 08:06:10'),
+(123, 290, 33, 4, 'Provozní oddělení - spisovna', '1', 'bozp_rizika-provozni_oddeleni_-_spisovna-priloha-4-revize-1.pdf', 'Schváleno', NULL, 11, '2023-03-14 08:06:48', '2023-03-14 08:06:48'),
+(124, 290, 33, 5, 'Provozní oddělení - řidič', '1', 'bozp_rizika-provozni_oddeleni_-_ridic-priloha-5-revize-1.pdf', 'Schváleno', NULL, 11, '2023-03-14 08:07:04', '2023-03-14 08:07:04'),
+(125, 290, 33, 6, 'Provozní oddělení - údržbař', '1', 'bozp_rizika-provozni_oddeleni_-_udrzbar-priloha-6-revize-1.pdf', 'Schváleno', NULL, 11, '2023-03-14 08:07:26', '2023-03-14 08:07:26'),
+(126, 291, 33, 1, 'RDG - lékaři', '1', 'bozp_rizika-rdg_-_lekari-priloha-1-revize-1.pdf', 'Schváleno', NULL, 11, '2023-03-14 08:08:01', '2023-03-14 08:08:01'),
+(127, 291, 33, 2, 'RDG - laboranti', '1', 'bozp_rizika-rdg_-_laboranti-priloha-2-revize-1.pdf', 'Schváleno', NULL, 11, '2023-03-14 08:08:22', '2023-03-14 08:08:22'),
+(128, 291, 33, 3, 'RDG - dokumentační pracovník', '1', 'bozp_rizika-rdg_-_dokumentacni_pracovnik-priloha-3-revize-1.pdf', 'Schváleno', NULL, 11, '2023-03-14 08:08:44', '2023-03-14 08:08:44'),
+(129, 278, 33, 1, 'Ambulance rehabilitační - lékaři, fyzioterapeuti', '1', 'bozp_rizika-ambulance_rehabilitacni_-_lekari,_fyzioterapeuti-priloha-1-revize-1.pdf', 'Schváleno', NULL, 11, '2023-03-14 08:10:18', '2023-03-14 08:10:18'),
+(130, 278, 33, 2, 'Ambulance rehabilitační - sanitář', '1', 'bozp_rizika-ambulance_rehabilitacni_-_sanitar-priloha-2-revize-1.pdf', 'Schváleno', NULL, 11, '2023-03-14 08:10:43', '2023-03-14 08:10:43'),
+(131, 292, 33, 1, 'Rehabilitační oddělení - lékaři', '1', 'bozp_rizika-rehabilitacni_oddeleni_-_lekari-priloha-1-revize-1.pdf', 'Schváleno', NULL, 11, '2023-03-14 08:12:10', '2023-03-14 08:12:10'),
+(132, 292, 33, 2, 'Rehabilitační oddělení - sestra', '1', 'bozp_rizika-rehabilitacni_oddeleni_-_sestra-priloha-2-revize-1.pdf', 'Schváleno', NULL, 11, '2023-03-14 08:12:29', '2023-03-14 08:12:29'),
+(133, 292, 33, 3, 'Rehabilitační oddělení - sanitář', '1', 'bozp_rizika-rehabilitacni_oddeleni_-_sanitar-priloha-3-revize-1.pdf', 'Schváleno', NULL, 11, '2023-03-14 08:12:46', '2023-03-14 08:12:46'),
+(134, 292, 33, 4, 'Rehabilitační oddělení - dokumentační pracovník', '1', 'bozp_rizika-rehabilitacni_oddeleni_-_dokumentacni_pracovnik-priloha-4-revize-1.pdf', 'Schváleno', NULL, 11, '2023-03-14 08:13:16', '2023-03-14 08:13:16'),
+(135, 293, 33, 1, 'Ředitelství - náměstek pro ošetřovatelskou péči, manažer kvality', '1', 'bozp_rizika-reditelstvi_-_namestek_pro_osetrovatelskou_peci,_manazer_kvality-priloha-1-revize-1.pdf', 'Schváleno', NULL, 11, '2023-03-14 08:14:02', '2023-03-14 08:14:02'),
+(136, 293, 33, 2, 'Ředitelství - metrolog', '1', 'bozp_rizika-reditelstvi_-_metrolog-priloha-2-revize-1.pdf', 'Schváleno', NULL, 11, '2023-03-14 08:14:19', '2023-03-14 08:14:19'),
+(137, 293, 33, 3, 'Ředitelství - pokladna', '1', 'bozp_rizika-reditelstvi_-_pokladna-priloha-3-revize-1.pdf', 'Schváleno', NULL, 11, '2023-03-14 08:14:43', '2023-03-14 08:14:43'),
+(138, 293, 33, 4, 'Ředitelství - sociální pracovník', '1', 'bozp_rizika-reditelstvi_-_socialni_pracovnik-priloha-4-revize-1.pdf', 'Schváleno', NULL, 11, '2023-03-14 08:15:15', '2023-03-14 08:15:15'),
+(139, 295, 33, 1, 'Stravovací provoz - vedoucí', '1', 'bozp_rizika-stravovaci_provoz_-_vedouci-priloha-1-revize-1.pdf', 'Schváleno', NULL, 11, '2023-03-14 08:17:03', '2023-03-14 08:17:03'),
+(140, 295, 33, 2, 'Stravovací provoz - nutriční terapeut', '1', 'bozp_rizika-stravovaci_provoz_-_nutricni_terapeut-priloha-2-revize-1.pdf', 'Schváleno', NULL, 11, '2023-03-14 08:17:23', '2023-03-14 08:17:23'),
+(141, 295, 33, 3, 'Stravovací provoz - šéfkuchař, odborný kuchař', '1', 'bozp_rizika-stravovaci_provoz_-_sefkuchar,_odborny_kuchar-priloha-3-revize-1.pdf', 'Schváleno', NULL, 11, '2023-03-14 08:17:48', '2023-03-14 08:17:48'),
+(142, 295, 33, 4, 'Stravovací provoz - skladní, pomocný kuchař', '1', 'bozp_rizika-stravovaci_provoz_-_skladni,_pomocny_kuchar-priloha-4-revize-1.pdf', 'Schváleno', NULL, 11, '2023-03-14 08:18:20', '2023-03-14 08:18:20'),
+(143, 295, 33, 5, 'Stravovací provoz - pracovník rozvozu, kuchařka', '1', 'bozp_rizika-stravovaci_provoz_-_pracovnik_rozvozu,_kucharka-priloha-5-revize-1.pdf', 'Schváleno', NULL, 11, '2023-03-14 08:18:52', '2023-03-14 08:18:52'),
+(144, 295, 33, 6, 'Stravovací provoz - prodavačka kantýna', '1', 'bozp_rizika-stravovaci_provoz_-_prodavacka_kantyna-priloha-6-revize-1.pdf', 'Schváleno', NULL, 11, '2023-03-14 08:19:14', '2023-03-14 08:19:14'),
+(145, 296, 33, 1, 'Úklid - vedoucí úklidu, uklízečky', '1', 'bozp_rizika-uklid_-_vedouci_uklidu,_uklizecky-priloha-1-revize-1.pdf', 'Schváleno', NULL, 11, '2023-03-14 08:19:46', '2023-03-14 08:19:46'),
+(146, 296, 33, 2, 'Úklid - okenář', '1', 'bozp_rizika-uklid_-_okenar-priloha-2-revize-1.pdf', 'Schváleno', NULL, 11, '2023-03-14 08:20:05', '2023-03-14 08:20:05'),
+(147, 274, 33, 1, 'Ambulance anesteziologická - lékaři', '1', 'bozp_rizika-ambulance_anesteziologicka_-_lekari-priloha-1-revize-1.pdf', 'Schváleno', NULL, 11, '2023-03-14 08:28:46', '2023-03-14 08:28:46'),
+(148, 274, 33, 2, 'Ambulance anesteziologická - sestra', '1', 'bozp_rizika-ambulance_anesteziologicka_-_sestra-priloha-2-revize-1.pdf', 'Schváleno', NULL, 11, '2023-03-14 08:29:07', '2023-03-14 08:29:07'),
+(149, 274, 33, 3, 'Ambulance anesteziologická - sanitář', '1', 'bozp_rizika-ambulance_anesteziologicka_-_sanitar-priloha-3-revize-1.pdf', 'Schváleno', NULL, 11, '2023-03-14 08:29:45', '2023-03-14 08:29:45');
 
 -- --------------------------------------------------------
 
@@ -101,40 +175,40 @@ INSERT INTO `addons` (`id`, `document_id`, `category_id`, `position`, `descripti
 --
 
 CREATE TABLE `adversevents` (
-  `id` bigint UNSIGNED NOT NULL,
-  `department_id` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
-  `misto` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `id` bigint(20) UNSIGNED NOT NULL,
+  `department_id` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `misto` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `datum_cas` date NOT NULL,
   `cas` time NOT NULL,
-  `spec_druh` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
-  `jinydoplnek` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `pracovnik` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
-  `svedek` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `pacient` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `spec_druh` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `jinydoplnek` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `pracovnik` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `svedek` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `pacient` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `datumnaroz` date DEFAULT NULL,
-  `chorobopis` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `udalost` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
-  `reseni` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `opatreni` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `informovan` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `pricina` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `jina_pricina` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `stav_pacienta` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `lokalizace` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `druh_zraneni` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `preventivni_opatreni` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `zhodnoceni_stavu` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `chorobopis` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `udalost` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `reseni` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `opatreni` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `informovan` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `pricina` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `jina_pricina` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `stav_pacienta` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `lokalizace` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `druh_zraneni` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `preventivni_opatreni` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `zhodnoceni_stavu` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `datum` date DEFAULT NULL,
-  `jmeno_lekare` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `vyvoj` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `upresneni` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `status` enum('Rozpracováno','Odesláno','Dokončeno') CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
-  `resitel` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `vyjadreni` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `resitel1` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `vyjadreni1` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `resitel2` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `vyjadreni2` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `jmeno_lekare` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `vyvoj` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `upresneni` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `status` enum('Rozpracováno','Odesláno','Dokončeno') COLLATE utf8mb4_unicode_ci NOT NULL,
+  `resitel` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `vyjadreni` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `resitel1` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `vyjadreni1` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `resitel2` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `vyjadreni2` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
@@ -166,11 +240,11 @@ INSERT INTO `adversevents` (`id`, `department_id`, `misto`, `datum_cas`, `cas`, 
 --
 
 CREATE TABLE `attendances` (
-  `id` bigint UNSIGNED NOT NULL,
-  `training_id` int NOT NULL,
-  `personal_number` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
-  `last_name` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
-  `first_name` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `id` bigint(20) UNSIGNED NOT NULL,
+  `training_id` int(11) NOT NULL,
+  `personal_number` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `last_name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `first_name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `start_time` time DEFAULT NULL,
   `end_time` time DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
@@ -184,30 +258,51 @@ CREATE TABLE `attendances` (
 --
 
 CREATE TABLE `bozps` (
-  `id` bigint UNSIGNED NOT NULL,
-  `category_id` bigint NOT NULL,
-  `accordion_name` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
-  `accordion_group` int DEFAULT NULL,
-  `position` int NOT NULL,
-  `document_position` int NOT NULL,
-  `document_name` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
-  `description` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
-  `processed` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `authorize` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `examine` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `id` bigint(20) UNSIGNED NOT NULL,
+  `category_id` bigint(20) NOT NULL,
+  `accordion_name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `accordion_group` int(11) DEFAULT NULL,
+  `position` int(11) NOT NULL,
+  `document_position` int(11) NOT NULL,
+  `document_name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `description` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `processed` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `authorize` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `examine` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `efficiency` date DEFAULT NULL,
-  `revision` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `revision` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `revision_date` date DEFAULT NULL,
   `next_revision_date` date DEFAULT NULL,
-  `tags` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `file` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
-  `unique_code` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `status` enum('Rozpracováno','Schváleno') CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
-  `user_id` int NOT NULL,
-  `onscreen` int NOT NULL,
+  `tags` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `file` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `unique_code` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `status` enum('Rozpracováno','Schváleno') COLLATE utf8mb4_unicode_ci NOT NULL,
+  `user_id` int(11) NOT NULL,
+  `onscreen` int(11) NOT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Struktura tabulky `bulletins`
+--
+
+CREATE TABLE `bulletins` (
+  `id` bigint(20) UNSIGNED NOT NULL,
+  `edition` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `date_edition` date NOT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Vypisuji data pro tabulku `bulletins`
+--
+
+INSERT INTO `bulletins` (`id`, `edition`, `date_edition`, `created_at`, `updated_at`) VALUES
+(1, 'Bulletin č.1', '2023-03-12', NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -216,9 +311,9 @@ CREATE TABLE `bozps` (
 --
 
 CREATE TABLE `calendar` (
-  `id` bigint NOT NULL,
+  `id` bigint(20) NOT NULL,
   `date` date DEFAULT NULL,
-  `interni` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL
+  `interni` varchar(50) COLLATE utf8mb4_unicode_ci DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
@@ -599,16 +694,16 @@ INSERT INTO `calendar` (`id`, `date`, `interni`) VALUES
 --
 
 CREATE TABLE `categories` (
-  `id` bigint UNSIGNED NOT NULL,
-  `category_file` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
-  `category_type` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
-  `category_name` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
-  `folder_name` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
-  `category_icon` text CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
-  `svg_icon` text CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
-  `fa_icon` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `button` text CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
-  `color` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL
+  `id` bigint(20) UNSIGNED NOT NULL,
+  `category_file` varchar(50) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `category_type` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `category_name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `folder_name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `category_icon` text COLLATE utf8mb4_unicode_ci NOT NULL,
+  `svg_icon` text COLLATE utf8mb4_unicode_ci NOT NULL,
+  `fa_icon` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `button` text COLLATE utf8mb4_unicode_ci NOT NULL,
+  `color` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
@@ -647,10 +742,10 @@ INSERT INTO `categories` (`id`, `category_file`, `category_type`, `category_name
 (29, 'bozp', 'bozp', 'Pracovní úrazy', 'pracovni-urazy', 'pracovni-urazy.png', '<svg xmlns=\"http://www.w3.org/2000/svg\" class=\"icon text-pink\" width=\"40\" height=\"40\" viewBox=\"0 0 24 24\" stroke-width=\"2\" stroke=\"currentColor\" fill=\"none\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><path stroke=\"none\" d=\"M0 0h24v24H0z\" fill=\"none\"></path><path d=\"M14 12l0 .01\"></path><path d=\"M10 12l0 .01\"></path><path d=\"M12 10l0 .01\"></path><path d=\"M12 14l0 .01\"></path><path d=\"M4.5 12.5l8 -8a4.94 4.94 0 0 1 7 7l-8 8a4.94 4.94 0 0 1 -7 -7\"></path></svg>', NULL, 'pracovní úrazy', 'pink'),
 (30, 'bozp', 'bozp', 'Bezpečnostní značení', 'bezpecnostni-znaceni', 'bezpecnostni-znaceni.png', '<svg xmlns=\"http://www.w3.org/2000/svg\" class=\"icon text-yellow\" width=\"40\" height=\"40\" viewBox=\"0 0 24 24\" stroke-width=\"2\" stroke=\"currentColor\" fill=\"none\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><path stroke=\"none\" d=\"M0 0h24v24H0z\" fill=\"none\"></path><circle cx=\"8.5\" cy=\"8.5\" r=\"1\" fill=\"currentColor\"></circle><path d=\"M4 7v3.859c0 .537 .213 1.052 .593 1.432l8.116 8.116a2.025 2.025 0 0 0 2.864 0l4.834 -4.834a2.025 2.025 0 0 0 0 -2.864l-8.117 -8.116a2.025 2.025 0 0 0 -1.431 -.593h-3.859a3 3 0 0 0 -3 3z\"></path></svg>', NULL, 'bezpečnostní značení', 'yellow'),
 (31, 'bozp', 'bozp', 'Prověrky a kontroly', 'proverky-kontroly', 'proverky-kontroly.png', '<svg xmlns=\"http://www.w3.org/2000/svg\" class=\"icon text-azure\" width=\"40\" height=\"40\" viewBox=\"0 0 24 24\" stroke-width=\"2\" stroke=\"currentColor\" fill=\"none\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><path stroke=\"none\" d=\"M0 0h24v24H0z\" fill=\"none\"></path><path d=\"M12 14m-2 0a2 2 0 1 0 4 0a2 2 0 1 0 -4 0\"></path><path d=\"M12 10.5v1.5\"></path><path d=\"M12 16v1.5\"></path><path d=\"M15.031 12.25l-1.299 .75\"></path><path d=\"M10.268 15l-1.3 .75\"></path><path d=\"M15 15.803l-1.285 -.773\"></path><path d=\"M10.285 12.97l-1.285 -.773\"></path><path d=\"M14 3v4a1 1 0 0 0 1 1h4\"></path><path d=\"M17 21h-10a2 2 0 0 1 -2 -2v-14a2 2 0 0 1 2 -2h7l5 5v11a2 2 0 0 1 -2 2z\"></path></svg>', NULL, 'prověrky a kontroly', 'azure'),
-(32, 'bozp', 'bozp', 'Provozně bezp. předpisy', 'provozne-bezpecnostni-predpisy', 'provozne-bezpecnostni-predpisy.png', '<svg xmlns=\"http://www.w3.org/2000/svg\" class=\"icon text-teal\" width=\"40\" height=\"40\" viewBox=\"0 0 24 24\" stroke-width=\"2\" stroke=\"currentColor\" fill=\"none\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><path stroke=\"none\" d=\"M0 0h24v24H0z\" fill=\"none\"></path><path d=\"M11.99 1.968c1.023 0 1.97 .521 2.512 1.359l.103 .172l7.1 12.25l.062 .126a3 3 0 0 1 -2.568 4.117l-.199 .008h-14l-.049 -.003l-.112 .002a3 3 0 0 1 -2.268 -1.226l-.109 -.16a3 3 0 0 1 -.32 -2.545l.072 -.194l.06 -.125l7.092 -12.233a3 3 0 0 1 2.625 -1.548zm.02 12.032l-.127 .007a1 1 0 0 0 0 1.986l.117 .007l.127 -.007a1 1 0 0 0 0 -1.986l-.117 -.007zm-.01 -6a1 1 0 0 0 -.993 .883l-.007 .117v2l.007 .117a1 1 0 0 0 1.986 0l.007 -.117v-2l-.007 -.117a1 1 0 0 0 -.993 -.883z\" stroke-width=\"0\" fill=\"currentColor\"></path></svg>', NULL, 'provozně bezp. předpisy', 'teal'),
+(32, 'bozp', 'bozp', 'Provozně bezp. předpisy', 'provozne-bezpecnostni-predpisy', 'provozne-bezpecnostni-predpisy.png', '<svg xmlns=\"http://www.w3.org/2000/svg\" class=\"icon text-cyan\" width=\"24\" height=\"24\" viewBox=\"0 0 24 24\" stroke-width=\"2\" stroke=\"currentColor\" fill=\"none\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><path stroke=\"none\" d=\"M0 0h24v24H0z\" fill=\"none\"></path><path d=\"M3 5a2 2 0 0 1 2 -2h14a2 2 0 0 1 2 2v14a2 2 0 0 1 -2 2h-14a2 2 0 0 1 -2 -2v-14z\"></path><path d=\"M12 8v4\"></path><path d=\"M12 16h.01\"></path></svg>', NULL, 'provozně bezp. předpisy', 'cyan'),
 (33, 'bozp', 'bozp', 'Rizika', 'rizika', 'rizika.png', '<svg xmlns=\"http://www.w3.org/2000/svg\" class=\"icon text-green\" width=\"24\" height=\"24\" viewBox=\"0 0 24 24\" stroke-width=\"2\" stroke=\"currentColor\" fill=\"none\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><path stroke=\"none\" d=\"M0 0h24v24H0z\" fill=\"none\"></path><path d=\"M4 20l16 0\"></path><path d=\"M9.4 10l5.2 0\"></path><path d=\"M7.8 15l8.4 0\"></path><path d=\"M6 20l5 -15h2l5 15\"></path></svg>', NULL, 'rizika', 'green'),
 (34, 'bozp', 'bozp', 'Požární ochrana', 'pozarni-ochrana', 'pozarni-ochrana.png', '<svg xmlns=\"http://www.w3.org/2000/svg\" class=\"icon text-red\" width=\"24\" height=\"24\" viewBox=\"0 0 24 24\" stroke-width=\"2\" stroke=\"currentColor\" fill=\"none\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><path stroke=\"none\" d=\"M0 0h24v24H0z\" fill=\"none\"></path><path d=\"M5 17m-2 0a2 2 0 1 0 4 0a2 2 0 1 0 -4 0\"></path><path d=\"M17 17m-2 0a2 2 0 1 0 4 0a2 2 0 1 0 -4 0\"></path><path d=\"M7 18h8m4 0h2v-6a5 5 0 0 0 -5 -5h-1l1.5 5h4.5\"></path><path d=\"M12 18v-11h3\"></path><path d=\"M3 17l0 -5l9 0\"></path><path d=\"M3 9l18 -6\"></path><path d=\"M6 12l0 -4\"></path></svg>', NULL, 'požární ochrana', 'red'),
-(35, 'bozp', 'bozp', 'Požární operativní karty', 'pozarni-operativni-karty', 'pozarni-operativni-karty.png', '<svg xmlns=\"http://www.w3.org/2000/svg\" class=\"icon text-lime\" width=\"40\" height=\"40\" viewBox=\"0 0 24 24\" stroke-width=\"2\" stroke=\"currentColor\" fill=\"none\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><path stroke=\"none\" d=\"M0 0h24v24H0z\" fill=\"none\"></path><path d=\"M3.604 7.197l7.138 -3.109a.96 .96 0 0 1 1.27 .527l4.924 11.902a1 1 0 0 1 -.514 1.304l-7.137 3.109a.96 .96 0 0 1 -1.271 -.527l-4.924 -11.903a1 1 0 0 1 .514 -1.304z\"></path><path d=\"M15 4h1a1 1 0 0 1 1 1v3.5\"></path><path d=\"M20 6c.264 .112 .52 .217 .768 .315a1 1 0 0 1 .53 1.311l-2.298 5.374\"></path></svg>', NULL, 'požární operativní karty', 'lime'),
+(35, 'bozp', 'bozp', 'Požární operativní karty', 'pozarni-operativni-karty', 'pozarni-operativni-karty.png', '<svg xmlns=\"http://www.w3.org/2000/svg\" class=\"icon text-teal\" width=\"40\" height=\"40\" viewBox=\"0 0 24 24\" stroke-width=\"2\" stroke=\"currentColor\" fill=\"none\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><path stroke=\"none\" d=\"M0 0h24v24H0z\" fill=\"none\"></path><path d=\"M3.604 7.197l7.138 -3.109a.96 .96 0 0 1 1.27 .527l4.924 11.902a1 1 0 0 1 -.514 1.304l-7.137 3.109a.96 .96 0 0 1 -1.271 -.527l-4.924 -11.903a1 1 0 0 1 .514 -1.304z\"></path><path d=\"M15 4h1a1 1 0 0 1 1 1v3.5\"></path><path d=\"M20 6c.264 .112 .52 .217 .768 .315a1 1 0 0 1 .53 1.311l-2.298 5.374\"></path></svg>', NULL, 'požární operativní karty', 'teal'),
 (36, 'bozp', 'bozp', 'Bezpečnostní listy', 'bezpecnostni-listy', 'bezpecnostni-listy.png', '<svg xmlns=\"http://www.w3.org/2000/svg\" class=\"icon text-orange\" width=\"40\" height=\"40\" viewBox=\"0 0 24 24\" stroke-width=\"2\" stroke=\"currentColor\" fill=\"none\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><path stroke=\"none\" d=\"M0 0h24v24H0z\" fill=\"none\"></path><path d=\"M14 3v4a1 1 0 0 0 1 1h4\"></path><path d=\"M17 21h-10a2 2 0 0 1 -2 -2v-14a2 2 0 0 1 2 -2h7l5 5v11a2 2 0 0 1 -2 2z\"></path><path d=\"M9 17h6l-3 -6z\"></path></svg>', NULL, 'bezpečnostní listy', 'orange');
 
 -- --------------------------------------------------------
@@ -660,11 +755,11 @@ INSERT INTO `categories` (`id`, `category_file`, `category_type`, `category_name
 --
 
 CREATE TABLE `departments` (
-  `id` bigint UNSIGNED NOT NULL,
-  `department_code` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
-  `center_code` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
-  `color_id` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
-  `department_name` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL
+  `id` bigint(20) UNSIGNED NOT NULL,
+  `department_code` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `center_code` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `color_id` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `department_name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
@@ -711,26 +806,26 @@ INSERT INTO `departments` (`id`, `department_code`, `center_code`, `color_id`, `
 --
 
 CREATE TABLE `documents` (
-  `id` bigint UNSIGNED NOT NULL,
-  `category_id` bigint NOT NULL,
-  `accordion_name` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
-  `accordion_group` int DEFAULT NULL,
-  `position` int NOT NULL,
-  `name` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
-  `description` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
-  `processed` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `authorize` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `examine` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `id` bigint(20) UNSIGNED NOT NULL,
+  `category_id` bigint(20) NOT NULL,
+  `accordion_name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `accordion_group` int(11) DEFAULT NULL,
+  `position` int(11) NOT NULL,
+  `name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `description` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `processed` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `authorize` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `examine` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `efficiency` date DEFAULT NULL,
-  `revision` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `revision` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `next_revision_date` date DEFAULT NULL,
-  `tags` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `tags` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `revision_date` date DEFAULT NULL,
-  `file` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
-  `unique_code` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `status` enum('Schváleno','Rozpracováno') CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
-  `user_id` int NOT NULL,
-  `onscreen` int DEFAULT NULL,
+  `file` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `unique_code` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `status` enum('Schváleno','Rozpracováno') COLLATE utf8mb4_unicode_ci NOT NULL,
+  `user_id` int(11) NOT NULL,
+  `onscreen` int(11) DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
@@ -859,7 +954,7 @@ INSERT INTO `documents` (`id`, `category_id`, `accordion_name`, `accordion_group
 (138, 28, 'Školení BOZP - medicínské plyny (C&C s.r.o.)', NULL, 5, 'Školení BOZP - medicínské plyny (C&C s.r.o.)', 'Školení a instruktáž obsluhy plynového zařízení pro rozvod a distribuci medicínských plynů', 'Pribula Marek, Bc.', NULL, NULL, '2016-03-01', '1', '2017-03-01', NULL, '2016-03-01', 'bozp_prezencni-listiny-skoleni_a_instruktaz_obsluhy_plynoveho_zarizeni_pro_rozvod_a_distribuci_medicinskych_plynu-revize-1.pdf', 'BOZP28#5', 'Schváleno', 11, NULL, '2023-03-11 13:39:47', '2023-03-11 13:39:47'),
 (139, 28, 'Seznámení s riziky na pracovišti - zaměstnanci KHN a.s.', NULL, 6, 'Seznámení s riziky na pracovišti - zaměstnanci KHN a.s.', 'Seznaámení pracovníků s aktualizací rizik', 'Pribula Marek, Bc.', NULL, NULL, '2016-03-01', '1', '2017-03-01', NULL, '2016-03-01', 'bozp_prezencni-listiny-seznaameni_pracovniku_s_aktualizaci_rizik-revize-1.pdf', 'BOZP28#6', 'Schváleno', 11, NULL, '2023-03-11 13:41:12', '2023-03-11 13:41:12'),
 (140, 31, 'Záznam o kontrole - Alkohol', NULL, 1, 'Záznam o kontrole - Alkohol', 'Záznam o provedené orientační dechové zkoušce na zjištění přítomnosti alkoholu', 'Pribula Marek, Bc.', NULL, NULL, '2016-03-01', '1', '2017-03-01', NULL, '2016-03-01', 'bozp_proverky-kontroly-zaznam_o_provedene_orientacni_dechove_zkousce_na_zjisteni_pritomnosti_alkoholu-revize-1.pdf', 'BOZP31#1', 'Schváleno', 11, NULL, '2023-03-11 13:43:44', '2023-03-11 13:43:44'),
-(141, 31, 'Záznam o kontrole - Drogy', NULL, 2, 'Záznam o kontrole - Drogy', 'Záznam o provedení orientačního testu na drogy', 'Pribula Marek, Bc.', NULL, NULL, '2016-03-01', '1', '2017-03-01', NULL, '2016-03-01', 'bozp_proverky-kontroly-zaznam_o_provedeni_orientacniho_testu_na_drogy-revize-1.pdf', 'BOZP31#2', 'Schváleno', 11, NULL, '2023-03-11 13:44:50', '2023-03-11 13:44:50'),
+(141, 31, 'Záznam o kontrole - Drogy', NULL, 2, 'Záznam o kontrole - Drogy', 'Záznam o provedení orientačního testu na drogy', 'Pribula Marek, Bc.', NULL, NULL, '2016-03-01', '1', '2017-03-01', NULL, '2016-03-01', 'bozp_proverky-kontroly-zaznam_o_provedeni_orientacniho_testu_na_drogy-revize-1.pdf', 'BOZP31#2', 'Schváleno', 11, NULL, '2023-03-11 13:44:50', '2023-03-14 10:41:31'),
 (142, 29, 'Kniha úrazů a drobných poranění', NULL, 1, 'Kniha úrazů a drobných poranění', 'Kniha úrazů a drobných poranění', 'Pribula Marek, Bc.', NULL, NULL, '2016-03-01', '1', '2017-03-01', NULL, '2016-03-01', 'bozp_pracovni-urazy-kniha_urazu_a_drobnych_poraneni-revize-1.pdf', 'BOZP29#1', 'Schváleno', 11, NULL, '2023-03-11 13:48:54', '2023-03-11 13:48:54');
 INSERT INTO `documents` (`id`, `category_id`, `accordion_name`, `accordion_group`, `position`, `name`, `description`, `processed`, `authorize`, `examine`, `efficiency`, `revision`, `next_revision_date`, `tags`, `revision_date`, `file`, `unique_code`, `status`, `user_id`, `onscreen`, `created_at`, `updated_at`) VALUES
 (143, 36, 'Aceton', NULL, 1, 'Aceton', 'Bezpečnostní list - Aceton', 'Pribula Marek, Bc.', NULL, NULL, '2016-03-01', '1', '2017-03-01', NULL, '2016-03-01', 'bozp_bezpecnostni-listy-bezpecnostni_list_-_aceton-revize-1.pdf', 'BOZP36#1', 'Schváleno', 11, NULL, '2023-03-11 13:51:40', '2023-03-12 20:35:51'),
@@ -974,9 +1069,99 @@ INSERT INTO `documents` (`id`, `category_id`, `accordion_name`, `accordion_group
 (252, 36, 'Topmatic Universal', NULL, 109, 'Topmatic Universal', 'Bezpečnostní list - Topmatic Universal', 'Pribula Marek, Bc.', NULL, NULL, '2016-03-01', '1', '2017-03-01', NULL, '2016-03-01', 'bozp_bezpecnostni-listy-bezpecnostni_list_-_topmatic_universal-revize-1.pdf', 'BOZP36#109', 'Schváleno', 11, NULL, '2023-03-11 16:29:12', '2023-03-11 16:29:12'),
 (253, 36, 'WD-40', NULL, 110, 'WD-40', 'Bezpečnostní list - WD-40', 'Pribula Marek, Bc.', NULL, NULL, '2016-03-01', '1', '2017-03-01', NULL, '2016-03-01', 'bozp_bezpecnostni-listy-bezpecnostni_list_-_wd-40-revize-1.pdf', 'BOZP36#110', 'Schváleno', 11, NULL, '2023-03-11 16:29:39', '2023-03-11 16:29:39'),
 (254, 8, 'Čtyřkomovová galvanická lázeň', NULL, 8, 'Čtyřkomovová galvanická lázeň', 'Čtyřkomovová galvanická lázeň', 'Kolektiv fyzioterapeutů', 'Rada kvality', 'Bc. Bělicová Taťána', '2004-04-01', '8', '2022-10-01', NULL, '2021-10-01', 'standardy_rehabilitacni-ctyrkomovova_galvanicka_lazen-revize-8.pdf', 'STD8#8', 'Schváleno', 11, 14, '2023-03-11 17:20:23', '2023-03-12 21:42:57'),
-(255, 30, 'Značení v objektech', NULL, 1, 'Značení v objektech', 'Význam bezpečnostních zkratek a značení v KHN a.s.', 'Pribula Marek, Bc.', NULL, NULL, '2016-03-01', '1', '2017-03-01', NULL, '2016-03-01', 'bozp_bezpecnostni-znaceni-vyznam_bezpecnostnich_zkratek_a_znaceni_v_khn_a.s.-revize-1.pdf', 'BOZP30#1', 'Schváleno', 11, 13, '2023-03-12 10:17:15', '2023-03-12 20:32:37'),
+(255, 30, 'Značení v objektech', NULL, 1, 'Značení v objektech', 'Význam bezpečnostních zkratek a značení v KHN a.s.', 'Pribula Marek, Bc.', NULL, NULL, '2016-03-01', '1', '2017-03-01', NULL, '2016-03-01', 'bozp_bezpecnostni-znaceni-vyznam_bezpecnostnich_zkratek_a_znaceni_v_khn_a_s_-revize-1.pdf', 'BOZP30#1', 'Schváleno', 11, NULL, '2023-03-12 10:17:15', '2023-03-14 05:59:45'),
 (256, 30, 'Barevné označení zásuvek', NULL, 2, 'Barevné označení zásuvek', 'Barevné označení zásuvkových vývodů OP a JIP', 'Pribula Marek, Bc.', NULL, NULL, '2016-03-01', '1', '2017-03-01', NULL, '2016-03-01', 'bozp_bezpecnostni-znaceni-barevne_oznaceni_zasuvkovych_vyvodu_op_a_jip-revize-1.pdf', 'BOZP30#2', 'Schváleno', 11, NULL, '2023-03-12 10:18:06', '2023-03-12 10:25:12'),
-(257, 30, 'Barevné označení zásuvek', NULL, 3, 'Barevné označení zásuvek', 'Barevné označení zásuvkových vývodů CPM', 'Pribula Marek, Bc.', NULL, NULL, '0216-03-01', '1', '0217-03-01', NULL, '0216-03-01', 'bozp_bezpecnostni-znaceni-barevne_oznaceni_zasuvkovych_vyvodu_cpm-revize-1.pdf', 'BOZP30#3', 'Schváleno', 11, NULL, '2023-03-12 10:18:32', '2023-03-12 10:24:16');
+(257, 30, 'Barevné označení zásuvek', NULL, 3, 'Barevné označení zásuvek', 'Barevné označení zásuvkových vývodů CPM', 'Pribula Marek, Bc.', NULL, NULL, '0216-03-01', '1', '0217-03-01', NULL, '0216-03-01', 'bozp_bezpecnostni-znaceni-barevne_oznaceni_zasuvkovych_vyvodu_cpm-revize-1.pdf', 'BOZP30#3', 'Schváleno', 11, NULL, '2023-03-12 10:18:32', '2023-03-12 10:24:16'),
+(262, 32, 'MPBP pro sklady ve stravovacím provozu', NULL, 1, 'MPBP pro sklady ve stravovacím provozu', 'Místní provozně bezpečnostní předpis skladů stravovacího provozu', 'Pribula Marek, Bc.', NULL, NULL, '2016-03-01', '1', '2019-03-01', NULL, '2016-03-01', 'bozp_provozne-bezpecnostni-predpisy-mistni_provozne_bezpecnostni_predpis_skladu_stravovaciho_provozu-revize-1.pdf', 'BOZP32#1', 'Schváleno', 11, NULL, '2023-03-13 04:10:10', '2023-03-13 04:10:10'),
+(263, 32, 'MPBP pro odpojovače, odpínače, pojistky', NULL, 2, 'MPBP pro odpojovače, odpínače, pojistky', 'Místní provozně bezpečnostní předpis odpojovače a odpínače NN, výměna pojistek v rozvodnách KHN a.s.', 'Pribula Marek, Bc.', NULL, NULL, '2012-06-01', '1', '2019-03-01', NULL, '2016-03-01', 'bozp_provozne-bezpecnostni-predpisy-mistni_provozne_bezpecnostni_predpis_odpojovace_a_odpinace_nn,_vymena_pojistek_v_rozvodnach_khn_a.s.-revize-1.pdf', 'BOZP32#2', 'Schváleno', 11, NULL, '2023-03-13 04:12:01', '2023-03-13 04:12:01'),
+(264, 32, 'MPBP pro používání elektrických spotřebičů', NULL, 3, 'MPBP pro používání elektrických spotřebičů', 'Místní provozně bezpečnostní předpis pro používání elektrických spotřebičů', 'Pribula Marek, Bc.', NULL, NULL, '2014-03-01', '1', '2019-03-01', NULL, '2016-03-01', 'bozp_provozne-bezpecnostni-predpisy-mistni_provozne_bezpecnostni_predpis_pro_pouzivani_elektrickych_spotrebicu-revize-1.pdf', 'BOZP32#3', 'Schváleno', 11, NULL, '2023-03-13 04:13:18', '2023-03-13 04:13:18'),
+(265, 32, 'MPBP pro práce pod napětím na elektrickém zařízení NN', NULL, 4, 'MPBP pro práce pod napětím na elektrickém zařízení NN', 'Místní provozně bezpečnostní předpis: práce pod napětím na elektrickém zařízení NN', 'Pribula Marek, Bc.', NULL, NULL, '2012-06-01', '1', '2019-03-27', NULL, '2016-03-27', 'bozp_provozne-bezpecnostni-predpisy-mistni_provozne_bezpecnostni_predpis-_prace_pod_napetim_na_elektrickem_zarizeni_nn-revize-1.pdf', 'BOZP32#4', 'Schváleno', 11, NULL, '2023-03-13 04:19:00', '2023-03-13 04:19:00'),
+(266, 32, 'MPBP pro tlakové nádoby', NULL, 5, 'MPBP pro tlakové nádoby', 'Místní provozně bezpečnostní předpis tlakové nádoby', 'Pribula Marek, Bc.', NULL, NULL, '2011-01-15', '1', '2019-03-27', NULL, '2016-03-27', 'bozp_provozne-bezpecnostni-predpisy-mistni_provozne_bezpecnostni_predpis_tlakove_nadoby-revize-1.pdf', 'BOZP32#5', 'Schváleno', 11, NULL, '2023-03-13 04:20:15', '2023-03-13 04:20:15'),
+(267, 32, 'MPBP pro trafostanice', NULL, 6, 'MPBP pro trafostanice', 'Místní provozně bezpečnostní předpis trafostanice KA_9216 odpojovače a odpínače VN v rozvodnách KHN.a.s.', 'Pribula Marek, Bc.', NULL, NULL, '2012-03-27', '1', '2019-03-27', NULL, '2016-03-27', 'bozp_provozne-bezpecnostni-predpisy-mistni_provozne_bezpecnostni_predpis_trafostanice_ka_9216_odpojovace_a_odpinace_vn_v_rozvodnach_khn.a.s.-revize-1.pdf', 'BOZP32#6', 'Schváleno', 11, NULL, '2023-03-13 04:22:30', '2023-03-13 04:22:30'),
+(268, 32, 'MPBP pro záložní zdroj', NULL, 7, 'MPBP pro záložní zdroj', 'Místní provozně bezpečnostní předpis dieselagregátu BCV 275-50EZ-energoblok BCJD 30S-CPM', 'Pribula Marek, Bc.', NULL, NULL, '2012-06-01', '1', '2019-03-27', NULL, '2016-03-27', 'bozp_provozne-bezpecnostni-predpisy-mistni_provozne_bezpecnostni_predpis_dieselagregatu_bcv_275-50ez-energoblok_bcjd_30s-cpm-revize-1.pdf', 'BOZP32#7', 'Schváleno', 11, NULL, '2023-03-13 04:24:47', '2023-03-13 04:24:47'),
+(269, 32, 'MPBP mediciální rozvody', NULL, 8, 'MPBP mediciální rozvody', 'Místní provozně bezpečnostní předpis medicinálních rozvodů', 'Pribula Marek, Bc.', NULL, NULL, '2014-12-15', '1', '2019-03-27', NULL, '2016-03-27', 'bozp_provozne-bezpecnostni-predpisy-mistni_provozne_bezpecnostni_predpis_medicinalnich_rozvodu-revize-1.pdf', 'BOZP32#8', 'Schváleno', 11, NULL, '2023-03-13 04:26:17', '2023-03-13 04:26:17'),
+(270, 32, 'MPBP pro provoz dopravních prostředků', NULL, 9, 'MPBP pro provoz dopravních prostředků', 'Místní provozně bezpečnostní předpis pro provozování dopravních prostředků a údržby komunikací', 'Pribula Marek, Bc.', NULL, NULL, '2016-10-24', '1', '2020-10-01', NULL, '2018-10-01', 'bozp_provozne-bezpecnostni-predpisy-mistni_provozne_bezpecnostni_predpis_pro_provozovani_dopravnich_prostredku_a_udrzby_komunikaci-revize-1.pdf', 'BOZP32#9', 'Schváleno', 11, NULL, '2023-03-13 04:28:07', '2023-03-13 04:28:07'),
+(271, 32, 'MPBP pro obsluhu úpravny bazenové vody', NULL, 10, 'MPBP pro obsluhu úpravny bazenové vody', 'Místní provozně bezpečnostní předpis pro obsluhu úpravny bazénové vody', 'Pribula Marek, Bc.', NULL, NULL, '2018-05-02', '1', '2020-05-01', NULL, '2019-05-01', 'bozp_provozne-bezpecnostni-predpisy-mistni_provozne_bezpecnostni_predpis_pro_obsluhu_upravny_bazenove_vody-revize-1.pdf', 'BOZP32#10', 'Schváleno', 11, NULL, '2023-03-13 04:29:19', '2023-03-13 04:29:19'),
+(272, 32, 'Používání evakuačních výtahů', NULL, 11, 'Používání evakuačních výtahů', 'Předpis pro používání evakuačních výtahů', 'Pribula Marek, Bc.', NULL, NULL, '2016-03-01', '1', '2017-03-01', NULL, '2016-03-01', 'bozp_provozne-bezpecnostni-predpisy-predpis_pro_pouzivani_evakuacnich_vytahu-revize-1.pdf', 'BOZP32#11', 'Schváleno', 11, NULL, '2023-03-13 04:30:54', '2023-03-13 04:30:54'),
+(273, 32, 'Ruční maipulace s pacienty', NULL, 12, 'Ruční maipulace s pacienty', 'Pracovní postupy pro manipulaci s pacienty předcházející vzniku muskuloskeletárních poruch (MSD)', 'Pribula Marek, Bc.', NULL, NULL, '2018-05-01', '1', '2019-05-01', NULL, '2018-05-01', 'bozp_provozne-bezpecnostni-predpisy-pracovni_postupy_pro_manipulaci_s_pacienty_predchazejici_vzniku_muskuloskeletarnich_poruch_(msd)-revize-1.pdf', 'BOZP32#12', 'Schváleno', 11, NULL, '2023-03-13 04:32:27', '2023-03-13 04:32:27'),
+(274, 33, 'Ambulance anesteziologická', NULL, 1, 'Ambulance anesteziologická', 'Soubor rizik a bezpečnostních opatření', 'Pribula Marek, Bc.', NULL, NULL, '2014-09-01', '1', '2015-09-01', NULL, '2014-09-01', 'bozp_rizika-ambulance_anesteziologicka-soubor_rizik_a_bezpecnostnich_opatreni-revize-1.pdf', 'BOZP33#1', 'Schváleno', 11, NULL, '2023-03-13 04:39:31', '2023-03-14 09:18:26'),
+(275, 33, 'Ambulance interní', NULL, 2, 'Ambulance interní', 'Soubor rizik a bezpečnostních opatření', 'Pribula Marek, Bc.', NULL, NULL, '2014-09-01', '1', '2015-09-01', NULL, '2014-09-01', 'bozp_rizika-ambulance_interni-soubor_rizik_a_bezpecnostnich_opatreni-revize-1.pdf', 'BOZP33#2', 'Schváleno', 11, NULL, '2023-03-13 04:40:13', '2023-03-14 09:17:26'),
+(276, 33, 'Ambulance neurologická', NULL, 3, 'Ambulance neurologická', 'Soubor rizik a bezpečnostních opatření', 'Pribula Marek, Bc.', NULL, NULL, '2014-09-01', '1', '2015-09-01', NULL, '2014-09-01', 'bozp_rizika-ambulance_neurologicka-soubor_rizik_a_bezpecnostnich_opatreni-revize-1.pdf', 'BOZP33#3', 'Schváleno', 11, NULL, '2023-03-13 04:41:01', '2023-03-14 09:19:08'),
+(277, 33, 'Ambulance ONP a ortopedická', NULL, 4, 'Ambulance ONP a ortopedická', 'Soubor rizik a bezpečnostních opatření', 'Pribula Marek, Bc.', NULL, NULL, '2014-09-01', '1', '2015-09-01', NULL, '2014-09-01', 'bozp_rizika-ambulance_onp_a_ortopedicka-soubor_rizik_a_bezpecnostnich_opatreni-revize-1.pdf', 'BOZP33#4', 'Schváleno', 11, NULL, '2023-03-13 04:41:49', '2023-03-14 09:50:52'),
+(278, 33, 'Ambulance rehabilitační', NULL, 5, 'Ambulance rehabilitační', 'Soubor rizik a bezpečnostních opatření', 'Pribula Marek, Bc.', NULL, NULL, '2014-09-01', '1', '2015-09-01', NULL, '2014-09-01', 'bozp_rizika-ambulance_rehabilitacni-soubor_rizik_a_bezpecnostnich_opatreni-revize-1.pdf', 'BOZP33#5', 'Schváleno', 11, NULL, '2023-03-13 04:42:20', '2023-03-14 09:51:44'),
+(279, 33, 'Interní oddělení', NULL, 6, 'Interní oddělení', 'Soubor rizik a bezpečnostních opatření', 'Pribula Marek, Bc.', NULL, NULL, '2014-09-01', '1', '2015-09-01', NULL, '2014-09-01', 'bozp_rizika-interni_oddeleni-soubor_rizik_a_bezpecnostnich_opatreni-revize-1.pdf', 'BOZP33#6', 'Schváleno', 11, NULL, '2023-03-13 04:43:05', '2023-03-14 09:52:02'),
+(280, 33, 'JIP mezioborová', NULL, 7, 'JIP mezioborová', 'Soubor rizik a bezpečnostních opatření', 'Pribula Marek, Bc.', NULL, NULL, '2014-09-01', '1', '2015-09-01', NULL, '2014-09-01', 'bozp_rizika-jip_mezioborova-soubor_rizik_a_bezpecnostnich_opatreni-revize-1.pdf', 'BOZP33#7', 'Schváleno', 11, NULL, '2023-03-13 04:43:25', '2023-03-14 09:52:18'),
+(281, 33, 'JIP oddělení nemoci páteře', NULL, 8, 'JIP oddělení nemoci páteře', 'Soubor rizik a bezpečnostních opatření', 'Pribula Marek, Bc.', NULL, NULL, '2014-09-01', '1', '2015-09-01', NULL, '2014-09-01', 'bozp_rizika-jip_oddeleni_nemoci_patere-soubor_rizik_a_bezpecnostnich_opatreni-revize-1.pdf', 'BOZP33#8', 'Schváleno', 11, NULL, '2023-03-13 04:44:28', '2023-03-14 09:52:32'),
+(282, 33, 'Lékárna', NULL, 9, 'Lékárna', 'Soubor rizik a bezpečnostních opatření', 'Pribula Marek, Bc.', NULL, NULL, '2014-09-01', '1', '2015-09-01', NULL, '2014-09-01', 'bozp_rizika-lekarna-soubor_rizik_a_bezpecnostnich_opatreni-revize-1.pdf', 'BOZP33#9', 'Schváleno', 11, NULL, '2023-03-13 04:45:06', '2023-03-14 09:52:55'),
+(283, 33, 'Neurologické oddělení', NULL, 10, 'Neurologické oddělení', 'Soubor rizik a bezpečnostních opatření', 'Pribula Marek, Bc.', NULL, NULL, '2014-09-01', '1', '2015-09-01', NULL, '2014-09-01', 'bozp_rizika-neurologicke_oddeleni-soubor_rizik_a_bezpecnostnich_opatreni-revize-1.pdf', 'BOZP33#10', 'Schváleno', 11, NULL, '2023-03-13 04:45:33', '2023-03-14 09:53:40'),
+(284, 33, 'Oddělení nemoci páteře', NULL, 11, 'Oddělení nemoci páteře', 'Soubor rizik a bezpečnostních opatření', 'Pribula Marek, Bc.', NULL, NULL, '2014-09-01', '1', '2015-09-01', NULL, '2014-09-01', 'bozp_rizika-oddeleni_nemoci_patere-soubor_rizik_a_bezpecnostnich_opatreni-revize-1.pdf', 'BOZP33#11', 'Schváleno', 11, NULL, '2023-03-13 04:46:09', '2023-03-14 09:54:08'),
+(285, 33, 'OCHP', NULL, 12, 'OCHP', 'Soubor rizik a bezpečnostních opatření', 'Pribula Marek, Bc.', NULL, NULL, '2014-09-01', '1', '2015-09-01', NULL, '2014-09-01', 'bozp_rizika-ochp-soubor_rizik_a_bezpecnostnich_opatreni-revize-1.pdf', 'BOZP33#12', 'Schváleno', 11, NULL, '2023-03-13 04:46:56', '2023-03-14 09:55:00'),
+(286, 33, 'OKB', NULL, 13, 'OKB', 'Soubor rizik a bezpečnostních opatření', 'Pribula Marek, Bc.', NULL, NULL, '2014-09-01', '1', '2015-09-01', NULL, '2014-09-01', 'bozp_rizika-okb-soubor_rizik_a_bezpecnostnich_opatreni-revize-1.pdf', 'BOZP33#13', 'Schváleno', 11, NULL, '2023-03-13 04:47:15', '2023-03-14 09:55:14'),
+(287, 33, 'Operační sály', NULL, 14, 'Operační sály', 'Soubor rizik a bezpečnostních opatření', 'Pribula Marek, Bc.', NULL, NULL, '2014-09-01', '1', '2015-09-01', NULL, '2014-09-01', 'bozp_rizika-operacni_saly-soubor_rizik_a_bezpecnostnich_opatreni-revize-1.pdf', 'BOZP33#14', 'Schváleno', 11, NULL, '2023-03-13 04:47:40', '2023-03-14 10:05:09'),
+(288, 33, 'OPLS', NULL, 15, 'OPLS', 'Soubor rizik a bezpečnostních opatření', 'Pribula Marek, Bc.', NULL, NULL, '2014-09-01', '1', '2015-09-01', NULL, '2014-09-01', 'bozp_rizika-opls-soubor_rizik_a_bezpecnostnich_opatreni-revize-1.pdf', 'BOZP33#15', 'Schváleno', 11, NULL, '2023-03-13 04:48:07', '2023-03-14 10:10:18');
+INSERT INTO `documents` (`id`, `category_id`, `accordion_name`, `accordion_group`, `position`, `name`, `description`, `processed`, `authorize`, `examine`, `efficiency`, `revision`, `next_revision_date`, `tags`, `revision_date`, `file`, `unique_code`, `status`, `user_id`, `onscreen`, `created_at`, `updated_at`) VALUES
+(289, 33, 'Ortopedické oddělení', NULL, 16, 'Ortopedické oddělení', 'Soubor rizik a bezpečnostních opatření', 'Pribula Marek, Bc.', NULL, NULL, '2014-09-01', '1', '2015-09-01', NULL, '2014-09-01', 'bozp_rizika-ortopedicke_oddeleni-soubor_rizik_a_bezpecnostnich_opatreni-revize-1.pdf', 'BOZP33#16', 'Schváleno', 11, NULL, '2023-03-13 04:48:28', '2023-03-14 10:10:58'),
+(290, 33, 'Provozní úsek', NULL, 17, 'Provozní úsek', 'Soubor rizik a bezpečnostních opatření', 'Pribula Marek, Bc.', NULL, NULL, '2014-09-01', '1', '2015-09-01', NULL, '2014-09-01', 'bozp_rizika-provozni_usek-soubor_rizik_a_bezpecnostnich_opatreni-revize-1.pdf', 'BOZP33#17', 'Schváleno', 11, NULL, '2023-03-13 04:49:03', '2023-03-14 10:11:13'),
+(291, 33, 'RDG', NULL, 18, 'RDG', 'Soubor rizik a bezpečnostních opatření', 'Pribula Marek, Bc.', NULL, NULL, '2014-09-01', '1', '2015-09-01', NULL, '2014-09-01', 'bozp_rizika-rdg-soubor_rizik_a_bezpecnostnich_opatreni-revize-1.pdf', 'BOZP33#18', 'Schváleno', 11, NULL, '2023-03-13 04:49:35', '2023-03-14 10:11:26'),
+(292, 33, 'Rehabilitační oddělení', NULL, 19, 'Rehabilitační oddělení', 'Soubor rizik a bezpečnostních opatření', 'Pribula Marek, Bc.', NULL, NULL, '2014-09-01', '1', '2015-09-01', NULL, '2014-09-01', 'bozp_rizika-rehabilitacni_oddeleni-soubor_rizik_a_bezpecnostnich_opatreni-revize-1.pdf', 'BOZP33#19', 'Schváleno', 11, NULL, '2023-03-13 04:50:02', '2023-03-14 10:11:42'),
+(293, 33, 'Ředitelství', NULL, 20, 'Ředitelství', 'Soubor rizik a bezpečnostních opatření', 'Pribula Marek, Bc.', NULL, NULL, '2014-09-01', '1', '2015-09-01', NULL, '2014-09-01', 'bozp_rizika-reditelstvi-soubor_rizik_a_bezpecnostnich_opatreni-revize-1.pdf', 'BOZP33#20', 'Schváleno', 11, NULL, '2023-03-13 04:50:26', '2023-03-14 10:11:54'),
+(294, 33, 'Řidiči', NULL, 21, 'Řidiči', 'Soubor rizik a bezpečnostních opatření', 'Pribula Marek, Bc.', NULL, NULL, '2014-09-01', '1', '2015-09-01', NULL, '2014-09-01', 'bozp_rizika-ridici-soubor_rizik_a_bezpecnostnich_opatreni-revize-1.pdf', 'BOZP33#21', 'Schváleno', 11, NULL, '2023-03-13 04:50:56', '2023-03-14 10:12:25'),
+(295, 33, 'Stravovací provoz', NULL, 22, 'Stravovací provoz', 'Soubor rizik a bezpečnostních opatření', 'Pribula Marek, Bc.', NULL, NULL, '2014-09-01', '1', '2015-09-01', NULL, '2014-09-01', 'bozp_rizika-stravovaci_provoz-soubor_rizik_a_bezpecnostnich_opatreni-revize-1.pdf', 'BOZP33#22', 'Schváleno', 11, NULL, '2023-03-13 04:51:24', '2023-03-14 10:14:20'),
+(296, 33, 'Úklidová služba', NULL, 23, 'Úklidová služba', 'Soubor rizik a bezpečnostních opatření', 'Pribula Marek, Bc.', NULL, NULL, '2014-09-01', '1', '2015-09-01', NULL, '2014-09-01', 'bozp_rizika-uklidova_sluzba-soubor_rizik_a_bezpecnostnich_opatreni-revize-1.pdf', 'BOZP33#23', 'Schváleno', 11, NULL, '2023-03-13 04:51:51', '2023-03-14 10:15:41'),
+(297, 34, 'Řád ohlašovny požárů', NULL, 1, 'Řád ohlašovny požárů', 'Řád ohlašovny požárů  KHN a.s.', 'Pribula Marek, Bc.', NULL, NULL, '2020-02-21', '1', '2021-02-21', NULL, '2020-02-21', 'bozp_pozarni-ochrana-rad_ohlasovny_pozaru__khn_a.s.-revize-1.pdf', 'BOZP34#1', 'Schváleno', 11, NULL, '2023-03-13 05:22:02', '2023-03-13 05:22:02'),
+(298, 34, 'Požární řád - Lůžková a ambulantní část nemocnice', NULL, 2, 'Požární řád - Lůžková a ambulantní část nemocnice', 'Požární řád - Lůžková a ambulantní část nemocnice', 'Pribula Marek, Bc.', NULL, NULL, '2014-10-31', '1', '2015-10-31', NULL, '2014-10-31', 'bozp_pozarni-ochrana-pozarni_rad_-_luzkova_a_ambulantni_cast_nemocnice-revize-1.pdf', 'BOZP34#2', 'Schváleno', 11, NULL, '2023-03-13 05:25:27', '2023-03-13 05:25:27'),
+(299, 34, 'Požární řád - Dieselagregát', NULL, 3, 'Požární řád - Dieselagregát', 'Požární řád - Dieselagregát', 'Pribula Marek, Bc.', NULL, NULL, '2014-10-31', '1', '2015-10-31', NULL, '2014-10-31', 'bozp_pozarni-ochrana-pozarni_rad_-_dieselagregat-revize-1.pdf', 'BOZP34#3', 'Schváleno', 11, NULL, '2023-03-13 05:26:23', '2023-03-13 05:26:23'),
+(300, 35, 'Hlavní budova A', NULL, 1, 'Hlavní budova A', 'Hlavní budova A - Suterén - CO Kryt', 'Pribula Marek, Bc.', NULL, NULL, '2016-03-01', '1', '2017-03-01', NULL, '2016-03-01', 'bozp_pozarni-operativni-karty-hlavni_budova_a_-_suteren_-_co_kryt-revize-1.pdf', 'BOZP35#1', 'Schváleno', 11, NULL, '2023-03-13 06:09:26', '2023-03-13 06:09:26'),
+(301, 35, 'Hlavní budova A', NULL, 2, 'Hlavní budova A', 'Hlavní budova A - Přízemí - Oddělení klinické biochemie OKB', 'Pribula Marek, Bc.', NULL, NULL, '2014-09-01', '1', '2015-09-01', NULL, '2014-09-01', 'bozp_pozarni-operativni-karty-hlavni_budova_a_-_prizemi_-_oddeleni_klinicke_biochemie_okb-revize-1.pdf', 'BOZP35#2', 'Schváleno', 11, NULL, '2023-03-13 06:11:32', '2023-03-13 06:11:32'),
+(302, 35, 'Hlavní budova A', NULL, 3, 'Hlavní budova A', 'Hlavní budova A - 1. patro - Operační Sály č.1 a č.2', 'Pribula Marek, Bc.', NULL, NULL, '2014-09-01', '1', '2015-09-01', NULL, '2014-09-01', 'bozp_pozarni-operativni-karty-hlavni_budova_a_-_1._patro_-_operacni_saly_c.1_a_c.2-revize-1.pdf', 'BOZP35#3', 'Schváleno', 11, NULL, '2023-03-13 06:13:01', '2023-03-13 06:13:01'),
+(303, 35, 'Hlavní budova A', NULL, 4, 'Hlavní budova A', 'Hlavní budova A - 2. patro - Strojovny VZT, inspekční pokoje, IT', 'Pribula Marek, Bc.', NULL, NULL, '2014-09-01', '1', '2015-09-01', NULL, '2014-09-01', 'bozp_pozarni-operativni-karty-hlavni_budova_a_-_2._patro_-_strojovny_vzt,_inspekcni_pokoje,_it-revize-1.pdf', 'BOZP35#4', 'Schváleno', 11, NULL, '2023-03-13 06:13:44', '2023-03-13 06:13:44'),
+(304, 35, 'Hlavní budova A', NULL, 5, 'Hlavní budova A', 'Hlavní budova A - 3. patro - Inspekční pokoje', 'Pribula Marek, Bc.', NULL, NULL, '2014-09-01', '1', '2015-09-01', NULL, '2014-09-01', 'bozp_pozarni-operativni-karty-hlavni_budova_a_-_3._patro_-_inspekcni_pokoje-revize-1.pdf', 'BOZP35#5', 'Schváleno', 11, NULL, '2023-03-13 06:16:14', '2023-03-13 06:16:14'),
+(305, 35, 'Hlavní budova A', NULL, 6, 'Hlavní budova A', 'Hlavní budova A - 4. patro - CN Páteře lůžkové oddělení', 'Pribula Marek, Bc.', NULL, NULL, '2014-09-01', '1', '2015-09-01', NULL, '2014-09-01', 'bozp_pozarni-operativni-karty-hlavni_budova_a_-_4._patro_-_cn_patere_luzkove_oddeleni-revize-1.pdf', 'BOZP35#6', 'Schváleno', 11, NULL, '2023-03-13 06:16:44', '2023-03-13 06:16:44'),
+(306, 35, 'Hlavní budova B', NULL, 7, 'Hlavní budova B', 'Hlavní budova B - Suterén', 'Pribula Marek, Bc.', NULL, NULL, '2014-09-01', '1', '2015-09-01', NULL, '2014-09-01', 'bozp_pozarni-operativni-karty-hlavni_budova_b_-_suteren-revize-1.pdf', 'BOZP35#7', 'Schváleno', 11, NULL, '2023-03-13 06:19:49', '2023-03-13 06:19:49'),
+(307, 35, 'Hlavní budova B', NULL, 8, 'Hlavní budova B', 'Hlavní budova B - Přízemí - Oddělení RDG', 'Pribula Marek, Bc.', NULL, NULL, '2014-09-01', '1', '2015-09-01', NULL, '2014-09-01', 'bozp_pozarni-operativni-karty-hlavni_budova_b_-_prizemi_-_oddeleni_rdg-revize-1.pdf', 'BOZP35#8', 'Schváleno', 11, NULL, '2023-03-13 06:20:34', '2023-03-13 06:20:34'),
+(308, 35, 'Hlavní budova B', NULL, 9, 'Hlavní budova B', 'Hlavní budova B - 1. patro - JIP CNP', 'Pribula Marek, Bc.', NULL, NULL, '2014-09-01', '1', '2015-09-01', NULL, '2014-09-01', 'bozp_pozarni-operativni-karty-hlavni_budova_b_-_1._patro_-_jip_cnp-revize-1.pdf', 'BOZP35#9', 'Schváleno', 11, NULL, '2023-03-13 06:21:33', '2023-03-13 06:21:33'),
+(309, 35, 'Hlavní budova B', NULL, 10, 'Hlavní budova B', 'Hlavní budova B - 2. patro - Interní ambulance', 'Pribula Marek, Bc.', NULL, NULL, '2014-09-01', '1', '2015-09-01', NULL, '2014-09-01', 'bozp_pozarni-operativni-karty-hlavni_budova_b_-_2._patro_-_interni_ambulance-revize-1.pdf', 'BOZP35#10', 'Schváleno', 11, NULL, '2023-03-13 06:22:20', '2023-03-13 06:22:20'),
+(310, 35, 'Hlavní budova B', NULL, 11, 'Hlavní budova B', 'Hlavní budova B - 3. patro - Neurologické ambulance', 'Pribula Marek, Bc.', NULL, NULL, '2014-09-01', '1', '2015-09-01', NULL, '2014-09-01', 'bozp_pozarni-operativni-karty-hlavni_budova_b_-_3._patro_-_neurologicke_ambulance-revize-1.pdf', 'BOZP35#11', 'Schváleno', 11, NULL, '2023-03-13 06:23:02', '2023-03-13 06:23:02'),
+(311, 35, 'Hlavní budova B', NULL, 12, 'Hlavní budova B', 'Hlavní budova B - 4. patro - Mezioborová JIP', 'Pribula Marek, Bc.', NULL, NULL, '2014-03-01', '1', '2015-03-01', NULL, '2014-03-01', 'bozp_pozarni-operativni-karty-hlavni_budova_b_-_4._patro_-_mezioborova_jip-revize-1.pdf', 'BOZP35#12', 'Schváleno', 11, NULL, '2023-03-13 06:23:36', '2023-03-13 06:23:36'),
+(312, 35, 'Hlavní budova C', NULL, 13, 'Hlavní budova C', 'Hlavní budova C - Suterén - Ambulantní rehabilitace - vodoléčba', 'Pribula Marek, Bc.', NULL, NULL, '2014-09-01', '1', '2015-09-01', NULL, '2014-09-01', 'bozp_pozarni-operativni-karty-hlavni_budova_c_-_suteren_-_ambulantni_rehabilitace_-_vodolecba-revize-1.pdf', 'BOZP35#13', 'Schváleno', 11, NULL, '2023-03-13 06:27:36', '2023-03-13 06:27:36'),
+(313, 35, 'Hlavní budova C', NULL, 14, 'Hlavní budova C', 'Hlavní budova C - Přízemí - Vestibul + CT', 'Pribula Marek, Bc.', NULL, NULL, '2014-09-01', '1', '2015-09-01', NULL, '2014-09-01', 'bozp_pozarni-operativni-karty-hlavni_budova_c_-_prizemi_-_vestibul___ct-revize-1.pdf', 'BOZP35#14', 'Schváleno', 11, NULL, '2023-03-13 06:28:34', '2023-03-13 06:28:34'),
+(314, 35, 'Hlavní budova C', NULL, 15, 'Hlavní budova C', 'Hlavní budova C - 1. patro - Rehabilitační lůžkové oddělení', 'Pribula Marek, Bc.', NULL, NULL, '2014-09-01', '1', '2015-09-01', NULL, '2014-09-01', 'bozp_pozarni-operativni-karty-hlavni_budova_c_-_1._patro_-_rehabilitacni_luzkove_oddeleni-revize-1.pdf', 'BOZP35#15', 'Schváleno', 11, NULL, '2023-03-13 06:29:07', '2023-03-13 06:29:07'),
+(315, 35, 'Hlavní budova C', NULL, 16, 'Hlavní budova C', 'Hlavní budova C - 2. patro - Ortopedické oddělení lůžkové', 'Pribula Marek, Bc.', NULL, NULL, '2014-09-01', '1', '2015-09-01', NULL, '2014-09-01', 'bozp_pozarni-operativni-karty-hlavni_budova_c_-_2._patro_-_ortopedicke_oddeleni_luzkove-revize-1.pdf', 'BOZP35#16', 'Schváleno', 11, NULL, '2023-03-13 06:30:16', '2023-03-13 06:30:16'),
+(316, 35, 'Hlavní budova C', NULL, 17, 'Hlavní budova C', 'Hlavní budova C - 3. patro - Interní oddělení lůžkové', 'Pribula Marek, Bc.', NULL, NULL, '2014-09-01', '1', '2015-09-01', NULL, '2014-09-01', 'bozp_pozarni-operativni-karty-hlavni_budova_c_-_3._patro_-_interni_oddeleni_luzkove-revize-1.pdf', 'BOZP35#17', 'Schváleno', 11, NULL, '2023-03-13 06:30:43', '2023-03-13 06:30:43'),
+(317, 35, 'Hlavní budova C', NULL, 18, 'Hlavní budova C', 'Hlavní budova C - 4. patro - Neurologické oddělení lůžkové', 'Pribula Marek, Bc.', NULL, NULL, '2014-09-01', '1', '2015-09-01', NULL, '2014-09-01', 'bozp_pozarni-operativni-karty-hlavni_budova_c_-_4._patro_-_neurologicke_oddeleni_luzkove-revize-1.pdf', 'BOZP35#18', 'Schváleno', 11, NULL, '2023-03-13 06:31:44', '2023-03-13 06:31:44'),
+(318, 35, 'Hlavní budova C', NULL, 19, 'Hlavní budova C', 'Hlavní budova C - 5. patro - Strojovny, střechy budov A, B, C', 'Pribula Marek, Bc.', NULL, NULL, '2014-09-01', '1', '2015-09-01', NULL, '2014-09-01', 'bozp_pozarni-operativni-karty-hlavni_budova_c_-_5._patro_-_strojovny,_strechy_budov_a,_b,_c-revize-1.pdf', 'BOZP35#19', 'Schváleno', 11, NULL, '2023-03-13 06:32:11', '2023-03-13 06:32:11'),
+(319, 35, 'Hlavní budova D', NULL, 20, 'Hlavní budova D', 'Hlavní budova D - Suterén - Strojovny VZT', 'Pribula Marek, Bc.', NULL, NULL, '2014-09-01', '1', '2015-09-01', NULL, '2014-09-01', 'bozp_pozarni-operativni-karty-hlavni_budova_d_-_suteren_-_strojovny_vzt-revize-1.pdf', 'BOZP35#20', 'Schváleno', 11, NULL, '2023-03-13 06:34:03', '2023-03-13 06:34:03'),
+(320, 35, 'Hlavní budova D', NULL, 21, 'Hlavní budova D', 'Hlavní budova D - Přízemí - Magnetická rezonance', 'Pribula Marek, Bc.', NULL, NULL, '2014-09-01', '1', '2015-09-01', NULL, '2014-09-01', 'bozp_pozarni-operativni-karty-hlavni_budova_d_-_prizemi_-_magneticka_rezonance-revize-1.pdf', 'BOZP35#21', 'Schváleno', 11, NULL, '2023-03-13 06:34:36', '2023-03-13 06:34:36'),
+(321, 35, 'Hlavní budova D', NULL, 22, 'Hlavní budova D', 'Hlavní budova D - 1. patro - Rehabilitace tělocvičny', 'Pribula Marek, Bc.', NULL, NULL, '2014-09-01', '1', '2015-09-01', NULL, '2014-09-01', 'bozp_pozarni-operativni-karty-hlavni_budova_d_-_1._patro_-_rehabilitace_telocvicny-revize-1.pdf', 'BOZP35#22', 'Schváleno', 11, NULL, '2023-03-13 06:35:13', '2023-03-13 06:35:13'),
+(322, 35, 'Hlavní budova D', NULL, 23, 'Hlavní budova D', 'Hlavní budova D - 2. patro - Operační sál č. 3', 'Pribula Marek, Bc.', NULL, NULL, '2014-09-01', '1', '2015-09-01', NULL, '2014-09-01', 'bozp_pozarni-operativni-karty-hlavni_budova_d_-_2._patro_-_operacni_sal_c._3-revize-1.pdf', 'BOZP35#23', 'Schváleno', 11, NULL, '2023-03-13 06:35:46', '2023-03-13 06:35:46'),
+(323, 35, 'Hlavní budova E', NULL, 24, 'Hlavní budova E', 'Hlavní budova E - Suterén - Dílny', 'Pribula Marek, Bc.', NULL, NULL, '2014-09-01', '1', '2015-09-01', NULL, '2014-09-01', 'bozp_pozarni-operativni-karty-hlavni_budova_e_-_suteren_-_dilny-revize-1.pdf', 'BOZP35#24', 'Schváleno', 11, NULL, '2023-03-13 06:38:05', '2023-03-13 06:38:05'),
+(324, 35, 'Hlavní budova E', NULL, 25, 'Hlavní budova E', 'Hlavní budova E - Přízemí - Energoblok trafostanice', 'Pribula Marek, Bc.', NULL, NULL, '2014-09-01', '1', '2015-09-01', NULL, '2014-09-01', 'bozp_pozarni-operativni-karty-hlavni_budova_e_-_prizemi_-_energoblok_trafostanice-revize-1.pdf', 'BOZP35#25', 'Schváleno', 11, NULL, '2023-03-13 06:45:41', '2023-03-13 06:45:41'),
+(325, 35, 'Hlavní budova E', NULL, 26, 'Hlavní budova E', 'Kabelový kanál - suterén - Elektrorozvody', 'Pribula Marek, Bc.', NULL, NULL, '2014-09-01', '1', '2015-09-01', NULL, '2014-09-01', 'bozp_pozarni-operativni-karty-kabelovy_kanal_-_suteren_-_elektrorozvody-revize-1.pdf', 'BOZP35#26', 'Schváleno', 11, NULL, '2023-03-13 06:46:45', '2023-03-13 06:46:45'),
+(326, 35, 'Hlavní budova K', NULL, 27, 'Hlavní budova K', 'Hlavní budova K - Suterén - Sklady, chladící boxy', 'Pribula Marek, Bc.', NULL, NULL, '2014-09-01', '1', '2015-09-01', NULL, '2014-09-01', 'bozp_pozarni-operativni-karty-hlavni_budova_k_-_suteren_-_sklady,_chladici_boxy-revize-1.pdf', 'BOZP35#27', 'Schváleno', 11, NULL, '2023-03-13 06:47:56', '2023-03-13 06:47:56'),
+(327, 35, 'Hlavní budova K', NULL, 28, 'Hlavní budova K', 'Hlavní budova K - Přízemí - Kuchyně', 'Pribula Marek, Bc.', NULL, NULL, '2014-09-01', '1', '2015-09-01', NULL, '2014-09-01', 'bozp_pozarni-operativni-karty-hlavni_budova_k_-_prizemi_-_kuchyne-revize-1.pdf', 'BOZP35#28', 'Schváleno', 11, NULL, '2023-03-13 06:48:23', '2023-03-13 06:48:23'),
+(328, 35, 'Hlavní budova R', NULL, 29, 'Hlavní budova R', 'Hlavní budova R - Suterén - Sklady', 'Pribula Marek, Bc.', NULL, NULL, '2014-09-01', '1', '2015-09-01', NULL, '2014-09-01', 'bozp_pozarni-operativni-karty-hlavni_budova_r_-_suteren_-_sklady-revize-1.pdf', 'BOZP35#29', 'Schváleno', 11, NULL, '2023-03-13 06:49:36', '2023-03-13 06:49:36'),
+(329, 35, 'Hlavní budova R', NULL, 30, 'Hlavní budova R', 'Hlavní budova R - Přízemí - Šatny', 'Pribula Marek, Bc.', NULL, NULL, '2014-09-01', '1', '2015-09-01', NULL, '2014-09-01', 'bozp_pozarni-operativni-karty-hlavni_budova_r_-_prizemi_-_satny-revize-1.pdf', 'BOZP35#30', 'Schváleno', 11, NULL, '2023-03-13 06:50:38', '2023-03-13 06:50:38'),
+(330, 35, 'Hlavní budova R', NULL, 31, 'Hlavní budova R', 'Hlavní budova R - 1. patro - Inspekční pokoje, kanceláře', 'Pribula Marek, Bc.', NULL, NULL, '2014-09-01', '1', '2015-09-01', NULL, '2014-09-01', 'bozp_pozarni-operativni-karty-hlavni_budova_r_-_1._patro_-_inspekcni_pokoje,_kancelare-revize-1.pdf', 'BOZP35#31', 'Schváleno', 11, NULL, '2023-03-13 06:51:11', '2023-03-13 06:51:11'),
+(331, 35, 'Hlavní budova R', NULL, 32, 'Hlavní budova R', 'Hlavní budova R - 2. patro - Inspekční pokoje', 'Pribula Marek, Bc.', NULL, NULL, '2014-09-01', '1', '2015-09-01', NULL, '2014-09-01', 'bozp_pozarni-operativni-karty-hlavni_budova_r_-_2._patro_-_inspekcni_pokoje-revize-1.pdf', 'BOZP35#32', 'Schváleno', 11, NULL, '2023-03-13 06:52:00', '2023-03-13 06:52:00'),
+(332, 35, 'Hlavní budova R', NULL, 33, 'Hlavní budova R', 'Hlavní budova R - 3. patro - Kanceláře', 'Pribula Marek, Bc.', NULL, NULL, '2014-09-01', '1', '2015-09-01', NULL, '2014-09-01', 'bozp_pozarni-operativni-karty-hlavni_budova_r_-_3._patro_-_kancelare-revize-1.pdf', 'BOZP35#33', 'Schváleno', 11, NULL, '2023-03-13 06:52:33', '2023-03-13 06:52:33'),
+(333, 35, 'Hlavní budova V', NULL, 34, 'Hlavní budova V', 'Hlavní budova V - Redukční stanice vzduchu a kyslíku', 'Pribula Marek, Bc.', NULL, NULL, '2014-09-01', '1', '2015-09-01', NULL, '2014-09-01', 'bozp_pozarni-operativni-karty-hlavni_budova_v_-_redukcni_stanice_vzduchu_a_kysliku-revize-1.pdf', 'BOZP35#34', 'Schváleno', 11, NULL, '2023-03-13 06:53:37', '2023-03-13 06:53:37'),
+(334, 35, 'CPM A', NULL, 35, 'CPM A', 'CPM A - Suterén', 'Pribula Marek, Bc.', NULL, NULL, '2014-09-01', '1', '2015-09-01', NULL, '2014-09-01', 'bozp_pozarni-operativni-karty-cpm_a_-_suteren-revize-1.pdf', 'BOZP35#35', 'Schváleno', 11, NULL, '2023-03-13 06:55:45', '2023-03-13 06:55:45'),
+(335, 35, 'CPM A', NULL, 36, 'CPM A', 'CPM A - Přízemí', 'Pribula Marek, Bc.', NULL, NULL, '2014-09-01', '1', '2015-09-01', NULL, '2014-09-01', 'bozp_pozarni-operativni-karty-cpm_a_-_prizemi-revize-1.pdf', 'BOZP35#36', 'Schváleno', 11, NULL, '2023-03-13 06:56:13', '2023-03-13 06:56:13'),
+(336, 35, 'CPM A', NULL, 37, 'CPM A', 'CPM A - 1. patro', 'Pribula Marek, Bc.', NULL, NULL, '2014-09-01', '1', '2015-09-01', NULL, '2014-09-01', 'bozp_pozarni-operativni-karty-cpm_a_-_1._patro-revize-1.pdf', 'BOZP35#37', 'Schváleno', 11, NULL, '2023-03-13 06:56:49', '2023-03-13 06:56:49'),
+(337, 35, 'CPM A', NULL, 38, 'CPM A', 'CPM A - 2. patro', 'Pribula Marek, Bc.', NULL, NULL, '2014-09-01', '1', '2015-09-01', NULL, '2014-09-01', 'bozp_pozarni-operativni-karty-cpm_a_-_2._patro-revize-1.pdf', 'BOZP35#38', 'Schváleno', 11, NULL, '2023-03-13 06:57:40', '2023-03-13 06:57:40'),
+(338, 35, 'CPM A', NULL, 39, 'CPM A', 'CPM A - 3. patro', 'Pribula Marek, Bc.', NULL, NULL, '2014-09-01', '1', '2015-09-01', NULL, '2014-09-01', 'bozp_pozarni-operativni-karty-cpm_a_-_3._patro-revize-1.pdf', 'BOZP35#39', 'Schváleno', 11, NULL, '2023-03-13 06:58:10', '2023-03-13 06:58:10'),
+(339, 35, 'CPM A', NULL, 40, 'CPM A', 'CPM A - 4. patro', 'Pribula Marek, Bc.', NULL, NULL, '2014-09-01', '1', '2015-09-01', NULL, '2014-09-01', 'bozp_pozarni-operativni-karty-cpm_a_-_4._patro-revize-1.pdf', 'BOZP35#40', 'Schváleno', 11, NULL, '2023-03-13 06:58:35', '2023-03-13 06:58:35'),
+(340, 35, 'CPM B', NULL, 41, 'CPM B', 'CPM B - Suterén', 'Pribula Marek, Bc.', NULL, NULL, '2014-09-01', '1', '2015-09-01', NULL, '2014-09-01', 'bozp_pozarni-operativni-karty-cpm_b_-_suteren-revize-1.pdf', 'BOZP35#41', 'Schváleno', 11, NULL, '2023-03-13 06:59:39', '2023-03-13 06:59:39'),
+(341, 35, 'CPM B', NULL, 42, 'CPM B', 'CPM B - Přízemí', 'Pribula Marek, Bc.', NULL, NULL, '2014-09-01', '1', '2015-09-01', NULL, '2014-09-01', 'bozp_pozarni-operativni-karty-cpm_b_-_prizemi-revize-1.pdf', 'BOZP35#42', 'Schváleno', 11, NULL, '2023-03-13 07:00:23', '2023-03-13 07:00:23'),
+(342, 35, 'CPM B', NULL, 43, 'CPM B', 'CPM B - 1. patro', 'Pribula Marek, Bc.', NULL, NULL, '2014-09-01', '1', '2015-09-01', NULL, '2014-09-01', 'bozp_pozarni-operativni-karty-cpm_b_-_1._patro-revize-1.pdf', 'BOZP35#43', 'Schváleno', 11, NULL, '2023-03-13 07:01:22', '2023-03-13 07:01:22'),
+(343, 35, 'CPM B', NULL, 44, 'CPM B', 'CPM B - 2. patro', 'Pribula Marek, Bc.', NULL, NULL, '2014-09-01', '1', '2015-09-01', NULL, '2014-09-01', 'bozp_pozarni-operativni-karty-cpm_b_-_2._patro-revize-1.pdf', 'BOZP35#44', 'Schváleno', 11, NULL, '2023-03-13 08:02:18', '2023-03-13 08:02:18'),
+(344, 35, 'CPM B', NULL, 45, 'CPM B', 'CPM B - 3. patro', 'Pribula Marek, Bc.', NULL, NULL, '2014-09-01', '1', '2015-09-01', NULL, '2014-09-01', 'bozp_pozarni-operativni-karty-cpm_b_-_3._patro-revize-1.pdf', 'BOZP35#45', 'Schváleno', 11, NULL, '2023-03-13 08:03:06', '2023-03-13 08:03:06'),
+(345, 35, 'CPM B', NULL, 46, 'CPM B', 'CPM B - 4. patro', 'Pribula Marek, Bc.', NULL, NULL, '2014-09-01', '1', '2015-09-01', NULL, '2014-09-01', 'bozp_pozarni-operativni-karty-cpm_b_-_4._patro-revize-1.pdf', 'BOZP35#46', 'Schváleno', 11, NULL, '2023-03-13 08:10:52', '2023-03-13 08:10:52'),
+(346, 35, 'CPM C', NULL, 47, 'CPM C', 'CPM C - Suterén', 'Pribula Marek, Bc.', NULL, NULL, '2014-09-01', '1', '2015-09-01', NULL, '2014-09-01', 'bozp_pozarni-operativni-karty-cpm_c_-_suteren-revize-1.pdf', 'BOZP35#47', 'Schváleno', 11, NULL, '2023-03-13 08:12:00', '2023-03-13 08:12:00'),
+(347, 35, 'CPM C', NULL, 48, 'CPM C', 'CPM C - Přízemí', 'Pribula Marek, Bc.', NULL, NULL, '2014-09-01', '1', '2015-09-01', NULL, '2014-09-01', 'bozp_pozarni-operativni-karty-cpm_c_-_prizemi-revize-1.pdf', 'BOZP35#48', 'Schváleno', 11, NULL, '2023-03-13 08:12:45', '2023-03-13 08:12:45'),
+(348, 35, 'Nová budova', NULL, 49, 'Nová budova', 'Nová budova - přízemí', 'Pribula Marek, Bc.', NULL, NULL, '2022-03-01', '1', '2023-03-01', NULL, '2022-03-01', 'bozp_pozarni-operativni-karty-nova_budova_-_prizemi-revize-1.pdf', 'BOZP35#49', 'Schváleno', 11, NULL, '2023-03-13 08:13:51', '2023-03-13 08:15:42'),
+(349, 35, 'Nová budova', NULL, 50, 'Nová budova', 'Nová budova - 1. patro', 'Pribula Marek, Bc.', NULL, NULL, '2022-03-01', '1', '2023-03-01', NULL, '2022-03-01', 'bozp_pozarni-operativni-karty-nova_budova_-_1._patro-revize-1.pdf', 'BOZP35#50', 'Schváleno', 11, NULL, '2023-03-13 08:14:47', '2023-03-13 08:14:47'),
+(350, 35, 'Nová budova', NULL, 51, 'Nová budova', 'Nová budova - 2. patro', 'Pribula Marek, Bc.', NULL, NULL, '2022-03-01', '1', '2023-03-01', NULL, '2022-03-01', 'bozp_pozarni-operativni-karty-nova_budova_-_2._patro-revize-1.pdf', 'BOZP35#51', 'Schváleno', 11, NULL, '2023-03-13 08:15:24', '2023-03-13 08:15:24');
 
 -- --------------------------------------------------------
 
@@ -985,29 +1170,29 @@ INSERT INTO `documents` (`id`, `category_id`, `accordion_name`, `accordion_group
 --
 
 CREATE TABLE `employees` (
-  `id` bigint UNSIGNED NOT NULL,
-  `personal_number` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
-  `image` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
-  `title_preffix` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `last_name` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
-  `middle_name` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `married_name` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `first_name` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
-  `title_suffix` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `department_id` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
-  `job_id` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
-  `email` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `id` bigint(20) UNSIGNED NOT NULL,
+  `personal_number` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `image` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `title_preffix` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `last_name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `middle_name` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `married_name` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `first_name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `title_suffix` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `department_id` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `job_id` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `email` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `start_date` date NOT NULL,
   `end_date` date DEFAULT NULL,
-  `comment` text CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci,
-  `phone` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `mobile` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `id_card` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
-  `coffee` enum('A','N') CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT 'N',
-  `employment` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
-  `position` int DEFAULT NULL,
-  `standard_signature` int DEFAULT NULL,
-  `status` enum('Aktivní','Neaktivní','Mateřská') CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT 'Neaktivní',
+  `comment` text COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `phone` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `mobile` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `id_card` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `coffee` enum('A','N') COLLATE utf8mb4_unicode_ci DEFAULT 'N',
+  `employment` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `position` int(11) DEFAULT NULL,
+  `standard_signature` int(11) DEFAULT NULL,
+  `status` enum('Aktivní','Neaktivní','Mateřská') COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT 'Neaktivní',
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
@@ -1639,9 +1824,9 @@ INSERT INTO `employees` (`id`, `personal_number`, `image`, `title_preffix`, `las
 --
 
 CREATE TABLE `evidence` (
-  `id` bigint UNSIGNED NOT NULL,
-  `evidence_type` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
-  `evidence_pieces` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `id` bigint(20) UNSIGNED NOT NULL,
+  `evidence_type` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `evidence_pieces` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
@@ -1653,13 +1838,13 @@ CREATE TABLE `evidence` (
 --
 
 CREATE TABLE `failed_jobs` (
-  `id` bigint UNSIGNED NOT NULL,
-  `uuid` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
-  `connection` text CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
-  `queue` text CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
-  `payload` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
-  `exception` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
-  `failed_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP
+  `id` bigint(20) UNSIGNED NOT NULL,
+  `uuid` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `connection` text COLLATE utf8mb4_unicode_ci NOT NULL,
+  `queue` text COLLATE utf8mb4_unicode_ci NOT NULL,
+  `payload` longtext COLLATE utf8mb4_unicode_ci NOT NULL,
+  `exception` longtext COLLATE utf8mb4_unicode_ci NOT NULL,
+  `failed_at` timestamp NOT NULL DEFAULT current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 -- --------------------------------------------------------
@@ -1669,12 +1854,12 @@ CREATE TABLE `failed_jobs` (
 --
 
 CREATE TABLE `instructions` (
-  `id` bigint UNSIGNED NOT NULL,
-  `standard_id` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
-  `standard_category_id` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
-  `name` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
-  `revision` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
-  `status` enum('Rozpracováno','Schváleno') CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `id` bigint(20) UNSIGNED NOT NULL,
+  `standard_id` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `standard_category_id` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `revision` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `status` enum('Rozpracováno','Schváleno') COLLATE utf8mb4_unicode_ci NOT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
@@ -1686,8 +1871,8 @@ CREATE TABLE `instructions` (
 --
 
 CREATE TABLE `jobs` (
-  `id` bigint UNSIGNED NOT NULL,
-  `job_title` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL
+  `id` bigint(20) UNSIGNED NOT NULL,
+  `job_title` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
@@ -1775,9 +1960,9 @@ INSERT INTO `jobs` (`id`, `job_title`) VALUES
 --
 
 CREATE TABLE `migrations` (
-  `id` int UNSIGNED NOT NULL,
-  `migration` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
-  `batch` int NOT NULL
+  `id` int(10) UNSIGNED NOT NULL,
+  `migration` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `batch` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
@@ -1807,7 +1992,8 @@ INSERT INTO `migrations` (`id`, `migration`, `batch`) VALUES
 (136, '2023_01_20_104223_create_navitems_table', 6),
 (137, '2023_02_13_065610_create_paints_table', 7),
 (138, '2023_03_03_102419_create_bozps_table', 7),
-(140, '2023_03_12_195624_create_notifications_table', 8);
+(140, '2023_03_12_195624_create_notifications_table', 8),
+(141, '2023_03_13_103125_create_bulletins_table', 9);
 
 -- --------------------------------------------------------
 
@@ -1816,20 +2002,20 @@ INSERT INTO `migrations` (`id`, `migration`, `batch`) VALUES
 --
 
 CREATE TABLE `navitems` (
-  `id` bigint UNSIGNED NOT NULL,
-  `position` int NOT NULL,
-  `category_id` int NOT NULL,
-  `name` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
-  `subname` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
-  `alt_name` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
-  `tooltip` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
-  `color` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
-  `icon_class` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
-  `page_title` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
-  `route` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
-  `favicon` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
-  `fa_icon` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
-  `svg_icon` text CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL
+  `id` bigint(20) UNSIGNED NOT NULL,
+  `position` int(11) NOT NULL,
+  `category_id` int(11) NOT NULL,
+  `name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `subname` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `alt_name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `tooltip` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `color` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `icon_class` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `page_title` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `route` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `favicon` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `fa_icon` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `svg_icon` text COLLATE utf8mb4_unicode_ci NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
@@ -1846,8 +2032,8 @@ INSERT INTO `navitems` (`id`, `position`, `category_id`, `name`, `subname`, `alt
 --
 
 CREATE TABLE `notifications` (
-  `id` bigint UNSIGNED NOT NULL,
-  `user_id` int NOT NULL,
+  `id` bigint(20) UNSIGNED NOT NULL,
+  `user_id` int(11) NOT NULL,
   `title` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `content` text COLLATE utf8mb4_unicode_ci NOT NULL,
   `type` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
@@ -1873,15 +2059,15 @@ INSERT INTO `notifications` (`id`, `user_id`, `title`, `content`, `type`, `creat
 --
 
 CREATE TABLE `paints` (
-  `id` bigint UNSIGNED NOT NULL,
-  `department_id` bigint UNSIGNED NOT NULL,
-  `user_id` bigint UNSIGNED NOT NULL,
+  `id` bigint(20) UNSIGNED NOT NULL,
+  `department_id` bigint(20) UNSIGNED NOT NULL,
+  `user_id` bigint(20) UNSIGNED NOT NULL,
   `date_start` date NOT NULL,
   `date_end` date NOT NULL,
-  `rooms` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `doors` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `specials` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `status` enum('Vloženo','Schváleno') CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `rooms` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `doors` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `specials` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `status` enum('Vloženo','Schváleno') COLLATE utf8mb4_unicode_ci NOT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
@@ -1891,7 +2077,8 @@ CREATE TABLE `paints` (
 --
 
 INSERT INTO `paints` (`id`, `department_id`, `user_id`, `date_start`, `date_end`, `rooms`, `doors`, `specials`, `status`, `created_at`, `updated_at`) VALUES
-(1, 20, 11, '2023-03-04', '2023-03-28', 'eqeqw', NULL, NULL, 'Vloženo', '2023-03-04 14:35:09', '2023-03-04 14:35:09');
+(1, 20, 11, '2023-03-04', '2023-03-28', 'eqeqw', NULL, NULL, 'Vloženo', '2023-03-04 14:35:09', '2023-03-04 14:35:09'),
+(2, 20, 11, '2023-03-13', '2023-03-22', 'tertert', NULL, 'erterter', 'Vloženo', '2023-03-13 09:27:13', '2023-03-13 09:27:13');
 
 -- --------------------------------------------------------
 
@@ -1900,8 +2087,8 @@ INSERT INTO `paints` (`id`, `department_id`, `user_id`, `date_start`, `date_end`
 --
 
 CREATE TABLE `password_resets` (
-  `email` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
-  `token` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `email` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `token` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `created_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
@@ -1912,12 +2099,12 @@ CREATE TABLE `password_resets` (
 --
 
 CREATE TABLE `personal_access_tokens` (
-  `id` bigint UNSIGNED NOT NULL,
-  `tokenable_type` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
-  `tokenable_id` bigint UNSIGNED NOT NULL,
-  `name` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
-  `token` varchar(64) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
-  `abilities` text CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci,
+  `id` bigint(20) UNSIGNED NOT NULL,
+  `tokenable_type` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `tokenable_id` bigint(20) UNSIGNED NOT NULL,
+  `name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `token` varchar(64) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `abilities` text COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `last_used_at` timestamp NULL DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
@@ -1930,11 +2117,11 @@ CREATE TABLE `personal_access_tokens` (
 --
 
 CREATE TABLE `printers` (
-  `id` bigint UNSIGNED NOT NULL,
-  `printer_vendor` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
-  `printer_type` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
-  `printer_number` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
-  `toner_id` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL
+  `id` bigint(20) UNSIGNED NOT NULL,
+  `printer_vendor` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `printer_type` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `printer_number` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `toner_id` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 -- --------------------------------------------------------
@@ -1944,12 +2131,12 @@ CREATE TABLE `printers` (
 --
 
 CREATE TABLE `slides` (
-  `id` bigint UNSIGNED NOT NULL,
-  `training_id` int NOT NULL,
-  `slide_title` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
-  `directory` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
-  `path` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
-  `position` int NOT NULL,
+  `id` bigint(20) UNSIGNED NOT NULL,
+  `training_id` int(11) NOT NULL,
+  `slide_title` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `directory` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `path` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `position` int(11) NOT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
@@ -1961,11 +2148,11 @@ CREATE TABLE `slides` (
 --
 
 CREATE TABLE `toners` (
-  `id` bigint UNSIGNED NOT NULL,
-  `toner_code` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
-  `toner_type` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
-  `toner_size` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
-  `toner_price` int NOT NULL
+  `id` bigint(20) UNSIGNED NOT NULL,
+  `toner_code` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `toner_type` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `toner_size` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `toner_price` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 -- --------------------------------------------------------
@@ -1975,9 +2162,9 @@ CREATE TABLE `toners` (
 --
 
 CREATE TABLE `trainings` (
-  `id` bigint UNSIGNED NOT NULL,
-  `title` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
-  `category` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `id` bigint(20) UNSIGNED NOT NULL,
+  `title` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `category` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
@@ -1989,15 +2176,15 @@ CREATE TABLE `trainings` (
 --
 
 CREATE TABLE `users` (
-  `id` bigint UNSIGNED NOT NULL,
-  `personal_number` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
-  `name` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
-  `email` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `id` bigint(20) UNSIGNED NOT NULL,
+  `personal_number` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `email` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `email_verified_at` timestamp NULL DEFAULT NULL,
-  `password` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
-  `two_factor_secret` text CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci,
-  `two_factor_recovery_codes` text CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci,
-  `remember_token` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `password` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `two_factor_secret` text COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `two_factor_recovery_codes` text COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `remember_token` varchar(100) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
@@ -2017,7 +2204,7 @@ INSERT INTO `users` (`id`, `personal_number`, `name`, `email`, `email_verified_a
 (8, '61199', 'PhDr. Ilona Kopečný', 'jakoubek.ivana@example.com', '2023-01-11 16:48:16', '$2y$10$LHGzVLpy/G9kAezVWgAyH.w4kZJM4sDCnTWicSCsVJwhueLR/EXkC', NULL, NULL, 'SreSqc3lYKXx7cC3k9lzdP2FARjraqw5bl3EwVMUDRG2Stbz2SRg3TXSWV1n', '2023-01-11 16:48:17', '2023-01-11 16:48:17'),
 (9, '64220', 'Vítězslav Studený', 'aprokop@example.net', '2023-01-11 16:48:16', '$2y$10$TXAjVT9k./.H4KjXoNAcn.ljLPiSjKS0B.vlGoGjEiJXFvNWX3CJG', NULL, NULL, 'Q84bE3b76njnJpTH1hee9690itatngELvYKuDNtYqpfuwZ72Y4EhZd2C0J3e', '2023-01-11 16:48:17', '2023-01-11 16:48:17'),
 (10, '62457', 'PhDr. Jan Kuča', 'milena93@example.net', '2023-01-11 16:48:16', '$2y$10$y.1Fr4LcccsAuc2CCAp9seh5PonzrjwBcBDlKqaIaO4r0eYvvow3W', NULL, NULL, 'uKtD3jRcmQagjEDZs2oF9PpRq14SsqwMna9HjdAGFR5U2lai6N50iFFPsfDC', '2023-01-11 16:48:17', '2023-01-11 16:48:17'),
-(11, '61625', 'Klika Miroslav', 'klika@khn.cz', NULL, '$2y$10$PSw5emAhbIR3u3sVNNg3iOe8t9z0Ct7dgJEKUud0jfeXFVkJzWZqK', NULL, NULL, 'EiHG6P78vHV0iGuKG8tBOuDE85oiBq8Vj0ybsb0DcuDYca7nKL2LW4rk74kS', '2023-01-11 18:53:36', '2023-01-22 21:46:33'),
+(11, '61625', 'Klika Miroslav', 'klika@khn.cz', NULL, '$2y$10$PSw5emAhbIR3u3sVNNg3iOe8t9z0Ct7dgJEKUud0jfeXFVkJzWZqK', NULL, NULL, 'yp2ezyMZ6muFl0Dw9Mdjygx4tAZdnTZ04sCChsZxN6F8of1MKFWoswlCCmJX', '2023-01-11 18:53:36', '2023-01-22 21:46:33'),
 (12, '63882', 'Anna Seidlová', 'mbalogova@example.org', '2023-01-13 16:56:57', '$2y$10$ihu2uS/uhaS01vFcu8M.6eN5ElPL//0lTNnPybHJWDbVuNOGbWvfe', NULL, NULL, 'jSCn8DxL6F6HZFbc37QMtjBOtiWFUr5RuuHEw0DVZUbCS6s2vqM58fO2ZjXy', '2023-01-13 16:56:57', '2023-01-13 16:56:57'),
 (13, '64832', 'Marta Jílková', 'cibulkova.tomas@example.net', '2023-01-13 16:56:57', '$2y$10$43kzxF1NKZ/bu2BgUlG5D.I0JYRdvKu6v2ZyF83TkJBKh5nqeUCLW', NULL, NULL, 'rhlXHVt9qY9OsQA9Q8q4CRdFYxXxmbc5kliamjZKwMG5crFPZwTB1b2AE3XH', '2023-01-13 16:56:57', '2023-01-13 16:56:57'),
 (14, '62297', 'Vladimíra Bradová', 'ncahova@example.org', '2023-01-13 16:56:57', '$2y$10$lU2Pubr/W60AJ.rFRlM0l.8DHV1vBszqcNyoGqHjbIdGEvPIEWUZS', NULL, NULL, 'CuPFejVxGLKnbWf4cNf5kauzdYDdEMtGwTQ4eXfcRokoZG38HmYA45ePlZLa', '2023-01-13 16:56:57', '2023-01-13 16:56:57'),
@@ -2055,6 +2242,12 @@ ALTER TABLE `attendances`
 -- Indexy pro tabulku `bozps`
 --
 ALTER TABLE `bozps`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexy pro tabulku `bulletins`
+--
+ALTER TABLE `bulletins`
   ADD PRIMARY KEY (`id`);
 
 --
@@ -2120,43 +2313,49 @@ ALTER TABLE `paints`
 -- AUTO_INCREMENT pro tabulku `addons`
 --
 ALTER TABLE `addons`
-  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=66;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=150;
 
 --
 -- AUTO_INCREMENT pro tabulku `bozps`
 --
 ALTER TABLE `bozps`
-  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT pro tabulku `bulletins`
+--
+ALTER TABLE `bulletins`
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT pro tabulku `categories`
 --
 ALTER TABLE `categories`
-  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=37;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=37;
 
 --
 -- AUTO_INCREMENT pro tabulku `documents`
 --
 ALTER TABLE `documents`
-  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=262;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=352;
 
 --
 -- AUTO_INCREMENT pro tabulku `migrations`
 --
 ALTER TABLE `migrations`
-  MODIFY `id` int UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=141;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=142;
 
 --
 -- AUTO_INCREMENT pro tabulku `notifications`
 --
 ALTER TABLE `notifications`
-  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT pro tabulku `paints`
 --
 ALTER TABLE `paints`
-  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

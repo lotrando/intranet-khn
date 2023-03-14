@@ -83,7 +83,7 @@
                 @auth
                   <button class="btn btn-lime d-inline-block me-2" id="openCreateModal" data-bs-toggle="tooltip"
                     data-bs-placement="left"
-                    data-bs-original-title="{{ __('Vytvoří nový ' . $categorie->button . ' ' . $categorie->category_type . '') }}">
+                    data-bs-original-title="{{ __('Vytvoří nový ' . strtoupper($categorie->category_type) . ' dokument') }}">
                     <svg class="icon icon-inline" xmlns="http://www.w3.org/2000/svg" width="24" height="24"
                       viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round"
                       stroke-linejoin="round">
@@ -127,7 +127,7 @@
                             <a href="{{ route('soubory.bozp.download', $document->id) }}" target="_blank">
                               <span class="avatar bg-{{ $document->category->color }}-lt" data-bs-toggle="tooltip"
                                 data-bs-placement="top" data-bs-original-title="Stáhnout dokument">
-                                <img src="{{ asset('img/files/pdf.png') }}" alt="PDF soubor" height="32px">
+                                <img src="{{ asset('img/files/pdf.png') }}" alt="PDF" height="32px">
                               </span>
                             </a>
                           </div>
@@ -289,8 +289,7 @@
                           <a href="{{ route('soubory.bozp.addon.download', $add->id) }}">
                             <span class="avatar bg-{{ $document->category->color }}-lt" data-bs-toggle="tooltip"
                               data-bs-placement="top" data-bs-original-title="Stáhnout přílohu">
-                              <img src="{{ asset('img/files/pdf-add.png') }}" alt="PDF - Příloha standardu"
-                                height="32px">
+                              <img src="{{ asset('img/files/pdf-add.png') }}" alt="PDF" height="32px">
                             </span>
                           </a>
                         </div>
@@ -494,9 +493,9 @@
                 </select>
               </div>
               <div class="col-6 col-lg-2 mb-2">
-                <label class="form-label">{{ __('Zobrazit v dokumentaci') }}</label>
+                <label class="form-label">{{ __('Zobrazit také v dokumentaci') }}</label>
                 <select class="form-select" id="onscreen" name="onscreen">
-                  <option value=""></option>
+                  <option value="">Nezobrazovat v dokumentaci</option>
                   @foreach ($categories as $category)
                     <option value="{{ $category->id }}">{{ $category->category_name }}</option>
                   @endforeach
@@ -594,7 +593,7 @@
               <div class="col-4 col-lg-2 mb-2">
                 <label class="form-label">{{ __('Zobrazit v dokumentaci') }}</label>
                 <select class="form-select" id="add_onscreen" name="add_onscreen">
-                  <option value=""></option>
+                  <option value="">Nezobrazovat v dokumentaci</option>
                   @foreach ($categories as $category)
                     <option value="{{ $category->id }}">{{ $category->category_name }}</option>
                   @endforeach
@@ -776,13 +775,13 @@
   <div class="modal fade" id="addShowModal" role="dialog" aria-hidden="true" tabindex="-1">
     <div class="modal-dialog modal-dialog-centered modal-full-width" role="document">
       <div class="modal-content shadow-lg">
-        <div id="show-modal-header">
+        <div id="add-show-modal-header">
           <h5 class="modal-title"></h5>
           <div class="avatar avatar-transparent" id="add-show-modal-icon"></div>
         </div>
         <div class="modal-body">
           <div class="row">
-            <div class="col-7">
+            <div class="col-12">
 
               <div class="row">
                 <div class="col-2 mb-3 mt-3">
@@ -799,16 +798,7 @@
                 </div>
               </div>
 
-              <div class="row">
-                <div class="col-3 mb-3">
-                  <label class="form-label">{{ __('Zpracoval/a') }}</label>
-                  <input class="form-control" id="add-show-processed" type="text" readonly>
-                </div>
-                <div class="col-9 mb-3">
-                  <label class="form-label">{{ __('Oblast působnosti dokumentu') }}</label>
-                  <input class="form-control" id="add-show-tags" type="text" readonly>
-                </div>
-              </div>
+              <div id="pdf-preview-addon-show"></div>
 
               <div class="row">
                 <div class="col-12 mb-3">
@@ -821,13 +811,12 @@
                 </div>
                 <div class="col-6 mb-3">
                   <label class="form-label">{{ __('Založil / upravil') }}</label>
-                  <input class="form-control" id="add-show-user_name" readonly>
+                  <input class="form-control" id="add-show-user-name" readonly>
                 </div>
               </div>
             </div>
 
             <div class="col-5 p-1">
-              <div id="pdf-preview-addon-show"></div>
               <input id="category_id" name="category_id" type="hidden">
               <input id="action" name="action" type="hidden" />
               <input id="hidden_id" name="hidden_id" type="hidden" />
@@ -838,10 +827,9 @@
 
         <div class="modal-footer">
           <div class="align-content-end flex">
-            <a class="btn btn-red ms-auto hover-shadow" id="download-btn" type="button" href="">
-              <svg class="icon icon-inline" xmlns="http://www.w3.org/2000/svg" width="24" height="24"
-                viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round"
-                stroke-linejoin="round">
+            <a class="btn btn-red ms-auto hover-shadow" id="add-download-btn" type="button" href="">
+              <svg class="icon icon-inline" width="24" height="24" viewBox="0 0 24 24" stroke-width="2"
+                stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
                 <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
                 <path d="M12 20h-6a2 2 0 0 1 -2 -2v-12a2 2 0 0 1 2 -2h12v5"></path>
                 <path d="M13 16h-7a2 2 0 0 0 -2 2"></path>
@@ -1031,7 +1019,7 @@
             $('#next_revision_date').val(nextRevisionDate)
           })
           PDFObject.embed("../../soubory/" + html.data.file + "#toolbar=0", "#pdf-preview", {
-            height: "31rem"
+            height: "20rem"
           })
         }
       })
@@ -1046,11 +1034,9 @@
         success: function(html) {
           $('#addInputForm')[0].reset();
           $('.modal-title').val('');
-          $('#add_action_button, #add-pdf-preview')
-            .removeClass('d-none');
+          $('#add_action_button, #add-pdf-preview').removeClass('d-none');
           $('#addFormModal').modal('show');
-          $('#add-modal-icon').html('{!! $categorie->svg_icon !!}').addClass(
-            'bg-{{ $categorie->color }}-lt');
+          $('#add-modal-icon').html('{!! $categorie->svg_icon !!}').addClass('bg-{{ $categorie->color }}-lt');
           $('#add-modal-header').addClass("modal-header bg-{{ $categorie->color }}-lt");
           $('#add_action_button, .modal-title').text("{{ __('Addon Edit') }}")
           $('#add_action').val("Edit");
@@ -1068,7 +1054,7 @@
           $('#add_hidden_id').val(html.data.id);
           $('#add_hidden_file').val(html.data.file);
           PDFObject.embed("../../soubory/" + html.data.file + "#toolbar=0", "#add-pdf-preview", {
-            height: "31rem"
+            height: "25rem"
           })
         }
       })
@@ -1083,7 +1069,7 @@
         dataType: "json",
         success: function(html) {
           $('#inputForm')[0].reset()
-          $('.modal-title').val('')
+          $('.modal-title, #pdf-preview-show, #pdf-preview').val('')
           $('#pdf-preview-show, #pdf-preview, #pdf-preview-addon-show').removeClass('d-none')
           $('#showModal').modal('show')
           $('#show-modal-icon').html('{!! $categorie->svg_icon !!}').addClass(
@@ -1110,7 +1096,7 @@
           $('#download-btn').attr("href", "/soubory/bozp/" + html.data.id + "")
           PDFObject.embed("../../soubory/" + html.data.file + "#toolbar=0",
             "#pdf-preview-show", {
-              height: "33rem"
+              height: "27rem"
             })
         }
       })
@@ -1129,19 +1115,20 @@
             'bg-{{ $categorie->color }}-lt')
           $('#add-show-modal-header').addClass(
             "modal-header bg-{{ $categorie->color }}-lt")
-          $('.modal-title').html(html.data.description)
+          $('.modal-title').html(html.data.description + " - příloha")
           $('#add-show-description').val(html.data.description)
           $('#add-show-position').val(html.data.position)
           $('#add-show-file').val(html.data.file)
           $('#add-show-revision').val(html.data.revision)
           $('#add-show-status').val(html.data.status)
-          $('#add-show-user_id').val('{{ auth()->user()->id ?? null }}')
+          $('#user_id').val('{{ auth()->user()->id ?? null }}')
+          $('#add-show-user-name').val(html.data.user.name)
           $('#add-show-hidden_id').val(html.data.id)
-          $('#add-download-btn').attr("href", "/soubory/bozp/addon/" + html.data.id +
+          $('#add-download-btn').attr("href", "/soubory/bozp/priloha/" + html.data.id +
             "")
           PDFObject.embed("../../soubory/" + html.data.file + "#toolbar=0",
             "#pdf-preview-addon-show", {
-              height: "30rem"
+              height: "28rem"
             })
         }
       })
